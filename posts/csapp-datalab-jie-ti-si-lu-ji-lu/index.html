@@ -2,6 +2,7 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="description" content="CSAPP-lab assignements datalab 的解题思路，关于 bitAnd, getByte,">
 <meta name="viewport" content="width=device-width">
 <title>CSAPP-datalab 解题思路记录 | Procrastination Prescription</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
@@ -21,9 +22,931 @@
         
     <div class="postdiv">
     <a href="."><h2>CSAPP-datalab 解题思路记录</h2></a>
-    <p>
-First a test for that whether my nikola deployed on Ubuntu could work or not.
+    <div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">datalab 解题思路</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+本篇文章并不会花太长时间，因为解题思路都写在代码注释中了（写代码的时候用注释描述
+整体方向和关键步骤实在是个好习惯）。
 </p>
+
+<p>
+代码中的注释都是用蹩脚的英文写就的，虽然说不能保证没有语法问题，但是一般不会太影响理
+解。
+</p>
+
+<p>
+一共15道题目，12道关于int类型数据操作，3道关于single float类型操作，难的容易的都
+有，分布还算合理。基本上代码中的注释就够解释清楚了，不过对于 <code>bitCount</code> 这道题
+（说好的只是二进制操作谜题，怎么二分法都乱入了？）会详细解释。
+</p>
+
+<ol class="org-ol">
+<li>
+<a href="#sec-1-1">bitAnd</a>
+</li>
+<li>
+<a href="#sec-1-2">getByte</a>
+</li>
+<li>
+<a href="#sec-1-3">logicalShift</a>
+</li>
+<li>
+<a href="#sec-1-4">bitCount</a>
+</li>
+<li>
+<a href="#sec-1-5">bang</a>
+</li>
+<li>
+<a href="#sec-1-6">tmin</a>
+</li>
+<li>
+<a href="#sec-1-7">fitsBits</a>
+</li>
+<li>
+<a href="#sec-1-8">divpwr2</a>
+</li>
+<li>
+<a href="#sec-1-9">negate</a>
+</li>
+<li>
+<a href="#sec-1-10">isPositive</a>
+</li>
+<li>
+<a href="#sec-1-11">isLessOrEqual</a>
+</li>
+<li>
+<a href="#sec-1-12">ilog2</a>
+</li>
+<li>
+<a href="#sec-1-13">float<sub>neg</sub></a>
+</li>
+<li>
+<a href="#sec-1-14">float<sub>i2f</sub></a>
+</li>
+<li>
+<a href="#sec-1-15">float<sub>twice</sub></a>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">bitAnd</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * bitAnd - x&amp;y using only ~ and | </span>
+<span class="cm"> *   Example: bitAnd(6, 5) = 4</span>
+<span class="cm"> *   Legal ops: ~ |</span>
+<span class="cm"> *   Max ops: 8</span>
+<span class="cm"> *   Rating: 1</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">bitAnd</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* ~(~ x | ~y) = x &amp; y */</span>
+  <span class="k">return</span> <span class="o">~</span> <span class="p">(</span><span class="o">~</span> <span class="n">x</span> <span class="o">|</span> <span class="o">~</span> <span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">getByte</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * getByte - Extract byte n from word x</span>
+<span class="cm"> *   Bytes numbered from 0 (LSB) to 3 (MSB)</span>
+<span class="cm"> *   Examples: getByte(0x12345678,1) = 0x56</span>
+<span class="cm"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
+<span class="cm"> *   Max ops: 6</span>
+<span class="cm"> *   Rating: 2</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">getByte</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* Left shift, right shift and mask */</span>
+  <span class="kt">int</span> <span class="n">shift</span> <span class="o">=</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">shift</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mh">0xFF</span> <span class="o">&amp;</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">logicalShift</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * logicalShift - shift x to the right by n, using a logical shift</span>
+<span class="cm"> *   Can assume that 0 &lt;= n &lt;= 31</span>
+<span class="cm"> *   Examples: logicalShift(0x87654321,4) = 0x08765432</span>
+<span class="cm"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
+<span class="cm"> *   Max ops: 20</span>
+<span class="cm"> *   Rating: 3 </span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">logicalShift</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* Make a mask */</span>
+  <span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">filter</span> <span class="o">=</span> <span class="o">~</span> <span class="p">((</span><span class="n">z</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">filter</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">bitCount</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * bitCount - returns count of number of 1's in word</span>
+<span class="cm"> *   Examples: bitCount(5) = 2, bitCount(7) = 3</span>
+<span class="cm"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
+<span class="cm"> *   Max ops: 40</span>
+<span class="cm"> *   Rating: 4</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">bitCount</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* This one is beyond, I cheat */</span>
+  <span class="kt">int</span> <span class="n">temp_mask1</span> <span class="o">=</span> <span class="mh">0x55</span> <span class="o">|</span> <span class="p">(</span><span class="mh">0x55</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">temp_mask2</span> <span class="o">=</span> <span class="mh">0x33</span> <span class="o">|</span> <span class="p">(</span><span class="mh">0x33</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">temp_mask3</span> <span class="o">=</span> <span class="mh">0x0f</span> <span class="o">|</span> <span class="p">(</span><span class="mh">0x0f</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">mask1</span> <span class="o">=</span> <span class="n">temp_mask1</span> <span class="o">|</span> <span class="p">(</span><span class="n">temp_mask1</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">mask2</span> <span class="o">=</span> <span class="n">temp_mask2</span> <span class="o">|</span> <span class="p">(</span><span class="n">temp_mask2</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">mask3</span> <span class="o">=</span> <span class="n">temp_mask3</span> <span class="o">|</span> <span class="p">(</span><span class="n">temp_mask3</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">mask4</span> <span class="o">=</span> <span class="mh">0xff</span> <span class="o">|</span> <span class="p">(</span><span class="mh">0xff</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">mask5</span> <span class="o">=</span> <span class="mh">0xff</span> <span class="o">|</span> <span class="p">(</span><span class="mh">0xff</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">mask1</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask1</span><span class="p">);</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">mask2</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask2</span><span class="p">);</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">mask3</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask3</span><span class="p">);</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">mask4</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask4</span><span class="p">);</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">mask5</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask5</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1">步骤推演</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+其实就是二分法（或者二分法的变种？本文中 <a href="#sec-1-12">ilog2</a> 函数的解法也是二分法，它的解决
+方法就不详细推演了）。
+</p>
+
+<p>
+假设传入参数是 0xffffffff，也就是说，二进制表示全是1。
+</p>
+
+<ol class="org-ol">
+<li>过筛，统计传入参数的二进制表示上，每两个位置有几个1，可能的个数：0，1，2，下面使用表格来展示筛选过程
+</li>
+</ol>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="left">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+<col class="right">
+</colgroup>
+<tbody>
+<tr>
+<td class="left">index</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">2</td>
+<td class="right">3</td>
+<td class="right">4</td>
+<td class="right">5</td>
+<td class="right">6</td>
+<td class="right">7</td>
+<td class="right">8</td>
+<td class="right">9</td>
+<td class="right">10</td>
+<td class="right">11</td>
+<td class="right">12</td>
+<td class="right">13</td>
+<td class="right">14</td>
+<td class="right">15</td>
+<td class="right">16</td>
+<td class="right">17</td>
+<td class="right">18</td>
+<td class="right">19</td>
+<td class="right">20</td>
+<td class="right">21</td>
+<td class="right">22</td>
+<td class="right">23</td>
+<td class="right">24</td>
+<td class="right">25</td>
+<td class="right">26</td>
+<td class="right">27</td>
+<td class="right">28</td>
+<td class="right">29</td>
+<td class="right">30</td>
+<td class="right">31</td>
+</tr>
+<tr>
+<td class="left">bits</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+<td class="right">1</td>
+</tr>
+<tr>
+<td class="left">mask1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+</tr>
+<tr>
+<td class="left">mask-x</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+</tr>
+<tr>
+<td class="left">mask-x-right-shift-by-one</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+</tr>
+<tr>
+<td class="left">masked1+masked2</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+<td class="right">1</td>
+<td class="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>
+使用表格中所所示的 mask 对 x 进行筛选，找出每两位低位上是否有1，有的话低位上用1表示，表示此位有1个1；
+</p>
+
+<p>
+再用 mask 对右移一位的 x 进行筛选，找出原 x 上每两位高位上是否有1，有的话结果中每两位的低位上用1表示，表示此位有1个1；
+</p>
+
+<p>
+将筛选后的两个结果相加，得到的结果的二进制表示如果每两位高位上是1的话，表示原 x 中该两位范围内有2个1；如果是1，则表示有1个1；如果是0，则0。
+</p>
+
+<ol class="org-ol">
+<li>换一个二进制表示位 0x33333333 的 mask 继续过筛，即进行上次获得的结果中每四位有多少个1的计算。
+</li>
+</ol>
+<p>
+3 …
+</p>
+
+<ol class="org-ol">
+<li>以此类推，不再赘述，最后获得的结果就是 x 的二进制表示中有多少个1。
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">bang</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * bang - Compute !x without using !</span>
+<span class="cm"> *   Examples: bang(3) = 0, bang(0) = 1</span>
+<span class="cm"> *   Legal ops: ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
+<span class="cm"> *   Max ops: 12</span>
+<span class="cm"> *   Rating: 4 </span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">bang</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* When x is 0, temp1 is overflow, it's value is 0 */</span>
+  <span class="kt">int</span> <span class="n">temp1</span> <span class="o">=</span> <span class="o">~</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="cm">/* When x is 0, temp2 is 0, else its top most bit must be 1 */</span>
+  <span class="kt">int</span> <span class="n">temp2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">|</span> <span class="n">temp1</span><span class="p">;</span>
+  <span class="cm">/* Negation' mainly purpose is to swtich the top most bit */</span>
+  <span class="cm">/* x = 0, temp3 = 0xffffffff; else temp3 = 0x0... */</span>
+  <span class="kt">int</span> <span class="n">temp3</span> <span class="o">=</span> <span class="o">~</span> <span class="n">temp2</span><span class="p">;</span>
+  <span class="cm">/* Right shift of 31 bits */</span>
+  <span class="cm">/* x = 0, mask = 0xffffffff; else mask = 0 */</span>
+  <span class="kt">int</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">temp3</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">mask</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">tmin</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * tmin - return minimum two's complement integer </span>
+<span class="cm"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
+<span class="cm"> *   Max ops: 4</span>
+<span class="cm"> *   Rating: 1</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">tmin</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* A n-bit integer could make 0xffffffff binary representations</span>
+<span class="cm">   * According to the law of two's complement</span>
+<span class="cm">   * Top most bit of int type is used to define a positive or a negative</span>
+<span class="cm">   * There are 0xffffffff / 2 numbers of positive int representations</span>
+<span class="cm">   * Then the maximum positive int number is 0xffffffff / 2</span>
+<span class="cm">   * We know the total number, so we could compute the minimum negative integer</span>
+<span class="cm">   * in two's complement style</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">max_n_bit_range</span> <span class="o">=</span> <span class="o">~</span> <span class="mh">0x0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">mask</span> <span class="o">=</span> <span class="mh">0x1</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">max_post_int</span> <span class="o">=</span> <span class="n">max_n_bit_range</span> <span class="o">^</span> <span class="n">mask</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">min_nega_int</span> <span class="o">=</span> <span class="o">~</span> <span class="n">max_post_int</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">min_nega_int</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7">fitsBits</h3>
+<div class="outline-text-3" id="text-1-7">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * fitsBits - return 1 if x can be represented as an </span>
+<span class="cm"> *  n-bit, two's complement integer.</span>
+<span class="cm"> *   1 &lt;= n &lt;= 32</span>
+<span class="cm"> *   Examples: fitsBits(5,3) = 0, fitsBits(-4,3) = 1</span>
+<span class="cm"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
+<span class="cm"> *   Max ops: 15</span>
+<span class="cm"> *   Rating: 2</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">fitsBits</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* Left shift (32 - n) bits and then right shift the same</span>
+<span class="cm">   * Make a ^ operation with the original one</span>
+<span class="cm">   * If stay the same the result would be 0, else non-zero</span>
+<span class="cm">   * Stay the same meaning that x could be represented as an n-bit </span>
+<span class="cm">   * And ! the output as a return value</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">neg_n</span> <span class="o">=</span> <span class="o">~</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">shift</span> <span class="o">=</span> <span class="mi">32</span> <span class="o">+</span> <span class="n">neg_n</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">temp1</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">shift</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">temp2</span> <span class="o">=</span> <span class="n">temp1</span> <span class="o">&gt;&gt;</span> <span class="n">shift</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">temp3</span> <span class="o">=</span> <span class="n">temp2</span> <span class="o">^</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="o">!</span> <span class="n">temp3</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8">divpwr2</h3>
+<div class="outline-text-3" id="text-1-8">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * divpwr2 - Compute x/(2^n), for 0 &lt;= n &lt;= 30</span>
+<span class="cm"> *  Round toward zero</span>
+<span class="cm"> *   Examples: divpwr2(15,1) = 7, divpwr2(-33,4) = -2</span>
+<span class="cm"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
+<span class="cm"> *   Max ops: 15</span>
+<span class="cm"> *   Rating: 2</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">divpwr2</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* The actual value of 15 / 2 is 7</span>
+<span class="cm">   * The actual value of -33 / 4 is -3</span>
+<span class="cm">   * We need to add a patch with the one in the second situation</span>
+<span class="cm">   * If x is negative,</span>
+<span class="cm">   * and n is non-zero,</span>
+<span class="cm">   * and the result has difference from the dividend,</span>
+<span class="cm">   * then the patch is 1 and add it with the value.</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">mask1</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">temp1</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">temp2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">n</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">temp3</span> <span class="o">=</span> <span class="n">temp2</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">n_zero_or_not</span> <span class="o">=</span> <span class="o">!</span> <span class="n">n</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">post_or_not</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">temp1</span> <span class="o">&amp;</span> <span class="n">mask1</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">same_or_not</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">x</span> <span class="o">^</span> <span class="n">temp3</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">patch</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_zero_or_not</span> <span class="o">|</span> <span class="n">post_or_not</span> <span class="o">|</span> <span class="n">same_or_not</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0x1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">temp2</span> <span class="o">+</span> <span class="n">patch</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9">negate</h3>
+<div class="outline-text-3" id="text-1-9">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * negate - return -x </span>
+<span class="cm"> *   Example: negate(1) = -1.</span>
+<span class="cm"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
+<span class="cm"> *   Max ops: 5</span>
+<span class="cm"> *   Rating: 2</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">negate</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* According to the law of two's complement</span>
+<span class="cm">   * The two's complement representation of n-bit integer x is</span>
+<span class="cm">   * 2^n + x</span>
+<span class="cm">   * which is equal to (2^n - 1) + x + 1</span>
+<span class="cm">   * thus the binary representation is</span>
+<span class="cm">   * 0xfff...(n-bit) + x + 1</span>
+<span class="cm">   * when the x is negative a more friendly form is</span>
+<span class="cm">   * ~(-x) + 1</span>
+<span class="cm">   * And when to compute the value of one negative integer y</span>
+<span class="cm">   * The form would be -1 * 2^(n-1) + a_(n-2) * 2^(n-2) + ...</span>
+<span class="cm">   * Could be changed to -(0xffff(n-1 bits f) - y(n-1 bits) + 1)</span>
+<span class="cm">   * Top most bit of y could be treated as turning from 1 to 0</span>
+<span class="cm">   * So a more friendly form -(~y + 1)</span>
+<span class="cm">   * Such throry could be used to negate one of int type</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="o">~</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-10" class="outline-3">
+<h3 id="sec-1-10">isPositive</h3>
+<div class="outline-text-3" id="text-1-10">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * isPositive - return 1 if x &gt; 0, return 0 otherwise </span>
+<span class="cm"> *   Example: isPositive(-1) = 0.</span>
+<span class="cm"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
+<span class="cm"> *   Max ops: 8</span>
+<span class="cm"> *   Rating: 3</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">isPositive</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* The law is that if the value is non-zero</span>
+<span class="cm">   * and positive, the output would be 1</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">mask</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">post_or_not</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">temp</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">zero_or_not</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">x</span> <span class="o">^</span> <span class="mh">0x0</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">post_or_not</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">!</span> <span class="n">zero_or_not</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-11" class="outline-3">
+<h3 id="sec-1-11">isLessOrEqual</h3>
+<div class="outline-text-3" id="text-1-11">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * isLessOrEqual - if x &lt;= y  then return 1, else return 0 </span>
+<span class="cm"> *   Example: isLessOrEqual(4,5) = 1.</span>
+<span class="cm"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
+<span class="cm"> *   Max ops: 24</span>
+<span class="cm"> *   Rating: 3</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">isLessOrEqual</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* Three situations</span>
+<span class="cm">   * 1. equal</span>
+<span class="cm">   * 2. different symbol</span>
+<span class="cm">   * 3. there's a need to do x - y operation</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">mask</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">;</span>
+  <span class="cm">/* Determine if equal */</span>
+  <span class="kt">int</span> <span class="n">equal_or_not</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">x</span> <span class="o">^</span> <span class="n">y</span><span class="p">);</span>
+  <span class="cm">/* Determine if x and y have different symbol */</span>
+  <span class="kt">int</span> <span class="n">x_symbol</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y_symbol</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">diff_symbol</span> <span class="o">=</span> <span class="n">x_symbol</span> <span class="o">^</span> <span class="n">y_symbol</span><span class="p">;</span>
+  <span class="cm">/* If so, when x is negative, x is less than y */</span>
+  <span class="kt">int</span> <span class="n">x_l_y</span> <span class="o">=</span> <span class="n">diff_symbol</span> <span class="o">&amp;</span> <span class="n">x_symbol</span><span class="p">;</span>
+  <span class="cm">/* Operation x - y */</span>
+  <span class="kt">int</span> <span class="n">nega_y</span> <span class="o">=</span> <span class="o">~</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">nega_y</span><span class="p">;</span>
+  <span class="cm">/* Determine the symbol of difference */</span>
+  <span class="kt">int</span> <span class="n">temp_nega_or_not</span> <span class="o">=</span> <span class="p">(</span><span class="n">temp</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">;</span>
+  <span class="cm">/* Attention that with different symbol, the result only relies on x_l_y,</span>
+<span class="cm">   * we know that they're not equal,</span>
+<span class="cm">   * and the value of temp_nega_or_not should be screened</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">equal_or_not</span> <span class="o">|</span> <span class="n">x_l_y</span> <span class="o">|</span> <span class="p">((</span><span class="o">!</span> <span class="n">diff_symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">temp_nega_or_not</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-12" class="outline-3">
+<h3 id="sec-1-12">ilog2</h3>
+<div class="outline-text-3" id="text-1-12">
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * ilog2 - return floor(log base 2 of x), where x &gt; 0</span>
+<span class="cm"> *   Example: ilog2(16) = 4</span>
+<span class="cm"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
+<span class="cm"> *   Max ops: 90</span>
+<span class="cm"> *   Rating: 4</span>
+<span class="cm"> */</span>
+<span class="kt">int</span> <span class="nf">ilog2</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* Return floor, ilog2(16) = 4, ilog2(30) = 4, and x &gt; 0</span>
+<span class="cm">   * When x is 2^(n-1), there is only ont bit 1 in the representation,</span>
+<span class="cm">   * result is the left shift of 0x1 to x</span>
+<span class="cm">   * And the result only depends on the top most bit 1</span>
+<span class="cm">   * This simplifies the question to calculate where the top most bit 1 is</span>
+<span class="cm">   * The return value would be its index</span>
+<span class="cm">   */</span>
+  <span class="cm">/* Initial index as 0 */</span>
+  <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="cm">/* Make masks */</span>
+  <span class="kt">int</span> <span class="n">temp_mask1</span> <span class="o">=</span> <span class="mh">0x0f</span> <span class="o">|</span> <span class="p">(</span><span class="mh">0x0f</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">temp_mask2</span> <span class="o">=</span> <span class="mh">0x33</span> <span class="o">|</span> <span class="p">(</span><span class="mh">0x33</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">temp_mask3</span> <span class="o">=</span> <span class="mh">0x55</span> <span class="o">|</span> <span class="p">(</span><span class="mh">0x55</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">mask1</span> <span class="o">=</span> <span class="mh">0xff</span> <span class="o">|</span> <span class="p">(</span><span class="mh">0xff</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">mask2</span> <span class="o">=</span> <span class="mh">0xff</span> <span class="o">|</span> <span class="p">(</span><span class="mh">0xff</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">mask3</span> <span class="o">=</span> <span class="n">temp_mask1</span> <span class="o">|</span> <span class="p">(</span><span class="n">temp_mask1</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">mask4</span> <span class="o">=</span> <span class="n">temp_mask2</span> <span class="o">|</span> <span class="p">(</span><span class="n">temp_mask2</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">mask5</span> <span class="o">=</span> <span class="n">temp_mask3</span> <span class="o">|</span> <span class="p">(</span><span class="n">temp_mask3</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">);</span>
+  <span class="cm">/* Use mask1 0x0000ffff to screen x,</span>
+<span class="cm">   * determine whether there's a difference</span>
+<span class="cm">   * between the original one and screened one</span>
+<span class="cm">   * The main purpose is to get where the top most bit 1 is,</span>
+<span class="cm">   * in the higher 16 bits section or the lower?</span>
+<span class="cm">   * Then the index equals to the start index of the section</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">masked_x_1</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="n">mask1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">same_or_not_1</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">masked_x_1</span> <span class="o">^</span> <span class="n">x</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">section_start_1</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">same_or_not_1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">section_start_1</span><span class="p">;</span>
+  <span class="cm">/* If not staying same after ^, remove the lower 16 bits section</span>
+<span class="cm">   * else x is kept unchaged</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">left_1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">index</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">index</span><span class="p">;</span>
+  <span class="cm">/* Almost same procedure to deal with the left part */</span>
+  <span class="kt">int</span> <span class="n">masked_x_2</span> <span class="o">=</span> <span class="n">left_1</span> <span class="o">&amp;</span> <span class="n">mask2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">same_or_not_2</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">masked_x_2</span> <span class="o">^</span> <span class="n">left_1</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">section_start_2</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">same_or_not_2</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">section_start_2</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">left_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">left_1</span> <span class="o">&gt;&gt;</span> <span class="n">index</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">index</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">masked_x_3</span> <span class="o">=</span> <span class="n">left_2</span> <span class="o">&amp;</span> <span class="n">mask3</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">same_or_not_3</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">masked_x_3</span> <span class="o">^</span> <span class="n">left_2</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">section_start_3</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">same_or_not_3</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">section_start_3</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">left_3</span> <span class="o">=</span> <span class="p">(</span><span class="n">left_2</span> <span class="o">&gt;&gt;</span> <span class="n">index</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">index</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">masked_x_4</span> <span class="o">=</span> <span class="n">left_3</span> <span class="o">&amp;</span> <span class="n">mask4</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">same_or_not_4</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">masked_x_4</span> <span class="o">^</span> <span class="n">left_3</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">section_start_4</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">same_or_not_4</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">section_start_4</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">left_4</span> <span class="o">=</span> <span class="p">(</span><span class="n">left_3</span> <span class="o">&gt;&gt;</span> <span class="n">index</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">index</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">masked_x_5</span> <span class="o">=</span> <span class="n">left_4</span> <span class="o">&amp;</span> <span class="n">mask5</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">same_or_not_5</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">masked_x_5</span> <span class="o">^</span> <span class="n">left_4</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">section_start_5</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">same_or_not_5</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">section_start_5</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="n">index</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-13" class="outline-3">
+<h3 id="sec-1-13">float<sub>neg</sub>
+</h3>
+<div class="outline-text-3" id="text-1-13">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * float_neg - Return bit-level equivalent of expression -f for</span>
+<span class="cm"> *   floating point argument f.</span>
+<span class="cm"> *   Both the argument and result are passed as unsigned int's, but</span>
+<span class="cm"> *   they are to be interpreted as the bit-level representations of</span>
+<span class="cm"> *   single-precision floating point values.</span>
+<span class="cm"> *   When argument is NaN, return argument.</span>
+<span class="cm"> *   Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. also if, while</span>
+<span class="cm"> *   Max ops: 10</span>
+<span class="cm"> *   Rating: 2</span>
+<span class="cm"> */</span>
+<span class="kt">unsigned</span> <span class="nf">float_neg</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">uf</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* Other than NaN, top most bit of argument should be inversed</span>
+<span class="cm">   * NaN reamins unchanged as a return value</span>
+<span class="cm">   */</span>
+  <span class="cm">/* Get the part exponent */</span>
+  <span class="kt">unsigned</span> <span class="n">exponent</span> <span class="o">=</span> <span class="p">(</span><span class="n">uf</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">24</span><span class="p">;</span>
+  <span class="cm">/* Get the part fraction */</span>
+  <span class="kt">unsigned</span> <span class="n">fraction</span> <span class="o">=</span> <span class="n">uf</span> <span class="o">&lt;&lt;</span> <span class="mi">9</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="n">is_exponent_full_1</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">exponent</span> <span class="o">^</span> <span class="mh">0xff</span><span class="p">);</span>
+  <span class="cm">/* Determine if this value a NaN */</span>
+  <span class="kt">unsigned</span> <span class="n">is_NaN_or_not</span> <span class="o">=</span> <span class="n">is_exponent_full_1</span> <span class="o">&amp;&amp;</span> <span class="n">fraction</span><span class="p">;</span>
+  <span class="cm">/* If uf a NaN, keep it unchanged, else inverse the top most bit */</span>
+  <span class="kt">unsigned</span> <span class="n">result</span> <span class="o">=</span> <span class="n">uf</span> <span class="o">+</span> <span class="p">((</span><span class="o">!</span> <span class="n">is_NaN_or_not</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-14" class="outline-3">
+<h3 id="sec-1-14">float<sub>i2f</sub>
+</h3>
+<div class="outline-text-3" id="text-1-14">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * float_i2f - Return bit-level equivalent of expression (float) x</span>
+<span class="cm"> *   Result is returned as unsigned int, but</span>
+<span class="cm"> *   it is to be interpreted as the bit-level representation of a</span>
+<span class="cm"> *   single-precision floating point values.</span>
+<span class="cm"> *   Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. also if, while</span>
+<span class="cm"> *   Max ops: 30</span>
+<span class="cm"> *   Rating: 4</span>
+<span class="cm"> */</span>
+<span class="kt">unsigned</span> <span class="nf">float_i2f</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* First determine the exponent bias based on the value x</span>
+<span class="cm">   * Then keep the symbol of x, get the alsolute value of x</span>
+<span class="cm">   * Then determine the index of left most 1 of the abs x,</span>
+<span class="cm">   * that index plus bias is the exponent of the single float</span>
+<span class="cm">   * Left shifted that clears all left zero bits of abs x</span>
+<span class="cm">   * right shifted and masked that leave 9 slots for symbol and exponent,</span>
+<span class="cm">   * see that if the lost part equals or greater than 128,</span>
+<span class="cm">   * two situations: greater; equal and the last bit of shifted vaule is 1,</span>
+<span class="cm">   * both that the shifted vaule should plus 1</span>
+<span class="cm">   * Determine if there's a bit 1 in index 23,</span>
+<span class="cm">   * if so, fraction is 0 and exponent increases by 1</span>
+<span class="cm">   */</span>
+  <span class="cm">/* Determine the bias */</span>
+  <span class="kt">unsigned</span> <span class="n">exponent_bias</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">exponent_bias</span> <span class="o">=</span> <span class="mh">0x7f</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="cm">/* Get the symbol and abs of x */</span>
+  <span class="kt">unsigned</span> <span class="n">symbol</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x80000000</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="n">x_absoulte</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">x_absoulte</span> <span class="o">=</span> <span class="o">~</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="cm">/* A while loop to right shift abs x by 1 until the value is 0,</span>
+<span class="cm">   * record the shifted setps, which is index of top most bit 1</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">x_absoulte</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="p">(</span><span class="n">temp</span> <span class="o">&amp;&amp;</span> <span class="mh">0x1</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="cm">/* Calculate exponent and left shift setps that could clear left 0 bits */</span>
+  <span class="kt">unsigned</span> <span class="n">exponent</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="n">exponent_bias</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">left_shift</span> <span class="o">=</span> <span class="mi">31</span> <span class="o">+</span> <span class="p">(</span><span class="o">~</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="kt">unsigned</span> <span class="n">fraction</span> <span class="o">=</span> <span class="n">x_absoulte</span> <span class="o">&lt;&lt;</span> <span class="n">left_shift</span><span class="p">;</span>
+  <span class="cm">/* Keep the lost part */</span>
+  <span class="kt">unsigned</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">fraction</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">;</span>
+  <span class="cm">/* Leave 9 slots for symbol and exponent */</span>
+  <span class="n">fraction</span> <span class="o">=</span> <span class="p">(</span><span class="n">fraction</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7fffff</span><span class="p">;</span>
+  <span class="cm">/* Determine if it's necessary to increase fraction by 1</span>
+<span class="cm">   * If greater than 0.5, increment;</span>
+<span class="cm">   * equals to 0.5 and the last bit is 1, increment, round up to even</span>
+<span class="cm">   */</span>
+  <span class="kt">int</span> <span class="n">tail_7th_bit</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">&amp;</span> <span class="mh">0x80</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">tail_left_bits</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">&amp;</span> <span class="mh">0x7f</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">tail_l_128</span> <span class="o">=</span> <span class="n">tail_7th_bit</span> <span class="o">&amp;&amp;</span> <span class="n">tail_left_bits</span><span class="p">;</span>
+  <span class="n">fraction</span> <span class="o">=</span> <span class="n">fraction</span> <span class="o">+</span> <span class="p">(</span><span class="n">tail_l_128</span> <span class="o">||</span> <span class="p">(</span><span class="n">tail_7th_bit</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">fraction</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)));</span>
+  <span class="cm">/* Determine if fraction has a carry after a possible increment</span>
+<span class="cm">   * if so, fraction is 0 and exponent increases by 1</span>
+<span class="cm">   */</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">fraction</span> <span class="o">&gt;&gt;</span> <span class="mi">23</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">fraction</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="n">exponent</span> <span class="o">=</span> <span class="n">exponent</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="kt">unsigned</span> <span class="n">result</span> <span class="o">=</span> <span class="n">symbol</span> <span class="o">|</span> <span class="p">(</span><span class="n">exponent</span> <span class="o">&lt;&lt;</span> <span class="mi">23</span><span class="p">)</span> <span class="o">|</span> <span class="n">fraction</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-15" class="outline-3">
+<h3 id="sec-1-15">float<sub>twice</sub>
+</h3>
+<div class="outline-text-3" id="text-1-15">
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm"> * float_twice - Return bit-level equivalent of expression 2*f for</span>
+<span class="cm"> *   floating point argument f.</span>
+<span class="cm"> *   Both the argument and result are passed as unsigned int's, but</span>
+<span class="cm"> *   they are to be interpreted as the bit-level representation of</span>
+<span class="cm"> *   single-precision floating point values.</span>
+<span class="cm"> *   When argument is NaN, return argument</span>
+<span class="cm"> *   Legal ops: Any integer/unsigned operations incl. ||, &amp;&amp;. also if, while</span>
+<span class="cm"> *   Max ops: 30</span>
+<span class="cm"> *   Rating: 4</span>
+<span class="cm"> */</span>
+<span class="kt">unsigned</span> <span class="nf">float_twice</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">uf</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* Four special cases: NaN, infinite, zero, non-normalized,</span>
+<span class="cm">   * return it self if uf meets first three cases,</span>
+<span class="cm">   * for non-normalized, be careful that</span>
+<span class="cm">   * it may become a normalized single float when doubled</span>
+<span class="cm">   */</span>
+  <span class="cm">/* Get the part exponent */</span>
+  <span class="kt">unsigned</span> <span class="n">exponent</span> <span class="o">=</span> <span class="p">(</span><span class="n">uf</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">24</span><span class="p">;</span>
+  <span class="cm">/* Get the part fraction */</span>
+  <span class="kt">unsigned</span> <span class="n">fraction</span> <span class="o">=</span> <span class="n">uf</span> <span class="o">&amp;</span> <span class="mh">0x7fffff</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="n">exponent_full_1</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">exponent</span> <span class="o">^</span> <span class="mh">0xff</span><span class="p">);</span>
+  <span class="cm">/* Determine type of this value */</span>
+  <span class="kt">unsigned</span> <span class="n">NaN_or_not</span> <span class="o">=</span> <span class="n">exponent_full_1</span> <span class="o">&amp;&amp;</span> <span class="n">fraction</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="n">infinite_or_not</span> <span class="o">=</span> <span class="n">exponent_full_1</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span> <span class="n">fraction</span><span class="p">);</span>
+  <span class="kt">unsigned</span> <span class="n">zero_or_not</span> <span class="o">=</span> <span class="o">!</span> <span class="p">(</span><span class="n">uf</span> <span class="o">&amp;</span> <span class="mh">0x7fffffff</span><span class="p">);</span>
+  <span class="kt">unsigned</span> <span class="n">not_normalized_or_not</span> <span class="o">=</span> <span class="p">(</span><span class="o">!</span> <span class="n">exponent</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">fraction</span><span class="p">;</span>
+  <span class="cm">/* If meeting the first three cases, return it self */</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">NaN_or_not</span> <span class="o">||</span> <span class="n">infinite_or_not</span> <span class="o">||</span> <span class="n">zero_or_not</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">return</span> <span class="n">uf</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="cm">/* If uf a non-normalized single float, check the fraction part */</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">not_normalized_or_not</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="kt">unsigned</span> <span class="n">temp_fraction</span> <span class="o">=</span> <span class="n">fraction</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">fraction</span> <span class="o">=</span> <span class="n">temp_fraction</span> <span class="o">&amp;</span> <span class="mh">0x7fffff</span><span class="p">;</span>
+      <span class="cm">/* That if there's a carry of 1 */</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">temp_fraction</span> <span class="o">&amp;</span> <span class="mh">0x800000</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="cm">/* The value of non-normalized is (-1)^(s) * 0.xxx * 2^(-126),</span>
+<span class="cm">	   * the exponent is always -126 implicitly;</span>
+<span class="cm">	   * Now make the exponent 0x1, make it -126 explicitly</span>
+<span class="cm">	   */</span>
+	  <span class="k">return</span> <span class="p">(</span><span class="n">uf</span> <span class="o">&amp;</span> <span class="mh">0x80000000</span><span class="p">)</span> <span class="o">|</span> <span class="mh">0x00800000</span> <span class="o">|</span> <span class="n">fraction</span><span class="p">;</span>
+	<span class="p">}</span>
+      <span class="cm">/* If no carry, just change the fraction */</span>
+      <span class="k">return</span> <span class="p">(</span><span class="n">uf</span> <span class="o">&amp;</span> <span class="mh">0xff800000</span><span class="p">)</span> <span class="o">|</span> <span class="n">fraction</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="cm">/* Notice that if the original exponent is 0xfe</span>
+<span class="cm">   * double f would make exponent 0xff</span>
+<span class="cm">   * with such a exponent and a non-zero fraction</span>
+<span class="cm">   * the return value is a NaN</span>
+<span class="cm">   * it's out of the single float representation range</span>
+<span class="cm">   */</span>
+  <span class="k">return</span> <span class="n">uf</span> <span class="o">+</span> <span class="mh">0x00800000</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
     </div>
     <div class="postmeta">
     <small> § 
@@ -34,6 +957,7 @@ First a test for that whether my nikola deployed on Ubuntu could work or not.
     <a href="#disqus_thread" data-disqus-identifier="cache/posts/csapp-datalab-jie-ti-si-lu-ji-lu.html">Comments</a>
 
 
+         · csapp lab c
     </div>
 
         
