@@ -10,56 +10,15 @@
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS for tag ledger" href="../ledger.xml">
 </head>
 <body>
-<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
-
-<!-- Menubar -->
-
-<div class="navbar navbar-static-top" id="navbar">
-    <div class="navbar-inner">
-        <div class="container">
-
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </a>
-
-            <a class="brand" href="https://zero4drift.github.io/">
-
-                <span id="blog-title">Procrastination Prescription</span>
-            </a>
-            <!-- Everything you want hidden at 940px or less, place within here -->
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-<li>
-<a href="../../archive.html">Archive</a>
-                </li>
-<li>
-<a href="https://github.com/zero4drift">Github</a>
-                </li>
-<li>
-<a href="../">Tags</a>
-                </li>
-<li>
-<a href="../../rss.xml">RSS feed</a>
-
-                    
-                </li>
-</ul>
-<ul class="nav pull-right"></ul>
-</div>
-        </div>
-    </div>
-</div>
-<!-- End of Menubar -->
-<div class="container-fluid" id="content" role="main">
+<div class="container" id="container">
     <!--Body content-->
-    <div class="row-fluid">
-    <div class="span2"></div>
-    <div class="span8">
-    
-    
+    <!--End of body content-->
+    <div>
+    <a href="https://zero4drift.github.io/"><h1>Procrastination Prescription</h1></a>
+    </div>
+    <div id="content">
+        
+        
 <article class="tagpage"><header><h1>Posts about ledger</h1>
         <div class="metadata">
             
@@ -76,18 +35,62 @@
 </li>
         </ul></article>
 </div>
-    </div>
-    <!--End of body content-->
+    <div class="row-fluid">
+        <div class="span6" style="text-align: right; border-right: 2px solid #ccc; padding-right: 20px;">
+            <ul class="unstyled bottom">
+<li>
+<a href="../../archive.html">Archive</a>
+                        </li>
+<li>
+<a href="https://github.com/zero4drift">Github</a>
+                        </li>
+<li>
+<a href="../">Tags</a>
+                        </li>
+<li>
+<a href="../../rss.xml">RSS feed</a>
+                
+            </li>
+</ul>
 </div>
-<div class="footerbox">
+        <div class="span6" style="margin-left: 20px;">
+            <ul class="unstyled bottom">
+<li>Shares: <div id="share"></div>
+</li>
+            </ul>
+<div>
+            
+            </div>
+        </div>
+    </div>
+    <hr>
+<div class="footer">
     Contents © 2018         <a href="mailto:fang0052@e.ntu.edu.sg">zero4drift</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
     
+    </div>
 </div>
-
-            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
-    moment.locale("en");
-    fancydates(0, "YYYY-MM-DD HH:mm");
-    </script><!-- end fancy dates --><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-112733609-1"></script><script>
+    
+            <script src="../../assets/js/all-nocdn.js"></script><script type="text/javascript" src="../../assets/js/jquery.sharrre-1.3.4.min.js"></script><script type="text/javascript">
+        jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"80%",maxHeight:"80%",scalePhotos:true});
+        $('#share').sharrre({
+        share: {
+            googlePlus: true,
+            twitter: true
+        },
+        buttons: {
+            googlePlus: {annotation:'bubble'},
+            twitter: {count: 'horizontal'}
+        },
+        hover: function(api, options){
+            $(api.element).find('.buttons').show();
+        },
+        hide: function(api, options){
+            $(api.element).find('.buttons').hide();
+        },
+        enableTracking: true,
+        urlCurl: ""
+        });
+    </script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-112733609-1"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
