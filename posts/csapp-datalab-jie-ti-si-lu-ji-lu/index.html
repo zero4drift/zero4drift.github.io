@@ -79,13 +79,13 @@
 <a href="#sec-1-12">ilog2</a>
 </li>
 <li>
-<a href="#sec-1-13">float<sub>neg</sub></a>
+<i>float_neg</i>
 </li>
 <li>
-<a href="#sec-1-14">float<sub>i2f</sub></a>
+<a href="#sec-1-14">float_i2f</a>
 </li>
 <li>
-<a href="#sec-1-15">float<sub>twice</sub></a>
+<a href="#sec-1-15">float_twice</a>
 </li>
 </ol>
 <!-- TEASER_END -->
@@ -194,10 +194,6 @@
 假设传入参数是 0xffffffff，也就是说，二进制表示全是1。
 </p>
 
-<ol class="org-ol">
-<li>过筛，统计传入参数的二进制表示上，每两个位置有几个1，可能的个数：0，1，2，下面使用表格来展示筛选过程
-</li>
-</ol>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <colgroup>
 <col class="left">
@@ -447,27 +443,22 @@
 </tr>
 </tbody>
 </table>
-<p>
-使用表格中所所示的 mask 对 x 进行筛选，找出每两位低位上是否有1，有的话低位上用1表示，表示此位有1个1；
-</p>
-
-<p>
-再用 mask 对右移一位的 x 进行筛选，找出原 x 上每两位高位上是否有1，有的话结果中每两位的低位上用1表示，表示此位有1个1；
-</p>
-
-<p>
-将筛选后的两个结果相加，得到的结果的二进制表示如果每两位高位上是1的话，表示原 x 中该两位范围内有2个1；如果是1，则表示有1个1；如果是0，则0。
-</p>
-
 <ol class="org-ol">
-<li>换一个二进制表示位 0x33333333 的 mask 继续过筛，即进行上次获得的结果中每四位有多少个1的计算。
+<li>过筛，统计传入参数的二进制表示上，每两个位置有几个1，可能的个数：0，1，2，上面的表格来展示筛选过程
 </li>
-</ol>
-<p>
-3 …
-</p>
 
-<ol class="org-ol">
+<li>使用表格中所示的 mask 对 x 进行筛选，找出每两位低位上是否有1，有的话低位上用1表示，表示此位有1个1；
+</li>
+
+<li>再用 mask 对右移一位的 x 进行筛选，找出原 x 上每两位高位上是否有1，有的话结果中每两位的低位上用1表示，表示此位有1个1；
+</li>
+
+<li>将筛选后的两个结果相加，得到的结果的二进制表示如果每两位高位上是1的话，表示原 x 中该两位范围内有2个1；如果是1，则表示有1个1；如果是0，则0。
+</li>
+
+<li>换一个二进制表示位 0x33333333 的 mask 继续过筛，即进行上次获得的结果中每四位有多少个1的计算;
+</li>
+
 <li>以此类推，不再赘述，最后获得的结果就是 x 的二进制表示中有多少个1。
 </li>
 </ol>
@@ -770,8 +761,7 @@
 </div>
 
 <div id="outline-container-sec-1-13" class="outline-3">
-<h3 id="sec-1-13">float<sub>neg</sub>
-</h3>
+<h3 id="sec-1-13">float/_neg</h3>
 <div class="outline-text-3" id="text-1-13">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * float_neg - Return bit-level equivalent of expression -f for</span>
@@ -804,8 +794,7 @@
 </div>
 
 <div id="outline-container-sec-1-14" class="outline-3">
-<h3 id="sec-1-14">float<sub>i2f</sub>
-</h3>
+<h3 id="sec-1-14">float_i2f</h3>
 <div class="outline-text-3" id="text-1-14">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * float_i2f - Return bit-level equivalent of expression (float) x</span>
@@ -884,8 +873,7 @@
 </div>
 
 <div id="outline-container-sec-1-15" class="outline-3">
-<h3 id="sec-1-15">float<sub>twice</sub>
-</h3>
+<h3 id="sec-1-15">float_twice</h3>
 <div class="outline-text-3" id="text-1-15">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * float_twice - Return bit-level equivalent of expression 2*f for</span>
