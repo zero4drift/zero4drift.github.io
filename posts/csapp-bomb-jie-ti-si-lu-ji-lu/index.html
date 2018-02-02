@@ -2,13 +2,13 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Computer Science / Learning / Grumbling / Idea">
+<meta name="description" content="Solutions to csapp bomb lab">
 <meta name="viewport" content="width=device-width">
-<title>Procrastination Prescription | Procrastination Prescription</title>
-<link href="assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
-<link rel="canonical" href="https://zero4drift.github.io/">
-<!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]-->
+<title>CSAPP-bomb 解题思路记录 | Procrastination Prescription</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]-->
 </head>
 <body>
 <div class="container" id="container">
@@ -20,9 +20,9 @@
     <div id="content">
         
         
-        <div class="postdiv">
-        <a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/"><h2>CSAPP-bomb 解题思路记录</h2></a>
-        <div id="outline-container-sec-1" class="outline-2">
+    <div class="postdiv">
+    <a href="."><h2>CSAPP-bomb 解题思路记录</h2></a>
+    <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1">写在前面</h2>
 <div class="outline-text-2" id="text-1">
 <p>
@@ -41,25 +41,25 @@
 
 <ol class="org-ol">
 <li>
-<a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-1">一号弹</a>
+<a href="#sec-3-1">一号弹</a>
 </li>
 <li>
-<a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-2">二号弹</a>
+<a href="#sec-3-2">二号弹</a>
 </li>
 <li>
-<a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-3">三号弹</a>
+<a href="#sec-3-3">三号弹</a>
 </li>
 <li>
-<a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-4">四号弹</a>
+<a href="#sec-3-4">四号弹</a>
 </li>
 <li>
-<a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-5">五号弹</a>
+<a href="#sec-3-5">五号弹</a>
 </li>
 <li>
-<a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-6">六号弹</a>
+<a href="#sec-3-6">六号弹</a>
 </li>
 <li>
-<a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-7">隐藏弹</a>
+<a href="#sec-3-7">隐藏弹</a>
 </li>
 </ol>
 </div>
@@ -275,7 +275,7 @@ phase_2 定义中有两处调用 explode_bomb 函数，其条件转移的指令�
 <h3 id="sec-3-3">三号弹</h3>
 <div class="outline-text-3" id="text-3-3">
 <ol class="org-ol">
-<li>在 phase_3 的汇编代码前面调用了 <a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-1">一号弹</a> 中调用过的 __isoc99_sscanf@plt 函数，
+<li>在 phase_3 的汇编代码前面调用了 <a href="#sec-3-1">一号弹</a> 中调用过的 __isoc99_sscanf@plt 函数，
 它将扫描输入字符串中的数字表示并将数字赋值参数；
 
 <pre class="example">
@@ -537,7 +537,7 @@ can stop the bomb with ctrl-c, do you?"
 <div class="outline-text-3" id="text-3-6">
 <ol class="org-ol">
 <li>phase_6 首先调用了 read_six_numbers 函数，这个函数的功能是将输入字符串解析出6
-个数字，详细逻辑在 <a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-2">二号弹</a> 分析过；
+个数字，详细逻辑在 <a href="#sec-3-2">二号弹</a> 分析过；
 </li>
 <li>然后对 %rsp 处的值进行判断，也就是输入字符串的第一个数字，这个数字是必须无符号数，
 且必须小于等于6；
@@ -781,278 +781,56 @@ phase_defused 函数中被调用（可能）：
 </div>
 </div>
 </div>
-        <p>
-        </p>
-</div>
-        <div class="postmeta">
-        <small> § 
-            <span class="dateline"><a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/" rel="bookmark"><time class="published dt-published" datetime="2018-01-29T22:26:00+08:00" itemprop="datePublished" title="Publication date">2018-01-29 22:26</time></a></span>
-        </small>
-             · 
+    </div>
+    <div class="postmeta">
+    <small> § 
+        <span class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2018-01-29T22:26:00+08:00" itemprop="datePublished" title="Publication date">2018-01-29 22:26</time></a></span>
+    </small>
+        · 
         
-    <a href="posts/csapp-bomb-jie-ti-si-lu-ji-lu/#disqus_thread" data-disqus-identifier="cache/posts/csapp-bomb-jie-ti-si-lu-ji-lu.html">Comments</a>
+    <a href="#disqus_thread" data-disqus-identifier="cache/posts/csapp-bomb-jie-ti-si-lu-ji-lu.html">Comments</a>
 
 
-             · csapp lab c
-        </div>
-        <hr>
-<div class="postdiv">
-        <a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/"><h2>CSAPP-datalab 解题思路记录</h2></a>
-        <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">datalab 解题思路</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-本篇文章并不会花太长时间，因为解题思路都写在代码注释中了（写代码的时候用注释描述
-整体方向和关键步骤实在是个好习惯）。
-</p>
+         · csapp lab c
+    </div>
 
-<p>
-代码中的注释都是用蹩脚的英文写就的，虽然说不能保证没有语法问题，但是一般不会太影响理
-解。
-</p>
-
-<p>
-一共15道题目，12道关于 int 类型数据操作，3道关于 single float 类型操作，难的容易的都
-有，分布还算合理。基本上代码中的注释就够解释清楚了，不过对于 <a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-4">bitCount</a> 这道题
-（说好的只是二进制操作谜题，怎么二分法都乱入了？）会详细解释。
-</p>
-
-<ol class="org-ol">
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-1">bitAnd</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-2">getByte</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-3">logicalShift</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-4">bitCount</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-5">bang</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-6">tmin</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-7">fitsBits</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-8">divpwr2</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-9">negate</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-10">isPositive</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-11">isLessOrEqual</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-12">ilog2</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-13">float_neg</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-14">float_i2f</a>
-</li>
-<li>
-<a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-15">float_twice</a>
-</li>
-</ol>
-<p class="more"><a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/">Read more…</a></p>
-</div>
-</div>
-        <p>
-        </p>
-</div>
-        <div class="postmeta">
-        <small> § 
-            <span class="dateline"><a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/" rel="bookmark"><time class="published dt-published" datetime="2018-01-28T19:40:04+08:00" itemprop="datePublished" title="Publication date">2018-01-28 19:40</time></a></span>
-        </small>
-             · 
         
-    <a href="posts/csapp-datalab-jie-ti-si-lu-ji-lu/#disqus_thread" data-disqus-identifier="cache/posts/csapp-datalab-jie-ti-si-lu-ji-lu.html">Comments</a>
-
-
-             · csapp lab c
-        </div>
-        <hr>
-<div class="postdiv">
-        <a href="posts/ios-app-beorg-yu-jian-guo-yun-tong-bu-org-wen-jian/"><h2>IOS App Beorg 与坚果云同步 org 文件</h2></a>
-        <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Beorg 与坚果云同步 org 文件的设置</h2>
-<div class="outline-text-2" id="text-1">
-<p>
-Beorg 设置坚果云同步 org 文件其实是可以的，以前我总是配置不成功是因为配置项可变
-量太多，我尝试了多种配置组合，最后成功了。
-</p>
-
-<p>
-配置是这样的：
-</p>
-
-<ul class="org-ul">
-<li>Sync method  WebDAV
-</li>
-
-<li>Org directory  /org 我的 org 文件放置在坚果云同步文件夹的 org 文件夹中
-</li>
-
-<li>Org files extension  .org 这个不用说
-</li>
-
-<li>Download updates on startup  这个开或关都没关系
-</li>
-
-<li>WebDAV URL  <a href="https://dav.jianguoyun.com/dav">https://dav.jianguoyun.com/dav</a> 注意，最后的 dav 右边没有 /
-</li>
-
-<li>Username  你自己的坚果云登陆邮箱账号
-</li>
-
-<li>Password  你自己的坚果云 webdav 同步密码
-</li>
-</ul>
-<p>
-这样就可以在 Beorg 和坚果云之间同步 org 文件了
-</p>
-
-<p>
-Beorg 还是有一些问题，比如在 app 上修改文件之后，pc 上的 org 文件的换行符全变了；
-现在还不能识别重复任务，比如一个任务今天做完了，按照 org 中的格式明天还要重新开
-始，但是 beorg 中这个任务就是全部完成了。
-</p>
-</div>
-</div>
-        <p>
-        </p>
-</div>
-        <div class="postmeta">
-        <small> § 
-            <span class="dateline"><a href="posts/ios-app-beorg-yu-jian-guo-yun-tong-bu-org-wen-jian/" rel="bookmark"><time class="published dt-published" datetime="2018-01-23T11:51:56+08:00" itemprop="datePublished" title="Publication date">2018-01-23 11:51</time></a></span>
-        </small>
-             · 
         
-    <a href="posts/ios-app-beorg-yu-jian-guo-yun-tong-bu-org-wen-jian/#disqus_thread" data-disqus-identifier="cache/posts/ios-app-beorg-synced-with-jianguoyun.html">Comments</a>
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="https-zero4drift-github-io",
+            disqus_url="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/",
+        disqus_title="CSAPP-bomb \u89e3\u9898\u601d\u8def\u8bb0\u5f55",
+        disqus_identifier="cache/posts/csapp-bomb-jie-ti-si-lu-ji-lu.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
-             · beorg
-             · emacs
-             · org
-             · 坚果云
-        </div>
-        <hr>
-<div class="postdiv">
-        <a href="posts/ledger-%26-ledger-mode-xue-xi-zhi-shi-dian-zong-jie/"><h2>Ledger &amp; ledger-mode 学习知识点总结</h2></a>
-        <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">为什么要写这篇博客？</h2>
-<div class="outline-text-2" id="text-1">
-</div>
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">个人财务管理的痛点</h3>
-<div class="outline-text-3" id="text-1-1">
-<ol class="org-ol">
-<li>人力有穷
-<ul class="org-ul">
-<li>只靠记忆来保持收支状态的清醒，对我而言最后必定是习惯性超支。
-</li>
-<li>对记忆中的数字没有直观感受（没有威慑力），况且记忆还不是那么可靠和持久的。
-</li>
-<li>无法对收入支出进行有效统计，只能估计。
-</li>
-</ul>
-</li>
-<li>低效的工具
-<ul class="org-ul">
-<li>笔纸记录是最低效的，难以做各种有效统计
-</li>
-<li>使用过手机 app 进行财务管理，但是最终都没有坚持下来，我认为这个锅不在我身上
-（拖延症加懒惰只是一小部分原因），这些 app 太难用了！如果记录一条账目需要在
-手机上进行5次以上的触屏操作，无论是谁都难以坚持下来。
-</li>
-<li>很多工具的功能实在太多，可以说是过度设计，花里胡哨，但是它却没有做好最基础
-的记账功能，甚至有些莫名其妙设计的功能使得记账并不那么顺畅。
-</li>
-</ul>
-</li>
-</ol>
-</div>
-</div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">就是你了，Ledger ！</h3>
-<div class="outline-text-3" id="text-1-2">
-<ol class="org-ol">
-<li>被安利了。搜索各大论题，发现很多了不起的人都推荐 Ledger 这个命令行财务管理工
-具。
-</li>
-<li>日常使用 Emacs 进行各类工作，ledger-mode + emacs + ledger 这个工具组合可以无
-缝衔接进我的工作流中<sup><a id="fnr.1" name="fnr.1" class="footref" href="posts/ledger-%26-ledger-mode-xue-xi-zhi-shi-dian-zong-jie/#fn.1">1</a></sup>。
-</li>
-<li>确实体验到了 Emacs，orgmode 等开源工具带来的工作、生活上的便利，对开源软件
-Ledger 和 Emacs 第三方包 ledger-mode 有信心
-</li>
-</ol>
-<p class="more"><a href="posts/ledger-%26-ledger-mode-xue-xi-zhi-shi-dian-zong-jie/">Read more…</a></p>
-</div>
-</div>
-</div>
-        <p>
-        </p>
-</div>
-        <div class="postmeta">
-        <small> § 
-            <span class="dateline"><a href="posts/ledger-%26-ledger-mode-xue-xi-zhi-shi-dian-zong-jie/" rel="bookmark"><time class="published dt-published" datetime="2018-01-19T15:08:05+08:00" itemprop="datePublished" title="Publication date">2018-01-19 15:08</time></a></span>
-        </small>
-             · 
-        
-    <a href="posts/ledger-%26-ledger-mode-xue-xi-zhi-shi-dian-zong-jie/#disqus_thread" data-disqus-identifier="cache/posts/ledger-&amp;-ledger-mode-xue-xi-zhi-shi-dian-zong-jie.html">Comments</a>
-
-
-             · accounting
-             · ledger
-        </div>
-        <hr>
-<div class="postdiv">
-        <a href="posts/hello-world/"><h2>Hello World!</h2></a>
-        <p>
-In the beginning there was darkness.
-</p>
-        <p>
-        </p>
-</div>
-        <div class="postmeta">
-        <small> § 
-            <span class="dateline"><a href="posts/hello-world/" rel="bookmark"><time class="published dt-published" datetime="2018-01-18T12:51:13+08:00" itemprop="datePublished" title="Publication date">2018-01-18 12:51</time></a></span>
-        </small>
-             · 
-        
-    <a href="posts/hello-world/#disqus_thread" data-disqus-identifier="cache/posts/hello-world.html">Comments</a>
-
-
-        </div>
-        <hr>
-<script>var disqus_shortname="https-zero4drift-github-io";(function(){var a=document.createElement("script");a.async=true;a.src="https://"+disqus_shortname+".disqus.com/count.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(a)}());</script>
-</div>
+    </div>
     <div class="row-fluid">
         <div class="span6" style="text-align: right; border-right: 2px solid #ccc; padding-right: 20px;">
             <ul class="unstyled bottom">
 <li>
-<a href="archive.html">Archive</a>
+<a href="../../archive.html">Archive</a>
                         </li>
 <li>
 <a href="https://github.com/zero4drift">Github</a>
                         </li>
 <li>
-<a href="categories/">Tags</a>
+<a href="../../categories/">Tags</a>
                         </li>
 <li>
-<a href="rss.xml">RSS feed</a>
+<a href="../../rss.xml">RSS feed</a>
                 
             </li>
 </ul>
@@ -1074,7 +852,7 @@ In the beginning there was darkness.
     </div>
 </div>
     
-            <script src="assets/js/all-nocdn.js"></script><script type="text/javascript" src="assets/js/jquery.sharrre-1.3.4.min.js"></script><script type="text/javascript">
+            <script src="../../assets/js/all-nocdn.js"></script><script type="text/javascript" src="../../assets/js/jquery.sharrre-1.3.4.min.js"></script><script type="text/javascript">
         jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"80%",maxHeight:"80%",scalePhotos:true});
         $('#share').sharrre({
         share: {
