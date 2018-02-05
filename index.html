@@ -70,41 +70,39 @@ Now attack!
 <col class="left">
 <col class="right">
 </colgroup>
-<thead>
-<tr>
-<th scope="col" class="right">Phase</th>
-<th scope="col" class="left">Program</th>
-<th scope="col" class="right">Level</th>
-<th scope="col" class="left">Method</th>
-<th scope="col" class="left">Function</th>
-<th scope="col" class="right">Points</th>
-</tr>
-<tr>
-<th scope="col" class="right">1</th>
-<th scope="col" class="left">CTARGET</th>
-<th scope="col" class="right">1</th>
-<th scope="col" class="left">CI</th>
-<th scope="col" class="left">touch1</th>
-<th scope="col" class="right">10</th>
-</tr>
-<tr>
-<th scope="col" class="right">2</th>
-<th scope="col" class="left">CTARGET</th>
-<th scope="col" class="right">2</th>
-<th scope="col" class="left">CI</th>
-<th scope="col" class="left">touch2</th>
-<th scope="col" class="right">25</th>
-</tr>
-<tr>
-<th scope="col" class="right">3</th>
-<th scope="col" class="left">CTARGET</th>
-<th scope="col" class="right">3</th>
-<th scope="col" class="left">CI</th>
-<th scope="col" class="left">touch3</th>
-<th scope="col" class="right">25</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="right">Phase</td>
+<td class="left">Program</td>
+<td class="right">Level</td>
+<td class="left">Method</td>
+<td class="left">Function</td>
+<td class="right">Points</td>
+</tr>
+<tr>
+<td class="right">1</td>
+<td class="left">CTARGET</td>
+<td class="right">1</td>
+<td class="left">CI</td>
+<td class="left">touch1</td>
+<td class="right">10</td>
+</tr>
+<tr>
+<td class="right">2</td>
+<td class="left">CTARGET</td>
+<td class="right">2</td>
+<td class="left">CI</td>
+<td class="left">touch2</td>
+<td class="right">25</td>
+</tr>
+<tr>
+<td class="right">3</td>
+<td class="left">CTARGET</td>
+<td class="right">3</td>
+<td class="left">CI</td>
+<td class="left">touch3</td>
+<td class="right">25</td>
+</tr>
 <tr>
 <td class="right">4</td>
 <td class="left">RTARGET</td>
@@ -125,6 +123,10 @@ Now attack!
 </table>
 <ol class="org-ol">
 <li>CI（代码注入）方式来破解的 Ctarget 可执行文件运行栈位置是不变的；
+</li>
+<li>ROP（返回导向）方式来破解的 Rtarget 这个可执行代码文件的运行时栈位置每次运行
+都不同的；而且它在栈中的代码是不可执行的，否则会引起 Segmentation Fault，所以
+不能用代码注入的方式来破解；
 </li>
 </ol>
 <p class="more"><a href="posts/csapp-attacklab-jie-ti-si-lu-ji-lu/">Read more…</a></p>
