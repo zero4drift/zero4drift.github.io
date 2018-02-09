@@ -103,6 +103,7 @@
 中最后读写大小的数据可以忽略；
 </li>
 </ol>
+<!-- TEASER_END -->
 </div>
 </div>
 
@@ -439,6 +440,245 @@ lab 要求的功能核心在第三步。
 
 <div id="outline-container-sec-2" class="outline-2">
 <h2 id="sec-2">矩阵转置</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">阅读官方指导文档</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>在转置函数中最多可以定义 <b>12</b> 个本地变量；
+</li>
+<li>不要使用一个变量存储多个值来规避第一条限制；
+</li>
+<li>不准使用递归；
+</li>
+<li>如果使用帮助函数，运行过程中栈上不能有超过 <b>12</b> 个本地变量；
+</li>
+<li>不准修改代码中的 array A 变量；
+</li>
+<li>不准在代码中定义其它数组，或者使用 malloc 的任何变种；
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">矩阵转置提高命中率</h3>
+<div class="outline-text-3" id="text-2-2">
+<ol class="org-ol">
+<li>按文档中要求的，transpose_submit 的命中率表现通过使用 valgrind 来解析函数地址
+读取记录，然后使用<a href="#sec-1">模拟缓存</a>中的模拟器来模拟函数的缓存读取，缓存大小是 s = 5, E
+= 1, b = 5，也就是说，这个缓存有32组，每组1行，每行32个字节-每个主存块32个字
+节，这样一个缓存可以存储最多256个 int 型数据；
+</li>
+<li>需要针对三个大小的 int 类型的矩阵进行转置并测试：67 * 61，32 * 32，64 * 64；
+</li>
+<li>核心逻辑就是分块（正方形矩阵）；
+<ol class="org-ol">
+<li>对于 67 * 61 大小的 int 矩阵：
+<ol class="org-ol">
+<li>lab 的要求是 miss 小于 2000，是三个矩阵中要求最宽松的；
+</li>
+<li>因为不规则，所以无法分成均匀的正方形矩阵；
+</li>
+<li>这个大小的矩阵可以尝试分成不同大小的分块试试看哪个效率最高（其中有一个
+行列是不足的）；
+</li>
+<li>试着从 8 * 8 矩阵开始分块，看哪一个可以达到要求；
+</li>
+<li>16和23都是符合要求的 miss 小于 2000；
+</li>
+<li>代码：
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">transpose_61_67</span><span class="p">(</span><span class="kt">int</span> <span class="n">M</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="kt">int</span> <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">M</span><span class="p">],</span> <span class="kt">int</span> <span class="n">B</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">])</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">block_size</span> <span class="o">=</span> <span class="mi">23</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">N</span><span class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="n">block_size</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">M</span><span class="p">;</span><span class="n">j</span><span class="o">+=</span><span class="n">block_size</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="k">for</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">i</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;</span><span class="n">i</span><span class="o">+</span><span class="n">block_size</span> <span class="o">&amp;&amp;</span> <span class="n">k</span><span class="o">&lt;</span><span class="n">N</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+	    <span class="p">{</span>
+	      <span class="k">for</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">j</span><span class="p">;</span><span class="n">l</span><span class="o">&lt;</span><span class="n">j</span><span class="o">+</span><span class="n">block_size</span> <span class="o">&amp;&amp;</span> <span class="n">l</span><span class="o">&lt;</span><span class="n">M</span><span class="p">;</span><span class="n">l</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+		  <span class="k">if</span><span class="p">(</span><span class="n">k</span> <span class="o">!=</span> <span class="n">l</span><span class="p">)</span>
+		    <span class="p">{</span>
+		      <span class="n">B</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">];</span>
+		    <span class="p">}</span>
+		  <span class="k">else</span>
+		    <span class="p">{</span>
+		      <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">];</span>
+		      <span class="n">index</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+		    <span class="p">}</span>
+		<span class="p">}</span>
+	      <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">)</span>
+		<span class="p">{</span>
+		  <span class="n">B</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+		<span class="p">}</span>
+	    <span class="p">}</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</li>
+</ol>
+</li>
+<li>对于 32 * 32 大小的 int 矩阵：
+<ol class="org-ol">
+<li>要求 miss 小于 300；
+</li>
+<li>正方形矩阵，且它的前8行正好占满1KB，也就是 lab 指定的 cache，它一行中的
+前8个元素占一个缓存组；
+</li>
+<li>所以按8分块，分成16个分块，同一个矩阵分块内的每行在主存中的组号是不冲突
+的，可以有效利用 cache；
+</li>
+<li>针对矩阵对角线上的情况，一定要特殊处理，否则理论上会造成两个矩阵间同在
+一个缓存组（其实就是行号相同列号相同）的两行增加进出 cache 的次数，这也
+会增加 miss 和 eviction 的数目（抖动）；
+</li>
+<li>代码：
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">transpose_32_32</span><span class="p">(</span><span class="kt">int</span> <span class="n">M</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="kt">int</span> <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">M</span><span class="p">],</span> <span class="kt">int</span> <span class="n">B</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">])</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">index</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">block_size</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">h_v_blocks</span> <span class="o">=</span> <span class="n">M</span> <span class="o">/</span> <span class="n">block_size</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">h_v_blocks</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">h_v_blocks</span><span class="p">;</span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="k">for</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">block_size</span><span class="o">*</span><span class="n">i</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;</span><span class="n">block_size</span><span class="o">+</span><span class="n">block_size</span><span class="o">*</span><span class="n">i</span><span class="p">;</span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+	    <span class="p">{</span>
+	      <span class="k">for</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="n">block_size</span><span class="o">*</span><span class="n">j</span><span class="p">;</span><span class="n">l</span><span class="o">&lt;</span><span class="n">block_size</span><span class="o">+</span><span class="n">block_size</span><span class="o">*</span><span class="n">j</span><span class="p">;</span><span class="n">l</span><span class="o">++</span><span class="p">)</span>
+		<span class="p">{</span>
+		  <span class="k">if</span><span class="p">(</span><span class="n">k</span> <span class="o">!=</span> <span class="n">l</span><span class="p">)</span>
+		    <span class="p">{</span>
+		      <span class="n">B</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">];</span>
+		    <span class="p">}</span>
+		  <span class="k">else</span>
+		    <span class="p">{</span>
+		      <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">];</span>
+		      <span class="n">index</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+		    <span class="p">}</span>
+		<span class="p">}</span>
+	      <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">)</span>
+		<span class="p">{</span>
+		  <span class="n">B</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+		<span class="p">}</span>
+	    <span class="p">}</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>   
+</pre></div>
+</li>
+</ol>
+</li>
+<li>对于 64 * 64 大小的 int 矩阵：
+<ol class="org-ol">
+<li>要求 miss 小于1300；
+</li>
+<li>如果还是按照 32 * 32 矩阵中的解法，miss 超过2000，这是因为它的前4行占满
+了一个缓存，第五行和第一行在缓存中的组号是相同的，如果还是分成 8 * 8 的
+矩阵，在处理这样情况的例子中就会抖动；
+</li>
+<li>如果分成 4 * 4 的分块，又不能有效利用缓存，毕竟同一行中8个元素占一个缓
+存组，最后的结果还是降不到 1300 以下；
+</li>
+<li>还是考虑 8 * 8 分块的情况，不过这一次是在分块内再次分块成 4 个 4 * 4 分
+块，分别处理这 4 个分块；
+</li>
+<li>具体的思路，我想到分块再分块以后一直拿不出一个成功分别处理的逻辑、代码，
+这里摘抄一下 <a href="https://zhuanlan:zhihu.com/p/28585726">别人的想法</a> ：
+<blockquote>
+<p>
+1.先考虑把A的上半部分存入到B，但是为了考虑Cache不冲突，所以把右上角的
+4×4的区域也存在B的右上角。对于在对角线上的块，A的miss率是1/8，B的左上角
+部分miss率是1/2。对于不在对角线上的块，A的miss率还是1/8，B左上角部分的
+miss率为1/4.
+</p>
+<ol class="org-ol">
+<li>接下来这步是减少miss率的关键，把A左下角的一列4个数据读出，B右上角的
+一行4个数据读出，都用int变量暂存，然后把前四个填入B右上角行中，后四
+个填入B的左下角行中。
+因为从B右上角读取的时候，把块放入了Cache，然后从A往B中填的时候，就不
+会出现miss操作。
+来计算一下miss率，对于在对角线上的块，从A左下角读取miss率为1，B的右
+上角的操作miss率为1/4，B的左下角miss率为1/4。对于不在对角线的快，A的
+miss率为1/4，B右上角miss率为0，左下角miss率为1/4。
+</li>
+<li>最后一步就是把A的右下角填入B的右下角，对于在对角线上的块，A的miss率
+为1/4，B的miss率为1/2.不在对角线上的块，A，B的miss率都为0.
+</li>
+</ol>
+</blockquote>
+</li>
+<li>代码：
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">transpose_64_64</span><span class="p">(</span><span class="kt">int</span> <span class="n">M</span><span class="p">,</span> <span class="kt">int</span> <span class="n">N</span><span class="p">,</span> <span class="kt">int</span> <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">M</span><span class="p">],</span> <span class="kt">int</span> <span class="n">B</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">])</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">,</span> <span class="n">a4</span><span class="p">,</span> <span class="n">a5</span><span class="p">,</span> <span class="n">a6</span><span class="p">,</span> <span class="n">a7</span><span class="p">,</span> <span class="n">a8</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">64</span><span class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="mi">8</span><span class="p">){</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">j</span><span class="o">&lt;</span><span class="mi">64</span><span class="p">;</span><span class="n">j</span><span class="o">+=</span><span class="mi">8</span><span class="p">){</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">j</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;</span><span class="n">j</span><span class="o">+</span><span class="mi">4</span><span class="p">;</span><span class="o">++</span><span class="n">k</span><span class="p">){</span>
+	<span class="n">a1</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+	<span class="n">a2</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+	<span class="n">a3</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">];</span>
+	<span class="n">a4</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">];</span>
+	<span class="n">a5</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">];</span>
+	<span class="n">a6</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">5</span><span class="p">];</span>
+	<span class="n">a7</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">6</span><span class="p">];</span>
+	<span class="n">a8</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">7</span><span class="p">];</span>
+
+	<span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">a1</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="n">a5</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">a2</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">k</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="n">a6</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">a3</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">][</span><span class="n">k</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="n">a7</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">a4</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">][</span><span class="n">k</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="n">a8</span><span class="p">;</span>                               
+      <span class="p">}</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">i</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">;</span><span class="o">++</span><span class="n">k</span><span class="p">){</span>
+	<span class="n">a1</span><span class="o">=</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">4</span><span class="p">];</span>
+	<span class="n">a2</span><span class="o">=</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">5</span><span class="p">];</span>
+	<span class="n">a3</span><span class="o">=</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">6</span><span class="p">];</span>
+	<span class="n">a4</span><span class="o">=</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">7</span><span class="p">];</span>
+	<span class="n">a5</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">4</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+	<span class="n">a6</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">5</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+	<span class="n">a7</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">6</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+	<span class="n">a8</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">7</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="n">a5</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="n">a6</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">6</span><span class="p">]</span><span class="o">=</span><span class="n">a7</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">7</span><span class="p">]</span><span class="o">=</span><span class="n">a8</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">4</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">a1</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">4</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">a2</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">4</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">a3</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">4</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="n">a4</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">;</span><span class="n">k</span><span class="o">&lt;</span><span class="n">i</span><span class="o">+</span><span class="mi">8</span><span class="p">;</span><span class="o">++</span><span class="n">k</span><span class="p">){</span>
+	<span class="n">a1</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">4</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+	<span class="n">a2</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">5</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+	<span class="n">a3</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">6</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+	<span class="n">a4</span><span class="o">=</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">7</span><span class="p">][</span><span class="n">k</span><span class="p">];</span>
+
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">4</span><span class="p">]</span><span class="o">=</span><span class="n">a1</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="n">a2</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">6</span><span class="p">]</span><span class="o">=</span><span class="n">a3</span><span class="p">;</span>
+	<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="o">+</span><span class="mi">7</span><span class="p">]</span><span class="o">=</span><span class="n">a4</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
 </div>
             
         
