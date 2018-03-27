@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="CSAPP malloc lab, mm_malloc, mm_free, mm_realloc, mm_check, coalesce, find_fit, place, 性能优化">
+<meta name="viewport" content="width=device-width">
+<title>CSAPP-malloclab 解题思路记录 | Procrastination Prescription</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
+<meta property="og:site_name" content="Procrastination Prescription">
+<meta property="og:title" content="CSAPP-malloclab 解题思路记录">
+<meta property="og:url" content="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/">
+<meta property="og:description" content="CSAPP malloc lab, mm_malloc, mm_free, mm_realloc, mm_check, coalesce, find_fit, place, 性能优化">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-03-20T20:20:58+08:00">
+<meta property="article:tag" content="c">
+<meta property="article:tag" content="csapp">
+<meta property="article:tag" content="lab">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://zero4drift.github.io/" title="Procrastination Prescription" rel="home">
+                Procrastination Prescription
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../archive.html">Archive</a></li>
+                <li><a href="https://github.com/zero4drift">Github</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                CSAPP-malloclab 解题思路记录
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-03-20T20:20:58+08:00">2018/03/20</time>
+</div>
+	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../categories/c/" rel="tag">c</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../categories/csapp/" rel="tag">csapp</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../categories/lab/" rel="tag">lab</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+    
+    
+    <div id="post-main" class="main">
+        <div class="container">
+        <div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">准备</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+警告：这可以说是 CSAPP 所有的 lab 里面最难的一个，datalab 也很难，但是 datalab
+只是难在思路，代码量少，二进制数据操作简明，犯错惩罚小；而 malloc lab… 恩，虽
+然几种解题思路其实书里面已经给了明确的解释，但代码实现上还是很复杂很容易出错的，
+比如指针操作几乎没有容错可能性，稍有不慎就会跳 <b>Segment Fault</b>; 再者，malloc lab
+的性能优化是一个无底洞，做到 80/100 不难，再调优的话，性能的提高和时间的投入就不
+成比例了。
+</p>
+
+<p>
+所以：
+</p>
+<ol class="org-ol">
+<li>一定要仔细阅读 malloc lab 的要求文档，pdf 文档在 CSAPP labs 官网上；
+</li>
+<li>一定要仔细阅读 CSAPP3e 9.9 章节，没有看完或完全理解之前不要碰这个 lab;
+</li>
+<li>一定要理解 C 语言中指针的各种操作，比如 <code>int *number; number + 1</code> 中输入只是
++1, 但得到的指针值是 +4 的，因为这个指针指向的是一个 <code>int</code> 型数据，每一个该类
+型的数据占4字节；
+</li>
+<li>在代码中最好把一些频繁出现的的指针操作定义为宏，降低维护成本；
+</li>
+<li>性能调优适可而止，有时候几个小时的投入换不来 1% 的性能提升；
+</li>
+</ol>
+<p>
+做这个 lab 的过程中有4次比较大的改动，每次改动相应的性能都提高一点，当然，越到后面，提高的程度越少：
+</p>
+
+<ol class="org-ol">
+<li>
+<a href="#sec-2-1">隐式空闲链表</a>
+</li>
+<li>
+<a href="#sec-2-2">地址顺序显式空闲链表</a>
+</li>
+<li>
+<a href="#sec-2-3">LIFO顺序显式空闲链表</a>
+</li>
+<li>
+<a href="#sec-2-4">分离适配LIFO顺序显式空闲链表</a>
+</li>
+<li>
+<a href="#sec-2-5">优化 mm_realloc 函数</a>
+</li>
+<li>
+<a href="#sec-2-6">针对 coalesce trace 文件优化定制</a>
+</li>
+</ol>
+<!-- TEASER_END -->
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">策略与代码</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">隐式空闲链表</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+CSAPP3e 9.9.12 已经拿出了一个实现隐式空闲链表的分配器，只是还没实现 <code>mm_realloc
+find_fit place</code>, 实现这些功能：
+</p>
+</div>
+
+
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1">mm_realloc</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+这个版本的 <code>=mm_realloc=</code> 是完全建立在前面 <code>=mm_malloc mm_free</code> 的基础上的，性能
+并不如意，文档中也提到了，要想让该功能有更好的性能表现，函数必须是 standalone
+(怎么翻译？理解为独立的，不依赖其他主要功能函数):
+</p>
+
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="o">*</span><span class="nf">mm_realloc</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">oldsize</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">newptr</span><span class="p">;</span>
+
+  <span class="cm">/* If size == 0 then this is just free, and we return NULL. */</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">mm_free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/* If oldptr is NULL, then this is just malloc. */</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ptr</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">mm_malloc</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">newptr</span> <span class="o">=</span> <span class="n">mm_malloc</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+
+  <span class="cm">/* If realloc() fails the original block is left untouched  */</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">newptr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/* Copy the old data. */</span>
+  <span class="n">oldsize</span> <span class="o">=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">ptr</span><span class="p">));</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&lt;</span> <span class="n">oldsize</span><span class="p">)</span> <span class="n">oldsize</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+  <span class="n">memcpy</span><span class="p">(</span><span class="n">newptr</span><span class="p">,</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">oldsize</span><span class="p">);</span>
+
+  <span class="cm">/* Free the old block. */</span>
+  <span class="n">mm_free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">newptr</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2">find_fit &amp;&amp; place</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+这两个功能函数在书中是做为习题的，见习题 9.8 和 9.9, 实现起来不难；
+</p>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="o">*</span><span class="nf">find_fit</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">asize</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="cm">/* First-fit search */</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">bp</span> <span class="o">=</span> <span class="n">heap_listp</span><span class="p">;</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">bp</span> <span class="o">=</span> <span class="n">NEXT_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">GET_ALLOC</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">asize</span> <span class="o">&lt;=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">))))</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">bp</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span> <span class="cm">/* No fit */</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">place</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">asize</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">csize</span> <span class="o">=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">));</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="n">csize</span> <span class="o">-</span> <span class="n">asize</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">DSIZE</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">asize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">asize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">NEXT_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="o">-</span><span class="n">asize</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="o">-</span><span class="n">asize</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3">性能</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<pre class="example">
+Results for mm malloc:
+trace  valid  util     ops      secs  Kops
+ 0       yes   99%    5694  0.009700   587
+ 1       yes   99%    5848  0.008555   684
+ 2       yes   99%    6648  0.015160   439
+ 3       yes  100%    5380  0.013171   408
+ 4       yes   66%   14400  0.000184 78389
+ 5       yes   92%    4800  0.012939   371
+ 6       yes   92%    4800  0.012109   396
+ 7       yes   55%   12000  0.190475    63
+ 8       yes   51%   24000  0.442376    54
+ 9       yes   27%   14401  0.244156    59
+10       yes   34%   14401  0.003677  3917
+Total          74%  112372  0.952503   118
+
+Perf index = 44 (util) + 8 (thru) = 52/100
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">地址顺序显式空闲链表</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+实现 CSAPP3e 9.9.13 介绍的显式空闲链表，按照地址顺序维护链表中的元素，也就是说链
+中每个块的地址都小于它后继的地址：
+</p>
+</div>
+
+
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1">链表起始标识位</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+需要一个固定的链表起始位来帮助定位，这里使用在 <code>mm_init</code> 函数中为了对齐而设置的
+一个字的起始位置，这个位置绝对不会被使用；
+</p>
+
+<p>
+另外，为了所有显式空闲链表中的元素都可以保持接口上的一致性，这个固定的起始位虽然
+没有前驱，但还是会留一个内容永远为0的前驱位；
+</p>
+
+<p>
+所以，现在 <code>=mm_init=</code> 中在真正的堆开始之前需要留出三个字的空间（第一个还是用来
+对齐），所以现在初始化堆区就需要6个字了。
+</p>
+
+<div class="highlight"><pre><span></span><span class="cm">/* </span>
+<span class="cm">   A pointer whose value is an address of second heap byte</span>
+<span class="cm">   That place always sotres 0 for there would be no prev free block</span>
+<span class="cm">   the next word stores an address of the successive free block</span>
+<span class="cm">   If there is no successive one, the content is 0</span>
+<span class="cm">*/</span>
+<span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">starter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">mm_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="cm">/* based on explicit free list */</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">;</span>
+  <span class="n">mem_init</span><span class="p">();</span>
+
+  <span class="cm">/* Create the initial empty heap */</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">heap_listp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">mem_sbrk</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">))</span> <span class="o">==</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">starter</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">mem_heap_lo</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>                          <span class="cm">/* Alignment padding */</span>
+  <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">starter</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">starter</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>                        <span class="cm">/* First, starter is alone */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span> <span class="o">+</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">DSIZE</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span> <span class="cm">/* Prologue header */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">DSIZE</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span> <span class="cm">/* Prologue footer */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span> <span class="o">+</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>     <span class="cm">/* Epilogue header */</span>
+  <span class="n">heap_listp</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">);</span>
+  <span class="cm">/* Extend the empty heap with a free block of CHUNKSIZE bytes */</span>
+  <span class="n">bp</span> <span class="o">=</span> <span class="n">extend_heap</span><span class="p">(</span><span class="n">CHUNKSIZE</span><span class="o">/</span><span class="n">WSIZE</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">bp</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2">指针操作宏</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+为了方便后面大量指针操作的维护，也为了尽量避免在繁琐的指针操作中犯错，指针操作宏
+是很有必要的（一开始作者没有使用宏，后果惨烈）， <code>unsigned int *</code> 指定指针类型，
+当然也可以指定为 <code>void *</code>, 这样的话指针加减就得明确桉照一个字的大小操作了：
+</p>
+
+<div class="highlight"><pre><span></span><span class="cm">/* Doubly linked free list manipulations */</span>
+<span class="cp">#define GET_PREV(p)      (GET(p))       </span><span class="cm">/* Just a alias of former GET */</span><span class="cp"></span>
+<span class="cp">#define PUT_PREV(p, val) (PUT(p, val))  </span><span class="cm">/* Alias of former PUT */</span><span class="cp"></span>
+<span class="cp">#define GET_SUCC(p)      (*((unsigned int *)p + 1))</span>
+<span class="cp">#define PUT_SUCC(p, val) (*((unsigned int *)p + 1) = (val))</span>
+</pre></div>
+
+<p>
+前面提到的链表元素接口一致性，就是说，包括起始标识位，所有链表元素都可以使用这几个宏。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-2-3" class="outline-4">
+<h4 id="sec-2-2-3">coalesce</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+处理可能存在的空闲块前后合并情形。
+</p>
+
+<p>
+第一种情况需要注意，这个空闲块没有可合并的前后块，它需要按照地址顺序链接到显式空
+闲链表中；另外三种情况只需要继承被合并块的链接关系（如何继承视情况而定）。
+</p>
+
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * coalesce - Boundary tag coalescing. Return ptr to coalesced block</span>
+<span class="cm"> */</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="o">*</span><span class="nf">coalesce</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">)</span>
+<span class="cm">/* based on a explicit free list */</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">prev_bp</span><span class="p">,</span> <span class="o">*</span><span class="n">next_bp</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">succ_free</span><span class="p">,</span> <span class="n">prev_free</span><span class="p">;</span>
+  <span class="kt">size_t</span> <span class="n">prev_alloc</span> <span class="o">=</span> <span class="n">GET_ALLOC</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">PREV_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">)));</span>
+  <span class="kt">size_t</span> <span class="n">next_alloc</span> <span class="o">=</span> <span class="n">GET_ALLOC</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">NEXT_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">)));</span>
+  <span class="kt">size_t</span> <span class="n">size</span> <span class="o">=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">));</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">prev_alloc</span> <span class="o">&amp;&amp;</span> <span class="n">next_alloc</span><span class="p">)</span> <span class="p">{</span>            <span class="cm">/* Case 1 */</span>
+    <span class="n">succ_free</span> <span class="o">=</span> <span class="n">GET_SUCC</span><span class="p">(</span><span class="n">starter</span><span class="p">);</span>
+    <span class="n">prev_free</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">starter</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(;</span> <span class="n">succ_free</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">succ_free</span> <span class="o">=</span> <span class="n">GET_SUCC</span><span class="p">(</span><span class="n">succ_free</span><span class="p">))</span>
+      <span class="p">{</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">succ_free</span> <span class="o">&gt;</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">bp</span><span class="p">)</span>
+	  <span class="p">{</span>
+	    <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">succ_free</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">bp</span><span class="p">);</span>
+	    <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">succ_free</span><span class="p">);</span>
+	    <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">prev_free</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">bp</span><span class="p">);</span>
+	    <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">prev_free</span><span class="p">);</span>
+	    <span class="k">return</span> <span class="n">bp</span><span class="p">;</span>
+	  <span class="p">}</span>
+	<span class="n">prev_free</span> <span class="o">=</span> <span class="n">succ_free</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">succ_free</span><span class="p">);</span>
+    <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">prev_free</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">bp</span><span class="p">);</span>
+    <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">prev_free</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">bp</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">prev_alloc</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">next_alloc</span><span class="p">)</span> <span class="p">{</span>      <span class="cm">/* Case 2 */</span>
+    <span class="n">next_bp</span> <span class="o">=</span> <span class="n">NEXT_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+    <span class="n">size</span> <span class="o">+=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">));</span>
+    <span class="n">prev_free</span> <span class="o">=</span> <span class="n">GET_PREV</span><span class="p">(</span><span class="n">next_bp</span><span class="p">);</span>
+    <span class="n">succ_free</span> <span class="o">=</span> <span class="n">GET_SUCC</span><span class="p">(</span><span class="n">next_bp</span><span class="p">);</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+    <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">prev_free</span><span class="p">);</span>
+    <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">succ_free</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">succ_free</span><span class="p">)</span>
+      <span class="p">{</span>
+	<span class="n">PUT_PREV</span><span class="p">(</span><span class="n">succ_free</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">bp</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">prev_free</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">bp</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">prev_alloc</span> <span class="o">&amp;&amp;</span> <span class="n">next_alloc</span><span class="p">)</span> <span class="p">{</span>      <span class="cm">/* Case 3 */</span>
+    <span class="n">prev_bp</span> <span class="o">=</span> <span class="n">PREV_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+    <span class="n">size</span> <span class="o">+=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">PREV_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">else</span> <span class="p">{</span>                                     <span class="cm">/* Case 4 */</span>
+    <span class="n">prev_bp</span> <span class="o">=</span> <span class="n">PREV_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+    <span class="n">next_bp</span> <span class="o">=</span> <span class="n">NEXT_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+    <span class="n">size</span> <span class="o">+=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">))</span> <span class="o">+</span>
+      <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">));</span>
+    <span class="n">succ_free</span> <span class="o">=</span> <span class="n">GET_SUCC</span><span class="p">(</span><span class="n">next_bp</span><span class="p">);</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">PREV_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+    <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">succ_free</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">succ_free</span><span class="p">)</span>
+      <span class="p">{</span>
+	<span class="n">PUT_PREV</span><span class="p">(</span><span class="n">succ_free</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">bp</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">bp</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-2-4" class="outline-4">
+<h4 id="sec-2-2-4">find_fit &amp; place</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+<code>place</code> 方法需要注意空闲块被占用以后该块在空闲链表中的脱离，以及它前后空闲块的重
+新链接；如果被占用的剩下的大小大于两个双字，那么分割出这个残馀块并让它继承被占块的链接关系。
+</p>
+
+<p>
+<code>=find_fit</code> 方法使用一个 for 循环从头遍历显式空闲链表，寻找是否有空闲块的大小合适；
+</p>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="nf">place</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">asize</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">csize</span> <span class="o">=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">));</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">prev_free</span><span class="p">,</span> <span class="n">succ_free</span><span class="p">;</span>
+  <span class="n">prev_free</span> <span class="o">=</span> <span class="n">GET_PREV</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="n">succ_free</span> <span class="o">=</span> <span class="n">GET_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="n">csize</span> <span class="o">-</span> <span class="n">asize</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">DSIZE</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">asize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">asize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">NEXT_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="o">-</span><span class="n">asize</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="o">-</span><span class="n">asize</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">succ_free</span><span class="p">)</span>
+      <span class="p">{</span>
+	<span class="n">PUT_PREV</span><span class="p">(</span><span class="n">succ_free</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">bp</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">prev_free</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">bp</span><span class="p">);</span>
+    <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">prev_free</span><span class="p">);</span>
+    <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">succ_free</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">prev_free</span><span class="p">,</span> <span class="n">succ_free</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">succ_free</span><span class="p">)</span> <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">succ_free</span><span class="p">,</span> <span class="n">prev_free</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="k">static</span> <span class="kt">void</span> <span class="o">*</span><span class="nf">find_fit</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">asize</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="cm">/* First-fit search */</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">bp</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">bp</span> <span class="o">=</span> <span class="n">GET_SUCC</span><span class="p">(</span><span class="n">starter</span><span class="p">);</span> <span class="n">bp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">bp</span> <span class="o">=</span> <span class="n">GET_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">))</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">asize</span> <span class="o">&lt;=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">)))</span>
+	<span class="k">return</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">bp</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span> <span class="cm">/* No fit */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-2-5" class="outline-4">
+<h4 id="sec-2-2-5">性能</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<pre class="example">
+Results for mm malloc:
+trace  valid  util     ops      secs  Kops
+ 0       yes   99%    5694  0.001094  5206
+ 1       yes   99%    5848  0.000709  8249
+ 2       yes   99%    6648  0.001228  5413
+ 3       yes  100%    5380  0.001258  4276
+ 4       yes   66%   14400  0.000327 44010
+ 5       yes   92%    4800  0.004428  1084
+ 6       yes   92%    4800  0.003971  1209
+ 7       yes   55%   12000  0.033867   354
+ 8       yes   51%   24000  0.153993   156
+ 9       yes   27%   14401  0.243775    59
+10       yes   34%   14401  0.003742  3849
+Total          74%  112372  0.448392   251
+
+Perf index = 44 (util) + 17 (thru) = 61/100
+</pre>
+
+<p>
+评分比隐式空闲列表多了9分。
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">LIFO顺序显式空闲链表</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+实现 CSAPP3e 9.9.13 介绍的显式空闲链表，按照LIFO顺序维护链表中的元素，将新释放的块放置在链表的开始处：
+</p>
+</div>
+
+
+<div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1">链表起始标识位</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+不变
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2">指针操作宏</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+为了无痛使用宏，加了两个类型转换，其余不变：
+</p>
+
+<div class="highlight"><pre><span></span><span class="cp">#define PUT_PREV(p, val) (PUT(p, (unsigned int)val))  </span><span class="cm">/* Alias of former PUT */</span><span class="cp"></span>
+
+<span class="cp">#define PUT_SUCC(p, val) (*((unsigned int *)p + 1) = (unsigned int)(val))</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-3-3" class="outline-4">
+<h4 id="sec-2-3-3">coalesce</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+为了代码的维护方便，以及复用性，定义了两个帮助函数：
+</p>
+
+<div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * chain2starter - chain a free blk to starter</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">chain2starter</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">bp</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">starter_succ_free</span> <span class="o">=</span> <span class="n">GET_SUCC</span><span class="p">(</span><span class="n">starter</span><span class="p">);</span>
+  <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">starter</span><span class="p">);</span>
+  <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">starter</span><span class="p">,</span> <span class="n">bp</span><span class="p">);</span>
+  <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">starter_succ_free</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">starter_succ_free</span><span class="p">)</span> <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">starter_succ_free</span><span class="p">,</span> <span class="n">bp</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * chain2prevnext - chain the free prev and next of a free blk</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">chain2prevnext</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">succ_free</span><span class="p">,</span> <span class="n">prev_free</span><span class="p">;</span>
+  <span class="n">succ_free</span> <span class="o">=</span> <span class="n">GET_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="n">prev_free</span> <span class="o">=</span> <span class="n">GET_PREV</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">prev_free</span><span class="p">,</span> <span class="n">succ_free</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">succ_free</span><span class="p">)</span> <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">succ_free</span><span class="p">,</span> <span class="n">prev_free</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+这样接下来的代码简洁多了，需要注意的问题和 <a href="#sec-2-2">地址顺序显式空闲链表</a> 差不多，无合并空
+闲块时的链接，有合并空闲块时的链接关系继承以及修复：
+</p>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="o">*</span><span class="nf">coalesce</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">)</span>
+<span class="cm">/* based on a explicit free list */</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">prev_bp</span> <span class="o">=</span> <span class="n">PREV_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="o">*</span><span class="n">next_bp</span> <span class="o">=</span> <span class="n">NEXT_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="kt">size_t</span> <span class="n">prev_alloc</span> <span class="o">=</span> <span class="n">GET_ALLOC</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">));</span>
+  <span class="kt">size_t</span> <span class="n">next_alloc</span> <span class="o">=</span> <span class="n">GET_ALLOC</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">));</span>
+  <span class="kt">size_t</span> <span class="n">size</span> <span class="o">=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">));</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">prev_alloc</span> <span class="o">&amp;&amp;</span> <span class="n">next_alloc</span><span class="p">)</span> <span class="p">{</span>            <span class="cm">/* Case 1 */</span>
+    <span class="n">chain2starter</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">prev_alloc</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">next_alloc</span><span class="p">)</span> <span class="p">{</span>      <span class="cm">/* Case 2 */</span>
+    <span class="n">size</span> <span class="o">+=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+    <span class="n">chain2prevnext</span><span class="p">(</span><span class="n">next_bp</span><span class="p">);</span>
+    <span class="n">chain2starter</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">prev_alloc</span> <span class="o">&amp;&amp;</span> <span class="n">next_alloc</span><span class="p">)</span> <span class="p">{</span>      <span class="cm">/* Case 3 */</span>
+    <span class="n">size</span> <span class="o">+=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">chain2prevnext</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">);</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">prev_bp</span><span class="p">;</span>
+    <span class="n">chain2starter</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">else</span> <span class="p">{</span>                                     <span class="cm">/* Case 4 */</span>
+    <span class="n">size</span> <span class="o">+=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">))</span> <span class="o">+</span>
+      <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">chain2prevnext</span><span class="p">(</span><span class="n">next_bp</span><span class="p">);</span>
+    <span class="n">chain2prevnext</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">);</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">prev_bp</span><span class="p">;</span>
+    <span class="n">chain2starter</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">bp</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-3-4" class="outline-4">
+<h4 id="sec-2-3-4">find_fit &amp; place</h4>
+<div class="outline-text-4" id="text-2-3-4">
+<p>
+<code>find_fit</code> 函数大体上与地址顺序的那个版本保持一致。
+</p>
+
+<p>
+<code>place</code> 函数使用了帮助函数，精简了不少，并且有LIFO针对性的改动：修复原空闲块占
+后的前后链接关系，如果有重新配置为空闲块的残馀块要链接到链表中最开端。
+</p>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="nf">place</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">asize</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">csize</span> <span class="o">=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">));</span>
+
+  <span class="n">chain2prevnext</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="n">csize</span> <span class="o">-</span> <span class="n">asize</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">DSIZE</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">asize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">asize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">NEXT_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="o">-</span><span class="n">asize</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="o">-</span><span class="n">asize</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">coalesce</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-3-5" class="outline-4">
+<h4 id="sec-2-3-5">性能</h4>
+<div class="outline-text-4" id="text-2-3-5">
+<pre class="example">
+Results for mm malloc:
+trace  valid  util     ops      secs  Kops
+ 0       yes   89%    5694  0.001245  4572
+ 1       yes   92%    5848  0.000840  6964
+ 2       yes   94%    6648  0.001846  3601
+ 3       yes   96%    5380  0.001490  3611
+ 4       yes   66%   14400  0.000275 52383
+ 5       yes   88%    4800  0.003161  1518
+ 6       yes   85%    4800  0.003893  1233
+ 7       yes   55%   12000  0.003694  3249
+ 8       yes   51%   24000  0.004607  5210
+ 9       yes   26%   14401  0.242558    59
+10       yes   34%   14401  0.003702  3890
+Total          71%  112372  0.267311   420
+
+Perf index = 42 (util) + 28 (thru) = 70/100
+</pre>
+
+<p>
+相比地址顺序维护的空闲链表，性能提高了9分。
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">分离适配LIFO顺序显式空闲链表</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+实现 CSAPP3e 9.9.14 介绍的分离空闲链表，按照大小分为多个空闲链表，每个空闲链表按照LIFO顺序维护链表中的元素：
+</p>
+</div>
+
+
+<div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1">链表起始标识位</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+既然有有多个桉大小分类的空闲链表，那么就有相应数量的链表起始标识位，为了在
+<code>=mm_init=</code> 初始化时不至于浪费太多的存储位置，每个标识位一个字，只包含指向后继空
+闲块的指针，这一次链表起始位置指针操作不通过预先定义的指针操作宏。
+</p>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">segregate_starter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="cm">/* Pointer to first one of segregated list */</span>
+<span class="kt">int</span> <span class="nf">mm_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">;</span>
+  <span class="n">mem_init</span><span class="p">();</span>
+
+  <span class="cm">/* Create the initial empty heap */</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">heap_listp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">mem_sbrk</span><span class="p">(</span><span class="mi">14</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">))</span> <span class="o">==</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">segregate_starter</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">heap_listp</span><span class="p">;</span>
+
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>              <span class="cm">/* free list, block size &lt;=16 */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>    <span class="cm">/* block size &lt;=32 */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="o">+</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>    <span class="cm">/* block size &lt;=64 */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="o">+</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>    <span class="cm">/* block size &lt;=128 */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="o">+</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>    <span class="cm">/* block size &lt;=256 */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="o">+</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>    <span class="cm">/* block size &lt;=512 */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="o">+</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>    <span class="cm">/* block size &lt;=1024 */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="o">+</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>    <span class="cm">/* block size &lt;=2048 */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="o">+</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>    <span class="cm">/* block size &lt;=4096 */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="o">+</span><span class="p">(</span><span class="mi">9</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>    <span class="cm">/* block size &gt;4096 */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span><span class="o">+</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>         <span class="cm">/* Align padding */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span> <span class="o">+</span> <span class="p">(</span><span class="mi">11</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">DSIZE</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span> <span class="cm">/* Prologue header */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span> <span class="o">+</span> <span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">DSIZE</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span> <span class="cm">/* Prologue footer */</span>
+  <span class="n">PUT</span><span class="p">(</span><span class="n">heap_listp</span> <span class="o">+</span> <span class="p">(</span><span class="mi">13</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>     <span class="cm">/* Epilogue header */</span>
+  <span class="n">heap_listp</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">WSIZE</span><span class="p">);</span>
+  <span class="cm">/* Extend the empty heap with a free block of CHUNKSIZE bytes */</span>
+  <span class="n">bp</span> <span class="o">=</span> <span class="n">extend_heap</span><span class="p">(</span><span class="n">CHUNKSIZE</span><span class="o">/</span><span class="n">WSIZE</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">bp</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-4-2" class="outline-4">
+<h4 id="sec-2-4-2">指针操作宏</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+保持不变。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-4-3" class="outline-4">
+<h4 id="sec-2-4-3">coalesce</h4>
+<div class="outline-text-4" id="text-2-4-3">
+<p>
+<a href="#sec-2-3">LIFO顺序显式空闲链表</a> 中定义的两个帮助函数有针对性的更改；新定义一个函数，功能是
+检查传入的 <code>size</code> 参数检索分离的空闲链表组返回相应的空闲链表头。
+</p>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="o">*</span><span class="nf">find_segregate</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">patch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">16</span><span class="p">)</span> <span class="n">patch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">32</span><span class="p">)</span> <span class="n">patch</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">64</span><span class="p">)</span> <span class="n">patch</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">128</span><span class="p">)</span> <span class="n">patch</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">256</span><span class="p">)</span> <span class="n">patch</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">512</span><span class="p">)</span> <span class="n">patch</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">1024</span><span class="p">)</span> <span class="n">patch</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">2048</span><span class="p">)</span> <span class="n">patch</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">4096</span><span class="p">)</span> <span class="n">patch</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+  <span class="k">else</span> <span class="n">patch</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="n">segregate_starter</span> <span class="o">+</span> <span class="n">patch</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">chain2segregate</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">bp</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">starter</span><span class="p">;</span>
+  <span class="n">starter</span> <span class="o">=</span> <span class="n">find_segregate</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">segregate_succ_free</span> <span class="o">=</span> <span class="o">*</span><span class="n">starter</span><span class="p">;</span>
+  <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">starter</span><span class="p">);</span>
+  <span class="o">*</span><span class="n">starter</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">bp</span><span class="p">;</span>
+  <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="n">segregate_succ_free</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">segregate_succ_free</span><span class="p">)</span> <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">segregate_succ_free</span><span class="p">,</span> <span class="n">bp</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">chain2prevnext</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">succ_free</span><span class="p">,</span> <span class="o">*</span><span class="n">prev_free</span><span class="p">;</span>
+  <span class="n">succ_free</span> <span class="o">=</span> <span class="n">GET_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="n">prev_free</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">GET_PREV</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">((</span><span class="n">segregate_starter</span> <span class="o">+</span> <span class="mi">9</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">prev_free</span><span class="p">)</span> <span class="o">*</span><span class="n">prev_free</span> <span class="o">=</span> <span class="n">succ_free</span><span class="p">;</span>
+  <span class="k">else</span> <span class="n">PUT_SUCC</span><span class="p">(</span><span class="n">prev_free</span><span class="p">,</span> <span class="n">succ_free</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">succ_free</span><span class="p">)</span> <span class="n">PUT_PREV</span><span class="p">(</span><span class="n">succ_free</span><span class="p">,</span> <span class="n">prev_free</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>
+<code>coalesce</code> 函数就是把 <code>chain2starter</code> 的调用改成了调用 <code>chain2segregate</code>, 其余不变。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-4-4" class="outline-4">
+<h4 id="sec-2-4-4">find_fit &amp; place</h4>
+<div class="outline-text-4" id="text-2-4-4">
+<p>
+<code>place</code> 函数保持不变。
+</p>
+
+<p>
+<code>find_fit=</code> 函数针对分离空闲链表组有更改，添加一个内嵌 <code>for</code> 循环来寻找匹配的空闲块：
+</p>
+
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="o">*</span><span class="nf">find_fit</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">asize</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="cm">/* First-fit search */</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">bp</span><span class="p">,</span> <span class="o">*</span><span class="n">starter</span><span class="p">,</span> <span class="o">*</span><span class="n">maxstarter</span> <span class="o">=</span> <span class="n">segregate_starter</span> <span class="o">+</span> <span class="mi">9</span><span class="p">;</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="n">starter</span> <span class="o">=</span> <span class="n">find_segregate</span><span class="p">(</span><span class="n">asize</span><span class="p">);</span> <span class="n">starter</span> <span class="o">&lt;=</span> <span class="n">maxstarter</span><span class="p">;</span> <span class="n">starter</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">bp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="n">starter</span><span class="p">);</span> <span class="n">bp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">bp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">GET_SUCC</span><span class="p">(</span><span class="n">bp</span><span class="p">))</span>
+	<span class="p">{</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="n">asize</span> <span class="o">&lt;=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">)))</span>
+	    <span class="k">return</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">bp</span><span class="p">;</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span> <span class="cm">/* No fit */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-4-5" class="outline-4">
+<h4 id="sec-2-4-5">性能</h4>
+<div class="outline-text-4" id="text-2-4-5">
+<pre class="example">
+Results for mm malloc:
+trace  valid  util     ops      secs  Kops
+ 0       yes   98%    5694  0.001120  5085
+ 1       yes   94%    5848  0.000890  6573
+ 2       yes   98%    6648  0.001313  5064
+ 3       yes   99%    5380  0.001334  4031
+ 4       yes   66%   14400  0.000380 37925
+ 5       yes   89%    4800  0.002676  1794
+ 6       yes   86%    4800  0.002755  1742
+ 7       yes   55%   12000  0.001006 11928
+ 8       yes   51%   24000  0.001006 23852
+ 9       yes   30%   14401  0.242134    59
+10       yes   34%   14401  0.003921  3673
+Total          73%  112372  0.258535   435
+
+Perf index = 44 (util) + 29 (thru) = 73/100
+</pre>
+
+<p>
+3分 …
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">优化 mm_realloc 函数</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+trace 文件中最后两个是检查 <code>mm_realloc</code> 函数性能的，从前面的性能数据可以看出，完
+全依赖与 <code>mm_free</code> 和 <code>=mm_malloc</code> 来定义的 <code>mm_realloc</code> 函数性能很糟糕，特别是空间利用率。
+</p>
+
+<p>
+性能糟糕的主要原因就是， <code>=mm_realloc</code> 函数在进行重新分配的过程中，没有考虑重分
+配大小和原始大小的比较、被重分配的块前后空闲块的问题。
+</p>
+</div>
+
+
+<div id="outline-container-sec-2-5-1" class="outline-4">
+<h4 id="sec-2-5-1">两个帮助函数 place &amp; coalesce 的特别定制版本</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<p>
+当然可以直接修改原有的 <code>place</code> 和 <code>coalesce</code> 函数，添加一些 <code>if/esle</code> 条件调整，不过那样又难看，又不利于后期维护。
+</p>
+
+<p>
+这两个特别定制函数和它们母版的不同在于：
+</p>
+
+<ol class="org-ol">
+<li>
+<code>realloc_place</code> 传入的地址的块不是空闲块（可能是空闲块和已占用块的合并），它
+没有前后链接关系，所以不需要处理它的链接关系；
+</li>
+<li>
+<code>realloc_coalesce</code> 中如果有空闲块合并，要检查它的合并后大小是否大于等于重分配
+大小，如果是再进行合并；合并后的‘空闲块’马上就要被使用，所以不需要链接。
+</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="nf">realloc_place</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">asize</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">size_t</span> <span class="n">csize</span> <span class="o">=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">));</span>
+
+  <span class="k">if</span> <span class="p">((</span><span class="n">csize</span> <span class="o">-</span> <span class="n">asize</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">DSIZE</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">asize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">asize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">bp</span> <span class="o">=</span> <span class="n">NEXT_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="o">-</span><span class="n">asize</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="o">-</span><span class="n">asize</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="n">coalesce</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+    <span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">csize</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="o">*</span><span class="nf">realloc_coalesce</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">bp</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">asize</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">is_next_free</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">prev_bp</span> <span class="o">=</span> <span class="n">PREV_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="o">*</span><span class="n">next_bp</span> <span class="o">=</span> <span class="n">NEXT_BLKP</span><span class="p">(</span><span class="n">bp</span><span class="p">);</span>
+  <span class="kt">size_t</span> <span class="n">prev_alloc</span> <span class="o">=</span> <span class="n">GET_ALLOC</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">));</span>
+  <span class="kt">size_t</span> <span class="n">next_alloc</span> <span class="o">=</span> <span class="n">GET_ALLOC</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">));</span>
+  <span class="kt">size_t</span> <span class="n">size</span> <span class="o">=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">));</span>
+  <span class="o">*</span><span class="n">is_next_free</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">prev_alloc</span> <span class="o">&amp;&amp;</span> <span class="n">next_alloc</span><span class="p">)</span> <span class="p">{}</span>           <span class="cm">/* Case 1 */</span>
+
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">prev_alloc</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">next_alloc</span><span class="p">)</span> <span class="p">{</span>      <span class="cm">/* Case 2 */</span>
+    <span class="n">size</span> <span class="o">+=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">));</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&gt;=</span> <span class="n">asize</span><span class="p">)</span>
+      <span class="p">{</span>
+	<span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+	<span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="mi">0</span><span class="p">));</span>
+	<span class="n">chain2prevnext</span><span class="p">(</span><span class="n">next_bp</span><span class="p">);</span>
+	<span class="o">*</span><span class="n">is_next_free</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">prev_alloc</span> <span class="o">&amp;&amp;</span> <span class="n">next_alloc</span><span class="p">)</span> <span class="p">{</span>      <span class="cm">/* Case 3 */</span>
+    <span class="n">size</span> <span class="o">+=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">));</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&gt;=</span> <span class="n">asize</span><span class="p">)</span>
+      <span class="p">{</span>
+	<span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+	<span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+	<span class="n">chain2prevnext</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">);</span>
+	<span class="n">bp</span> <span class="o">=</span> <span class="n">prev_bp</span><span class="p">;</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">else</span> <span class="p">{</span>                                     <span class="cm">/* Case 4 */</span>
+    <span class="n">size</span> <span class="o">+=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">))</span> <span class="o">+</span>
+      <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">));</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">&gt;=</span> <span class="n">asize</span><span class="p">)</span>
+      <span class="p">{</span>
+	<span class="n">PUT</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+	<span class="n">PUT</span><span class="p">(</span><span class="n">FTRP</span><span class="p">(</span><span class="n">next_bp</span><span class="p">),</span> <span class="n">PACK</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+	<span class="n">chain2prevnext</span><span class="p">(</span><span class="n">next_bp</span><span class="p">);</span>
+	<span class="n">chain2prevnext</span><span class="p">(</span><span class="n">prev_bp</span><span class="p">);</span>
+	<span class="n">bp</span> <span class="o">=</span> <span class="n">prev_bp</span><span class="p">;</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">bp</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-5-2" class="outline-4">
+<h4 id="sec-2-5-2">重分配策略优化的 mm_realloc</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<p>
+实现前面所说的大小比较以及可能的前后空闲块合并<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>。
+</p>
+
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="o">*</span><span class="nf">mm_realloc</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">is_next_free</span><span class="p">;</span>
+  <span class="kt">size_t</span> <span class="n">oldsize</span><span class="p">,</span> <span class="n">asize</span><span class="p">,</span> <span class="n">cp_size</span><span class="p">;</span>
+  <span class="kt">void</span> <span class="o">*</span><span class="n">newptr</span><span class="p">;</span>
+
+  <span class="cm">/* If size == 0 then this is just free, and we return NULL. */</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">mm_free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/* If oldptr is NULL, then this is just malloc. */</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ptr</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="n">mm_malloc</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+
+  <span class="n">asize</span> <span class="o">=</span> <span class="n">ALIGN</span><span class="p">(</span><span class="n">size</span><span class="o">+</span><span class="n">DSIZE</span><span class="p">);</span>
+  <span class="n">oldsize</span> <span class="o">=</span> <span class="n">GET_SIZE</span><span class="p">(</span><span class="n">HDRP</span><span class="p">(</span><span class="n">ptr</span><span class="p">));</span>
+  <span class="n">cp_size</span> <span class="o">=</span> <span class="n">oldsize</span> <span class="o">-</span> <span class="n">DSIZE</span><span class="p">;</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">oldsize</span> <span class="o">==</span> <span class="n">asize</span><span class="p">)</span> <span class="k">return</span> <span class="n">ptr</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">oldsize</span> <span class="o">&lt;</span> <span class="n">asize</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">newptr</span> <span class="o">=</span> <span class="n">realloc_coalesce</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="n">asize</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">is_next_free</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">is_next_free</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">realloc_place</span><span class="p">(</span><span class="n">newptr</span><span class="p">,</span> <span class="n">asize</span><span class="p">);</span>
+	  <span class="k">return</span> <span class="n">newptr</span><span class="p">;</span>
+	<span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">is_next_free</span> <span class="o">&amp;&amp;</span> <span class="n">newptr</span> <span class="o">!=</span> <span class="n">ptr</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">memmove</span><span class="p">(</span><span class="n">newptr</span><span class="p">,</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">cp_size</span><span class="p">);</span>
+	  <span class="n">realloc_place</span><span class="p">(</span><span class="n">newptr</span><span class="p">,</span> <span class="n">asize</span><span class="p">);</span>
+	  <span class="k">return</span> <span class="n">newptr</span><span class="p">;</span>
+	<span class="p">}</span>
+      <span class="k">else</span>
+	<span class="p">{</span>
+	  <span class="n">newptr</span> <span class="o">=</span> <span class="n">mm_malloc</span><span class="p">(</span><span class="n">asize</span><span class="p">);</span>
+	  <span class="n">memmove</span><span class="p">(</span><span class="n">newptr</span><span class="p">,</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">cp_size</span><span class="p">);</span>
+	  <span class="n">mm_free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+	  <span class="k">return</span> <span class="n">newptr</span><span class="p">;</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="p">{</span>
+      <span class="n">realloc_place</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="n">asize</span><span class="p">);</span>
+      <span class="k">return</span> <span class="n">ptr</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-5-3" class="outline-4">
+<h4 id="sec-2-5-3">性能</h4>
+<div class="outline-text-4" id="text-2-5-3">
+<pre class="example">
+Results for mm malloc:
+trace  valid  util     ops      secs  Kops
+ 0       yes   98%    5694  0.000978  5820
+ 1       yes   94%    5848  0.001058  5528
+ 2       yes   98%    6648  0.001298  5123
+ 3       yes   99%    5380  0.001286  4184
+ 4       yes   66%   14400  0.000377 38156
+ 5       yes   89%    4800  0.002689  1785
+ 6       yes   86%    4800  0.002700  1778
+ 7       yes   55%   12000  0.001030 11650
+ 8       yes   51%   24000  0.001012 23713
+ 9       yes   48%   14401  0.037905   380
+10       yes   45%   14401  0.001295 11124
+Total          75%  112372  0.051629  2177
+
+Perf index = 45 (util) + 40 (thru) = 85/100
+</pre>
+
+<p>
+性能提高不少。
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6">针对 coalesce trace 文件优化定制</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+迭代了这么几个版本，有没有注意到，第四个检测的空间利用率总是铁打不懂的 66%, 这个
+检测的 trace 文件是关于 <code>coalesce</code> 函数的。
+</p>
+</div>
+
+
+<div id="outline-container-sec-2-6-1" class="outline-4">
+<h4 id="sec-2-6-1">分析 trace 文件</h4>
+<div class="outline-text-4" id="text-2-6-1">
+<p>
+摘录一小段 trace：
+</p>
+
+<pre class="example">
+a 0 4095
+a 1 4095
+f 0
+f 1
+</pre>
+
+<p>
+这是一个陷阱，不是给人的，而是给程序的。
+</p>
+
+<p>
+如果仔细看过 <code>=mm_init</code> 函数就会知道，在初始化堆最开始的一些标识位之后，会调用
+<code>extend_heap</code> 函数来预分配一块 4096 字节大小的空间做为起始空闲块。
+</p>
+
+<p>
+坏就坏在这里，trace 文件中每次分配占用的空间大小在经过8字节的对齐补全计算之后，
+总是大于4096, 或大于4096的整数倍。
+</p>
+
+<p>
+在 <code>mm_malloc</code> 函数当中在遇到当前空闲链表中没有合适空闲块的情况下，总是会调用
+<code>extend_heap</code> 函数来扩展一块空闲块空间，而这块空间的大小取4096与待分配大小中大的
+那一个。
+</p>
+
+<p>
+这就导致了一个很尴尬的问题，如果像 coalesce trace 文件中的这样分配之后，初始的
+4096空间大小是永远不够的，每次都要扩展，每次初始4096大小的空闲块都不能被利用起来。
+</p>
+
+<p>
+这样就导致了 coalesce 测试空间利用率一直都不理想。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-6-2" class="outline-4">
+<h4 id="sec-2-6-2">改动</h4>
+<div class="outline-text-4" id="text-2-6-2">
+<p>
+改动很简单，修改 <code>mm_init</code> 函数中 <code>extend_heap</code> 初始扩展大小就可以了，空闲块可以
+接受的最小大小是两个双字，就桉这个来：
+</p>
+
+<div class="highlight"><pre><span></span><span class="n">bp</span> <span class="o">=</span> <span class="n">extend_heap</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">DSIZE</span><span class="o">/</span><span class="n">WSIZE</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-6-3" class="outline-4">
+<h4 id="sec-2-6-3">性能</h4>
+<div class="outline-text-4" id="text-2-6-3">
+<pre class="example">
+Results for mm malloc:
+trace  valid  util     ops      secs  Kops
+ 0       yes   97%    5694  0.001187  4795
+ 1       yes   94%    5848  0.000901  6493
+ 2       yes   98%    6648  0.001301  5111
+ 3       yes   99%    5380  0.001549  3473
+ 4       yes   99%   14400  0.000391 36829
+ 5       yes   89%    4800  0.003036  1581
+ 6       yes   86%    4800  0.002891  1660
+ 7       yes   55%   12000  0.001089 11018
+ 8       yes   51%   24000  0.001046 22953
+ 9       yes   48%   14401  0.040135   359
+10       yes   45%   14401  0.001318 10925
+Total          78%  112372  0.054844  2049
+
+Perf index = 47 (util) + 40 (thru) = 87/100
+</pre>
+
+<p>
+提高了2分。
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7">可能的优化</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+传说还可以针对最后的两个 realloc trace 做定制优化，这两个测试，特别是第一个，性
+能确实很差。
+</p>
+
+<p>
+但就像准备中所说的，到了这一步，性能的提高和时间的投入就很不成比例了，暂时搁置，
+还有其他更重要的事情要做。
+</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef">
+<sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup><p class="footpara">
+<code>mm_realloc</code> 中处理旧块数据向新块迁移的函数是 <code>memcpy</code>, 结果在分离适配这
+个版本检查 trace 文件时无法通过第十个检测；问题是，如果还是这个函数，在 <i>LIFO顺序
+显式空闲链表</i> 版本做检查时确实可行的；这两个版本虽然有差异，但除了外围有无分离适
+配空闲链表数组之外，内部结构大致相同，暂时排查不出原因；所以最后在分离适配的版本
+中还是使用 <code>memmove</code> 函数。
+</p>
+</div>
+
+
+</div>
+</div>
+            
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="https-zero4drift-github-io",
+            disqus_url="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/",
+        disqus_title="CSAPP-malloclab \u89e3\u9898\u601d\u8def\u8bb0\u5f55",
+        disqus_identifier="cache/posts/csapp-malloclab-jie-ti-si-lu-ji-lu.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        
+    
+
+
+        </div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:fang0052@e.ntu.edu.sg">zero4drift</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?06e0ade16d98033ac1aad78106d873c8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script src="../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>
