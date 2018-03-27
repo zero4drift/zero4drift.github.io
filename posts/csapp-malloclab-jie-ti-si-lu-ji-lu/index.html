@@ -204,7 +204,7 @@ find_fit place</code>, 实现这些功能：
 
 
 <div id="outline-container-sec-2-1-2" class="outline-4">
-<h4 id="sec-2-1-2">find_fit &amp;&amp; place</h4>
+<h4 id="sec-2-1-2">find_fit &amp; place</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 这两个功能函数在书中是做为习题的，见习题 9.8 和 9.9, 实现起来不难；
@@ -920,7 +920,7 @@ trace 文件中最后两个是检查 <code>mm_realloc</code> 函数性能的，�
 
 
 <div id="outline-container-sec-2-5-1" class="outline-4">
-<h4 id="sec-2-5-1">两个帮助函数 place &amp; coalesce 的特别定制版本</h4>
+<h4 id="sec-2-5-1">两个帮助函数 - place &amp; coalesce 的特别定制版本</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 当然可以直接修改原有的 <code>place</code> 和 <code>coalesce</code> 函数，添加一些 <code>if/esle</code> 条件调整，不过那样又难看，又不利于后期维护。
@@ -1103,7 +1103,7 @@ Perf index = 45 (util) + 40 (thru) = 85/100
 <h3 id="sec-2-6">针对 coalesce trace 文件优化定制</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
-迭代了这么几个版本，有没有注意到，第四个检测的空间利用率总是铁打不懂的 66%, 这个
+迭代了这么几个版本，有没有注意到，第四个检测的空间利用率总是铁打不动的 66%, 这个
 检测的 trace 文件是关于 <code>coalesce</code> 函数的。
 </p>
 </div>
@@ -1221,8 +1221,8 @@ Perf index = 47 (util) + 40 (thru) = 87/100
 <div class="footdef">
 <sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup><p class="footpara">
 <code>mm_realloc</code> 中处理旧块数据向新块迁移的函数是 <code>memcpy</code>, 结果在分离适配这
-个版本检查 trace 文件时无法通过第十个检测；问题是，如果还是这个函数，在 <i>LIFO顺序
-显式空闲链表</i> 版本做检查时确实可行的；这两个版本虽然有差异，但除了外围有无分离适
+个版本检查 trace 文件时无法通过第十个检测；问题是，如果还是这个函数，在 <a href="#sec-2-3">LIFO顺序显式空闲链表</a>
+版本做检查时确实可行的；这两个版本虽然有差异，但除了外围有无分离适
 配空闲链表数组之外，内部结构大致相同，暂时排查不出原因；所以最后在分离适配的版本
 中还是使用 <code>memmove</code> 函数。
 </p>
