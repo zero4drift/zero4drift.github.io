@@ -361,7 +361,7 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
 <li>由于缓存替换要求实现 LRU 算法（或者接近 LRU），作者在这里是严格按照 LRU 算法
 来做的，具体是：
 <ol class="org-ol">
-<li>每次读写都算做一次读写
+<li>每次读写都算做一次使用该链表元素
 </li>
 <li>讲新近读写的缓存从链表中挑出，将它的前后链表关系置为 <code>NULL</code>
 </li>
@@ -396,6 +396,18 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
 <li>综上这些问题都是选用链表而引出来，单向或者双向都无法避免，应该还会有对并发更
 友好数据模形，实在不想折腾了（在经过 malloc lab 得折腾之后作者已经懈怠了），
 等以后知识量上去了，或者真的有灵光一闪，再来处理这个。
+</li>
+
+<li>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-04-06 Fri&gt;</span></span> #<a id="" name=""></a>：看了下 CSAPP3e 12.5.14 P707 读者优先的读者－写者模形，
+一部分实现读者优先的代码可以借用到 cache.c 的读缓存函数里，可以实现读缓存的并
+行实现（不过极端条件下当并行读取的进程同时进入 <code>if(!(cache_node =</code>
+CACHE_HEAD))== 时，就几乎没有并行可言了）；书中的读者－写者模形整体来看并不适合
+做 proxylab 要求的缓存：书中的模形过于简单，基于生产者－消费者模形的－有东西
+产出就取走，而缓存要求的是有匹配的内容就读取该内容，无匹配就将获得的数据做为
+缓存插入，不过 <code>sbuf</code> 这个数据结构还是可以借用的，需要大改，改造思路就是 LRU
+链表替换原来的数组，或者保理数组，新加入一个数据结构存储每一个缓存的地址并桉
+照 LRU 顺序排列；
 </li>
 </ol>
 <p>
@@ -497,6 +509,13 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
 <span class="cm">/* read cache */</span>
 <span class="kt">char</span> <span class="o">*</span><span class="nf">read_cache</span><span class="p">(</span><span class="n">cache</span> <span class="o">*</span><span class="n">cache_node</span><span class="p">)</span>
 <span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">buf</span><span class="p">;</span>
+
+  <span class="n">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cnt_lock</span><span class="p">);</span>
+  <span class="n">readcnt</span><span class="o">++</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">readcnt</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">P</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">cache_node</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">));</span>
+  <span class="n">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cnt_lock</span><span class="p">);</span>
+
   <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">cache_node</span> <span class="o">==</span> <span class="n">CACHE_HEAD</span><span class="p">))</span>
     <span class="p">{</span>
       <span class="n">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
@@ -504,7 +523,15 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
       <span class="n">insert_cache_head</span><span class="p">(</span><span class="n">cache_node</span><span class="p">);</span>
       <span class="n">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="k">return</span> <span class="n">cache_node</span><span class="o">-&gt;</span><span class="n">buf</span><span class="p">;</span>
+
+  <span class="n">buf</span> <span class="o">=</span> <span class="n">cache_node</span><span class="o">-&gt;</span><span class="n">buf</span><span class="p">;</span>
+
+  <span class="n">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cnt_lock</span><span class="p">);</span>
+  <span class="n">readcnt</span><span class="o">--</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">readcnt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">V</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">cache_node</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">));</span>
+  <span class="n">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cnt_lock</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">buf</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="cm">/* find cache based on host and path, if not exists, return NULL */</span>
@@ -565,8 +592,10 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
   <span class="n">cache</span> <span class="o">*</span><span class="n">tail_cache</span> <span class="o">=</span> <span class="n">find_tail_cache</span><span class="p">();</span>
   <span class="k">if</span><span class="p">(</span><span class="n">tail_cache</span><span class="p">)</span>
     <span class="p">{</span>
+      <span class="n">P</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
       <span class="n">repair_cache_link</span><span class="p">(</span><span class="n">tail_cache</span><span class="p">);</span>
       <span class="n">free</span><span class="p">(</span><span class="n">tail_cache</span><span class="p">);</span>
+      <span class="n">V</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mutex</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -639,6 +668,10 @@ proxy lab 这样结束掉虽然能通过测试，它现在内部的代码逻辑�
 
 <p>
 就这样吧，这里的代码以后会有重构的那一天的。
+</p>
+
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-04-06 Fri&gt;</span></span> <a href=".">7</a> 稍微改进了读缓存的并行性 。
 </p>
 </div>
 </div>
