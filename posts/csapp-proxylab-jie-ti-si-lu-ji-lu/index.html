@@ -398,8 +398,7 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
 等以后知识量上去了，或者真的有灵光一闪，再来处理这个。
 </li>
 
-<li>
-<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-04-06 Fri&gt;</span></span> #<a id="" name=""></a>：看了下 CSAPP3e 12.5.14 P707 读者优先的读者－写者模形，
+<li>#<a id="update" name="update"></a>：<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-04-06 Fri&gt;</span></span> 看了下 CSAPP3e 12.5.14 P707 读者优先的读者－写者模形，
 一部分实现读者优先的代码可以借用到 cache.c 的读缓存函数里，可以实现读缓存的并
 行实现（不过极端条件下当并行读取的进程同时进入 <code>if(!(cache_node =</code>
 CACHE_HEAD))== 时，就几乎没有并行可言了）；书中的读者－写者模形整体来看并不适合
@@ -671,7 +670,7 @@ proxy lab 这样结束掉虽然能通过测试，它现在内部的代码逻辑�
 </p>
 
 <p>
-<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-04-06 Fri&gt;</span></span> <a href=".">7</a> 稍微改进了读缓存的并行性 。
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-04-06 Fri&gt;</span></span> <a href="#update">7</a> 稍微改进了读缓存的并行性 。
 </p>
 </div>
 </div>
