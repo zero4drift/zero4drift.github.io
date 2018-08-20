@@ -84,54 +84,38 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">写在前面</h2>
-<div class="outline-text-2" id="text-1">
+        <div id="outline-container-orgd1efae3" class="outline-2">
+<h2 id="orgd1efae3">写在前面</h2>
+<div class="outline-text-2" id="text-orgd1efae3">
 <p>
 我宁愿去处理汇编代码！这次的 lab 太繁杂太发散；汇编虽然难，起码有的放矢，一码是一码。
 </p>
 </div>
 
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">阅读官方指导文档</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-org2d83509" class="outline-3">
+<h3 id="org2d83509">阅读官方指导文档</h3>
+<div class="outline-text-3" id="text-org2d83509">
 <p>
 这次必须仔细阅读文档，否则必然踩坑，本篇文章十有八九也看不懂了：<a href="http://csapp.cs.cmu.edu/3e/shlab-release.html">文档的链接在这里</a>。
 </p>
 </div>
 
-<div id="outline-container-sec-1-1-1" class="outline-4">
-<h4 id="sec-1-1-1">要求</h4>
-<div class="outline-text-4" id="text-1-1-1">
+<div id="outline-container-orgac2f19f" class="outline-4">
+<h4 id="orgac2f19f">要求</h4>
+<div class="outline-text-4" id="text-orgac2f19f">
 <ol class="org-ol">
-<li>提供了一个模板可执行文件 <code>./tshref</code>, 最后完成的 <code>./tsh</code> 在运行时必须和模板表现一致；
-</li>
+<li>提供了一个模板可执行文件 <code>./tshref</code>, 最后完成的 <code>./tsh</code> 在运行时必须和模板表现一致；</li>
 <li>提供了16个 trace 文件，lab 提交之后是比较 <code>./tsh</code> 在这16个 trace 文件的输入后
-的表现是否与同样条件下的 <code>./tshref</code> 一致来评分的；
-</li>
+的表现是否与同样条件下的 <code>./tshref</code> 一致来评分的；</li>
 <li>需要完成 <code>./tsh.c</code> 中的7个函数，分别是：
 <ol class="org-ol">
-<li>
-<a href="#sec-2-1">eval</a>
-</li>
-<li>
-<a href="#sec-2-2">builtin_cmd</a>
-</li>
-<li>
-<a href="#sec-2-3">do_bgfg</a>
-</li>
-<li>
-<a href="#sec-2-4">waitfg</a>
-</li>
-<li>
-<a href="#sec-2-5">sigchld_handler</a>
-</li>
-<li>
-<a href="#sec-2-6">sigint_handler</a>
-</li>
-<li>
-<a href="#sec-2-7">sigstp_handler</a>
-</li>
+<li><a href="#org2e6e4bf">eval</a></li>
+<li><a href="#orgaa4178d">builtin_cmd</a></li>
+<li><a href="#org324eeff">do_bgfg</a></li>
+<li><a href="#org19c7b4f">waitfg</a></li>
+<li><a href="#orgfc92614">sigchld_handler</a></li>
+<li><a href="#org38cb018">sigint_handler</a></li>
+<li><a href="#org464963f">sigstp_handler</a></li>
 </ol>
 </li>
 </ol>
@@ -139,9 +123,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-1-2" class="outline-4">
-<h4 id="sec-1-1-2">提示</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<div id="outline-container-org3e21ecb" class="outline-4">
+<h4 id="org3e21ecb">提示</h4>
+<div class="outline-text-4" id="text-org3e21ecb">
 <p>
 lab 文档在最后给出了几条提示，有几条特别重要：
 </p>
@@ -149,25 +133,20 @@ lab 文档在最后给出了几条提示，有几条特别重要：
 <ol class="org-ol">
 <li>第三条：waitpid, kill, fork, execve, setpgid 和 sigprocmask 非常有用，在
 waitpid 中使用 WUNTRACED 和 WNOHANG 参数选项讲极大的减少工作量（前提是，仔细
-阅读 waitpid 的文档，了解其常规用法）；
-</li>
+阅读 waitpid 的文档，了解其常规用法）；</li>
 <li>第四条：在实现 sigint_handler 和 sigstp_handler 的过程中，在调用 kill 函数时
 第一个参数使用 <code>-pid</code> 而不是 <code>pid</code>, 这样就可以把 SIGINT 和 SIGSTP 信号发送到
-整个前台进程组；
-</li>
+整个前台进程组；</li>
 <li>第五条：在待实现的 waitfg 函数中使用一个内部是 sleep 函数调用的 while 循环，
-搭配着在 sigchld_handler 中只调用一次 waitpid 函数；
-</li>
+搭配着在 sigchld_handler 中只调用一次 waitpid 函数；</li>
 <li>第六条：在待实现的 eval 函数中，在调用 fork 函数派生子进程之前使用
 sigprocmask 来屏蔽 SIGCHLD 信号，在 eval 中调用 addjob 函数之后再调用一次
-sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必须解除屏蔽；
-</li>
+sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必须解除屏蔽；</li>
 <li>第八条：eval 中派生的子进程必须调用 setpid(0, 0) 来确保自己的进程组ID和自己的PID一样，
 确保自己的进程组ID和 运行时的 <code>./tsh</code> 不一样；因为 <code>./tsh</code> 是在 Unix shell 中
 运行的，它其实就是在前台进程组中运行的，如果 <code>./tsh</code> 派生出子进程，默认这个子
 进程就将是前台进程组中的一员；如果在控制台中键入 ctrl-c, SIGINT 信号将会被送
-到前台进程组中的所有成员；
-</li>
+到前台进程组中的所有成员；</li>
 </ol>
 <p>
 可以这样理解，这里每一条提示都不只是建议，而是可以大大减少工作量的最优解。
@@ -177,17 +156,17 @@ sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">代码工作</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org06e9edc" class="outline-2">
+<h2 id="org06e9edc">代码工作</h2>
+<div class="outline-text-2" id="text-org06e9edc">
 <p>
 鉴于代码中已经写了大量注释（以及实践过程中踩坑的记录以博一笑），这里就把代码搬运过来就可以了。
 </p>
 </div>
 
-<div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">eval</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-org2e6e4bf" class="outline-3">
+<h3 id="org2e6e4bf">eval</h3>
+<div class="outline-text-3" id="text-org2e6e4bf">
 <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">eval</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">cmdline</span><span class="p">)</span> 
 <span class="p">{</span>
   <span class="kt">pid_t</span> <span class="n">pid</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -213,12 +192,12 @@ sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必
       <span class="n">is_available_cmd</span> <span class="o">=</span> <span class="n">access</span><span class="p">(</span><span class="n">first_cmd</span><span class="p">,</span> <span class="mo">00</span><span class="p">);</span>
       <span class="cm">/* 硬编码套路 */</span>
       <span class="cm">/* for(i=0;i&lt;5;i++) */</span>
-      <span class="cm">/*      { */</span>
-      <span class="cm">/*        if(!strcmp(first_cmd, available_cmds[i])) */</span>
-      <span class="cm">/*          { */</span>
-      <span class="cm">/*            is_available_cmd = 1; */</span>
-      <span class="cm">/*            break; */</span>
-      <span class="cm">/*          } */</span>
+      <span class="cm">/* 	{ */</span>
+      <span class="cm">/* 	  if(!strcmp(first_cmd, available_cmds[i])) */</span>
+      <span class="cm">/* 	    { */</span>
+      <span class="cm">/* 	      is_available_cmd = 1; */</span>
+      <span class="cm">/* 	      break; */</span>
+      <span class="cm">/* 	    } */</span>
       <span class="cm">/* } */</span>
       <span class="k">if</span><span class="p">(</span><span class="n">is_available_cmd</span><span class="o">==-</span><span class="mi">1</span><span class="p">)</span>
 	<span class="p">{</span>
@@ -268,9 +247,9 @@ sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必
 </div>
 </div>
 
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">builtin_cmd</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgaa4178d" class="outline-3">
+<h3 id="orgaa4178d">builtin_cmd</h3>
+<div class="outline-text-3" id="text-orgaa4178d">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">builtin_cmd</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> 
 <span class="p">{</span>
   <span class="kt">char</span> <span class="o">*</span><span class="n">first_cmd</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
@@ -294,9 +273,9 @@ sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必
 </div>
 </div>
 
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">do_bgfg</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-org324eeff" class="outline-3">
+<h3 id="org324eeff">do_bgfg</h3>
+<div class="outline-text-3" id="text-org324eeff">
 <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">do_bgfg</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">jid</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pid</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
@@ -401,9 +380,9 @@ sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必
 </div>
 </div>
 
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4">waitfg</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-org19c7b4f" class="outline-3">
+<h3 id="org19c7b4f">waitfg</h3>
+<div class="outline-text-3" id="text-org19c7b4f">
 <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">waitfg</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="cm">/* 我原来的做法是这样的，这当然可以解决问题，毕竟 forground job 结束之后会被 reap */</span>
@@ -413,9 +392,9 @@ sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必
   <span class="cm">/* if(job) */</span>
   <span class="cm">/*   { */</span>
   <span class="cm">/*     while(job-&gt;state==FG) */</span>
-  <span class="cm">/*  { */</span>
-  <span class="cm">/*    sleep(1); */</span>
-  <span class="cm">/*  } */</span>
+  <span class="cm">/* 	{ */</span>
+  <span class="cm">/* 	  sleep(1); */</span>
+  <span class="cm">/* 	} */</span>
   <span class="cm">/*   } */</span>
   <span class="k">while</span><span class="p">(</span><span class="n">pid</span> <span class="o">==</span> <span class="n">fgpid</span><span class="p">(</span><span class="n">jobs</span><span class="p">))</span>
     <span class="p">{</span>
@@ -427,9 +406,9 @@ sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必
 </div>
 </div>
 
-<div id="outline-container-sec-2-5" class="outline-3">
-<h3 id="sec-2-5">sigchld_handler</h3>
-<div class="outline-text-3" id="text-2-5">
+<div id="outline-container-orgfc92614" class="outline-3">
+<h3 id="orgfc92614">sigchld_handler</h3>
+<div class="outline-text-3" id="text-orgfc92614">
 <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">sigchld_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">)</span> 
 <span class="p">{</span>
   <span class="cm">/* 这个就要需要详细了解 waitpid 这个函数了，见 man waitpid */</span>
@@ -443,16 +422,16 @@ sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必
   <span class="cm">/* 这样的话，./tsh 无法捕捉从进程中发送的 SIGSTP 和 SIGINT */</span>
   <span class="k">while</span><span class="p">((</span><span class="n">pid</span> <span class="o">=</span> <span class="n">waitpid</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">status</span><span class="p">,</span> <span class="n">WUNTRACED</span><span class="o">|</span><span class="n">WNOHANG</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
     <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">WIFEXITED</span><span class="p">(</span><span class="n">status</span><span class="p">))</span>         <span class="cm">/* process is exited in normal way */</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">WIFEXITED</span><span class="p">(</span><span class="n">status</span><span class="p">))</span>	      <span class="cm">/* process is exited in normal way */</span>
 	<span class="p">{</span>
 	  <span class="n">deletejob</span><span class="p">(</span><span class="n">jobs</span><span class="p">,</span> <span class="n">pid</span><span class="p">);</span>
 	<span class="p">}</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">WIFSIGNALED</span><span class="p">(</span><span class="n">status</span><span class="p">))</span>       <span class="cm">/* process is terminated by a signal */</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">WIFSIGNALED</span><span class="p">(</span><span class="n">status</span><span class="p">))</span>	      <span class="cm">/* process is terminated by a signal */</span>
 	<span class="p">{</span>
 	  <span class="n">printf</span><span class="p">(</span><span class="s">"Job [%d] (%d) terminated by signal %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">pid2jid</span><span class="p">(</span><span class="n">pid</span><span class="p">),</span> <span class="n">pid</span><span class="p">,</span> <span class="n">WTERMSIG</span><span class="p">(</span><span class="n">status</span><span class="p">));</span>
 	  <span class="n">deletejob</span><span class="p">(</span><span class="n">jobs</span><span class="p">,</span> <span class="n">pid</span><span class="p">);</span>
 	<span class="p">}</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">WIFSTOPPED</span><span class="p">(</span><span class="n">status</span><span class="p">))</span>        <span class="cm">/* process is stop because of a signal */</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">WIFSTOPPED</span><span class="p">(</span><span class="n">status</span><span class="p">))</span>	      <span class="cm">/* process is stop because of a signal */</span>
 	<span class="p">{</span>
 	  <span class="n">printf</span><span class="p">(</span><span class="s">"Job [%d] (%d) stopped by signal %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">pid2jid</span><span class="p">(</span><span class="n">pid</span><span class="p">),</span> <span class="n">pid</span><span class="p">,</span> <span class="n">WSTOPSIG</span><span class="p">(</span><span class="n">status</span><span class="p">));</span>
 	  <span class="n">job</span> <span class="o">=</span> <span class="n">getjobpid</span><span class="p">(</span><span class="n">jobs</span><span class="p">,</span> <span class="n">pid</span><span class="p">);</span>
@@ -467,9 +446,9 @@ sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必
 </div>
 </div>
 
-<div id="outline-container-sec-2-6" class="outline-3">
-<h3 id="sec-2-6">sigint_handler</h3>
-<div class="outline-text-3" id="text-2-6">
+<div id="outline-container-org38cb018" class="outline-3">
+<h3 id="org38cb018">sigint_handler</h3>
+<div class="outline-text-3" id="text-org38cb018">
 <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">sigint_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">)</span> 
 <span class="p">{</span>
   <span class="kt">pid_t</span> <span class="n">fpid</span><span class="p">;</span>
@@ -485,9 +464,9 @@ sigprocmask 来解除屏蔽，被调用的子进程在调用 execve 之前也必
 </div>
 </div>
 
-<div id="outline-container-sec-2-7" class="outline-3">
-<h3 id="sec-2-7">sigstp_handler</h3>
-<div class="outline-text-3" id="text-2-7">
+<div id="outline-container-org464963f" class="outline-3">
+<h3 id="org464963f">sigstp_handler</h3>
+<div class="outline-text-3" id="text-org464963f">
 <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">sigtstp_handler</span><span class="p">(</span><span class="kt">int</span> <span class="n">sig</span><span class="p">)</span> 
 <span class="p">{</span>
   <span class="kt">pid_t</span> <span class="n">fpid</span><span class="p">;</span>

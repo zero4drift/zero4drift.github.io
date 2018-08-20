@@ -1,43 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>Procrastination Prescription (Posts about lab)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/lab.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Fri, 06 Apr 2018 08:08:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>CSAPP-proxylab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-sec-1" class="outline-2"&gt;
-&lt;h2 id="sec-1"&gt;准备&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-1"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Procrastination Prescription (Posts about lab)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/lab.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Mon, 20 Aug 2018 16:32:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>CSAPP-proxylab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgea7a6d0" class="outline-2"&gt;
+&lt;h2 id="orgea7a6d0"&gt;准备&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgea7a6d0"&gt;
 &lt;p&gt;
 proxy lab 的难度和 malloc lab 不在一个数量级上，主要体现在两个方面：
 &lt;/p&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;除了第三部分要实现 cache 以外，前面两部分要求实现 proxy 和
-synchronization, 都可以在书上的示例代码中拼凑出来；
-&lt;/li&gt;
-&lt;li&gt;测试评分宽松，通过就满分，malloc lab 可是按性能评分的；
-&lt;/li&gt;
+synchronization, 都可以在书上的示例代码中拼凑出来；&lt;/li&gt;
+&lt;li&gt;测试评分宽松，通过就满分，malloc lab 可是按性能评分的；&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;
 简单归简单，但是不能不做准备工作：
 &lt;/p&gt;
 &lt;ol class="org-ol"&gt;
-&lt;li&gt;仔细看一遍 proxy lab 的说明文档，在 csapp3e labs 官网上；
-&lt;/li&gt;
-&lt;li&gt;熟读 csapp3e 第11章，略读第10章，第12章；
-&lt;/li&gt;
+&lt;li&gt;仔细看一遍 proxy lab 的说明文档，在 csapp3e labs 官网上；&lt;/li&gt;
+&lt;li&gt;熟读 csapp3e 第11章，略读第10章，第12章；&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;
 要求实现三个功能：
 &lt;/p&gt;
 &lt;ol class="org-ol"&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/#sec-2-1"&gt;proxy&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/#sec-2-2"&gt;synchronization&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/#sec-2-3"&gt;cache&lt;/a&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/#orgb318d09"&gt;proxy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/#org7f7b88a"&gt;synchronization&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/#org6904aa1"&gt;cache&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/</guid><pubDate>Sun, 25 Mar 2018 11:48:15 GMT</pubDate></item><item><title>CSAPP-malloclab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-sec-1" class="outline-2"&gt;
-&lt;h2 id="sec-1"&gt;准备&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-proxylab-jie-ti-si-lu-ji-lu/</guid><pubDate>Sun, 25 Mar 2018 11:48:15 GMT</pubDate></item><item><title>CSAPP-malloclab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org8cc7141" class="outline-2"&gt;
+&lt;h2 id="org8cc7141"&gt;准备&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8cc7141"&gt;
 &lt;p&gt;
 警告：这可以说是 CSAPP 所有的 lab 里面最难的一个，datalab 也很难，但是 datalab
 只是难在思路，代码量少，二进制数据操作简明，犯错惩罚小；而 malloc lab… 恩，虽
@@ -51,18 +44,13 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
 所以：
 &lt;/p&gt;
 &lt;ol class="org-ol"&gt;
-&lt;li&gt;一定要仔细阅读 malloc lab 的要求文档，pdf 文档在 CSAPP labs 官网上；
-&lt;/li&gt;
-&lt;li&gt;一定要仔细阅读 CSAPP3e 9.9 章节，没有看完或完全理解之前不要碰这个 lab;
-&lt;/li&gt;
+&lt;li&gt;一定要仔细阅读 malloc lab 的要求文档，pdf 文档在 CSAPP labs 官网上；&lt;/li&gt;
+&lt;li&gt;一定要仔细阅读 CSAPP3e 9.9 章节，没有看完或完全理解之前不要碰这个 lab;&lt;/li&gt;
 &lt;li&gt;一定要理解 C 语言中指针的各种操作，比如 &lt;code&gt;int *number; number + 1&lt;/code&gt; 中输入只是
 +1, 但得到的指针值是 +4 的，因为这个指针指向的是一个 &lt;code&gt;int&lt;/code&gt; 型数据，每一个该类
-型的数据占4字节；
-&lt;/li&gt;
-&lt;li&gt;在代码中最好把一些频繁出现的的指针操作定义为宏，降低维护成本；
-&lt;/li&gt;
-&lt;li&gt;性能调优适可而止，有时候几个小时的投入换不来 1% 的性能提升；
-&lt;/li&gt;
+型的数据占4字节；&lt;/li&gt;
+&lt;li&gt;在代码中最好把一些频繁出现的的指针操作定义为宏，降低维护成本；&lt;/li&gt;
+&lt;li&gt;性能调优适可而止，有时候几个小时的投入换不来 1% 的性能提升；&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;
@@ -71,111 +59,88 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
 &lt;/p&gt;
 
 &lt;ol class="org-ol"&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#sec-2-1"&gt;隐式空闲链表&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#sec-2-2"&gt;地址顺序显式空闲链表&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#sec-2-3"&gt;LIFO顺序显式空闲链表&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#sec-2-4"&gt;分离适配LIFO顺序显式空闲链表&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#sec-2-5"&gt;优化 mm_realloc 函数&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#sec-2-6"&gt;针对 coalesce trace 文件优化定制&lt;/a&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#orgcb48c8a"&gt;隐式空闲链表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#orgc8d19b1"&gt;地址顺序显式空闲链表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#orgbc3fbbd"&gt;LIFO顺序显式空闲链表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#org0c87bf1"&gt;分离适配LIFO顺序显式空闲链表&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#orgda74cb4"&gt;优化 mm_realloc 函数&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/#org1dfcf6d"&gt;针对 coalesce trace 文件优化定制&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 
-&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (11 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/</guid><pubDate>Tue, 20 Mar 2018 12:20:58 GMT</pubDate></item><item><title>CSAPP-shlab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-sec-1" class="outline-2"&gt;
-&lt;h2 id="sec-1"&gt;写在前面&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (11 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-malloclab-jie-ti-si-lu-ji-lu/</guid><pubDate>Tue, 20 Mar 2018 12:20:58 GMT</pubDate></item><item><title>CSAPP-shlab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgd1efae3" class="outline-2"&gt;
+&lt;h2 id="orgd1efae3"&gt;写在前面&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd1efae3"&gt;
 &lt;p&gt;
 我宁愿去处理汇编代码！这次的 lab 太繁杂太发散；汇编虽然难，起码有的放矢，一码是一码。
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-sec-1-1" class="outline-3"&gt;
-&lt;h3 id="sec-1-1"&gt;阅读官方指导文档&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-1-1"&gt;
+&lt;div id="outline-container-org2d83509" class="outline-3"&gt;
+&lt;h3 id="org2d83509"&gt;阅读官方指导文档&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2d83509"&gt;
 &lt;p&gt;
 这次必须仔细阅读文档，否则必然踩坑，本篇文章十有八九也看不懂了：&lt;a href="http://csapp.cs.cmu.edu/3e/shlab-release.html"&gt;文档的链接在这里&lt;/a&gt;。
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-sec-1-1-1" class="outline-4"&gt;
-&lt;h4 id="sec-1-1-1"&gt;要求&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-1-1-1"&gt;
+&lt;div id="outline-container-orgac2f19f" class="outline-4"&gt;
+&lt;h4 id="orgac2f19f"&gt;要求&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgac2f19f"&gt;
 &lt;ol class="org-ol"&gt;
-&lt;li&gt;提供了一个模板可执行文件 &lt;code&gt;./tshref&lt;/code&gt;, 最后完成的 &lt;code&gt;./tsh&lt;/code&gt; 在运行时必须和模板表现一致；
-&lt;/li&gt;
+&lt;li&gt;提供了一个模板可执行文件 &lt;code&gt;./tshref&lt;/code&gt;, 最后完成的 &lt;code&gt;./tsh&lt;/code&gt; 在运行时必须和模板表现一致；&lt;/li&gt;
 &lt;li&gt;提供了16个 trace 文件，lab 提交之后是比较 &lt;code&gt;./tsh&lt;/code&gt; 在这16个 trace 文件的输入后
-的表现是否与同样条件下的 &lt;code&gt;./tshref&lt;/code&gt; 一致来评分的；
-&lt;/li&gt;
+的表现是否与同样条件下的 &lt;code&gt;./tshref&lt;/code&gt; 一致来评分的；&lt;/li&gt;
 &lt;li&gt;需要完成 &lt;code&gt;./tsh.c&lt;/code&gt; 中的7个函数，分别是：
 &lt;ol class="org-ol"&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#sec-2-1"&gt;eval&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#sec-2-2"&gt;builtin_cmd&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#sec-2-3"&gt;do_bgfg&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#sec-2-4"&gt;waitfg&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#sec-2-5"&gt;sigchld_handler&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#sec-2-6"&gt;sigint_handler&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#sec-2-7"&gt;sigstp_handler&lt;/a&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#org2e6e4bf"&gt;eval&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#orgaa4178d"&gt;builtin_cmd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#org324eeff"&gt;do_bgfg&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#org19c7b4f"&gt;waitfg&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#orgfc92614"&gt;sigchld_handler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#org38cb018"&gt;sigint_handler&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/#org464963f"&gt;sigstp_handler&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (4 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/</guid><pubDate>Sat, 10 Mar 2018 10:07:32 GMT</pubDate></item><item><title>CSAPP-cachelab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-cachelab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-sec-1" class="outline-2"&gt;
-&lt;h2 id="sec-1"&gt;模拟缓存&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-1"&gt;
-&lt;/div&gt;&lt;div id="outline-container-sec-1-1" class="outline-3"&gt;
-&lt;h3 id="sec-1-1"&gt;阅读官方指导文档&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-1-1"&gt;
+&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (4 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-shlab-jie-ti-si-lu-ji-lu/</guid><pubDate>Sat, 10 Mar 2018 10:07:32 GMT</pubDate></item><item><title>CSAPP-cachelab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-cachelab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org8ebdff7" class="outline-2"&gt;
+&lt;h2 id="org8ebdff7"&gt;模拟缓存&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8ebdff7"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org94e422b" class="outline-3"&gt;
+&lt;h3 id="org94e422b"&gt;阅读官方指导文档&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org94e422b"&gt;
 &lt;p&gt;
 文档中写清楚了 lab 要求和限制，比较容易忽略的几点是：
 &lt;/p&gt;
 &lt;ol class="org-ol"&gt;
-&lt;li&gt;代码文件编译时不能有警告和错误；
-&lt;/li&gt;
-&lt;li&gt;不用考虑指令的缓存读写，就是 .trace 文件中 "I" 开头的记录；
-&lt;/li&gt;
+&lt;li&gt;代码文件编译时不能有警告和错误；&lt;/li&gt;
+&lt;li&gt;不用考虑指令的缓存读写，就是 .trace 文件中 "I" 开头的记录；&lt;/li&gt;
 &lt;li&gt;.trace 文件中记录的缓存读写是不会越过主存块边界的，不用考虑这个问题，所以记录
-中最后读写大小的数据可以忽略；
-&lt;/li&gt;
+中最后读写大小的数据可以忽略；&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-cachelab-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-cachelab-jie-ti-si-lu-ji-lu/</guid><pubDate>Tue, 06 Feb 2018 14:25:23 GMT</pubDate></item><item><title>CSAPP-attacklab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div&gt;&lt;div id="outline-container-sec-1" class="outline-2"&gt;
-&lt;h2 id="sec-1"&gt;准备&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-cachelab-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-cachelab-jie-ti-si-lu-ji-lu/</guid><pubDate>Tue, 06 Feb 2018 14:25:23 GMT</pubDate></item><item><title>CSAPP-attacklab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div&gt;&lt;div id="outline-container-orged9546a" class="outline-2"&gt;
+&lt;h2 id="orged9546a"&gt;准备&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orged9546a"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;&lt;a href="http://www.baidu.com/link?url=Yp2_MbsZGzDA3r8TVeySxRoTigACMN3YVMUcJKVK_k4enAAayCJAyqsNra_ONMPZ&amp;amp;wd=&amp;amp;eqid=f22ab52e00016e08000000065a772b7a"&gt;官方 lab 主页&lt;/a&gt; lab 的指导文档是必须看的，阅读官网页面上此 lab 的 pdf 格式的指
-导文件，其中详细记录每一个破解操作的要求，少走很多弯路；
-&lt;/li&gt;
+导文件，其中详细记录每一个破解操作的要求，少走很多弯路；&lt;/li&gt;
 &lt;li&gt;在 CSAPP Lab Assginments 官网上包含二进制可执行文件的压缩包不能在 Windows 平
 台下解压缩，否则在 Linux 平台上运行时会出现权限问题（当然，也可以用 &lt;code&gt;chmod
-   777 xxx&lt;/code&gt; 解决，不过没必要）；
-&lt;/li&gt;
+   777 xxx&lt;/code&gt; 解决，不过没必要）；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;./ctarget&lt;/code&gt; 这样的命令会出现 &lt;i&gt;illegal host…&lt;/i&gt; 错误，后面加个 &lt;code&gt;-q&lt;/code&gt; 命令就好了，不让程序发送结果
-到评分服务器；
-&lt;/li&gt;
+到评分服务器；&lt;/li&gt;
 &lt;li&gt;自带的 HEX2RAW 程序会将16进制数据转换为字符串，输入的16进制数据格式必须是两位
-16进制数，之间用空格隔开；
-&lt;/li&gt;
-&lt;li&gt;机器内二进制数据表示都是小端法；
-&lt;/li&gt;
+16进制数，之间用空格隔开；&lt;/li&gt;
+&lt;li&gt;机器内二进制数据表示都是小端法；&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-sec-2" class="outline-2"&gt;
-&lt;h2 id="sec-2"&gt;破解&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;div id="outline-container-org97c88c4" class="outline-2"&gt;
+&lt;h2 id="org97c88c4"&gt;破解&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org97c88c4"&gt;
 &lt;blockquote&gt;
 &lt;p&gt;
 Now attack!
@@ -189,104 +154,100 @@ Now attack!
 
 
 &lt;colgroup&gt;
-&lt;col class="right"&gt;
+&lt;col class="org-right"&gt;
 
-&lt;col class="left"&gt;
+&lt;col class="org-left"&gt;
 
-&lt;col class="right"&gt;
+&lt;col class="org-right"&gt;
 
-&lt;col class="left"&gt;
+&lt;col class="org-left"&gt;
 
-&lt;col class="left"&gt;
+&lt;col class="org-left"&gt;
 
-&lt;col class="right"&gt;
+&lt;col class="org-right"&gt;
 
-&lt;col class="left"&gt;
+&lt;col class="org-left"&gt;
 &lt;/colgroup&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th scope="col" class="right"&gt;Phase&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;Program&lt;/th&gt;
-&lt;th scope="col" class="right"&gt;Level&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;Method&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;Function&lt;/th&gt;
-&lt;th scope="col" class="right"&gt;Points&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;Index&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;Phase&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;Program&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;Level&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;Method&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;Function&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;Points&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;Index&lt;/th&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;th scope="col" class="right"&gt;1&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;CTARGET&lt;/th&gt;
-&lt;th scope="col" class="right"&gt;1&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;CI&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;touch1&lt;/th&gt;
-&lt;th scope="col" class="right"&gt;10&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/#sec-2-1"&gt;phase_1&lt;/a&gt;&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;1&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;CTARGET&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;1&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;CI&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;touch1&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;10&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/#org1e44fc0"&gt;phase_1&lt;/a&gt;&lt;/th&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;th scope="col" class="right"&gt;2&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;CTARGET&lt;/th&gt;
-&lt;th scope="col" class="right"&gt;2&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;CI&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;touch2&lt;/th&gt;
-&lt;th scope="col" class="right"&gt;25&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/#sec-2-2"&gt;phase_2&lt;/a&gt;&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;2&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;CTARGET&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;2&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;CI&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;touch2&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;25&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/#org8234f6e"&gt;phase_2&lt;/a&gt;&lt;/th&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;th scope="col" class="right"&gt;3&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;CTARGET&lt;/th&gt;
-&lt;th scope="col" class="right"&gt;3&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;CI&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;touch3&lt;/th&gt;
-&lt;th scope="col" class="right"&gt;25&lt;/th&gt;
-&lt;th scope="col" class="left"&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/#sec-2-3"&gt;phase_3&lt;/a&gt;&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;3&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;CTARGET&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;3&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;CI&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;touch3&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;25&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/#org0db5fd4"&gt;phase_3&lt;/a&gt;&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td class="right"&gt;4&lt;/td&gt;
-&lt;td class="left"&gt;RTARGET&lt;/td&gt;
-&lt;td class="right"&gt;2&lt;/td&gt;
-&lt;td class="left"&gt;ROP&lt;/td&gt;
-&lt;td class="left"&gt;touch2&lt;/td&gt;
-&lt;td class="right"&gt;35&lt;/td&gt;
-&lt;td class="left"&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/#sec-2-4"&gt;phase_4&lt;/a&gt;&lt;/td&gt;
+&lt;td class="org-right"&gt;4&lt;/td&gt;
+&lt;td class="org-left"&gt;RTARGET&lt;/td&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;td class="org-left"&gt;ROP&lt;/td&gt;
+&lt;td class="org-left"&gt;touch2&lt;/td&gt;
+&lt;td class="org-right"&gt;35&lt;/td&gt;
+&lt;td class="org-left"&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/#orgea7d98f"&gt;phase_4&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
-&lt;td class="right"&gt;5&lt;/td&gt;
-&lt;td class="left"&gt;RTARGET&lt;/td&gt;
-&lt;td class="right"&gt;3&lt;/td&gt;
-&lt;td class="left"&gt;ROP&lt;/td&gt;
-&lt;td class="left"&gt;touch3&lt;/td&gt;
-&lt;td class="right"&gt;5&lt;/td&gt;
-&lt;td class="left"&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/#sec-2-5"&gt;phase_5&lt;/a&gt;&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;td class="org-left"&gt;RTARGET&lt;/td&gt;
+&lt;td class="org-right"&gt;3&lt;/td&gt;
+&lt;td class="org-left"&gt;ROP&lt;/td&gt;
+&lt;td class="org-left"&gt;touch3&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;td class="org-left"&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/#org4ad0f2a"&gt;phase_5&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
 &lt;ol class="org-ol"&gt;
-&lt;li&gt;CI（代码注入）方式来破解的 Ctarget 可执行文件运行栈位置是不变的；
-&lt;/li&gt;
+&lt;li&gt;CI（代码注入）方式来破解的 Ctarget 可执行文件运行栈位置是不变的；&lt;/li&gt;
 &lt;li&gt;ROP（返回导向）方式来破解的 Rtarget 这个可执行代码文件的运行时栈位置每次运行
 都不同的；而且它在栈中的代码是不可执行的，否则会引起 Segmentation Fault，所以
-不能用代码注入的方式来破解；
-&lt;/li&gt;
+不能用代码注入的方式来破解；&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/</guid><pubDate>Sat, 03 Feb 2018 06:32:41 GMT</pubDate></item><item><title>CSAPP-bomb 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div&gt;&lt;div id="outline-container-sec-1" class="outline-2"&gt;
-&lt;h2 id="sec-1"&gt;写在前面&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (5 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-attacklab-jie-ti-si-lu-ji-lu/</guid><pubDate>Sat, 03 Feb 2018 06:32:41 GMT</pubDate></item><item><title>CSAPP-bomb 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div&gt;&lt;div id="outline-container-orgc77fb46" class="outline-2"&gt;
+&lt;h2 id="orgc77fb46"&gt;写在前面&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc77fb46"&gt;
 &lt;p&gt;
 阅读汇编代码容易出现找不到重点的问题，建议首先看
 &lt;/p&gt;
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;函数调用处上下文
-&lt;/li&gt;
-&lt;li&gt;跳转处上下文
-&lt;/li&gt;
+&lt;li&gt;函数调用处上下文&lt;/li&gt;
+&lt;li&gt;跳转处上下文&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;
@@ -295,47 +256,34 @@ Now attack!
 &lt;/p&gt;
 
 &lt;ol class="org-ol"&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-1"&gt;一号弹&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-2"&gt;二号弹&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-3"&gt;三号弹&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-4"&gt;四号弹&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-5"&gt;五号弹&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-6"&gt;六号弹&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#sec-3-7"&gt;隐藏弹&lt;/a&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#org59701d8"&gt;一号弹&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#org0c93b77"&gt;二号弹&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#org65a96ac"&gt;三号弹&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#org2c063ec"&gt;四号弹&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#orgec72cc7"&gt;五号弹&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#org0d0d5fb"&gt;六号弹&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/#org3363eb6"&gt;隐藏弹&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-sec-2" class="outline-2"&gt;
-&lt;h2 id="sec-2"&gt;准备&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;div id="outline-container-org88b79fa" class="outline-2"&gt;
+&lt;h2 id="org88b79fa"&gt;准备&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org88b79fa"&gt;
 &lt;ol class="org-ol"&gt;
-&lt;li&gt;自带的 bomb.c 文件，阅读其源码可以找到炸弹埋藏的线索；
-&lt;/li&gt;
+&lt;li&gt;自带的 bomb.c 文件，阅读其源码可以找到炸弹埋藏的线索；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;objdumb -d domb &amp;gt;&amp;gt; domb.s&lt;/code&gt; 从二进制可执行文件反编译出汇编代码文件（符号已经
-进行过重定位），这是接下来拆弹的主要突破口；
-&lt;/li&gt;
+进行过重定位），这是接下来拆弹的主要突破口；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;objdumb -t domb &amp;gt;&amp;gt; symbols.txt&lt;/code&gt; 获得二进制可执行文件中的符号表，包括所有函数名
-和全局变量名，以及他们的对应虚拟地址；
-&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;strings domb &amp;gt;&amp;gt; strings.txt&lt;/code&gt; 获得二进制可执行文件中的所有可打印字符串；
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://csapp.cs.cmu.edu/2e/docs/gdbnotes-ia32.txt"&gt;gdb 常用命令参考表&lt;/a&gt; 一页 A4 纸的内容，包含了本次拆弹所要用的 gdb 命令；
-&lt;/li&gt;
-&lt;li&gt;Emacs gdb-mode，有了它，debug 过程更友好了。
-&lt;/li&gt;
+和全局变量名，以及他们的对应虚拟地址；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;strings domb &amp;gt;&amp;gt; strings.txt&lt;/code&gt; 获得二进制可执行文件中的所有可打印字符串；&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://csapp.cs.cmu.edu/2e/docs/gdbnotes-ia32.txt"&gt;gdb 常用命令参考表&lt;/a&gt; 一页 A4 纸的内容，包含了本次拆弹所要用的 gdb 命令；&lt;/li&gt;
+&lt;li&gt;Emacs gdb-mode，有了它，debug 过程更友好了。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (9 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/</guid><pubDate>Mon, 29 Jan 2018 14:26:00 GMT</pubDate></item><item><title>CSAPP-datalab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-sec-1" class="outline-2"&gt;
-&lt;h2 id="sec-1"&gt;datalab 解题思路&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (9 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-bomb-jie-ti-si-lu-ji-lu/</guid><pubDate>Mon, 29 Jan 2018 14:26:00 GMT</pubDate></item><item><title>CSAPP-datalab 解题思路记录</title><link>https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org8026bc1" class="outline-2"&gt;
+&lt;h2 id="org8026bc1"&gt;datalab 解题思路&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8026bc1"&gt;
 &lt;p&gt;
 本篇文章并不会花太长时间，因为解题思路都写在代码注释中了（写代码的时候用注释描述
 整体方向和关键步骤实在是个好习惯）。
@@ -348,41 +296,26 @@ Now attack!
 
 &lt;p&gt;
 一共15道题目，12道关于 int 类型数据操作，3道关于 single float 类型操作，难的容易的都
-有，分布还算合理。基本上代码中的注释就够解释清楚了，不过对于 &lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-4"&gt;bitCount&lt;/a&gt; 这道题
+有，分布还算合理。基本上代码中的注释就够解释清楚了，不过对于 &lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#org724e9f1"&gt;bitCount&lt;/a&gt; 这道题
 （说好的只是二进制操作谜题，怎么二分法都乱入了？）会详细解释。
 &lt;/p&gt;
 
 &lt;ol class="org-ol"&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-1"&gt;bitAnd&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-2"&gt;getByte&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-3"&gt;logicalShift&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-4"&gt;bitCount&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-5"&gt;bang&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-6"&gt;tmin&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-7"&gt;fitsBits&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-8"&gt;divpwr2&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-9"&gt;negate&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-10"&gt;isPositive&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-11"&gt;isLessOrEqual&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-12"&gt;ilog2&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-13"&gt;float_neg&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-14"&gt;float_i2f&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#sec-1-15"&gt;float_twice&lt;/a&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#org98157e0"&gt;bitAnd&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#orgd0cb361"&gt;getByte&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#org81e5a80"&gt;logicalShift&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#org724e9f1"&gt;bitCount&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#org42e8a65"&gt;bang&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#org14430ca"&gt;tmin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#orgce4c144"&gt;fitsBits&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#org0b730f0"&gt;divpwr2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#org04f1ac9"&gt;negate&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#orgb22cb0c"&gt;isPositive&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#orgdf451f9"&gt;isLessOrEqual&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#org17a8915"&gt;ilog2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#org24449f5"&gt;float_neg&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#org094906b"&gt;float_i2f&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/#orgaea4874"&gt;float_twice&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;&lt;a href="https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/"&gt;Read more…&lt;/a&gt; (14 min remaining to read)&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</description><category>c</category><category>csapp</category><category>lab</category><guid>https://zero4drift.github.io/posts/csapp-datalab-jie-ti-si-lu-ji-lu/</guid><pubDate>Sun, 28 Jan 2018 11:40:04 GMT</pubDate></item></channel></rss>

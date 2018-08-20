@@ -84,9 +84,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">datalab 解题思路</h2>
-<div class="outline-text-2" id="text-1">
+        <div id="outline-container-org8026bc1" class="outline-2">
+<h2 id="org8026bc1">datalab 解题思路</h2>
+<div class="outline-text-2" id="text-org8026bc1">
 <p>
 本篇文章并不会花太长时间，因为解题思路都写在代码注释中了（写代码的时候用注释描述
 整体方向和关键步骤实在是个好习惯）。
@@ -99,63 +99,33 @@
 
 <p>
 一共15道题目，12道关于 int 类型数据操作，3道关于 single float 类型操作，难的容易的都
-有，分布还算合理。基本上代码中的注释就够解释清楚了，不过对于 <a href="#sec-1-4">bitCount</a> 这道题
+有，分布还算合理。基本上代码中的注释就够解释清楚了，不过对于 <a href="#org724e9f1">bitCount</a> 这道题
 （说好的只是二进制操作谜题，怎么二分法都乱入了？）会详细解释。
 </p>
 
 <ol class="org-ol">
-<li>
-<a href="#sec-1-1">bitAnd</a>
-</li>
-<li>
-<a href="#sec-1-2">getByte</a>
-</li>
-<li>
-<a href="#sec-1-3">logicalShift</a>
-</li>
-<li>
-<a href="#sec-1-4">bitCount</a>
-</li>
-<li>
-<a href="#sec-1-5">bang</a>
-</li>
-<li>
-<a href="#sec-1-6">tmin</a>
-</li>
-<li>
-<a href="#sec-1-7">fitsBits</a>
-</li>
-<li>
-<a href="#sec-1-8">divpwr2</a>
-</li>
-<li>
-<a href="#sec-1-9">negate</a>
-</li>
-<li>
-<a href="#sec-1-10">isPositive</a>
-</li>
-<li>
-<a href="#sec-1-11">isLessOrEqual</a>
-</li>
-<li>
-<a href="#sec-1-12">ilog2</a>
-</li>
-<li>
-<a href="#sec-1-13">float_neg</a>
-</li>
-<li>
-<a href="#sec-1-14">float_i2f</a>
-</li>
-<li>
-<a href="#sec-1-15">float_twice</a>
-</li>
+<li><a href="#org98157e0">bitAnd</a></li>
+<li><a href="#orgd0cb361">getByte</a></li>
+<li><a href="#org81e5a80">logicalShift</a></li>
+<li><a href="#org724e9f1">bitCount</a></li>
+<li><a href="#org42e8a65">bang</a></li>
+<li><a href="#org14430ca">tmin</a></li>
+<li><a href="#orgce4c144">fitsBits</a></li>
+<li><a href="#org0b730f0">divpwr2</a></li>
+<li><a href="#org04f1ac9">negate</a></li>
+<li><a href="#orgb22cb0c">isPositive</a></li>
+<li><a href="#orgdf451f9">isLessOrEqual</a></li>
+<li><a href="#org17a8915">ilog2</a></li>
+<li><a href="#org24449f5">float_neg</a></li>
+<li><a href="#org094906b">float_i2f</a></li>
+<li><a href="#orgaea4874">float_twice</a></li>
 </ol>
 <!-- TEASER_END -->
 </div>
 
-<div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1">bitAnd</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-org98157e0" class="outline-3">
+<h3 id="org98157e0">bitAnd</h3>
+<div class="outline-text-3" id="text-org98157e0">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * bitAnd - x&amp;y using only ~ and | </span>
 <span class="cm"> *   Example: bitAnd(6, 5) = 4</span>
@@ -171,9 +141,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2">getByte</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgd0cb361" class="outline-3">
+<h3 id="orgd0cb361">getByte</h3>
+<div class="outline-text-3" id="text-orgd0cb361">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * getByte - Extract byte n from word x</span>
 <span class="cm"> *   Bytes numbered from 0 (LSB) to 3 (MSB)</span>
@@ -192,9 +162,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3">logicalShift</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org81e5a80" class="outline-3">
+<h3 id="org81e5a80">logicalShift</h3>
+<div class="outline-text-3" id="text-org81e5a80">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * logicalShift - shift x to the right by n, using a logical shift</span>
 <span class="cm"> *   Can assume that 0 &lt;= n &lt;= 31</span>
@@ -214,9 +184,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4">bitCount</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-org724e9f1" class="outline-3">
+<h3 id="org724e9f1">bitCount</h3>
+<div class="outline-text-3" id="text-org724e9f1">
 <div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * bitCount - returns count of number of 1's in word</span>
 <span class="cm"> *   Examples: bitCount(5) = 2, bitCount(7) = 3</span>
@@ -244,11 +214,11 @@
 </pre></div>
 </div>
 
-<div id="outline-container-sec-1-4-1" class="outline-4">
-<h4 id="sec-1-4-1">步骤推演</h4>
-<div class="outline-text-4" id="text-1-4-1">
+<div id="outline-container-org7845c90" class="outline-4">
+<h4 id="org7845c90">步骤推演</h4>
+<div class="outline-text-4" id="text-org7845c90">
 <p>
-其实就是二分法（或者二分法的变种？本文中 <a href="#sec-1-12">ilog2</a> 函数的解法也是二分法，它的解决
+其实就是二分法（或者二分法的变种？本文中 <a href="#org17a8915">ilog2</a> 函数的解法也是二分法，它的解决
 方法就不详细推演了）。
 </p>
 
@@ -259,279 +229,273 @@
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <colgroup>
-<col class="left">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
-<col class="right">
+<col class="org-left">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
+<col class="org-right">
 </colgroup>
 <tbody>
 <tr>
-<td class="left">index</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">2</td>
-<td class="right">3</td>
-<td class="right">4</td>
-<td class="right">5</td>
-<td class="right">6</td>
-<td class="right">7</td>
-<td class="right">8</td>
-<td class="right">9</td>
-<td class="right">10</td>
-<td class="right">11</td>
-<td class="right">12</td>
-<td class="right">13</td>
-<td class="right">14</td>
-<td class="right">15</td>
-<td class="right">16</td>
-<td class="right">17</td>
-<td class="right">18</td>
-<td class="right">19</td>
-<td class="right">20</td>
-<td class="right">21</td>
-<td class="right">22</td>
-<td class="right">23</td>
-<td class="right">24</td>
-<td class="right">25</td>
-<td class="right">26</td>
-<td class="right">27</td>
-<td class="right">28</td>
-<td class="right">29</td>
-<td class="right">30</td>
-<td class="right">31</td>
+<td class="org-left">index</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-right">4</td>
+<td class="org-right">5</td>
+<td class="org-right">6</td>
+<td class="org-right">7</td>
+<td class="org-right">8</td>
+<td class="org-right">9</td>
+<td class="org-right">10</td>
+<td class="org-right">11</td>
+<td class="org-right">12</td>
+<td class="org-right">13</td>
+<td class="org-right">14</td>
+<td class="org-right">15</td>
+<td class="org-right">16</td>
+<td class="org-right">17</td>
+<td class="org-right">18</td>
+<td class="org-right">19</td>
+<td class="org-right">20</td>
+<td class="org-right">21</td>
+<td class="org-right">22</td>
+<td class="org-right">23</td>
+<td class="org-right">24</td>
+<td class="org-right">25</td>
+<td class="org-right">26</td>
+<td class="org-right">27</td>
+<td class="org-right">28</td>
+<td class="org-right">29</td>
+<td class="org-right">30</td>
+<td class="org-right">31</td>
 </tr>
 <tr>
-<td class="left">bits</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
-<td class="right">1</td>
+<td class="org-left">bits</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
 </tr>
 <tr>
-<td class="left">mask1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
+<td class="org-left">mask1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
 </tr>
 <tr>
-<td class="left">mask-x</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
+<td class="org-left">mask-x</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
 </tr>
 <tr>
-<td class="left">mask-x-right-shift-by-one</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
+<td class="org-left">mask-x-right-shift-by-one</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
 </tr>
 <tr>
-<td class="left">masked1+masked2</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
-<td class="right">1</td>
-<td class="right">0</td>
+<td class="org-left">masked1+masked2</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
 </tr>
 </tbody>
 </table>
 <ol class="org-ol">
-<li>过筛，统计传入参数的二进制表示上，每两个位置有几个1，可能的个数：0，1，2，上面的表格来展示筛选过程
-</li>
+<li>过筛，统计传入参数的二进制表示上，每两个位置有几个1，可能的个数：0，1，2，上面的表格来展示筛选过程</li>
 
-<li>使用表格中所示的 mask 对 x 进行筛选，找出每两位低位上是否有1，有的话低位上用1表示，表示此位有1个1；
-</li>
+<li>使用表格中所示的 mask 对 x 进行筛选，找出每两位低位上是否有1，有的话低位上用1表示，表示此位有1个1；</li>
 
-<li>再用 mask 对右移一位的 x 进行筛选，找出原 x 上每两位高位上是否有1，有的话结果中每两位的低位上用1表示，表示此位有1个1；
-</li>
+<li>再用 mask 对右移一位的 x 进行筛选，找出原 x 上每两位高位上是否有1，有的话结果中每两位的低位上用1表示，表示此位有1个1；</li>
 
-<li>将筛选后的两个结果相加，得到的结果的二进制表示如果每两位高位上是1的话，表示原 x 中该两位范围内有2个1；如果是1，则表示有1个1；如果是0，则0。
-</li>
+<li>将筛选后的两个结果相加，得到的结果的二进制表示如果每两位高位上是1的话，表示原 x 中该两位范围内有2个1；如果是1，则表示有1个1；如果是0，则0。</li>
 
-<li>换一个二进制表示位 0x33333333 的 mask 继续过筛，即进行上次获得的结果中每四位有多少个1的计算;
-</li>
+<li>换一个二进制表示位 0x33333333 的 mask 继续过筛，即进行上次获得的结果中每四位有多少个1的计算;</li>
 
-<li>以此类推，不再赘述，最后获得的结果就是 x 的二进制表示中有多少个1。
-</li>
+<li>以此类推，不再赘述，最后获得的结果就是 x 的二进制表示中有多少个1。</li>
 </ol>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5">bang</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-org42e8a65" class="outline-3">
+<h3 id="org42e8a65">bang</h3>
+<div class="outline-text-3" id="text-org42e8a65">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * bang - Compute !x without using !</span>
 <span class="cm"> *   Examples: bang(3) = 0, bang(0) = 1</span>
@@ -556,9 +520,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-6" class="outline-3">
-<h3 id="sec-1-6">tmin</h3>
-<div class="outline-text-3" id="text-1-6">
+<div id="outline-container-org14430ca" class="outline-3">
+<h3 id="org14430ca">tmin</h3>
+<div class="outline-text-3" id="text-org14430ca">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * tmin - return minimum two's complement integer </span>
 <span class="cm"> *   Legal ops: ! ~ &amp; ^ | + &lt;&lt; &gt;&gt;</span>
@@ -584,9 +548,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-7" class="outline-3">
-<h3 id="sec-1-7">fitsBits</h3>
-<div class="outline-text-3" id="text-1-7">
+<div id="outline-container-orgce4c144" class="outline-3">
+<h3 id="orgce4c144">fitsBits</h3>
+<div class="outline-text-3" id="text-orgce4c144">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * fitsBits - return 1 if x can be represented as an </span>
 <span class="cm"> *  n-bit, two's complement integer.</span>
@@ -615,9 +579,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-8" class="outline-3">
-<h3 id="sec-1-8">divpwr2</h3>
-<div class="outline-text-3" id="text-1-8">
+<div id="outline-container-org0b730f0" class="outline-3">
+<h3 id="org0b730f0">divpwr2</h3>
+<div class="outline-text-3" id="text-org0b730f0">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * divpwr2 - Compute x/(2^n), for 0 &lt;= n &lt;= 30</span>
 <span class="cm"> *  Round toward zero</span>
@@ -650,9 +614,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-9" class="outline-3">
-<h3 id="sec-1-9">negate</h3>
-<div class="outline-text-3" id="text-1-9">
+<div id="outline-container-org04f1ac9" class="outline-3">
+<h3 id="org04f1ac9">negate</h3>
+<div class="outline-text-3" id="text-org04f1ac9">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * negate - return -x </span>
 <span class="cm"> *   Example: negate(1) = -1.</span>
@@ -683,9 +647,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-10" class="outline-3">
-<h3 id="sec-1-10">isPositive</h3>
-<div class="outline-text-3" id="text-1-10">
+<div id="outline-container-orgb22cb0c" class="outline-3">
+<h3 id="orgb22cb0c">isPositive</h3>
+<div class="outline-text-3" id="text-orgb22cb0c">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * isPositive - return 1 if x &gt; 0, return 0 otherwise </span>
 <span class="cm"> *   Example: isPositive(-1) = 0.</span>
@@ -708,9 +672,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-11" class="outline-3">
-<h3 id="sec-1-11">isLessOrEqual</h3>
-<div class="outline-text-3" id="text-1-11">
+<div id="outline-container-orgdf451f9" class="outline-3">
+<h3 id="orgdf451f9">isLessOrEqual</h3>
+<div class="outline-text-3" id="text-orgdf451f9">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * isLessOrEqual - if x &lt;= y  then return 1, else return 0 </span>
 <span class="cm"> *   Example: isLessOrEqual(4,5) = 1.</span>
@@ -749,9 +713,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-12" class="outline-3">
-<h3 id="sec-1-12">ilog2</h3>
-<div class="outline-text-3" id="text-1-12">
+<div id="outline-container-org17a8915" class="outline-3">
+<h3 id="org17a8915">ilog2</h3>
+<div class="outline-text-3" id="text-org17a8915">
 <div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * ilog2 - return floor(log base 2 of x), where x &gt; 0</span>
 <span class="cm"> *   Example: ilog2(16) = 4</span>
@@ -823,9 +787,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-13" class="outline-3">
-<h3 id="sec-1-13">float_neg</h3>
-<div class="outline-text-3" id="text-1-13">
+<div id="outline-container-org24449f5" class="outline-3">
+<h3 id="org24449f5">float_neg</h3>
+<div class="outline-text-3" id="text-org24449f5">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * float_neg - Return bit-level equivalent of expression -f for</span>
 <span class="cm"> *   floating point argument f.</span>
@@ -856,9 +820,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-14" class="outline-3">
-<h3 id="sec-1-14">float_i2f</h3>
-<div class="outline-text-3" id="text-1-14">
+<div id="outline-container-org094906b" class="outline-3">
+<h3 id="org094906b">float_i2f</h3>
+<div class="outline-text-3" id="text-org094906b">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * float_i2f - Return bit-level equivalent of expression (float) x</span>
 <span class="cm"> *   Result is returned as unsigned int, but</span>
@@ -935,9 +899,9 @@
 </div>
 </div>
 
-<div id="outline-container-sec-1-15" class="outline-3">
-<h3 id="sec-1-15">float_twice</h3>
-<div class="outline-text-3" id="text-1-15">
+<div id="outline-container-orgaea4874" class="outline-3">
+<h3 id="orgaea4874">float_twice</h3>
+<div class="outline-text-3" id="text-orgaea4874">
 <div class="highlight"><pre><span></span><span class="cm">/* </span>
 <span class="cm"> * float_twice - Return bit-level equivalent of expression 2*f for</span>
 <span class="cm"> *   floating point argument f.</span>

@@ -84,17 +84,15 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">写在前面</h2>
-<div class="outline-text-2" id="text-1">
+        <div id="outline-container-orgc77fb46" class="outline-2">
+<h2 id="orgc77fb46">写在前面</h2>
+<div class="outline-text-2" id="text-orgc77fb46">
 <p>
 阅读汇编代码容易出现找不到重点的问题，建议首先看
 </p>
 <ul class="org-ul">
-<li>函数调用处上下文
-</li>
-<li>跳转处上下文
-</li>
+<li>函数调用处上下文</li>
+<li>跳转处上下文</li>
 </ul>
 <p>
 经常使用 gdb 可以事半功倍，实在找不着北的话，在当前理解有困难处设置断点并运行或
@@ -102,61 +100,41 @@
 </p>
 
 <ol class="org-ol">
-<li>
-<a href="#sec-3-1">一号弹</a>
-</li>
-<li>
-<a href="#sec-3-2">二号弹</a>
-</li>
-<li>
-<a href="#sec-3-3">三号弹</a>
-</li>
-<li>
-<a href="#sec-3-4">四号弹</a>
-</li>
-<li>
-<a href="#sec-3-5">五号弹</a>
-</li>
-<li>
-<a href="#sec-3-6">六号弹</a>
-</li>
-<li>
-<a href="#sec-3-7">隐藏弹</a>
-</li>
+<li><a href="#org59701d8">一号弹</a></li>
+<li><a href="#org0c93b77">二号弹</a></li>
+<li><a href="#org65a96ac">三号弹</a></li>
+<li><a href="#org2c063ec">四号弹</a></li>
+<li><a href="#orgec72cc7">五号弹</a></li>
+<li><a href="#org0d0d5fb">六号弹</a></li>
+<li><a href="#org3363eb6">隐藏弹</a></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">准备</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org88b79fa" class="outline-2">
+<h2 id="org88b79fa">准备</h2>
+<div class="outline-text-2" id="text-org88b79fa">
 <ol class="org-ol">
-<li>自带的 bomb.c 文件，阅读其源码可以找到炸弹埋藏的线索；
-</li>
+<li>自带的 bomb.c 文件，阅读其源码可以找到炸弹埋藏的线索；</li>
 <li>
 <code>objdumb -d domb &gt;&gt; domb.s</code> 从二进制可执行文件反编译出汇编代码文件（符号已经
-进行过重定位），这是接下来拆弹的主要突破口；
-</li>
+进行过重定位），这是接下来拆弹的主要突破口；</li>
 <li>
 <code>objdumb -t domb &gt;&gt; symbols.txt</code> 获得二进制可执行文件中的符号表，包括所有函数名
-和全局变量名，以及他们的对应虚拟地址；
-</li>
+和全局变量名，以及他们的对应虚拟地址；</li>
 <li>
-<code>strings domb &gt;&gt; strings.txt</code> 获得二进制可执行文件中的所有可打印字符串；
-</li>
+<code>strings domb &gt;&gt; strings.txt</code> 获得二进制可执行文件中的所有可打印字符串；</li>
 <li>
-<a href="http://csapp.cs.cmu.edu/2e/docs/gdbnotes-ia32.txt">gdb 常用命令参考表</a> 一页 A4 纸的内容，包含了本次拆弹所要用的 gdb 命令；
-</li>
-<li>Emacs gdb-mode，有了它，debug 过程更友好了。
-</li>
+<a href="http://csapp.cs.cmu.edu/2e/docs/gdbnotes-ia32.txt">gdb 常用命令参考表</a> 一页 A4 纸的内容，包含了本次拆弹所要用的 gdb 命令；</li>
+<li>Emacs gdb-mode，有了它，debug 过程更友好了。</li>
 </ol>
 <!-- TEASER_END -->
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">拆弹</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org58dad34" class="outline-2">
+<h2 id="org58dad34">拆弹</h2>
+<div class="outline-text-2" id="text-org58dad34">
 <blockquote>
 <p>
 Let's dance!
@@ -168,32 +146,34 @@ Let's dance!
 </p>
 <ol class="org-ol">
 <li>试图读取参数，如果有参数的话必须只有一个参数，且为文件路径，这样才合法，不然
-报错；如果没有参数，后续从标准输入中读取数据；
-</li>
-<li>埋炸弹，对应源码中的 <code>initialize_bomb</code> 函数；
-</li>
+报错；如果没有参数，后续从标准输入中读取数据；</li>
+<li>埋炸弹，对应源码中的 <code>initialize_bomb</code> 函数；</li>
 <li>6个炸弹需要拆除，如果输入是文件的话，一一匹配文件中的数据；如果输入是标准输入
-的话，命令行重复六次输入过程。一旦数据错误，炸弹就引爆，程序退出。
-</li>
+的话，命令行重复六次输入过程。一旦数据错误，炸弹就引爆，程序退出。</li>
 </ol>
 </div>
 
-<div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1">一号弹</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-org59701d8" class="outline-3">
+<h3 id="org59701d8">一号弹</h3>
+<div class="outline-text-3" id="text-org59701d8">
 <ol class="org-ol">
-<li>bomb.c 源码逻辑中:
+<li>
+<p>
+bomb.c 源码逻辑中:
+</p>
 
-<div class="highlight"><pre><span></span><span class="n">input</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">();</span>             <span class="cm">/* Get input                   */</span>
-<span class="n">phase_1</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>                  <span class="cm">/* Run the phase               */</span>
-<span class="n">phase_defused</span><span class="p">();</span>                 <span class="cm">/* Drat!  They figured it out! */</span>
+<div class="highlight"><pre><span></span>   <span class="n">input</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">();</span>             <span class="cm">/* Get input                   */</span>
+   <span class="n">phase_1</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>                  <span class="cm">/* Run the phase               */</span>
+   <span class="n">phase_defused</span><span class="p">();</span>                 <span class="cm">/* Drat!  They figured it out! */</span>
 </pre></div>
 </li>
 
 <li>可知 input 是我们的输入，phase_1 函数将此输入作为参数，如果输入正确则炸弹拆除，
-函数 phase_1 就是一号炸弹。
-</li>
-<li>查看 bomb.s 的汇编代码，main 与上述源码逻辑对应的汇编代码是
+函数 phase_1 就是一号炸弹。</li>
+<li>
+<p>
+查看 bomb.s 的汇编代码，main 与上述源码逻辑对应的汇编代码是
+</p>
 
 <pre class="example">
 400e32:	e8 67 06 00 00       	callq  40149e &lt;read_line&gt;
@@ -208,7 +188,10 @@ read_line 函数顾名思义，就是将返回结果放置在 %rax 寄存器中�
 用函数的参数）；调用 phase_1 函数，再调用 phase_defused 函数。
 </p>
 </li>
-<li>在汇编代码中查找 phase_1 函数的定义
+<li>
+<p>
+在汇编代码中查找 phase_1 函数的定义
+</p>
 
 <pre class="example">
 400ee0:	48 83 ec 08          	sub    $0x8,%rsp
@@ -218,7 +201,7 @@ read_line 函数顾名思义，就是将返回结果放置在 %rax 寄存器中�
 400ef0:	74 05                	je     400ef7 &lt;phase_1+0x17&gt;
 400ef2:	e8 43 05 00 00       	callq  40143a &lt;explode_bomb&gt;
 400ef7:	48 83 c4 08          	add    $0x8,%rsp
-400efb:	c3                   	retq
+400efb:	c3                   	retq 
 </pre>
 
 <p>
@@ -230,7 +213,10 @@ read_line 函数顾名思义，就是将返回结果放置在 %rax 寄存器中�
 %esi 中，其值是虚拟内存地址 0x402400。
 </p>
 </li>
-<li>在 emacs 的 gdb-mode 中打开可执行文件 bomb，输入 <code>x/s 0x402400</code> 可输出此字符串
+<li>
+<p>
+在 emacs 的 gdb-mode 中打开可执行文件 bomb，输入 <code>x/s 0x402400</code> 可输出此字符串
+</p>
 
 <pre class="example">
 "Border relations with Canada have never been better."
@@ -240,15 +226,16 @@ read_line 函数顾名思义，就是将返回结果放置在 %rax 寄存器中�
 </div>
 </div>
 
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2">二号弹</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org0c93b77" class="outline-3">
+<h3 id="org0c93b77">二号弹</h3>
+<div class="outline-text-3" id="text-org0c93b77">
 <ol class="org-ol">
-<li>bomb.c 源码逻辑结构不变，phase_2 就是二号炸弹。
-</li>
-<li>汇编代码中调用 phase_2 函数部分除了函数名外与一号弹结构相同。
-</li>
-<li>再来看 phase_2 函数的定义部分
+<li>bomb.c 源码逻辑结构不变，phase_2 就是二号炸弹。</li>
+<li>汇编代码中调用 phase_2 函数部分除了函数名外与一号弹结构相同。</li>
+<li>
+<p>
+再来看 phase_2 函数的定义部分
+</p>
 
 <pre class="example">
 400f02:	48 89 e6             	mov    %rsp,%rsi
@@ -299,19 +286,15 @@ phase_2 定义中有两处调用 explode_bomb 函数，其条件转移的指令�
 <li>read_six_numbers 功能分析
 <ol class="org-ol">
 <li>前半部分将定位其调用者函数传入的参数的地址，从左到右参数的地址分别是调用者
-的 %rsp %rsp+4 %rsp+8 %rsp+12 %rsp+16 %rsp+20
-</li>
+的 %rsp %rsp+4 %rsp+8 %rsp+12 %rsp+16 %rsp+20</li>
 <li>然后的部分就是上面第3个代码示例的部分，0x4025c3保存的是字符串指针，其内容是
-"%d %d %d %d %d %d"，可以推断将会以此格式化字符串对输入数据进行解析；
-</li>
+"%d %d %d %d %d %d"，可以推断将会以此格式化字符串对输入数据进行解析；</li>
 <li>寄存器 %eax 放置了立即数0，在调用了 __isoc99_sscanf@plt 之后将会检查这个寄
 存器的值，如果解析次数不到6次的话就会出发炸弹，所以我们输入的数据字符串应该
-是以空格分隔的6个数字（其实超过6个也没关系，只会取前6个）；
-</li>
+是以空格分隔的6个数字（其实超过6个也没关系，只会取前6个）；</li>
 <li>根据但见汇编代码文件的内容无法得出 __isoc99_sscanf@plt 函数的主要工作逻辑，
 因为它又调用了 glibc 库函数，不过可以推断它的主要工作是扫描输入字符串，并
-以前面的那个格式化字符串解析它，将里面的字符串数字一一转变为数字。
-</li>
+以前面的那个格式化字符串解析它，将里面的字符串数字一一转变为数字。</li>
 </ol>
 </li>
 <li>phase_2 功能分析
@@ -319,27 +302,27 @@ phase_2 定义中有两处调用 explode_bomb 函数，其条件转移的指令�
 <li>在上面第2个代码示例中，再调用了 read_six_numbers 后，将会使用 cmpl 指令检
 查栈中栈底变量存放的值的大小，这个值是由 read_six_numbers 生成并存放的；如
 果这个值等于1的话将进行后续的逻辑运作，如果不等于，就爆炸；所以可知输入的
-字符串中必须有数字1；
-</li>
+字符串中必须有数字1；</li>
 <li>跳转到的 400f30 地址处，可以看到，接下来是一个循环，循环条件是 %rbx 寄存器
 的值不等于 %rbp 寄存器的值；首先在 %rbx 中存放 %rsp+4 的值，后续按4递增；
 将 %rsp 和 %rsp+4 虚拟地址处存放的值两两进行比较，后者必须是前者的2倍，检
-查直到 %rsp+18 地址为止；如果不符合条件，则引爆炸弹。
-</li>
+查直到 %rsp+18 地址为止；如果不符合条件，则引爆炸弹。</li>
 </ol>
 </li>
-<li>结论：综上可以推断得知，拆除该炸弹需要输入：1 2 4 8 16 32
-</li>
+<li>结论：综上可以推断得知，拆除该炸弹需要输入：1 2 4 8 16 32</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3">三号弹</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org65a96ac" class="outline-3">
+<h3 id="org65a96ac">三号弹</h3>
+<div class="outline-text-3" id="text-org65a96ac">
 <ol class="org-ol">
-<li>在 phase_3 的汇编代码前面调用了 <a href="#sec-3-1">一号弹</a> 中调用过的 __isoc99_sscanf@plt 函数，
+<li>
+<p>
+在 phase_3 的汇编代码前面调用了 <a href="#org59701d8">一号弹</a> 中调用过的 __isoc99_sscanf@plt 函数，
 它将扫描输入字符串中的数字表示并将数字赋值参数；
+</p>
 
 <pre class="example">
 400f47:	48 8d 4c 24 0c       	lea    0xc(%rsp),%rcx
@@ -372,7 +355,10 @@ phase_2 定义中有两处调用 explode_bomb 函数，其条件转移的指令�
 </p>
 </li>
 
-<li>如果输入字符串被接受的话，接下来将会进行一次 <b>基址变址比例因子偏移量的间接跳转</b> ：
+<li>
+<p>
+如果输入字符串被接受的话，接下来将会进行一次 <b>基址变址比例因子偏移量的间接跳转</b> ：
+</p>
 
 <pre class="example">
 400f75:	ff 24 c5 70 24 40 00 	jmpq   *0x402470(,%rax,8)
@@ -412,20 +398,21 @@ mov 指令将立即数 0xcf 送入 %eax 寄存器中，这个值换成10进制�
 </p>
 </li>
 
-<li>所以结果应该是 "0 207"，当然理论上还有7种组合，就不一一演算了。
-</li>
+<li>所以结果应该是 "0 207"，当然理论上还有7种组合，就不一一演算了。</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4">四号弹</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-org2c063ec" class="outline-3">
+<h3 id="org2c063ec">四号弹</h3>
+<div class="outline-text-3" id="text-org2c063ec">
 <ol class="org-ol">
 <li>同样这次又调用了那个扫描函数，本次需要输入的字符串仍然需要两个数字（这一次必
-须是两个，不多也不少），以空格分开；
-</li>
-<li>后续一段比较和跳转代码：
+须是两个，不多也不少），以空格分开；</li>
+<li>
+<p>
+后续一段比较和跳转代码：
+</p>
 
 <pre class="example">
 40102e:	83 7c 24 08 0e       	cmpl   $0xe,0x8(%rsp)
@@ -437,8 +424,11 @@ mov 指令将立即数 0xcf 送入 %eax 寄存器中，这个值换成10进制�
 表示扫描得到的第一个数值应当不大于十进制数14，不然炸弹引爆；
 </p>
 </li>
-<li>后续准备参数（%edx: 14, %esi: 0, %edi: 第一个输入数字）并调用 fun4 函数，调用
+<li>
+<p>
+后续准备参数（%edx: 14, %esi: 0, %edi: 第一个输入数字）并调用 fun4 函数，调用
 之后检查 func4 的返回值，如果最低位是1就引爆炸弹，func4 中两个关键跳转结构：
+</p>
 
 <pre class="example">
 400fe2:	39 f9                	cmp    %edi,%ecx
@@ -480,19 +470,20 @@ func4 内部逻辑是个递归结构，假设存在这种情况：7 小于等于
 </li>
 <li>在 phase_4 中调用 func4 之后获得的返回值是0的话，就不跳转到引爆炸弹的位置；然
 后比较第二个输入参数和0是否相等，如果相等就跳转到该函数的结束阶段，表示要求第
-二个输入数字必须是0；
-</li>
-<li>最后结果就是 "7 0" （第一个数可以是 0 1 3 7 中的任一个）
-</li>
+二个输入数字必须是0；</li>
+<li>最后结果就是 "7 0" （第一个数可以是 0 1 3 7 中的任一个）</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-3-5" class="outline-3">
-<h3 id="sec-3-5">五号弹</h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-orgec72cc7" class="outline-3">
+<h3 id="orgec72cc7">五号弹</h3>
+<div class="outline-text-3" id="text-orgec72cc7">
 <ol class="org-ol">
-<li>注意，phase_5 显式地将 %rdi 中存放的输入字符串的地址送给 %rbx 寄存器
+<li>
+<p>
+注意，phase_5 显式地将 %rdi 中存放的输入字符串的地址送给 %rbx 寄存器
+</p>
 
 <pre class="example">
 400ea7:	48 89 c7             	mov    %rax,%rdi
@@ -503,9 +494,11 @@ func4 内部逻辑是个递归结构，假设存在这种情况：7 小于等于
 
 <li>
 <code>mov %fs:0x28,%rax</code> %fs 这个段寄存器指向当前活动线程的TEB结构（线程结构），表
-示将 fs 段上的偏移地址 0x28 上的数据传送给了 %rax 寄存器（其实和谜题解法无关）
-</li>
-<li>第一次跳转：
+示将 fs 段上的偏移地址 0x28 上的数据传送给了 %rax 寄存器（其实和谜题解法无关）</li>
+<li>
+<p>
+第一次跳转：
+</p>
 
 <pre class="example">
 401078:	31 c0                	xor    %eax,%eax
@@ -532,7 +525,10 @@ func4 内部逻辑是个递归结构，假设存在这种情况：7 小于等于
 </p>
 </li>
 
-<li>如果字符串长度符合条件，跳转到 0x4010d2，将 %eax 的值置0，再跳转到 0x40108b；
+<li>
+<p>
+如果字符串长度符合条件，跳转到 0x4010d2，将 %eax 的值置0，再跳转到 0x40108b；
+</p>
 
 <p>
 在此处执行 mobzbl 指令（将一个源操作数低1字节长度的值0扩展到32位并存放在目标
@@ -546,8 +542,11 @@ func4 内部逻辑是个递归结构，假设存在这种情况：7 小于等于
 </pre>
 </li>
 
-<li>对第4步获得的字符进行处理，最后字符（其实是字符的ASCII码的低四位二进制表示）存放在
+<li>
+<p>
+对第4步获得的字符进行处理，最后字符（其实是字符的ASCII码的低四位二进制表示）存放在
 %edx 的低8位寄存器 %dl 中，%edx 寄存器中除了低8位其余全为0，接下来：
+</p>
 
 <pre class="example">
 401099:	0f b6 92 b0 24 40 00 	movzbl 0x4024b0(%rdx),%edx
@@ -575,9 +574,11 @@ func4 内部逻辑是个递归结构，假设存在这种情况：7 小于等于
 </li>
 <li>在循环完成后，将 %rsp + 10 地址处存放的地址和 0x40245e 作为参数传入
 strings_not_equal，如果返回值是1的话，表示不相等，引爆炸弹，返回值是0的就跳转
-到 phase_5 函数收尾阶段，炸弹排除。
-</li>
-<li>x/s 0x40245e 得到该地址处开始存放的字符串 "flyers"
+到 phase_5 函数收尾阶段，炸弹排除。</li>
+<li>
+<p>
+x/s 0x40245e 得到该地址处开始存放的字符串 "flyers"
+</p>
 
 <p>
 x/s 0x4024b0 得到该地址处开始存放的字符串 "maduiersnfotvbylSo you think you
@@ -589,24 +590,24 @@ can stop the bomb with ctrl-c, do you?"
 6个索引相对的字符可以拼凑成"flyers"
 </p>
 </li>
-<li>可以推算，index的组合是9fe567，查找ASCII表，最后的结果是 "IONEFG"（不唯一）。
-</li>
+<li>可以推算，index的组合是9fe567，查找ASCII表，最后的结果是 "IONEFG"（不唯一）。</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-3-6" class="outline-3">
-<h3 id="sec-3-6">六号弹</h3>
-<div class="outline-text-3" id="text-3-6">
+<div id="outline-container-org0d0d5fb" class="outline-3">
+<h3 id="org0d0d5fb">六号弹</h3>
+<div class="outline-text-3" id="text-org0d0d5fb">
 <ol class="org-ol">
 <li>phase_6 首先调用了 read_six_numbers 函数，这个函数的功能是将输入字符串解析出6
-个数字，详细逻辑在 <a href="#sec-3-2">二号弹</a> 分析过；
-</li>
+个数字，详细逻辑在 <a href="#org0c93b77">二号弹</a> 分析过；</li>
 <li>然后对 %rsp 处的值进行判断，也就是输入字符串的第一个数字，这个数字是必须无符号数，
-且必须小于等于6；
-</li>
-<li>然后进入一个循环，依次比较第一个数字和后续数字是否相等、第二个数字和后续数字……，
+且必须小于等于6；</li>
+<li>
+<p>
+然后进入一个循环，依次比较第一个数字和后续数字是否相等、第二个数字和后续数字……，
 如果遇到相等的情况则引爆炸弹，且所有数字都必须小于等于6且不能为0；
+</p>
 
 <pre class="example">
 40110b:	49 89 e6             	mov    %rsp,%r14
@@ -634,7 +635,10 @@ can stop the bomb with ctrl-c, do you?"
 </pre>
 </li>
 
-<li>接下来又是一个循环，依次将7减去输入的数字，并将结果存储在原地址处：
+<li>
+<p>
+接下来又是一个循环，依次将7减去输入的数字，并将结果存储在原地址处：
+</p>
 
 <pre class="example">
 401153:	48 8d 74 24 18       	lea    0x18(%rsp),%rsi
@@ -649,7 +653,10 @@ can stop the bomb with ctrl-c, do you?"
 </pre>
 </li>
 
-<li>继续进入一个循化，
+<li>
+<p>
+继续进入一个循化，
+</p>
 
 <pre class="example">
 40116f:	be 00 00 00 00       	mov    $0x0,%esi  # 初始化循环条件
@@ -675,14 +682,15 @@ can stop the bomb with ctrl-c, do you?"
 <ol class="org-ol">
 <li>此循环依次将由前面步骤获得的 %rsp %rsp+4 等地址处存放的值与1比较，如果相等，
 则将 0x6032d0 这个地址存放在 %rsp + %rsi*2 + 0x20 地址处，%rsi 中存放的数
-字用来判断是否终止循环，从0开始依次加4，等于24时终止此次循环；
-</li>
+字用来判断是否终止循环，从0开始依次加4，等于24时终止此次循环；</li>
 <li>如果不相等，则再与2比较，并将 0x6032d0 加 8，这又是一个循环：不相等就递增，
-直到相等为止，此时将获得的 0x6032d0 递增后的值放入相应地址处；
-</li>
+直到相等为止，此时将获得的 0x6032d0 递增后的值放入相应地址处；</li>
 </ol>
 </li>
-<li>又进入一次循环
+<li>
+<p>
+又进入一次循环
+</p>
 
 <pre class="example">
 4011ab:	48 8b 5c 24 20       	mov    0x20(%rsp),%rbx  # 将第5步中获得的第一个值送入 %rbx 寄存器
@@ -703,7 +711,10 @@ can stop the bomb with ctrl-c, do you?"
 把下一个值放置于上一个值+8得到的地址中；其实就是在建立链表。
 </p>
 </li>
-<li>最后一个循环：
+<li>
+<p>
+最后一个循环：
+</p>
 
 <pre class="example">
 4011da:	bd 05 00 00 00       	mov    $0x5,%ebp  # 比较次数
@@ -725,20 +736,22 @@ can stop the bomb with ctrl-c, do you?"
 及的 0x6032d0 中存放的是332，0x6032d8 处存放的是地址，0x6032e0 存放的是 168，
 接下内依次是 924、691、477、443；根据第6步得出的结论即链表前一个元素必须比接
 下来的大，其实就是以我们输入的数据为索引，根据原有的链表建立新的降序链表。那
-么可以得出结果应该是 "4 3 2 1 6 5"
-</li>
+么可以得出结果应该是 "4 3 2 1 6 5"</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-sec-3-7" class="outline-3">
-<h3 id="sec-3-7">隐藏弹</h3>
-<div class="outline-text-3" id="text-3-7">
+<div id="outline-container-org3363eb6" class="outline-3">
+<h3 id="org3363eb6">隐藏弹</h3>
+<div class="outline-text-3" id="text-org3363eb6">
 <ol class="org-ol">
-<li>还没完！虽然说将前面得到的结果依次输入，bomb 程序就会提示拆弹完成正常退出，但
+<li>
+<p>
+还没完！虽然说将前面得到的结果依次输入，bomb 程序就会提示拆弹完成正常退出，但
 bomb.s 汇编代码文件中还有一个隐藏炸弹 secret_phase，这个炸弹在第六个炸弹被拆
 除后且后续继续又输入时才会接受拆除，secret_phase 函数在每次拆弹成功后调用的
 phase_defused 函数中被调用（可能）：
+</p>
 
 <pre class="example">
 4015d8:	83 3d 81 21 20 00 06 	cmpl   $0x6,0x202181(%rip)        # 603760 &lt;num_input_strings&gt;
@@ -761,19 +774,19 @@ phase_defused 函数中被调用（可能）：
 <ol class="org-ol">
 <li>可以看到，__isoc99_sscanf@plt 接受了一个格式化字符串和一个输入字符串，而这
 个输入字符串是由两个数字和一个字符串组成的，这个字符串在哪里？注意，它并不
-是在第六个字符串输入后重新输入一行，而是在原有的六行字符串中的一行;
-</li>
+是在第六个字符串输入后重新输入一行，而是在原有的六行字符串中的一行;</li>
 <li>使用 gdb 对可执行文件进行断点设置，断点设置在 phase_defused 函数的入口处，
 按正确答案执行-输入-输出，到第六个字符串输入后，在 phase_defused 函数内部
 单步进行到 0x4015f5 地址处，x/s 0x603870 得到 "7 0"；可知，这里是解析了第4
-个输入字符串；
-</li>
-<li>要想拆除隐藏炸弹，第4个字符串应该是 "7 0 DrEvil"
-</li>
+个输入字符串；</li>
+<li>要想拆除隐藏炸弹，第4个字符串应该是 "7 0 DrEvil"</li>
 </ol>
 </li>
 
-<li>secret_phase 函数逻辑：
+<li>
+<p>
+secret_phase 函数逻辑：
+</p>
 
 <pre class="example">
 401243:	e8 56 02 00 00       	callq  40149e &lt;read_line&gt;  # 读取第7个输入
@@ -794,7 +807,10 @@ phase_defused 函数中被调用（可能）：
 </pre>
 </li>
 
-<li>fun7 函数逻辑
+<li>
+<p>
+fun7 函数逻辑
+</p>
 
 <pre class="example">
 ...
@@ -827,8 +843,7 @@ phase_defused 函数中被调用（可能）：
 <li>进入 40122d 处递归，递归结束后会将返回值加倍再加1，也就是将 %eax 中
 的值置1；
 <ol class="org-ol">
-<li>此次调用中保持 %eax 为0，两个跳转条件都满足，不进入递归。
-</li>
+<li>此次调用中保持 %eax 为0，两个跳转条件都满足，不进入递归。</li>
 </ol>
 </li>
 </ol>
@@ -838,8 +853,7 @@ phase_defused 函数中被调用（可能）：
 </ol>
 </li>
 <li>gdb x/2w 查询 0x6030f0 地址处的值，以及接下来预判的函数调用轨迹将会使用的各个
-增量地址处的值，可以确定要想使第3步中的轨迹实现，输入数字必须是22。
-</li>
+增量地址处的值，可以确定要想使第3步中的轨迹实现，输入数字必须是22。</li>
 </ol>
 </div>
 </div>

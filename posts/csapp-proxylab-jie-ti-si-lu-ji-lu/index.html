@@ -84,53 +84,43 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">准备</h2>
-<div class="outline-text-2" id="text-1">
+        <div id="outline-container-orgea7a6d0" class="outline-2">
+<h2 id="orgea7a6d0">准备</h2>
+<div class="outline-text-2" id="text-orgea7a6d0">
 <p>
 proxy lab 的难度和 malloc lab 不在一个数量级上，主要体现在两个方面：
 </p>
 <ol class="org-ol">
 <li>除了第三部分要实现 cache 以外，前面两部分要求实现 proxy 和
-synchronization, 都可以在书上的示例代码中拼凑出来；
-</li>
-<li>测试评分宽松，通过就满分，malloc lab 可是按性能评分的；
-</li>
+synchronization, 都可以在书上的示例代码中拼凑出来；</li>
+<li>测试评分宽松，通过就满分，malloc lab 可是按性能评分的；</li>
 </ol>
 <p>
 简单归简单，但是不能不做准备工作：
 </p>
 <ol class="org-ol">
-<li>仔细看一遍 proxy lab 的说明文档，在 csapp3e labs 官网上；
-</li>
-<li>熟读 csapp3e 第11章，略读第10章，第12章；
-</li>
+<li>仔细看一遍 proxy lab 的说明文档，在 csapp3e labs 官网上；</li>
+<li>熟读 csapp3e 第11章，略读第10章，第12章；</li>
 </ol>
 <p>
 要求实现三个功能：
 </p>
 <ol class="org-ol">
-<li>
-<a href="#sec-2-1">proxy</a>
-</li>
-<li>
-<a href="#sec-2-2">synchronization</a>
-</li>
-<li>
-<a href="#sec-2-3">cache</a>
-</li>
+<li><a href="#orgb318d09">proxy</a></li>
+<li><a href="#org7f7b88a">synchronization</a></li>
+<li><a href="#org6904aa1">cache</a></li>
 </ol>
 <!-- TEASER_END -->
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">代码</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgab1ed7a" class="outline-2">
+<h2 id="orgab1ed7a">代码</h2>
+<div class="outline-text-2" id="text-orgab1ed7a">
 </div>
-<div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">proxy</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgb318d09" class="outline-3">
+<h3 id="orgb318d09">proxy</h3>
+<div class="outline-text-3" id="text-orgb318d09">
 <p>
 这部分的代码大半都可以复用 tiny.c 的代码，包括函数 <code>read_requesthdrs</code>,
 <code>clienterror</code>, <code>doit</code> 的大部分， <code>main</code> 的大部分。
@@ -313,9 +303,9 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
 </div>
 </div>
 
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">synchronization</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-org7f7b88a" class="outline-3">
+<h3 id="org7f7b88a">synchronization</h3>
+<div class="outline-text-3" id="text-org7f7b88a">
 <p>
 大部份相关代码都可以借鉴 CSAPP3e 第12章的关于并发编程的例子（Pthread）：
 </p>
@@ -349,9 +339,9 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
 </div>
 </div>
 
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">cache</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-org6904aa1" class="outline-3">
+<h3 id="org6904aa1">cache</h3>
+<div class="outline-text-3" id="text-org6904aa1">
 <p>
 这里实现的是一个双向链表来存储缓存内容（感谢 malloc lab 给的灵感），就像前面所说
 的，proxy lab 测试要求比较低，并没有很复杂的边界条件，通过测试是没有问题的，但是
@@ -361,14 +351,11 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
 <li>由于缓存替换要求实现 LRU 算法（或者接近 LRU），作者在这里是严格按照 LRU 算法
 来做的，具体是：
 <ol class="org-ol">
-<li>每次读写都算做一次使用该链表元素
-</li>
+<li>每次读写都算做一次使用该链表元素</li>
 <li>讲新近读写的缓存从链表中挑出，将它的前后链表关系置为 <code>NULL</code>
 </li>
-<li>链接它的前后元素
-</li>
-<li>插入链表头
-</li>
+<li>链接它的前后元素</li>
+<li>插入链表头</li>
 </ol>
 </li>
 
@@ -378,27 +365,22 @@ synchronization, 都可以在书上的示例代码中拼凑出来；
 多个线程同时读一个缓存的话，第一个加锁并读完的的线程将会把它置于链接头并释放
 锁，后面等待的线程就可以跳过更新链表操作从而实现说明文档上的读并行；但是如果
 有特别复杂的线程并行情况，比如最坏的情况：大量并行线程读取两个不同的缓存，链
-表头更迭频繁，读并行就无法实现了。
-</li>
+表头更迭频繁，读并行就无法实现了。</li>
 
 <li>大量的链表链接关系更新，多线程导致每处链表关系更新和读取都需要加锁；也考虑过
 用单向链表和缓存内加时间戳来实现 LRU 算法，但是，单向链表的添加和解除元素在多
-线程的情况下还是得加锁，并没有很大得并发提升。
-</li>
+线程的情况下还是得加锁，并没有很大得并发提升。</li>
 
 <li>写缓存在说明文档中是明确要求加锁（或者生产者消费者并发模形），在缓存结构体中
-添加一个 <code>mutex</code> 来实现，每次要写缓存都要添加锁和释放锁。
-</li>
+添加一个 <code>mutex</code> 来实现，每次要写缓存都要添加锁和释放锁。</li>
 
-<li>使用固定大小的数组来取代链表？在多线程情况下从数组中存取元素照样得上锁；
-</li>
+<li>使用固定大小的数组来取代链表？在多线程情况下从数组中存取元素照样得上锁；</li>
 
 <li>综上这些问题都是选用链表而引出来，单向或者双向都无法避免，应该还会有对并发更
 友好数据模形，实在不想折腾了（在经过 malloc lab 得折腾之后作者已经懈怠了），
-等以后知识量上去了，或者真的有灵光一闪，再来处理这个。
-</li>
+等以后知识量上去了，或者真的有灵光一闪，再来处理这个。</li>
 
-<li>#<a id="update" name="update"></a>：<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-04-06 Fri&gt;</span></span> 看了下 CSAPP3e 12.5.14 P707 读者优先的读者－写者模形，
+<li>#<a id="orge1cc482"></a>：<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-04-06 Fri&gt; </span></span> 看了下 CSAPP3e 12.5.14 P707 读者优先的读者－写者模形，
 一部分实现读者优先的代码可以借用到 cache.c 的读缓存函数里，可以实现读缓存的并
 行实现（不过极端条件下当并行读取的进程同时进入 <code>if(!(cache_node =</code>
 CACHE_HEAD))== 时，就几乎没有并行可言了）；书中的读者－写者模形整体来看并不适合
@@ -406,20 +388,19 @@ CACHE_HEAD))== 时，就几乎没有并行可言了）；书中的读者－写�
 产出就取走，而缓存要求的是有匹配的内容就读取该内容，无匹配就将获得的数据做为
 缓存插入，不过 <code>sbuf</code> 这个数据结构还是可以借用的，需要大改，改造思路就是 LRU
 链表替换原来的数组，或者保理数组，新加入一个数据结构存储每一个缓存的地址并桉
-照 LRU 顺序排列；
-</li>
+照 LRU 顺序排列；</li>
 </ol>
 <p>
 缓存结构体：
 </p>
 
 <div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">cache</span><span class="p">{</span>
-  <span class="kt">int</span> <span class="n">conn</span><span class="p">;</span>                           <span class="cm">/* is it a buf while connection */</span>
+  <span class="kt">int</span> <span class="n">conn</span><span class="p">;</span>			        <span class="cm">/* is it a buf while connection */</span>
   <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">MAX_OBJECT_SIZE</span><span class="p">];</span>            <span class="cm">/* buf */</span>
-  <span class="kt">char</span> <span class="n">uri</span><span class="p">[</span><span class="n">MAXLINE</span><span class="p">];</span>                  <span class="cm">/* buf's uri */</span>
-  <span class="n">sem_t</span> <span class="n">mutex</span><span class="p">;</span>                                <span class="cm">/* sem_t mutex */</span>
-  <span class="k">struct</span> <span class="n">cache</span> <span class="o">*</span><span class="n">next_cache</span><span class="p">;</span>           <span class="cm">/* next cache */</span>
-  <span class="k">struct</span> <span class="n">cache</span> <span class="o">*</span><span class="n">prev_cache</span><span class="p">;</span>           <span class="cm">/* previous cache */</span>
+  <span class="kt">char</span> <span class="n">uri</span><span class="p">[</span><span class="n">MAXLINE</span><span class="p">];</span>		        <span class="cm">/* buf's uri */</span>
+  <span class="n">sem_t</span> <span class="n">mutex</span><span class="p">;</span>				<span class="cm">/* sem_t mutex */</span>
+  <span class="k">struct</span> <span class="n">cache</span> <span class="o">*</span><span class="n">next_cache</span><span class="p">;</span>	        <span class="cm">/* next cache */</span>
+  <span class="k">struct</span> <span class="n">cache</span> <span class="o">*</span><span class="n">prev_cache</span><span class="p">;</span>		<span class="cm">/* previous cache */</span>
 <span class="p">}</span><span class="n">cache</span><span class="p">;</span>
 </pre></div>
 
@@ -474,7 +455,7 @@ CACHE_HEAD))== 时，就几乎没有并行可言了）；书中的读者－写�
       <span class="n">Sem_init</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">cache_node</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="n">P</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">cache_node</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">));</span>
-  <span class="n">cache_node</span><span class="o">-&gt;</span><span class="n">conn</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>               <span class="cm">/* write as connection */</span>
+  <span class="n">cache_node</span><span class="o">-&gt;</span><span class="n">conn</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>		<span class="cm">/* write as connection */</span>
   <span class="n">strcpy</span><span class="p">(</span><span class="n">cache_node</span><span class="o">-&gt;</span><span class="n">uri</span><span class="p">,</span> <span class="n">uri</span><span class="p">);</span>
   <span class="n">strcpy</span><span class="p">(</span><span class="n">cache_node</span><span class="o">-&gt;</span><span class="n">buf</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
   <span class="n">V</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">cache_node</span><span class="o">-&gt;</span><span class="n">mutex</span><span class="p">));</span>
@@ -644,9 +625,9 @@ CACHE_HEAD))== 时，就几乎没有并行可言了）；书中的读者－写�
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3">写在后面</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org523f7f5" class="outline-2">
+<h2 id="org523f7f5">写在后面</h2>
+<div class="outline-text-2" id="text-org523f7f5">
 <p>
 proxy lab 这样结束掉虽然能通过测试，它现在内部的代码逻辑还是存在很多问题的；
 </p>
@@ -670,7 +651,7 @@ proxy lab 这样结束掉虽然能通过测试，它现在内部的代码逻辑�
 </p>
 
 <p>
-<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-04-06 Fri&gt;</span></span> <a href="#update">7</a> 稍微改进了读缓存的并行性 。
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2018-04-06 Fri&gt; </span></span> <a href="#orge1cc482">7</a> 稍微改进了读缓存的并行性 。
 </p>
 </div>
 </div>
