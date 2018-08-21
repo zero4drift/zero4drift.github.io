@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Procrastination Prescription (Posts about C++)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/cat_c%2B%2B.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Mon, 20 Aug 2018 16:32:40 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Cpp-Primer-5th-Exercises-Chapter-19</title><link>https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-19/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org52a9d16" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Procrastination Prescription (Posts about C++)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/cat_c%2B%2B.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Tue, 21 Aug 2018 02:23:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Cpp-Primer-5th-Exercises-Chapter-19</title><link>https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-19/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org52a9d16" class="outline-2"&gt;
 &lt;h2 id="org52a9d16"&gt;Exercise 19.1&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org52a9d16"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="k"&gt;operator&lt;/span&gt; &lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -11155,23 +11155,9 @@
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>C++</category><guid>https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-11/</guid><pubDate>Sat, 09 Jun 2018 06:39:39 GMT</pubDate></item><item><title>Cpp-Primer-5th-Exercises-Chapter-10</title><link>https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-10/</link><dc:creator>zero4drift</dc:creator><description>&lt;p&gt;
-`#+BEGIN_COMMENT
-.. title: Cpp-Primer-5th-Exercises-Chapter-10
-.. slug: Cpp-Primer-5th-Exercises-Chapter-10
-.. date: 2018-06-07 15:46:37 UTC+08:00
-.. tags: C++
-.. category: C++
-.. link: 
-.. description: Cpp Primer 5th chapter-10 Exercises
-.. type: text
-#+END_COMMENT
-&lt;/p&gt;
-
-
-&lt;div id="outline-container-orge0d8086" class="outline-2"&gt;
-&lt;h2 id="orge0d8086"&gt;Exercise 10.1&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge0d8086"&gt;
+&lt;/div&gt;</description><category>C++</category><guid>https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-11/</guid><pubDate>Sat, 09 Jun 2018 06:39:39 GMT</pubDate></item><item><title>Cpp-Primer-5th-Exercises-Chapter-10</title><link>https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-10/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orge699ad5" class="outline-2"&gt;
+&lt;h2 id="orge699ad5"&gt;Exercise 10.1&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge699ad5"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11188,9 +11174,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgbe9df7f" class="outline-2"&gt;
-&lt;h2 id="orgbe9df7f"&gt;Exercise 10.2&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbe9df7f"&gt;
+&lt;div id="outline-container-orgc8d1461" class="outline-2"&gt;
+&lt;h2 id="orgc8d1461"&gt;Exercise 10.2&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc8d1461"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11207,9 +11193,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd28ba02" class="outline-2"&gt;
-&lt;h2 id="orgd28ba02"&gt;Exercise 10.3&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd28ba02"&gt;
+&lt;div id="outline-container-org9969721" class="outline-2"&gt;
+&lt;h2 id="org9969721"&gt;Exercise 10.3&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org9969721"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
@@ -11220,9 +11206,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge5deca5" class="outline-2"&gt;
-&lt;h2 id="orge5deca5"&gt;Exercise 10.4&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge5deca5"&gt;
+&lt;div id="outline-container-org279590a" class="outline-2"&gt;
+&lt;h2 id="org279590a"&gt;Exercise 10.4&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org279590a"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;double&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;2.2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;3.3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;4.4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;5.5&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
@@ -11235,18 +11221,18 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7b09134" class="outline-2"&gt;
-&lt;h2 id="org7b09134"&gt;Exercise 10.5&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7b09134"&gt;
+&lt;div id="outline-container-org71448b8" class="outline-2"&gt;
+&lt;h2 id="org71448b8"&gt;Exercise 10.5&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org71448b8"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// '==' operator for two C type strings compares the pointers point to them;&lt;/span&gt;
 &lt;span class="c1"&gt;// which is not expected.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org69d43ba" class="outline-2"&gt;
-&lt;h2 id="org69d43ba"&gt;Exercise 10.6&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org69d43ba"&gt;
+&lt;div id="outline-container-orge85ad73" class="outline-2"&gt;
+&lt;h2 id="orge85ad73"&gt;Exercise 10.6&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge85ad73"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
@@ -11258,9 +11244,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdf79a95" class="outline-2"&gt;
-&lt;h2 id="orgdf79a95"&gt;Exercise 10.7&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdf79a95"&gt;
+&lt;div id="outline-container-org9bd4de8" class="outline-2"&gt;
+&lt;h2 id="org9bd4de8"&gt;Exercise 10.7&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org9bd4de8"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// a: illegal&lt;/span&gt;
 &lt;span class="c1"&gt;// b: illegal&lt;/span&gt;
 &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -11285,9 +11271,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9d23fbb" class="outline-2"&gt;
-&lt;h2 id="org9d23fbb"&gt;Exercise 10.8&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9d23fbb"&gt;
+&lt;div id="outline-container-org5b38a8d" class="outline-2"&gt;
+&lt;h2 id="org5b38a8d"&gt;Exercise 10.8&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5b38a8d"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Standard library algorithm just assign values through insert iterator:&lt;/span&gt;
 &lt;span class="c1"&gt;// *insert_iterator = some_value&lt;/span&gt;
 &lt;span class="c1"&gt;// job of inserting an element and then changing the size of container is done by insert iterator, there is none of algorithm's business&lt;/span&gt;
@@ -11295,9 +11281,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdaa1468" class="outline-2"&gt;
-&lt;h2 id="orgdaa1468"&gt;Exercise 10.9&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdaa1468"&gt;
+&lt;div id="outline-container-orge68edaf" class="outline-2"&gt;
+&lt;h2 id="orge68edaf"&gt;Exercise 10.9&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge68edaf"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;elimDups&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nl"&gt;s&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11318,17 +11304,17 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb4804e4" class="outline-2"&gt;
-&lt;h2 id="orgb4804e4"&gt;Exercise 10.10&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb4804e4"&gt;
+&lt;div id="outline-container-org7f6a964" class="outline-2"&gt;
+&lt;h2 id="org7f6a964"&gt;Exercise 10.10&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7f6a964"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// Algorithm operates on iterators, not containers, it could change the value pointed by iterator(if it is not const iterator), but it is not capable of deleting or inserting, which are functions based on container itself(container.erase(...), container.inser(...)...).&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga2ed293" class="outline-2"&gt;
-&lt;h2 id="orga2ed293"&gt;Exercise 10.11&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orga2ed293"&gt;
+&lt;div id="outline-container-orgaec6f37" class="outline-2"&gt;
+&lt;h2 id="orgaec6f37"&gt;Exercise 10.11&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgaec6f37"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;isShorter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
@@ -11351,9 +11337,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb2daf83" class="outline-2"&gt;
-&lt;h2 id="orgb2daf83"&gt;Exercise 10.12&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb2daf83"&gt;
+&lt;div id="outline-container-org25e8b9a" class="outline-2"&gt;
+&lt;h2 id="org25e8b9a"&gt;Exercise 10.12&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org25e8b9a"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;compareIsbn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Sales_data&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;d1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Sales_data&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;d2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;d1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isbn&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;d2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isbn&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
@@ -11373,9 +11359,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf55afda" class="outline-2"&gt;
-&lt;h2 id="orgf55afda"&gt;Exercise 10.13&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf55afda"&gt;
+&lt;div id="outline-container-org68a27aa" class="outline-2"&gt;
+&lt;h2 id="org68a27aa"&gt;Exercise 10.13&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org68a27aa"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;greater_than_five&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11392,17 +11378,17 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcf122c3" class="outline-2"&gt;
-&lt;h2 id="orgcf122c3"&gt;Exercise 10.14&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgcf122c3"&gt;
+&lt;div id="outline-container-org037c260" class="outline-2"&gt;
+&lt;h2 id="org037c260"&gt;Exercise 10.14&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org037c260"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// [](int i, int j) {return i + i;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgac6a2c6" class="outline-2"&gt;
-&lt;h2 id="orgac6a2c6"&gt;Exercise 10.15&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgac6a2c6"&gt;
+&lt;div id="outline-container-org8677c5f" class="outline-2"&gt;
+&lt;h2 id="org8677c5f"&gt;Exercise 10.15&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8677c5f"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;sample&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11416,9 +11402,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org51cd098" class="outline-2"&gt;
-&lt;h2 id="org51cd098"&gt;Exercise 10.16&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org51cd098"&gt;
+&lt;div id="outline-container-org8ac505f" class="outline-2"&gt;
+&lt;h2 id="org8ac505f"&gt;Exercise 10.16&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8ac505f"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;elimDups&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
@@ -11448,9 +11434,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8a87e2b" class="outline-2"&gt;
-&lt;h2 id="org8a87e2b"&gt;Exercise 10.17&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8a87e2b"&gt;
+&lt;div id="outline-container-org33075f1" class="outline-2"&gt;
+&lt;h2 id="org33075f1"&gt;Exercise 10.17&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org33075f1"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;Sales_data&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;vs&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11468,9 +11454,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org621440e" class="outline-2"&gt;
-&lt;h2 id="org621440e"&gt;Exercise 10.18&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org621440e"&gt;
+&lt;div id="outline-container-orgec640db" class="outline-2"&gt;
+&lt;h2 id="orgec640db"&gt;Exercise 10.18&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgec640db"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;elimDups&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
@@ -11500,9 +11486,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1090402" class="outline-2"&gt;
-&lt;h2 id="org1090402"&gt;Exercise 10.19&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1090402"&gt;
+&lt;div id="outline-container-org5dfe5b0" class="outline-2"&gt;
+&lt;h2 id="org5dfe5b0"&gt;Exercise 10.19&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5dfe5b0"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;elimDups&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
@@ -11532,9 +11518,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3194cce" class="outline-2"&gt;
-&lt;h2 id="org3194cce"&gt;Exercise 10.20&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3194cce"&gt;
+&lt;div id="outline-container-orgf99f938" class="outline-2"&gt;
+&lt;h2 id="orgf99f938"&gt;Exercise 10.20&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf99f938"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;elimDups&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
@@ -11562,9 +11548,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd840f45" class="outline-2"&gt;
-&lt;h2 id="orgd840f45"&gt;Exercise 10.21&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd840f45"&gt;
+&lt;div id="outline-container-orgecee05a" class="outline-2"&gt;
+&lt;h2 id="orgecee05a"&gt;Exercise 10.21&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgecee05a"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11577,9 +11563,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgeb79b8f" class="outline-2"&gt;
-&lt;h2 id="orgeb79b8f"&gt;Exercise 10.22&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgeb79b8f"&gt;
+&lt;div id="outline-container-orgfbb521e" class="outline-2"&gt;
+&lt;h2 id="orgfbb521e"&gt;Exercise 10.22&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfbb521e"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;elimDups&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
@@ -11614,17 +11600,17 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4e9fc5e" class="outline-2"&gt;
-&lt;h2 id="org4e9fc5e"&gt;Exercise 10.23&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4e9fc5e"&gt;
+&lt;div id="outline-container-org6aa2cc0" class="outline-2"&gt;
+&lt;h2 id="org6aa2cc0"&gt;Exercise 10.23&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6aa2cc0"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// bind requires an argument as callable and the rest arguments responded to given callable's arguments.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge5caeea" class="outline-2"&gt;
-&lt;h2 id="orge5caeea"&gt;Exercise 10.24&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge5caeea"&gt;
+&lt;div id="outline-container-org62af8f6" class="outline-2"&gt;
+&lt;h2 id="org62af8f6"&gt;Exercise 10.24&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org62af8f6"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;check_size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;size_type&lt;/span&gt; &lt;span class="n"&gt;sz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;sz&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11644,9 +11630,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgac4a57f" class="outline-2"&gt;
-&lt;h2 id="orgac4a57f"&gt;Exercise 10.25&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgac4a57f"&gt;
+&lt;div id="outline-container-org48b4275" class="outline-2"&gt;
+&lt;h2 id="org48b4275"&gt;Exercise 10.25&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org48b4275"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;check_size&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;size_type&lt;/span&gt; &lt;span class="n"&gt;sz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;=&lt;/span&gt; &lt;span class="n"&gt;sz&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11681,9 +11667,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5ba074e" class="outline-2"&gt;
-&lt;h2 id="org5ba074e"&gt;Exercise 10.26&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5ba074e"&gt;
+&lt;div id="outline-container-org40edd5e" class="outline-2"&gt;
+&lt;h2 id="org40edd5e"&gt;Exercise 10.26&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org40edd5e"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// back_inserter always pushs new element to the back of given container&lt;/span&gt;
 &lt;span class="c1"&gt;// front_inserter always pushs new element to the frot of given container&lt;/span&gt;
 &lt;span class="c1"&gt;// inserter always pushs new element to the front of the element pointered by a iterator, which is the given container's iterator and passed in as the second argument.&lt;/span&gt;
@@ -11691,9 +11677,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org599dcbf" class="outline-2"&gt;
-&lt;h2 id="org599dcbf"&gt;Exercise 10.27&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org599dcbf"&gt;
+&lt;div id="outline-container-orgba2c2c5" class="outline-2"&gt;
+&lt;h2 id="orgba2c2c5"&gt;Exercise 10.27&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgba2c2c5"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Please enter integers: "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11712,9 +11698,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfbd4186" class="outline-2"&gt;
-&lt;h2 id="orgfbd4186"&gt;Exercise 10.28&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgfbd4186"&gt;
+&lt;div id="outline-container-orga283814" class="outline-2"&gt;
+&lt;h2 id="orga283814"&gt;Exercise 10.28&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga283814"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;vi1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vi2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;vi4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
@@ -11739,9 +11725,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7057c4f" class="outline-2"&gt;
-&lt;h2 id="org7057c4f"&gt;Exercise 10.29&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org7057c4f"&gt;
+&lt;div id="outline-container-orgc78713e" class="outline-2"&gt;
+&lt;h2 id="orgc78713e"&gt;Exercise 10.29&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc78713e"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argc&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11755,9 +11741,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5b986ea" class="outline-2"&gt;
-&lt;h2 id="org5b986ea"&gt;Exercise 10.30&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5b986ea"&gt;
+&lt;div id="outline-container-org6b7937c" class="outline-2"&gt;
+&lt;h2 id="org6b7937c"&gt;Exercise 10.30&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6b7937c"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;istream_iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;in_iter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cin&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;eof&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11771,9 +11757,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org40a2650" class="outline-2"&gt;
-&lt;h2 id="org40a2650"&gt;Exercise 10.31&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org40a2650"&gt;
+&lt;div id="outline-container-orgbf0dd17" class="outline-2"&gt;
+&lt;h2 id="orgbf0dd17"&gt;Exercise 10.31&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbf0dd17"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;istream_iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;in_iter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cin&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;eof&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -11787,9 +11773,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9849043" class="outline-2"&gt;
-&lt;h2 id="org9849043"&gt;Exercise 10.32&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9849043"&gt;
+&lt;div id="outline-container-orgf44d3d6" class="outline-2"&gt;
+&lt;h2 id="orgf44d3d6"&gt;Exercise 10.32&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf44d3d6"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// using find, program is really complex&lt;/span&gt;
 &lt;span class="c1"&gt;// easier and simpler if using find_if&lt;/span&gt;
 &lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="nf"&gt;compareIsbn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Sales_item&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Sales_item&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -11824,9 +11810,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4093322" class="outline-2"&gt;
-&lt;h2 id="org4093322"&gt;Exercise 10.33&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4093322"&gt;
+&lt;div id="outline-container-org77c5f5b" class="outline-2"&gt;
+&lt;h2 id="org77c5f5b"&gt;Exercise 10.33&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org77c5f5b"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;even_odd_f2f&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;inf&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;outf1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;outf2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;ifstream&lt;/span&gt; &lt;span class="n"&gt;ifs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inf&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
@@ -11849,9 +11835,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org02248a6" class="outline-2"&gt;
-&lt;h2 id="org02248a6"&gt;Exercise 10.34&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org02248a6"&gt;
+&lt;div id="outline-container-org286b5d7" class="outline-2"&gt;
+&lt;h2 id="org286b5d7"&gt;Exercise 10.34&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org286b5d7"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
@@ -11862,9 +11848,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf7f6ce2" class="outline-2"&gt;
-&lt;h2 id="orgf7f6ce2"&gt;Exercise 10.35&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf7f6ce2"&gt;
+&lt;div id="outline-container-orgeb29b7b" class="outline-2"&gt;
+&lt;h2 id="orgeb29b7b"&gt;Exercise 10.35&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgeb29b7b"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
@@ -11875,9 +11861,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8966610" class="outline-2"&gt;
-&lt;h2 id="org8966610"&gt;Exercise 10.36&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8966610"&gt;
+&lt;div id="outline-container-org3864b91" class="outline-2"&gt;
+&lt;h2 id="org3864b91"&gt;Exercise 10.36&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3864b91"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;list&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;li&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
@@ -11889,9 +11875,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgded81b4" class="outline-2"&gt;
-&lt;h2 id="orgded81b4"&gt;Exercise 10.37&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgded81b4"&gt;
+&lt;div id="outline-container-orgc0afc28" class="outline-2"&gt;
+&lt;h2 id="orgc0afc28"&gt;Exercise 10.37&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc0afc28"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;vi&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
@@ -11902,9 +11888,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org68ff168" class="outline-2"&gt;
-&lt;h2 id="org68ff168"&gt;Exercise 10.38&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org68ff168"&gt;
+&lt;div id="outline-container-org48de050" class="outline-2"&gt;
+&lt;h2 id="org48de050"&gt;Exercise 10.38&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org48de050"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// input iterator&lt;/span&gt;
 &lt;span class="c1"&gt;// support operators: ==, !=, ++(prefix and suffix), *(result as the right value of one assignment), -&amp;gt;(same as *iter.member), single pass scan.&lt;/span&gt;
 &lt;span class="c1"&gt;// output iterator&lt;/span&gt;
@@ -11919,18 +11905,18 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4916ea1" class="outline-2"&gt;
-&lt;h2 id="org4916ea1"&gt;Exercise 10.39&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4916ea1"&gt;
+&lt;div id="outline-container-orgce57208" class="outline-2"&gt;
+&lt;h2 id="orgce57208"&gt;Exercise 10.39&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgce57208"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// iterator of list type is bidirectional iterator&lt;/span&gt;
 &lt;span class="c1"&gt;// iterator of vector type is random-access iterator&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9c53c60" class="outline-2"&gt;
-&lt;h2 id="org9c53c60"&gt;Exercise 10.40&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9c53c60"&gt;
+&lt;div id="outline-container-orga9e571d" class="outline-2"&gt;
+&lt;h2 id="orga9e571d"&gt;Exercise 10.40&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga9e571d"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// algorighm copy reauires input iterators as the first two arguments, and output iterator as the third argument.&lt;/span&gt;
 &lt;span class="c1"&gt;// reverse requires bidirectional iterators as the first two arguments.&lt;/span&gt;
 &lt;span class="c1"&gt;// unique requires forward iterators as the first two arguments.&lt;/span&gt;
@@ -11938,9 +11924,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org834091a" class="outline-2"&gt;
-&lt;h2 id="org834091a"&gt;Exercise 10.41&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org834091a"&gt;
+&lt;div id="outline-container-org1793930" class="outline-2"&gt;
+&lt;h2 id="org1793930"&gt;Exercise 10.41&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1793930"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// replace(beg, end, old_val, new_val)&lt;/span&gt;
 &lt;span class="c1"&gt;// replaces old_val among elements spedified by [beg, end) with new_val&lt;/span&gt;
 &lt;span class="c1"&gt;// replace_if(beg, end, pred. new_val)&lt;/span&gt;
@@ -11953,9 +11939,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org61f469f" class="outline-2"&gt;
-&lt;h2 id="org61f469f"&gt;Exercise 10.42&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org61f469f"&gt;
+&lt;div id="outline-container-orgc4f36c6" class="outline-2"&gt;
+&lt;h2 id="orgc4f36c6"&gt;Exercise 10.42&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc4f36c6"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;elimDups&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
   &lt;span class="n"&gt;words&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
