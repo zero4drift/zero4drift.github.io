@@ -2,7 +2,7 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Cpp Primer 5th chapter-9 Exercises">
+<meta name="description" content="Cpp Primer 5th answers chapter-9 Exercises">
 <meta name="viewport" content="width=device-width">
 <title>Cpp-Primer-5th-Exercises-Chapter-9 | Procrastination Prescription</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
@@ -12,10 +12,11 @@
 <meta property="og:site_name" content="Procrastination Prescription">
 <meta property="og:title" content="Cpp-Primer-5th-Exercises-Chapter-9">
 <meta property="og:url" content="https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-9/">
-<meta property="og:description" content="Cpp Primer 5th chapter-9 Exercises">
+<meta property="og:description" content="Cpp Primer 5th answers chapter-9 Exercises">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-06-05T10:24:34+08:00">
 <meta property="article:tag" content="C++">
+<meta property="article:tag" content="cpp-primer">
 </head>
 <body>
     
@@ -68,6 +69,9 @@
 	    <div class="tag">
 	      <a href="../../categories/c%2B%2B/" rel="tag">C++</a>
 	    </div>
+	    <div class="tag">
+	      <a href="../../categories/cpp-primer/" rel="tag">cpp-primer</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -76,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgba272b8" class="outline-2">
-<h2 id="orgba272b8">Exercise 9.1</h2>
-<div class="outline-text-2" id="text-orgba272b8">
+        <div id="outline-container-org8cb3ff2" class="outline-2">
+<h2 id="org8cb3ff2">Exercise 9.1</h2>
+<div class="outline-text-2" id="text-org8cb3ff2">
 <div class="highlight"><pre><span></span><span class="c1">// (a): list</span>
 <span class="c1">// (b): deque</span>
 <span class="c1">// (c): vector (vector.sort())</span>
@@ -86,9 +90,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgb81c97f" class="outline-2">
-<h2 id="orgb81c97f">Exercise 9.2</h2>
-<div class="outline-text-2" id="text-orgb81c97f">
+<div id="outline-container-org199ec3b" class="outline-2">
+<h2 id="org199ec3b">Exercise 9.2</h2>
+<div class="outline-text-2" id="text-org199ec3b">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">sample</span><span class="p">;</span>
@@ -97,9 +101,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8f1a766" class="outline-2">
-<h2 id="org8f1a766">Exercise 9.3</h2>
-<div class="outline-text-2" id="text-org8f1a766">
+<div id="outline-container-orga0a233b" class="outline-2">
+<h2 id="orga0a233b">Exercise 9.3</h2>
+<div class="outline-text-2" id="text-orga0a233b">
 <div class="highlight"><pre><span></span><span class="c1">// iterators which make a iterator range must be:</span>
 <span class="c1">// 1. both point to one container's elements, or point to the off the end element of one container</span>
 <span class="c1">// 2. iterator begin could be repeated increase to reach end iterator, in another word, end iterator must not be in front of begin iterator.</span>
@@ -107,9 +111,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4a9fdc2" class="outline-2">
-<h2 id="org4a9fdc2">Exercise 9.4</h2>
-<div class="outline-text-2" id="text-org4a9fdc2">
+<div id="outline-container-org11687fd" class="outline-2">
+<h2 id="org11687fd">Exercise 9.4</h2>
+<div class="outline-text-2" id="text-org11687fd">
 <div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="nf">find_i</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">begin</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">while</span><span class="p">(</span><span class="n">begin</span> <span class="o">!=</span> <span class="n">end</span> <span class="o">&amp;&amp;</span> <span class="n">begin</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">)</span>
@@ -123,9 +127,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0b43e9e" class="outline-2">
-<h2 id="org0b43e9e">Exercise 9.5</h2>
-<div class="outline-text-2" id="text-org0b43e9e">
+<div id="outline-container-org80fac0e" class="outline-2">
+<h2 id="org80fac0e">Exercise 9.5</h2>
+<div class="outline-text-2" id="text-org80fac0e">
 <div class="highlight"><pre><span></span><span class="c1">// Chinese translation verseion of this exercise is ambiguous</span>
 <span class="c1">// Guess that function should return a iterator</span>
 <span class="k">using</span> <span class="n">vit</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="p">;</span>
@@ -142,9 +146,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd0e8f7a" class="outline-2">
-<h2 id="orgd0e8f7a">Exercise 9.6</h2>
-<div class="outline-text-2" id="text-orgd0e8f7a">
+<div id="outline-container-org65f9cdb" class="outline-2">
+<h2 id="org65f9cdb">Exercise 9.6</h2>
+<div class="outline-text-2" id="text-org65f9cdb">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">lst1</span><span class="p">;</span>
@@ -155,18 +159,18 @@
 </div>
 </div>
 
-<div id="outline-container-org12d9c45" class="outline-2">
-<h2 id="org12d9c45">Exercise 9.7</h2>
-<div class="outline-text-2" id="text-org12d9c45">
+<div id="outline-container-orgf94d6c0" class="outline-2">
+<h2 id="orgf94d6c0">Exercise 9.7</h2>
+<div class="outline-text-2" id="text-orgf94d6c0">
 <div class="highlight"><pre><span></span><span class="c1">// That exercise is confusing, define 'index'</span>
 <span class="c1">// vector&lt;int&gt;::size_type</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org3221b33" class="outline-2">
-<h2 id="org3221b33">Exercise 9.8</h2>
-<div class="outline-text-2" id="text-org3221b33">
+<div id="outline-container-org21fa0b6" class="outline-2">
+<h2 id="org21fa0b6">Exercise 9.8</h2>
+<div class="outline-text-2" id="text-org21fa0b6">
 <div class="highlight"><pre><span></span><span class="c1">// confused too</span>
 <span class="c1">// read: list&lt;string&gt;::const_reference(const_iterator)</span>
 <span class="c1">// write: list&lt;string&gt;::reference(iterator)</span>
@@ -174,18 +178,18 @@
 </div>
 </div>
 
-<div id="outline-container-orge4c4fa2" class="outline-2">
-<h2 id="orge4c4fa2">Exercise 9.9</h2>
-<div class="outline-text-2" id="text-orge4c4fa2">
+<div id="outline-container-org476e322" class="outline-2">
+<h2 id="org476e322">Exercise 9.9</h2>
+<div class="outline-text-2" id="text-org476e322">
 <div class="highlight"><pre><span></span><span class="c1">// begin(): returns a const_iterator or a iterator based on whether the calling iterator is const or not.</span>
 <span class="c1">// cbegin(): always returns a const_iterator.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org99a0543" class="outline-2">
-<h2 id="org99a0543">Exercise 9.10</h2>
-<div class="outline-text-2" id="text-org99a0543">
+<div id="outline-container-org6d88b24" class="outline-2">
+<h2 id="org6d88b24">Exercise 9.10</h2>
+<div class="outline-text-2" id="text-org6d88b24">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v1</span><span class="p">;</span>
@@ -197,9 +201,9 @@
 </div>
 </div>
 
-<div id="outline-container-org3840418" class="outline-2">
-<h2 id="org3840418">Exercise 9.11</h2>
-<div class="outline-text-2" id="text-org3840418">
+<div id="outline-container-org1d35989" class="outline-2">
+<h2 id="org1d35989">Exercise 9.11</h2>
+<div class="outline-text-2" id="text-org1d35989">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">iv1</span><span class="p">;</span>		<span class="c1">// empty</span>
@@ -213,9 +217,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgeb731d5" class="outline-2">
-<h2 id="orgeb731d5">Exercise 9.12</h2>
-<div class="outline-text-2" id="text-orgeb731d5">
+<div id="outline-container-orgd5ee116" class="outline-2">
+<h2 id="orgd5ee116">Exercise 9.12</h2>
+<div class="outline-text-2" id="text-orgd5ee116">
 <div class="highlight"><pre><span></span><span class="c1">// container which is copy initialized with another container:</span>
 <span class="c1">// type of container must match, type of element of container must match.</span>
 <span class="c1">// container which is directly initialized with two iterators:</span>
@@ -224,9 +228,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc3dae36" class="outline-2">
-<h2 id="orgc3dae36">Exercise 9.13</h2>
-<div class="outline-text-2" id="text-orgc3dae36">
+<div id="outline-container-org97495ce" class="outline-2">
+<h2 id="org97495ce">Exercise 9.13</h2>
+<div class="outline-text-2" id="text-org97495ce">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">lst_i</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
@@ -238,9 +242,9 @@
 </div>
 </div>
 
-<div id="outline-container-org24314f0" class="outline-2">
-<h2 id="org24314f0">Exercise 9.14</h2>
-<div class="outline-text-2" id="text-org24314f0">
+<div id="outline-container-org261127e" class="outline-2">
+<h2 id="org261127e">Exercise 9.14</h2>
+<div class="outline-text-2" id="text-org261127e">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">list</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*&gt;</span> <span class="n">lst_c</span> <span class="o">=</span> <span class="p">{</span><span class="s">"hello"</span><span class="p">,</span> <span class="s">"world"</span><span class="p">};</span>
@@ -251,9 +255,9 @@
 </div>
 </div>
 
-<div id="outline-container-org54738c1" class="outline-2">
-<h2 id="org54738c1">Exercise 9.15</h2>
-<div class="outline-text-2" id="text-org54738c1">
+<div id="outline-container-orgf75958d" class="outline-2">
+<h2 id="orgf75958d">Exercise 9.15</h2>
+<div class="outline-text-2" id="text-orgf75958d">
 <div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="nf">is_equal_iv</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">iv1</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">iv2</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">return</span> <span class="n">iv1</span> <span class="o">==</span> <span class="n">iv2</span><span class="p">;</span>
@@ -262,9 +266,9 @@
 </div>
 </div>
 
-<div id="outline-container-org7bbf429" class="outline-2">
-<h2 id="org7bbf429">Exercise 9.16</h2>
-<div class="outline-text-2" id="text-org7bbf429">
+<div id="outline-container-orgee82a9b" class="outline-2">
+<h2 id="orgee82a9b">Exercise 9.16</h2>
+<div class="outline-text-2" id="text-orgee82a9b">
 <div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="nf">is_equal_iv_il</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">iv</span><span class="p">,</span> <span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">il</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">iv2</span><span class="p">(</span><span class="n">il</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">il</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
@@ -274,9 +278,9 @@
 </div>
 </div>
 
-<div id="outline-container-orge569145" class="outline-2">
-<h2 id="orge569145">Exercise 9.17</h2>
-<div class="outline-text-2" id="text-orge569145">
+<div id="outline-container-org94d5d6f" class="outline-2">
+<h2 id="org94d5d6f">Exercise 9.17</h2>
+<div class="outline-text-2" id="text-org94d5d6f">
 <div class="highlight"><pre><span></span><span class="c1">// c1 and c2 are both containers</span>
 <span class="c1">// if(c1 &lt; c2)</span>
 <span class="c1">// 1. c1 and c2 must be same type, which means they have identical container type and element type.</span>
@@ -286,9 +290,9 @@
 </div>
 </div>
 
-<div id="outline-container-org7d0c75a" class="outline-2">
-<h2 id="org7d0c75a">Exercise 9.18</h2>
-<div class="outline-text-2" id="text-org7d0c75a">
+<div id="outline-container-org241a7fe" class="outline-2">
+<h2 id="org241a7fe">Exercise 9.18</h2>
+<div class="outline-text-2" id="text-org241a7fe">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">string</span> <span class="n">s</span><span class="p">;</span>
@@ -306,9 +310,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd9ceb11" class="outline-2">
-<h2 id="orgd9ceb11">Exercise 9.19</h2>
-<div class="outline-text-2" id="text-orgd9ceb11">
+<div id="outline-container-org5290820" class="outline-2">
+<h2 id="org5290820">Exercise 9.19</h2>
+<div class="outline-text-2" id="text-org5290820">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">string</span> <span class="n">s</span><span class="p">;</span>
@@ -326,9 +330,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4b226b4" class="outline-2">
-<h2 id="org4b226b4">Exercise 9.20</h2>
-<div class="outline-text-2" id="text-org4b226b4">
+<div id="outline-container-org62f47c7" class="outline-2">
+<h2 id="org62f47c7">Exercise 9.20</h2>
+<div class="outline-text-2" id="text-org62f47c7">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">li</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">};</span>
@@ -345,9 +349,9 @@
 </div>
 </div>
 
-<div id="outline-container-org016fdd6" class="outline-2">
-<h2 id="org016fdd6">Exercise 9.21</h2>
-<div class="outline-text-2" id="text-org016fdd6">
+<div id="outline-container-org7c4b952" class="outline-2">
+<h2 id="org7c4b952">Exercise 9.21</h2>
+<div class="outline-text-2" id="text-org7c4b952">
 <div class="highlight"><pre><span></span><span class="c1">// if insert element into vector type object</span>
 <span class="c1">// program works</span>
 <span class="c1">// but processing would be really slow, every time a element is inserted, the memory space of vector type object may be re-allocated.</span>
@@ -355,9 +359,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4189e05" class="outline-2">
-<h2 id="org4189e05">Exercise 9.22</h2>
-<div class="outline-text-2" id="text-org4189e05">
+<div id="outline-container-orgd8acab8" class="outline-2">
+<h2 id="orgd8acab8">Exercise 9.22</h2>
+<div class="outline-text-2" id="text-orgd8acab8">
 <div class="highlight"><pre><span></span><span class="c1">// Changing the size of vector type object may cause re-allocation of its memory space.</span>
 <span class="c1">// the iterator iter and mid in original program would be invalid when program processing</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
@@ -381,17 +385,17 @@
 </div>
 </div>
 
-<div id="outline-container-org271e387" class="outline-2">
-<h2 id="org271e387">Exercise 9.23</h2>
-<div class="outline-text-2" id="text-org271e387">
+<div id="outline-container-org035a94d" class="outline-2">
+<h2 id="org035a94d">Exercise 9.23</h2>
+<div class="outline-text-2" id="text-org035a94d">
 <div class="highlight"><pre><span></span><span class="c1">// va1, va2, va3 and va4 all equals to the first element of container c.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org0893c06" class="outline-2">
-<h2 id="org0893c06">Exercise 9.24</h2>
-<div class="outline-text-2" id="text-org0893c06">
+<div id="outline-container-org01310c6" class="outline-2">
+<h2 id="org01310c6">Exercise 9.24</h2>
+<div class="outline-text-2" id="text-org01310c6">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">iv</span><span class="p">;</span>
@@ -404,9 +408,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4508917" class="outline-2">
-<h2 id="org4508917">Exercise 9.25</h2>
-<div class="outline-text-2" id="text-org4508917">
+<div id="outline-container-org2343fd0" class="outline-2">
+<h2 id="org2343fd0">Exercise 9.25</h2>
+<div class="outline-text-2" id="text-org2343fd0">
 <div class="highlight"><pre><span></span><span class="c1">// c.erase(elem1, elem2)</span>
 <span class="c1">// if elem1 and elem2 ponits to same element, the iterator range is empty, so erase nothing, return this elem1(or elem2, no matter, identical)</span>
 <span class="c1">// if elem2 is a end off iterator, remove the one pointed by elem1 and till the last one, return elem2</span>
@@ -426,9 +430,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgeb09364" class="outline-2">
-<h2 id="orgeb09364">Exercise 9.26</h2>
-<div class="outline-text-2" id="text-orgeb09364">
+<div id="outline-container-org1822877" class="outline-2">
+<h2 id="org1822877">Exercise 9.26</h2>
+<div class="outline-text-2" id="text-org1822877">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">ia</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">89</span><span class="p">};</span>
@@ -462,9 +466,9 @@
 </div>
 </div>
 
-<div id="outline-container-org7b07729" class="outline-2">
-<h2 id="org7b07729">Exercise 9.27</h2>
-<div class="outline-text-2" id="text-org7b07729">
+<div id="outline-container-orgd1fc0b3" class="outline-2">
+<h2 id="orgd1fc0b3">Exercise 9.27</h2>
+<div class="outline-text-2" id="text-orgd1fc0b3">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">forward_list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">flst</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">};</span>
@@ -485,9 +489,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2aeab7b" class="outline-2">
-<h2 id="org2aeab7b">Exercise 9.28</h2>
-<div class="outline-text-2" id="text-org2aeab7b">
+<div id="outline-container-orge186499" class="outline-2">
+<h2 id="orge186499">Exercise 9.28</h2>
+<div class="outline-text-2" id="text-orge186499">
 <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">insert_ss</span><span class="p">(</span><span class="n">forward_list</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">flst</span><span class="p">,</span> <span class="n">string</span> <span class="n">s1</span><span class="p">,</span> <span class="n">string</span> <span class="n">s2</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">auto</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">flst</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
@@ -519,26 +523,26 @@
 </div>
 </div>
 
-<div id="outline-container-org4aa8dc9" class="outline-2">
-<h2 id="org4aa8dc9">Exercise 9.29</h2>
-<div class="outline-text-2" id="text-org4aa8dc9">
+<div id="outline-container-orge777699" class="outline-2">
+<h2 id="orge777699">Exercise 9.29</h2>
+<div class="outline-text-2" id="text-orge777699">
 <div class="highlight"><pre><span></span><span class="c1">// vec.resize(100) will extend vec to 100 elements, 75 elements value initialized and put in right side of the original 25.</span>
 <span class="c1">// vec.resize(10) will delete the tail 90 elements of this container.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org7a83adc" class="outline-2">
-<h2 id="org7a83adc">Exercise 9.30</h2>
-<div class="outline-text-2" id="text-org7a83adc">
+<div id="outline-container-org43474ed" class="outline-2">
+<h2 id="org43474ed">Exercise 9.30</h2>
+<div class="outline-text-2" id="text-org43474ed">
 <div class="highlight"><pre><span></span><span class="c1">// The one parameter version of resize requires that the element type must support value initialization, or it must has a default constructor if it is a class type.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org239a3bf" class="outline-2">
-<h2 id="org239a3bf">Exercise 9.31</h2>
-<div class="outline-text-2" id="text-org239a3bf">
+<div id="outline-container-org5651ef7" class="outline-2">
+<h2 id="org5651ef7">Exercise 9.31</h2>
+<div class="outline-text-2" id="text-org5651ef7">
 <div class="highlight"><pre><span></span><span class="c1">// list&lt;element_type&gt;::iterator and forward_list&lt;element_type&gt;::iterator do not support 'iter += n' operation for that list&lt;element_type&gt; object is not stored in sequence memory.</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -568,9 +572,9 @@
 </div>
 </div>
 
-<div id="outline-container-org37624c2" class="outline-2">
-<h2 id="org37624c2">Exercise 9.32</h2>
-<div class="outline-text-2" id="text-org37624c2">
+<div id="outline-container-org8791372" class="outline-2">
+<h2 id="org8791372">Exercise 9.32</h2>
+<div class="outline-text-2" id="text-org8791372">
 <div class="highlight"><pre><span></span><span class="c1">// iter = vi.insert(iter, *iter++);</span>
 <span class="c1">// illegal</span>
 <span class="c1">// for that the evaluation of arguments(initialization of parameters) of a function calling maybe not in order,</span>
@@ -579,9 +583,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4f62aee" class="outline-2">
-<h2 id="org4f62aee">Exercise 9.33</h2>
-<div class="outline-text-2" id="text-org4f62aee">
+<div id="outline-container-org86cefe5" class="outline-2">
+<h2 id="org86cefe5">Exercise 9.33</h2>
+<div class="outline-text-2" id="text-org86cefe5">
 <div class="highlight"><pre><span></span><span class="c1">// for vector, if do not assign the return value to begin, begin would be a invalid iterator, causes a run time error,</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -598,9 +602,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2f17e02" class="outline-2">
-<h2 id="org2f17e02">Exercise 9.34</h2>
-<div class="outline-text-2" id="text-org2f17e02">
+<div id="outline-container-orgbaabea3" class="outline-2">
+<h2 id="orgbaabea3">Exercise 9.34</h2>
+<div class="outline-text-2" id="text-orgbaabea3">
 <div class="highlight"><pre><span></span><span class="c1">// infinite loop, always insert a copy at the front of the fitst encountered odd number.</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -617,35 +621,35 @@
 </div>
 </div>
 
-<div id="outline-container-org08e6bd8" class="outline-2">
-<h2 id="org08e6bd8">Exercise 9.35</h2>
-<div class="outline-text-2" id="text-org08e6bd8">
+<div id="outline-container-org68c738b" class="outline-2">
+<h2 id="org68c738b">Exercise 9.35</h2>
+<div class="outline-text-2" id="text-org68c738b">
 <div class="highlight"><pre><span></span><span class="c1">// A vector's capacity means the number of elements it can hold whitout memory re-allocation</span>
 <span class="c1">// size means the number of elements the vector contains now.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org97eeaf1" class="outline-2">
-<h2 id="org97eeaf1">Exercise 9.36</h2>
-<div class="outline-text-2" id="text-org97eeaf1">
+<div id="outline-container-orgaf0236a" class="outline-2">
+<h2 id="orgaf0236a">Exercise 9.36</h2>
+<div class="outline-text-2" id="text-orgaf0236a">
 <div class="highlight"><pre><span></span><span class="c1">// Never.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgc9a5b60" class="outline-2">
-<h2 id="orgc9a5b60">Exercise 9.37</h2>
-<div class="outline-text-2" id="text-orgc9a5b60">
+<div id="outline-container-org46bf3f1" class="outline-2">
+<h2 id="org46bf3f1">Exercise 9.37</h2>
+<div class="outline-text-2" id="text-org46bf3f1">
 <div class="highlight"><pre><span></span><span class="c1">// For list is not stored in sequence memory, it does not need memory re-allocation when insert a new element.</span>
 <span class="c1">// And for array type capacity is unnecessary, because array's size is constant, add or delete element is forbidden, there is no memory re-allocation either, so size as member function is enough.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org7e3c9e8" class="outline-2">
-<h2 id="org7e3c9e8">Exercise 9.38</h2>
-<div class="outline-text-2" id="text-org7e3c9e8">
+<div id="outline-container-org89bda6e" class="outline-2">
+<h2 id="org89bda6e">Exercise 9.38</h2>
+<div class="outline-text-2" id="text-org89bda6e">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vi</span><span class="p">;</span>
@@ -669,18 +673,18 @@
 </div>
 </div>
 
-<div id="outline-container-org5f93048" class="outline-2">
-<h2 id="org5f93048">Exercise 9.39</h2>
-<div class="outline-text-2" id="text-org5f93048">
+<div id="outline-container-org4b9d7bc" class="outline-2">
+<h2 id="org4b9d7bc">Exercise 9.39</h2>
+<div class="outline-text-2" id="text-org4b9d7bc">
 <div class="highlight"><pre><span></span><span class="c1">// Only when 1.5*svec.size() &gt; svec.capacity() (1024) or words read in exceeds svec.capacity() there is a memory re-allocation for svec;</span>
 <span class="c1">// else just put new elements in the back of svec.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org7843b1e" class="outline-2">
-<h2 id="org7843b1e">Exercise 9.40</h2>
-<div class="outline-text-2" id="text-org7843b1e">
+<div id="outline-container-org876403a" class="outline-2">
+<h2 id="org876403a">Exercise 9.40</h2>
+<div class="outline-text-2" id="text-org876403a">
 <div class="highlight"><pre><span></span><span class="c1">// if read in 256 words: capacity 1024</span>
 <span class="c1">// 512 words: capacity 1024</span>
 <span class="c1">// 1000 words: capacity 2048</span>
@@ -689,9 +693,9 @@
 </div>
 </div>
 
-<div id="outline-container-orga64863d" class="outline-2">
-<h2 id="orga64863d">Exercise 9.41</h2>
-<div class="outline-text-2" id="text-orga64863d">
+<div id="outline-container-org203ea1e" class="outline-2">
+<h2 id="org203ea1e">Exercise 9.41</h2>
+<div class="outline-text-2" id="text-org203ea1e">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">vc</span> <span class="o">=</span> <span class="p">{</span><span class="sc">'h'</span><span class="p">,</span> <span class="sc">'e'</span><span class="p">,</span> <span class="sc">'l'</span><span class="p">,</span> <span class="sc">'l'</span><span class="p">,</span> <span class="sc">'o'</span><span class="p">};</span>
@@ -701,9 +705,9 @@
 </div>
 </div>
 
-<div id="outline-container-org48c624e" class="outline-2">
-<h2 id="org48c624e">Exercise 9.42</h2>
-<div class="outline-text-2" id="text-org48c624e">
+<div id="outline-container-org87f4194" class="outline-2">
+<h2 id="org87f4194">Exercise 9.42</h2>
+<div class="outline-text-2" id="text-org87f4194">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">string</span> <span class="n">s</span><span class="p">;</span>
@@ -716,9 +720,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgbf48a3f" class="outline-2">
-<h2 id="orgbf48a3f">Exercise 9.43</h2>
-<div class="outline-text-2" id="text-orgbf48a3f">
+<div id="outline-container-org02db36a" class="outline-2">
+<h2 id="org02db36a">Exercise 9.43</h2>
+<div class="outline-text-2" id="text-org02db36a">
 <div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">&amp;</span><span class="n">my_replace</span><span class="p">(</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="n">string</span> <span class="n">oldVal</span><span class="p">,</span> <span class="n">string</span> <span class="n">newVal</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">string</span><span class="o">::</span><span class="n">difference_type</span> <span class="n">len</span> <span class="o">=</span> <span class="n">oldVal</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
@@ -754,9 +758,9 @@
 </div>
 </div>
 
-<div id="outline-container-org861c60d" class="outline-2">
-<h2 id="org861c60d">Exercise 9.44</h2>
-<div class="outline-text-2" id="text-org861c60d">
+<div id="outline-container-org14ba818" class="outline-2">
+<h2 id="org14ba818">Exercise 9.44</h2>
+<div class="outline-text-2" id="text-org14ba818">
 <div class="highlight"><pre><span></span><span class="n">string</span> <span class="o">&amp;</span><span class="n">my_replace</span><span class="p">(</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">,</span> <span class="n">string</span> <span class="n">oldVal</span><span class="p">,</span> <span class="n">string</span> <span class="n">newVal</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">decltype</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">len</span> <span class="o">=</span> <span class="n">oldVal</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
@@ -789,9 +793,9 @@
 </div>
 </div>
 
-<div id="outline-container-org7ba0d62" class="outline-2">
-<h2 id="org7ba0d62">Exercise 9.45</h2>
-<div class="outline-text-2" id="text-org7ba0d62">
+<div id="outline-container-orga8c2930" class="outline-2">
+<h2 id="orga8c2930">Exercise 9.45</h2>
+<div class="outline-text-2" id="text-orga8c2930">
 <div class="highlight"><pre><span></span><span class="n">string</span> <span class="nf">complete_name</span><span class="p">(</span><span class="n">string</span> <span class="n">name</span><span class="p">,</span> <span class="n">string</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">string</span> <span class="n">suffix</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">auto</span> <span class="n">beg</span> <span class="o">=</span> <span class="n">name</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
@@ -811,9 +815,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2a697dc" class="outline-2">
-<h2 id="org2a697dc">Exercise 9.46</h2>
-<div class="outline-text-2" id="text-org2a697dc">
+<div id="outline-container-orgdacb89c" class="outline-2">
+<h2 id="orgdacb89c">Exercise 9.46</h2>
+<div class="outline-text-2" id="text-orgdacb89c">
 <div class="highlight"><pre><span></span><span class="n">string</span> <span class="nf">complete_name</span><span class="p">(</span><span class="n">string</span> <span class="n">name</span><span class="p">,</span> <span class="n">string</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">string</span> <span class="n">suffix</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">name</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">" "</span><span class="p">);</span>
@@ -832,9 +836,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd86a9ac" class="outline-2">
-<h2 id="orgd86a9ac">Exercise 9.47</h2>
-<div class="outline-text-2" id="text-orgd86a9ac">
+<div id="outline-container-org709dad6" class="outline-2">
+<h2 id="org709dad6">Exercise 9.47</h2>
+<div class="outline-text-2" id="text-org709dad6">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">string</span> <span class="n">s</span><span class="p">(</span><span class="s">"ab2c3d7R4E6"</span><span class="p">);</span>
@@ -873,17 +877,17 @@
 </div>
 </div>
 
-<div id="outline-container-org8a8cc29" class="outline-2">
-<h2 id="org8a8cc29">Exercise 9.48</h2>
-<div class="outline-text-2" id="text-org8a8cc29">
+<div id="outline-container-orgd9749b0" class="outline-2">
+<h2 id="orgd9749b0">Exercise 9.48</h2>
+<div class="outline-text-2" id="text-orgd9749b0">
 <div class="highlight"><pre><span></span><span class="c1">// string::npos</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgde91199" class="outline-2">
-<h2 id="orgde91199">Exercise 9.49</h2>
-<div class="outline-text-2" id="text-orgde91199">
+<div id="outline-container-org9073932" class="outline-2">
+<h2 id="org9073932">Exercise 9.49</h2>
+<div class="outline-text-2" id="text-org9073932">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span>
@@ -913,9 +917,9 @@
 </div>
 </div>
 
-<div id="outline-container-org92396d0" class="outline-2">
-<h2 id="org92396d0">Exercise 9.50</h2>
-<div class="outline-text-2" id="text-org92396d0">
+<div id="outline-container-orgeca086f" class="outline-2">
+<h2 id="orgeca086f">Exercise 9.50</h2>
+<div class="outline-text-2" id="text-orgeca086f">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">vsi</span> <span class="o">=</span> <span class="p">{</span><span class="s">"1"</span><span class="p">,</span> <span class="s">"2"</span><span class="p">,</span> <span class="s">"3"</span><span class="p">};</span>
@@ -933,9 +937,9 @@
 </div>
 </div>
 
-<div id="outline-container-org735ee46" class="outline-2">
-<h2 id="org735ee46">Exercise 9.51</h2>
-<div class="outline-text-2" id="text-org735ee46">
+<div id="outline-container-org0993f68" class="outline-2">
+<h2 id="org0993f68">Exercise 9.51</h2>
+<div class="outline-text-2" id="text-org0993f68">
 <div class="highlight"><pre><span></span><span class="kt">unsigned</span> <span class="nf">month_transform</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span><span class="p">);</span>
 <span class="k">struct</span> <span class="n">date</span>
 <span class="p">{</span>
@@ -1019,9 +1023,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5a217a2" class="outline-2">
-<h2 id="org5a217a2">Exercise 9.52</h2>
-<div class="outline-text-2" id="text-org5a217a2">
+<div id="outline-container-org4580151" class="outline-2">
+<h2 id="org4580151">Exercise 9.52</h2>
+<div class="outline-text-2" id="text-org4580151">
 <div class="highlight"><pre><span></span><span class="c1">// As much I can do here, if given some functions on transforming char to int and the reverse transform, it would exactly meet the requirement</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>

@@ -2,7 +2,7 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Cpp Primer 5th chapter-16 Exercises">
+<meta name="description" content="Cpp Primer 5th answers chapter-16 Exercises">
 <meta name="viewport" content="width=device-width">
 <title>Cpp-Primer-5th-Exercises-Chapter-16 | Procrastination Prescription</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
@@ -12,10 +12,11 @@
 <meta property="og:site_name" content="Procrastination Prescription">
 <meta property="og:title" content="Cpp-Primer-5th-Exercises-Chapter-16">
 <meta property="og:url" content="https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-16/">
-<meta property="og:description" content="Cpp Primer 5th chapter-16 Exercises">
+<meta property="og:description" content="Cpp Primer 5th answers chapter-16 Exercises">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-07-20T16:47:24+08:00">
 <meta property="article:tag" content="C++">
+<meta property="article:tag" content="cpp-primer">
 </head>
 <body>
     
@@ -68,6 +69,9 @@
 	    <div class="tag">
 	      <a href="../../categories/c%2B%2B/" rel="tag">C++</a>
 	    </div>
+	    <div class="tag">
+	      <a href="../../categories/cpp-primer/" rel="tag">cpp-primer</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -76,18 +80,18 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgbd1ea15" class="outline-2">
-<h2 id="orgbd1ea15">Exercise 16.1</h2>
-<div class="outline-text-2" id="text-orgbd1ea15">
+        <div id="outline-container-orgbe39843" class="outline-2">
+<h2 id="orgbe39843">Exercise 16.1</h2>
+<div class="outline-text-2" id="text-orgbe39843">
 <div class="highlight"><pre><span></span><span class="c1">// instantiate</span>
 <span class="c1">// generate a spedified version of function or class based on template and passed in template arguments.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org0f32cc7" class="outline-2">
-<h2 id="org0f32cc7">Exercise 16.2</h2>
-<div class="outline-text-2" id="text-org0f32cc7">
+<div id="outline-container-org65d7442" class="outline-2">
+<h2 id="org65d7442">Exercise 16.2</h2>
+<div class="outline-text-2" id="text-org65d7442">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="kt">int</span> <span class="n">compare</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">v1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">v2</span><span class="p">)</span>
 <span class="p">{</span>
@@ -107,17 +111,17 @@
 </div>
 </div>
 
-<div id="outline-container-org5161d19" class="outline-2">
-<h2 id="org5161d19">Exercise 16.3</h2>
-<div class="outline-text-2" id="text-org5161d19">
+<div id="outline-container-orgb0cc60e" class="outline-2">
+<h2 id="orgb0cc60e">Exercise 16.3</h2>
+<div class="outline-text-2" id="text-orgb0cc60e">
 <div class="highlight"><pre><span></span><span class="c1">// See 16.2.cpp</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org8c3efa7" class="outline-2">
-<h2 id="org8c3efa7">16.2.cpp</h2>
-<div class="outline-text-2" id="text-org8c3efa7">
+<div id="outline-container-org456de56" class="outline-2">
+<h2 id="org456de56">16.2.cpp</h2>
+<div class="outline-text-2" id="text-org456de56">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="kt">int</span> <span class="n">compare</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">v1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">v2</span><span class="p">)</span>
 <span class="p">{</span>
@@ -137,9 +141,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd63e175" class="outline-2">
-<h2 id="orgd63e175">Exercise 16.4</h2>
-<div class="outline-text-2" id="text-orgd63e175">
+<div id="outline-container-orgd22f4a0" class="outline-2">
+<h2 id="orgd22f4a0">Exercise 16.4</h2>
+<div class="outline-text-2" id="text-orgd22f4a0">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">It</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span>
 <span class="n">It</span> <span class="n">new_find</span><span class="p">(</span><span class="n">It</span> <span class="n">it1</span><span class="p">,</span> <span class="n">It</span> <span class="n">it2</span><span class="p">,</span> <span class="k">const</span> <span class="n">T2</span> <span class="o">&amp;</span><span class="n">var</span><span class="p">)</span>
 <span class="p">{</span>
@@ -162,9 +166,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5e0ce34" class="outline-2">
-<h2 id="org5e0ce34">Exercise 16.5</h2>
-<div class="outline-text-2" id="text-org5e0ce34">
+<div id="outline-container-org70612d1" class="outline-2">
+<h2 id="org70612d1">Exercise 16.5</h2>
+<div class="outline-text-2" id="text-org70612d1">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">N</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="k">const</span> <span class="n">T1</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">array</span><span class="p">)[</span><span class="n">N</span><span class="p">])</span>
 <span class="p">{</span>
@@ -180,9 +184,9 @@
 </div>
 </div>
 
-<div id="outline-container-orga817c30" class="outline-2">
-<h2 id="orga817c30">Exercise 16.6</h2>
-<div class="outline-text-2" id="text-orga817c30">
+<div id="outline-container-org1ac8660" class="outline-2">
+<h2 id="org1ac8660">Exercise 16.6</h2>
+<div class="outline-text-2" id="text-org1ac8660">
 <div class="highlight"><pre><span></span><span class="c1">// begin function which accepts an array argument returns the pointer points to the first element of array;</span>
 <span class="c1">// end function returns the pointer points to the tail off element of array.</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">N</span><span class="o">&gt;</span>
@@ -205,9 +209,9 @@
 </div>
 </div>
 
-<div id="outline-container-org861804a" class="outline-2">
-<h2 id="org861804a">Exercise 16.7</h2>
-<div class="outline-text-2" id="text-org861804a">
+<div id="outline-container-org628bfdd" class="outline-2">
+<h2 id="org628bfdd">Exercise 16.7</h2>
+<div class="outline-text-2" id="text-org628bfdd">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">N</span><span class="o">&gt;</span>
 <span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="n">number</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">array</span><span class="p">)[</span><span class="n">N</span><span class="p">])</span>
 <span class="p">{</span>
@@ -222,18 +226,18 @@
 </div>
 </div>
 
-<div id="outline-container-orge8bbc10" class="outline-2">
-<h2 id="orge8bbc10">Exercise 16.8</h2>
-<div class="outline-text-2" id="text-orge8bbc10">
+<div id="outline-container-org097451d" class="outline-2">
+<h2 id="org097451d">Exercise 16.8</h2>
+<div class="outline-text-2" id="text-org097451d">
 <div class="highlight"><pre><span></span><span class="c1">// Because overload '!=' operator is more widely implemented in C++ standard library class types than overload '&lt;' operator;</span>
 <span class="c1">// then when define a template which would compare two objects, code assumes that passed in arguments'type supports specified relationship operator, use '!=' operator is safer than '&lt;'.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orga59d668" class="outline-2">
-<h2 id="orga59d668">Exercise 16.9</h2>
-<div class="outline-text-2" id="text-orga59d668">
+<div id="outline-container-orgae33bf8" class="outline-2">
+<h2 id="orgae33bf8">Exercise 16.9</h2>
+<div class="outline-text-2" id="text-orgae33bf8">
 <div class="highlight"><pre><span></span><span class="c1">// function template</span>
 <span class="c1">// protype of function, could instantiate a specified version of function based on type and nontype arguments;</span>
 <span class="c1">// class template</span>
@@ -244,9 +248,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc58dccb" class="outline-2">
-<h2 id="orgc58dccb">Exercise 16.10</h2>
-<div class="outline-text-2" id="text-orgc58dccb">
+<div id="outline-container-org12f0b83" class="outline-2">
+<h2 id="org12f0b83">Exercise 16.10</h2>
+<div class="outline-text-2" id="text-org12f0b83">
 <div class="highlight"><pre><span></span><span class="c1">// When a class template is instantiated:</span>
 <span class="c1">// rewrite template, every instance of template type parameters would be replaced by given template type arguments, generate an individual class based on given template arguments;</span>
 <span class="c1">// member functions of class template would be instantiated until they are called in program.</span>
@@ -254,9 +258,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2c35f40" class="outline-2">
-<h2 id="org2c35f40">Exercise 16.11</h2>
-<div class="outline-text-2" id="text-org2c35f40">
+<div id="outline-container-orgef79d0f" class="outline-2">
+<h2 id="orgef79d0f">Exercise 16.11</h2>
+<div class="outline-text-2" id="text-orgef79d0f">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">elemType</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">ListItem</span><span class="p">;</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">elemType</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">List</span>
 <span class="p">{</span>
@@ -273,17 +277,17 @@
 </div>
 </div>
 
-<div id="outline-container-org0d86e52" class="outline-2">
-<h2 id="org0d86e52">Exercise 16.12</h2>
-<div class="outline-text-2" id="text-org0d86e52">
+<div id="outline-container-orgafad47e" class="outline-2">
+<h2 id="orgafad47e">Exercise 16.12</h2>
+<div class="outline-text-2" id="text-orgafad47e">
 <div class="highlight"><pre><span></span><span class="c1">// See Blob.h</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orga480e2d" class="outline-2">
-<h2 id="orga480e2d">Blob.h</h2>
-<div class="outline-text-2" id="text-orga480e2d">
+<div id="outline-container-org623e4f6" class="outline-2">
+<h2 id="org623e4f6">Blob.h</h2>
+<div class="outline-text-2" id="text-org623e4f6">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">BlobPtr</span><span class="p">;</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Blob</span>
 <span class="p">{</span>
@@ -409,30 +413,30 @@
 </div>
 </div>
 
-<div id="outline-container-orgbf24eda" class="outline-2">
-<h2 id="orgbf24eda">Exercise 16.13</h2>
-<div class="outline-text-2" id="text-orgbf24eda">
+<div id="outline-container-org3c88a80" class="outline-2">
+<h2 id="org3c88a80">Exercise 16.13</h2>
+<div class="outline-text-2" id="text-org3c88a80">
 <div class="highlight"><pre><span></span><span class="c1">// See Blob.h.</span>
 <span class="c1">// overload '==' operator function is a friend to BlobPtr class which is instantiated by the same type applied in the instantiation of this operator function.</span>
 </pre></div>
 
 <p>
-<a href="#orga480e2d">Blob.h</a>
+<a href="#org623e4f6">Blob.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3a3a36a" class="outline-2">
-<h2 id="org3a3a36a">Exercise 16.14</h2>
-<div class="outline-text-2" id="text-org3a3a36a">
+<div id="outline-container-org72a4749" class="outline-2">
+<h2 id="org72a4749">Exercise 16.14</h2>
+<div class="outline-text-2" id="text-org72a4749">
 <div class="highlight"><pre><span></span><span class="c1">// See Screen.h.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org78fff3b" class="outline-2">
-<h2 id="org78fff3b">Screen.h</h2>
-<div class="outline-text-2" id="text-org78fff3b">
+<div id="outline-container-org45f8a34" class="outline-2">
+<h2 id="org45f8a34">Screen.h</h2>
+<div class="outline-text-2" id="text-org45f8a34">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="kt">unsigned</span> <span class="n">L</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">W</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Screen</span><span class="p">;</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="kt">unsigned</span> <span class="n">L</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">W</span><span class="o">&gt;</span> <span class="n">ostream</span> <span class="o">&amp;</span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span> <span class="n">Screen</span><span class="o">&lt;</span><span class="n">L</span><span class="p">,</span> <span class="n">W</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">){</span>
   <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">"Length "</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span>
@@ -459,21 +463,21 @@
 </div>
 </div>
 
-<div id="outline-container-org5aa0298" class="outline-2">
-<h2 id="org5aa0298">Exercise 16.15</h2>
-<div class="outline-text-2" id="text-org5aa0298">
+<div id="outline-container-org3548e05" class="outline-2">
+<h2 id="org3548e05">Exercise 16.15</h2>
+<div class="outline-text-2" id="text-org3548e05">
 <div class="highlight"><pre><span></span><span class="c1">// See Screen.h.</span>
 </pre></div>
 
 <p>
-<a href="#org78fff3b">Screen.h</a>
+<a href="#org45f8a34">Screen.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5e85105" class="outline-2">
-<h2 id="org5e85105">Exercise 16.16</h2>
-<div class="outline-text-2" id="text-org5e85105">
+<div id="outline-container-org2cd7ebf" class="outline-2">
+<h2 id="org2cd7ebf">Exercise 16.16</h2>
+<div class="outline-text-2" id="text-org2cd7ebf">
 <div class="highlight"><pre><span></span><span class="c1">// See StrVec.h.</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -486,9 +490,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8a607f1" class="outline-2">
-<h2 id="org8a607f1">StrVec.h</h2>
-<div class="outline-text-2" id="text-org8a607f1">
+<div id="outline-container-org4dfd50d" class="outline-2">
+<h2 id="org4dfd50d">StrVec.h</h2>
+<div class="outline-text-2" id="text-org4dfd50d">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef STRVEC_H</span>
 <span class="cp">#define STRVEC_H</span>
 <span class="k">class</span> <span class="nc">StrVec</span>
@@ -532,18 +536,18 @@
 </div>
 </div>
 
-<div id="outline-container-org9e8fe8d" class="outline-2">
-<h2 id="org9e8fe8d">Exercise 16.17</h2>
-<div class="outline-text-2" id="text-org9e8fe8d">
+<div id="outline-container-orgd41cb3c" class="outline-2">
+<h2 id="orgd41cb3c">Exercise 16.17</h2>
+<div class="outline-text-2" id="text-orgd41cb3c">
 <div class="highlight"><pre><span></span><span class="c1">// There is no difference between keyword typename and class;</span>
 <span class="c1">// keyword typename would make template declaration and definition much straighter, for 'typename' could be referred as built-in type or class type, while 'class' is more likely regarded as class type.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org071689f" class="outline-2">
-<h2 id="org071689f">Exercise 16.18</h2>
-<div class="outline-text-2" id="text-org071689f">
+<div id="outline-container-org20a56aa" class="outline-2">
+<h2 id="org20a56aa">Exercise 16.18</h2>
+<div class="outline-text-2" id="text-org20a56aa">
 <div class="highlight"><pre><span></span><span class="c1">// (a)</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">U</span><span class="p">,</span> <span class="k">typename</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f1</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">);</span>
 <span class="c1">// (b)</span>
@@ -560,9 +564,9 @@
 </div>
 </div>
 
-<div id="outline-container-org36b9a86" class="outline-2">
-<h2 id="org36b9a86">Exercise 16.19</h2>
-<div class="outline-text-2" id="text-org36b9a86">
+<div id="outline-container-org0ac568c" class="outline-2">
+<h2 id="org0ac568c">Exercise 16.19</h2>
+<div class="outline-text-2" id="text-org0ac568c">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">ostream</span> <span class="o">&amp;</span><span class="n">print_container</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">for</span><span class="p">(</span><span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">size_type</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">c</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
@@ -578,9 +582,9 @@
 </div>
 </div>
 
-<div id="outline-container-orga7f5fab" class="outline-2">
-<h2 id="orga7f5fab">Exercise 16.20</h2>
-<div class="outline-text-2" id="text-orga7f5fab">
+<div id="outline-container-org1b6a870" class="outline-2">
+<h2 id="org1b6a870">Exercise 16.20</h2>
+<div class="outline-text-2" id="text-org1b6a870">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">ostream</span> <span class="o">&amp;</span><span class="n">print_container</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">for</span><span class="p">(</span><span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">const_iterator</span> <span class="n">beg</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">beg</span> <span class="o">!=</span> <span class="n">c</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">beg</span><span class="p">)</span>
@@ -596,17 +600,17 @@
 </div>
 </div>
 
-<div id="outline-container-org90b5d51" class="outline-2">
-<h2 id="org90b5d51">Exercise 16.21</h2>
-<div class="outline-text-2" id="text-org90b5d51">
+<div id="outline-container-org80eb6f1" class="outline-2">
+<h2 id="org80eb6f1">Exercise 16.21</h2>
+<div class="outline-text-2" id="text-org80eb6f1">
 <div class="highlight"><pre><span></span><span class="c1">// See DebugDelete.h.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgb1bbeea" class="outline-2">
-<h2 id="orgb1bbeea">DebugDelete.h</h2>
-<div class="outline-text-2" id="text-orgb1bbeea">
+<div id="outline-container-org1da8561" class="outline-2">
+<h2 id="org1da8561">DebugDelete.h</h2>
+<div class="outline-text-2" id="text-org1da8561">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DebugDelete</span>
 <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>
@@ -620,17 +624,17 @@
 </div>
 </div>
 
-<div id="outline-container-orgc6c30af" class="outline-2">
-<h2 id="orgc6c30af">Exercise 16.22</h2>
-<div class="outline-text-2" id="text-orgc6c30af">
+<div id="outline-container-org2cdded6" class="outline-2">
+<h2 id="org2cdded6">Exercise 16.22</h2>
+<div class="outline-text-2" id="text-org2cdded6">
 <div class="highlight"><pre><span></span><span class="c1">// See TextQuery.h.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org0e2cde1" class="outline-2">
-<h2 id="org0e2cde1">TextQuery.h</h2>
-<div class="outline-text-2" id="text-org0e2cde1">
+<div id="outline-container-org5148a76" class="outline-2">
+<h2 id="org5148a76">TextQuery.h</h2>
+<div class="outline-text-2" id="text-org5148a76">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef TEXTQUERY_H</span>
 <span class="cp">#define TEXTQUERY_H</span>
 <span class="k">class</span> <span class="nc">QueryResult</span><span class="p">;</span>
@@ -710,39 +714,39 @@
 </div>
 </div>
 
-<div id="outline-container-org1839b50" class="outline-2">
-<h2 id="org1839b50">Exercise 16.23</h2>
-<div class="outline-text-2" id="text-org1839b50">
+<div id="outline-container-orgfbd5ca3" class="outline-2">
+<h2 id="orgfbd5ca3">Exercise 16.23</h2>
+<div class="outline-text-2" id="text-orgfbd5ca3">
 <div class="highlight"><pre><span></span><span class="c1">// When the use count of shared_ptr object decreases to 0, operator() member function of DebugDelete class type object would be called to release the resource allocated in dynamic memory.</span>
 <span class="c1">// Like, when the query program reaches to the end of function runQueries and returns.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org01a6769" class="outline-2">
-<h2 id="org01a6769">Exercise 16.24</h2>
-<div class="outline-text-2" id="text-org01a6769">
+<div id="outline-container-orgb87bb19" class="outline-2">
+<h2 id="orgb87bb19">Exercise 16.24</h2>
+<div class="outline-text-2" id="text-orgb87bb19">
 <div class="highlight"><pre><span></span><span class="c1">// See Blob.h.</span>
 </pre></div>
 
 <p>
-<a href="#orga480e2d">Blob.h</a>
+<a href="#org623e4f6">Blob.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8f1619e" class="outline-2">
-<h2 id="org8f1619e">Exercise 16.25</h2>
-<div class="outline-text-2" id="text-org8f1619e">
+<div id="outline-container-orgffc0f13" class="outline-2">
+<h2 id="orgffc0f13">Exercise 16.25</h2>
+<div class="outline-text-2" id="text-orgffc0f13">
 <div class="highlight"><pre><span></span><span class="k">extern</span> <span class="k">template</span> <span class="k">class</span> <span class="nc">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// instantiation declaration, the definition of it is somewhere else</span>
 <span class="k">template</span> <span class="k">class</span> <span class="nc">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Sales_data</span><span class="o">&gt;</span><span class="p">;</span>		<span class="c1">// instantiation definition, the compiler will generate code fot it. </span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgdb52b6f" class="outline-2">
-<h2 id="orgdb52b6f">Exercise 16.26</h2>
-<div class="outline-text-2" id="text-orgdb52b6f">
+<div id="outline-container-org43488a7" class="outline-2">
+<h2 id="org43488a7">Exercise 16.26</h2>
+<div class="outline-text-2" id="text-org43488a7">
 <div class="highlight"><pre><span></span><span class="c1">// No;</span>
 <span class="c1">// explicit instantiation of 'template &lt;typename T&gt; vector&lt;T&gt;' would instantiates every member of this class;</span>
 <span class="c1">// for some constructors of class vector&lt;T&gt; would call class T's default constructor, this requiers that type T owns a default constructor;</span>
@@ -752,9 +756,9 @@
 </div>
 </div>
 
-<div id="outline-container-org1be545f" class="outline-2">
-<h2 id="org1be545f">Exercise 16.27</h2>
-<div class="outline-text-2" id="text-org1be545f">
+<div id="outline-container-orgde2b4c9" class="outline-2">
+<h2 id="orgde2b4c9">Exercise 16.27</h2>
+<div class="outline-text-2" id="text-orgde2b4c9">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Stack</span> <span class="p">{};</span>
 <span class="kt">void</span> <span class="nf">f1</span><span class="p">(</span><span class="n">Stack</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">);</span>		<span class="c1">// instantiation of Stack&lt;char&gt;, statement as 'Stack&lt;char&gt;' first appearance</span>
 <span class="k">class</span> <span class="nc">Exercise</span>
@@ -772,9 +776,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2fdbc74" class="outline-2">
-<h2 id="org2fdbc74">Exercise 16.28</h2>
-<div class="outline-text-2" id="text-org2fdbc74">
+<div id="outline-container-orgf2fc377" class="outline-2">
+<h2 id="orgf2fc377">Exercise 16.28</h2>
+<div class="outline-text-2" id="text-orgf2fc377">
 <div class="highlight"><pre><span></span><span class="c1">// See My_shared_ptr.h and My_unique_ptr.h.</span>
 <span class="kt">void</span> <span class="nf">runQueries</span><span class="p">(</span><span class="n">ifstream</span> <span class="o">&amp;</span><span class="n">infile</span><span class="p">)</span>
 <span class="p">{</span>
@@ -797,9 +801,9 @@
 </div>
 </div>
 
-<div id="outline-container-org64fbdeb" class="outline-2">
-<h2 id="org64fbdeb">My_shared_ptr.h</h2>
-<div class="outline-text-2" id="text-org64fbdeb">
+<div id="outline-container-org69151ac" class="outline-2">
+<h2 id="org69151ac">My_shared_ptr.h</h2>
+<div class="outline-text-2" id="text-org69151ac">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef MY_SHARED_PTR_H</span>
 <span class="cp">#define MY_SHARED_PTR_H</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">My_shared_ptr</span>
@@ -873,9 +877,9 @@
 </div>
 </div>
 
-<div id="outline-container-org39b8d5d" class="outline-2">
-<h2 id="org39b8d5d">My_unique_ptr.h</h2>
-<div class="outline-text-2" id="text-org39b8d5d">
+<div id="outline-container-org55a3feb" class="outline-2">
+<h2 id="org55a3feb">My_unique_ptr.h</h2>
+<div class="outline-text-2" id="text-org55a3feb">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef MY_UNIQUE_PTR_H</span>
 <span class="cp">#define MY_UNIQUE_PTR_H</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Delete</span>
@@ -907,21 +911,21 @@
 </div>
 </div>
 
-<div id="outline-container-orge687b0f" class="outline-2">
-<h2 id="orge687b0f">Exercise 16.29</h2>
-<div class="outline-text-2" id="text-orge687b0f">
+<div id="outline-container-org1c752d7" class="outline-2">
+<h2 id="org1c752d7">Exercise 16.29</h2>
+<div class="outline-text-2" id="text-org1c752d7">
 <div class="highlight"><pre><span></span><span class="c1">// See Blob.h.</span>
 </pre></div>
 
 <p>
-<a href="#orga480e2d">Blob.h</a>
+<a href="#org623e4f6">Blob.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6aa3c9f" class="outline-2">
-<h2 id="org6aa3c9f">Exercise 16.30</h2>
-<div class="outline-text-2" id="text-org6aa3c9f">
+<div id="outline-container-orgedd2e6d" class="outline-2">
+<h2 id="orgedd2e6d">Exercise 16.30</h2>
+<div class="outline-text-2" id="text-orgedd2e6d">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">Blob</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">};</span>
@@ -933,9 +937,9 @@
 </div>
 </div>
 
-<div id="outline-container-orga4cea17" class="outline-2">
-<h2 id="orga4cea17">Exercise 16.31</h2>
-<div class="outline-text-2" id="text-orga4cea17">
+<div id="outline-container-org772c80a" class="outline-2">
+<h2 id="org772c80a">Exercise 16.31</h2>
+<div class="outline-text-2" id="text-org772c80a">
 <div class="highlight"><pre><span></span><span class="c1">// As described in My_unique_ptr.h;</span>
 <span class="c1">// if given a statement like this: My_unique_ptr&lt;int, DebugDelete&gt;</span>
 <span class="c1">// code of destructor: ~My_unique_ptr() {del(p);}</span>
@@ -949,9 +953,9 @@
 </div>
 </div>
 
-<div id="outline-container-org52cf477" class="outline-2">
-<h2 id="org52cf477">Exercise 16.32</h2>
-<div class="outline-text-2" id="text-org52cf477">
+<div id="outline-container-org3659a47" class="outline-2">
+<h2 id="org3659a47">Exercise 16.32</h2>
+<div class="outline-text-2" id="text-org3659a47">
 <div class="highlight"><pre><span></span><span class="c1">// During template argument deduction:</span>
 <span class="c1">// as for function template, compiler deduces the template argument from the passed in function arguments, instantiates a version of the function best matches the given call;</span>
 <span class="c1">// if one function paramenter uses template type parameter, only const conversion and array-pointer &amp; function-pointer conversion could be applied to corresponding passed in arguments;</span>
@@ -960,18 +964,18 @@
 </div>
 </div>
 
-<div id="outline-container-org4a69960" class="outline-2">
-<h2 id="org4a69960">Exercise 16.33</h2>
-<div class="outline-text-2" id="text-org4a69960">
+<div id="outline-container-orgda5b972" class="outline-2">
+<h2 id="orgda5b972">Exercise 16.33</h2>
+<div class="outline-text-2" id="text-orgda5b972">
 <div class="highlight"><pre><span></span><span class="c1">// 1. const conversion</span>
 <span class="c1">// 2. if the function parmeter is not a reference type, array argument converted to pointer which points to the its first element; function argument converted to pointer which points to this function.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org0d069b7" class="outline-2">
-<h2 id="org0d069b7">Exercise 16.34</h2>
-<div class="outline-text-2" id="text-org0d069b7">
+<div id="outline-container-org6f5667d" class="outline-2">
+<h2 id="org6f5667d">Exercise 16.34</h2>
+<div class="outline-text-2" id="text-org6f5667d">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="kt">int</span> <span class="n">compare</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="p">);</span>
 <span class="c1">// a. compare("hi", "world");</span>
 <span class="c1">// illegal;</span>
@@ -987,9 +991,9 @@
 </div>
 </div>
 
-<div id="outline-container-org098eaa7" class="outline-2">
-<h2 id="org098eaa7">Exercise 16.35</h2>
-<div class="outline-text-2" id="text-org098eaa7">
+<div id="outline-container-orge227705" class="outline-2">
+<h2 id="orge227705">Exercise 16.35</h2>
+<div class="outline-text-2" id="text-orge227705">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">calc</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">fcn</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">);</span>
 <span class="kt">double</span> <span class="n">d</span><span class="p">;</span> <span class="kt">float</span> <span class="n">f</span><span class="p">;</span> <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
@@ -1005,9 +1009,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgcf3a037" class="outline-2">
-<h2 id="orgcf3a037">Exercise 16.36</h2>
-<div class="outline-text-2" id="text-orgcf3a037">
+<div id="outline-container-orgef8daa2" class="outline-2">
+<h2 id="orgef8daa2">Exercise 16.36</h2>
+<div class="outline-text-2" id="text-orgef8daa2">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f1</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">);</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f2</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span> <span class="n">T2</span><span class="p">);</span>
 <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">j</span><span class="p">;</span>
@@ -1029,9 +1033,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgacc5a26" class="outline-2">
-<h2 id="orgacc5a26">Exercise 16.37</h2>
-<div class="outline-text-2" id="text-orgacc5a26">
+<div id="outline-container-orga08596c" class="outline-2">
+<h2 id="orga08596c">Exercise 16.37</h2>
+<div class="outline-text-2" id="text-orga08596c">
 <div class="highlight"><pre><span></span><span class="c1">// legal;</span>
 <span class="c1">// just offer an explicit template argument;</span>
 <span class="c1">// int a = 1;</span>
@@ -1041,9 +1045,9 @@
 </div>
 </div>
 
-<div id="outline-container-org86d62db" class="outline-2">
-<h2 id="org86d62db">Exercise 16.38</h2>
-<div class="outline-text-2" id="text-org86d62db">
+<div id="outline-container-orgc31794c" class="outline-2">
+<h2 id="orgc31794c">Exercise 16.38</h2>
+<div class="outline-text-2" id="text-orgc31794c">
 <div class="highlight"><pre><span></span><span class="c1">// function template instance make_shared&lt;T&gt; accepts function arguments which could be passed in to type T's corresponding constructor to initialize a T type object allocated in dynamic memory;</span>
 <span class="c1">// and compiler could not deduce T from function arguments of call of make_shared without specify any explicit template type argument;</span>
 <span class="c1">// then a call like make_shared(args) is illegal.</span>
@@ -1051,9 +1055,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc6101a6" class="outline-2">
-<h2 id="orgc6101a6">Exercise 16.39</h2>
-<div class="outline-text-2" id="text-orgc6101a6">
+<div id="outline-container-orgf80a65f" class="outline-2">
+<h2 id="orgf80a65f">Exercise 16.39</h2>
+<div class="outline-text-2" id="text-orgf80a65f">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="kt">int</span> <span class="n">compare</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">v1</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">v2</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1069,9 +1073,9 @@
 </div>
 </div>
 
-<div id="outline-container-org7748054" class="outline-2">
-<h2 id="org7748054">Exercise 16.40</h2>
-<div class="outline-text-2" id="text-org7748054">
+<div id="outline-container-orgd9ccd61" class="outline-2">
+<h2 id="orgd9ccd61">Exercise 16.40</h2>
+<div class="outline-text-2" id="text-orgd9ccd61">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">It</span><span class="o">&gt;</span>
 <span class="k">auto</span> <span class="n">fcn3</span><span class="p">(</span><span class="n">It</span> <span class="n">beg</span><span class="p">,</span> <span class="n">It</span> <span class="n">end</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">decltype</span><span class="p">(</span><span class="o">*</span><span class="n">beg</span> <span class="o">+</span> <span class="mi">0</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1085,9 +1089,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgba7ee92" class="outline-2">
-<h2 id="orgba7ee92">Exercise 16.41</h2>
-<div class="outline-text-2" id="text-orgba7ee92">
+<div id="outline-container-orgf148c86" class="outline-2">
+<h2 id="orgf148c86">Exercise 16.41</h2>
+<div class="outline-text-2" id="text-orgf148c86">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="k">auto</span> <span class="n">sum</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">b</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">decltype</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1102,9 +1106,9 @@
 </div>
 </div>
 
-<div id="outline-container-org6ccaa29" class="outline-2">
-<h2 id="org6ccaa29">Exercise 16.42</h2>
-<div class="outline-text-2" id="text-org6ccaa29">
+<div id="outline-container-org81738b5" class="outline-2">
+<h2 id="org81738b5">Exercise 16.42</h2>
+<div class="outline-text-2" id="text-org81738b5">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">g</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;&amp;</span> <span class="n">val</span><span class="p">);</span>
 <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">ci</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
 <span class="c1">// a. g(i);</span>
@@ -1120,9 +1124,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgec9fa8d" class="outline-2">
-<h2 id="orgec9fa8d">Exercise 16.43</h2>
-<div class="outline-text-2" id="text-orgec9fa8d">
+<div id="outline-container-orgc1c993d" class="outline-2">
+<h2 id="orgc1c993d">Exercise 16.43</h2>
+<div class="outline-text-2" id="text-orgc1c993d">
 <div class="highlight"><pre><span></span><span class="c1">// template defined in 16.42.cpp</span>
 <span class="c1">// g(i = ci)</span>
 <span class="c1">// T: int&amp;</span>
@@ -1130,9 +1134,9 @@
 </div>
 </div>
 
-<div id="outline-container-orge208c56" class="outline-2">
-<h2 id="orge208c56">Exercise 16.44</h2>
-<div class="outline-text-2" id="text-orge208c56">
+<div id="outline-container-org9b3b043" class="outline-2">
+<h2 id="org9b3b043">Exercise 16.44</h2>
+<div class="outline-text-2" id="text-org9b3b043">
 <div class="highlight"><pre><span></span><span class="c1">// template &lt;typename T&gt; void g(T val);</span>
 <span class="c1">// int i = 0; const int ci = i;</span>
 <span class="c1">// a. g(i);</span>
@@ -1154,9 +1158,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgea2e400" class="outline-2">
-<h2 id="orgea2e400">Exercise 16.45</h2>
-<div class="outline-text-2" id="text-orgea2e400">
+<div id="outline-container-orgcd7dc5c" class="outline-2">
+<h2 id="orgcd7dc5c">Exercise 16.45</h2>
+<div class="outline-text-2" id="text-orgcd7dc5c">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">g</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;&amp;</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;}</span>
 <span class="c1">// call g with a literal constant of 42;</span>
 <span class="c1">// T: int</span>
@@ -1170,9 +1174,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgb4eef77" class="outline-2">
-<h2 id="orgb4eef77">Exercise 16.46</h2>
-<div class="outline-text-2" id="text-orgb4eef77">
+<div id="outline-container-org73d9933" class="outline-2">
+<h2 id="org73d9933">Exercise 16.46</h2>
+<div class="outline-text-2" id="text-org73d9933">
 <div class="highlight"><pre><span></span><span class="c1">////////////////////////////////////////////////////</span>
 <span class="c1">// for(size_t i = 0; i != size(); ++i)		  //</span>
 <span class="c1">//   alloc.construct(dest++, std::move(*elem++)); //</span>
@@ -1183,9 +1187,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5e3a08c" class="outline-2">
-<h2 id="org5e3a08c">Exercise 16.47</h2>
-<div class="outline-text-2" id="text-org5e3a08c">
+<div id="outline-container-org21aac22" class="outline-2">
+<h2 id="org21aac22">Exercise 16.47</h2>
+<div class="outline-text-2" id="text-org21aac22">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">F</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">flip</span><span class="p">(</span><span class="n">F</span> <span class="n">f</span><span class="p">,</span> <span class="n">T1</span> <span class="o">&amp;&amp;</span><span class="n">t1</span><span class="p">,</span> <span class="n">T2</span> <span class="o">&amp;&amp;</span><span class="n">t2</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1209,9 +1213,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0cddf26" class="outline-2">
-<h2 id="org0cddf26">Exercise 16.48</h2>
-<div class="outline-text-2" id="text-org0cddf26">
+<div id="outline-container-orgb7fca88" class="outline-2">
+<h2 id="orgb7fca88">Exercise 16.48</h2>
+<div class="outline-text-2" id="text-orgb7fca88">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">string</span> <span class="n">debug_rep</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">ostringstream</span> <span class="n">ret</span><span class="p">;</span>
@@ -1242,9 +1246,9 @@
 </div>
 </div>
 
-<div id="outline-container-org88cb3ac" class="outline-2">
-<h2 id="org88cb3ac">Exercise 16.49</h2>
-<div class="outline-text-2" id="text-org88cb3ac">
+<div id="outline-container-orgf6833f2" class="outline-2">
+<h2 id="orgf6833f2">Exercise 16.49</h2>
+<div class="outline-text-2" id="text-orgf6833f2">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">*</span><span class="p">);</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">g</span><span class="p">(</span><span class="n">T</span><span class="p">);</span>
@@ -1271,9 +1275,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8f82598" class="outline-2">
-<h2 id="org8f82598">Exercise 16.50</h2>
-<div class="outline-text-2" id="text-org8f82598">
+<div id="outline-container-orgc9ef8dd" class="outline-2">
+<h2 id="orgc9ef8dd">Exercise 16.50</h2>
+<div class="outline-text-2" id="text-orgc9ef8dd">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"f(T)"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
@@ -1307,9 +1311,9 @@
 </div>
 </div>
 
-<div id="outline-container-org042206e" class="outline-2">
-<h2 id="org042206e">Exercise 16.51</h2>
-<div class="outline-text-2" id="text-org042206e">
+<div id="outline-container-org8fd8c32" class="outline-2">
+<h2 id="org8fd8c32">Exercise 16.51</h2>
+<div class="outline-text-2" id="text-org8fd8c32">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">foo</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">,</span> <span class="k">const</span> <span class="n">Args</span><span class="o">&amp;</span><span class="p">...</span> <span class="n">rest</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1330,17 +1334,17 @@
 </div>
 </div>
 
-<div id="outline-container-org858fc59" class="outline-2">
-<h2 id="org858fc59">Exercise 16.52</h2>
-<div class="outline-text-2" id="text-org858fc59">
+<div id="outline-container-org2098408" class="outline-2">
+<h2 id="org2098408">Exercise 16.52</h2>
+<div class="outline-text-2" id="text-org2098408">
 <div class="highlight"><pre><span></span><span class="c1">// See 16.51.cpp.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org7054ca9" class="outline-2">
-<h2 id="org7054ca9">16.51.cpp</h2>
-<div class="outline-text-2" id="text-org7054ca9">
+<div id="outline-container-org24f8aad" class="outline-2">
+<h2 id="org24f8aad">16.51.cpp</h2>
+<div class="outline-text-2" id="text-org24f8aad">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
 <span class="kt">void</span> <span class="n">foo</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">,</span> <span class="k">const</span> <span class="n">Args</span><span class="o">&amp;</span><span class="p">...</span> <span class="n">rest</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1361,9 +1365,9 @@
 </div>
 </div>
 
-<div id="outline-container-org40a9e5d" class="outline-2">
-<h2 id="org40a9e5d">Exercise 16.53</h2>
-<div class="outline-text-2" id="text-org40a9e5d">
+<div id="outline-container-org58902bf" class="outline-2">
+<h2 id="org58902bf">Exercise 16.53</h2>
+<div class="outline-text-2" id="text-org58902bf">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="n">ostream</span> <span class="o">&amp;</span><span class="n">print</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1385,17 +1389,17 @@
 </div>
 </div>
 
-<div id="outline-container-orge34ee72" class="outline-2">
-<h2 id="orge34ee72">Exercise 16.54</h2>
-<div class="outline-text-2" id="text-orge34ee72">
+<div id="outline-container-org65d6a63" class="outline-2">
+<h2 id="org65d6a63">Exercise 16.54</h2>
+<div class="outline-text-2" id="text-org65d6a63">
 <div class="highlight"><pre><span></span><span class="c1">// compile error.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org8289e24" class="outline-2">
-<h2 id="org8289e24">Exercise 16.55</h2>
-<div class="outline-text-2" id="text-org8289e24">
+<div id="outline-container-orgcaa117b" class="outline-2">
+<h2 id="orgcaa117b">Exercise 16.55</h2>
+<div class="outline-text-2" id="text-orgcaa117b">
 <div class="highlight"><pre><span></span><span class="c1">// At last, within the call of print(os, rest...) the function parameter packet contains no function parameter;</span>
 <span class="c1">// the this call equals to the form as print(os);</span>
 <span class="c1">// there is no match overload version of print in the scope;</span>
@@ -1404,9 +1408,9 @@
 </div>
 </div>
 
-<div id="outline-container-org88967b2" class="outline-2">
-<h2 id="org88967b2">Exercise 16.56</h2>
-<div class="outline-text-2" id="text-org88967b2">
+<div id="outline-container-orgb5f567d" class="outline-2">
+<h2 id="orgb5f567d">Exercise 16.56</h2>
+<div class="outline-text-2" id="text-orgb5f567d">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="n">ostream</span> <span class="o">&amp;</span><span class="n">print</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1457,9 +1461,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgea8cfad" class="outline-2">
-<h2 id="orgea8cfad">Exercise 16.57</h2>
-<div class="outline-text-2" id="text-orgea8cfad">
+<div id="outline-container-orgf451789" class="outline-2">
+<h2 id="orgf451789">Exercise 16.57</h2>
+<div class="outline-text-2" id="text-orgf451789">
 <div class="highlight"><pre><span></span><span class="c1">// errorMsg version defined in section 16.4.2</span>
 <span class="c1">// advantage: arbitrary type(supports '&lt;&lt;' operator), better flexibility;</span>
 <span class="c1">// disadvantage: more complicated code;</span>
@@ -1470,21 +1474,21 @@
 </div>
 </div>
 
-<div id="outline-container-org62ae345" class="outline-2">
-<h2 id="org62ae345">Exercise 16.58</h2>
-<div class="outline-text-2" id="text-org62ae345">
+<div id="outline-container-orgaeab32b" class="outline-2">
+<h2 id="orgaeab32b">Exercise 16.58</h2>
+<div class="outline-text-2" id="text-orgaeab32b">
 <div class="highlight"><pre><span></span><span class="c1">// See StrVec.h and Vec.h.</span>
 </pre></div>
 
 <p>
-<a href="#org8a607f1">StrVec.h</a>
+<a href="#org4dfd50d">StrVec.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9f2fa8c" class="outline-2">
-<h2 id="org9f2fa8c">Vec.h</h2>
-<div class="outline-text-2" id="text-org9f2fa8c">
+<div id="outline-container-org2b55f83" class="outline-2">
+<h2 id="org2b55f83">Vec.h</h2>
+<div class="outline-text-2" id="text-org2b55f83">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef VEC_H</span>
 <span class="cp">#define VEC_H</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">Vec</span><span class="p">;</span>
@@ -1676,9 +1680,9 @@
 </div>
 </div>
 
-<div id="outline-container-org440b79e" class="outline-2">
-<h2 id="org440b79e">Exercise 16.59</h2>
-<div class="outline-text-2" id="text-org440b79e">
+<div id="outline-container-org2935375" class="outline-2">
+<h2 id="org2935375">Exercise 16.59</h2>
+<div class="outline-text-2" id="text-org2935375">
 <div class="highlight"><pre><span></span><span class="c1">// string s;</span>
 <span class="c1">// svec.emplace_back(s);</span>
 <span class="c1">// for s is lvalue;</span>
@@ -1687,9 +1691,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd2783d8" class="outline-2">
-<h2 id="orgd2783d8">Exercise 16.60</h2>
-<div class="outline-text-2" id="text-orgd2783d8">
+<div id="outline-container-org0949fac" class="outline-2">
+<h2 id="org0949fac">Exercise 16.60</h2>
+<div class="outline-text-2" id="text-org0949fac">
 <div class="highlight"><pre><span></span><span class="c1">// function make_shared behaves almost like emplace_back illustrated in section 16.4.3;</span>
 <span class="c1">// make_shared should be a variadic template function that forwards all arguments to underlying constructors that allocate and initializes an object in dynamic memroy and build a shared_ptr by wrapping the raw pointer.</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
@@ -1701,17 +1705,17 @@
 </div>
 </div>
 
-<div id="outline-container-org2a99047" class="outline-2">
-<h2 id="org2a99047">Exercise 16.61</h2>
-<div class="outline-text-2" id="text-org2a99047">
+<div id="outline-container-org2dc11e1" class="outline-2">
+<h2 id="org2dc11e1">Exercise 16.61</h2>
+<div class="outline-text-2" id="text-org2dc11e1">
 <div class="highlight"><pre><span></span><span class="c1">// See function template my_make_shared in 16.60.cpp.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org821374f" class="outline-2">
-<h2 id="org821374f">16.60.cpp</h2>
-<div class="outline-text-2" id="text-org821374f">
+<div id="outline-container-orga23b28e" class="outline-2">
+<h2 id="orga23b28e">16.60.cpp</h2>
+<div class="outline-text-2" id="text-orga23b28e">
 <div class="highlight"><pre><span></span><span class="c1">// function make_shared behaves almost like emplace_back illustrated in section 16.4.3;</span>
 <span class="c1">// make_shared should be a variadic template function that forwards all arguments to underlying constructors that allocate and initializes an object in dynamic memroy and build a shared_ptr by wrapping the raw pointer.</span>
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
@@ -1723,9 +1727,9 @@
 </div>
 </div>
 
-<div id="outline-container-org7db5183" class="outline-2">
-<h2 id="org7db5183">Exercise 16.62</h2>
-<div class="outline-text-2" id="text-org7db5183">
+<div id="outline-container-org09d0e5d" class="outline-2">
+<h2 id="org09d0e5d">Exercise 16.62</h2>
+<div class="outline-text-2" id="text-org09d0e5d">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">unordered_multiset</span><span class="o">&lt;</span><span class="n">Sales_data</span><span class="o">&gt;</span> <span class="n">ums</span><span class="p">;</span>
@@ -1738,9 +1742,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0de18ee" class="outline-2">
-<h2 id="org0de18ee">Exercise 16.63</h2>
-<div class="outline-text-2" id="text-org0de18ee">
+<div id="outline-container-orgec2a1d8" class="outline-2">
+<h2 id="orgec2a1d8">Exercise 16.63</h2>
+<div class="outline-text-2" id="text-orgec2a1d8">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="kt">size_t</span> <span class="n">count_in_vector</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">vt</span><span class="p">,</span> <span class="n">T</span> <span class="n">i</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1773,17 +1777,17 @@
 </div>
 </div>
 
-<div id="outline-container-orgcc44a47" class="outline-2">
-<h2 id="orgcc44a47">Exercise 16.64</h2>
-<div class="outline-text-2" id="text-orgcc44a47">
+<div id="outline-container-org0e6696b" class="outline-2">
+<h2 id="org0e6696b">Exercise 16.64</h2>
+<div class="outline-text-2" id="text-org0e6696b">
 <div class="highlight"><pre><span></span><span class="c1">// See 16.63.cpp.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org3074920" class="outline-2">
-<h2 id="org3074920">16.63.cpp</h2>
-<div class="outline-text-2" id="text-org3074920">
+<div id="outline-container-orgd2a4f4f" class="outline-2">
+<h2 id="orgd2a4f4f">16.63.cpp</h2>
+<div class="outline-text-2" id="text-orgd2a4f4f">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
 <span class="kt">size_t</span> <span class="n">count_in_vector</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">vt</span><span class="p">,</span> <span class="n">T</span> <span class="n">i</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1816,9 +1820,9 @@
 </div>
 </div>
 
-<div id="outline-container-org96bc297" class="outline-2">
-<h2 id="org96bc297">Exercise 16.65</h2>
-<div class="outline-text-2" id="text-org96bc297">
+<div id="outline-container-orge07d084" class="outline-2">
+<h2 id="orge07d084">Exercise 16.65</h2>
+<div class="outline-text-2" id="text-orge07d084">
 <div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">string</span> <span class="n">debug_rep</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">ostringstream</span> <span class="n">ret</span><span class="p">;</span>
@@ -1851,9 +1855,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgeaf4f4c" class="outline-2">
-<h2 id="orgeaf4f4c">Exercise 16.66</h2>
-<div class="outline-text-2" id="text-orgeaf4f4c">
+<div id="outline-container-org967d1ce" class="outline-2">
+<h2 id="org967d1ce">Exercise 16.66</h2>
+<div class="outline-text-2" id="text-org967d1ce">
 <div class="highlight"><pre><span></span><span class="c1">// overload version of debub_rep function:</span>
 <span class="c1">// advantage:</span>
 <span class="c1">// disadvantage: overloading changes the function match.</span>
@@ -1861,9 +1865,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgea2624e" class="outline-2">
-<h2 id="orgea2624e">Exercise 16.67</h2>
-<div class="outline-text-2" id="text-orgea2624e">
+<div id="outline-container-org6941c22" class="outline-2">
+<h2 id="org6941c22">Exercise 16.67</h2>
+<div class="outline-text-2" id="text-org6941c22">
 <div class="highlight"><pre><span></span><span class="c1">// Template specilization would not influence the mathch process of function;</span>
 <span class="c1">// for that template specilization is a instance of a template, not an overload of it.</span>
 </pre></div>

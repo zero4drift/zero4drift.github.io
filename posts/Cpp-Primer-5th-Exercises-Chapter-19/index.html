@@ -2,7 +2,7 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Cpp Primer 5th chapter-19 Exercises">
+<meta name="description" content="Cpp Primer 5th answers chapter-19 Exercises">
 <meta name="viewport" content="width=device-width">
 <title>Cpp-Primer-5th-Exercises-Chapter-19 | Procrastination Prescription</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
@@ -12,10 +12,11 @@
 <meta property="og:site_name" content="Procrastination Prescription">
 <meta property="og:title" content="Cpp-Primer-5th-Exercises-Chapter-19">
 <meta property="og:url" content="https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-19/">
-<meta property="og:description" content="Cpp Primer 5th chapter-19 Exercises">
+<meta property="og:description" content="Cpp Primer 5th answers chapter-19 Exercises">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-08-09T17:01:34+08:00">
 <meta property="article:tag" content="C++">
+<meta property="article:tag" content="cpp-primer">
 </head>
 <body>
     
@@ -68,6 +69,9 @@
 	    <div class="tag">
 	      <a href="../../categories/c%2B%2B/" rel="tag">C++</a>
 	    </div>
+	    <div class="tag">
+	      <a href="../../categories/cpp-primer/" rel="tag">cpp-primer</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -76,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org52a9d16" class="outline-2">
-<h2 id="org52a9d16">Exercise 19.1</h2>
-<div class="outline-text-2" id="text-org52a9d16">
+        <div id="outline-container-org764789b" class="outline-2">
+<h2 id="org764789b">Exercise 19.1</h2>
+<div class="outline-text-2" id="text-org764789b">
 <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="o">*</span><span class="k">operator</span> <span class="nf">new</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">mem</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
@@ -91,9 +95,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8adcb8d" class="outline-2">
-<h2 id="org8adcb8d">Exercise 19.2</h2>
-<div class="outline-text-2" id="text-org8adcb8d">
+<div id="outline-container-orgc6bd8b4" class="outline-2">
+<h2 id="orgc6bd8b4">Exercise 19.2</h2>
+<div class="outline-text-2" id="text-orgc6bd8b4">
 <div class="highlight"><pre><span></span><span class="c1">// See StrVec.h and StrVec.cpp.</span>
 <span class="kt">void</span> <span class="o">*</span><span class="k">operator</span> <span class="nf">new</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
 <span class="p">{</span>
@@ -116,9 +120,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd624260" class="outline-2">
-<h2 id="orgd624260">StrVec.cpp</h2>
-<div class="outline-text-2" id="text-orgd624260">
+<div id="outline-container-orgfecc7c5" class="outline-2">
+<h2 id="orgfecc7c5">StrVec.cpp</h2>
+<div class="outline-text-2" id="text-orgfecc7c5">
 <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">StrVec</span><span class="o">::</span><span class="n">push_back</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">chk_n_alloc</span><span class="p">();</span>
@@ -260,9 +264,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgef2f313" class="outline-2">
-<h2 id="orgef2f313">StrVec.h</h2>
-<div class="outline-text-2" id="text-orgef2f313">
+<div id="outline-container-org27a1436" class="outline-2">
+<h2 id="org27a1436">StrVec.h</h2>
+<div class="outline-text-2" id="text-org27a1436">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef STRVEC_H</span>
 <span class="cp">#define STRVEC_H</span>
 <span class="k">class</span> <span class="nc">StrVec</span>
@@ -305,9 +309,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgac06025" class="outline-2">
-<h2 id="orgac06025">Exercise 19.3</h2>
-<div class="outline-text-2" id="text-orgac06025">
+<div id="outline-container-org85935e1" class="outline-2">
+<h2 id="org85935e1">Exercise 19.3</h2>
+<div class="outline-text-2" id="text-org85935e1">
 <div class="highlight"><pre><span></span><span class="c1">// class A { /* ... */ }</span>
 <span class="c1">// class B: public A { /* ... */ }</span>
 <span class="c1">// class C: public B { /* ... */ }</span>
@@ -329,9 +333,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd059222" class="outline-2">
-<h2 id="orgd059222">Exercise 19.4</h2>
-<div class="outline-text-2" id="text-orgd059222">
+<div id="outline-container-orgc6ece95" class="outline-2">
+<h2 id="orgc6ece95">Exercise 19.4</h2>
+<div class="outline-text-2" id="text-orgc6ece95">
 <div class="highlight"><pre><span></span><span class="c1">////////////////////////////////////////</span>
 <span class="c1">// try				      //</span>
 <span class="c1">//   {				      //</span>
@@ -347,17 +351,17 @@
 </div>
 </div>
 
-<div id="outline-container-org6229bed" class="outline-2">
-<h2 id="org6229bed">Exercise 19.5</h2>
-<div class="outline-text-2" id="text-org6229bed">
+<div id="outline-container-org0beae0a" class="outline-2">
+<h2 id="org0beae0a">Exercise 19.5</h2>
+<div class="outline-text-2" id="text-org0beae0a">
 <div class="highlight"><pre><span></span><span class="c1">// When want to use dynamic type object's non-virtual members.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org56d3943" class="outline-2">
-<h2 id="org56d3943">Exercise 19.6</h2>
-<div class="outline-text-2" id="text-org56d3943">
+<div id="outline-container-orgf00b42a" class="outline-2">
+<h2 id="orgf00b42a">Exercise 19.6</h2>
+<div class="outline-text-2" id="text-orgf00b42a">
 <div class="highlight"><pre><span></span><span class="c1">// Exercise should indicate that there is need to modify the header file contains class Query_base and AndQuery.</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -376,9 +380,9 @@
 </div>
 </div>
 
-<div id="outline-container-org3574ac5" class="outline-2">
-<h2 id="org3574ac5">Exercise 19.7</h2>
-<div class="outline-text-2" id="text-org3574ac5">
+<div id="outline-container-org229f506" class="outline-2">
+<h2 id="org229f506">Exercise 19.7</h2>
+<div class="outline-text-2" id="text-org229f506">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">AndQuery</span> <span class="n">aq</span> <span class="o">=</span> <span class="n">AndQuery</span><span class="p">(</span><span class="n">Query</span><span class="p">(</span><span class="s">"hello"</span><span class="p">),</span> <span class="n">Query</span><span class="p">(</span><span class="s">"world"</span><span class="p">));</span> 
@@ -411,9 +415,9 @@
 </div>
 </div>
 
-<div id="outline-container-org929a6a4" class="outline-2">
-<h2 id="org929a6a4">Exercise 19.8</h2>
-<div class="outline-text-2" id="text-org929a6a4">
+<div id="outline-container-org83f9675" class="outline-2">
+<h2 id="org83f9675">Exercise 19.8</h2>
+<div class="outline-text-2" id="text-org83f9675">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">AndQuery</span> <span class="n">aq</span> <span class="o">=</span> <span class="n">AndQuery</span><span class="p">(</span><span class="n">Query</span><span class="p">(</span><span class="s">"hello"</span><span class="p">),</span> <span class="n">Query</span><span class="p">(</span><span class="s">"world"</span><span class="p">));</span> 
@@ -429,9 +433,9 @@
 </div>
 </div>
 
-<div id="outline-container-orge6de860" class="outline-2">
-<h2 id="orge6de860">Exercise 19.9</h2>
-<div class="outline-text-2" id="text-orge6de860">
+<div id="outline-container-org952e363" class="outline-2">
+<h2 id="org952e363">Exercise 19.9</h2>
+<div class="outline-text-2" id="text-org952e363">
 <div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Base</span> <span class="p">{</span><span class="k">virtual</span> <span class="o">~</span><span class="n">Base</span><span class="p">()</span> <span class="p">{}};</span>
 <span class="k">struct</span> <span class="nl">Derived</span><span class="p">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{};</span>
 <span class="n">string</span> <span class="nf">name_transfer</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">)</span>
@@ -464,9 +468,9 @@
 </div>
 </div>
 
-<div id="outline-container-org04064e4" class="outline-2">
-<h2 id="org04064e4">Exercise 19.10</h2>
-<div class="outline-text-2" id="text-org04064e4">
+<div id="outline-container-orgeaaa1a7" class="outline-2">
+<h2 id="orgeaaa1a7">Exercise 19.10</h2>
+<div class="outline-text-2" id="text-orgeaaa1a7">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -489,18 +493,18 @@
 </div>
 </div>
 
-<div id="outline-container-org38e001d" class="outline-2">
-<h2 id="org38e001d">Exercise 19.11</h2>
-<div class="outline-text-2" id="text-org38e001d">
+<div id="outline-container-org75fdc1c" class="outline-2">
+<h2 id="org75fdc1c">Exercise 19.11</h2>
+<div class="outline-text-2" id="text-org75fdc1c">
 <div class="highlight"><pre><span></span><span class="c1">// pointer points to data member contains information of the class type the member belongs to;</span>
 <span class="c1">// and the form of declaration, definition, initialization and usage of that kind of pointer are different from normal pointer.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org55ae0cd" class="outline-2">
-<h2 id="org55ae0cd">Exercise 19.12</h2>
-<div class="outline-text-2" id="text-org55ae0cd">
+<div id="outline-container-org355622d" class="outline-2">
+<h2 id="org355622d">Exercise 19.12</h2>
+<div class="outline-text-2" id="text-org355622d">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">Screen</span> <span class="n">s</span><span class="p">;</span>
@@ -513,9 +517,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgdc24eec" class="outline-2">
-<h2 id="orgdc24eec">Exercise 19.13</h2>
-<div class="outline-text-2" id="text-orgdc24eec">
+<div id="outline-container-orgc983bde" class="outline-2">
+<h2 id="orgc983bde">Exercise 19.13</h2>
+<div class="outline-text-2" id="text-orgc983bde">
 <div class="highlight"><pre><span></span><span class="c1">// See a friend class BookNoPtr of class Sales_data in Sales_data.h.</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -527,9 +531,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgef651e1" class="outline-2">
-<h2 id="orgef651e1">Sales_data.h</h2>
-<div class="outline-text-2" id="text-orgef651e1">
+<div id="outline-container-org2ffeaef" class="outline-2">
+<h2 id="org2ffeaef">Sales_data.h</h2>
+<div class="outline-text-2" id="text-org2ffeaef">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef SALES_DATA_H</span>
 <span class="cp">#define SALES_DATA_H</span>
 <span class="k">struct</span> <span class="n">Sales_data</span><span class="p">;</span>
@@ -585,9 +589,9 @@
 </div>
 </div>
 
-<div id="outline-container-org76ba4d3" class="outline-2">
-<h2 id="org76ba4d3">Exercise 19.14</h2>
-<div class="outline-text-2" id="text-org76ba4d3">
+<div id="outline-container-orga9f1bc2" class="outline-2">
+<h2 id="orga9f1bc2">Exercise 19.14</h2>
+<div class="outline-text-2" id="text-orga9f1bc2">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="c1">// legal;</span>
@@ -600,9 +604,9 @@
 </div>
 </div>
 
-<div id="outline-container-org079f681" class="outline-2">
-<h2 id="org079f681">Exercise 19.15</h2>
-<div class="outline-text-2" id="text-org079f681">
+<div id="outline-container-org292a184" class="outline-2">
+<h2 id="org292a184">Exercise 19.15</h2>
+<div class="outline-text-2" id="text-org292a184">
 <div class="highlight"><pre><span></span><span class="c1">// pointer points to member function contains information of the class type the member belongs to;</span>
 <span class="c1">// and the form of declaration, definition, initialization and usage of that kind of pointer are different from normal pointer;</span>
 <span class="c1">// member function would not be implicitly transformmed to the pointer points to it.</span>
@@ -610,9 +614,9 @@
 </div>
 </div>
 
-<div id="outline-container-org057c4cc" class="outline-2">
-<h2 id="org057c4cc">Exercise 19.16</h2>
-<div class="outline-text-2" id="text-org057c4cc">
+<div id="outline-container-org9098b8b" class="outline-2">
+<h2 id="org9098b8b">Exercise 19.16</h2>
+<div class="outline-text-2" id="text-org9098b8b">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="k">using</span> <span class="n">ap</span> <span class="o">=</span> <span class="kt">double</span> <span class="p">(</span><span class="n">Sales_data</span><span class="o">::*</span><span class="p">)()</span> <span class="k">const</span><span class="p">;</span>
@@ -621,9 +625,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgfbc7054" class="outline-2">
-<h2 id="orgfbc7054">Exercise 19.17</h2>
-<div class="outline-text-2" id="text-orgfbc7054">
+<div id="outline-container-org127e529" class="outline-2">
+<h2 id="org127e529">Exercise 19.17</h2>
+<div class="outline-text-2" id="text-org127e529">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="k">using</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">string</span> <span class="p">(</span><span class="n">Sales_data</span><span class="o">::*</span><span class="p">)()</span> <span class="k">const</span><span class="p">;</span>
@@ -635,9 +639,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8e633c7" class="outline-2">
-<h2 id="org8e633c7">Exercise 19.18</h2>
-<div class="outline-text-2" id="text-org8e633c7">
+<div id="outline-container-org397d325" class="outline-2">
+<h2 id="org397d325">Exercise 19.18</h2>
+<div class="outline-text-2" id="text-org397d325">
 <div class="highlight"><pre><span></span><span class="kt">size_t</span> <span class="nf">count_empty</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">vs</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="n">function</span><span class="o">&lt;</span><span class="kt">bool</span> <span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">fcn</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">string</span><span class="o">::</span><span class="n">empty</span><span class="p">;</span>
@@ -652,9 +656,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd973956" class="outline-2">
-<h2 id="orgd973956">Exercise 19.19</h2>
-<div class="outline-text-2" id="text-orgd973956">
+<div id="outline-container-orgc797d17" class="outline-2">
+<h2 id="orgc797d17">Exercise 19.19</h2>
+<div class="outline-text-2" id="text-orgc797d17">
 <div class="highlight"><pre><span></span><span class="k">const</span> <span class="n">Sales_data</span> <span class="o">&amp;</span><span class="n">find_ge_price</span><span class="p">(</span><span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">Sales_data</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">vs</span><span class="p">,</span> <span class="kt">double</span> <span class="n">price</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="n">mem_fn</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Sales_data</span><span class="o">::</span><span class="n">avg_price</span><span class="p">);</span>
@@ -672,9 +676,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgdd7580b" class="outline-2">
-<h2 id="orgdd7580b">Exercise 19.20</h2>
-<div class="outline-text-2" id="text-orgdd7580b">
+<div id="outline-container-orgb5c23b7" class="outline-2">
+<h2 id="orgb5c23b7">Exercise 19.20</h2>
+<div class="outline-text-2" id="text-orgb5c23b7">
 <div class="highlight"><pre><span></span><span class="c1">// See TextQuery.h.</span>
 <span class="kt">void</span> <span class="nf">runQueries</span><span class="p">(</span><span class="n">ifstream</span> <span class="o">&amp;</span><span class="n">infile</span><span class="p">)</span>
 <span class="p">{</span>
@@ -696,9 +700,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5993126" class="outline-2">
-<h2 id="org5993126">TextQuery.h</h2>
-<div class="outline-text-2" id="text-org5993126">
+<div id="outline-container-orgd147047" class="outline-2">
+<h2 id="orgd147047">TextQuery.h</h2>
+<div class="outline-text-2" id="text-orgd147047">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef TEXTQUERY_H</span>
 <span class="cp">#define TEXTQUERY_H</span>
 <span class="k">class</span> <span class="nc">TextQuery</span>
@@ -794,17 +798,17 @@
 </div>
 </div>
 
-<div id="outline-container-org910bf2d" class="outline-2">
-<h2 id="org910bf2d">Exercise 19.21</h2>
-<div class="outline-text-2" id="text-org910bf2d">
+<div id="outline-container-orgbf86cb4" class="outline-2">
+<h2 id="orgbf86cb4">Exercise 19.21</h2>
+<div class="outline-text-2" id="text-orgbf86cb4">
 <div class="highlight"><pre><span></span><span class="c1">// See Token.h.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgc1c181d" class="outline-2">
-<h2 id="orgc1c181d">Token.h</h2>
-<div class="outline-text-2" id="text-orgc1c181d">
+<div id="outline-container-org02ff272" class="outline-2">
+<h2 id="org02ff272">Token.h</h2>
+<div class="outline-text-2" id="text-org02ff272">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef TOKEN_H</span>
 <span class="cp">#define TOKEN_H</span>
 <span class="k">class</span> <span class="nc">Token</span>
@@ -961,33 +965,33 @@
 </div>
 </div>
 
-<div id="outline-container-org5c476ae" class="outline-2">
-<h2 id="org5c476ae">Exercise 19.22</h2>
-<div class="outline-text-2" id="text-org5c476ae">
+<div id="outline-container-org868cc56" class="outline-2">
+<h2 id="org868cc56">Exercise 19.22</h2>
+<div class="outline-text-2" id="text-org868cc56">
 <div class="highlight"><pre><span></span><span class="c1">// See Token.h.</span>
 </pre></div>
 
 <p>
-<a href="#orgc1c181d">Token.h</a>
+<a href="#org02ff272">Token.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga24065d" class="outline-2">
-<h2 id="orga24065d">Exercise 19.23</h2>
-<div class="outline-text-2" id="text-orga24065d">
+<div id="outline-container-org09fea59" class="outline-2">
+<h2 id="org09fea59">Exercise 19.23</h2>
+<div class="outline-text-2" id="text-org09fea59">
 <div class="highlight"><pre><span></span><span class="c1">// See Token.h.</span>
 </pre></div>
 
 <p>
-<a href="#orgc1c181d">Token.h</a>
+<a href="#org02ff272">Token.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org64ae5ce" class="outline-2">
-<h2 id="org64ae5ce">Exercise 19.24</h2>
-<div class="outline-text-2" id="text-org64ae5ce">
+<div id="outline-container-org7317a8a" class="outline-2">
+<h2 id="org7317a8a">Exercise 19.24</h2>
+<div class="outline-text-2" id="text-org7317a8a">
 <div class="highlight"><pre><span></span><span class="c1">// For self assignment of Token type object, since the data member tok is exactly the same;</span>
 <span class="c1">// for copy assignment, follow the way which is illustrated in text book;</span>
 <span class="c1">// there is no call of constructor or destructor of string class type and Sales_data class type, for any member of union the correspond assignment operation would do the job;</span>
@@ -997,21 +1001,21 @@
 </div>
 </div>
 
-<div id="outline-container-org61e7103" class="outline-2">
-<h2 id="org61e7103">Exercise 19.25</h2>
-<div class="outline-text-2" id="text-org61e7103">
+<div id="outline-container-org1a0c11c" class="outline-2">
+<h2 id="org1a0c11c">Exercise 19.25</h2>
+<div class="outline-text-2" id="text-org1a0c11c">
 <div class="highlight"><pre><span></span><span class="c1">// see Token.h.</span>
 </pre></div>
 
 <p>
-<a href="#orgc1c181d">Token.h</a>
+<a href="#org02ff272">Token.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org50eab61" class="outline-2">
-<h2 id="org50eab61">Exercise 19.26</h2>
-<div class="outline-text-2" id="text-org50eab61">
+<div id="outline-container-org7212c43" class="outline-2">
+<h2 id="org7212c43">Exercise 19.26</h2>
+<div class="outline-text-2" id="text-org7212c43">
 <div class="highlight"><pre><span></span><span class="k">extern</span> <span class="s">"C"</span> <span class="kt">int</span> <span class="n">compute</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span> <span class="c1">// declares a C function which accpets two parateters of int * and int type, then its return value is int type;</span>
 <span class="k">extern</span> <span class="s">"C"</span> <span class="kt">double</span> <span class="n">compute</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span><span class="p">,</span> <span class="kt">double</span><span class="p">);</span> <span class="c1">// declares a C function which accpets two parateters of double * and double type, then its return value is double type;</span>
 <span class="c1">// illegal, due to C programming language does not support overload functions.</span>

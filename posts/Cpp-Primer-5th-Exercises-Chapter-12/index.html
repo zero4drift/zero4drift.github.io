@@ -2,7 +2,7 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Cpp Primer 5th chapter-12 Exercises">
+<meta name="description" content="Cpp Primer 5th answers chapter-12 Exercises">
 <meta name="viewport" content="width=device-width">
 <title>Cpp-Primer-5th-Exercises-Chapter-12 | Procrastination Prescription</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
@@ -12,10 +12,11 @@
 <meta property="og:site_name" content="Procrastination Prescription">
 <meta property="og:title" content="Cpp-Primer-5th-Exercises-Chapter-12">
 <meta property="og:url" content="https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-12/">
-<meta property="og:description" content="Cpp Primer 5th chapter-12 Exercises">
+<meta property="og:description" content="Cpp Primer 5th answers chapter-12 Exercises">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-06-14T10:24:34+08:00">
 <meta property="article:tag" content="C++">
+<meta property="article:tag" content="cpp-primer">
 </head>
 <body>
     
@@ -68,6 +69,9 @@
 	    <div class="tag">
 	      <a href="../../categories/c%2B%2B/" rel="tag">C++</a>
 	    </div>
+	    <div class="tag">
+	      <a href="../../categories/cpp-primer/" rel="tag">cpp-primer</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -76,26 +80,26 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org3eb2040" class="outline-2">
-<h2 id="org3eb2040">Exercise 12.1</h2>
-<div class="outline-text-2" id="text-org3eb2040">
+        <div id="outline-container-org901d605" class="outline-2">
+<h2 id="org901d605">Exercise 12.1</h2>
+<div class="outline-text-2" id="text-org901d605">
 <div class="highlight"><pre><span></span><span class="c1">// b1 has 4 elements;</span>
 <span class="c1">// b2's code block has ended, os b2 is destroyed, there is no point in saying how many elements in b2.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orge881a40" class="outline-2">
-<h2 id="orge881a40">Exercise 12.2</h2>
-<div class="outline-text-2" id="text-orge881a40">
+<div id="outline-container-org4832969" class="outline-2">
+<h2 id="org4832969">Exercise 12.2</h2>
+<div class="outline-text-2" id="text-org4832969">
 <div class="highlight"><pre><span></span><span class="c1">// See StrBlob.h</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org6b8da6c" class="outline-2">
-<h2 id="org6b8da6c">StrBlob.h</h2>
-<div class="outline-text-2" id="text-org6b8da6c">
+<div id="outline-container-org1c2723c" class="outline-2">
+<h2 id="org1c2723c">StrBlob.h</h2>
+<div class="outline-text-2" id="text-org1c2723c">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">StrBlobPtr</span><span class="p">;</span>
 <span class="k">class</span> <span class="nc">StrBlob</span>
 <span class="p">{</span>
@@ -226,9 +230,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4a7af87" class="outline-2">
-<h2 id="org4a7af87">Exercise 12.3</h2>
-<div class="outline-text-2" id="text-org4a7af87">
+<div id="outline-container-orgb0d00b7" class="outline-2">
+<h2 id="orgb0d00b7">Exercise 12.3</h2>
+<div class="outline-text-2" id="text-orgb0d00b7">
 <div class="highlight"><pre><span></span><span class="c1">// Unnecessary</span>
 <span class="c1">// const member function version of front and back could not modify the shared_ptr data, but still able to modify the vector&lt;string&gt; which is pointed by data;</span>
 <span class="c1">// there is slight difference between the const version and the normal version.</span>
@@ -236,18 +240,18 @@
 </div>
 </div>
 
-<div id="outline-container-org0eb50c5" class="outline-2">
-<h2 id="org0eb50c5">Exercise 12.4</h2>
-<div class="outline-text-2" id="text-org0eb50c5">
+<div id="outline-container-org021d0d9" class="outline-2">
+<h2 id="org021d0d9">Exercise 12.4</h2>
+<div class="outline-text-2" id="text-org021d0d9">
 <div class="highlight"><pre><span></span><span class="c1">// Because the parameter i is of size_type type, which is vector::size_type, it is unsigned.</span>
 <span class="c1">// When passed i is a negative number, it would be transformmed to a really large unsigned integer, the comparison between it and data-&gt;size() would always turns true if the size is not so large. </span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org3f89be0" class="outline-2">
-<h2 id="org3f89be0">Exercise 12.5</h2>
-<div class="outline-text-2" id="text-org3f89be0">
+<div id="outline-container-orge28395e" class="outline-2">
+<h2 id="orge28395e">Exercise 12.5</h2>
+<div class="outline-text-2" id="text-orge28395e">
 <div class="highlight"><pre><span></span><span class="c1">// The constructor function StrBlob::StrBlob(initializer_list&lt;string&gt; il) is not explicit;</span>
 <span class="c1">// advantage: elements surrounded by curly braces could be implicitly transformmed to initializer_list object, for example, no need to explicitly construct a initialize_list&lt;string&gt; object to pass it to the constructor function; this feature allows copy initialization with different types.</span>
 <span class="c1">// disadvantage: the explicit way is more strict, for implicit transformer may pass in an invalid argument which does not meet the requirement of parameter, introduces an error by carelessness; this feature only allows direct initialization.</span>
@@ -255,9 +259,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc83445e" class="outline-2">
-<h2 id="orgc83445e">Exercise 12.6</h2>
-<div class="outline-text-2" id="text-orgc83445e">
+<div id="outline-container-org48bb28e" class="outline-2">
+<h2 id="org48bb28e">Exercise 12.6</h2>
+<div class="outline-text-2" id="text-org48bb28e">
 <div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;*</span> <span class="n">new_vector</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="k">return</span> <span class="k">new</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span>
@@ -284,9 +288,9 @@
 </div>
 </div>
 
-<div id="outline-container-org6b97c7f" class="outline-2">
-<h2 id="org6b97c7f">Exercise 12.7</h2>
-<div class="outline-text-2" id="text-org6b97c7f">
+<div id="outline-container-orgb7d00bc" class="outline-2">
+<h2 id="orgb7d00bc">Exercise 12.7</h2>
+<div class="outline-text-2" id="text-orgb7d00bc">
 <div class="highlight"><pre><span></span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">new_vector</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="k">return</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">();</span>
@@ -312,9 +316,9 @@
 </div>
 </div>
 
-<div id="outline-container-org900c644" class="outline-2">
-<h2 id="org900c644">Exercise 12.8</h2>
-<div class="outline-text-2" id="text-org900c644">
+<div id="outline-container-orgad4ff4b" class="outline-2">
+<h2 id="orgad4ff4b">Exercise 12.8</h2>
+<div class="outline-text-2" id="text-orgad4ff4b">
 <div class="highlight"><pre><span></span><span class="c1">// illegal</span>
 <span class="c1">// built-in type object defined inside code block but without value initialization, its value would be undefined;</span>
 <span class="c1">// and p will convert to a bool, the dynamic memory allocated has no chance to be freed.</span>
@@ -322,26 +326,26 @@
 </div>
 </div>
 
-<div id="outline-container-orgd868aea" class="outline-2">
-<h2 id="orgd868aea">Exercise 12.9</h2>
-<div class="outline-text-2" id="text-orgd868aea">
+<div id="outline-container-orgaea0edc" class="outline-2">
+<h2 id="orgaea0edc">Exercise 12.9</h2>
+<div class="outline-text-2" id="text-orgaea0edc">
 <div class="highlight"><pre><span></span><span class="c1">// the memory space pointed by pointer r stays unchanged, like pointer q, both memory spaces are not freed.</span>
 <span class="c1">// reference count of the object which was pointed by r2 became 0, so it is freed; on the contrast, reference count of another object increases to 2, it stays unchanged.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org49d3198" class="outline-2">
-<h2 id="org49d3198">Exercise 12.10</h2>
-<div class="outline-text-2" id="text-org49d3198">
+<div id="outline-container-org5cadbf0" class="outline-2">
+<h2 id="org5cadbf0">Exercise 12.10</h2>
+<div class="outline-text-2" id="text-org5cadbf0">
 <div class="highlight"><pre><span></span><span class="c1">// That is right.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgf776c42" class="outline-2">
-<h2 id="orgf776c42">Exercise 12.11</h2>
-<div class="outline-text-2" id="text-orgf776c42">
+<div id="outline-container-orge7ed7e3" class="outline-2">
+<h2 id="orge7ed7e3">Exercise 12.11</h2>
+<div class="outline-text-2" id="text-orge7ed7e3">
 <div class="highlight"><pre><span></span><span class="c1">// shared_ptr&lt;int&gt; p(new int(42));</span>
 <span class="c1">// process(shared_ptr&lt;int&gt;(p.get));</span>
 <span class="c1">// when the call of precess ends, the variable ptr defined inside function body is deleted, and the memory space which is pointed by ptr is freed, too.</span>
@@ -351,9 +355,9 @@
 </div>
 </div>
 
-<div id="outline-container-org208eae4" class="outline-2">
-<h2 id="org208eae4">Exercise 12.12</h2>
-<div class="outline-text-2" id="text-org208eae4">
+<div id="outline-container-orgf3e6ed0" class="outline-2">
+<h2 id="orgf3e6ed0">Exercise 12.12</h2>
+<div class="outline-text-2" id="text-orgf3e6ed0">
 <div class="highlight"><pre><span></span><span class="c1">// auto p = new int();</span>
 <span class="c1">// auto sp = make_shared&lt;int&gt;();</span>
 <span class="c1">// a: process(sp), legal, pass an shared_ptr&lt;int&gt; object to process</span>
@@ -364,9 +368,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2e71478" class="outline-2">
-<h2 id="org2e71478">Exercise 12.13</h2>
-<div class="outline-text-2" id="text-org2e71478">
+<div id="outline-container-org41a0226" class="outline-2">
+<h2 id="org41a0226">Exercise 12.13</h2>
+<div class="outline-text-2" id="text-org41a0226">
 <div class="highlight"><pre><span></span><span class="c1">// auto sp = make_shared&lt;int&gt;();</span>
 <span class="c1">// auto p = sp.get();</span>
 <span class="c1">// delete p;</span>
@@ -376,9 +380,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5896d6b" class="outline-2">
-<h2 id="org5896d6b">Exercise 12.14</h2>
-<div class="outline-text-2" id="text-org5896d6b">
+<div id="outline-container-org85fc390" class="outline-2">
+<h2 id="org85fc390">Exercise 12.14</h2>
+<div class="outline-text-2" id="text-org85fc390">
 <div class="highlight"><pre><span></span><span class="c1">/////////////////////////////////////////////////////</span>
 <span class="c1">// struct destination;				   //</span>
 <span class="c1">// struct connection;				   //</span>
@@ -398,9 +402,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgbce6a4e" class="outline-2">
-<h2 id="orgbce6a4e">Exercise 12.15</h2>
-<div class="outline-text-2" id="text-orgbce6a4e">
+<div id="outline-container-org3f082af" class="outline-2">
+<h2 id="org3f082af">Exercise 12.15</h2>
+<div class="outline-text-2" id="text-org3f082af">
 <div class="highlight"><pre><span></span><span class="c1">/////////////////////////////////////////////////////</span>
 <span class="c1">// struct destination;				   //</span>
 <span class="c1">// struct connection;				   //</span>
@@ -417,9 +421,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8276817" class="outline-2">
-<h2 id="org8276817">Exercise 12.16</h2>
-<div class="outline-text-2" id="text-org8276817">
+<div id="outline-container-org6ce0bf5" class="outline-2">
+<h2 id="org6ce0bf5">Exercise 12.16</h2>
+<div class="outline-text-2" id="text-org6ce0bf5">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">unique_ptr</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
@@ -431,9 +435,9 @@
 </div>
 </div>
 
-<div id="outline-container-orga5a84e4" class="outline-2">
-<h2 id="orga5a84e4">Exercise 12.17</h2>
-<div class="outline-text-2" id="text-orga5a84e4">
+<div id="outline-container-org674df67" class="outline-2">
+<h2 id="org674df67">Exercise 12.17</h2>
+<div class="outline-text-2" id="text-org674df67">
 <div class="highlight"><pre><span></span><span class="c1">// int ix = 1024, *pi = &amp;ix. *pi2 = new int(2048);</span>
 <span class="c1">// typedef unique_ptr&lt;int&gt; IntP;</span>
 <span class="c1">// a: IntP p0(ix); illegal, unique_ptr must be binded to a ptr which is the return value of operator 'new'.</span>
@@ -446,9 +450,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd6ee492" class="outline-2">
-<h2 id="orgd6ee492">Exercise 12.18</h2>
-<div class="outline-text-2" id="text-orgd6ee492">
+<div id="outline-container-org88c74e7" class="outline-2">
+<h2 id="org88c74e7">Exercise 12.18</h2>
+<div class="outline-text-2" id="text-org88c74e7">
 <div class="highlight"><pre><span></span><span class="c1">// specific pointer are 'shared' by shared_type type objects, if new one wants to share, old one does not need to 'release' it, and it is meaningless to provide this member because other shared_ptr that share the same object can still delete it;</span>
 <span class="c1">// while for unique_ptr, if new one wants to get the control, old one must 'release' the pointed object.</span>
 <span class="c1">// That is right.</span>
@@ -456,21 +460,21 @@
 </div>
 </div>
 
-<div id="outline-container-orgb6eccd0" class="outline-2">
-<h2 id="orgb6eccd0">Exercise 12.19</h2>
-<div class="outline-text-2" id="text-orgb6eccd0">
+<div id="outline-container-org9b51a1a" class="outline-2">
+<h2 id="org9b51a1a">Exercise 12.19</h2>
+<div class="outline-text-2" id="text-org9b51a1a">
 <div class="highlight"><pre><span></span><span class="c1">// See StrBlob.h</span>
 </pre></div>
 
 <p>
-<a href="#org6b8da6c">StrBlob.h</a>
+<a href="#org1c2723c">StrBlob.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org19f3384" class="outline-2">
-<h2 id="org19f3384">Exercise 12.20</h2>
-<div class="outline-text-2" id="text-org19f3384">
+<div id="outline-container-org0399982" class="outline-2">
+<h2 id="org0399982">Exercise 12.20</h2>
+<div class="outline-text-2" id="text-org0399982">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
@@ -491,9 +495,9 @@
 </div>
 </div>
 
-<div id="outline-container-orga8c735c" class="outline-2">
-<h2 id="orga8c735c">Exercise 12.21</h2>
-<div class="outline-text-2" id="text-orga8c735c">
+<div id="outline-container-orgfccf7f2" class="outline-2">
+<h2 id="orgfccf7f2">Exercise 12.21</h2>
+<div class="outline-text-2" id="text-orgfccf7f2">
 <div class="highlight"><pre><span></span><span class="c1">// The original one is better;</span>
 <span class="c1">// in function logic there is no difference between them;</span>
 <span class="c1">// but the original one is much easier to understand.</span>
@@ -501,21 +505,21 @@
 </div>
 </div>
 
-<div id="outline-container-orgfacd66c" class="outline-2">
-<h2 id="orgfacd66c">Exercise 12.22</h2>
-<div class="outline-text-2" id="text-orgfacd66c">
+<div id="outline-container-orgc8fc36b" class="outline-2">
+<h2 id="orgc8fc36b">Exercise 12.22</h2>
+<div class="outline-text-2" id="text-orgc8fc36b">
 <div class="highlight"><pre><span></span><span class="c1">// See StrBlob.h</span>
 </pre></div>
 
 <p>
-<a href="#org6b8da6c">StrBlob.h</a>
+<a href="#org1c2723c">StrBlob.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7eeeeeb" class="outline-2">
-<h2 id="org7eeeeeb">Exercise 12.23</h2>
-<div class="outline-text-2" id="text-org7eeeeeb">
+<div id="outline-container-org5cb55f5" class="outline-2">
+<h2 id="org5cb55f5">Exercise 12.23</h2>
+<div class="outline-text-2" id="text-org5cb55f5">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="cm">/* using unique_ptr to point to the dynamic array</span>
@@ -536,9 +540,9 @@
 </div>
 </div>
 
-<div id="outline-container-org668a156" class="outline-2">
-<h2 id="org668a156">Exercise 12.24</h2>
-<div class="outline-text-2" id="text-org668a156">
+<div id="outline-container-orgcfdd812" class="outline-2">
+<h2 id="orgcfdd812">Exercise 12.24</h2>
+<div class="outline-text-2" id="text-orgcfdd812">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="cm">/* using unique_ptr&lt;char[]&gt; p(new char[length]</span>
@@ -564,18 +568,18 @@
 </div>
 </div>
 
-<div id="outline-container-orgf5ea073" class="outline-2">
-<h2 id="orgf5ea073">Exercise 12.25</h2>
-<div class="outline-text-2" id="text-orgf5ea073">
+<div id="outline-container-org63af807" class="outline-2">
+<h2 id="org63af807">Exercise 12.25</h2>
+<div class="outline-text-2" id="text-org63af807">
 <div class="highlight"><pre><span></span><span class="c1">// int *pa = new int[10]</span>
 <span class="c1">// release: delete [] pa;</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org724054f" class="outline-2">
-<h2 id="org724054f">Exercise 12.26</h2>
-<div class="outline-text-2" id="text-org724054f">
+<div id="outline-container-orgc908a03" class="outline-2">
+<h2 id="orgc908a03">Exercise 12.26</h2>
+<div class="outline-text-2" id="text-orgc908a03">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
@@ -597,9 +601,9 @@
 </div>
 </div>
 
-<div id="outline-container-org7752728" class="outline-2">
-<h2 id="org7752728">Exercise 12.27</h2>
-<div class="outline-text-2" id="text-org7752728">
+<div id="outline-container-org3b4a723" class="outline-2">
+<h2 id="org3b4a723">Exercise 12.27</h2>
+<div class="outline-text-2" id="text-org3b4a723">
 <div class="highlight"><pre><span></span><span class="c1">// See TextQuery.h</span>
 <span class="kt">void</span> <span class="nf">runQueries</span><span class="p">(</span><span class="n">ifstream</span> <span class="o">&amp;</span><span class="n">infile</span><span class="p">)</span>
 <span class="p">{</span>
@@ -621,9 +625,9 @@
 </div>
 </div>
 
-<div id="outline-container-org33e5959" class="outline-2">
-<h2 id="org33e5959">TextQuery.h</h2>
-<div class="outline-text-2" id="text-org33e5959">
+<div id="outline-container-orgcaf6a42" class="outline-2">
+<h2 id="orgcaf6a42">TextQuery.h</h2>
+<div class="outline-text-2" id="text-orgcaf6a42">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">QueryResult</span><span class="p">;</span>
 <span class="k">class</span> <span class="nc">TextQuery</span>
 <span class="p">{</span>
@@ -700,9 +704,9 @@
 </div>
 </div>
 
-<div id="outline-container-org54db21a" class="outline-2">
-<h2 id="org54db21a">Exercise 12.28</h2>
-<div class="outline-text-2" id="text-org54db21a">
+<div id="outline-container-orgcef2b05" class="outline-2">
+<h2 id="orgcef2b05">Exercise 12.28</h2>
+<div class="outline-text-2" id="text-orgcef2b05">
 <div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">read_parse</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">text</span><span class="p">,</span> <span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">set</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">results</span><span class="p">,</span> <span class="n">ifstream</span> <span class="o">&amp;</span><span class="n">infile</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="kt">size_t</span> <span class="n">line_number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -756,9 +760,9 @@
 </div>
 </div>
 
-<div id="outline-container-org494888a" class="outline-2">
-<h2 id="org494888a">Exercise 12.29</h2>
-<div class="outline-text-2" id="text-org494888a">
+<div id="outline-container-org5ab0305" class="outline-2">
+<h2 id="org5ab0305">Exercise 12.29</h2>
+<div class="outline-text-2" id="text-org5ab0305">
 <div class="highlight"><pre><span></span><span class="c1">// if using while(true), both behave exactly the same,</span>
 <span class="c1">// if using while condition like below, it is better,</span>
 <span class="c1">// simple and straight,</span>
@@ -784,17 +788,17 @@
 </div>
 </div>
 
-<div id="outline-container-orgb3edea4" class="outline-2">
-<h2 id="orgb3edea4">Exercise 12.30</h2>
-<div class="outline-text-2" id="text-orgb3edea4">
+<div id="outline-container-orgc622366" class="outline-2">
+<h2 id="orgc622366">Exercise 12.30</h2>
+<div class="outline-text-2" id="text-orgc622366">
 <div class="highlight"><pre><span></span><span class="c1">// See TextQuery-1230.h</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org95969d7" class="outline-2">
-<h2 id="org95969d7">TextQuery-1230.h</h2>
-<div class="outline-text-2" id="text-org95969d7">
+<div id="outline-container-org3995680" class="outline-2">
+<h2 id="org3995680">TextQuery-1230.h</h2>
+<div class="outline-text-2" id="text-org3995680">
 <div class="highlight"><pre><span></span><span class="cm">/* make some improvements based on the original version</span>
 <span class="cm">   afger reading through secion 12.3.2 */</span>
 <span class="k">class</span> <span class="nc">QueryResult</span><span class="p">;</span>
@@ -864,9 +868,9 @@
 </div>
 </div>
 
-<div id="outline-container-org9ff5eca" class="outline-2">
-<h2 id="org9ff5eca">Exercise 12.31</h2>
-<div class="outline-text-2" id="text-org9ff5eca">
+<div id="outline-container-org9ed6fd6" class="outline-2">
+<h2 id="org9ed6fd6">Exercise 12.31</h2>
+<div class="outline-text-2" id="text-org9ed6fd6">
 <div class="highlight"><pre><span></span><span class="c1">// vector type allows multi elements with same value, while set does not;</span>
 <span class="c1">// so if one word repeats in one single line, the string line would be printed repeatly.</span>
 <span class="c1">// the version uses set is better, its output is easy to read, more friendly.</span>
@@ -874,17 +878,17 @@
 </div>
 </div>
 
-<div id="outline-container-org85d1bf3" class="outline-2">
-<h2 id="org85d1bf3">Exercise 12.32</h2>
-<div class="outline-text-2" id="text-org85d1bf3">
+<div id="outline-container-org10274fe" class="outline-2">
+<h2 id="org10274fe">Exercise 12.32</h2>
+<div class="outline-text-2" id="text-org10274fe">
 <div class="highlight"><pre><span></span><span class="c1">// See TextQuery-1232.h.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org617f1d4" class="outline-2">
-<h2 id="org617f1d4">TextQuery-1232.h</h2>
-<div class="outline-text-2" id="text-org617f1d4">
+<div id="outline-container-org580621c" class="outline-2">
+<h2 id="org580621c">TextQuery-1232.h</h2>
+<div class="outline-text-2" id="text-org580621c">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">QueryResult</span><span class="p">;</span>
 <span class="k">class</span> <span class="nc">TextQuery</span>
 <span class="p">{</span>
@@ -955,17 +959,17 @@
 </div>
 </div>
 
-<div id="outline-container-orgcc15d1f" class="outline-2">
-<h2 id="orgcc15d1f">Exercise 12.33</h2>
-<div class="outline-text-2" id="text-orgcc15d1f">
+<div id="outline-container-orge2f79cf" class="outline-2">
+<h2 id="orge2f79cf">Exercise 12.33</h2>
+<div class="outline-text-2" id="text-orge2f79cf">
 <div class="highlight"><pre><span></span><span class="c1">// See TextQuery-1233.h</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org12ea417" class="outline-2">
-<h2 id="org12ea417">TextQuery-1233.h</h2>
-<div class="outline-text-2" id="text-org12ea417">
+<div id="outline-container-org65af616" class="outline-2">
+<h2 id="org65af616">TextQuery-1233.h</h2>
+<div class="outline-text-2" id="text-org65af616">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">QueryResult</span><span class="p">;</span>
 <span class="k">class</span> <span class="nc">TextQuery</span>
 <span class="p">{</span>

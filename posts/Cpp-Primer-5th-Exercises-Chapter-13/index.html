@@ -2,7 +2,7 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Cpp Primer 5th chapter-13 Exercises">
+<meta name="description" content="Cpp Primer 5th answers chapter-13 Exercises">
 <meta name="viewport" content="width=device-width">
 <title>Cpp-Primer-5th-Exercises-Chapter-13 | Procrastination Prescription</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
@@ -12,10 +12,11 @@
 <meta property="og:site_name" content="Procrastination Prescription">
 <meta property="og:title" content="Cpp-Primer-5th-Exercises-Chapter-13">
 <meta property="og:url" content="https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-13/">
-<meta property="og:description" content="Cpp Primer 5th chapter-13 Exercises">
+<meta property="og:description" content="Cpp Primer 5th answers chapter-13 Exercises">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-06-29T19:39:56+08:00">
 <meta property="article:tag" content="C++">
+<meta property="article:tag" content="cpp-primer">
 </head>
 <body>
     
@@ -68,6 +69,9 @@
 	    <div class="tag">
 	      <a href="../../categories/c%2B%2B/" rel="tag">C++</a>
 	    </div>
+	    <div class="tag">
+	      <a href="../../categories/cpp-primer/" rel="tag">cpp-primer</a>
+	    </div>
 	  </div>
 	</div>
       </div>
@@ -76,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgce43ab9" class="outline-2">
-<h2 id="orgce43ab9">Exercise 13.1</h2>
-<div class="outline-text-2" id="text-orgce43ab9">
+        <div id="outline-container-orgadb459e" class="outline-2">
+<h2 id="orgadb459e">Exercise 13.1</h2>
+<div class="outline-text-2" id="text-orgadb459e">
 <div class="highlight"><pre><span></span><span class="c1">// Within a class type, if the first parameter of one constructor is the reference of the class type itself, and left parameters all have default values, then this constrcutor is copy constructor.</span>
 <span class="c1">// copy constructor is utilized in copy initialization:</span>
 <span class="c1">// 1. Define variable using an =;</span>
@@ -90,9 +94,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8f29c0f" class="outline-2">
-<h2 id="org8f29c0f">Exercise 13.2</h2>
-<div class="outline-text-2" id="text-org8f29c0f">
+<div id="outline-container-org281ae02" class="outline-2">
+<h2 id="org281ae02">Exercise 13.2</h2>
+<div class="outline-text-2" id="text-org281ae02">
 <div class="highlight"><pre><span></span><span class="c1">// Sales_data::Sales_data(Sales_data rhs)</span>
 <span class="c1">// try to define a copy constructor of class type Sales_data;</span>
 <span class="c1">// and the first parameter's type is Sales_data, it is illegal;</span>
@@ -104,18 +108,18 @@
 </div>
 </div>
 
-<div id="outline-container-org6e78a9f" class="outline-2">
-<h2 id="org6e78a9f">Exercise 13.3</h2>
-<div class="outline-text-2" id="text-org6e78a9f">
+<div id="outline-container-org80afc38" class="outline-2">
+<h2 id="org80afc38">Exercise 13.3</h2>
+<div class="outline-text-2" id="text-org80afc38">
 <div class="highlight"><pre><span></span><span class="c1">// copy a StrBlob object would copy every non-static member of it, and StrBlob class type has a shared_ptr member, copy it will increase the reference count of the object which is pointed by shared_ptr.</span>
 <span class="c1">// copy a StrBlob object would copy every non-static member of it, StrBlobPtr class type has a weak_ptr member, copy it will not influence the reference count of the object which is pointed by weak_ptr.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgb8b4e64" class="outline-2">
-<h2 id="orgb8b4e64">Exercise 13.4</h2>
-<div class="outline-text-2" id="text-orgb8b4e64">
+<div id="outline-container-org88240b5" class="outline-2">
+<h2 id="org88240b5">Exercise 13.4</h2>
+<div class="outline-text-2" id="text-org88240b5">
 <div class="highlight"><pre><span></span><span class="n">Point</span> <span class="n">global</span><span class="p">;</span>
 <span class="n">Point</span> <span class="nf">foo_var</span><span class="p">(</span><span class="n">Point</span> <span class="n">arg</span><span class="p">)</span>	<span class="c1">// argument passed in would call copy constructor </span>
 <span class="p">{</span>
@@ -128,9 +132,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgfbddf0f" class="outline-2">
-<h2 id="orgfbddf0f">Exercise 13.5</h2>
-<div class="outline-text-2" id="text-orgfbddf0f">
+<div id="outline-container-org950f0fb" class="outline-2">
+<h2 id="org950f0fb">Exercise 13.5</h2>
+<div class="outline-text-2" id="text-org950f0fb">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HasPtr</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -145,9 +149,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4ed9b3f" class="outline-2">
-<h2 id="org4ed9b3f">Exercise 13.6</h2>
-<div class="outline-text-2" id="text-org4ed9b3f">
+<div id="outline-container-orga85786a" class="outline-2">
+<h2 id="orga85786a">Exercise 13.6</h2>
+<div class="outline-text-2" id="text-orga85786a">
 <div class="highlight"><pre><span></span><span class="c1">// copy-assignment operator defines what happened when assign an object to another object with same type.</span>
 <span class="c1">// when assign an object to another object with same type, copy-assignment operator would be called.</span>
 <span class="c1">// for sone class type, copy-assignment operator prevents the assignment of objects of this calss type, but mainly copy-assignment operator would assign every non-static member of right operand to the corresponding member of left operand using the copy-assignment operator for the type of the member.</span>
@@ -156,18 +160,18 @@
 </div>
 </div>
 
-<div id="outline-container-orgcff5a4b" class="outline-2">
-<h2 id="orgcff5a4b">Exercise 13.7</h2>
-<div class="outline-text-2" id="text-orgcff5a4b">
+<div id="outline-container-orgac78a9e" class="outline-2">
+<h2 id="orgac78a9e">Exercise 13.7</h2>
+<div class="outline-text-2" id="text-orgac78a9e">
 <div class="highlight"><pre><span></span><span class="c1">// assign a StrBlob object to another StrBlob object would assign every non-static member of it, and StrBlob class type has a shared_ptr member, assign it will increase the reference count of the object which is pointed by right operand's shared_ptr, and decrease the reference count of the object which is pointed by the left operand's shared_ptr .</span>
 <span class="c1">// assign a StrBlobPtr object to another StrBlobPtr object would assign every non-static member of it, StrBlobPtr class type has a weak_ptr member, assignment of it will not influence the reference count of the object which is pointed by weak_ptr.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org888ab21" class="outline-2">
-<h2 id="org888ab21">Exercise 13.8</h2>
-<div class="outline-text-2" id="text-org888ab21">
+<div id="outline-container-orga9b0cc7" class="outline-2">
+<h2 id="orga9b0cc7">Exercise 13.8</h2>
+<div class="outline-text-2" id="text-orga9b0cc7">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HasPtr</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -191,9 +195,9 @@
 </div>
 </div>
 
-<div id="outline-container-org1401f59" class="outline-2">
-<h2 id="org1401f59">Exercise 13.9</h2>
-<div class="outline-text-2" id="text-org1401f59">
+<div id="outline-container-org8469854" class="outline-2">
+<h2 id="org8469854">Exercise 13.9</h2>
+<div class="outline-text-2" id="text-org8469854">
 <div class="highlight"><pre><span></span><span class="c1">// A destructor is a member function of class type, its name is combined of ~ and class name, and no return value, no parameter.</span>
 <span class="c1">// destructor releases the resource used by object, destruct every non-static member of object.</span>
 <span class="c1">// compiler would generate a synthesized destructor for a class if it has not defined a destructor.</span>
@@ -201,18 +205,18 @@
 </div>
 </div>
 
-<div id="outline-container-org5615064" class="outline-2">
-<h2 id="org5615064">Exercise 13.10</h2>
-<div class="outline-text-2" id="text-org5615064">
+<div id="outline-container-orgec12ac4" class="outline-2">
+<h2 id="orgec12ac4">Exercise 13.10</h2>
+<div class="outline-text-2" id="text-orgec12ac4">
 <div class="highlight"><pre><span></span><span class="c1">// When a StrBlob object is destructed, every non-static member of it would be destructed, and descrease the reference count of the object which is pointed by object's share_ptr, if count comes to zero, that object be pointed is destructed, too.</span>
 <span class="c1">// When StrBlobPtr object is destructed, every non-static member of it would be destructed, since it has a weak_ptr member, this ptr's destruction has no influence on the reference count of the object which is pointed by weak_ptr.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orge92bfa0" class="outline-2">
-<h2 id="orge92bfa0">Exercise 13.11</h2>
-<div class="outline-text-2" id="text-orge92bfa0">
+<div id="outline-container-orgca938df" class="outline-2">
+<h2 id="orgca938df">Exercise 13.11</h2>
+<div class="outline-text-2" id="text-orgca938df">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HasPtr</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -237,9 +241,9 @@
 </div>
 </div>
 
-<div id="outline-container-org67434fd" class="outline-2">
-<h2 id="org67434fd">Exercise 13.12</h2>
-<div class="outline-text-2" id="text-org67434fd">
+<div id="outline-container-org6a6829a" class="outline-2">
+<h2 id="org6a6829a">Exercise 13.12</h2>
+<div class="outline-text-2" id="text-org6a6829a">
 <div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="nf">fcn</span><span class="p">(</span><span class="k">const</span> <span class="n">Sales_data</span> <span class="o">*</span><span class="n">trans</span><span class="p">,</span> <span class="n">Sales_data</span> <span class="n">accum</span><span class="p">)</span> <span class="c1">// accum is copy initialized within this function body, it would be destructed when this function call ends.</span>
 <span class="p">{</span>
   <span class="n">Sales_data</span> <span class="n">item1</span><span class="p">(</span><span class="o">*</span><span class="n">trans</span><span class="p">),</span> <span class="n">item2</span><span class="p">(</span><span class="n">accum</span><span class="p">);</span> <span class="c1">// both would be destructed when this function body ends</span>
@@ -252,9 +256,9 @@
 </div>
 </div>
 
-<div id="outline-container-org7f05c3a" class="outline-2">
-<h2 id="org7f05c3a">Exercise 13.13</h2>
-<div class="outline-text-2" id="text-org7f05c3a">
+<div id="outline-container-org0348860" class="outline-2">
+<h2 id="org0348860">Exercise 13.13</h2>
+<div class="outline-text-2" id="text-org0348860">
 <div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">X</span>
 <span class="p">{</span>
   <span class="n">X</span><span class="p">()</span> <span class="p">{</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"X()"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;}</span>
@@ -278,18 +282,18 @@
 </div>
 </div>
 
-<div id="outline-container-org1572863" class="outline-2">
-<h2 id="org1572863">Exercise 13.14</h2>
-<div class="outline-text-2" id="text-org1572863">
+<div id="outline-container-org7675ceb" class="outline-2">
+<h2 id="org7675ceb">Exercise 13.14</h2>
+<div class="outline-text-2" id="text-org7675ceb">
 <div class="highlight"><pre><span></span><span class="c1">// Using synthesized copy constructor</span>
 <span class="c1">// the outputs are all the same.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org484ab37" class="outline-2">
-<h2 id="org484ab37">Exercise 13.15</h2>
-<div class="outline-text-2" id="text-org484ab37">
+<div id="outline-container-orgfc950ca" class="outline-2">
+<h2 id="orgfc950ca">Exercise 13.15</h2>
+<div class="outline-text-2" id="text-orgfc950ca">
 <div class="highlight"><pre><span></span><span class="c1">// if a copy constructor is defined within class type numbered,</span>
 <span class="c1">// outputs would be changed, for that copy constructor would generage a new number for the object,</span>
 <span class="c1">// what's more, function accepts a 'numbered s' type parameter, this would call copy instructor when called, and 's.mysn' is different from the argument passed in,</span>
@@ -298,9 +302,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgab6d787" class="outline-2">
-<h2 id="orgab6d787">Exercise 13.16</h2>
-<div class="outline-text-2" id="text-orgab6d787">
+<div id="outline-container-org6f3f50b" class="outline-2">
+<h2 id="org6f3f50b">Exercise 13.16</h2>
+<div class="outline-text-2" id="text-org6f3f50b">
 <div class="highlight"><pre><span></span><span class="c1">// That would give the expected result.</span>
 <span class="c1">// outputs would have three different serial numbers,</span>
 <span class="c1">// and every one represents the real mysn member of the passed in numbered type object.</span>
@@ -308,9 +312,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8b93719" class="outline-2">
-<h2 id="org8b93719">Exercise 13.17</h2>
-<div class="outline-text-2" id="text-org8b93719">
+<div id="outline-container-org90c9667" class="outline-2">
+<h2 id="org90c9667">Exercise 13.17</h2>
+<div class="outline-text-2" id="text-org90c9667">
 <div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">numbered1</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">mysn</span><span class="p">;</span>
@@ -345,17 +349,17 @@
 </div>
 </div>
 
-<div id="outline-container-org6651065" class="outline-2">
-<h2 id="org6651065">Exercise 13.18</h2>
-<div class="outline-text-2" id="text-org6651065">
+<div id="outline-container-org95d17c6" class="outline-2">
+<h2 id="org95d17c6">Exercise 13.18</h2>
+<div class="outline-text-2" id="text-org95d17c6">
 <div class="highlight"><pre><span></span><span class="c1">// See Employee.h</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orga3661b5" class="outline-2">
-<h2 id="orga3661b5">Employee.h</h2>
-<div class="outline-text-2" id="text-orga3661b5">
+<div id="outline-container-org0757004" class="outline-2">
+<h2 id="org0757004">Employee.h</h2>
+<div class="outline-text-2" id="text-org0757004">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Employee</span>
 <span class="p">{</span>
   <span class="k">static</span> <span class="kt">unsigned</span> <span class="n">seed</span><span class="p">;</span>
@@ -378,23 +382,23 @@
 </div>
 </div>
 
-<div id="outline-container-orgc73b13c" class="outline-2">
-<h2 id="orgc73b13c">Exercise 13.19</h2>
-<div class="outline-text-2" id="text-orgc73b13c">
+<div id="outline-container-org46b6897" class="outline-2">
+<h2 id="org46b6897">Exercise 13.19</h2>
+<div class="outline-text-2" id="text-org46b6897">
 <div class="highlight"><pre><span></span><span class="c1">// Should define copy constructor and copy assignment operator itself.</span>
 <span class="c1">// For the name may be the same, but id of every employee object should be unique(id should be handled automatically) </span>
 <span class="c1">// See Employee.h</span>
 </pre></div>
 
 <p>
-<a href="#orga3661b5">Employee.h</a>
+<a href="#org0757004">Employee.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgad9fb02" class="outline-2">
-<h2 id="orgad9fb02">Exercise 13.20</h2>
-<div class="outline-text-2" id="text-orgad9fb02">
+<div id="outline-container-org33673f9" class="outline-2">
+<h2 id="org33673f9">Exercise 13.20</h2>
+<div class="outline-text-2" id="text-org33673f9">
 <div class="highlight"><pre><span></span><span class="c1">// copy: copy TextQuery or QueryResult object would copy every mamber of it, and would increase the reference count of the object which is pointed by the shared_ptr member;</span>
 <span class="c1">// assignment: assign TextQuery or QueryResult object would assign every mamber of it, and would increase the reference count of the object which is pointed by the shared_ptr member, decrease the reference count of the object which is pointed by the original shared_ptr;</span>
 <span class="c1">// destruct: destruct TextQuery or QueryResult object would destruct every mamber of it, and would decrease the reference count of the object which is pointed by the shared_ptr member;</span>
@@ -402,9 +406,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgee3205f" class="outline-2">
-<h2 id="orgee3205f">Exercise 13.21</h2>
-<div class="outline-text-2" id="text-orgee3205f">
+<div id="outline-container-org519e694" class="outline-2">
+<h2 id="org519e694">Exercise 13.21</h2>
+<div class="outline-text-2" id="text-org519e694">
 <div class="highlight"><pre><span></span><span class="c1">// Should define the copy constructor and copy assignment operator;</span>
 <span class="c1">// copy objects of both types should just copy the content pointed by the share_ptr to another memory space pointed by the new shared_ptr, not directly copy the share_ptr object.</span>
 <span class="c1">// See TextQuery.h</span>
@@ -412,9 +416,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8e0e3d8" class="outline-2">
-<h2 id="org8e0e3d8">TextQuery.h</h2>
-<div class="outline-text-2" id="text-org8e0e3d8">
+<div id="outline-container-orgac04472" class="outline-2">
+<h2 id="orgac04472">TextQuery.h</h2>
+<div class="outline-text-2" id="text-orgac04472">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef TEXTQUERY_H</span>
 <span class="cp">#define TEXTQUERY_H</span>
 <span class="k">class</span> <span class="nc">QueryResult</span><span class="p">;</span>
@@ -511,9 +515,9 @@
 </div>
 </div>
 
-<div id="outline-container-org1cea6ec" class="outline-2">
-<h2 id="org1cea6ec">Exercise 13.22</h2>
-<div class="outline-text-2" id="text-org1cea6ec">
+<div id="outline-container-org850a7bd" class="outline-2">
+<h2 id="org850a7bd">Exercise 13.22</h2>
+<div class="outline-text-2" id="text-org850a7bd">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HasPtr</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -538,17 +542,17 @@
 </div>
 </div>
 
-<div id="outline-container-org94e4f75" class="outline-2">
-<h2 id="org94e4f75">Exercise 13.23</h2>
-<div class="outline-text-2" id="text-org94e4f75">
+<div id="outline-container-orgdd5468f" class="outline-2">
+<h2 id="orgdd5468f">Exercise 13.23</h2>
+<div class="outline-text-2" id="text-orgdd5468f">
 <div class="highlight"><pre><span></span><span class="c1">// See exercise 13.22.cpp, I made a lot of mistakes before.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgd978247" class="outline-2">
-<h2 id="orgd978247">13.22.cpp</h2>
-<div class="outline-text-2" id="text-orgd978247">
+<div id="outline-container-org9df142f" class="outline-2">
+<h2 id="org9df142f">13.22.cpp</h2>
+<div class="outline-text-2" id="text-org9df142f">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HasPtr</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -573,18 +577,18 @@
 </div>
 </div>
 
-<div id="outline-container-org621fba6" class="outline-2">
-<h2 id="org621fba6">Exercise 13.24</h2>
-<div class="outline-text-2" id="text-org621fba6">
+<div id="outline-container-org4323b8c" class="outline-2">
+<h2 id="org4323b8c">Exercise 13.24</h2>
+<div class="outline-text-2" id="text-org4323b8c">
 <div class="highlight"><pre><span></span><span class="c1">// if not define a destructor in HasPtr class type, the dynamic memory space pointed by member ps would not be released after destruction of HasPtr object, then causes memory leak.</span>
 <span class="c1">// if not define a copy constructor illustrated in section 12.2.1, copy initialization of HasPtr object would directly copy the value of member ps, thus at last two objects' ps member both point to the same dynamic memory space.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgcaaeee9" class="outline-2">
-<h2 id="orgcaaeee9">Exercise 13.25</h2>
-<div class="outline-text-2" id="text-orgcaaeee9">
+<div id="outline-container-org6a873ad" class="outline-2">
+<h2 id="org6a873ad">Exercise 13.25</h2>
+<div class="outline-text-2" id="text-org6a873ad">
 <div class="highlight"><pre><span></span><span class="c1">// See StrBlob.h</span>
 <span class="c1">// copy onstructor must allocate a new dynamic memory space for the content copied from the place pointed by original StrBlob object's shared_ptr, use the new shared_ptr object to initialize self's data member.</span>
 <span class="c1">// copy assignment operator behaves almost like copy constructor, but it does not initialize data member, instead it assigns the new shared_ptr value to it.</span>
@@ -594,9 +598,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0f69145" class="outline-2">
-<h2 id="org0f69145">StrBlob.h</h2>
-<div class="outline-text-2" id="text-org0f69145">
+<div id="outline-container-orgb2c00e2" class="outline-2">
+<h2 id="orgb2c00e2">StrBlob.h</h2>
+<div class="outline-text-2" id="text-orgb2c00e2">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef STRBLOB_H</span>
 <span class="cp">#define STRBLOB_H</span>
 <span class="k">class</span> <span class="nc">StrBlobPtr</span><span class="p">;</span>
@@ -666,21 +670,21 @@
 </div>
 </div>
 
-<div id="outline-container-orgdb928b7" class="outline-2">
-<h2 id="orgdb928b7">Exercise 13.26</h2>
-<div class="outline-text-2" id="text-orgdb928b7">
+<div id="outline-container-org83c1cc9" class="outline-2">
+<h2 id="org83c1cc9">Exercise 13.26</h2>
+<div class="outline-text-2" id="text-org83c1cc9">
 <div class="highlight"><pre><span></span><span class="c1">// See StrBlob.h</span>
 </pre></div>
 
 <p>
-<a href="#org0f69145">StrBlob.h</a>
+<a href="#orgb2c00e2">StrBlob.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6eb7911" class="outline-2">
-<h2 id="org6eb7911">Exercise 13.27</h2>
-<div class="outline-text-2" id="text-org6eb7911">
+<div id="outline-container-orga0d7e41" class="outline-2">
+<h2 id="orga0d7e41">Exercise 13.27</h2>
+<div class="outline-text-2" id="text-orga0d7e41">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HasPtr</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
@@ -719,9 +723,9 @@
 </div>
 </div>
 
-<div id="outline-container-org388f908" class="outline-2">
-<h2 id="org388f908">Exercise 13.28</h2>
-<div class="outline-text-2" id="text-org388f908">
+<div id="outline-container-org14de4e9" class="outline-2">
+<h2 id="org14de4e9">Exercise 13.28</h2>
+<div class="outline-text-2" id="text-org14de4e9">
 <div class="highlight"><pre><span></span><span class="c1">// recursive widely used here.</span>
 <span class="k">class</span> <span class="nc">BinStrTree</span><span class="p">;</span>
 <span class="k">class</span> <span class="nc">TreeNode</span>
@@ -787,25 +791,25 @@
 </div>
 </div>
 
-<div id="outline-container-orga5ddad6" class="outline-2">
-<h2 id="orga5ddad6">Exercise 13.29</h2>
-<div class="outline-text-2" id="text-orga5ddad6">
+<div id="outline-container-org78e38ec" class="outline-2">
+<h2 id="org78e38ec">Exercise 13.29</h2>
+<div class="outline-text-2" id="text-org78e38ec">
 <div class="highlight"><pre><span></span><span class="c1">// Because the swap version called in 'HasPtr &amp;HasPtr::operator=(HasPtr rhs)' is the type specified version, not std::swap.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orga169fac" class="outline-2">
-<h2 id="orga169fac">Exercise 13.30</h2>
-<div class="outline-text-2" id="text-orga169fac">
+<div id="outline-container-org014af56" class="outline-2">
+<h2 id="org014af56">Exercise 13.30</h2>
+<div class="outline-text-2" id="text-org014af56">
 <div class="highlight"><pre><span></span><span class="c1">// See HasPtr.h.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org0f8136a" class="outline-2">
-<h2 id="org0f8136a">HasPtr.h</h2>
-<div class="outline-text-2" id="text-org0f8136a">
+<div id="outline-container-orgb1500a3" class="outline-2">
+<h2 id="orgb1500a3">HasPtr.h</h2>
+<div class="outline-text-2" id="text-orgb1500a3">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HasPtr</span>
 <span class="p">{</span>
   <span class="k">friend</span> <span class="kt">void</span> <span class="n">swap</span><span class="p">(</span><span class="n">HasPtr</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">HasPtr</span> <span class="o">&amp;</span><span class="p">);</span>
@@ -854,9 +858,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0eeee96" class="outline-2">
-<h2 id="org0eeee96">Exercise 13.31</h2>
-<div class="outline-text-2" id="text-org0eeee96">
+<div id="outline-container-orga6bebfb" class="outline-2">
+<h2 id="orga6bebfb">Exercise 13.31</h2>
+<div class="outline-text-2" id="text-orga6bebfb">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">HasPtr</span>
 <span class="p">{</span>
   <span class="k">friend</span> <span class="kt">void</span> <span class="n">swap</span><span class="p">(</span><span class="n">HasPtr</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">HasPtr</span> <span class="o">&amp;</span><span class="p">);</span>
@@ -904,18 +908,18 @@
 </div>
 </div>
 
-<div id="outline-container-orgb4336f7" class="outline-2">
-<h2 id="orgb4336f7">Exercise 13.32</h2>
-<div class="outline-text-2" id="text-orgb4336f7">
+<div id="outline-container-org15afae3" class="outline-2">
+<h2 id="org15afae3">Exercise 13.32</h2>
+<div class="outline-text-2" id="text-org15afae3">
 <div class="highlight"><pre><span></span><span class="c1">// Gets fewer benefits than the value-like class;</span>
 <span class="c1">// only saves the work of copy initialization of the HasPtr temp object, and the increase &amp; decrease of reference counts.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org7d472f0" class="outline-2">
-<h2 id="org7d472f0">Exercise 13.33</h2>
-<div class="outline-text-2" id="text-org7d472f0">
+<div id="outline-container-orga1cb715" class="outline-2">
+<h2 id="orga1cb715">Exercise 13.33</h2>
+<div class="outline-text-2" id="text-orga1cb715">
 <div class="highlight"><pre><span></span><span class="c1">// Both functions aim to modify the exact Folder object passed in.</span>
 <span class="c1">// if the type of parameter of save and remove is 'Folder': that would use the argument to copy initialize the paremeter, both functions aim to modify the Folder object passed in, not the copy of it.</span>
 <span class="c1">// if it is 'const Folder &amp;', it is impossibile to modify a const Folder object, the expressions within function body are illegal.</span>
@@ -923,17 +927,17 @@
 </div>
 </div>
 
-<div id="outline-container-org7effa7c" class="outline-2">
-<h2 id="org7effa7c">Exercise 13.34</h2>
-<div class="outline-text-2" id="text-org7effa7c">
+<div id="outline-container-orgac3a7b0" class="outline-2">
+<h2 id="orgac3a7b0">Exercise 13.34</h2>
+<div class="outline-text-2" id="text-orgac3a7b0">
 <div class="highlight"><pre><span></span><span class="c1">// See Message.h.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org7c3b01b" class="outline-2">
-<h2 id="org7c3b01b">Message.h</h2>
-<div class="outline-text-2" id="text-org7c3b01b">
+<div id="outline-container-org4934fbd" class="outline-2">
+<h2 id="org4934fbd">Message.h</h2>
+<div class="outline-text-2" id="text-org4934fbd">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Message</span><span class="p">;</span>
 <span class="k">class</span> <span class="nc">Folder</span>
 <span class="p">{</span>
@@ -1058,9 +1062,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8d67b2c" class="outline-2">
-<h2 id="org8d67b2c">Exercise 13.35</h2>
-<div class="outline-text-2" id="text-org8d67b2c">
+<div id="outline-container-orgb565da9" class="outline-2">
+<h2 id="orgb565da9">Exercise 13.35</h2>
+<div class="outline-text-2" id="text-orgb565da9">
 <div class="highlight"><pre><span></span><span class="c1">// is using synthesized version of copy control members:</span>
 <span class="c1">// for copy constructor: no folder contains the pointer which points to this newly constructed Message object;</span>
 <span class="c1">// for destructor: even destructed, folders still contains the pointer which points to the invalid memory space which once stored this destructed object.</span>
@@ -1069,33 +1073,33 @@
 </div>
 </div>
 
-<div id="outline-container-org3eb5c19" class="outline-2">
-<h2 id="org3eb5c19">Exercise 13.36</h2>
-<div class="outline-text-2" id="text-org3eb5c19">
+<div id="outline-container-orgb901225" class="outline-2">
+<h2 id="orgb901225">Exercise 13.36</h2>
+<div class="outline-text-2" id="text-orgb901225">
 <div class="highlight"><pre><span></span><span class="c1">// See Message.h.</span>
 </pre></div>
 
 <p>
-<a href="#org7c3b01b">Message.h</a>
+<a href="#org4934fbd">Message.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga2c436b" class="outline-2">
-<h2 id="orga2c436b">Exercise 13.37</h2>
-<div class="outline-text-2" id="text-orga2c436b">
+<div id="outline-container-orgb715036" class="outline-2">
+<h2 id="orgb715036">Exercise 13.37</h2>
+<div class="outline-text-2" id="text-orgb715036">
 <div class="highlight"><pre><span></span><span class="c1">// see Message.h.</span>
 </pre></div>
 
 <p>
-<a href="#org7c3b01b">Message.h</a>
+<a href="#org4934fbd">Message.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org280de1b" class="outline-2">
-<h2 id="org280de1b">Exercise 13.38</h2>
-<div class="outline-text-2" id="text-org280de1b">
+<div id="outline-container-org74314a3" class="outline-2">
+<h2 id="org74314a3">Exercise 13.38</h2>
+<div class="outline-text-2" id="text-org74314a3">
 <div class="highlight"><pre><span></span><span class="c1">// void swap(message &amp;lhs, Message &amp;rhs)</span>
 <span class="c1">// its implementation really swaps the contents of the two passed in arguments,</span>
 <span class="c1">// and Message &amp;Message::operator=(const Message &amp;rhs) has a const reference type parameter, if this copy assignment operator calls swap(message &amp;lhs,, Messag &amp;rhs),</span>
@@ -1106,17 +1110,17 @@
 </div>
 </div>
 
-<div id="outline-container-orgeb8515e" class="outline-2">
-<h2 id="orgeb8515e">Exercise 13.39</h2>
-<div class="outline-text-2" id="text-orgeb8515e">
+<div id="outline-container-orgde31c74" class="outline-2">
+<h2 id="orgde31c74">Exercise 13.39</h2>
+<div class="outline-text-2" id="text-orgde31c74">
 <div class="highlight"><pre><span></span><span class="c1">// see StrVec.h.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org445dcaa" class="outline-2">
-<h2 id="org445dcaa">StrVec.h</h2>
-<div class="outline-text-2" id="text-org445dcaa">
+<div id="outline-container-org9c00134" class="outline-2">
+<h2 id="org9c00134">StrVec.h</h2>
+<div class="outline-text-2" id="text-org9c00134">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef STRVEC_H</span>
 <span class="cp">#define STRVEC_H</span>
 <span class="k">class</span> <span class="nc">StrVec</span>
@@ -1159,30 +1163,30 @@
 </div>
 </div>
 
-<div id="outline-container-org2795f22" class="outline-2">
-<h2 id="org2795f22">Exercise 13.40</h2>
-<div class="outline-text-2" id="text-org2795f22">
+<div id="outline-container-orgd97b139" class="outline-2">
+<h2 id="orgd97b139">Exercise 13.40</h2>
+<div class="outline-text-2" id="text-orgd97b139">
 <div class="highlight"><pre><span></span><span class="c1">// See StrVec.h</span>
 </pre></div>
 
 <p>
-<a href="#org445dcaa">StrVec.h</a>
+<a href="#org9c00134">StrVec.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfd7fae3" class="outline-2">
-<h2 id="orgfd7fae3">Exercise 13.41</h2>
-<div class="outline-text-2" id="text-orgfd7fae3">
+<div id="outline-container-org1a13ff5" class="outline-2">
+<h2 id="org1a13ff5">Exercise 13.41</h2>
+<div class="outline-text-2" id="text-org1a13ff5">
 <div class="highlight"><pre><span></span><span class="c1">// 'first_free++' keeps the original value of i as temp, increase first_free itself, and return the temp;</span>
 <span class="c1">// if use '++first_free', increase first_free, and return it; that is not right, if use that version, it would not construct the specified string object at right place but the place next to it, which means, this operation would skip the right place.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgc6f03b4" class="outline-2">
-<h2 id="orgc6f03b4">Exercise 13.42</h2>
-<div class="outline-text-2" id="text-orgc6f03b4">
+<div id="outline-container-org1edbb9d" class="outline-2">
+<h2 id="org1edbb9d">Exercise 13.42</h2>
+<div class="outline-text-2" id="text-org1edbb9d">
 <div class="highlight"><pre><span></span><span class="c1">// See TextQuery.h.</span>
 <span class="kt">void</span> <span class="nf">runQueries</span><span class="p">(</span><span class="n">ifstream</span> <span class="o">&amp;</span><span class="n">infile</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1203,28 +1207,28 @@
 </pre></div>
 
 <p>
-<a href="#org8e0e3d8">TextQuery.h</a>
+<a href="#orgac04472">TextQuery.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org885dcd5" class="outline-2">
-<h2 id="org885dcd5">Exercise 13.43</h2>
-<div class="outline-text-2" id="text-org885dcd5">
+<div id="outline-container-org92ed7a7" class="outline-2">
+<h2 id="org92ed7a7">Exercise 13.43</h2>
+<div class="outline-text-2" id="text-org92ed7a7">
 <div class="highlight"><pre><span></span><span class="c1">// see StrVec.h.</span>
 <span class="c1">// the original one is better, use for loop, it could destroy elememts in a reverse order as required, that form is more flexible.</span>
 <span class="c1">// thr for_each one could not destroy elements in a reverse order, for the string poniter could not behave like a reverse iterator, the form of this for_each syntax has its advantages of simple and easy to use, but has more restrictions than for type syntax.</span>
 </pre></div>
 
 <p>
-<a href="#org445dcaa">StrVec.h</a>
+<a href="#org9c00134">StrVec.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4c94aed" class="outline-2">
-<h2 id="org4c94aed">Exercise 13.44</h2>
-<div class="outline-text-2" id="text-org4c94aed">
+<div id="outline-container-orgf216043" class="outline-2">
+<h2 id="orgf216043">Exercise 13.44</h2>
+<div class="outline-text-2" id="text-orgf216043">
 <div class="highlight"><pre><span></span><span class="c1">// See String.h.</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
@@ -1237,9 +1241,9 @@
 </div>
 </div>
 
-<div id="outline-container-org666be66" class="outline-2">
-<h2 id="org666be66">String.h</h2>
-<div class="outline-text-2" id="text-org666be66">
+<div id="outline-container-org801deca" class="outline-2">
+<h2 id="org801deca">String.h</h2>
+<div class="outline-text-2" id="text-org801deca">
 <div class="highlight"><pre><span></span><span class="cp">#ifndef STRING_H_EX</span>
 <span class="cp">#define STRING_H_EX</span>
 <span class="k">class</span> <span class="nc">String</span>
@@ -1280,9 +1284,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4a39f02" class="outline-2">
-<h2 id="org4a39f02">Exercise 13.45</h2>
-<div class="outline-text-2" id="text-org4a39f02">
+<div id="outline-container-org59546f3" class="outline-2">
+<h2 id="org59546f3">Exercise 13.45</h2>
+<div class="outline-text-2" id="text-org59546f3">
 <div class="highlight"><pre><span></span><span class="c1">// Difference between lvalue reference and rvalue reference:</span>
 <span class="c1">// lvalue reference: could not bind to expressions which require convertion, literal constants or erpressions which return rvalue; could bind to expressions which returns lvalue.</span>
 <span class="c1">// rvalue reference; just the opposite to the lvalue reference. </span>
@@ -1290,9 +1294,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2f9009a" class="outline-2">
-<h2 id="org2f9009a">Exercise 13.46</h2>
-<div class="outline-text-2" id="text-org2f9009a">
+<div id="outline-container-org614f86f" class="outline-2">
+<h2 id="org614f86f">Exercise 13.46</h2>
+<div class="outline-text-2" id="text-org614f86f">
 <div class="highlight"><pre><span></span><span class="c1">// int f(); </span>
 <span class="c1">// vector&lt;int&gt; vi(100);</span>
 <span class="c1">// int &amp;&amp;r1 = f();</span>
@@ -1303,21 +1307,21 @@
 </div>
 </div>
 
-<div id="outline-container-orga9969aa" class="outline-2">
-<h2 id="orga9969aa">Exercise 13.47</h2>
-<div class="outline-text-2" id="text-orga9969aa">
+<div id="outline-container-org5dbd7f7" class="outline-2">
+<h2 id="org5dbd7f7">Exercise 13.47</h2>
+<div class="outline-text-2" id="text-org5dbd7f7">
 <div class="highlight"><pre><span></span><span class="c1">// see String.h.</span>
 </pre></div>
 
 <p>
-<a href="#org666be66">String.h</a>
+<a href="#org801deca">String.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0b3c479" class="outline-2">
-<h2 id="org0b3c479">Exercise 13.48</h2>
-<div class="outline-text-2" id="text-org0b3c479">
+<div id="outline-container-org2474f4f" class="outline-2">
+<h2 id="org2474f4f">Exercise 13.48</h2>
+<div class="outline-text-2" id="text-org2474f4f">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">vs</span><span class="p">;</span>
@@ -1338,46 +1342,46 @@
 </div>
 </div>
 
-<div id="outline-container-orgcbee313" class="outline-2">
-<h2 id="orgcbee313">Exercise 13.49</h2>
-<div class="outline-text-2" id="text-orgcbee313">
+<div id="outline-container-org53cc1b8" class="outline-2">
+<h2 id="org53cc1b8">Exercise 13.49</h2>
+<div class="outline-text-2" id="text-org53cc1b8">
 <div class="highlight"><pre><span></span><span class="c1">// See StrVec.h, String.h, Message.h.</span>
 </pre></div>
 
 <p>
-<a href="#org7c3b01b">Message.h</a>
+<a href="#org4934fbd">Message.h</a>
 </p>
 
 <p>
-<a href="#org445dcaa">StrVec.h</a>
+<a href="#org9c00134">StrVec.h</a>
 </p>
 
 <p>
-<a href="#org666be66">String.h</a>
+<a href="#org801deca">String.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf0d4b0d" class="outline-2">
-<h2 id="orgf0d4b0d">Exercise 13.50</h2>
-<div class="outline-text-2" id="text-orgf0d4b0d">
+<div id="outline-container-orgb6d56f8" class="outline-2">
+<h2 id="orgb6d56f8">Exercise 13.50</h2>
+<div class="outline-text-2" id="text-orgb6d56f8">
 <div class="highlight"><pre><span></span><span class="c1">// When the vector&lt;String&gt; object does not have enough space and then processes memory reallocation, it would use move constructor instead of copy constructor of String type during the reallocation of original elements.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org19e0e42" class="outline-2">
-<h2 id="org19e0e42">Exercise 13.51</h2>
-<div class="outline-text-2" id="text-org19e0e42">
+<div id="outline-container-orge893c86" class="outline-2">
+<h2 id="orge893c86">Exercise 13.51</h2>
+<div class="outline-text-2" id="text-orge893c86">
 <div class="highlight"><pre><span></span><span class="c1">// unique_ptr supports move constructor and move-assignment operator;</span>
 <span class="c1">// the source objects are to be destroyed.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org9282e0f" class="outline-2">
-<h2 id="org9282e0f">Exercise 13.52</h2>
-<div class="outline-text-2" id="text-org9282e0f">
+<div id="outline-container-org4f9236b" class="outline-2">
+<h2 id="org4f9236b">Exercise 13.52</h2>
+<div class="outline-text-2" id="text-org4f9236b">
 <div class="highlight"><pre><span></span><span class="c1">// HasPtr hp = hp2;</span>
 <span class="c1">// hp2 is lvaule, using copy constructor to initialize hp, hp2 stays unchanged, hp is the copy of hp2;</span>
 <span class="c1">// HasPtr hp = std::move(hp2);</span>
@@ -1389,9 +1393,9 @@
 </div>
 </div>
 
-<div id="outline-container-org78cf77f" class="outline-2">
-<h2 id="org78cf77f">Exercise 13.53</h2>
-<div class="outline-text-2" id="text-org78cf77f">
+<div id="outline-container-orgb0f5677" class="outline-2">
+<h2 id="orgb0f5677">Exercise 13.53</h2>
+<div class="outline-text-2" id="text-orgb0f5677">
 <div class="highlight"><pre><span></span><span class="c1">// See HasPtr.h.</span>
 <span class="c1">// The efficiency of copy-assgnment operator of HasPtr class type is not good enough, for that there is a copy constructor called when argument passed in, and the exchanging of value within function body may be unnecessary.</span>
 <span class="c1">// The new move-assignment operator takes control of the resources owned by another source object, and makes sure that object in a valid and destruction-safe state.</span>
@@ -1399,14 +1403,14 @@
 </pre></div>
 
 <p>
-<a href="#org0f8136a">HasPtr.h</a>
+<a href="#orgb1500a3">HasPtr.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd893369" class="outline-2">
-<h2 id="orgd893369">Exercise 13.54</h2>
-<div class="outline-text-2" id="text-orgd893369">
+<div id="outline-container-org040c8e0" class="outline-2">
+<h2 id="org040c8e0">Exercise 13.54</h2>
+<div class="outline-text-2" id="text-org040c8e0">
 <div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
   <span class="n">HasPtr</span> <span class="n">h</span><span class="p">(</span><span class="s">"helloworld"</span><span class="p">);</span>
@@ -1423,21 +1427,21 @@
 </div>
 </div>
 
-<div id="outline-container-org22e6ae8" class="outline-2">
-<h2 id="org22e6ae8">Exercise 13.55</h2>
-<div class="outline-text-2" id="text-org22e6ae8">
+<div id="outline-container-org7d61f0f" class="outline-2">
+<h2 id="org7d61f0f">Exercise 13.55</h2>
+<div class="outline-text-2" id="text-org7d61f0f">
 <div class="highlight"><pre><span></span><span class="c1">// See StrBlob.h.</span>
 </pre></div>
 
 <p>
-<a href="#org0f69145">StrBlob.h</a>
+<a href="#orgb2c00e2">StrBlob.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org429953b" class="outline-2">
-<h2 id="org429953b">Exercise 13.56</h2>
-<div class="outline-text-2" id="text-org429953b">
+<div id="outline-container-org6e2001f" class="outline-2">
+<h2 id="org6e2001f">Exercise 13.56</h2>
+<div class="outline-text-2" id="text-org6e2001f">
 <div class="highlight"><pre><span></span><span class="c1">///////////////////////////////</span>
 <span class="c1">// Foo Foo::sorted() const &amp; //</span>
 <span class="c1">// {			     //</span>
@@ -1450,17 +1454,17 @@
 </div>
 </div>
 
-<div id="outline-container-org71f59e9" class="outline-2">
-<h2 id="org71f59e9">Exercise 13.57</h2>
-<div class="outline-text-2" id="text-org71f59e9">
+<div id="outline-container-org1163188" class="outline-2">
+<h2 id="org1163188">Exercise 13.57</h2>
+<div class="outline-text-2" id="text-org1163188">
 <div class="highlight"><pre><span></span><span class="c1">// Passed, got the desired result.</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgf04103e" class="outline-2">
-<h2 id="orgf04103e">Exercise 13.58</h2>
-<div class="outline-text-2" id="text-orgf04103e">
+<div id="outline-container-org7067af7" class="outline-2">
+<h2 id="org7067af7">Exercise 13.58</h2>
+<div class="outline-text-2" id="text-org7067af7">
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span>
 <span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
