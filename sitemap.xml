@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://zero4drift.github.io/</loc>
-  <lastmod>2018-08-20T16:32:00Z</lastmod>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/2018/</loc>
@@ -15,11 +15,11 @@
  </url>
  <url>
   <loc>https://zero4drift.github.io/archive.html</loc>
-  <lastmod>2018-09-09T05:53:00Z</lastmod>
+  <lastmod>2018-12-07T08:24:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/categories/</loc>
-  <lastmod>2018-08-30T08:15:00Z</lastmod>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/categories/accounting/</loc>
@@ -42,8 +42,16 @@
   <lastmod>2018-08-20T16:32:00Z</lastmod>
  </url>
  <url>
+  <loc>https://zero4drift.github.io/categories/cat_clrs/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://zero4drift.github.io/categories/cat_csapp/</loc>
   <lastmod>2018-08-20T16:32:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/categories/clrs/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/categories/cpp-primer/</loc>
@@ -79,7 +87,111 @@
  </url>
  <url>
   <loc>https://zero4drift.github.io/index-2.html</loc>
-  <lastmod>2018-09-09T05:53:00Z</lastmod>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/index-3.html</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/index-4.html</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/index-5.html</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-10/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-11/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-12/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-13/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-14/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-15/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-16/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-18/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-19/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-2/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-20/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-21/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-22/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-23/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-24/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-25/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-26/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-4/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-5/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-6/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-7/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-8/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-9/</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/posts/Cpp-Primer-5th-Exercises-Chapter-1/</loc>

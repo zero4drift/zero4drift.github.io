@@ -15,7 +15,7 @@
  </sitemap>
  <sitemap>
   <loc>https://zero4drift.github.io/categories/c%2B%2B.xml</loc>
-  <lastmod>2018-08-30T08:15:00Z</lastmod>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://zero4drift.github.io/categories/c.xml</loc>
@@ -26,8 +26,16 @@
   <lastmod>2018-08-30T08:14:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>https://zero4drift.github.io/categories/cat_clrs.xml</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>https://zero4drift.github.io/categories/cat_csapp.xml</loc>
   <lastmod>2018-08-20T16:32:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://zero4drift.github.io/categories/clrs.xml</loc>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://zero4drift.github.io/categories/cpp-primer.xml</loc>
@@ -59,10 +67,10 @@
  </sitemap>
  <sitemap>
   <loc>https://zero4drift.github.io/rss.xml</loc>
-  <lastmod>2018-09-09T05:53:00Z</lastmod>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://zero4drift.github.io/sitemap.xml</loc>
-  <lastmod>2018-09-09T05:53:00Z</lastmod>
+  <lastmod>2018-12-07T08:29:00Z</lastmod>
  </sitemap>
 </sitemapindex>

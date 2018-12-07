@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Introduction to Algorithms Chapter-23 minimum_spanning_tree mst_kruskal mst_prim">
+<meta name="viewport" content="width=device-width">
+<title>CLRS-Cpp-Implementations-Chapter-23 | Procrastination Prescription</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-23/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
+<meta property="og:site_name" content="Procrastination Prescription">
+<meta property="og:title" content="CLRS-Cpp-Implementations-Chapter-23">
+<meta property="og:url" content="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-23/">
+<meta property="og:description" content="Introduction to Algorithms Chapter-23 minimum_spanning_tree mst_kruskal mst_prim">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-11-25T10:28:08+08:00">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="CLRS">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://zero4drift.github.io/" title="Procrastination Prescription" rel="home">
+                Procrastination Prescription
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../archive.html">Archive</a></li>
+                <li><a href="https://github.com/zero4drift">Github</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                CLRS-Cpp-Implementations-Chapter-23
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-11-25T10:28:08+08:00">2018/11/25</time>
+</div>
+	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../categories/c%2B%2B/" rel="tag">C++</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../categories/clrs/" rel="tag">CLRS</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+    
+    
+    <div id="post-main" class="main">
+        <div class="container">
+        <div id="outline-container-orga92ab48" class="outline-2">
+<h2 id="orga92ab48">minimum_spanning_tree</h2>
+<div class="outline-text-2" id="text-orga92ab48">
+</div>
+<div id="outline-container-org88f7876" class="outline-3">
+<h3 id="org88f7876">mst_kruskal</h3>
+<div class="outline-text-3" id="text-org88f7876">
+<div class="highlight"><pre><span></span> <span class="cp">#include</span> <span class="cpf">"chapter-21/tree_disjoint_set/tree_disjoint_set.h"</span><span class="cp"></span>
+ <span class="cp">#include</span> <span class="cpf">"chapter-22/base_graph/base_graph.h"</span><span class="cp"></span>
+ <span class="cp">#include</span> <span class="cpf">"chapter-22/vertex_graph/vertex_graph.h"</span><span class="cp"></span>
+ <span class="cp">#include</span> <span class="cpf">"chapter-23/minimum_spanning_tree/mst_utilities.h"</span><span class="cp"></span>
+ <span class="k">namespace</span> <span class="n">CLRS</span>
+ <span class="p">{</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;&gt;</span>
+   <span class="n">mst_kruskal</span>
+   <span class="p">(</span><span class="n">BaseGraph</span><span class="o">&lt;</span><span class="n">VertexGraph</span><span class="p">,</span>
+    <span class="n">WeightEdgeGraph</span><span class="o">&lt;</span><span class="n">VertexGraph</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">)</span>
+   <span class="p">{</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">vector</span>
+       <span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">;</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">vector</span>
+       <span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span>
+	<span class="o">&lt;</span><span class="n">TreeDisjointSetNode</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;&gt;&gt;</span> <span class="n">vp</span><span class="p">;</span>
+     <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">s</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">get_vertexes_size</span><span class="p">();</span>
+     <span class="k">for</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">s</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+       <span class="p">{</span>
+       <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span>
+	 <span class="o">&lt;</span><span class="n">TreeDisjointSetNode</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+       <span class="n">vp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+       <span class="n">CLRS</span><span class="o">::</span><span class="n">tree_disjoint_make_set</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+       <span class="p">}</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">edgesr</span><span class="p">().</span><span class="n">begin</span><span class="p">(),</span>
+	     <span class="n">g</span><span class="p">.</span><span class="n">edgesr</span><span class="p">().</span><span class="n">end</span><span class="p">(),</span>
+	     <span class="p">[](</span><span class="k">const</span> <span class="n">WeightEdgeGraph</span><span class="o">&lt;</span><span class="n">VertexGraph</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e1</span><span class="p">,</span>
+		<span class="k">const</span> <span class="n">WeightEdgeGraph</span><span class="o">&lt;</span><span class="n">VertexGraph</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">e2</span><span class="p">)</span>
+	     <span class="p">{</span><span class="k">return</span> <span class="n">e1</span><span class="p">.</span><span class="n">get_weight</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">e2</span><span class="p">.</span><span class="n">get_weight</span><span class="p">();});</span>
+     <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span> <span class="p">:</span> <span class="n">g</span><span class="p">.</span><span class="n">get_edges</span><span class="p">())</span>
+       <span class="p">{</span>
+       <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i1</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">get_first_vertex</span><span class="p">();</span>
+       <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i2</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">get_second_vertex</span><span class="p">();</span>
+       <span class="k">if</span><span class="p">(</span><span class="n">CLRS</span><span class="o">::</span><span class="n">tree_disjoint_find_set</span><span class="p">(</span><span class="n">vp</span><span class="p">[</span><span class="n">i1</span><span class="p">])</span> <span class="o">!=</span>
+	  <span class="n">CLRS</span><span class="o">::</span><span class="n">tree_disjoint_find_set</span><span class="p">(</span><span class="n">vp</span><span class="p">[</span><span class="n">i2</span><span class="p">]))</span>
+	 <span class="p">{</span>
+	   <span class="n">a</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">i1</span><span class="p">,</span> <span class="n">i2</span><span class="p">));</span>
+	   <span class="n">CLRS</span><span class="o">::</span><span class="n">tree_disjoint_union</span><span class="p">(</span><span class="n">vp</span><span class="p">[</span><span class="n">i1</span><span class="p">],</span> <span class="n">vp</span><span class="p">[</span><span class="n">i2</span><span class="p">]);</span>
+	 <span class="p">}</span>
+       <span class="p">}</span> 
+     <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org76668cf" class="outline-3">
+<h3 id="org76668cf">utilities</h3>
+<div class="outline-text-3" id="text-org76668cf">
+<p>
+<a href="https://github.com/zero4drift/CLRS_Cpp_Implementations/tree/master/include//chapter-23/minimum_spanning_tree/mst_utilities.h">https://github.com/zero4drift/CLRS_Cpp_Implementations/tree/master/include//chapter-23/minimum_spanning_tree/mst_utilities.h</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbc7c416" class="outline-3">
+<h3 id="orgbc7c416">mst_prim</h3>
+<div class="outline-text-3" id="text-orgbc7c416">
+<div class="highlight"><pre><span></span> <span class="cp">#include</span> <span class="cpf">"chapter-19/fibonacci_heap/fibonacci_heap.h"</span><span class="cp"></span>
+ <span class="cp">#include</span> <span class="cpf">"chapter-22/linked_list_graph/linked_list_graph.h"</span><span class="cp"></span>
+ <span class="cp">#include</span> <span class="cpf">"chapter-23/minimum_spanning_tree/mst_utilities.h"</span><span class="cp"></span>
+ <span class="k">namespace</span> <span class="n">CLRS</span>
+ <span class="p">{</span>  
+   <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span>
+       <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;&gt;</span>
+   <span class="n">mst_prim</span><span class="p">(</span><span class="k">const</span> <span class="n">LinkedListGraph</span><span class="o">&lt;</span><span class="n">WeightVertexGraph</span><span class="p">,</span>
+	  <span class="n">WeightEdgeGraph</span><span class="o">&lt;</span><span class="n">WeightVertexGraph</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">llg</span><span class="p">,</span>
+	  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span><span class="p">)</span>
+   <span class="p">{</span>
+     <span class="k">auto</span> <span class="n">g</span> <span class="o">=</span> <span class="n">llg</span><span class="p">;</span>
+     <span class="c1">// initialize a vector as return value</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span>
+       <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span>
+       <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">;</span>
+     <span class="c1">// set weight for the root node with specified index</span>
+     <span class="n">g</span><span class="p">.</span><span class="n">vertex</span><span class="p">(</span><span class="n">r</span><span class="p">).</span><span class="n">set_weight</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+     <span class="n">g</span><span class="p">.</span><span class="n">vertex</span><span class="p">(</span><span class="n">r</span><span class="p">).</span><span class="n">set_weight_flag</span><span class="p">();</span>
+     <span class="c1">// fibonacci heap</span>
+     <span class="k">auto</span> <span class="n">fib_h</span> <span class="o">=</span>
+       <span class="n">CLRS</span><span class="o">::</span><span class="n">make_fib_heap</span><span class="o">&lt;</span><span class="n">WeightVertexGraph</span><span class="o">&gt;</span><span class="p">();</span>
+     <span class="c1">// vshr stores the shared_ptr of fib nodes by index of its key</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">vector</span>
+       <span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span>
+	<span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">WeightVertexGraph</span><span class="o">&gt;&gt;&gt;</span> <span class="n">vshr</span><span class="p">;</span>
+     <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+       <span class="n">i</span> <span class="o">!=</span> <span class="n">g</span><span class="p">.</span><span class="n">get_vertexes_size</span><span class="p">();</span>
+       <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+       <span class="p">{</span>
+       <span class="c1">// vertex would be in fib heap</span>
+       <span class="n">g</span><span class="p">.</span><span class="n">vertex</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">set_in_fib_h</span><span class="p">();</span>
+       <span class="k">auto</span> <span class="n">shr</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span>
+				   <span class="o">&lt;</span><span class="n">WeightVertexGraph</span><span class="o">&gt;&gt;</span>
+	 <span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">vertex</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+       <span class="n">vshr</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">shr</span><span class="p">);</span>
+       <span class="n">CLRS</span><span class="o">::</span><span class="n">fib_heap_insert</span><span class="p">(</span><span class="n">fib_h</span><span class="p">,</span> <span class="n">shr</span><span class="p">);</span>
+       <span class="p">}</span>
+     <span class="c1">// if fib_heap is empty, the program ends</span>
+     <span class="k">while</span><span class="p">(</span><span class="n">fib_h</span><span class="p">.</span><span class="n">get_n</span><span class="p">())</span>
+       <span class="p">{</span>
+       <span class="k">auto</span> <span class="n">up</span> <span class="o">=</span> <span class="n">fib_heap_extract_min</span><span class="p">(</span><span class="n">fib_h</span><span class="p">);</span>
+       <span class="k">auto</span> <span class="n">uv</span> <span class="o">=</span> <span class="n">up</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">();</span>
+       <span class="c1">// clear the flag and make it effective</span>
+       <span class="n">uv</span><span class="p">.</span><span class="n">clear_in_fib_h</span><span class="p">();</span>
+       <span class="n">up</span><span class="o">-&gt;</span><span class="n">set_key</span><span class="p">(</span><span class="n">uv</span><span class="p">);</span>
+       <span class="c1">// every one extracted from fib heap makes a safe edge</span>
+       <span class="c1">// which is member of minimum spanning tree</span>
+       <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">u</span> <span class="o">=</span> <span class="n">uv</span><span class="p">.</span><span class="n">get_index</span><span class="p">();</span>
+       <span class="k">if</span><span class="p">(</span><span class="n">uv</span><span class="p">.</span><span class="n">get_weight</span><span class="p">())</span>
+	 <span class="n">a</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">uv</span><span class="p">.</span><span class="n">get_p</span><span class="p">(),</span> <span class="n">u</span><span class="p">));</span>
+       <span class="c1">// scan through the adjacent nodes</span>
+       <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">ev</span><span class="p">:</span> <span class="n">g</span><span class="p">.</span><span class="n">get_adj_vertexes</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+	 <span class="p">{</span>
+	   <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">vp</span> <span class="o">=</span> <span class="n">llg</span><span class="p">.</span><span class="n">get_edges</span><span class="p">()[</span><span class="n">ev</span><span class="p">].</span><span class="n">get_second_vertex</span><span class="p">();</span>
+	   <span class="k">auto</span> <span class="n">vv</span> <span class="o">=</span> <span class="n">vshr</span><span class="p">[</span><span class="n">vp</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">();</span>
+	   <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">v</span> <span class="o">=</span> <span class="n">vv</span><span class="p">.</span><span class="n">get_index</span><span class="p">();</span>
+	   <span class="c1">// condition1: handle the node still in fib heap</span>
+	   <span class="k">if</span><span class="p">(</span><span class="n">vv</span><span class="p">.</span><span class="n">get_in_fib_h</span><span class="p">())</span>
+	     <span class="p">{</span>
+	       <span class="c1">// condition2: data member weight unsettled or</span>
+	       <span class="c1">// comes to a smaller weight </span>
+	       <span class="k">if</span><span class="p">((</span><span class="n">vv</span><span class="p">.</span><span class="n">is_weight_set</span><span class="p">()</span>
+		   <span class="o">&amp;&amp;</span> <span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">).</span><span class="n">get_weight</span><span class="p">()</span> <span class="o">&lt;</span>
+		   <span class="n">vv</span><span class="p">.</span><span class="n">get_weight</span><span class="p">())</span> <span class="o">||</span> <span class="o">!</span><span class="n">vv</span><span class="p">.</span><span class="n">is_weight_set</span><span class="p">())</span>
+		 <span class="p">{</span>
+		   <span class="n">vv</span><span class="p">.</span><span class="n">set_p</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+		   <span class="n">vv</span><span class="p">.</span><span class="n">set_p_flag</span><span class="p">();</span>
+		   <span class="n">vv</span><span class="p">.</span><span class="n">set_weight</span>
+		     <span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">).</span><span class="n">get_weight</span><span class="p">());</span>
+		   <span class="n">vv</span><span class="p">.</span><span class="n">set_weight_flag</span><span class="p">();</span>
+		   <span class="c1">// the data member weight of vertex</span>
+		   <span class="c1">// decides the arrangement of fib heap</span>
+		   <span class="n">fib_heap_decrease_key</span><span class="p">(</span><span class="n">fib_h</span><span class="p">,</span> <span class="n">vshr</span><span class="p">[</span><span class="n">vp</span><span class="p">],</span> <span class="n">vv</span><span class="p">);</span>
+		 <span class="p">}</span>
+	     <span class="p">}</span>
+	 <span class="p">}</span>
+       <span class="p">}</span>
+     <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+   <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+            
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="https-zero4drift-github-io",
+            disqus_url="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-23/",
+        disqus_title="CLRS-Cpp-Implementations-Chapter-23",
+        disqus_identifier="cache/posts/CLRS-Cpp-Implementations-Chapter-23.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        
+    
+
+
+        </div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:fang0052@e.ntu.edu.sg">zero4drift</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?06e0ade16d98033ac1aad78106d873c8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script src="../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>

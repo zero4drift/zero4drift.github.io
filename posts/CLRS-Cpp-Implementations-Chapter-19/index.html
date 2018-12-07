@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Introduction to Algorithms Chapter-19 fibonacci_heap">
+<meta name="viewport" content="width=device-width">
+<title>CLRS-Cpp-Implementations-Chapter-19 | Procrastination Prescription</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-19/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
+<meta property="og:site_name" content="Procrastination Prescription">
+<meta property="og:title" content="CLRS-Cpp-Implementations-Chapter-19">
+<meta property="og:url" content="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-19/">
+<meta property="og:description" content="Introduction to Algorithms Chapter-19 fibonacci_heap">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-10-25T23:23:36+08:00">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="CLRS">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://zero4drift.github.io/" title="Procrastination Prescription" rel="home">
+                Procrastination Prescription
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../archive.html">Archive</a></li>
+                <li><a href="https://github.com/zero4drift">Github</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                CLRS-Cpp-Implementations-Chapter-19
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-10-25T23:23:36+08:00">2018/10/25</time>
+</div>
+	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../categories/c%2B%2B/" rel="tag">C++</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../categories/clrs/" rel="tag">CLRS</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+    
+    
+    <div id="post-main" class="main">
+        <div class="container">
+        <div id="outline-container-orgd606c40" class="outline-2">
+<h2 id="orgd606c40">fibonacci_heap</h2>
+<div class="outline-text-2" id="text-orgd606c40">
+<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">CLRS</span>
+<span class="p">{</span>    
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="k">class</span> <span class="nc">FibHeap</span><span class="p">;</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="k">class</span> <span class="nc">FibHeapTreeNode</span><span class="p">;</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">make_fib_heap</span><span class="p">();</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_insert</span><span class="p">(</span><span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="p">,</span>
+		     <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="p">);</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span>
+  <span class="n">fib_heap_minimum</span><span class="p">(</span><span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="p">);</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">fib_heap_union</span><span class="p">(</span><span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="p">);</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="n">fib_heap_extract_min</span><span class="p">(</span><span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="p">);</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">consolidate</span><span class="p">(</span><span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="p">);</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_link</span><span class="p">(</span><span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="p">,</span>
+		   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="p">,</span>
+		   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="p">);</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_decrease_key</span><span class="p">(</span><span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="p">,</span>
+			   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="p">,</span>
+			   <span class="n">T</span><span class="p">);</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">cut</span><span class="p">(</span><span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="p">,</span>
+	 <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="p">,</span>
+	 <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="p">);</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">cascading_cut</span><span class="p">(</span><span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="p">,</span>
+		   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="p">);</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_delete</span><span class="p">(</span><span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="p">,</span>
+		     <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="p">);</span>
+  <span class="cm">/*</span>
+<span class="cm">   * doubly linked circular list helper functions</span>
+<span class="cm">   */</span>
+
+  <span class="c1">// just assign itself to the left and right of node. </span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_list_make</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_left</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_right</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// just link first to the second and the left of second</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_list_insert</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span>
+			  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_right</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_left</span><span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_left</span><span class="p">());</span>
+    <span class="n">y</span><span class="o">-&gt;</span><span class="n">get_left</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_right</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">y</span><span class="o">-&gt;</span><span class="n">set_left</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// just need the removing node as parameter, link its left and right</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_list_remove</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_left</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_right</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_right</span><span class="p">());</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_right</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_left</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_left</span><span class="p">());</span>
+  <span class="p">}</span>
+
+  <span class="c1">// make the first a child of the second, increase second's degree</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_list_add_child</span><span class="p">(</span>
+			     <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span>
+			     <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">()</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span>
+      <span class="p">{</span>
+      <span class="n">fib_heap_list_insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">());</span>
+      <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_p</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="p">{</span>
+      <span class="n">fib_heap_list_make</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+      <span class="n">y</span><span class="o">-&gt;</span><span class="n">set_child</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+      <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_p</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="n">y</span><span class="o">-&gt;</span><span class="n">incr_degree</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="c1">// make the first not a child of the second, decrease second's degree</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_list_remove_child</span><span class="p">(</span>
+				<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span>
+				<span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">fib_heap_list_remove</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_right</span><span class="p">()</span> <span class="o">==</span> <span class="n">x</span><span class="p">)</span>
+      <span class="n">y</span><span class="o">-&gt;</span><span class="n">set_child</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">y</span><span class="o">-&gt;</span><span class="n">set_child</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_right</span><span class="p">());</span>
+    <span class="n">y</span><span class="o">-&gt;</span><span class="n">decr_degree</span><span class="p">();</span> 
+  <span class="p">}</span>
+  <span class="cm">/*</span>
+<span class="cm">   * calculate maxmum degreee based on amount of nodes</span>
+<span class="cm">   */</span>
+  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">fib_maximum_degree</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// loga(b) = log2(b) / log2(a)</span>
+    <span class="kt">double</span> <span class="n">gold</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">below</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">log2</span><span class="p">(</span><span class="n">gold</span><span class="p">);</span>
+    <span class="kt">double</span> <span class="n">top</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">log2</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">top</span> <span class="o">/</span> <span class="n">below</span><span class="p">;</span>
+  <span class="p">}</span> 
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="k">class</span> <span class="nc">FibHeap</span>
+  <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="k">using</span> <span class="n">FibNodeSHPTR</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="p">;</span>
+    <span class="n">FibHeap</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">get_n</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">n</span><span class="p">;}</span>
+    <span class="n">FibNodeSHPTR</span> <span class="n">get_min</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">min</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">incr_n</span><span class="p">()</span> <span class="p">{</span><span class="o">++</span><span class="n">n</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">decr_n</span><span class="p">()</span> <span class="p">{</span><span class="o">--</span><span class="n">n</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">set_n</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span><span class="n">n</span> <span class="o">=</span> <span class="n">m</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">set_min</span><span class="p">(</span><span class="n">FibNodeSHPTR</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span><span class="n">min</span> <span class="o">=</span> <span class="n">m</span><span class="p">;}</span>
+  <span class="k">private</span><span class="o">:</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">FibNodeSHPTR</span> <span class="n">min</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="k">class</span> <span class="nc">FibHeapTreeNode</span>
+  <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="k">using</span> <span class="n">FibNodeSHPTR</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&gt;</span><span class="p">;</span>
+    <span class="n">FibHeapTreeNode</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+    <span class="n">FibHeapTreeNode</span><span class="p">(</span><span class="n">T</span> <span class="n">k</span><span class="p">)</span><span class="o">:</span> <span class="n">key</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">T</span> <span class="n">get_key</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">key</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">set_key</span><span class="p">(</span><span class="n">T</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span><span class="n">key</span> <span class="o">=</span> <span class="n">k</span><span class="p">;}</span>
+    <span class="kt">bool</span> <span class="n">get_mark</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">mark</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">set_mark</span><span class="p">()</span> <span class="p">{</span><span class="n">mark</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">clear_mark</span><span class="p">()</span> <span class="p">{</span><span class="n">mark</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;}</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">get_degree</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">degree</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">incr_degree</span><span class="p">()</span> <span class="p">{</span><span class="o">++</span><span class="n">degree</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">decr_degree</span><span class="p">()</span> <span class="p">{</span><span class="o">--</span><span class="n">degree</span><span class="p">;}</span>
+    <span class="n">FibNodeSHPTR</span> <span class="n">get_p</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">p</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">set_p</span><span class="p">(</span><span class="k">const</span> <span class="n">FibNodeSHPTR</span> <span class="o">&amp;</span><span class="n">parent</span><span class="p">)</span> <span class="p">{</span><span class="n">p</span> <span class="o">=</span> <span class="n">parent</span><span class="p">;}</span>
+    <span class="n">FibNodeSHPTR</span> <span class="n">get_child</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">child</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">set_child</span><span class="p">(</span><span class="k">const</span> <span class="n">FibNodeSHPTR</span> <span class="o">&amp;</span><span class="n">c</span><span class="p">)</span> <span class="p">{</span><span class="n">child</span> <span class="o">=</span> <span class="n">c</span><span class="p">;}</span>
+    <span class="n">FibNodeSHPTR</span> <span class="n">get_left</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">left</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">set_left</span><span class="p">(</span><span class="k">const</span> <span class="n">FibNodeSHPTR</span> <span class="o">&amp;</span><span class="n">l</span><span class="p">)</span> <span class="p">{</span><span class="n">left</span> <span class="o">=</span> <span class="n">l</span><span class="p">;}</span>
+    <span class="n">FibNodeSHPTR</span> <span class="n">get_right</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">right</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">set_right</span><span class="p">(</span><span class="k">const</span> <span class="n">FibNodeSHPTR</span> <span class="o">&amp;</span><span class="n">r</span><span class="p">)</span> <span class="p">{</span><span class="n">right</span> <span class="o">=</span> <span class="n">r</span><span class="p">;}</span>
+  <span class="k">private</span><span class="o">:</span>
+    <span class="n">T</span> <span class="n">key</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">mark</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">degree</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">FibNodeSHPTR</span> <span class="n">p</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+    <span class="n">FibNodeSHPTR</span> <span class="n">child</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+    <span class="n">FibNodeSHPTR</span> <span class="n">left</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+    <span class="n">FibNodeSHPTR</span> <span class="n">right</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">make_fib_heap</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_insert</span><span class="p">(</span><span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">h</span><span class="p">,</span>
+		     <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">()</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span>
+      <span class="p">{</span>
+      <span class="n">fib_heap_list_make</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+      <span class="n">h</span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="p">{</span>
+      <span class="n">fib_heap_list_insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">());</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">())</span>
+	<span class="n">h</span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="n">h</span><span class="p">.</span><span class="n">incr_n</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span>
+  <span class="n">fib_heap_minimum</span><span class="p">(</span><span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">h</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">fib_heap_union</span><span class="p">(</span><span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">h1</span><span class="p">,</span> <span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">h2</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">h</span><span class="p">;</span>
+    <span class="n">h</span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="n">h1</span><span class="p">.</span><span class="n">get_min</span><span class="p">());</span>
+    <span class="k">auto</span> <span class="n">h_min</span> <span class="o">=</span> <span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">();</span>
+    <span class="k">auto</span> <span class="n">h2_n</span> <span class="o">=</span> <span class="n">h2</span><span class="p">.</span><span class="n">get_min</span><span class="p">();</span>
+    <span class="c1">// concatenate</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">h_min</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span>
+      <span class="n">h</span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="n">h2_n</span><span class="p">);</span>
+    <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">h2_n</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span>
+      <span class="k">do</span>
+      <span class="p">{</span>
+	<span class="k">auto</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">h2_n</span><span class="p">;</span>
+	<span class="n">h2_n</span> <span class="o">=</span> <span class="n">h2_n</span><span class="o">-&gt;</span><span class="n">get_right</span><span class="p">();</span>
+	<span class="n">fib_heap_list_insert</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">h_min</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">while</span><span class="p">(</span><span class="n">h2_n</span> <span class="o">!=</span> <span class="n">h2</span><span class="p">.</span><span class="n">get_min</span><span class="p">());</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">h2</span><span class="p">.</span><span class="n">get_min</span><span class="p">()</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="o">&amp;&amp;</span> <span class="n">h1</span><span class="p">.</span><span class="n">get_min</span><span class="p">()</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="o">&amp;&amp;</span>
+       <span class="n">h2</span><span class="p">.</span><span class="n">get_min</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">h1</span><span class="p">.</span><span class="n">get_min</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">())</span>
+      <span class="n">h</span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="n">h2</span><span class="p">.</span><span class="n">get_min</span><span class="p">());</span>
+    <span class="n">h</span><span class="p">.</span><span class="n">set_n</span><span class="p">(</span><span class="n">h1</span><span class="p">.</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="n">h2</span><span class="p">.</span><span class="n">get_n</span><span class="p">());</span>
+    <span class="k">return</span> <span class="n">h</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="n">fib_heap_extract_min</span><span class="p">(</span><span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">h</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">z</span> <span class="o">=</span> <span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">z</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span>
+      <span class="p">{</span>
+      <span class="k">auto</span> <span class="n">n</span> <span class="o">=</span> <span class="n">z</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">();</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">d</span> <span class="o">&lt;=</span> <span class="n">z</span><span class="o">-&gt;</span><span class="n">get_degree</span><span class="p">();</span> <span class="o">++</span><span class="n">d</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="k">auto</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">get_right</span><span class="p">();</span>
+	  <span class="n">fib_heap_list_insert</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+	  <span class="n">n</span><span class="o">-&gt;</span><span class="n">set_p</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
+	  <span class="n">n</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	<span class="p">}</span>
+      <span class="n">fib_heap_list_remove</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">get_right</span><span class="p">()</span> <span class="o">==</span> <span class="n">z</span><span class="p">)</span>
+	<span class="n">h</span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
+      <span class="k">else</span>
+	<span class="p">{</span>
+	  <span class="n">h</span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">get_right</span><span class="p">());</span>
+	  <span class="n">consolidate</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
+	<span class="p">}</span>
+      <span class="n">h</span><span class="p">.</span><span class="n">decr_n</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">consolidate</span><span class="p">(</span><span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">h</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">max_degree</span> <span class="o">=</span> <span class="n">fib_maximum_degree</span><span class="p">(</span><span class="n">h</span><span class="p">.</span><span class="n">get_n</span><span class="p">());</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">max_degree</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="k">auto</span> <span class="n">w</span> <span class="o">=</span> <span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">();</span>
+    <span class="cm">/* </span>
+<span class="cm">     * the reason why the former commit of code below causes a bug:</span>
+<span class="cm">     * the min of fib heap may be removed from the root list</span>
+<span class="cm">     * and then the former while loop is infinite. </span>
+<span class="cm">     * Fix: compute the length of root list and take it as the while contition</span>
+<span class="cm">     * TODO: data root list length better stored in class FibHeap</span>
+<span class="cm">     */</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">root_list_len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">do</span>
+      <span class="p">{</span>
+      <span class="o">++</span><span class="n">root_list_len</span><span class="p">;</span>
+      <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="o">-&gt;</span><span class="n">get_right</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">w</span> <span class="o">!=</span> <span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">());</span>
+    <span class="c1">// handle each node of root list</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">root_list_len</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span>
+      <span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="n">w</span><span class="p">;</span>
+      <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="o">-&gt;</span><span class="n">get_right</span><span class="p">();</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">d</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_degree</span><span class="p">();</span>
+      <span class="k">while</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">d</span><span class="p">];</span>
+	  <span class="k">if</span><span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">())</span>
+	    <span class="p">{</span>
+	      <span class="k">auto</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+	      <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+	      <span class="n">y</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	    <span class="p">}</span>
+	  <span class="n">fib_heap_link</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+	  <span class="o">++</span><span class="n">d</span><span class="p">;</span>
+	<span class="p">}</span>
+      <span class="n">a</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+      <span class="o">--</span><span class="n">root_list_len</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="c1">// now the root list must be reconstructed</span>
+    <span class="n">h</span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">max_degree</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+      <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="k">if</span><span class="p">(</span><span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">()</span> <span class="o">==</span> <span class="k">nullptr</span><span class="p">)</span>
+	    <span class="p">{</span>
+	      <span class="n">fib_heap_list_make</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+	      <span class="n">h</span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+	    <span class="p">}</span>
+	  <span class="k">else</span>
+	    <span class="p">{</span>
+	      <span class="n">fib_heap_list_insert</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">());</span>
+	      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">())</span>
+		<span class="n">h</span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+	    <span class="p">}</span>
+	<span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_link</span><span class="p">(</span><span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">h</span><span class="p">,</span>
+		   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">,</span>
+		   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">fib_heap_list_remove</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+    <span class="n">fib_heap_list_add_child</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="n">y</span><span class="o">-&gt;</span><span class="n">clear_mark</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_decrease_key</span><span class="p">(</span><span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">h</span><span class="p">,</span>
+			   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span>
+			   <span class="n">T</span> <span class="n">k</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span>
+      <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">"new key is greater than current key"</span><span class="p">);</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_key</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_p</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">y</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">y</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">())</span>
+      <span class="p">{</span>
+      <span class="n">cut</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+      <span class="n">cascading_cut</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">())</span>
+      <span class="n">h</span><span class="p">.</span><span class="n">set_min</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">cut</span><span class="p">(</span><span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">h</span><span class="p">,</span>
+	 <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span>
+	 <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">fib_heap_list_remove_child</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+    <span class="n">fib_heap_list_insert</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">.</span><span class="n">get_min</span><span class="p">());</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_p</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
+    <span class="n">x</span><span class="o">-&gt;</span><span class="n">clear_mark</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">cascading_cut</span><span class="p">(</span><span class="k">const</span> <span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">h</span><span class="p">,</span>
+		   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">y</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">z</span> <span class="o">=</span> <span class="n">y</span><span class="o">-&gt;</span><span class="n">get_p</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">z</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span>
+      <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_mark</span><span class="p">())</span>
+	<span class="n">y</span><span class="o">-&gt;</span><span class="n">set_mark</span><span class="p">();</span>
+      <span class="k">else</span>
+	<span class="p">{</span>
+	  <span class="n">cut</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+	  <span class="n">cascading_cut</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">z</span><span class="p">);</span>
+	<span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+  <span class="kt">void</span> <span class="n">fib_heap_delete</span><span class="p">(</span><span class="n">FibHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">h</span><span class="p">,</span>
+		     <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span>
+		     <span class="n">T</span> <span class="n">k</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">fib_heap_decrease_key</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+    <span class="n">fib_heap_extract_min</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
+  <span class="p">}</span> 
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+            
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="https-zero4drift-github-io",
+            disqus_url="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-19/",
+        disqus_title="CLRS-Cpp-Implementations-Chapter-19",
+        disqus_identifier="cache/posts/CLRS-Cpp-Implementations-Chapter-19.html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        
+    
+
+
+        </div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:fang0052@e.ntu.edu.sg">zero4drift</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?06e0ade16d98033ac1aad78106d873c8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script src="../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>
