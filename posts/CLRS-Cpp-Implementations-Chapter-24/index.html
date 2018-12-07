@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="description" content="Introduction to Algorithms Chapter-24 single_source_shortest_paths dag_shortest_paths dijkstra bellman_ford">
 <meta name="viewport" content="width=device-width">
-<title>CLRS-Cpp-Implementations-Chapter-24 | Procrastination Prescription</title>
+<title>CLRS-Cpp-Implementations-Chapter-24 | 钉钉是世界上最傻逼的app</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-24/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
-<meta property="og:site_name" content="Procrastination Prescription">
+<meta property="og:site_name" content="钉钉是世界上最傻逼的app">
 <meta property="og:title" content="CLRS-Cpp-Implementations-Chapter-24">
 <meta property="og:url" content="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-24/">
 <meta property="og:description" content="Introduction to Algorithms Chapter-24 single_source_shortest_paths dag_shortest_paths dijkstra bellman_ford">
@@ -26,8 +26,8 @@
     <div class="brand">
 
         <div class="brand-text">
-            <a href="https://zero4drift.github.io/" title="Procrastination Prescription" rel="home">
-                Procrastination Prescription
+            <a href="https://zero4drift.github.io/" title="钉钉是世界上最傻逼的app" rel="home">
+                钉钉是世界上最傻逼的app
             </a>
         </div>
 
@@ -80,131 +80,130 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org7f6d096" class="outline-2">
-<h2 id="org7f6d096">single_source_shortest_paths</h2>
-<div class="outline-text-2" id="text-org7f6d096">
+        <div id="outline-container-orgd3da11c" class="outline-2">
+<h2 id="orgd3da11c">single_source_shortest_paths</h2>
+<div class="outline-text-2" id="text-orgd3da11c">
 </div>
-<div id="outline-container-orgb7a0c34" class="outline-3">
-<h3 id="orgb7a0c34">dag_shortest_paths</h3>
-<div class="outline-text-3" id="text-orgb7a0c34">
-<div class="highlight"><pre><span></span> <span class="cp">#include</span> <span class="cpf">"chapter-22/dfs_graph/dfs_graph.h"</span><span class="cp"></span>
- <span class="cp">#include</span> <span class="cpf">"chapter-22/linked_list_graph/linked_list_graph.h"</span><span class="cp"></span>
- <span class="cp">#include</span> <span class="cpf">"chapter-24/single_source_shortest_paths/sssp_utilities.h"</span><span class="cp"></span>
- <span class="k">namespace</span> <span class="n">CLRS</span>
- <span class="p">{</span>
-   <span class="kt">void</span> <span class="n">dag_shortest_paths</span>
-   <span class="p">(</span><span class="n">LinkedListGraph</span><span class="o">&lt;</span><span class="n">SSSPDFSVertexGraph</span><span class="p">,</span>
-    <span class="n">SSSPWeightEdgeGraph</span><span class="o">&lt;</span><span class="n">SSSPDFSVertexGraph</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">s</span><span class="p">)</span>
+<div id="outline-container-org3743a4b" class="outline-3">
+<h3 id="org3743a4b">dag_shortest_paths</h3>
+<div class="outline-text-3" id="text-org3743a4b">
+<div class="highlight"><pre><span></span>   <span class="cp">#include</span> <span class="cpf">"chapter-22/dfs_graph/dfs_graph.h"</span><span class="cp"></span>
+   <span class="cp">#include</span> <span class="cpf">"chapter-22/linked_list_graph/linked_list_graph.h"</span><span class="cp"></span>
+   <span class="cp">#include</span> <span class="cpf">"chapter-24/single_source_shortest_paths/sssp_utilities.h"</span><span class="cp"></span>
+   <span class="k">namespace</span> <span class="n">CLRS</span>
    <span class="p">{</span>
-     <span class="k">auto</span> <span class="n">l</span> <span class="o">=</span> <span class="n">topological_sort_graph</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
-     <span class="n">initialize_single_source</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
-     <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="nl">u</span> <span class="p">:</span> <span class="n">l</span><span class="p">)</span>
-       <span class="p">{</span>
-       <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">ev</span> <span class="p">:</span> <span class="n">g</span><span class="p">.</span><span class="n">get_adj_vertexes</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
-	 <span class="n">sssp_relax</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">g</span><span class="p">.</span><span class="n">edgesr</span><span class="p">()[</span><span class="n">ev</span><span class="p">]);</span>
-       <span class="p">}</span>
-   <span class="p">}</span>
- <span class="p">}</span>
-</pre></div>
-</div>
-</div>
-
-<div id="outline-container-orgb7e7419" class="outline-3">
-<h3 id="orgb7e7419">dijkstra</h3>
-<div class="outline-text-3" id="text-orgb7e7419">
-<div class="highlight"><pre><span></span> <span class="cp">#include</span> <span class="cpf">"chapter-19/fibonacci_heap/fibonacci_heap.h"</span><span class="cp"></span>
- <span class="cp">#include</span> <span class="cpf">"chapter-22/linked_list_graph/linked_list_graph.h"</span><span class="cp"></span>
- <span class="cp">#include</span> <span class="cpf">"chapter-24/single_source_shortest_paths/sssp_utilities.h"</span><span class="cp"></span>
- <span class="cp">#include</span> <span class="cpf">"chapter-23/minimum_spanning_tree/mst_utilities.h"</span><span class="cp"></span>
- <span class="k">namespace</span> <span class="n">CLRS</span>
- <span class="p">{</span>
-   <span class="kt">void</span> <span class="n">dijkstra</span>
-   <span class="p">(</span><span class="n">LinkedListGraph</span><span class="o">&lt;</span><span class="n">DijkstraVertexGraph</span><span class="p">,</span>
-    <span class="n">WeightEdgeGraph</span><span class="o">&lt;</span><span class="n">DijkstraVertexGraph</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">s</span><span class="p">)</span>
-   <span class="p">{</span>
-     <span class="n">initialize_single_source</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
-     <span class="c1">// fibonacci heap now contains all node of g</span>
-     <span class="k">auto</span> <span class="n">fib_h</span> <span class="o">=</span>
-       <span class="n">CLRS</span><span class="o">::</span><span class="n">make_fib_heap</span><span class="o">&lt;</span><span class="n">DijkstraVertexGraph</span><span class="o">&gt;</span><span class="p">();</span>
-     <span class="c1">// have to create a graph node &lt;-&gt; shared_ptr index</span>
-     <span class="n">std</span><span class="o">::</span><span class="n">vector</span>
-       <span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span>
-	<span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">DijkstraVertexGraph</span><span class="o">&gt;&gt;&gt;</span> <span class="n">vshr</span><span class="p">;</span>
-     <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-       <span class="n">i</span> <span class="o">!=</span> <span class="n">g</span><span class="p">.</span><span class="n">get_vertexes_size</span><span class="p">();</span>
-       <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-       <span class="p">{</span>
-       <span class="k">auto</span> <span class="n">shr</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span>
-	 <span class="o">&lt;</span><span class="n">FibHeapTreeNode</span>
-	  <span class="o">&lt;</span><span class="n">DijkstraVertexGraph</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">vertex</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
-       <span class="n">vshr</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">shr</span><span class="p">);</span>
-       <span class="n">fib_heap_insert</span><span class="p">(</span><span class="n">fib_h</span><span class="p">,</span> <span class="n">shr</span><span class="p">);</span>
-       <span class="p">}</span>
-     <span class="k">while</span><span class="p">(</span><span class="n">fib_h</span><span class="p">.</span><span class="n">get_n</span><span class="p">())</span>
-       <span class="p">{</span>
-       <span class="k">auto</span> <span class="n">u</span> <span class="o">=</span> <span class="n">fib_heap_extract_min</span><span class="p">(</span><span class="n">fib_h</span><span class="p">);</span>
-       <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">ev</span> <span class="p">:</span> <span class="n">g</span><span class="p">.</span><span class="n">get_adj_vertexes</span>
-	     <span class="p">(</span><span class="n">u</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">().</span><span class="n">get_index</span><span class="p">()))</span>
+     <span class="kt">void</span> <span class="n">dag_shortest_paths</span>
+     <span class="p">(</span><span class="n">LinkedListGraph</span><span class="o">&lt;</span><span class="n">SSSPDFSVertexGraph</span><span class="p">,</span>
+      <span class="n">SSSPWeightEdgeGraph</span><span class="o">&lt;</span><span class="n">SSSPDFSVertexGraph</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">s</span><span class="p">)</span>
+     <span class="p">{</span>
+       <span class="k">auto</span> <span class="n">l</span> <span class="o">=</span> <span class="n">topological_sort_graph</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
+       <span class="n">initialize_single_source</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+       <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="nl">u</span> <span class="p">:</span> <span class="n">l</span><span class="p">)</span>
 	 <span class="p">{</span>
-	   <span class="k">auto</span> <span class="n">vr</span> <span class="o">=</span> <span class="n">sssp_relax</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">g</span><span class="p">.</span><span class="n">edgesr</span><span class="p">()[</span><span class="n">ev</span><span class="p">]);</span>
-	   <span class="k">auto</span> <span class="n">v</span> <span class="o">=</span> <span class="n">vshr</span><span class="p">[</span><span class="n">g</span><span class="p">.</span><span class="n">edgesr</span><span class="p">()[</span><span class="n">ev</span><span class="p">].</span><span class="n">get_second_vertex</span><span class="p">()];</span>
-	   <span class="k">if</span><span class="p">(</span><span class="n">vr</span> <span class="o">&lt;</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">())</span>
-	     <span class="n">fib_heap_decrease_key</span><span class="p">(</span><span class="n">fib_h</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">vr</span><span class="p">);</span>
+	   <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">ev</span> <span class="p">:</span> <span class="n">g</span><span class="p">.</span><span class="n">get_adj_vertexes</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+	     <span class="n">sssp_relax</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">g</span><span class="p">.</span><span class="n">edgesr</span><span class="p">()[</span><span class="n">ev</span><span class="p">]);</span>
 	 <span class="p">}</span>
-       <span class="p">}</span>
+     <span class="p">}</span>
    <span class="p">}</span>
- <span class="p">}</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgfcd93c9" class="outline-3">
-<h3 id="orgfcd93c9">utilities</h3>
-<div class="outline-text-3" id="text-orgfcd93c9">
+<div id="outline-container-org540f6b2" class="outline-3">
+<h3 id="org540f6b2">dijkstra</h3>
+<div class="outline-text-3" id="text-org540f6b2">
+<div class="highlight"><pre><span></span>   <span class="cp">#include</span> <span class="cpf">"chapter-19/fibonacci_heap/fibonacci_heap.h"</span><span class="cp"></span>
+   <span class="cp">#include</span> <span class="cpf">"chapter-22/linked_list_graph/linked_list_graph.h"</span><span class="cp"></span>
+   <span class="cp">#include</span> <span class="cpf">"chapter-24/single_source_shortest_paths/sssp_utilities.h"</span><span class="cp"></span>
+   <span class="cp">#include</span> <span class="cpf">"chapter-23/minimum_spanning_tree/mst_utilities.h"</span><span class="cp"></span>
+   <span class="k">namespace</span> <span class="n">CLRS</span>
+   <span class="p">{</span>
+     <span class="kt">void</span> <span class="n">dijkstra</span>
+     <span class="p">(</span><span class="n">LinkedListGraph</span><span class="o">&lt;</span><span class="n">DijkstraVertexGraph</span><span class="p">,</span>
+      <span class="n">WeightEdgeGraph</span><span class="o">&lt;</span><span class="n">DijkstraVertexGraph</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">s</span><span class="p">)</span>
+     <span class="p">{</span>
+       <span class="n">initialize_single_source</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+       <span class="c1">// fibonacci heap now contains all node of g</span>
+       <span class="k">auto</span> <span class="n">fib_h</span> <span class="o">=</span>
+	 <span class="n">CLRS</span><span class="o">::</span><span class="n">make_fib_heap</span><span class="o">&lt;</span><span class="n">DijkstraVertexGraph</span><span class="o">&gt;</span><span class="p">();</span>
+       <span class="c1">// have to create a graph node &lt;-&gt; shared_ptr index</span>
+       <span class="n">std</span><span class="o">::</span><span class="n">vector</span>
+	 <span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span>
+	  <span class="o">&lt;</span><span class="n">FibHeapTreeNode</span><span class="o">&lt;</span><span class="n">DijkstraVertexGraph</span><span class="o">&gt;&gt;&gt;</span> <span class="n">vshr</span><span class="p">;</span>
+       <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	   <span class="n">i</span> <span class="o">!=</span> <span class="n">g</span><span class="p">.</span><span class="n">get_vertexes_size</span><span class="p">();</span>
+	   <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	 <span class="p">{</span>
+	   <span class="k">auto</span> <span class="n">shr</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span>
+	     <span class="o">&lt;</span><span class="n">FibHeapTreeNode</span>
+	      <span class="o">&lt;</span><span class="n">DijkstraVertexGraph</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">vertex</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+	   <span class="n">vshr</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">shr</span><span class="p">);</span>
+	   <span class="n">fib_heap_insert</span><span class="p">(</span><span class="n">fib_h</span><span class="p">,</span> <span class="n">shr</span><span class="p">);</span>
+	 <span class="p">}</span>
+       <span class="k">while</span><span class="p">(</span><span class="n">fib_h</span><span class="p">.</span><span class="n">get_n</span><span class="p">())</span>
+	 <span class="p">{</span>
+	   <span class="k">auto</span> <span class="n">u</span> <span class="o">=</span> <span class="n">fib_heap_extract_min</span><span class="p">(</span><span class="n">fib_h</span><span class="p">);</span>
+	   <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">ev</span> <span class="p">:</span> <span class="n">g</span><span class="p">.</span><span class="n">get_adj_vertexes</span>
+		 <span class="p">(</span><span class="n">u</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">().</span><span class="n">get_index</span><span class="p">()))</span>
+	     <span class="p">{</span>
+	       <span class="k">auto</span> <span class="n">vr</span> <span class="o">=</span> <span class="n">sssp_relax</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">g</span><span class="p">.</span><span class="n">edgesr</span><span class="p">()[</span><span class="n">ev</span><span class="p">]);</span>
+	       <span class="k">auto</span> <span class="n">v</span> <span class="o">=</span> <span class="n">vshr</span><span class="p">[</span><span class="n">g</span><span class="p">.</span><span class="n">edgesr</span><span class="p">()[</span><span class="n">ev</span><span class="p">].</span><span class="n">get_second_vertex</span><span class="p">()];</span>
+	       <span class="k">if</span><span class="p">(</span><span class="n">vr</span> <span class="o">&lt;</span> <span class="n">v</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">())</span>
+		 <span class="n">fib_heap_decrease_key</span><span class="p">(</span><span class="n">fib_h</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">vr</span><span class="p">);</span>
+	     <span class="p">}</span>
+	 <span class="p">}</span>
+     <span class="p">}</span>
+   <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgc4624d4" class="outline-3">
+<h3 id="orgc4624d4">utilities</h3>
+<div class="outline-text-3" id="text-orgc4624d4">
 <p>
 <a href="https://github.com/zero4drift/CLRS_Cpp_Implementations/tree/master/include//chapter-24/single_source_shortest_paths/sssp_utilities.h">https://github.com/zero4drift/CLRS_Cpp_Implementations/tree/master/include//chapter-24/single_source_shortest_paths/sssp_utilities.h</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1f9bde6" class="outline-3">
-<h3 id="org1f9bde6">bellman_ford</h3>
-<div class="outline-text-3" id="text-org1f9bde6">
-<div class="highlight"><pre><span></span> <span class="cp">#include</span> <span class="cpf">"chapter-22/linked_list_graph/linked_list_graph.h"</span><span class="cp"></span>
- <span class="cp">#include</span> <span class="cpf">"chapter-24/single_source_shortest_paths/sssp_utilities.h"</span><span class="cp"></span>
- <span class="k">namespace</span> <span class="n">CLRS</span>
- <span class="p">{</span>
-   <span class="kt">bool</span> <span class="n">bellman_ford</span>
-   <span class="p">(</span><span class="n">LinkedListGraph</span><span class="o">&lt;</span><span class="n">SSSPVertexGraph</span><span class="p">,</span>
-    <span class="n">SSSPWeightEdgeGraph</span><span class="o">&lt;</span><span class="n">SSSPVertexGraph</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">s</span><span class="p">)</span>
+<div id="outline-container-orgb61b239" class="outline-3">
+<h3 id="orgb61b239">bellman_ford</h3>
+<div class="outline-text-3" id="text-orgb61b239">
+<div class="highlight"><pre><span></span>   <span class="cp">#include</span> <span class="cpf">"chapter-22/linked_list_graph/linked_list_graph.h"</span><span class="cp"></span>
+   <span class="cp">#include</span> <span class="cpf">"chapter-24/single_source_shortest_paths/sssp_utilities.h"</span><span class="cp"></span>
+   <span class="k">namespace</span> <span class="n">CLRS</span>
    <span class="p">{</span>
-     <span class="n">initialize_single_source</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
-     <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-       <span class="n">i</span> <span class="o">!=</span> <span class="n">g</span><span class="p">.</span><span class="n">get_vertexes_size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-       <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-       <span class="p">{</span>
-       <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span> <span class="p">:</span> <span class="n">g</span><span class="p">.</span><span class="n">get_edges</span><span class="p">())</span>
-	 <span class="n">sssp_relax</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
-       <span class="p">}</span>
-     <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span> <span class="p">:</span> <span class="n">g</span><span class="p">.</span><span class="n">get_edges</span><span class="p">())</span>
-       <span class="p">{</span>
-       <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">ui</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">get_first_vertex</span><span class="p">();</span>
-       <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">vi</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">get_second_vertex</span><span class="p">();</span>
-       <span class="k">auto</span> <span class="n">u</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">vertex</span><span class="p">(</span><span class="n">ui</span><span class="p">);</span>
-       <span class="k">auto</span> <span class="n">v</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">vertex</span><span class="p">(</span><span class="n">vi</span><span class="p">);</span>
-       <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">is_dw_set</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">u</span><span class="p">.</span><span class="n">is_dw_set</span><span class="p">())</span>
+     <span class="kt">bool</span> <span class="n">bellman_ford</span>
+     <span class="p">(</span><span class="n">LinkedListGraph</span><span class="o">&lt;</span><span class="n">SSSPVertexGraph</span><span class="p">,</span>
+      <span class="n">SSSPWeightEdgeGraph</span><span class="o">&lt;</span><span class="n">SSSPVertexGraph</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">s</span><span class="p">)</span>
+     <span class="p">{</span>
+       <span class="n">initialize_single_source</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>
+       <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	   <span class="n">i</span> <span class="o">!=</span> <span class="n">g</span><span class="p">.</span><span class="n">get_vertexes_size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+	   <span class="o">++</span><span class="n">i</span><span class="p">)</span>
 	 <span class="p">{</span>
-	   <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">get_dw</span><span class="p">()</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">get_dw</span><span class="p">()</span> <span class="o">+</span> <span class="n">e</span><span class="p">.</span><span class="n">get_weight</span><span class="p">()))</span>
-	     <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	   <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span> <span class="p">:</span> <span class="n">g</span><span class="p">.</span><span class="n">get_edges</span><span class="p">())</span>
+	     <span class="n">sssp_relax</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
 	 <span class="p">}</span>
-       <span class="p">}</span>
-     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+       <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">e</span> <span class="p">:</span> <span class="n">g</span><span class="p">.</span><span class="n">get_edges</span><span class="p">())</span>
+	 <span class="p">{</span>
+	   <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">ui</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">get_first_vertex</span><span class="p">();</span>
+	   <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">vi</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">get_second_vertex</span><span class="p">();</span>
+	   <span class="k">auto</span> <span class="n">u</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">vertex</span><span class="p">(</span><span class="n">ui</span><span class="p">);</span>
+	   <span class="k">auto</span> <span class="n">v</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">vertex</span><span class="p">(</span><span class="n">vi</span><span class="p">);</span>
+	   <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">is_dw_set</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">u</span><span class="p">.</span><span class="n">is_dw_set</span><span class="p">())</span>
+	     <span class="p">{</span>
+	       <span class="k">if</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">get_dw</span><span class="p">()</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="n">get_dw</span><span class="p">()</span> <span class="o">+</span> <span class="n">e</span><span class="p">.</span><span class="n">get_weight</span><span class="p">()))</span>
+		 <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	     <span class="p">}</span>
+	 <span class="p">}</span>
+       <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+     <span class="p">}</span>
    <span class="p">}</span>
-
- <span class="p">}</span>
 </pre></div>
 </div>
 </div>

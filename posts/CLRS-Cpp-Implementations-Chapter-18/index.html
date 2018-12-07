@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="description" content="Introduction to Algorithms Chapter-18 B_trees">
 <meta name="viewport" content="width=device-width">
-<title>CLRS-Cpp-Implementations-Chapter-18 | Procrastination Prescription</title>
+<title>CLRS-Cpp-Implementations-Chapter-18 | 钉钉是世界上最傻逼的app</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-18/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
-<meta property="og:site_name" content="Procrastination Prescription">
+<meta property="og:site_name" content="钉钉是世界上最傻逼的app">
 <meta property="og:title" content="CLRS-Cpp-Implementations-Chapter-18">
 <meta property="og:url" content="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-18/">
 <meta property="og:description" content="Introduction to Algorithms Chapter-18 B_trees">
@@ -26,8 +26,8 @@
     <div class="brand">
 
         <div class="brand-text">
-            <a href="https://zero4drift.github.io/" title="Procrastination Prescription" rel="home">
-                Procrastination Prescription
+            <a href="https://zero4drift.github.io/" title="钉钉是世界上最傻逼的app" rel="home">
+                钉钉是世界上最傻逼的app
             </a>
         </div>
 
@@ -80,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgd75c03e" class="outline-2">
-<h2 id="orgd75c03e">B_trees</h2>
-<div class="outline-text-2" id="text-orgd75c03e">
+        <div id="outline-container-orgfcc1292" class="outline-2">
+<h2 id="orgfcc1292">B_trees</h2>
+<div class="outline-text-2" id="text-orgfcc1292">
 <div class="highlight"><pre><span></span><span class="c1">// here all b tree nodes allocated in heap, not disk.</span>
 <span class="k">namespace</span> <span class="n">CLRS</span>
 <span class="p">{</span>
@@ -96,16 +96,17 @@
   <span class="kt">void</span> <span class="n">b_tree_create</span><span class="p">(</span><span class="n">BTree</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">t</span><span class="p">);</span>
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="kt">void</span> <span class="n">b_tree_split_child</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span>
-			<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">);</span>
+			  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">);</span>
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="kt">void</span> <span class="n">b_tree_insert</span><span class="p">(</span><span class="n">BTree</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">t</span><span class="p">,</span> <span class="n">T</span> <span class="n">k</span><span class="p">);</span>
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="kt">void</span> <span class="n">b_tree_insert_nonfull</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span>
-			   <span class="n">T</span> <span class="n">k</span><span class="p">);</span>
+			     <span class="n">T</span> <span class="n">k</span><span class="p">);</span>
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="kt">void</span> <span class="n">b_tree_delete</span><span class="p">(</span><span class="n">BTree</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">t</span><span class="p">,</span>
-		   <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span>
-		   <span class="n">T</span> <span class="n">k</span><span class="p">);</span>
+		     <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span>
+		     <span class="n">T</span> <span class="n">k</span><span class="p">);</span>
+
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="k">class</span> <span class="nc">BTree</span>
   <span class="p">{</span>
@@ -115,6 +116,7 @@
     <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="n">get_root</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">root</span><span class="p">;}</span>
     <span class="kt">void</span> <span class="n">set_root</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span><span class="n">root</span> <span class="o">=</span> <span class="n">r</span><span class="p">;}</span>
   <span class="p">};</span>
+
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="k">class</span> <span class="nc">BTreeNode</span>
   <span class="p">{</span>
@@ -150,6 +152,7 @@
     <span class="kt">void</span> <span class="n">delete_child</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
     <span class="p">{</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">childs</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">i</span><span class="p">;</span> <span class="n">childs</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);}</span>
   <span class="p">};</span>
+
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="kt">void</span> <span class="n">b_tree_create</span><span class="p">(</span><span class="n">BTree</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">t</span><span class="p">)</span>
   <span class="p">{</span>
@@ -157,6 +160,7 @@
       <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span><span class="p">();</span>
     <span class="n">t</span><span class="o">-&gt;</span><span class="n">set_root</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
   <span class="p">}</span>
+
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span>
   <span class="n">b_tree_search</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="n">k</span><span class="p">)</span>
@@ -174,7 +178,7 @@
 
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="kt">void</span> <span class="n">b_tree_split_child</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span>
-			<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
+			  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
   <span class="p">{</span>
     <span class="k">auto</span> <span class="n">z</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span><span class="p">();</span>
     <span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
@@ -184,53 +188,56 @@
       <span class="n">z</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
     <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
       <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">D</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-      <span class="n">z</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
+	<span class="n">z</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
     <span class="n">x</span><span class="o">-&gt;</span><span class="n">insert_child</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
     <span class="n">x</span><span class="o">-&gt;</span><span class="n">insert_key</span><span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">i</span><span class="p">);</span>
     <span class="n">y</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
     <span class="n">y</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
     <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
   <span class="p">}</span>
+
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="kt">void</span> <span class="n">b_tree_insert</span><span class="p">(</span><span class="n">BTree</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">t</span><span class="p">,</span> <span class="n">T</span> <span class="n">k</span><span class="p">)</span>
   <span class="p">{</span>
     <span class="k">auto</span> <span class="n">r</span> <span class="o">=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">get_root</span><span class="p">();</span>
     <span class="k">if</span><span class="p">(</span><span class="n">r</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
       <span class="p">{</span>
-      <span class="k">auto</span> <span class="n">s</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span><span class="p">();</span>
-      <span class="n">t</span><span class="o">-&gt;</span><span class="n">set_root</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-      <span class="n">s</span><span class="o">-&gt;</span><span class="n">set_leaf</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
-      <span class="n">s</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
-      <span class="n">b_tree_split_child</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-      <span class="n">b_tree_insert_nonfull</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+	<span class="k">auto</span> <span class="n">s</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span><span class="p">();</span>
+	<span class="n">t</span><span class="o">-&gt;</span><span class="n">set_root</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+	<span class="n">s</span><span class="o">-&gt;</span><span class="n">set_leaf</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+	<span class="n">s</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+	<span class="n">b_tree_split_child</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="n">b_tree_insert_nonfull</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="k">else</span>
       <span class="n">b_tree_insert_nonfull</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
   <span class="p">}</span>
+
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="kt">void</span> <span class="n">b_tree_insert_nonfull</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="n">k</span><span class="p">)</span>
   <span class="p">{</span>
     <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span>
     <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
       <span class="p">{</span>
-      <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-	<span class="o">--</span><span class="n">i</span><span class="p">;</span>
-      <span class="n">x</span><span class="o">-&gt;</span><span class="n">insert_key</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-      <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+	  <span class="o">--</span><span class="n">i</span><span class="p">;</span>
+	<span class="n">x</span><span class="o">-&gt;</span><span class="n">insert_key</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+	<span class="n">x</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="k">else</span>
       <span class="p">{</span>
-      <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-	<span class="o">--</span><span class="n">i</span><span class="p">;</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-	<span class="p">{</span>
-	  <span class="n">b_tree_split_child</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-	  <span class="k">if</span><span class="p">(</span><span class="n">k</span> <span class="o">&gt;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-	    <span class="o">++</span><span class="n">i</span><span class="p">;</span>
-	<span class="p">}</span>
-      <span class="n">b_tree_insert_nonfull</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">k</span><span class="p">);</span>
+	<span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+	  <span class="o">--</span><span class="n">i</span><span class="p">;</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+	  <span class="p">{</span>
+	    <span class="n">b_tree_split_child</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+	    <span class="k">if</span><span class="p">(</span><span class="n">k</span> <span class="o">&gt;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+	      <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+	  <span class="p">}</span>
+	<span class="n">b_tree_insert_nonfull</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">k</span><span class="p">);</span>
       <span class="p">}</span>
   <span class="p">}</span>
+
   <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">D</span><span class="o">&gt;</span>
   <span class="kt">void</span> <span class="n">b_tree_delete</span><span class="p">(</span><span class="n">BTree</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">t</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="o">&amp;</span><span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="n">k</span><span class="p">)</span>
   <span class="p">{</span>
@@ -239,134 +246,134 @@
       <span class="o">++</span><span class="n">i</span><span class="p">;</span>
     <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">==</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
       <span class="p">{</span>
-      <span class="c1">// case 1: leaf node</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
-	<span class="p">{</span>
-	  <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	  <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	<span class="p">}</span>
-      <span class="k">else</span>
-	<span class="p">{</span>
-	  <span class="c1">// case 2a</span>
-	  <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">D</span><span class="p">)</span>
-	    <span class="p">{</span>
-	      <span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="n">T</span> <span class="n">j</span> <span class="o">=</span> <span class="n">y</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="n">b_tree_delete</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
-	      <span class="n">x</span><span class="o">-&gt;</span><span class="n">replace_key</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	    <span class="p">}</span>
-	  <span class="c1">// case 2b which is opposite to 2a</span>
-	  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">D</span><span class="p">)</span>
-	    <span class="p">{</span>
-	      <span class="k">auto</span> <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-	      <span class="n">T</span> <span class="n">j</span> <span class="o">=</span> <span class="n">z</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-	      <span class="n">b_tree_delete</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
-	      <span class="n">x</span><span class="o">-&gt;</span><span class="n">replace_key</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	    <span class="p">}</span>
-	  <span class="c1">// case 2c</span>
-	  <span class="k">else</span>
-	    <span class="p">{</span>
-	      <span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="k">auto</span> <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-	      <span class="n">y</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
-	      <span class="n">y</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-	      <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">z</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span>
-		<span class="n">y</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
-	      <span class="n">y</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">());</span>
-	      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
-		<span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">z</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span>
-		  <span class="n">y</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
-	      <span class="n">b_tree_delete</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
-	    <span class="p">}</span>
-	<span class="p">}</span>
+	<span class="c1">// case 1: leaf node</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
+	  <span class="p">{</span>
+	    <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+	    <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+	  <span class="p">}</span>
+	<span class="k">else</span>
+	  <span class="p">{</span>
+	    <span class="c1">// case 2a</span>
+	    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">D</span><span class="p">)</span>
+	      <span class="p">{</span>
+		<span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="n">T</span> <span class="n">j</span> <span class="o">=</span> <span class="n">y</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="n">b_tree_delete</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+		<span class="n">x</span><span class="o">-&gt;</span><span class="n">replace_key</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+	      <span class="p">}</span>
+	    <span class="c1">// case 2b which is opposite to 2a</span>
+	    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">D</span><span class="p">)</span>
+	      <span class="p">{</span>
+		<span class="k">auto</span> <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+		<span class="n">T</span> <span class="n">j</span> <span class="o">=</span> <span class="n">z</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+		<span class="n">b_tree_delete</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+		<span class="n">x</span><span class="o">-&gt;</span><span class="n">replace_key</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+	      <span class="p">}</span>
+	    <span class="c1">// case 2c</span>
+	    <span class="k">else</span>
+	      <span class="p">{</span>
+		<span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="k">auto</span> <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+		<span class="n">y</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+		<span class="n">y</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+		<span class="n">x</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">z</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span>
+		  <span class="n">y</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+		<span class="n">y</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="n">y</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">());</span>
+		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">y</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
+		  <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">z</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span>
+		    <span class="n">y</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">z</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">n</span><span class="p">));</span>
+		<span class="n">b_tree_delete</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+	      <span class="p">}</span>
+	  <span class="p">}</span>
       <span class="p">}</span>
     <span class="k">else</span>
       <span class="p">{</span>
-      <span class="k">auto</span> <span class="n">self</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="n">brother</span><span class="p">;</span>
-      <span class="c1">// case 3a</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">==</span> <span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-	<span class="p">{</span>
-	  <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">D</span><span class="p">)</span>
-	    <span class="p">{</span>
-	      <span class="n">brother</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
-	      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">bl</span> <span class="o">=</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span>
-	      <span class="n">T</span> <span class="n">down</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
-	      <span class="n">T</span> <span class="n">up</span> <span class="o">=</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">bl</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="n">self</span><span class="o">-&gt;</span><span class="n">insert_key</span><span class="p">(</span><span class="n">down</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-	      <span class="n">self</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="n">x</span><span class="o">-&gt;</span><span class="n">replace_key</span><span class="p">(</span><span class="n">up</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
-	      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
-		<span class="p">{</span>
-		  <span class="n">self</span><span class="o">-&gt;</span><span class="n">insert_child</span><span class="p">(</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">bl</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
-		  <span class="n">brother</span><span class="o">-&gt;</span><span class="n">delete_child</span><span class="p">(</span><span class="n">bl</span><span class="p">);</span>
-		<span class="p">}</span>
-	      <span class="n">brother</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="n">bl</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="n">brother</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">bl</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	    <span class="p">}</span>
-	  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">D</span><span class="p">)</span>
-	    <span class="p">{</span>
-	      <span class="n">brother</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-	      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">bl</span> <span class="o">=</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span>
-	      <span class="n">T</span> <span class="n">down</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="n">T</span> <span class="n">up</span> <span class="o">=</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-	      <span class="n">self</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">down</span><span class="p">);</span>
-	      <span class="n">self</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="n">x</span><span class="o">-&gt;</span><span class="n">replace_key</span><span class="p">(</span><span class="n">up</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
-		<span class="p">{</span>
-		  <span class="n">self</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-		  <span class="n">brother</span><span class="o">-&gt;</span><span class="n">delete_child</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-		<span class="p">}</span>
-	      <span class="n">brother</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-	      <span class="n">brother</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">bl</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-	    <span class="p">}</span>
-	  <span class="c1">// case 3b</span>
-	  <span class="k">else</span>
-	    <span class="p">{</span>
-	      <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-		<span class="p">{</span>
-		  <span class="n">brother</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-		  <span class="n">T</span> <span class="n">down</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-		  <span class="n">self</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">down</span><span class="p">);</span>
-		  <span class="n">self</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-		  <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-		    <span class="n">self</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
-		  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
-		    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-		      <span class="n">self</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
-		  <span class="n">self</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">());</span>
-		  <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-		  <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-		  <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-		  <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-		    <span class="n">t</span><span class="o">-&gt;</span><span class="n">set_root</span><span class="p">(</span><span class="n">self</span><span class="p">);</span>
-		<span class="p">}</span>
-	      <span class="k">else</span>
-		<span class="p">{</span>
-		  <span class="n">brother</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
-		  <span class="n">T</span> <span class="n">down</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
-		  <span class="n">brother</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">down</span><span class="p">);</span>
-		  <span class="n">brother</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-		  <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-		    <span class="n">brother</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
-		  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
-		    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-		      <span class="n">brother</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
-		  <span class="n">brother</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">());</span>
-		  <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
-		  <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-		  <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-		  <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-		    <span class="n">t</span><span class="o">-&gt;</span><span class="n">set_root</span><span class="p">(</span><span class="n">brother</span><span class="p">);</span>
-		  <span class="n">self</span> <span class="o">=</span> <span class="n">brother</span><span class="p">;</span>
-		<span class="p">}</span>
-	    <span class="p">}</span> 
-	<span class="p">}</span>
-      <span class="n">b_tree_delete</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+	<span class="k">auto</span> <span class="n">self</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">BTreeNode</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="n">brother</span><span class="p">;</span>
+	<span class="c1">// case 3a</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">==</span> <span class="n">D</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+	  <span class="p">{</span>
+	    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">D</span><span class="p">)</span>
+	      <span class="p">{</span>
+		<span class="n">brother</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+		<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">bl</span> <span class="o">=</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span>
+		<span class="n">T</span> <span class="n">down</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+		<span class="n">T</span> <span class="n">up</span> <span class="o">=</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">bl</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="n">self</span><span class="o">-&gt;</span><span class="n">insert_key</span><span class="p">(</span><span class="n">down</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+		<span class="n">self</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="n">x</span><span class="o">-&gt;</span><span class="n">replace_key</span><span class="p">(</span><span class="n">up</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
+		  <span class="p">{</span>
+		    <span class="n">self</span><span class="o">-&gt;</span><span class="n">insert_child</span><span class="p">(</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">bl</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+		    <span class="n">brother</span><span class="o">-&gt;</span><span class="n">delete_child</span><span class="p">(</span><span class="n">bl</span><span class="p">);</span>
+		  <span class="p">}</span>
+		<span class="n">brother</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="n">bl</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="n">brother</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">bl</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+	      <span class="p">}</span>
+	    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">D</span><span class="p">)</span>
+	      <span class="p">{</span>
+		<span class="n">brother</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+		<span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">bl</span> <span class="o">=</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span>
+		<span class="n">T</span> <span class="n">down</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="n">T</span> <span class="n">up</span> <span class="o">=</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+		<span class="n">self</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">down</span><span class="p">);</span>
+		<span class="n">self</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="n">x</span><span class="o">-&gt;</span><span class="n">replace_key</span><span class="p">(</span><span class="n">up</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
+		  <span class="p">{</span>
+		    <span class="n">self</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+		    <span class="n">brother</span><span class="o">-&gt;</span><span class="n">delete_child</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+		  <span class="p">}</span>
+		<span class="n">brother</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+		<span class="n">brother</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">bl</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+	      <span class="p">}</span>
+	    <span class="c1">// case 3b</span>
+	    <span class="k">else</span>
+	      <span class="p">{</span>
+		<span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+		  <span class="p">{</span>
+		    <span class="n">brother</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+		    <span class="n">T</span> <span class="n">down</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		    <span class="n">self</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">down</span><span class="p">);</span>
+		    <span class="n">self</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+		    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+		      <span class="n">self</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+		    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
+		      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">self</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+		    <span class="n">self</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">());</span>
+		    <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		    <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_child</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+		    <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+		      <span class="n">t</span><span class="o">-&gt;</span><span class="n">set_root</span><span class="p">(</span><span class="n">self</span><span class="p">);</span>
+		  <span class="p">}</span>
+		<span class="k">else</span>
+		  <span class="p">{</span>
+		    <span class="n">brother</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+		    <span class="n">T</span> <span class="n">down</span> <span class="o">=</span> <span class="n">x</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+		    <span class="n">brother</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">down</span><span class="p">);</span>
+		    <span class="n">brother</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+		    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+		      <span class="n">brother</span><span class="o">-&gt;</span><span class="n">push_back_key</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_key</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+		    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_leaf</span><span class="p">())</span>
+		      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+			<span class="n">brother</span><span class="o">-&gt;</span><span class="n">push_back_child</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_child</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+		    <span class="n">brother</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">+</span> <span class="n">brother</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">());</span>
+		    <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_key</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+		    <span class="n">x</span><span class="o">-&gt;</span><span class="n">delete_child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		    <span class="n">x</span><span class="o">-&gt;</span><span class="n">set_n</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+		    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="n">get_n</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+		      <span class="n">t</span><span class="o">-&gt;</span><span class="n">set_root</span><span class="p">(</span><span class="n">brother</span><span class="p">);</span>
+		    <span class="n">self</span> <span class="o">=</span> <span class="n">brother</span><span class="p">;</span>
+		  <span class="p">}</span>
+	      <span class="p">}</span> 
+	  <span class="p">}</span>
+	<span class="n">b_tree_delete</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">self</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
       <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>

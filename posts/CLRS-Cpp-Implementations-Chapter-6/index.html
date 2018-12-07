@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="description" content="Introduction to Algorithms Chapter-6 heapsort build_max_min_heap max_min_heapify heap_priority_queue">
 <meta name="viewport" content="width=device-width">
-<title>CLRS-Cpp-Implementations-Chapter-6 | Procrastination Prescription</title>
+<title>CLRS-Cpp-Implementations-Chapter-6 | 钉钉是世界上最傻逼的app</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-6/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
-<meta property="og:site_name" content="Procrastination Prescription">
+<meta property="og:site_name" content="钉钉是世界上最傻逼的app">
 <meta property="og:title" content="CLRS-Cpp-Implementations-Chapter-6">
 <meta property="og:url" content="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-6/">
 <meta property="og:description" content="Introduction to Algorithms Chapter-6 heapsort build_max_min_heap max_min_heapify heap_priority_queue">
@@ -26,8 +26,8 @@
     <div class="brand">
 
         <div class="brand-text">
-            <a href="https://zero4drift.github.io/" title="Procrastination Prescription" rel="home">
-                Procrastination Prescription
+            <a href="https://zero4drift.github.io/" title="钉钉是世界上最傻逼的app" rel="home">
+                钉钉是世界上最傻逼的app
             </a>
         </div>
 
@@ -80,286 +80,304 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org59e90e2" class="outline-2">
-<h2 id="org59e90e2">heapsort</h2>
-<div class="outline-text-2" id="text-org59e90e2">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"../build_max_min_heap/build_max_min_heap.h"</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">"../max_min_heapify/max_min_heapify.h"</span><span class="cp"></span>
-<span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">heapsort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+        <div id="outline-container-org0ca1403" class="outline-2">
+<h2 id="org0ca1403">heapsort</h2>
+<div class="outline-text-2" id="text-org0ca1403">
+<div class="highlight"><pre><span></span>  <span class="cp">#include</span> <span class="cpf">"../build_max_min_heap/build_max_min_heap.h"</span><span class="cp"></span>
+  <span class="cp">#include</span> <span class="cpf">"../max_min_heapify/max_min_heapify.h"</span><span class="cp"></span>
+  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="n">CLRS</span><span class="o">::</span><span class="n">build_max_heap</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span>
-	<span class="n">CLRS</span><span class="o">::</span><span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-      <span class="p">}</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">heapsort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+    <span class="p">{</span>
+      <span class="n">CLRS</span><span class="o">::</span><span class="n">build_max_heap</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	  <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span>
+	    <span class="n">CLRS</span><span class="o">::</span><span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="cm">/*</span>
+<span class="cm">     * use minimal heap priority queue</span>
+<span class="cm">     * result sorted from large to small.</span>
+<span class="cm">     */</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">min_heapsort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+    <span class="p">{</span>
+      <span class="n">CLRS</span><span class="o">::</span><span class="n">build_min_heap</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	  <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span>
+	    <span class="n">CLRS</span><span class="o">::</span><span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-  <span class="cm">/*</span>
-<span class="cm">   * use minimal heap priority queue</span>
-<span class="cm">   * result sorted from large to small.</span>
-<span class="cm">   */</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">min_heapsort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
-  <span class="p">{</span>
-    <span class="n">CLRS</span><span class="o">::</span><span class="n">build_min_heap</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span>
-	<span class="n">CLRS</span><span class="o">::</span><span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 
-<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="kr">inline</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">pre_proc</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="k">return</span> <span class="o">++</span><span class="n">i</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="kr">inline</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">post_proc</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">return</span> <span class="o">--</span><span class="n">i</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="kr">inline</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">parent</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">pre_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">i</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nf">post_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="kr">inline</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">left</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">pre_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nf">post_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="kr">inline</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">right</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">pre_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nf">post_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
+    <span class="kr">inline</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">pre_proc</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">return</span> <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<div id="outline-container-org9598ead" class="outline-2">
-<h2 id="org9598ead">build_max_min_heap</h2>
-<div class="outline-text-2" id="text-org9598ead">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"../max_min_heapify/max_min_heapify.h"</span><span class="cp"></span>
-<span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">build_max_heap</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
-  <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">CLRS</span><span class="o">::</span><span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="kr">inline</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">post_proc</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">return</span> <span class="o">--</span><span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kr">inline</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">parent</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="n">pre_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="n">i</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nf">post_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kr">inline</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">left</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="n">pre_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nf">post_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kr">inline</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">right</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="n">pre_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nf">post_proc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">build_max_heap</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">CLRS</span><span class="o">::</span><span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">build_min_heap</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
-  <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">CLRS</span><span class="o">::</span><span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">build_min_heap</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">CLRS</span><span class="o">::</span><span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span> 
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgd9fe116" class="outline-2">
-<h2 id="orgd9fe116">max_min_heapify</h2>
-<div class="outline-text-2" id="text-orgd9fe116">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"../common_heap_utility.h"</span><span class="cp"></span>
-<span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">max_heapify</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">length</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+<div id="outline-container-org685c95f" class="outline-2">
+<h2 id="org685c95f">build_max_min_heap</h2>
+<div class="outline-text-2" id="text-org685c95f">
+<div class="highlight"><pre><span></span>  <span class="cp">#include</span> <span class="cpf">"../max_min_heapify/max_min_heapify.h"</span><span class="cp"></span>
+  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">l</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">right</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">largest</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="n">largest</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">])</span>
-      <span class="n">largest</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">largest</span> <span class="o">!=</span> <span class="n">i</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-      <span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">largest</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">max_heapify</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">l</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">right</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">largest</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="n">largest</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">])</span>
-      <span class="n">largest</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">largest</span> <span class="o">!=</span> <span class="n">i</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-      <span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">largest</span><span class="p">);</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">min_heapify</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">length</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">l</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">right</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">minimum</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="n">minimum</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">])</span>
-      <span class="n">minimum</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">minimum</span> <span class="o">!=</span> <span class="n">i</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-      <span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">minimum</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">min_heapify</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">l</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">right</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">minimum</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="n">minimum</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">])</span>
-      <span class="n">minimum</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">minimum</span> <span class="o">!=</span> <span class="n">i</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-      <span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">minimum</span><span class="p">);</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">build_max_heap</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+    <span class="p">{</span>
+      <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">CLRS</span><span class="o">::</span><span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">build_max_heap</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+      <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">CLRS</span><span class="o">::</span><span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">build_min_heap</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+    <span class="p">{</span>
+      <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">CLRS</span><span class="o">::</span><span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">build_min_heap</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+      <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">CLRS</span><span class="o">::</span><span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span> 
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgebd4363" class="outline-2">
-<h2 id="orgebd4363">heap_priority_queue</h2>
-<div class="outline-text-2" id="text-orgebd4363">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"../common_heap_utility.h"</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">"../max_min_heapify/max_min_heapify.h"</span><span class="cp"></span>
-<span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="c1">// return reference or copy?</span>
-  <span class="n">T</span> <span class="n">heap_maximum</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
+<div id="outline-container-org3220cad" class="outline-2">
+<h2 id="org3220cad">max_min_heapify</h2>
+<div class="outline-text-2" id="text-org3220cad">
+<div class="highlight"><pre><span></span>  <span class="cp">#include</span> <span class="cpf">"../common_heap_utility.h"</span><span class="cp"></span>
+  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">"this queue is empty"</span><span class="p">));</span>
-    <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">max_heapify</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">length</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">l</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">right</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">largest</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="n">largest</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">])</span>
+	<span class="n">largest</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">largest</span> <span class="o">!=</span> <span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	  <span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">largest</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">max_heapify</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">l</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">right</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">largest</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="n">largest</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">])</span>
+	<span class="n">largest</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">largest</span> <span class="o">!=</span> <span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">largest</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	  <span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">largest</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">min_heapify</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">length</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">l</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">right</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">minimum</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="n">minimum</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">length</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">])</span>
+	<span class="n">minimum</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">minimum</span> <span class="o">!=</span> <span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	  <span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">minimum</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">min_heapify</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">l</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">left</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">right</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">minimum</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="n">minimum</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">])</span>
+	<span class="n">minimum</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">minimum</span> <span class="o">!=</span> <span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">minimum</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	  <span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">minimum</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="n">T</span> <span class="n">heap_extract_max</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org69d0fd6" class="outline-2">
+<h2 id="org69d0fd6">heap_priority_queue</h2>
+<div class="outline-text-2" id="text-org69d0fd6">
+<div class="highlight"><pre><span></span>  <span class="cp">#include</span> <span class="cpf">"../common_heap_utility.h"</span><span class="cp"></span>
+  <span class="cp">#include</span> <span class="cpf">"../max_min_heapify/max_min_heapify.h"</span><span class="cp"></span>
+  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">underflow_error</span><span class="p">(</span><span class="s">"heap underflow"</span><span class="p">));</span>
-    <span class="n">T</span> <span class="n">max</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
-    <span class="n">CLRS</span><span class="o">::</span><span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">max</span><span class="p">;</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="c1">// return reference or copy?</span>
+    <span class="n">T</span> <span class="n">heap_maximum</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">"this queue is empty"</span><span class="p">));</span>
+      <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="n">T</span> <span class="n">heap_extract_max</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">underflow_error</span><span class="p">(</span><span class="s">"heap underflow"</span><span class="p">));</span>
+      <span class="n">T</span> <span class="n">max</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+      <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+      <span class="n">a</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+      <span class="n">CLRS</span><span class="o">::</span><span class="n">max_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="k">return</span> <span class="n">max</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">max_heap_increase_key</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="n">T</span> <span class="n">key</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">"new key is smaller than current key"</span><span class="p">));</span>
+      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+      <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="p">{</span>
+	  <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	  <span class="n">i</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">max_heap_insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">key</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">a</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+      <span class="n">max_heap_increase_key</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// for minimum heap priority queue</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="c1">// return reference or copy?</span>
+    <span class="n">T</span> <span class="n">heap_minimum</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">"this queue is empty"</span><span class="p">));</span>
+      <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="n">T</span> <span class="n">heap_extract_min</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">underflow_error</span><span class="p">(</span><span class="s">"heap underflow"</span><span class="p">));</span>
+      <span class="n">T</span> <span class="n">min</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+      <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+      <span class="n">a</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+      <span class="n">CLRS</span><span class="o">::</span><span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="k">return</span> <span class="n">min</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">min_heap_increase_key</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="n">T</span> <span class="n">key</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">key</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">"new key is larger than current key"</span><span class="p">));</span>
+      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+      <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="p">{</span>
+	  <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	  <span class="n">i</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">min_heap_insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">key</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">a</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+      <span class="n">min_heap_increase_key</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">max_heap_increase_key</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="n">T</span> <span class="n">key</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">"new key is smaller than current key"</span><span class="p">));</span>
-    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="p">{</span>
-      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-      <span class="n">i</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">max_heap_insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">key</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-    <span class="n">max_heap_increase_key</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="c1">// for minimum heap priority queue</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="c1">// return reference or copy?</span>
-  <span class="n">T</span> <span class="n">heap_minimum</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">"this queue is empty"</span><span class="p">));</span>
-    <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="n">T</span> <span class="n">heap_extract_min</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">underflow_error</span><span class="p">(</span><span class="s">"heap underflow"</span><span class="p">));</span>
-    <span class="n">T</span> <span class="n">min</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
-    <span class="n">CLRS</span><span class="o">::</span><span class="n">min_heapify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">min</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">min_heap_increase_key</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="n">T</span> <span class="n">key</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">key</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="k">throw</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">"new key is larger than current key"</span><span class="p">));</span>
-    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="p">{</span>
-      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-      <span class="n">i</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">parent</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">min_heap_insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="n">T</span> <span class="n">key</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-    <span class="n">min_heap_increase_key</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 </div>
 </div>

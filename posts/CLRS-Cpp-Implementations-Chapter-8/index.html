@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="description" content="Introduction to Algorithms Chapter-8 bucket_sort counting_sort radix_sort">
 <meta name="viewport" content="width=device-width">
-<title>CLRS-Cpp-Implementations-Chapter-8 | Procrastination Prescription</title>
+<title>CLRS-Cpp-Implementations-Chapter-8 | 钉钉是世界上最傻逼的app</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-8/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
-<meta property="og:site_name" content="Procrastination Prescription">
+<meta property="og:site_name" content="钉钉是世界上最傻逼的app">
 <meta property="og:title" content="CLRS-Cpp-Implementations-Chapter-8">
 <meta property="og:url" content="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-8/">
 <meta property="og:description" content="Introduction to Algorithms Chapter-8 bucket_sort counting_sort radix_sort">
@@ -26,8 +26,8 @@
     <div class="brand">
 
         <div class="brand-text">
-            <a href="https://zero4drift.github.io/" title="Procrastination Prescription" rel="home">
-                Procrastination Prescription
+            <a href="https://zero4drift.github.io/" title="钉钉是世界上最傻逼的app" rel="home">
+                钉钉是世界上最傻逼的app
             </a>
         </div>
 
@@ -80,121 +80,123 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgee60bb8" class="outline-2">
-<h2 id="orgee60bb8">bucket_sort</h2>
-<div class="outline-text-2" id="text-orgee60bb8">
-<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="cm">/*</span>
-<span class="cm">   * Suppose elements of array uniformly and individually</span>
-<span class="cm">   * scattered in half open interval [0, 1)</span>
-<span class="cm">   * TODO: this time uses standard library list and iterator,</span>
-<span class="cm">   * this program would be refactored after list implementation.</span>
-<span class="cm">   */</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">bucket_sort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+        <div id="outline-container-orgaeb2f3b" class="outline-2">
+<h2 id="orgaeb2f3b">bucket_sort</h2>
+<div class="outline-text-2" id="text-orgaeb2f3b">
+<div class="highlight"><pre><span></span>  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">b</span><span class="p">[</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])].</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-      <span class="cm">/* be careful that the commom algorithm sort</span>
-<span class="cm">       * could not be applied on containers which</span>
-<span class="cm">       * do not support random access</span>
-<span class="cm">       */</span>
-      <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">sort</span><span class="p">();</span>
-
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">cbegin</span><span class="p">();</span>
-      <span class="k">while</span><span class="p">(</span><span class="n">it</span> <span class="o">!=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">cend</span><span class="p">())</span>
-	<span class="p">{</span>
-	  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">*</span><span class="n">it</span><span class="p">;</span>
-	  <span class="o">++</span><span class="n">it</span><span class="p">;</span>
-	  <span class="o">++</span><span class="n">i</span><span class="p">;</span>
-	<span class="p">}</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-
-<div id="outline-container-orga6c48af" class="outline-2">
-<h2 id="orga6c48af">counting_sort</h2>
-<div class="outline-text-2" id="text-orga6c48af">
-<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="c1">// specified for array with unsigned elements</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">counting_sort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">k</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">T</span> <span class="n">c</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-      <span class="o">++</span><span class="n">c</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]];</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">j</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="c1">// be careful that the index starts from 0</span>
-      <span class="c1">// and the minimum element should be placed in index 0.</span>
-      <span class="n">b</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-      <span class="o">--</span><span class="n">c</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]];</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-
-<div id="outline-container-org7a493ba" class="outline-2">
-<h2 id="org7a493ba">radix_sort</h2>
-<div class="outline-text-2" id="text-org7a493ba">
-<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="n">T</span> <span class="n">radix_digit</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">d</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">T</span> <span class="n">return_value</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">T</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">d</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">return_value</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
-      <span class="n">a</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="k">return</span> <span class="n">return_value</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">radix_counting_sort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">d</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">T</span> <span class="n">c</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-      <span class="o">++</span><span class="n">c</span><span class="p">[</span><span class="n">radix_digit</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">d</span><span class="p">)];</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">j</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">b</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="n">radix_digit</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">d</span><span class="p">)]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-      <span class="o">--</span><span class="n">c</span><span class="p">[</span><span class="n">radix_digit</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">d</span><span class="p">)];</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">radix_sort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="n">d</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">T</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">d</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">radix_counting_sort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+    <span class="cm">/*</span>
+<span class="cm">     * Suppose elements of array uniformly and individually</span>
+<span class="cm">     * scattered in half open interval [0, 1)</span>
+<span class="cm">     * TODO: this time uses standard library list and iterator,</span>
+<span class="cm">     * this program would be refactored after list implementation.</span>
+<span class="cm">     */</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">bucket_sort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+    <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
       <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-	<span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="p">}</span>
+	<span class="n">b</span><span class="p">[</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])].</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+	<span class="cm">/* be careful that the commom algorithm sort</span>
+<span class="cm">	 * could not be applied on containers which</span>
+<span class="cm">	 * do not support random access</span>
+<span class="cm">	 */</span>
+	<span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">sort</span><span class="p">();</span>
+
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">cbegin</span><span class="p">();</span>
+	  <span class="k">while</span><span class="p">(</span><span class="n">it</span> <span class="o">!=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">].</span><span class="n">cend</span><span class="p">())</span>
+	    <span class="p">{</span>
+	      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">*</span><span class="n">it</span><span class="p">;</span>
+	      <span class="o">++</span><span class="n">it</span><span class="p">;</span>
+	      <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+	    <span class="p">}</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org2265a79" class="outline-2">
+<h2 id="org2265a79">counting_sort</h2>
+<div class="outline-text-2" id="text-org2265a79">
+<div class="highlight"><pre><span></span>  <span class="k">namespace</span> <span class="n">CLRS</span>
+  <span class="p">{</span>
+    <span class="c1">// specified for array with unsigned elements</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">counting_sort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">k</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">T</span> <span class="n">c</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+	<span class="o">++</span><span class="n">c</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]];</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+      <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">j</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="c1">// be careful that the index starts from 0</span>
+	  <span class="c1">// and the minimum element should be placed in index 0.</span>
+	  <span class="n">b</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+	  <span class="o">--</span><span class="n">c</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]];</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org152d07d" class="outline-2">
+<h2 id="org152d07d">radix_sort</h2>
+<div class="outline-text-2" id="text-org152d07d">
+<div class="highlight"><pre><span></span>  <span class="k">namespace</span> <span class="n">CLRS</span>
+  <span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="n">T</span> <span class="n">radix_digit</span><span class="p">(</span><span class="n">T</span> <span class="n">a</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">d</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">T</span> <span class="n">return_value</span><span class="p">;</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">T</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">d</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">return_value</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="mi">10</span><span class="p">;</span>
+	  <span class="n">a</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="p">}</span>
+      <span class="k">return</span> <span class="n">return_value</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">radix_counting_sort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">d</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">T</span> <span class="n">c</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+	<span class="o">++</span><span class="n">c</span><span class="p">[</span><span class="n">radix_digit</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">d</span><span class="p">)];</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+      <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">j</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">b</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="n">radix_digit</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">d</span><span class="p">)]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+	  <span class="o">--</span><span class="n">c</span><span class="p">[</span><span class="n">radix_digit</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">d</span><span class="p">)];</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">radix_sort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="n">d</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">T</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">d</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">radix_counting_sort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
+	  <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 </pre></div>
 </div>
 </div>

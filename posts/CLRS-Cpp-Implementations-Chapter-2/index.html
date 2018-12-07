@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="description" content="Introduction to Algorithms Chapter-2 merge_sort insertion_sort">
 <meta name="viewport" content="width=device-width">
-<title>CLRS-Cpp-Implementations-Chapter-2 | Procrastination Prescription</title>
+<title>CLRS-Cpp-Implementations-Chapter-2 | 钉钉是世界上最傻逼的app</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-2/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
-<meta property="og:site_name" content="Procrastination Prescription">
+<meta property="og:site_name" content="钉钉是世界上最傻逼的app">
 <meta property="og:title" content="CLRS-Cpp-Implementations-Chapter-2">
 <meta property="og:url" content="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-2/">
 <meta property="og:description" content="Introduction to Algorithms Chapter-2 merge_sort insertion_sort">
@@ -26,8 +26,8 @@
     <div class="brand">
 
         <div class="brand-text">
-            <a href="https://zero4drift.github.io/" title="Procrastination Prescription" rel="home">
-                Procrastination Prescription
+            <a href="https://zero4drift.github.io/" title="钉钉是世界上最傻逼的app" rel="home">
+                钉钉是世界上最傻逼的app
             </a>
         </div>
 
@@ -80,94 +80,95 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org9e3cc23" class="outline-2">
-<h2 id="org9e3cc23">merge_sort</h2>
-<div class="outline-text-2" id="text-org9e3cc23">
-<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">merge</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span><span class="n">array</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">q</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span><span class="p">)</span>
+        <div id="outline-container-orgc9dd734" class="outline-2">
+<h2 id="orgc9dd734">merge_sort</h2>
+<div class="outline-text-2" id="text-orgc9dd734">
+<div class="highlight"><pre><span></span>  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n1</span> <span class="o">=</span> <span class="n">q</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">q</span><span class="p">;</span>
-    <span class="n">T</span> <span class="n">larray</span><span class="p">[</span><span class="n">n1</span><span class="p">],</span> <span class="n">rarray</span><span class="p">[</span><span class="n">n2</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n1</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">larray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">i</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n2</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-      <span class="n">rarray</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">q</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">merge</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span><span class="n">array</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">q</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n1</span> <span class="o">=</span> <span class="n">q</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n2</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">q</span><span class="p">;</span>
+      <span class="n">T</span> <span class="n">larray</span><span class="p">[</span><span class="n">n1</span><span class="p">],</span> <span class="n">rarray</span><span class="p">[</span><span class="n">n2</span><span class="p">];</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n1</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">larray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">i</span><span class="p">];</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n2</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+	<span class="n">rarray</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">q</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
 
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">k</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n1</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">==</span> <span class="n">n2</span><span class="p">)</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+      <span class="k">while</span><span class="p">(</span><span class="n">k</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span>
 	<span class="p">{</span>
-	  <span class="n">array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">larray</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-	  <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+	  <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">n1</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">==</span> <span class="n">n2</span><span class="p">)</span>
+	    <span class="p">{</span>
+	      <span class="n">array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">larray</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	      <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+	    <span class="p">}</span>
+	  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">n1</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n2</span><span class="p">)</span>
+	    <span class="p">{</span>
+	      <span class="n">array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">rarray</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+	      <span class="o">++</span><span class="n">j</span><span class="p">;</span>
+	    <span class="p">}</span>
+	  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">larray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">rarray</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+	    <span class="p">{</span>
+	      <span class="n">array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">larray</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	      <span class="o">++</span><span class="n">i</span><span class="p">;</span>
+	    <span class="p">}</span>
+	  <span class="k">else</span>
+	    <span class="p">{</span>
+	      <span class="n">array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">rarray</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+	      <span class="o">++</span><span class="n">j</span><span class="p">;</span>
+	    <span class="p">}</span>
+	  <span class="o">++</span><span class="n">k</span><span class="p">;</span>
 	<span class="p">}</span>
-      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">n1</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n2</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span><span class="n">array</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">)</span>
 	<span class="p">{</span>
-	  <span class="n">array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">rarray</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-	  <span class="o">++</span><span class="n">j</span><span class="p">;</span>
+	  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">q</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+	  <span class="n">merge_sort</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
+	  <span class="n">merge_sort</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
+	  <span class="n">merge</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
 	<span class="p">}</span>
-      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">larray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">rarray</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
-	<span class="p">{</span>
-	  <span class="n">array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">larray</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-	  <span class="o">++</span><span class="n">i</span><span class="p">;</span>
-	<span class="p">}</span>
-      <span class="k">else</span>
-	<span class="p">{</span>
-	  <span class="n">array</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">rarray</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-	  <span class="o">++</span><span class="n">j</span><span class="p">;</span>
-	<span class="p">}</span>
-      <span class="o">++</span><span class="n">k</span><span class="p">;</span>
-      <span class="p">}</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">merge_sort</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span><span class="n">array</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">q</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-      <span class="n">merge_sort</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
-      <span class="n">merge_sort</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
-      <span class="n">merge</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org79178ef" class="outline-2">
-<h2 id="org79178ef">insertion_sort</h2>
-<div class="outline-text-2" id="text-org79178ef">
-<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">insertion_sort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">array</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+<div id="outline-container-orgd63134d" class="outline-2">
+<h2 id="orgd63134d">insertion_sort</h2>
+<div class="outline-text-2" id="text-orgd63134d">
+<div class="highlight"><pre><span></span>  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="cm">/*</span>
-<span class="cm">     * for std::size_t is a alias of unsigned long,</span>
-<span class="cm">     * and the index in while loop must not be an unsigned,</span>
-<span class="cm">     * then index should be long long which could</span>
-<span class="cm">     * accommodate the maximum unsigned long integer</span>
-<span class="cm">     * to avoid bug.</span>
-<span class="cm">     */</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="c1">// in this case there is no need to sort.</span>
-      <span class="k">return</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-      <span class="kt">long</span> <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">temp</span><span class="p">)</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">insertion_sort</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">array</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+    <span class="p">{</span>
+      <span class="cm">/*</span>
+<span class="cm">       * for std::size_t is a alias of unsigned long,</span>
+<span class="cm">       * and the index in while loop must not be an unsigned,</span>
+<span class="cm">       * then index should be long long which could</span>
+<span class="cm">       * accommodate the maximum unsigned long integer</span>
+<span class="cm">       * to avoid bug.</span>
+<span class="cm">       */</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="c1">// in this case there is no need to sort.</span>
+	<span class="k">return</span><span class="p">;</span>
+      <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
 	<span class="p">{</span>
-	  <span class="n">array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-	  <span class="o">--</span><span class="n">i</span><span class="p">;</span>
+	  <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+	  <span class="kt">long</span> <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+	  <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">temp</span><span class="p">)</span>
+	    <span class="p">{</span>
+	      <span class="n">array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	      <span class="o">--</span><span class="n">i</span><span class="p">;</span>
+	    <span class="p">}</span>
+	  <span class="n">array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
 	<span class="p">}</span>
-      <span class="n">array</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-      <span class="p">}</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 </div>
 </div>

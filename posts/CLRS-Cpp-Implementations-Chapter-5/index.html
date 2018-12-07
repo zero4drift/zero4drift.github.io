@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="description" content="Introduction to Algorithms Chapter-5 hire_assistant_permute_by_sorting hire_assistant_randomize_in_place hire_assistant">
 <meta name="viewport" content="width=device-width">
-<title>CLRS-Cpp-Implementations-Chapter-5 | Procrastination Prescription</title>
+<title>CLRS-Cpp-Implementations-Chapter-5 | 钉钉是世界上最傻逼的app</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-5/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
-<meta property="og:site_name" content="Procrastination Prescription">
+<meta property="og:site_name" content="钉钉是世界上最傻逼的app">
 <meta property="og:title" content="CLRS-Cpp-Implementations-Chapter-5">
 <meta property="og:url" content="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-5/">
 <meta property="og:description" content="Introduction to Algorithms Chapter-5 hire_assistant_permute_by_sorting hire_assistant_randomize_in_place hire_assistant">
@@ -26,8 +26,8 @@
     <div class="brand">
 
         <div class="brand-text">
-            <a href="https://zero4drift.github.io/" title="Procrastination Prescription" rel="home">
-                Procrastination Prescription
+            <a href="https://zero4drift.github.io/" title="钉钉是世界上最傻逼的app" rel="home">
+                钉钉是世界上最傻逼的app
             </a>
         </div>
 
@@ -80,107 +80,108 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org90792d2" class="outline-2">
-<h2 id="org90792d2">hire_assistant_permute_by_sorting</h2>
-<div class="outline-text-2" id="text-org90792d2">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"chapter-2/merge_sort/merge_sort.h"</span><span class="cp"></span>
-<span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-  <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;=</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">)</span>
+        <div id="outline-container-org1c542ee" class="outline-2">
+<h2 id="org1c542ee">hire_assistant_permute_by_sorting</h2>
+<div class="outline-text-2" id="text-org1c542ee">
+<div class="highlight"><pre><span></span>  <span class="cp">#include</span> <span class="cpf">"chapter-2/merge_sort/merge_sort.h"</span><span class="cp"></span>
+  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="k">return</span> <span class="n">p1</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;=</span> <span class="n">p2</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="o">&lt;=</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">return</span> <span class="n">p1</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;=</span> <span class="n">p2</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">permute_by_sorting</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">array</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+    <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span> <span class="n">e</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">u</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">parray</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">parray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">unsigned</span><span class="o">&gt;</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">u</span><span class="p">(</span><span class="n">e</span><span class="p">));</span>
+      <span class="n">CLRS</span><span class="o">::</span><span class="n">merge_sort</span><span class="p">(</span><span class="n">parray</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">parray</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">;</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">permute_by_sorting</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">array</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
-  <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span> <span class="n">e</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">u</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">));</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">parray</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">parray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="kt">unsigned</span><span class="o">&gt;</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">u</span><span class="p">(</span><span class="n">e</span><span class="p">));</span>
-    <span class="n">CLRS</span><span class="o">::</span><span class="n">merge_sort</span><span class="p">(</span><span class="n">parray</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">parray</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">first</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"permute_by_sorting.h"</span><span class="cp"></span>
-<span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">sort_randomized_hire_assistant</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>  <span class="cp">#include</span> <span class="cpf">"permute_by_sorting.h"</span><span class="cp"></span>
+  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="n">CLRS</span><span class="o">::</span><span class="n">permute_by_sorting</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-    <span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
-	<span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="p">}</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">sort_randomized_hire_assistant</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">CLRS</span><span class="o">::</span><span class="n">permute_by_sorting</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+      <span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
+	    <span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-
-<div id="outline-container-orge113323" class="outline-2">
-<h2 id="orge113323">hire_assistant_randomize_in_place</h2>
-<div class="outline-text-2" id="text-orge113323">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"randomize_in_place.h"</span><span class="cp"></span>
-<span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">swap_randomized_hire_assistant</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">randomize_in_place</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-    <span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
-	<span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">randomize_in_place</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
-  <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span> <span class="n">e</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">u</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-      <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgd832497" class="outline-2">
-<h2 id="orgd832497">hire_assistant</h2>
-<div class="outline-text-2" id="text-orgd832497">
-<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="kt">void</span> <span class="n">hire_assistant</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
+<div id="outline-container-org418b1cf" class="outline-2">
+<h2 id="org418b1cf">hire_assistant_randomize_in_place</h2>
+<div class="outline-text-2" id="text-org418b1cf">
+<div class="highlight"><pre><span></span>  <span class="cp">#include</span> <span class="cpf">"randomize_in_place.h"</span><span class="cp"></span>
+  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
-	<span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-      <span class="p">}</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">swap_randomized_hire_assistant</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">randomize_in_place</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+      <span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
+	    <span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span>  <span class="k">namespace</span> <span class="n">CLRS</span>
+  <span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">randomize_in_place</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+    <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span> <span class="n">e</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span> <span class="n">u</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+	  <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+	  <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org8387130" class="outline-2">
+<h2 id="org8387130">hire_assistant</h2>
+<div class="outline-text-2" id="text-org8387130">
+<div class="highlight"><pre><span></span>  <span class="k">namespace</span> <span class="n">CLRS</span>
+  <span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">hire_assistant</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">T</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">*</span><span class="n">choose</span><span class="p">)</span>
+	    <span class="o">*</span><span class="n">choose</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 </pre></div>
 </div>
 </div>

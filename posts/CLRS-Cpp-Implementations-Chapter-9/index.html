@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="description" content="Introduction to Algorithms Chapter-9 select randomized_select maximum_minimum">
 <meta name="viewport" content="width=device-width">
-<title>CLRS-Cpp-Implementations-Chapter-9 | Procrastination Prescription</title>
+<title>CLRS-Cpp-Implementations-Chapter-9 | 钉钉是世界上最傻逼的app</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-9/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
-<meta property="og:site_name" content="Procrastination Prescription">
+<meta property="og:site_name" content="钉钉是世界上最傻逼的app">
 <meta property="og:title" content="CLRS-Cpp-Implementations-Chapter-9">
 <meta property="og:url" content="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-9/">
 <meta property="og:description" content="Introduction to Algorithms Chapter-9 select randomized_select maximum_minimum">
@@ -26,8 +26,8 @@
     <div class="brand">
 
         <div class="brand-text">
-            <a href="https://zero4drift.github.io/" title="Procrastination Prescription" rel="home">
-                Procrastination Prescription
+            <a href="https://zero4drift.github.io/" title="钉钉是世界上最傻逼的app" rel="home">
+                钉钉是世界上最傻逼的app
             </a>
         </div>
 
@@ -80,179 +80,180 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org54d69f9" class="outline-2">
-<h2 id="org54d69f9">select</h2>
-<div class="outline-text-2" id="text-org54d69f9">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"chapter-2/insertion_sort/insertion_sort.h"</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">"chapter-7/quicksort/quicksort.h"</span><span class="cp"></span>
-<span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">select_partition</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">p</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">r</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">i</span><span class="p">)</span>
+        <div id="outline-container-org8ffaded" class="outline-2">
+<h2 id="org8ffaded">select</h2>
+<div class="outline-text-2" id="text-org8ffaded">
+<div class="highlight"><pre><span></span>  <span class="cp">#include</span> <span class="cpf">"chapter-2/insertion_sort/insertion_sort.h"</span><span class="cp"></span>
+  <span class="cp">#include</span> <span class="cpf">"chapter-7/quicksort/quicksort.h"</span><span class="cp"></span>
+  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">];</span>
-    <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="n">T</span> <span class="n">select</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span>
-      <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_5</span> <span class="o">=</span> <span class="n">len</span> <span class="o">/</span> <span class="mi">5</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">n_5</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">mid_nums</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span> <span class="n">m</span> <span class="o">!=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">l</span><span class="p">;</span> <span class="n">m</span> <span class="o">+=</span> <span class="mi">5</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">T</span> <span class="n">temp</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
-      <span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">m</span><span class="p">];</span>
-      <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
-      <span class="n">temp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
-      <span class="n">temp</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">3</span><span class="p">];</span>
-      <span class="n">temp</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">4</span><span class="p">];</span>
-      <span class="n">CLRS</span><span class="o">::</span><span class="n">insertion_sort</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
-      <span class="n">mid_nums</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
-      <span class="p">}</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n_5_left</span> <span class="o">=</span> <span class="n">len</span> <span class="o">%</span> <span class="mi">5</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n_5_left</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">T</span> <span class="n">temp_left</span><span class="p">[</span><span class="n">n_5_left</span><span class="p">];</span>
-      <span class="cm">/* </span>
-<span class="cm">       * this program must be compiled with -O1;</span>
-<span class="cm">       * or parameter i varies when running.</span>
-<span class="cm">       * do not know why, compiler issue?</span>
-<span class="cm">       */</span>
-      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">x</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">l</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">;</span> <span class="o">++</span><span class="n">x</span><span class="p">)</span>
-	<span class="n">temp_left</span><span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="n">p</span> <span class="o">-</span> <span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> 
-      <span class="c1">// for n_5_left is not a constexpr, insertion_sort not used here</span>
-      <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n_5_left</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">select_partition</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">p</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">r</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">];</span>
+      <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+      <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+      <span class="k">return</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="n">T</span> <span class="n">select</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">len</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_5</span> <span class="o">=</span> <span class="n">len</span> <span class="o">/</span> <span class="mi">5</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">n_5</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">mid_nums</span><span class="p">;</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">m</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span> <span class="n">m</span> <span class="o">!=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">l</span><span class="p">;</span> <span class="n">m</span> <span class="o">+=</span> <span class="mi">5</span><span class="p">)</span>
 	<span class="p">{</span>
-	  <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">temp_left</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-	  <span class="kt">long</span> <span class="kt">long</span> <span class="n">y</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-	  <span class="k">while</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">temp_left</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">temp</span><span class="p">)</span>
+	  <span class="n">T</span> <span class="n">temp</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+	  <span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">m</span><span class="p">];</span>
+	  <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+	  <span class="n">temp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
+	  <span class="n">temp</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">3</span><span class="p">];</span>
+	  <span class="n">temp</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">m</span> <span class="o">+</span> <span class="mi">4</span><span class="p">];</span>
+	  <span class="n">CLRS</span><span class="o">::</span><span class="n">insertion_sort</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+	  <span class="n">mid_nums</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">temp</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+	<span class="p">}</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n_5_left</span> <span class="o">=</span> <span class="n">len</span> <span class="o">%</span> <span class="mi">5</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">n_5_left</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">T</span> <span class="n">temp_left</span><span class="p">[</span><span class="n">n_5_left</span><span class="p">];</span>
+	  <span class="cm">/* </span>
+<span class="cm">	   * this program must be compiled with -O1;</span>
+<span class="cm">	   * or parameter i varies when running.</span>
+<span class="cm">	   * do not know why, compiler issue?</span>
+<span class="cm">	   */</span>
+	  <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">x</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">l</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">;</span> <span class="o">++</span><span class="n">x</span><span class="p">)</span>
+	    <span class="n">temp_left</span><span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="n">p</span> <span class="o">-</span> <span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> 
+	  <span class="c1">// for n_5_left is not a constexpr, insertion_sort not used here</span>
+	  <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">!=</span> <span class="n">n_5_left</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span>
 	    <span class="p">{</span>
-	      <span class="n">temp_left</span><span class="p">[</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_left</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
-	      <span class="o">--</span><span class="n">y</span><span class="p">;</span>
+	      <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">temp_left</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+	      <span class="kt">long</span> <span class="kt">long</span> <span class="n">y</span> <span class="o">=</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+	      <span class="k">while</span><span class="p">(</span><span class="n">y</span> <span class="o">&gt;=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">temp_left</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">temp</span><span class="p">)</span>
+		<span class="p">{</span>
+		  <span class="n">temp_left</span><span class="p">[</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_left</span><span class="p">[</span><span class="n">y</span><span class="p">];</span>
+		  <span class="o">--</span><span class="n">y</span><span class="p">;</span>
+		<span class="p">}</span>
+	      <span class="n">temp_left</span><span class="p">[</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
 	    <span class="p">}</span>
-	  <span class="n">temp_left</span><span class="p">[</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+	  <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_5_left</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+	  <span class="n">mid_nums</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">temp_left</span><span class="p">[</span><span class="n">mid</span><span class="p">]);</span>
 	<span class="p">}</span>
-      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_5_left</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-      <span class="n">mid_nums</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">temp_left</span><span class="p">[</span><span class="n">mid</span><span class="p">]);</span>
-      <span class="p">}</span>
 
-    <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">mid_nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">mid_nums</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
-    <span class="n">T</span> <span class="n">mid_num</span> <span class="o">=</span> <span class="n">mid_nums</span><span class="p">[(</span><span class="n">mid_nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">];</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">wanted_mid</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">wanted_mid</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">wanted_mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">mid_num</span><span class="p">)</span>
-	<span class="k">break</span><span class="p">;</span>
-      <span class="o">++</span><span class="n">wanted_mid</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">q</span> <span class="o">=</span> <span class="n">select_partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">wanted_mid</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="n">q</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-
-    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span>
-      <span class="k">return</span> <span class="n">mid_num</span><span class="p">;</span>
-    <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span>
-      <span class="k">return</span> <span class="n">select</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-    <span class="k">else</span>
-      <span class="k">return</span> <span class="nf">select</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-
-<div id="outline-container-orgeb0c171" class="outline-2">
-<h2 id="orgeb0c171">randomized_select</h2>
-<div class="outline-text-2" id="text-orgeb0c171">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"chapter-7/randomized_quicksort/randomized_quicksort.h"</span><span class="cp"></span>
-<span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="n">T</span> <span class="n">randomized_select</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span>
-      <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">q</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">randomized_partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="n">q</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span>
-      <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">q</span><span class="p">];</span>
-    <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span>
-      <span class="k">return</span> <span class="n">randomized_select</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
-    <span class="k">else</span>
-      <span class="k">return</span> <span class="nf">randomized_select</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-
-<div id="outline-container-org36ff957" class="outline-2">
-<h2 id="org36ff957">maximum_minimum</h2>
-<div class="outline-text-2" id="text-org36ff957">
-<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">maximum_minimum</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
-  <span class="p">{</span>
-    <span class="n">T</span> <span class="n">maximum</span><span class="p">,</span> <span class="n">minimum</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">index</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">mid_nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">mid_nums</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+      <span class="n">T</span> <span class="n">mid_num</span> <span class="o">=</span> <span class="n">mid_nums</span><span class="p">[(</span><span class="n">mid_nums</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">];</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">wanted_mid</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+      <span class="k">while</span><span class="p">(</span><span class="n">wanted_mid</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span>
 	<span class="p">{</span>
-	  <span class="n">maximum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-	  <span class="n">minimum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+	  <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">wanted_mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">mid_num</span><span class="p">)</span>
+	    <span class="k">break</span><span class="p">;</span>
+	  <span class="o">++</span><span class="n">wanted_mid</span><span class="p">;</span>
 	<span class="p">}</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">q</span> <span class="o">=</span> <span class="n">select_partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">wanted_mid</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="n">q</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">mid_num</span><span class="p">;</span>
+      <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">select</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
       <span class="k">else</span>
-	<span class="p">{</span>
-	  <span class="n">maximum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-	  <span class="n">minimum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-	<span class="p">}</span>
-      <span class="n">index</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="n">maximum</span> <span class="o">=</span> <span class="n">minimum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-      <span class="n">index</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">index</span> <span class="o">!=</span> <span class="n">n</span><span class="p">)</span>
-      <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
-	<span class="p">{</span>
-	  <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">maximum</span><span class="p">)</span>
-	    <span class="n">maximum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
-	  <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">minimum</span><span class="p">)</span>
-	    <span class="n">minimum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
-	<span class="p">}</span>
-      <span class="k">else</span>
-	<span class="p">{</span>
-	  <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">maximum</span><span class="p">)</span>
-	    <span class="n">maximum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
-	  <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">minimum</span><span class="p">)</span>
-	    <span class="n">minimum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
-	<span class="p">}</span>
-      <span class="n">index</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
-      <span class="p">}</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">maximum</span><span class="p">,</span> <span class="n">minimum</span><span class="p">};</span>
+	<span class="k">return</span> <span class="nf">select</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="p">);</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org7a2c21f" class="outline-2">
+<h2 id="org7a2c21f">randomized_select</h2>
+<div class="outline-text-2" id="text-org7a2c21f">
+<div class="highlight"><pre><span></span>  <span class="cp">#include</span> <span class="cpf">"chapter-7/randomized_quicksort/randomized_quicksort.h"</span><span class="cp"></span>
+  <span class="k">namespace</span> <span class="n">CLRS</span>
+  <span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="n">T</span> <span class="n">randomized_select</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">],</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">p</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">r</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">p</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">q</span> <span class="o">=</span> <span class="n">CLRS</span><span class="o">::</span><span class="n">randomized_partition</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">k</span> <span class="o">=</span> <span class="n">q</span> <span class="o">-</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">k</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="n">q</span><span class="p">];</span>
+      <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">randomized_select</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+      <span class="k">else</span>
+	<span class="k">return</span> <span class="nf">randomized_select</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgf9ab8cd" class="outline-2">
+<h2 id="orgf9ab8cd">maximum_minimum</h2>
+<div class="outline-text-2" id="text-orgf9ab8cd">
+<div class="highlight"><pre><span></span>  <span class="k">namespace</span> <span class="n">CLRS</span>
+  <span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">maximum_minimum</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+    <span class="p">{</span>
+      <span class="n">T</span> <span class="n">maximum</span><span class="p">,</span> <span class="n">minimum</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">index</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+	    <span class="p">{</span>
+	      <span class="n">maximum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+	      <span class="n">minimum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+	    <span class="p">}</span>
+	  <span class="k">else</span>
+	    <span class="p">{</span>
+	      <span class="n">maximum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+	      <span class="n">minimum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+	    <span class="p">}</span>
+	  <span class="n">index</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+	<span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">maximum</span> <span class="o">=</span> <span class="n">minimum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+	  <span class="n">index</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="p">}</span>
+      <span class="k">while</span><span class="p">(</span><span class="n">index</span> <span class="o">!=</span> <span class="n">n</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+	    <span class="p">{</span>
+	      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">maximum</span><span class="p">)</span>
+		<span class="n">maximum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+	      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">minimum</span><span class="p">)</span>
+		<span class="n">minimum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+	    <span class="p">}</span>
+	  <span class="k">else</span>
+	    <span class="p">{</span>
+	      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">maximum</span><span class="p">)</span>
+		<span class="n">maximum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+	      <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">minimum</span><span class="p">)</span>
+		<span class="n">minimum</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+	    <span class="p">}</span>
+	  <span class="n">index</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>
+	<span class="p">}</span>
+      <span class="k">return</span> <span class="p">{</span><span class="n">maximum</span><span class="p">,</span> <span class="n">minimum</span><span class="p">};</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
 </pre></div>
 
-<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
-  <span class="n">T</span> <span class="n">minimum</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+<div class="highlight"><pre><span></span>  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="n">T</span> <span class="n">min</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">min</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-      <span class="n">min</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-    <span class="k">return</span> <span class="n">min</span><span class="p">;</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">n</span><span class="o">&gt;</span>
+    <span class="n">T</span> <span class="n">minimum</span><span class="p">(</span><span class="n">T</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)[</span><span class="n">n</span><span class="p">])</span>
+    <span class="p">{</span>
+      <span class="n">T</span> <span class="n">min</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+	<span class="k">if</span><span class="p">(</span><span class="n">min</span> <span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+	<span class="n">min</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+      <span class="k">return</span> <span class="n">min</span><span class="p">;</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 </div>
 </div>

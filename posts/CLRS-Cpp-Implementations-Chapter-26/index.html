@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="description" content="Introduction to Algorithms Chapter-26 maximum_flow">
 <meta name="viewport" content="width=device-width">
-<title>CLRS-Cpp-Implementations-Chapter-26 | Procrastination Prescription</title>
+<title>CLRS-Cpp-Implementations-Chapter-26 | 钉钉是世界上最傻逼的app</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-26/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
-<meta property="og:site_name" content="Procrastination Prescription">
+<meta property="og:site_name" content="钉钉是世界上最傻逼的app">
 <meta property="og:title" content="CLRS-Cpp-Implementations-Chapter-26">
 <meta property="og:url" content="https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-26/">
 <meta property="og:description" content="Introduction to Algorithms Chapter-26 maximum_flow">
@@ -26,8 +26,8 @@
     <div class="brand">
 
         <div class="brand-text">
-            <a href="https://zero4drift.github.io/" title="Procrastination Prescription" rel="home">
-                Procrastination Prescription
+            <a href="https://zero4drift.github.io/" title="钉钉是世界上最傻逼的app" rel="home">
+                钉钉是世界上最傻逼的app
             </a>
         </div>
 
@@ -80,52 +80,52 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org266d3d4" class="outline-2">
-<h2 id="org266d3d4">maximum_flow</h2>
-<div class="outline-text-2" id="text-org266d3d4">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"chapter-22/bfs_graph/bfs_graph.h"</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">"chapter-26/maximum_flow_utilities.h"</span><span class="cp"></span>
-<span class="k">namespace</span> <span class="n">CLRS</span>
-<span class="p">{</span>
-  <span class="kt">void</span> <span class="n">ford_fulkserson</span><span class="p">(</span><span class="n">MaximumFlowLinkedListGraph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span>
-		     <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">s</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">t</span><span class="p">)</span>
+        <div id="outline-container-org23f94b5" class="outline-2">
+<h2 id="org23f94b5">maximum_flow</h2>
+<div class="outline-text-2" id="text-org23f94b5">
+<div class="highlight"><pre><span></span>  <span class="cp">#include</span> <span class="cpf">"chapter-22/bfs_graph/bfs_graph.h"</span><span class="cp"></span>
+  <span class="cp">#include</span> <span class="cpf">"chapter-26/maximum_flow_utilities.h"</span><span class="cp"></span>
+  <span class="k">namespace</span> <span class="n">CLRS</span>
   <span class="p">{</span>
-    <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">maximum_bfs_graph</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
-      <span class="p">{</span>
-      <span class="kt">unsigned</span> <span class="n">min_cf</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-      <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">ev</span> <span class="p">:</span> <span class="n">p</span><span class="p">)</span>
+    <span class="kt">void</span> <span class="n">ford_fulkserson</span><span class="p">(</span><span class="n">MaximumFlowLinkedListGraph</span> <span class="o">&amp;</span><span class="n">g</span><span class="p">,</span>
+			 <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">s</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">t</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">auto</span> <span class="n">p</span> <span class="o">=</span> <span class="n">maximum_bfs_graph</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+      <span class="k">while</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
 	<span class="p">{</span>
-	  <span class="k">if</span><span class="p">(</span><span class="n">get_cf</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">ev</span><span class="p">),</span> <span class="n">g</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">min_cf</span><span class="p">)</span>
-	    <span class="n">min_cf</span> <span class="o">=</span> <span class="n">get_cf</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">ev</span><span class="p">),</span> <span class="n">g</span><span class="p">);</span>
-	<span class="p">}</span>
-      <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">ev</span> <span class="p">:</span> <span class="n">p</span><span class="p">)</span>
-	<span class="p">{</span>
-	  <span class="k">auto</span> <span class="o">&amp;</span><span class="n">e</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">ev</span><span class="p">);</span>
-	  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">e</span><span class="p">.</span><span class="n">get_residual</span><span class="p">())</span>
+	  <span class="kt">unsigned</span> <span class="n">min_cf</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	  <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">ev</span> <span class="p">:</span> <span class="n">p</span><span class="p">)</span>
 	    <span class="p">{</span>
-	      <span class="n">e</span><span class="p">.</span><span class="n">incr_f</span><span class="p">(</span><span class="n">min_cf</span><span class="p">);</span>
-	      <span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">get_second_vertex</span><span class="p">(),</span>
-		     <span class="n">e</span><span class="p">.</span><span class="n">get_first_vertex</span><span class="p">()).</span><span class="n">incr_f</span><span class="p">(</span><span class="n">min_cf</span><span class="p">);</span>
+	      <span class="k">if</span><span class="p">(</span><span class="n">get_cf</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">ev</span><span class="p">),</span> <span class="n">g</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">min_cf</span><span class="p">)</span>
+		<span class="n">min_cf</span> <span class="o">=</span> <span class="n">get_cf</span><span class="p">(</span><span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">ev</span><span class="p">),</span> <span class="n">g</span><span class="p">);</span>
 	    <span class="p">}</span>
-	  <span class="k">else</span>
+	  <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">ev</span> <span class="p">:</span> <span class="n">p</span><span class="p">)</span>
 	    <span class="p">{</span>
-	      <span class="n">e</span><span class="p">.</span><span class="n">decr_f</span><span class="p">(</span><span class="n">min_cf</span><span class="p">);</span>
-	      <span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">get_second_vertex</span><span class="p">(),</span>
-		     <span class="n">e</span><span class="p">.</span><span class="n">get_first_vertex</span><span class="p">()).</span><span class="n">decr_f</span><span class="p">(</span><span class="n">min_cf</span><span class="p">);</span>
+	      <span class="k">auto</span> <span class="o">&amp;</span><span class="n">e</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">ev</span><span class="p">);</span>
+	      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">e</span><span class="p">.</span><span class="n">get_residual</span><span class="p">())</span>
+		<span class="p">{</span>
+		  <span class="n">e</span><span class="p">.</span><span class="n">incr_f</span><span class="p">(</span><span class="n">min_cf</span><span class="p">);</span>
+		  <span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">get_second_vertex</span><span class="p">(),</span>
+			 <span class="n">e</span><span class="p">.</span><span class="n">get_first_vertex</span><span class="p">()).</span><span class="n">incr_f</span><span class="p">(</span><span class="n">min_cf</span><span class="p">);</span>
+		<span class="p">}</span>
+	      <span class="k">else</span>
+		<span class="p">{</span>
+		  <span class="n">e</span><span class="p">.</span><span class="n">decr_f</span><span class="p">(</span><span class="n">min_cf</span><span class="p">);</span>
+		  <span class="n">g</span><span class="p">.</span><span class="n">edge</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">get_second_vertex</span><span class="p">(),</span>
+			 <span class="n">e</span><span class="p">.</span><span class="n">get_first_vertex</span><span class="p">()).</span><span class="n">decr_f</span><span class="p">(</span><span class="n">min_cf</span><span class="p">);</span>
+		<span class="p">}</span>
 	    <span class="p">}</span>
+	  <span class="n">p</span> <span class="o">=</span> <span class="n">maximum_bfs_graph</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
 	<span class="p">}</span>
-      <span class="n">p</span> <span class="o">=</span> <span class="n">maximum_bfs_graph</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
-      <span class="p">}</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org8ece3e8" class="outline-2">
-<h2 id="org8ece3e8">utilities</h2>
-<div class="outline-text-2" id="text-org8ece3e8">
+<div id="outline-container-orgbed6c3c" class="outline-2">
+<h2 id="orgbed6c3c">utilities</h2>
+<div class="outline-text-2" id="text-orgbed6c3c">
 <p>
 <a href="https://github.com/zero4drift/CLRS_Cpp_Implementations/tree/master/include//chapter-26/maximum_flow_utilities.h">https://github.com/zero4drift/CLRS_Cpp_Implementations/tree/master/include//chapter-26/maximum_flow_utilities.h</a>
 </p>
