@@ -80,126 +80,129 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org84f7297" class="outline-2">
-<h2 id="org84f7297">写在前面</h2>
-<div class="outline-text-2" id="text-org84f7297">
+        <div id="outline-container-org4745aea" class="outline-2">
+<h2 id="org4745aea">写在前面</h2>
+<div class="outline-text-2" id="text-org4745aea">
 <p>
-<i>SICP</i> 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么还要再来一遍
-？
+<i>SICP</i> 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么
+还要再来一遍？
 </p>
 
 <ol class="org-ol">
-<li>说到习题，由于当时看这本书做习题时是在 windows 平台上，而 windows 系统并没有现成的
-非常方便地运行 scheme 程序的工具 (例如 cmuscheme 用起来就很麻烦), 习题程序大部分都没
-有严格测试过，很多就是代码逻辑通顺就算完成，现在想来 bug 应该不少；</li>
-<li>第五章从基于寄存器机器的设计引出解释器和编译器的原理，虽然说此章太多的习题是叙述题所以
-没有做，但是 scheme repl 解释器的 c/c++ 实现还是值得一做的；</li>
+<li>说到习题，由于当时看这本书做习题时是在 windows 平台上，而 windows 系统并没
+有现成的非常方便地运行 scheme 程序的工具 (例如 cmuscheme 用起来就很麻烦),
+习题程序大部分都没有严格测试过，很多就是代码逻辑通顺就算完成，现在想来 bug
+应该不少；</li>
+<li>第五章从基于寄存器机器的设计引出解释器和编译器的原理，虽然说此章太多的习题
+是叙述题所以没有做，但是 scheme repl 解释器的 c/c++ 实现还是值得一做的；</li>
 <li>
-<i>SICP</i> 的编程思想贯穿于今年学习 <i>Cpp-Primer</i> 以及 <i>CLRS</i> 的过程当中，这个我很明确的
-感受到了：构造过程抽象 &amp; 构造数据抽象，虽然我只能说是略有领会，但确实在解决编程问题时提供了
-极大的帮助。编程工具会被淘汰，但编程思想永不过时，特别是在实践之后再重温必有更多获益；</li>
+<i>SICP</i> 的编程思想贯穿于今年学习 <i>Cpp-Primer</i> 以及 <i>CLRS</i> 的过程当中，这个我
+很明确的感受到了：构造过程抽象 &amp; 构造数据抽象，虽然我只能说是略有领会，但确
+实在解决编程问题时提供了极大的帮助。编程工具会被淘汰，但编程思想永不过时，
+特别是在实践之后再重温必有更多获益；</li>
 <li>
-<i>Cpp-Primer</i> &amp; <i>CLRS</i> 在博客的相关博文中并没有详细的总结当时的代码思路，其主要内容是
-代码及一小部分注释，注释部分或者是关于代码的难点，亦或者是提醒容易出错的地方，这样的形式
-可读性很差，但要仔细组织文档的话，整体工作量又何止增加一倍；而这一次既然是复习 &amp; 查错，
-同时利用 orgmode 嵌入代码块及 scheme 的解释性语言的特点，可以在组织文章的同时运行～修改
-代码，这是效仿使用 orgmode 文档嵌入 elisp 代码块构成 emacs 配置文件的做法，许多 emacs
-大佬用这种手法提高配置文件可读性。</li>
+<i>Cpp-Primer</i> &amp; <i>CLRS</i> 在博客的相关博文中并没有详细的总结当时的代码思路，其
+主要内容是代码及一小部分注释，注释部分或者是关于代码的难点，亦或者是提醒容
+易出错的地方，这样的形式可读性很差，但要仔细组织文档的话，整体工作量又何止
+增加一倍；而这一次既然是复习 &amp; 查错，同时利用 orgmode 嵌入代码块及 scheme
+的解释性语言的特点，可以在组织文章的同时运行～修改代码，这是效仿使用
+orgmode 文档嵌入 elisp 代码块构成 emacs 配置文件的做法，许多 emacs大佬用这
+种手法提高配置文件可读性。</li>
 </ol>
 <p>
-有些书就是值得一遍又一遍的反复咀嚼，毫无疑问 <i>SICP</i> 就是其中的一员，
+有些书就是值得一遍又一遍的反复咀嚼，毫无疑问 <i>SICP</i> 就是其中的一员。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf7f63a5" class="outline-2">
-<h2 id="orgf7f63a5">第一章</h2>
-<div class="outline-text-2" id="text-orgf7f63a5">
+<div id="outline-container-orgdc1db89" class="outline-2">
+<h2 id="orgdc1db89">第一章</h2>
+<div class="outline-text-2" id="text-orgdc1db89">
 </div>
-<div id="outline-container-orga8c7e4d" class="outline-3">
-<h3 id="orga8c7e4d">程序设计的基本元素</h3>
-<div class="outline-text-3" id="text-orga8c7e4d">
+<div id="outline-container-org1cda8a3" class="outline-3">
+<h3 id="org1cda8a3">程序设计的基本元素</h3>
+<div class="outline-text-3" id="text-org1cda8a3">
 </div>
-<div id="outline-container-orgf34a4fc" class="outline-4">
-<h4 id="orgf34a4fc">表达式</h4>
-</div>
-
-<div id="outline-container-org0dc1e9e" class="outline-4">
-<h4 id="org0dc1e9e">命名和环境</h4>
+<div id="outline-container-orgdfa1505" class="outline-4">
+<h4 id="orgdfa1505">表达式</h4>
 </div>
 
-<div id="outline-container-org4ddcc1d" class="outline-4">
-<h4 id="org4ddcc1d">组合式的求值</h4>
+<div id="outline-container-org8d2c85b" class="outline-4">
+<h4 id="org8d2c85b">命名和环境</h4>
 </div>
 
-<div id="outline-container-orgff09a42" class="outline-4">
-<h4 id="orgff09a42">复合过程</h4>
+<div id="outline-container-orgabfa60c" class="outline-4">
+<h4 id="orgabfa60c">组合式的求值</h4>
 </div>
 
-<div id="outline-container-orgff59c5d" class="outline-4">
-<h4 id="orgff59c5d">过程应用的代换模形</h4>
+<div id="outline-container-org8fe2365" class="outline-4">
+<h4 id="org8fe2365">复合过程</h4>
 </div>
 
-<div id="outline-container-orgc6e02ca" class="outline-4">
-<h4 id="orgc6e02ca">条件表达式何谓词</h4>
+<div id="outline-container-org4996385" class="outline-4">
+<h4 id="org4996385">过程应用的代换模形</h4>
 </div>
 
-<div id="outline-container-org76e3aa7" class="outline-4">
-<h4 id="org76e3aa7">实例：采用牛顿法求平方根</h4>
+<div id="outline-container-org654334d" class="outline-4">
+<h4 id="org654334d">条件表达式何谓词</h4>
 </div>
 
-<div id="outline-container-org7f06de1" class="outline-4">
-<h4 id="org7f06de1">过程作为黑箱抽象</h4>
-</div>
-</div>
-
-<div id="outline-container-org25293ac" class="outline-3">
-<h3 id="org25293ac">过程与它们所产生的计算</h3>
-<div class="outline-text-3" id="text-org25293ac">
-</div>
-<div id="outline-container-org6135615" class="outline-4">
-<h4 id="org6135615">线性的递归和迭代</h4>
+<div id="outline-container-org4de3018" class="outline-4">
+<h4 id="org4de3018">实例：采用牛顿法求平方根</h4>
 </div>
 
-<div id="outline-container-org5ff8618" class="outline-4">
-<h4 id="org5ff8618">树形递归</h4>
-</div>
-
-<div id="outline-container-org33fca2e" class="outline-4">
-<h4 id="org33fca2e">增长的阶</h4>
-</div>
-
-<div id="outline-container-org2db577c" class="outline-4">
-<h4 id="org2db577c">求幂</h4>
-</div>
-
-<div id="outline-container-org724afbe" class="outline-4">
-<h4 id="org724afbe">最大公约数</h4>
-</div>
-
-<div id="outline-container-orgf76a566" class="outline-4">
-<h4 id="orgf76a566">实例：素数检测</h4>
+<div id="outline-container-org2d5ab8d" class="outline-4">
+<h4 id="org2d5ab8d">过程作为黑箱抽象</h4>
 </div>
 </div>
 
-<div id="outline-container-orgd8db40a" class="outline-3">
-<h3 id="orgd8db40a">用高阶函数做抽象</h3>
-<div class="outline-text-3" id="text-orgd8db40a">
+<div id="outline-container-org5e7a1d1" class="outline-3">
+<h3 id="org5e7a1d1">过程与它们所产生的计算</h3>
+<div class="outline-text-3" id="text-org5e7a1d1">
 </div>
-<div id="outline-container-org4fe0903" class="outline-4">
-<h4 id="org4fe0903">过程作为参数</h4>
-</div>
-
-<div id="outline-container-org39c5c68" class="outline-4">
-<h4 id="org39c5c68">用 lambda 构造过程</h4>
+<div id="outline-container-org4acd399" class="outline-4">
+<h4 id="org4acd399">线性的递归和迭代</h4>
 </div>
 
-<div id="outline-container-org26ef125" class="outline-4">
-<h4 id="org26ef125">过程作为一般性的方法</h4>
+<div id="outline-container-org2c73240" class="outline-4">
+<h4 id="org2c73240">树形递归</h4>
 </div>
 
-<div id="outline-container-org19ddcfb" class="outline-4">
-<h4 id="org19ddcfb">过程作为返回值</h4>
+<div id="outline-container-orga457fca" class="outline-4">
+<h4 id="orga457fca">增长的阶</h4>
+</div>
+
+<div id="outline-container-org5229aa7" class="outline-4">
+<h4 id="org5229aa7">求幂</h4>
+</div>
+
+<div id="outline-container-org5a8757e" class="outline-4">
+<h4 id="org5a8757e">最大公约数</h4>
+</div>
+
+<div id="outline-container-org1026282" class="outline-4">
+<h4 id="org1026282">实例：素数检测</h4>
+</div>
+</div>
+
+<div id="outline-container-orgf302726" class="outline-3">
+<h3 id="orgf302726">用高阶函数做抽象</h3>
+<div class="outline-text-3" id="text-orgf302726">
+</div>
+<div id="outline-container-org4685021" class="outline-4">
+<h4 id="org4685021">过程作为参数</h4>
+</div>
+
+<div id="outline-container-orge85d4c1" class="outline-4">
+<h4 id="orge85d4c1">用 lambda 构造过程</h4>
+</div>
+
+<div id="outline-container-org444b6cb" class="outline-4">
+<h4 id="org444b6cb">过程作为一般性的方法</h4>
+</div>
+
+<div id="outline-container-orgdb542ae" class="outline-4">
+<h4 id="orgdb542ae">过程作为返回值</h4>
 </div>
 </div>
 </div>
