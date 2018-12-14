@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Thu, 13 Dec 2018 15:07:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-1</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-1/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org4745aea" class="outline-2"&gt;
-&lt;h2 id="org4745aea"&gt;写在前面&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4745aea"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Fri, 14 Dec 2018 14:06:32 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-1</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-1/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org5b57215" class="outline-2"&gt;
+&lt;h2 id="org5b57215"&gt;写在前面&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5b57215"&gt;
 &lt;p&gt;
 &lt;i&gt;SICP&lt;/i&gt; 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么
 还要再来一遍？
@@ -12,7 +12,7 @@
 有现成的非常方便地运行 scheme 程序的工具 (例如 cmuscheme 用起来就很麻烦),
 习题程序大部分都没有严格测试过，很多就是代码逻辑通顺就算完成，现在想来 bug
 应该不少；&lt;/li&gt;
-&lt;li&gt;第五章从基于寄存器机器的设计引出解释器和编译器的原理，虽然说此章太多的习题
+&lt;li&gt;第五章从基于寄存器机器的设计引出解释器和编译器的原理，虽然说此章大多的习题
 是叙述题所以没有做，但是 scheme repl 解释器的 c/c++ 实现还是值得一做的；&lt;/li&gt;
 &lt;li&gt;&lt;i&gt;SICP&lt;/i&gt; 的编程思想贯穿于今年学习 &lt;i&gt;Cpp-Primer&lt;/i&gt; 以及 &lt;i&gt;CLRS&lt;/i&gt; 的过程当中，这个我
 很明确的感受到了：构造过程抽象 &amp;amp; 构造数据抽象，虽然我只能说是略有领会，但确
@@ -21,10 +21,10 @@
 &lt;li&gt;&lt;i&gt;Cpp-Primer&lt;/i&gt; &amp;amp; &lt;i&gt;CLRS&lt;/i&gt; 在博客的相关博文中并没有详细的总结当时的代码思路，其
 主要内容是代码及一小部分注释，注释部分或者是关于代码的难点，亦或者是提醒容
 易出错的地方，这样的形式可读性很差，但要仔细组织文档的话，整体工作量又何止
-增加一倍；而这一次既然是复习 &amp;amp; 查错，同时利用 orgmode 嵌入代码块及 scheme
-的解释性语言的特点，可以在组织文章的同时运行～修改代码，这是效仿使用
-orgmode 文档嵌入 elisp 代码块构成 emacs 配置文件的做法，许多 emacs大佬用这
-种手法提高配置文件可读性。&lt;/li&gt;
+增加一倍；而这一次既然是复习 &amp;amp; 查错，同时利用 orgmode 嵌入代码块及 scheme的
+解释性语言的特点，可以在组织文章的同时运行～修改代码，这是效仿使用orgmode
+文档嵌入 elisp 代码块构成 emacs 配置文件的做法，许多 emacs 大佬用这种手法提
+高配置文件可读性。&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;
@@ -33,94 +33,221 @@ orgmode 文档嵌入 elisp 代码块构成 emacs 配置文件的做法，许多 
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdc1db89" class="outline-2"&gt;
-&lt;h2 id="orgdc1db89"&gt;第一章&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgdc1db89"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org1cda8a3" class="outline-3"&gt;
-&lt;h3 id="org1cda8a3"&gt;程序设计的基本元素&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org1cda8a3"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgdfa1505" class="outline-4"&gt;
-&lt;h4 id="orgdfa1505"&gt;表达式&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org8d2c85b" class="outline-4"&gt;
-&lt;h4 id="org8d2c85b"&gt;命名和环境&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgabfa60c" class="outline-4"&gt;
-&lt;h4 id="orgabfa60c"&gt;组合式的求值&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org8fe2365" class="outline-4"&gt;
-&lt;h4 id="org8fe2365"&gt;复合过程&lt;/h4&gt;
+&lt;div id="outline-container-org2c09f86" class="outline-2"&gt;
+&lt;h2 id="org2c09f86"&gt;第一章&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2c09f86"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;计算过程与程序
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;计算过程：存在于计算机里的一类抽象事物，可以操作一些称为数据的抽象事物；&lt;/li&gt;
+&lt;li&gt;程序：人们创建出的规则模式，以指导计算过程的进行；&lt;/li&gt;
+&lt;li&gt;设计良好的程序应该具有某种模块化的设计，各个部分都可以独立地构造，替换和
+排除错误，某模块发生的错误影响限于模块内部，并不会影响其它模块和整体程序。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;Lisp 语言作为本书中讨论程序设计的基础
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;最重要的是因为：计算过程的 Lisp 描述（过程）本身又可以作为 Lisp 的数据结
+构来表示和操作；&lt;/li&gt;
+&lt;li&gt;现存的许多威力强大的程序设计技术，都依赖于填平在“被动的”数据和“主动的”过
+程之间的传统划分。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4996385" class="outline-4"&gt;
-&lt;h4 id="org4996385"&gt;过程应用的代换模形&lt;/h4&gt;
+
+&lt;div id="outline-container-org6c4897a" class="outline-3"&gt;
+&lt;h3 id="org6c4897a"&gt;程序设计的基本元素&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6c4897a"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;程序设计中的两类要素：过程和数据
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;非形式化地说，数据是一种我们希望去操作地“东西”，而过程就是有关操作这些
+数据的规则的描述；&lt;/li&gt;
+&lt;li&gt;任何强有力的程序设计语言都必须能表述基本的数据和基本的过程，还需要提供
+对过程和数据进行组合和抽象的方法；&lt;/li&gt;
+&lt;li&gt;本章只处理简单的数值数据，把注意力集中到过程构造的规则方面，当然这些规
+则同样可以用于操作各种数据。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org654334d" class="outline-4"&gt;
-&lt;h4 id="org654334d"&gt;条件表达式何谓词&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org4de3018" class="outline-4"&gt;
-&lt;h4 id="org4de3018"&gt;实例：采用牛顿法求平方根&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org2d5ab8d" class="outline-4"&gt;
-&lt;h4 id="org2d5ab8d"&gt;过程作为黑箱抽象&lt;/h4&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org5e7a1d1" class="outline-3"&gt;
-&lt;h3 id="org5e7a1d1"&gt;过程与它们所产生的计算&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5e7a1d1"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org4acd399" class="outline-4"&gt;
-&lt;h4 id="org4acd399"&gt;线性的递归和迭代&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org2c73240" class="outline-4"&gt;
-&lt;h4 id="org2c73240"&gt;树形递归&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orga457fca" class="outline-4"&gt;
-&lt;h4 id="orga457fca"&gt;增长的阶&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org5229aa7" class="outline-4"&gt;
-&lt;h4 id="org5229aa7"&gt;求幂&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org5a8757e" class="outline-4"&gt;
-&lt;h4 id="org5a8757e"&gt;最大公约数&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org1026282" class="outline-4"&gt;
-&lt;h4 id="org1026282"&gt;实例：素数检测&lt;/h4&gt;
+&lt;div id="outline-container-org4188698" class="outline-4"&gt;
+&lt;h4 id="org4188698"&gt;表达式&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org4188698"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;组合式是什么
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;构成方式就是用 &lt;b&gt;一对括号&lt;/b&gt; 括起一些 &lt;b&gt;表达式&lt;/b&gt;, 形成一个表，用于表示一个
+&lt;b&gt;过程应用&lt;/b&gt;;&lt;/li&gt;
+&lt;li&gt;表里最左的元素称为 &lt;b&gt;运算符&lt;/b&gt;, 其它元素都称为 &lt;b&gt;运算对象&lt;/b&gt;;&lt;/li&gt;
+&lt;li&gt;要得到这种组合式的值，采用的方式就是由 &lt;b&gt;运算符&lt;/b&gt; 所刻画的过程应用于有关
+的 &lt;b&gt;实际参数&lt;/b&gt;, 而所谓 &lt;b&gt;实际参数&lt;/b&gt; 也就是那些 &lt;b&gt;运算对象&lt;/b&gt; 的值。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;组合式的 &lt;b&gt;运算符&lt;/b&gt; 前缀表示
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;完全适用于可能带有任意个实参的过程；&lt;/li&gt;
+&lt;li&gt;可以直接扩充，允许出现组合式嵌套的情况。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf302726" class="outline-3"&gt;
-&lt;h3 id="orgf302726"&gt;用高阶函数做抽象&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgf302726"&gt;
+&lt;div id="outline-container-org06de9bc" class="outline-4"&gt;
+&lt;h4 id="org06de9bc"&gt;命名和环境&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org06de9bc"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;通过名字去使用 &lt;b&gt;运算对象&lt;/b&gt; 的方式
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;将名字标识符称为 &lt;b&gt;变量&lt;/b&gt;, 它的 &lt;b&gt;值&lt;/b&gt; 也就是它所对应的那个对象；&lt;/li&gt;
+&lt;li&gt;Scheme 中通过 define 的方式给事物命名，是我们所用的语言里最简单的抽象
+方法；&lt;/li&gt;
+&lt;li&gt;构造一个复杂的程序，也就是为了去一步步地创建出越来越复杂的计算性对象。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;环境
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;将值与符号关联，而后又能提取出这些值，解释器必须维护某种存储能力，以便
+保持有关的 &lt;b&gt;名字－值&lt;/b&gt; 序对的轨迹。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org4685021" class="outline-4"&gt;
-&lt;h4 id="org4685021"&gt;过程作为参数&lt;/h4&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge85d4c1" class="outline-4"&gt;
-&lt;h4 id="orge85d4c1"&gt;用 lambda 构造过程&lt;/h4&gt;
+&lt;div id="outline-container-org99b43e1" class="outline-4"&gt;
+&lt;h4 id="org99b43e1"&gt;组合式的求值&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org99b43e1"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;组合式的求值过程是递归的，应该把递归看做一种处理层次性结构的极强有力战术；&lt;/li&gt;
+&lt;li&gt;数，内部运算符或者其它名字是基本表达式，内部运算符和其它名字可以看作符号，
+环境所扮演的角色就是用于确定表达式中各个符号的意义；&lt;/li&gt;
+&lt;li&gt;一般性求值规则的例外被称为特殊形式（比如define，它并不是一个组合式），对
+各种表达式的求值规则可以描述为一个简单的通用规则和一组针对不多的特殊形式
+的专门规则。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org444b6cb" class="outline-4"&gt;
-&lt;h4 id="org444b6cb"&gt;过程作为一般性的方法&lt;/h4&gt;
+&lt;div id="outline-container-orgbce4edd" class="outline-4"&gt;
+&lt;h4 id="orgbce4edd"&gt;复合过程&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgbce4edd"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;过程定义是一种威力更加强大的抽象技术，通过它可以为复合操作提供名字，而后
+就可以将这样的操作作为一个单元使用了；&lt;/li&gt;
+&lt;li&gt;复合过程的使用方式与基本过程完全一样。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdb542ae" class="outline-4"&gt;
-&lt;h4 id="orgdb542ae"&gt;过程作为返回值&lt;/h4&gt;
+&lt;div id="outline-container-orgf46f911" class="outline-4"&gt;
+&lt;h4 id="orgf46f911"&gt;过程应用的代换模形&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf46f911"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;应用序：将复合过程应用于实际参数，就是在将过程体中的每个形参用相应的实参
+取代之后，对这一过程体求值；
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;代换的作用只是为了帮助我们领会过程调用中的情况，而不是对解释器实际工作
+方式的具体描述。&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;正则序：先不求出运算对象的值，直到实际需要它们的值时再去做，采用这种求值
+方式，首先用运算对象表达式去代换形式参数，直至得到一个只包含基本运算符的
+表达式，然后再去执行求值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org74c4bfa" class="outline-4"&gt;
+&lt;h4 id="org74c4bfa"&gt;条件表达式何谓词&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org74c4bfa"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;&lt;p&gt;
+cond: 条件表达式，如果无法找到值为真的 &amp;lt;p&amp;gt;, cond 的值无定义；
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;lt;p1&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;e1&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;lt;p2&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;e2&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="o"&gt;...&lt;/span&gt;
+	     &lt;span class="c1"&gt;;; 最后一个子句 &amp;lt;p&amp;gt; 可以替换为 else&lt;/span&gt;
+	     &lt;span class="c1"&gt;;; 即前面所有子句都被跳过，会返回最后子句中 &amp;lt;e&amp;gt; 的值&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;lt;p3&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;e3&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;
+if: 条件表达式的受限形式，适用于分情况分析中只有两个情况的需要；
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="nv"&gt;&amp;lt;predicate&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;consequent&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;alternative&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;
+and: 特殊形式而不是普通过程，因为子表达式不一定都求值；
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;and &lt;/span&gt;&lt;span class="nv"&gt;&amp;lt;e1&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;en&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;
+or: 特殊形式而不是普通过程，因为子表达式不一定都求值；
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or &lt;/span&gt;&lt;span class="nv"&gt;&amp;lt;e1&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;en&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;
+not: 普通过程
+&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;not &lt;/span&gt;&lt;span class="nv"&gt;&amp;lt;e&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org540080b" class="outline-4"&gt;
+&lt;h4 id="org540080b"&gt;实例：采用牛顿法求平方根&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2ec6000" class="outline-4"&gt;
+&lt;h4 id="org2ec6000"&gt;过程作为黑箱抽象&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org979e5b3" class="outline-3"&gt;
+&lt;h3 id="org979e5b3"&gt;过程与它们所产生的计算&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org979e5b3"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgdba7d17" class="outline-4"&gt;
+&lt;h4 id="orgdba7d17"&gt;线性的递归和迭代&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2bcdfc5" class="outline-4"&gt;
+&lt;h4 id="org2bcdfc5"&gt;树形递归&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7d50e6a" class="outline-4"&gt;
+&lt;h4 id="org7d50e6a"&gt;增长的阶&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb47fff3" class="outline-4"&gt;
+&lt;h4 id="orgb47fff3"&gt;求幂&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf78b75d" class="outline-4"&gt;
+&lt;h4 id="orgf78b75d"&gt;最大公约数&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgab8d694" class="outline-4"&gt;
+&lt;h4 id="orgab8d694"&gt;实例：素数检测&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb1e18d9" class="outline-3"&gt;
+&lt;h3 id="orgb1e18d9"&gt;用高阶函数做抽象&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb1e18d9"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgeef5d96" class="outline-4"&gt;
+&lt;h4 id="orgeef5d96"&gt;过程作为参数&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org64f0951" class="outline-4"&gt;
+&lt;h4 id="org64f0951"&gt;用 lambda 构造过程&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga10f5e2" class="outline-4"&gt;
+&lt;h4 id="orga10f5e2"&gt;过程作为一般性的方法&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb0a2855" class="outline-4"&gt;
+&lt;h4 id="orgb0a2855"&gt;过程作为返回值&lt;/h4&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-1/</guid><pubDate>Thu, 13 Dec 2018 12:41:57 GMT</pubDate></item></channel></rss>
