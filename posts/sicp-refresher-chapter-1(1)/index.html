@@ -2,17 +2,17 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Refresher of SICP chapter 1 abstraction procedure">
+<meta name="description" content="Refresher of SICP chapter 1.1 abstraction procedure">
 <meta name="viewport" content="width=device-width">
-<title>SICP-Refresher-Chapter-1 | 钉钉是世界上最傻逼的app</title>
+<title>SICP-Refresher-Chapter-1(1) | 钉钉是世界上最傻逼的app</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
-<link rel="canonical" href="https://zero4drift.github.io/posts/sicp-refresher-chapter-1/">
+<link rel="canonical" href="https://zero4drift.github.io/posts/sicp-refresher-chapter-1%281%29/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
 <meta property="og:site_name" content="钉钉是世界上最傻逼的app">
-<meta property="og:title" content="SICP-Refresher-Chapter-1">
-<meta property="og:url" content="https://zero4drift.github.io/posts/sicp-refresher-chapter-1/">
-<meta property="og:description" content="Refresher of SICP chapter 1 abstraction procedure">
+<meta property="og:title" content="SICP-Refresher-Chapter-1(1)">
+<meta property="og:url" content="https://zero4drift.github.io/posts/sicp-refresher-chapter-1%281%29/">
+<meta property="og:description" content="Refresher of SICP chapter 1.1 abstraction procedure">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-12-13T20:41:57+08:00">
 <meta property="article:tag" content="Scheme">
@@ -54,7 +54,7 @@
     <div class="post-header">
         <div class="container">
             <div class="title">
-                SICP-Refresher-Chapter-1
+                SICP-Refresher-Chapter-1(1)
             </div>
         </div>
     </div>
@@ -80,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org003d44d" class="outline-2">
-<h2 id="org003d44d">写在前面</h2>
-<div class="outline-text-2" id="text-org003d44d">
+        <div id="outline-container-orge42f3df" class="outline-2">
+<h2 id="orge42f3df">写在前面</h2>
+<div class="outline-text-2" id="text-orge42f3df">
 <p>
 <i>SICP</i> 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么
 还要再来一遍？
@@ -115,9 +115,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgb949edd" class="outline-2">
-<h2 id="orgb949edd">第一章</h2>
-<div class="outline-text-2" id="text-orgb949edd">
+<div id="outline-container-org6e2f1e8" class="outline-2">
+<h2 id="org6e2f1e8">第一章</h2>
+<div class="outline-text-2" id="text-org6e2f1e8">
 <ol class="org-ol">
 <li>计算过程与程序
 <ol class="org-ol">
@@ -139,9 +139,9 @@
 </div>
 
 
-<div id="outline-container-org305e861" class="outline-3">
-<h3 id="org305e861">程序设计的基本元素</h3>
-<div class="outline-text-3" id="text-org305e861">
+<div id="outline-container-orgfad5dc1" class="outline-3">
+<h3 id="orgfad5dc1">程序设计的基本元素</h3>
+<div class="outline-text-3" id="text-orgfad5dc1">
 <ol class="org-ol">
 <li>程序设计中的两类要素：过程和数据
 <ol class="org-ol">
@@ -156,9 +156,9 @@
 </ol>
 </div>
 
-<div id="outline-container-org0a465a1" class="outline-4">
-<h4 id="org0a465a1">表达式</h4>
-<div class="outline-text-4" id="text-org0a465a1">
+<div id="outline-container-org652d576" class="outline-4">
+<h4 id="org652d576">表达式</h4>
+<div class="outline-text-4" id="text-org652d576">
 <ol class="org-ol">
 <li>组合式是什么
 <ol class="org-ol">
@@ -179,9 +179,9 @@
 </div>
 </div>
 
-<div id="outline-container-org25bf768" class="outline-4">
-<h4 id="org25bf768">命名和环境</h4>
-<div class="outline-text-4" id="text-org25bf768">
+<div id="outline-container-org404cb66" class="outline-4">
+<h4 id="org404cb66">命名和环境</h4>
+<div class="outline-text-4" id="text-org404cb66">
 <ol class="org-ol">
 <li>通过名字去使用 <b>运算对象</b> 的方式
 <ol class="org-ol">
@@ -201,9 +201,9 @@
 </div>
 </div>
 
-<div id="outline-container-org86d1ea7" class="outline-4">
-<h4 id="org86d1ea7">组合式的求值</h4>
-<div class="outline-text-4" id="text-org86d1ea7">
+<div id="outline-container-org69cfc95" class="outline-4">
+<h4 id="org69cfc95">组合式的求值</h4>
+<div class="outline-text-4" id="text-org69cfc95">
 <ol class="org-ol">
 <li>组合式的求值过程是递归的，应该把递归看做一种处理层次性结构的极强有力战术；</li>
 <li>数，内部运算符或者其它名字是基本表达式，内部运算符和其它名字可以看作符号，
@@ -215,9 +215,9 @@
 </div>
 </div>
 
-<div id="outline-container-org9642d26" class="outline-4">
-<h4 id="org9642d26">复合过程</h4>
-<div class="outline-text-4" id="text-org9642d26">
+<div id="outline-container-org1f06f26" class="outline-4">
+<h4 id="org1f06f26">复合过程</h4>
+<div class="outline-text-4" id="text-org1f06f26">
 <ol class="org-ol">
 <li>过程定义是一种威力更加强大的抽象技术，通过它可以为复合操作提供名字，而后
 就可以将这样的操作作为一个单元使用了；</li>
@@ -226,9 +226,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8e387f6" class="outline-4">
-<h4 id="org8e387f6">过程应用的代换模形</h4>
-<div class="outline-text-4" id="text-org8e387f6">
+<div id="outline-container-orgad372be" class="outline-4">
+<h4 id="orgad372be">过程应用的代换模形</h4>
+<div class="outline-text-4" id="text-orgad372be">
 <ol class="org-ol">
 <li>应用序：将复合过程应用于实际参数，就是在将过程体中的每个形参用相应的实参
 取代之后，对这一过程体求值；
@@ -244,9 +244,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgce9a4d5" class="outline-4">
-<h4 id="orgce9a4d5">条件表达式何谓词</h4>
-<div class="outline-text-4" id="text-orgce9a4d5">
+<div id="outline-container-org2052420" class="outline-4">
+<h4 id="org2052420">条件表达式何谓词</h4>
+<div class="outline-text-4" id="text-org2052420">
 <ol class="org-ol">
 <li>
 <p>
@@ -292,13 +292,13 @@ not: 普通过程
 </div>
 </div>
 
-<div id="outline-container-org0c529b9" class="outline-4">
-<h4 id="org0c529b9">练习 1.1-1.5</h4>
-<div class="outline-text-4" id="text-org0c529b9">
+<div id="outline-container-orgcd45a77" class="outline-4">
+<h4 id="orgcd45a77">练习 1.1-1.5</h4>
+<div class="outline-text-4" id="text-orgcd45a77">
 </div>
 <ul class="org-ul">
 <li>
-<a id="orgb7cbc24"></a>1.1<br><div class="outline-text-5" id="text-orgb7cbc24">
+<a id="orga02efe7"></a>1.1<br><div class="outline-text-5" id="text-orga02efe7">
 <div class="highlight"><pre><span></span>     <span class="mi">10</span>					<span class="c1">;10</span>
      <span class="p">(</span><span class="nb">+ </span><span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>				<span class="c1">;12</span>
      <span class="p">(</span><span class="nb">- </span><span class="mi">9</span> <span class="mi">1</span><span class="p">)</span>					<span class="c1">;8</span>
@@ -324,7 +324,7 @@ not: 普通过程
 </li>
 
 <li>
-<a id="org0bfd7e1"></a>1.2<br><div class="outline-text-5" id="text-org0bfd7e1">
+<a id="org6fd62fc"></a>1.2<br><div class="outline-text-5" id="text-org6fd62fc">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="mi">5</span> <span class="mi">4</span> 
 	   <span class="p">(</span><span class="nb">- </span><span class="mi">2</span> 
 	      <span class="p">(</span><span class="nb">- </span><span class="mi">3</span> 
@@ -338,7 +338,7 @@ not: 普通过程
 </li>
 
 <li>
-<a id="orgfb0b2d5"></a>1.3<br><div class="outline-text-5" id="text-orgfb0b2d5">
+<a id="org89d2ed7"></a>1.3<br><div class="outline-text-5" id="text-org89d2ed7">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">max-sum</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
        <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">&gt;= </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="nv">c</span> <span class="nv">b</span><span class="p">))</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">c</span><span class="p">))</span>
 	     <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">&gt;= </span><span class="nv">a</span> <span class="nv">c</span><span class="p">)</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="nv">b</span> <span class="nv">c</span><span class="p">))</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
@@ -348,14 +348,14 @@ not: 普通过程
 </li>
 
 <li>
-<a id="orge6d2131"></a>1.4<br><div class="outline-text-5" id="text-orge6d2131">
+<a id="orgead4395"></a>1.4<br><div class="outline-text-5" id="text-orgead4395">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 该过程将第一个传入数值与第二个传入数值的绝对值相加</span>
 </pre></div>
 </div>
 </li>
 
 <li>
-<a id="org298a138"></a>1.5<br><div class="outline-text-5" id="text-org298a138">
+<a id="org021dc0b"></a>1.5<br><div class="outline-text-5" id="text-org021dc0b">
 <div class="highlight"><pre><span></span>     <span class="c1">;; (define (p) (p)) 定义了一个无参数过程 p，过程体就是调用它自己，对 (p) 进行求</span>
      <span class="c1">;; 值会进入无限递归进而报错；</span>
 
@@ -372,9 +372,9 @@ not: 普通过程
 </ul>
 </div>
 
-<div id="outline-container-orgb9d2e0f" class="outline-4">
-<h4 id="orgb9d2e0f">实例：采用牛顿法求平方根</h4>
-<div class="outline-text-4" id="text-orgb9d2e0f">
+<div id="outline-container-org89618f5" class="outline-4">
+<h4 id="org89618f5">实例：采用牛顿法求平方根</h4>
+<div class="outline-text-4" id="text-org89618f5">
 <ol class="org-ol">
 <li>函数与过程之间的矛盾，不过是在描述一件事情的特征，与描述如何去做这件事情
 之间的普遍性差异的一个具体反映，也就是说明性的知识与行动性的知识之间的差
@@ -385,13 +385,13 @@ not: 普通过程
 </div>
 </div>
 
-<div id="outline-container-org55ef559" class="outline-4">
-<h4 id="org55ef559">练习 1.6-1.8</h4>
-<div class="outline-text-4" id="text-org55ef559">
+<div id="outline-container-orgb4779d2" class="outline-4">
+<h4 id="orgb4779d2">练习 1.6-1.8</h4>
+<div class="outline-text-4" id="text-orgb4779d2">
 </div>
 <ul class="org-ul">
 <li>
-<a id="orgeb2965d"></a>1.6<br><div class="outline-text-5" id="text-orgeb2965d">
+<a id="orga40dae6"></a>1.6<br><div class="outline-text-5" id="text-orga40dae6">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 新定义的过程 prodecure 是一个普通过程，在调用它时将会对它的所有子表达式求值，</span>
      <span class="c1">;; 无论 predicate 部分的结果如何，作为 else-clause 的 sqrt-iter 部分将会一直被调</span>
      <span class="c1">;; 用从而导致一个无尽递归调用，解释器报错。</span>
@@ -400,7 +400,7 @@ not: 普通过程
 </li>
 
 <li>
-<a id="orgc6aa606"></a>1.7<br><div class="outline-text-5" id="text-orgc6aa606">
+<a id="orged93747"></a>1.7<br><div class="outline-text-5" id="text-orged93747">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 对于特别小的被开方数，甚至比事先确定的误差值还要小的数，猜测值将主要依赖于误</span>
      <span class="c1">;; 差值而不是被开方数；</span>
 
@@ -425,7 +425,7 @@ not: 普通过程
 </li>
 
 <li>
-<a id="org5024df5"></a>1.8<br><div class="outline-text-5" id="text-org5024df5">
+<a id="org70aab02"></a>1.8<br><div class="outline-text-5" id="text-org70aab02">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">good-enough?</span> <span class="nv">guess</span> <span class="nv">old-guess</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">abs </span><span class="p">(</span><span class="nb">- </span><span class="nv">guess</span> <span class="nv">old-guess</span><span class="p">))</span> <span class="nv">guess</span><span class="p">)</span> <span class="mf">0.000001</span><span class="p">))</span>
 
@@ -448,9 +448,9 @@ not: 普通过程
 </ul>
 </div>
 
-<div id="outline-container-org829c21a" class="outline-4">
-<h4 id="org829c21a">过程作为黑箱抽象</h4>
-<div class="outline-text-4" id="text-org829c21a">
+<div id="outline-container-org0bbedde" class="outline-4">
+<h4 id="org0bbedde">过程作为黑箱抽象</h4>
+<div class="outline-text-4" id="text-org0bbedde">
 <ol class="org-ol">
 <li>将程序分解为一族过程，每一个子过程完成了一件可以清楚标明的工作，使它们可
 以被用作定义其他过程的模块；这直接反映了从原问题到子问题的分解；</li>
@@ -466,219 +466,15 @@ not: 普通过程
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgbcdb621" class="outline-3">
-<h3 id="orgbcdb621">过程与它们所产生的计算</h3>
-<div class="outline-text-3" id="text-orgbcdb621">
-<ol class="org-ol">
-<li>理解如何编程：
-<ol class="org-ol">
-<li>编程领域中各种有用的常见模式；</li>
-<li>哪些过程值得定义；</li>
-<li>对执行一个过程的效果做出预期：
-<ol class="org-ol">
-<li>学会去看清各种不同种类的过程会产生什么样的计算过程。</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>一个过程也就是一种模式，它描述了一个计算过程的局部演化方式，描述了这一计算
-过程中的每个步骤是怎样基于前面的步骤建立起来的。</li>
-</ol>
-</div>
-
-<div id="outline-container-orgef49240" class="outline-4">
-<h4 id="orgef49240">线性的递归和迭代</h4>
-<div class="outline-text-4" id="text-orgef49240">
-<ol class="org-ol">
-<li>递归计算过程（线性递归过程）
-<ol class="org-ol">
-<li>执行时，这样的计算过程构造起一个推迟进行的操作所形成的链条，链条的长度
-也就是为保存其轨迹解释器需要保存的信息量，长度是线性增长的；当链条达到
-最大时，收缩阶段开始并表现为这些运算的实际执行；</li>
-<li>这种类型的计算过程由此运算链条所刻画；</li>
-<li>计算步骤线性增长；</li>
-<li>解释器维持着程序变量之外的与计算状态相关的一些隐含信息。</li>
-</ol>
-</li>
-<li>迭代计算过程（线性迭代过程）
-<ol class="org-ol">
-<li>没有任何增长或收缩，其计算过程就是那种其状态可以用固定数目的状态变量描
-述的计算过程；</li>
-<li>存在这一套固定的法则描述了计算过程从一个状态到下一个状态转换时这些变量
-的更新方式（可能还有一个结束检测）；</li>
-<li>计算步骤线性增长；</li>
-<li>状态变量提供了计算状态的完整描述。</li>
-</ol>
-</li>
-<li>递归过程：语法形式；递归计算过程：计算过程的进展方式；</li>
-<li>尾递归：在常量空间种执行迭代型计算过程，即使这一计算是用一个递归过程描述的。</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-orgd971079" class="outline-4">
-<h4 id="orgd971079">练习 1.9-1.10</h4>
-<div class="outline-text-4" id="text-orgd971079">
-</div>
-<ul class="org-ul">
-<li>
-<a id="org4e843eb"></a>1.9<br><div class="outline-text-5" id="text-org4e843eb">
-<div class="highlight"><pre><span></span>     <span class="c1">;; 第一个是递归计算过程；第二个是迭代计算过程。</span>
-     <span class="c1">;; 使用代换模形，第一个过程：</span>
-     <span class="c1">;; (+ 4 5)</span>
-     <span class="c1">;; (inc (+ 3 5))</span>
-     <span class="c1">;; (inc (inc (+ 2 5)))</span>
-     <span class="c1">;; (inc (inc (inc (+ 1 5))))</span>
-     <span class="c1">;; (inc (inc (inc (inc (+ 0 5)))))</span>
-     <span class="c1">;; (inc (inc (inc (inc 5))))</span>
-     <span class="c1">;; (inc (inc (inc 6)))</span>
-     <span class="c1">;; (inc (inc 7))</span>
-     <span class="c1">;; (inc 8)</span>
-     <span class="c1">;; 9</span>
-     <span class="c1">;; 使用代换模形，第二个过程：</span>
-     <span class="c1">;; (+ 4 5)</span>
-     <span class="c1">;; (+ 3 6)</span>
-     <span class="c1">;; (+ 2 7)</span>
-     <span class="c1">;; (+ 1 8)</span>
-     <span class="c1">;; (+ 0 9)</span>
-     <span class="c1">;; 9</span>
-</pre></div>
-</div>
-</li>
-
-<li>
-<a id="orgb735b56"></a>1.10<br><div class="outline-text-5" id="text-orgb735b56">
-<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="nf">A</span> <span class="mi">1</span> <span class="mi">10</span><span class="p">)</span>				<span class="c1">;1024</span>
-     <span class="p">(</span><span class="nf">A</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">)</span>					<span class="c1">;65536</span>
-     <span class="p">(</span><span class="nf">A</span> <span class="mi">3</span> <span class="mi">3</span><span class="p">)</span>					<span class="c1">;65536</span>
-
-     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">f</span> <span class="nv">n</span><span class="p">)</span>
-       <span class="p">(</span><span class="nf">A</span> <span class="mi">0</span> <span class="nv">n</span><span class="p">))</span>				<span class="c1">;(* 2 n)</span>
-
-     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">g</span> <span class="nv">n</span><span class="p">)</span>
-       <span class="p">(</span><span class="nf">A</span> <span class="mi">1</span> <span class="nv">n</span><span class="p">))</span>				<span class="c1">;(if (= n 0) 0 (expt 2 n))</span>
-
-     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">h</span> <span class="nv">n</span><span class="p">)</span>
-       <span class="p">(</span><span class="nf">A</span> <span class="mi">2</span> <span class="nv">n</span><span class="p">))</span>				<span class="c1">;(cond ((= n 0) 0) ((= n 1) 2) (else (expt 2 (expt 2 (expt 2  (- n 2))))))</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</div>
-
-<div id="outline-container-orge6c4882" class="outline-4">
-<h4 id="orge6c4882">树形递归</h4>
-<div class="outline-text-4" id="text-orge6c4882">
-<ol class="org-ol">
-<li>树形递归的计算步骤增长相对于线性增长来说要快的多，可能极其低效；</li>
-<li>但并不是说树形递归就是没有用的：
-<ol class="org-ol">
-<li>树形递归更容易描述和理解；</li>
-<li>当在层次结构性的数据上操作而不是对数操作时，它是一种自然的威力强大的工
-具；</li>
-<li>即使是对于数的计算，树形递归也是具有启发意义的，可以帮助我们理解和设计
-程序；</li>
-</ol>
-</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-orgce917f4" class="outline-4">
-<h4 id="orgce917f4">练习 1.11-1.13</h4>
-<div class="outline-text-4" id="text-orgce917f4">
-</div>
-<ul class="org-ul">
-<li>
-<a id="org66a1f7c"></a>1.11<br><div class="outline-text-5" id="text-org66a1f7c">
-<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">func-re</span> <span class="nv">n</span><span class="p">)</span>
-       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">3</span><span class="p">)</span>
-	   <span class="nv">n</span>
-	   <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">func-re</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nf">func-re</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">2</span><span class="p">)))</span> <span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="p">(</span><span class="nf">func-re</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">3</span><span class="p">))))))</span>
-
-     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">func-it</span> <span class="nv">n</span><span class="p">)</span>
-       <span class="p">(</span><span class="nf">func-iter</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="nv">n</span><span class="p">))</span>
-
-     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">func-iter</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span> <span class="nv">i</span> <span class="nv">n</span><span class="p">)</span>
-       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">i</span> <span class="nv">n</span><span class="p">)</span>
-	   <span class="nv">c</span>
-	   <span class="p">(</span><span class="nf">func-iter</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nf">*3</span> <span class="nv">c</span><span class="p">))</span>
-		      <span class="nv">a</span>
-		      <span class="nv">b</span>
-		      <span class="p">(</span><span class="nb">+ </span><span class="nv">i</span> <span class="mi">1</span><span class="p">)</span>
-		      <span class="nv">n</span><span class="p">)))</span>
-</pre></div>
-</div>
-</li>
-
-<li>
-<a id="orgc9adfb8"></a>1.12<br><div class="outline-text-5" id="text-orgc9adfb8">
-<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">pascal-re</span> <span class="nv">row</span> <span class="nv">col</span><span class="p">)</span>
-       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">&gt; </span><span class="nv">col</span> <span class="nv">row</span><span class="p">)</span> <span class="p">(</span><span class="nf">error</span> <span class="s">"invalid col value"</span><span class="p">))</span>
-	     <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">= </span><span class="nv">col</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span> <span class="nv">=</span> <span class="nv">row</span> <span class="nv">col</span><span class="p">))</span> <span class="mi">1</span><span class="p">)</span>
-	     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">pascal-re</span> <span class="p">(</span><span class="nb">- </span><span class="nv">row</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">col</span> <span class="mi">1</span><span class="p">))</span>
-		      <span class="p">(</span><span class="nf">pascal-re</span> <span class="p">(</span><span class="nb">- </span><span class="nv">row</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">col</span><span class="p">)))))</span>
-</pre></div>
-</div>
-</li>
-
-<li>
-<a id="org4af11f0"></a>1.13<br><div class="outline-text-5" id="text-org4af11f0">
-<div class="highlight"><pre><span></span>     <span class="c1">;; 证明跳过</span>
-</pre></div>
-</div>
-</li>
-</ul>
-</div>
-
-<div id="outline-container-org71291a1" class="outline-4">
-<h4 id="org71291a1">增长的阶</h4>
-</div>
-
-<div id="outline-container-org679d962" class="outline-4">
-<h4 id="org679d962">求幂</h4>
-</div>
-
-<div id="outline-container-org44a802e" class="outline-4">
-<h4 id="org44a802e">最大公约数</h4>
-</div>
-
-<div id="outline-container-orgf03500c" class="outline-4">
-<h4 id="orgf03500c">实例：素数检测</h4>
-</div>
-</div>
-
-
-<div id="outline-container-orgca6f4cc" class="outline-3">
-<h3 id="orgca6f4cc">用高阶函数做抽象</h3>
-<div class="outline-text-3" id="text-orgca6f4cc">
-</div>
-<div id="outline-container-org626d1b4" class="outline-4">
-<h4 id="org626d1b4">过程作为参数</h4>
-</div>
-
-<div id="outline-container-orgd9a743b" class="outline-4">
-<h4 id="orgd9a743b">用 lambda 构造过程</h4>
-</div>
-
-<div id="outline-container-orga5ea13a" class="outline-4">
-<h4 id="orga5ea13a">过程作为一般性的方法</h4>
-</div>
-
-<div id="outline-container-org50d367b" class="outline-4">
-<h4 id="org50d367b">过程作为返回值</h4>
-</div>
-</div>
 </div>
             
         
         <div id="disqus_thread"></div>
         <script>
         var disqus_shortname ="https-zero4drift-github-io",
-            disqus_url="https://zero4drift.github.io/posts/sicp-refresher-chapter-1/",
-        disqus_title="SICP-Refresher-Chapter-1",
-        disqus_identifier="cache/posts/sicp-refresher-chapter-1.html",
+            disqus_url="https://zero4drift.github.io/posts/sicp-refresher-chapter-1%281%29/",
+        disqus_title="SICP-Refresher-Chapter-1(1)",
+        disqus_identifier="cache/posts/sicp-refresher-chapter-1(1).html",
         disqus_config = function () {
             this.language = "en";
         };
