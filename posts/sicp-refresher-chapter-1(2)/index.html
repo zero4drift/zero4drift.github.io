@@ -2,7 +2,7 @@
 <html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="description" content="Refresher of SICP chapter 1.2 abstraction procedure">
+<meta name="description" content="Refresher of SICP chapter 1.2 abstraction procedure 构造过程抽象">
 <meta name="viewport" content="width=device-width">
 <title>SICP-Refresher-Chapter-1(2) | 钉钉是世界上最傻逼的app</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="钉钉是世界上最傻逼的app">
 <meta property="og:title" content="SICP-Refresher-Chapter-1(2)">
 <meta property="og:url" content="https://zero4drift.github.io/posts/sicp-refresher-chapter-1%282%29/">
-<meta property="og:description" content="Refresher of SICP chapter 1.2 abstraction procedure">
+<meta property="og:description" content="Refresher of SICP chapter 1.2 abstraction procedure 构造过程抽象">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2018-12-14T17:53:02+08:00">
 <meta property="article:tag" content="Scheme">
@@ -80,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org35ac54f" class="outline-2">
-<h2 id="org35ac54f">过程与它们所产生的计算</h2>
-<div class="outline-text-2" id="text-org35ac54f">
+        <div id="outline-container-org4e4cd4d" class="outline-2">
+<h2 id="org4e4cd4d">过程与它们所产生的计算</h2>
+<div class="outline-text-2" id="text-org4e4cd4d">
 <ol class="org-ol">
 <li>理解如何编程：
 <ol class="org-ol">
@@ -100,9 +100,9 @@
 </ol>
 </div>
 
-<div id="outline-container-org6b5fe55" class="outline-3">
-<h3 id="org6b5fe55">线性的递归和迭代</h3>
-<div class="outline-text-3" id="text-org6b5fe55">
+<div id="outline-container-org11433b1" class="outline-3">
+<h3 id="org11433b1">线性的递归和迭代</h3>
+<div class="outline-text-3" id="text-org11433b1">
 <ol class="org-ol">
 <li>递归计算过程（本节中是线性递归过程）
 <ol class="org-ol">
@@ -130,13 +130,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgd08ecb0" class="outline-3">
-<h3 id="orgd08ecb0">练习 1.9-1.10</h3>
-<div class="outline-text-3" id="text-orgd08ecb0">
+<div id="outline-container-org76e0f81" class="outline-3">
+<h3 id="org76e0f81">练习 1.9-1.10</h3>
+<div class="outline-text-3" id="text-org76e0f81">
 </div>
-<div id="outline-container-org8e8865e" class="outline-4">
-<h4 id="org8e8865e">1.9</h4>
-<div class="outline-text-4" id="text-org8e8865e">
+<div id="outline-container-org3c19f55" class="outline-4">
+<h4 id="org3c19f55">1.9</h4>
+<div class="outline-text-4" id="text-org3c19f55">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 第一个是递归计算过程；第二个是迭代计算过程。</span>
      <span class="c1">;; 使用代换模形，第一个过程：</span>
      <span class="c1">;; (+ 4 5)</span>
@@ -160,9 +160,9 @@
 </div>
 </div>
 
-<div id="outline-container-org218aef0" class="outline-4">
-<h4 id="org218aef0">1.10</h4>
-<div class="outline-text-4" id="text-org218aef0">
+<div id="outline-container-org15f56ba" class="outline-4">
+<h4 id="org15f56ba">1.10</h4>
+<div class="outline-text-4" id="text-org15f56ba">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="nf">A</span> <span class="mi">1</span> <span class="mi">10</span><span class="p">)</span>				<span class="c1">;1024</span>
      <span class="p">(</span><span class="nf">A</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">)</span>					<span class="c1">;65536</span>
      <span class="p">(</span><span class="nf">A</span> <span class="mi">3</span> <span class="mi">3</span><span class="p">)</span>					<span class="c1">;65536</span>
@@ -180,9 +180,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgcc4eb00" class="outline-3">
-<h3 id="orgcc4eb00">树形递归</h3>
-<div class="outline-text-3" id="text-orgcc4eb00">
+<div id="outline-container-org367a88f" class="outline-3">
+<h3 id="org367a88f">树形递归</h3>
+<div class="outline-text-3" id="text-org367a88f">
 <ol class="org-ol">
 <li>树形递归的计算步骤增长相对于线性增长来说要快的多，可能极其低效；</li>
 <li>但并不是说树形递归就是没有用的：
@@ -198,13 +198,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgf59f784" class="outline-3">
-<h3 id="orgf59f784">练习 1.11-1.13</h3>
-<div class="outline-text-3" id="text-orgf59f784">
+<div id="outline-container-org7a984b0" class="outline-3">
+<h3 id="org7a984b0">练习 1.11-1.13</h3>
+<div class="outline-text-3" id="text-org7a984b0">
 </div>
-<div id="outline-container-orgca43c29" class="outline-4">
-<h4 id="orgca43c29">1.11</h4>
-<div class="outline-text-4" id="text-orgca43c29">
+<div id="outline-container-org485d7a0" class="outline-4">
+<h4 id="org485d7a0">1.11</h4>
+<div class="outline-text-4" id="text-org485d7a0">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">func-re</span> <span class="nv">n</span><span class="p">)</span>
        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">3</span><span class="p">)</span>
 	   <span class="nv">n</span>
@@ -225,9 +225,9 @@
 </div>
 </div>
 
-<div id="outline-container-org00b2ee3" class="outline-4">
-<h4 id="org00b2ee3">1.12</h4>
-<div class="outline-text-4" id="text-org00b2ee3">
+<div id="outline-container-orgc418c99" class="outline-4">
+<h4 id="orgc418c99">1.12</h4>
+<div class="outline-text-4" id="text-orgc418c99">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">pascal-re</span> <span class="nv">row</span> <span class="nv">col</span><span class="p">)</span>
        <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">&gt; </span><span class="nv">col</span> <span class="nv">row</span><span class="p">)</span> <span class="p">(</span><span class="nf">error</span> <span class="s">"invalid col value"</span><span class="p">))</span>
 	     <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">= </span><span class="nv">col</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span> <span class="nv">=</span> <span class="nv">row</span> <span class="nv">col</span><span class="p">))</span> <span class="mi">1</span><span class="p">)</span>
@@ -237,18 +237,18 @@
 </div>
 </div>
 
-<div id="outline-container-org3764f2c" class="outline-4">
-<h4 id="org3764f2c">1.13</h4>
-<div class="outline-text-4" id="text-org3764f2c">
+<div id="outline-container-orgf738ead" class="outline-4">
+<h4 id="orgf738ead">1.13</h4>
+<div class="outline-text-4" id="text-orgf738ead">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 证明跳过</span>
 </pre></div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org847bf58" class="outline-3">
-<h3 id="org847bf58">增长的阶</h3>
-<div class="outline-text-3" id="text-org847bf58">
+<div id="outline-container-org06104f0" class="outline-3">
+<h3 id="org06104f0">增长的阶</h3>
+<div class="outline-text-3" id="text-org06104f0">
 <ol class="org-ol">
 <li>增长的阶为我们提供了对计算过程行为的一种很粗略的描述；</li>
 <li>增长的阶也为我们在问题规模改变时，预期一个计算过程的行为变化（比如占用资
@@ -257,13 +257,13 @@
 </div>
 </div>
 
-<div id="outline-container-org47fb898" class="outline-3">
-<h3 id="org47fb898">练习 1.14-1.15</h3>
-<div class="outline-text-3" id="text-org47fb898">
+<div id="outline-container-org4c43e7e" class="outline-3">
+<h3 id="org4c43e7e">练习 1.14-1.15</h3>
+<div class="outline-text-3" id="text-org4c43e7e">
 </div>
-<div id="outline-container-org2d4f26f" class="outline-4">
-<h4 id="org2d4f26f">1.14</h4>
-<div class="outline-text-4" id="text-org2d4f26f">
+<div id="outline-container-orgdb47420" class="outline-4">
+<h4 id="orgdb47420">1.14</h4>
+<div class="outline-text-4" id="text-orgdb47420">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 不画图</span>
      <span class="c1">;; 空间增长的阶应该是 theta(n)</span>
      <span class="c1">;; 步数增长的阶不明确，网上的资料各方面也有不同的意见</span>
@@ -271,9 +271,9 @@
 </div>
 </div>
 
-<div id="outline-container-org9887928" class="outline-4">
-<h4 id="org9887928">1.15</h4>
-<div class="outline-text-4" id="text-org9887928">
+<div id="outline-container-org4b917b0" class="outline-4">
+<h4 id="org4b917b0">1.15</h4>
+<div class="outline-text-4" id="text-org4b917b0">
 <div class="highlight"><pre><span></span>     <span class="c1">;; a) p 将被调用 5 次</span>
      <span class="c1">;; b) 空间增长的阶：theta(log a); 步数增长的阶：theta(log a)</span>
 </pre></div>
@@ -281,9 +281,9 @@
 </div>
 </div>
 
-<div id="outline-container-org41a7911" class="outline-3">
-<h3 id="org41a7911">求幂</h3>
-<div class="outline-text-3" id="text-org41a7911">
+<div id="outline-container-org3beaf39" class="outline-3">
+<h3 id="org3beaf39">求幂</h3>
+<div class="outline-text-3" id="text-org3beaf39">
 <ol class="org-ol">
 <li>使用求幂的例子引出增长的阶为对数增长，而不是线性增长的递归计算过程，是对
 增长的阶的继续深入和补充。</li>
@@ -291,13 +291,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgf37eb49" class="outline-3">
-<h3 id="orgf37eb49">练习 1.16-1.19</h3>
-<div class="outline-text-3" id="text-orgf37eb49">
+<div id="outline-container-org8e4f248" class="outline-3">
+<h3 id="org8e4f248">练习 1.16-1.19</h3>
+<div class="outline-text-3" id="text-org8e4f248">
 </div>
-<div id="outline-container-org2135e5d" class="outline-4">
-<h4 id="org2135e5d">1.16</h4>
-<div class="outline-text-4" id="text-org2135e5d">
+<div id="outline-container-org4e43bd0" class="outline-4">
+<h4 id="org4e43bd0">1.16</h4>
+<div class="outline-text-4" id="text-org4e43bd0">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 定义一个不变量，要求它在状态之间保持不变，这一技术是思考迭代算法设计问题时的</span>
      <span class="c1">;; 一种非常强有力的方法</span>
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">even? </span><span class="nv">n</span><span class="p">)</span>
@@ -314,9 +314,9 @@
 </div>
 </div>
 
-<div id="outline-container-org692e759" class="outline-4">
-<h4 id="org692e759">1.17</h4>
-<div class="outline-text-4" id="text-org692e759">
+<div id="outline-container-orgaba64b6" class="outline-4">
+<h4 id="orgaba64b6">1.17</h4>
+<div class="outline-text-4" id="text-orgaba64b6">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">double</span> <span class="nv">x</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">+ </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
 
@@ -337,9 +337,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5ecb72e" class="outline-4">
-<h4 id="org5ecb72e">1.18</h4>
-<div class="outline-text-4" id="text-org5ecb72e">
+<div id="outline-container-org71b22a9" class="outline-4">
+<h4 id="org71b22a9">1.18</h4>
+<div class="outline-text-4" id="text-org71b22a9">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">double</span> <span class="nv">x</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">+ </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
 
@@ -363,31 +363,31 @@
 </div>
 </div>
 
-<div id="outline-container-org595423c" class="outline-4">
-<h4 id="org595423c">1.19</h4>
-<div class="outline-text-4" id="text-org595423c">
+<div id="outline-container-org86034f3" class="outline-4">
+<h4 id="org86034f3">1.19</h4>
+<div class="outline-text-4" id="text-org86034f3">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 证明跳过</span>
 </pre></div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgaad2daf" class="outline-3">
-<h3 id="orgaad2daf">最大公约数</h3>
-<div class="outline-text-3" id="text-orgaad2daf">
+<div id="outline-container-org2cceec0" class="outline-3">
+<h3 id="org2cceec0">最大公约数</h3>
+<div class="outline-text-3" id="text-org2cceec0">
 <ol class="org-ol">
 <li>求最大公约数的欧几里得算法及实现，计算步骤对数增长。</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-orgeebe77f" class="outline-3">
-<h3 id="orgeebe77f">练习 1.20</h3>
-<div class="outline-text-3" id="text-orgeebe77f">
+<div id="outline-container-org0e04ccd" class="outline-3">
+<h3 id="org0e04ccd">练习 1.20</h3>
+<div class="outline-text-3" id="text-org0e04ccd">
 </div>
-<div id="outline-container-org415a586" class="outline-4">
-<h4 id="org415a586">1.20</h4>
-<div class="outline-text-4" id="text-org415a586">
+<div id="outline-container-org3e48fe5" class="outline-4">
+<h4 id="org3e48fe5">1.20</h4>
+<div class="outline-text-4" id="text-org3e48fe5">
 <div class="highlight"><pre><span></span>    <span class="c1">;; 正则序</span>
     <span class="c1">;; &lt;predicate&gt; 部分 10 次，&lt;alternative&gt; 部分 4 + 4 = 8次，一共18次；</span>
     <span class="c1">;; 应用序</span>
@@ -397,22 +397,22 @@
 </div>
 </div>
 
-<div id="outline-container-orgaad3f72" class="outline-3">
-<h3 id="orgaad3f72">实例：素数检测</h3>
-<div class="outline-text-3" id="text-orgaad3f72">
+<div id="outline-container-org38a0702" class="outline-3">
+<h3 id="org38a0702">实例：素数检测</h3>
+<div class="outline-text-3" id="text-org38a0702">
 <ol class="org-ol">
 <li>费马检查做素数检测的代码实现是一种概率方法。</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-org7df31a9" class="outline-3">
-<h3 id="org7df31a9">练习 1.21-1.28</h3>
-<div class="outline-text-3" id="text-org7df31a9">
+<div id="outline-container-orga1573ff" class="outline-3">
+<h3 id="orga1573ff">练习 1.21-1.28</h3>
+<div class="outline-text-3" id="text-orga1573ff">
 </div>
-<div id="outline-container-orgc38ce05" class="outline-4">
-<h4 id="orgc38ce05">1.21</h4>
-<div class="outline-text-4" id="text-orgc38ce05">
+<div id="outline-container-orgcc11f75" class="outline-4">
+<h4 id="orgcc11f75">1.21</h4>
+<div class="outline-text-4" id="text-orgcc11f75">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 199</span>
      <span class="c1">;; 1999</span>
      <span class="c1">;; 7</span>
@@ -420,9 +420,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgaf7944e" class="outline-4">
-<h4 id="orgaf7944e">1.22</h4>
-<div class="outline-text-4" id="text-orgaf7944e">
+<div id="outline-container-orgf37af22" class="outline-4">
+<h4 id="orgf37af22">1.22</h4>
+<div class="outline-text-4" id="text-orgf37af22">
 <div class="highlight"><pre><span></span>     <span class="c1">;; (search-for-primes 1000)....1000 10000 10000 太小了, 打印出来的时间消耗几乎为0。</span>
      <span class="c1">;; (search-for-primes 1e10) 时间消耗大概是 1e9 的3倍， 差不多是 (sqrt 10)。</span>
      <span class="c1">;; 所以可以推断出程序在机器上的运行时间正比于计算所需的步数，是线性增长的。</span>
@@ -430,9 +430,9 @@
 </div>
 </div>
 
-<div id="outline-container-orga336f9c" class="outline-4">
-<h4 id="orga336f9c">1.23</h4>
-<div class="outline-text-4" id="text-orga336f9c">
+<div id="outline-container-orga6d2d5c" class="outline-4">
+<h4 id="orga6d2d5c">1.23</h4>
+<div class="outline-text-4" id="text-orga6d2d5c">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">next</span> <span class="nv">n</span><span class="p">)</span>
        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">2</span><span class="p">)</span>
 	   <span class="p">(</span><span class="nb">+ </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span>
@@ -462,27 +462,27 @@
 </div>
 </div>
 
-<div id="outline-container-orgba12a78" class="outline-4">
-<h4 id="orgba12a78">1.24</h4>
-<div class="outline-text-4" id="text-orgba12a78">
+<div id="outline-container-org75193a8" class="outline-4">
+<h4 id="org75193a8">1.24</h4>
+<div class="outline-text-4" id="text-org75193a8">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 改动就是将 prime? 过程的调用换成 fast-prime? 的的调用；</span>
      <span class="c1">;; 对 1e24 的计算时间占用大概是 1e12 的2倍，符合预期。</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org4af32a0" class="outline-4">
-<h4 id="org4af32a0">1.25</h4>
-<div class="outline-text-4" id="text-org4af32a0">
+<div id="outline-container-org50a335c" class="outline-4">
+<h4 id="org50a335c">1.25</h4>
+<div class="outline-text-4" id="text-org50a335c">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 直接使用 fast-expt 当然可以计算出一样的结果，但是它会产生大量的中间数据使计算</span>
      <span class="c1">;; 过程效率降低。</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org7ebcc31" class="outline-4">
-<h4 id="org7ebcc31">1.26</h4>
-<div class="outline-text-4" id="text-org7ebcc31">
+<div id="outline-container-orge5bb48f" class="outline-4">
+<h4 id="orge5bb48f">1.26</h4>
+<div class="outline-text-4" id="text-orge5bb48f">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 调用 square 过程时只需要对它的一个参数求值；</span>
      <span class="c1">;; 不使用 square 过程而是直接用显示乘法的话，乘法运算符的两个运算对象都需要求值；</span>
      <span class="c1">;; 使一个增长的阶为对数的计算过程变成线性的了。</span>
@@ -490,9 +490,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgba12466" class="outline-4">
-<h4 id="orgba12466">1.27</h4>
-<div class="outline-text-4" id="text-orgba12466">
+<div id="outline-container-org3b114f8" class="outline-4">
+<h4 id="org3b114f8">1.27</h4>
+<div class="outline-text-4" id="text-org3b114f8">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">full-fermat-test</span> <span class="nv">n</span><span class="p">)</span>
        <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">iter-test</span> <span class="nv">n</span> <span class="nv">a</span><span class="p">)</span>
 	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">a</span> <span class="nv">n</span><span class="p">)</span>
@@ -506,9 +506,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgf9d41cf" class="outline-4">
-<h4 id="orgf9d41cf">1.28</h4>
-<div class="outline-text-4" id="text-orgf9d41cf">
+<div id="outline-container-org4112ca8" class="outline-4">
+<h4 id="org4112ca8">1.28</h4>
+<div class="outline-text-4" id="text-org4112ca8">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 不知道是不是中文翻译的问题，题目很难完全理解；</span>
      <span class="c1">;; 实现的过程并不保证正确，需要参考的请去个人 github 主页查看源码。</span>
 </pre></div>
