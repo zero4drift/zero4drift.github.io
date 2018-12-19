@@ -80,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org0cb4814" class="outline-2">
-<h2 id="org0cb4814">第二章</h2>
-<div class="outline-text-2" id="text-org0cb4814">
+        <div id="outline-container-org71b935f" class="outline-2">
+<h2 id="org71b935f">第二章</h2>
+<div class="outline-text-2" id="text-org71b935f">
 <ol class="org-ol">
 <li>本章将重点转到各种程序设计语言都包含的另一个关键方面：讨论它们所提供的，将
 数据对象组合起来，形成 <b>复合数据</b> 的方式；</li>
@@ -106,9 +106,9 @@
 </ol>
 </div>
 
-<div id="outline-container-org98ea50d" class="outline-3">
-<h3 id="org98ea50d">数据抽象导引</h3>
-<div class="outline-text-3" id="text-org98ea50d">
+<div id="outline-container-org6f49fcd" class="outline-3">
+<h3 id="org6f49fcd">数据抽象导引</h3>
+<div class="outline-text-3" id="text-org6f49fcd">
 <ol class="org-ol">
 <li>
 <b>数据抽象</b> 的基本思想，就是设法构造出一些使用复合数据对象的程序，使用它们
@@ -119,9 +119,9 @@
 </ol>
 </div>
 
-<div id="outline-container-org351822e" class="outline-4">
-<h4 id="org351822e">实例：有理数的算术运算</h4>
-<div class="outline-text-4" id="text-org351822e">
+<div id="outline-container-org5da9b02" class="outline-4">
+<h4 id="org5da9b02">实例：有理数的算术运算</h4>
+<div class="outline-text-4" id="text-org5da9b02">
 <ol class="org-ol">
 <li>
 <b>按愿望思维</b> 的强有力的综合策略（翻译太概括了，就是先形式上整理出可以满足
@@ -134,13 +134,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgee5bce3" class="outline-4">
-<h4 id="orgee5bce3">练习 2.1</h4>
-<div class="outline-text-4" id="text-orgee5bce3">
+<div id="outline-container-org5226f5f" class="outline-4">
+<h4 id="org5226f5f">练习 2.1</h4>
+<div class="outline-text-4" id="text-org5226f5f">
 </div>
 <ul class="org-ul">
 <li>
-<a id="org4905dc0"></a>2.1<br><div class="outline-text-5" id="text-org4905dc0">
+<a id="orgd0493a4"></a>2.1<br><div class="outline-text-5" id="text-orgd0493a4">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">gcd </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">b</span> <span class="mi">0</span><span class="p">)</span>
 	   <span class="nv">a</span>
@@ -156,9 +156,9 @@
 </ul>
 </div>
 
-<div id="outline-container-org79dbe95" class="outline-4">
-<h4 id="org79dbe95">抽象屏障</h4>
-<div class="outline-text-4" id="text-org79dbe95">
+<div id="outline-container-org1cc98d9" class="outline-4">
+<h4 id="org1cc98d9">抽象屏障</h4>
+<div class="outline-text-4" id="text-org1cc98d9">
 <ol class="org-ol">
 <li>继续深入数据抽象的基本思想：为每一类数据对象标识出一组操作，使得对这类数
 据对象的所有操作都可以基于这些操作来表述，而且在操作这些数据对象时也只使
@@ -173,13 +173,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgec4bb6c" class="outline-4">
-<h4 id="orgec4bb6c">练习 2.2-2.3</h4>
-<div class="outline-text-4" id="text-orgec4bb6c">
+<div id="outline-container-org27e68bb" class="outline-4">
+<h4 id="org27e68bb">练习 2.2-2.3</h4>
+<div class="outline-text-4" id="text-org27e68bb">
 </div>
 <ul class="org-ul">
 <li>
-<a id="orgbb05d59"></a>2.2<br><div class="outline-text-5" id="text-orgbb05d59">
+<a id="orge6513a2"></a>2.2<br><div class="outline-text-5" id="text-orge6513a2">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-segment</span> <span class="nv">p1</span> <span class="nv">p2</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">cons </span><span class="nv">p1</span> <span class="nv">p2</span><span class="p">))</span>
 
@@ -208,7 +208,7 @@
 </li>
 
 <li>
-<a id="orgd1bf38f"></a>2.3<br><div class="outline-text-5" id="text-orgd1bf38f">
+<a id="org035cf79"></a>2.3<br><div class="outline-text-5" id="text-org035cf79">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-rectangle</span> <span class="nv">p1</span> <span class="nv">p2</span><span class="p">)</span>
        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">p3</span> <span class="p">(</span><span class="nf">make-point</span> <span class="p">(</span><span class="nf">x-point</span> <span class="nv">p1</span><span class="p">)</span> <span class="p">(</span><span class="nf">y-point</span> <span class="nv">p2</span><span class="p">)))</span>
 	     <span class="p">(</span><span class="nf">p4</span> <span class="p">(</span><span class="nf">make-point</span> <span class="p">(</span><span class="nf">x-point</span> <span class="nv">p2</span><span class="p">)</span> <span class="p">(</span><span class="nf">y-point</span> <span class="nv">p1</span><span class="p">))))</span>
@@ -255,9 +255,9 @@
 </ul>
 </div>
 
-<div id="outline-container-orgeab8e2f" class="outline-4">
-<h4 id="orgeab8e2f">数据意味着什么</h4>
-<div class="outline-text-4" id="text-orgeab8e2f">
+<div id="outline-container-org9166cb8" class="outline-4">
+<h4 id="org9166cb8">数据意味着什么</h4>
+<div class="outline-text-4" id="text-org9166cb8">
 <ol class="org-ol">
 <li>只要满足一组特定条件的约束，总可以将数据定义为一组适当的选择函数和构造函
 数，使这一组过程成为该数据的一套合法表示；</li>
@@ -267,13 +267,13 @@
 </div>
 </div>
 
-<div id="outline-container-org9f15abe" class="outline-4">
-<h4 id="org9f15abe">练习 2.4-2.6</h4>
-<div class="outline-text-4" id="text-org9f15abe">
+<div id="outline-container-orgc0c6297" class="outline-4">
+<h4 id="orgc0c6297">练习 2.4-2.6</h4>
+<div class="outline-text-4" id="text-orgc0c6297">
 </div>
 <ul class="org-ul">
 <li>
-<a id="org0042139"></a>2.4<br><div class="outline-text-5" id="text-org0042139">
+<a id="org884e2b6"></a>2.4<br><div class="outline-text-5" id="text-org884e2b6">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
        <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">m</span><span class="p">)</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)))</span>
 
@@ -287,7 +287,7 @@
 </li>
 
 <li>
-<a id="org2bb8484"></a>2.5<br><div class="outline-text-5" id="text-org2bb8484">
+<a id="org1b0f4db"></a>2.5<br><div class="outline-text-5" id="text-org1b0f4db">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">expt </span><span class="mi">2</span> <span class="nv">a</span><span class="p">)</span>
 	  <span class="p">(</span><span class="nb">expt </span><span class="mi">3</span> <span class="nv">b</span><span class="p">)))</span>
@@ -308,7 +308,7 @@
 </li>
 
 <li>
-<a id="orgc9f74a7"></a>2.6<br><div class="outline-text-5" id="text-orgc9f74a7">
+<a id="org21f0dc7"></a>2.6<br><div class="outline-text-5" id="text-org21f0dc7">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="nv">zero</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">f</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="nv">x</span><span class="p">)))</span>
 
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">add-1</span> <span class="nv">n</span><span class="p">)</span>
@@ -334,22 +334,22 @@
 </ul>
 </div>
 
-<div id="outline-container-org6ae8f1c" class="outline-4">
-<h4 id="org6ae8f1c">扩展练习：区间算术</h4>
-<div class="outline-text-4" id="text-org6ae8f1c">
+<div id="outline-container-orgcf65b77" class="outline-4">
+<h4 id="orgcf65b77">扩展练习：区间算术</h4>
+<div class="outline-text-4" id="text-orgcf65b77">
 <ol class="org-ol">
 <li>无。</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-org53b4ed3" class="outline-4">
-<h4 id="org53b4ed3">练习 2.7-2.16</h4>
-<div class="outline-text-4" id="text-org53b4ed3">
+<div id="outline-container-orgb78fb3f" class="outline-4">
+<h4 id="orgb78fb3f">练习 2.7-2.16</h4>
+<div class="outline-text-4" id="text-orgb78fb3f">
 </div>
 <ul class="org-ul">
 <li>
-<a id="org0e8c2c4"></a>2.7<br><div class="outline-text-5" id="text-org0e8c2c4">
+<a id="org523b33f"></a>2.7<br><div class="outline-text-5" id="text-org523b33f">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-interval</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">cons </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
 
@@ -363,7 +363,7 @@
 </li>
 
 <li>
-<a id="orge5098a8"></a>2.8<br><div class="outline-text-5" id="text-orge5098a8">
+<a id="org1cae058"></a>2.8<br><div class="outline-text-5" id="text-org1cae058">
 <div class="highlight"><pre><span></span>     <span class="c1">;; (load "./2.7.scm")</span>
 
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">sub-interval</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
@@ -373,7 +373,7 @@
 </li>
 
 <li>
-<a id="org744048d"></a>2.9<br><div class="outline-text-5" id="text-org744048d">
+<a id="orgf00bd9d"></a>2.9<br><div class="outline-text-5" id="text-orgf00bd9d">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">interval-width</span> <span class="nv">interval</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">interval</span><span class="p">)</span> <span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">interval</span><span class="p">))</span> <span class="mi">2</span><span class="p">))</span>
 
@@ -387,7 +387,7 @@
 </li>
 
 <li>
-<a id="orgc99c36f"></a>2.10<br><div class="outline-text-5" id="text-orgc99c36f">
+<a id="org9997f5b"></a>2.10<br><div class="outline-text-5" id="text-org9997f5b">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">div-interval</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">upper</span> <span class="p">(</span><span class="nf">upper-bound</span> <span class="nv">y</span><span class="p">))</span>
 	     <span class="p">(</span><span class="nf">lower</span> <span class="p">(</span><span class="nf">lower-bound</span> <span class="nv">y</span><span class="p">)))</span>
@@ -401,7 +401,7 @@
 </li>
 
 <li>
-<a id="orgb05904e"></a>2.11<br><div class="outline-text-5" id="text-orgb05904e">
+<a id="orgfe1b993"></a>2.11<br><div class="outline-text-5" id="text-orgfe1b993">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">mul-interval</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> 
 	<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">positive? </span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">&gt;= </span><span class="nv">x</span> <span class="mi">0</span><span class="p">))</span> 
 	<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">negative? </span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">&lt; </span><span class="nv">x</span> <span class="mi">0</span><span class="p">))</span> 
@@ -430,7 +430,7 @@
 </li>
 
 <li>
-<a id="orgd2cdfbb"></a>2.12<br><div class="outline-text-5" id="text-orgd2cdfbb">
+<a id="org7b833d7"></a>2.12<br><div class="outline-text-5" id="text-org7b833d7">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-cent-percent</span> <span class="nv">c</span> <span class="nv">p</span><span class="p">)</span>
        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">w</span> <span class="p">(</span><span class="nb">* </span><span class="nv">c</span> <span class="nv">p</span><span class="p">)))</span>
 	 <span class="p">(</span><span class="nf">make-interval</span> <span class="p">(</span><span class="nb">- </span><span class="nv">c</span> <span class="nv">w</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">c</span> <span class="nv">w</span><span class="p">))))</span>
@@ -448,7 +448,7 @@
 </li>
 
 <li>
-<a id="org25fdcb4"></a>2.13<br><div class="outline-text-5" id="text-org25fdcb4">
+<a id="org2f085d7"></a>2.13<br><div class="outline-text-5" id="text-org2f085d7">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">percent-accumulated?</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">px</span> <span class="p">(</span><span class="nf">percent</span> <span class="nv">x</span><span class="p">))</span>
 	     <span class="p">(</span><span class="nf">py</span> <span class="p">(</span><span class="nf">percent</span> <span class="nv">y</span><span class="p">))</span>
@@ -462,7 +462,7 @@
 </li>
 
 <li>
-<a id="org829c031"></a>2.14<br><div class="outline-text-5" id="text-org829c031">
+<a id="orge7fb04a"></a>2.14<br><div class="outline-text-5" id="text-orge7fb04a">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">part1</span> <span class="nv">r1</span> <span class="nv">r2</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">div-interval</span> <span class="p">(</span><span class="nf">mul-interval</span> <span class="nv">r1</span> <span class="nv">r2</span><span class="p">)</span>
 		     <span class="p">(</span><span class="nf">add-interval</span> <span class="nv">r1</span> <span class="nv">r2</span><span class="p">)))</span>
@@ -480,7 +480,7 @@
 </li>
 
 <li>
-<a id="orgb770e4e"></a>2.15<br><div class="outline-text-5" id="text-orgb770e4e">
+<a id="org46179f8"></a>2.15<br><div class="outline-text-5" id="text-org46179f8">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 测试 execise 2.14 的过程可以证明了这个观点，</span>
      <span class="c1">;; 使用带有更少非确定性的变量的公式实现的过程可以输出更精确的结果。</span>
 </pre></div>
@@ -488,8 +488,10 @@
 </li>
 
 <li>
-<a id="org77b825e"></a>2.16<br><div class="outline-text-5" id="text-org77b825e">
-<div class="highlight"><pre><span></span>     <span class="c1">;; 对表示范围的区间进行操作可能会使区间的范围继续扩张；</span>
+<a id="orgc01ad42"></a>2.16<br><div class="outline-text-5" id="text-orgc01ad42">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 一句话：不确定度的累积</span>
+
+     <span class="c1">;; 对表示范围的区间进行操作可能会使区间的范围继续扩张；</span>
      <span class="c1">;; 等式中区间的个数越多，区间自带的不确定性相互影响，</span>
      <span class="c1">;; 最终结果的范围扩张程度就越大；</span>
      <span class="c1">;; 所以是根据第二个公式实现的过程的输出结果相比起来更加精确一些；</span>
