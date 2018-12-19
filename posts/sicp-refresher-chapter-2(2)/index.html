@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://zero4drift.github.io/posts/sicp-refresher-chapter-2%282%29/">
 <meta property="og:description" content="Refresher of SICP chapter 2.2 abstraction data 构造数据抽象">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2018-12-18T13:45:33+08:00">
+<meta property="article:published_time" content="2018-12-19T13:45:33+08:00">
 <meta property="article:tag" content="Scheme">
 <meta property="article:tag" content="SICP">
 </head>
@@ -63,7 +63,7 @@
       <div class="container">
 	<div class="meta clearfix">
 	  <div class="authordate">
-	    <time class="timeago" datetime="2018-12-18T13:45:33+08:00">2018/12/18</time>
+	    <time class="timeago" datetime="2018-12-19T13:45:33+08:00">2018/12/19</time>
 </div>
 	  <div class="post-tags">
 	    <div class="tag">
@@ -80,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgdcffc81" class="outline-2">
-<h2 id="orgdcffc81">层次性数据和闭包性质</h2>
-<div class="outline-text-2" id="text-orgdcffc81">
+        <div id="outline-container-orge19d7ce" class="outline-2">
+<h2 id="orge19d7ce">层次性数据和闭包性质</h2>
+<div class="outline-text-2" id="text-orge19d7ce">
 <ol class="org-ol">
 <li>序对使用的是一种被称为 <b>盒子和指针</b> 的表示方式：
 <ol class="org-ol">
@@ -101,9 +101,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </ol>
 </div>
 
-<div id="outline-container-org496e909" class="outline-3">
-<h3 id="org496e909">序列的表示</h3>
-<div class="outline-text-3" id="text-org496e909">
+<div id="outline-container-org3d455dd" class="outline-3">
+<h3 id="org3d455dd">序列的表示</h3>
+<div class="outline-text-3" id="text-org3d455dd">
 <ol class="org-ol">
 <li>在用序对构成的层次性结构的一种链条表示中，最后的一个序对的 cdr 用一个能辨
 明不是序对的值表示，标明序列的结束，在程序里用变量 nil 的值；</li>
@@ -143,13 +143,13 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org5501702" class="outline-3">
-<h3 id="org5501702">练习 2.17-2.23</h3>
-<div class="outline-text-3" id="text-org5501702">
+<div id="outline-container-org19971a7" class="outline-3">
+<h3 id="org19971a7">练习 2.17-2.23</h3>
+<div class="outline-text-3" id="text-org19971a7">
 </div>
-<div id="outline-container-org0bbdbee" class="outline-4">
-<h4 id="org0bbdbee">2.17</h4>
-<div class="outline-text-4" id="text-org0bbdbee">
+<div id="outline-container-orge283be4" class="outline-4">
+<h4 id="orge283be4">2.17</h4>
+<div class="outline-text-4" id="text-orge283be4">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">last-pair</span> <span class="nv">items</span><span class="p">)</span>
        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">left</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">items</span><span class="p">)))</span>
 	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">left</span><span class="p">)</span>
@@ -159,9 +159,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org6d01961" class="outline-4">
-<h4 id="org6d01961">2.18</h4>
-<div class="outline-text-4" id="text-org6d01961">
+<div id="outline-container-org8b6a6fa" class="outline-4">
+<h4 id="org8b6a6fa">2.18</h4>
+<div class="outline-text-4" id="text-org8b6a6fa">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">reverse </span><span class="nv">items</span><span class="p">)</span>
        <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">iter</span> <span class="nv">items</span> <span class="nv">result</span><span class="p">)</span>
 	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">items</span><span class="p">)</span>
@@ -172,9 +172,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org3a5e3f4" class="outline-4">
-<h4 id="org3a5e3f4">2.19</h4>
-<div class="outline-text-4" id="text-org3a5e3f4">
+<div id="outline-container-orga158fa4" class="outline-4">
+<h4 id="orga158fa4">2.19</h4>
+<div class="outline-text-4" id="text-orga158fa4">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="nv">us-coins</span> <span class="p">(</span><span class="nb">list </span><span class="mi">50</span> <span class="mi">25</span> <span class="mi">10</span> <span class="mi">5</span> <span class="mi">1</span><span class="p">))</span>
 
      <span class="p">(</span><span class="k">define </span><span class="nv">uk-coins</span> <span class="p">(</span><span class="nb">list </span><span class="mi">100</span> <span class="mi">50</span> <span class="mi">20</span> <span class="mi">10</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mf">0.5</span><span class="p">))</span>
@@ -204,9 +204,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org15480cd" class="outline-4">
-<h4 id="org15480cd">2.20</h4>
-<div class="outline-text-4" id="text-org15480cd">
+<div id="outline-container-org58f21b3" class="outline-4">
+<h4 id="org58f21b3">2.20</h4>
+<div class="outline-text-4" id="text-org58f21b3">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">same-parity</span> <span class="nv">signal</span> <span class="o">.</span> <span class="nv">test</span><span class="p">)</span>
        <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fetch</span> <span class="nv">items</span> <span class="nv">p</span><span class="p">)</span>
 	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">items</span><span class="p">)</span>
@@ -222,9 +222,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org93b5e79" class="outline-4">
-<h4 id="org93b5e79">2.21</h4>
-<div class="outline-text-4" id="text-org93b5e79">
+<div id="outline-container-orga0f2f00" class="outline-4">
+<h4 id="orga0f2f00">2.21</h4>
+<div class="outline-text-4" id="text-orga0f2f00">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square-list</span> <span class="nv">items</span><span class="p">)</span>
        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">items</span><span class="p">)</span>
 	   <span class="o">'</span><span class="p">()</span>
@@ -236,9 +236,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org0c58e6e" class="outline-4">
-<h4 id="org0c58e6e">2.22</h4>
-<div class="outline-text-4" id="text-org0c58e6e">
+<div id="outline-container-orgd84981b" class="outline-4">
+<h4 id="orgd84981b">2.22</h4>
+<div class="outline-text-4" id="text-orgd84981b">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 主要是因为这条语句：(iter (cdr things) (cons (square (car things)) answer))</span>
      <span class="c1">;; 这样的话，逻辑上就是把传入的表参数的元素平方以后不停压入结果表，</span>
      <span class="c1">;; 最后的结果表的元素顺序与需求相反；</span>
@@ -250,9 +250,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgda137ae" class="outline-4">
-<h4 id="orgda137ae">2.23</h4>
-<div class="outline-text-4" id="text-orgda137ae">
+<div id="outline-container-orgda400e9" class="outline-4">
+<h4 id="orgda400e9">2.23</h4>
+<div class="outline-text-4" id="text-orgda400e9">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">for-each </span><span class="nv">proc</span> <span class="nv">items</span><span class="p">)</span>
        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">items</span><span class="p">)</span>
 	   <span class="nv">true</span>
@@ -263,9 +263,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org5089780" class="outline-3">
-<h3 id="org5089780">层次性结构</h3>
-<div class="outline-text-3" id="text-org5089780">
+<div id="outline-container-org283d6d6" class="outline-3">
+<h3 id="org283d6d6">层次性结构</h3>
+<div class="outline-text-3" id="text-org283d6d6">
 <ol class="org-ol">
 <li>序列的元素本身也可以是序列，可以把这样的结构看作是 <b>树</b> ，而那些本身也是
 序列的元素就是形成了树中的 <b>子树</b> ，往下深入直到序列元素不是序列时，把这种元
@@ -280,22 +280,22 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org43da892" class="outline-3">
-<h3 id="org43da892">练习 2.24-2.32</h3>
-<div class="outline-text-3" id="text-org43da892">
+<div id="outline-container-orgba6b50e" class="outline-3">
+<h3 id="orgba6b50e">练习 2.24-2.32</h3>
+<div class="outline-text-3" id="text-orgba6b50e">
 </div>
-<div id="outline-container-org4467c71" class="outline-4">
-<h4 id="org4467c71">2.24</h4>
-<div class="outline-text-4" id="text-org4467c71">
+<div id="outline-container-org9ac10f9" class="outline-4">
+<h4 id="org9ac10f9">2.24</h4>
+<div class="outline-text-4" id="text-org9ac10f9">
 <div class="highlight"><pre><span></span>     <span class="c1">;; (1 (2 (3 4)))</span>
      <span class="c1">;; 盒子指针结构和树结构很容易理解，图示就免了。</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orga1c87e9" class="outline-4">
-<h4 id="orga1c87e9">2.25</h4>
-<div class="outline-text-4" id="text-orga1c87e9">
+<div id="outline-container-org58e9282" class="outline-4">
+<h4 id="org58e9282">2.25</h4>
+<div class="outline-text-4" id="text-org58e9282">
 <div class="highlight"><pre><span></span>     <span class="c1">;; (1 3 (5 7) 9)</span>
      <span class="c1">;;(car (cdr (car (cdr (cdr '(1 3 (5 7) 9))))))</span>
 
@@ -308,9 +308,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org951a5b2" class="outline-4">
-<h4 id="org951a5b2">2.26</h4>
-<div class="outline-text-4" id="text-org951a5b2">
+<div id="outline-container-orge15c8f7" class="outline-4">
+<h4 id="orge15c8f7">2.26</h4>
+<div class="outline-text-4" id="text-orge15c8f7">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="nv">x</span> <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
 
      <span class="p">(</span><span class="k">define </span><span class="nv">y</span> <span class="p">(</span><span class="nb">list </span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
@@ -322,9 +322,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgcef667d" class="outline-4">
-<h4 id="orgcef667d">2.27</h4>
-<div class="outline-text-4" id="text-orgcef667d">
+<div id="outline-container-orgbc09963" class="outline-4">
+<h4 id="orgbc09963">2.27</h4>
+<div class="outline-text-4" id="text-orgbc09963">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">deep-reverse</span> <span class="nv">items</span><span class="p">)</span>
        <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">iter</span> <span class="nv">items</span> <span class="nv">result</span><span class="p">)</span>
 	 <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">items</span><span class="p">)</span> <span class="nv">result</span><span class="p">)</span>
@@ -337,9 +337,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orge47a258" class="outline-4">
-<h4 id="orge47a258">2.28</h4>
-<div class="outline-text-4" id="text-orge47a258">
+<div id="outline-container-orgd18eaee" class="outline-4">
+<h4 id="orgd18eaee">2.28</h4>
+<div class="outline-text-4" id="text-orgd18eaee">
 <div class="highlight"><pre><span></span>     <span class="c1">;; (load "./2.18.scm")</span>
 
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">append </span><span class="nv">list1</span> <span class="nv">list2</span><span class="p">)</span>
@@ -357,9 +357,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgff05d93" class="outline-4">
-<h4 id="orgff05d93">2.29</h4>
-<div class="outline-text-4" id="text-orgff05d93">
+<div id="outline-container-org41250b9" class="outline-4">
+<h4 id="org41250b9">2.29</h4>
+<div class="outline-text-4" id="text-org41250b9">
 <div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
 
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-mobile</span> <span class="nv">left</span> <span class="nv">right</span><span class="p">)</span>
@@ -423,9 +423,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org4e17841" class="outline-4">
-<h4 id="org4e17841">2.30</h4>
-<div class="outline-text-4" id="text-org4e17841">
+<div id="outline-container-org2c484d5" class="outline-4">
+<h4 id="org2c484d5">2.30</h4>
+<div class="outline-text-4" id="text-org2c484d5">
 <div class="highlight"><pre><span></span>     <span class="c1">;; with map</span>
 
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square-tree</span> <span class="nv">tree</span><span class="p">)</span>
@@ -446,9 +446,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org2c4bc4e" class="outline-4">
-<h4 id="org2c4bc4e">2.31</h4>
-<div class="outline-text-4" id="text-org2c4bc4e">
+<div id="outline-container-orgbf686a5" class="outline-4">
+<h4 id="orgbf686a5">2.31</h4>
+<div class="outline-text-4" id="text-orgbf686a5">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">tree-map</span> <span class="nv">op</span> <span class="nv">tree</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">sub-tree</span><span class="p">)</span>
 	      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">sub-tree</span><span class="p">)</span>
@@ -462,9 +462,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgf145be5" class="outline-4">
-<h4 id="orgf145be5">2.32</h4>
-<div class="outline-text-4" id="text-orgf145be5">
+<div id="outline-container-org3130731" class="outline-4">
+<h4 id="org3130731">2.32</h4>
+<div class="outline-text-4" id="text-org3130731">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">subsets</span> <span class="nv">s</span><span class="p">)</span>
        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">s</span><span class="p">)</span>
 	   <span class="p">(</span><span class="nb">list </span><span class="o">'</span><span class="p">())</span>
@@ -477,9 +477,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgc194681" class="outline-3">
-<h3 id="orgc194681">序列作为一种约定的界面</h3>
-<div class="outline-text-3" id="text-orgc194681">
+<div id="outline-container-orgc7d7343" class="outline-3">
+<h3 id="orgc7d7343">序列作为一种约定的界面</h3>
+<div class="outline-text-3" id="text-orgc7d7343">
 <ol class="org-ol">
 <li>将注意力集中在处理过程中从一个步骤流向下一个步骤的“信号”，如果用一些表来
 表示这些信号，那么就可以利用表操作实现每一步骤的处理；</li>
@@ -496,16 +496,16 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgdeeca86" class="outline-3">
-<h3 id="orgdeeca86">练习 2.33-2.43</h3>
+<div id="outline-container-orgfd644b4" class="outline-3">
+<h3 id="orgfd644b4">练习 2.33-2.43</h3>
 </div>
 
-<div id="outline-container-orgc30cbbf" class="outline-3">
-<h3 id="orgc30cbbf">实例：一个图形语言</h3>
+<div id="outline-container-org39ba7c2" class="outline-3">
+<h3 id="org39ba7c2">实例：一个图形语言</h3>
 </div>
 
-<div id="outline-container-org7ff9ad5" class="outline-3">
-<h3 id="org7ff9ad5">练习 2.44-2.52</h3>
+<div id="outline-container-org6180456" class="outline-3">
+<h3 id="org6180456">练习 2.44-2.52</h3>
 </div>
 </div>
             
