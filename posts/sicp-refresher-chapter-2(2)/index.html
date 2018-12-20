@@ -80,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orge19d7ce" class="outline-2">
-<h2 id="orge19d7ce">层次性数据和闭包性质</h2>
-<div class="outline-text-2" id="text-orge19d7ce">
+        <div id="outline-container-orgd265b3c" class="outline-2">
+<h2 id="orgd265b3c">层次性数据和闭包性质</h2>
+<div class="outline-text-2" id="text-orgd265b3c">
 <ol class="org-ol">
 <li>序对使用的是一种被称为 <b>盒子和指针</b> 的表示方式：
 <ol class="org-ol">
@@ -101,9 +101,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </ol>
 </div>
 
-<div id="outline-container-org3d455dd" class="outline-3">
-<h3 id="org3d455dd">序列的表示</h3>
-<div class="outline-text-3" id="text-org3d455dd">
+<div id="outline-container-org4edb67b" class="outline-3">
+<h3 id="org4edb67b">序列的表示</h3>
+<div class="outline-text-3" id="text-org4edb67b">
 <ol class="org-ol">
 <li>在用序对构成的层次性结构的一种链条表示中，最后的一个序对的 cdr 用一个能辨
 明不是序对的值表示，标明序列的结束，在程序里用变量 nil 的值；</li>
@@ -143,13 +143,13 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org19971a7" class="outline-3">
-<h3 id="org19971a7">练习 2.17-2.23</h3>
-<div class="outline-text-3" id="text-org19971a7">
+<div id="outline-container-orgdb5428c" class="outline-3">
+<h3 id="orgdb5428c">练习 2.17-2.23</h3>
+<div class="outline-text-3" id="text-orgdb5428c">
 </div>
-<div id="outline-container-orge283be4" class="outline-4">
-<h4 id="orge283be4">2.17</h4>
-<div class="outline-text-4" id="text-orge283be4">
+<div id="outline-container-org6849468" class="outline-4">
+<h4 id="org6849468">2.17</h4>
+<div class="outline-text-4" id="text-org6849468">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">last-pair</span> <span class="nv">items</span><span class="p">)</span>
        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">left</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">items</span><span class="p">)))</span>
 	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">left</span><span class="p">)</span>
@@ -159,9 +159,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org8b6a6fa" class="outline-4">
-<h4 id="org8b6a6fa">2.18</h4>
-<div class="outline-text-4" id="text-org8b6a6fa">
+<div id="outline-container-org3b6452d" class="outline-4">
+<h4 id="org3b6452d">2.18</h4>
+<div class="outline-text-4" id="text-org3b6452d">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">reverse </span><span class="nv">items</span><span class="p">)</span>
        <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">iter</span> <span class="nv">items</span> <span class="nv">result</span><span class="p">)</span>
 	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">items</span><span class="p">)</span>
@@ -172,9 +172,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orga158fa4" class="outline-4">
-<h4 id="orga158fa4">2.19</h4>
-<div class="outline-text-4" id="text-orga158fa4">
+<div id="outline-container-org3e57aa0" class="outline-4">
+<h4 id="org3e57aa0">2.19</h4>
+<div class="outline-text-4" id="text-org3e57aa0">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="nv">us-coins</span> <span class="p">(</span><span class="nb">list </span><span class="mi">50</span> <span class="mi">25</span> <span class="mi">10</span> <span class="mi">5</span> <span class="mi">1</span><span class="p">))</span>
 
      <span class="p">(</span><span class="k">define </span><span class="nv">uk-coins</span> <span class="p">(</span><span class="nb">list </span><span class="mi">100</span> <span class="mi">50</span> <span class="mi">20</span> <span class="mi">10</span> <span class="mi">5</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mf">0.5</span><span class="p">))</span>
@@ -204,9 +204,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org58f21b3" class="outline-4">
-<h4 id="org58f21b3">2.20</h4>
-<div class="outline-text-4" id="text-org58f21b3">
+<div id="outline-container-org2ee95c8" class="outline-4">
+<h4 id="org2ee95c8">2.20</h4>
+<div class="outline-text-4" id="text-org2ee95c8">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">same-parity</span> <span class="nv">signal</span> <span class="o">.</span> <span class="nv">test</span><span class="p">)</span>
        <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fetch</span> <span class="nv">items</span> <span class="nv">p</span><span class="p">)</span>
 	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">items</span><span class="p">)</span>
@@ -222,9 +222,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orga0f2f00" class="outline-4">
-<h4 id="orga0f2f00">2.21</h4>
-<div class="outline-text-4" id="text-orga0f2f00">
+<div id="outline-container-org86e80e6" class="outline-4">
+<h4 id="org86e80e6">2.21</h4>
+<div class="outline-text-4" id="text-org86e80e6">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square-list</span> <span class="nv">items</span><span class="p">)</span>
        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">items</span><span class="p">)</span>
 	   <span class="o">'</span><span class="p">()</span>
@@ -236,9 +236,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgd84981b" class="outline-4">
-<h4 id="orgd84981b">2.22</h4>
-<div class="outline-text-4" id="text-orgd84981b">
+<div id="outline-container-orgb10386f" class="outline-4">
+<h4 id="orgb10386f">2.22</h4>
+<div class="outline-text-4" id="text-orgb10386f">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 主要是因为这条语句：(iter (cdr things) (cons (square (car things)) answer))</span>
      <span class="c1">;; 这样的话，逻辑上就是把传入的表参数的元素平方以后不停压入结果表，</span>
      <span class="c1">;; 最后的结果表的元素顺序与需求相反；</span>
@@ -250,9 +250,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgda400e9" class="outline-4">
-<h4 id="orgda400e9">2.23</h4>
-<div class="outline-text-4" id="text-orgda400e9">
+<div id="outline-container-orga7a2317" class="outline-4">
+<h4 id="orga7a2317">2.23</h4>
+<div class="outline-text-4" id="text-orga7a2317">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">for-each </span><span class="nv">proc</span> <span class="nv">items</span><span class="p">)</span>
        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">items</span><span class="p">)</span>
 	   <span class="nv">true</span>
@@ -263,9 +263,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org283d6d6" class="outline-3">
-<h3 id="org283d6d6">层次性结构</h3>
-<div class="outline-text-3" id="text-org283d6d6">
+<div id="outline-container-org095572f" class="outline-3">
+<h3 id="org095572f">层次性结构</h3>
+<div class="outline-text-3" id="text-org095572f">
 <ol class="org-ol">
 <li>序列的元素本身也可以是序列，可以把这样的结构看作是 <b>树</b> ，而那些本身也是
 序列的元素就是形成了树中的 <b>子树</b> ，往下深入直到序列元素不是序列时，把这种元
@@ -280,22 +280,22 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgba6b50e" class="outline-3">
-<h3 id="orgba6b50e">练习 2.24-2.32</h3>
-<div class="outline-text-3" id="text-orgba6b50e">
+<div id="outline-container-orgcc6ef1f" class="outline-3">
+<h3 id="orgcc6ef1f">练习 2.24-2.32</h3>
+<div class="outline-text-3" id="text-orgcc6ef1f">
 </div>
-<div id="outline-container-org9ac10f9" class="outline-4">
-<h4 id="org9ac10f9">2.24</h4>
-<div class="outline-text-4" id="text-org9ac10f9">
+<div id="outline-container-org0a86bfd" class="outline-4">
+<h4 id="org0a86bfd">2.24</h4>
+<div class="outline-text-4" id="text-org0a86bfd">
 <div class="highlight"><pre><span></span>     <span class="c1">;; (1 (2 (3 4)))</span>
      <span class="c1">;; 盒子指针结构和树结构很容易理解，图示就免了。</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org58e9282" class="outline-4">
-<h4 id="org58e9282">2.25</h4>
-<div class="outline-text-4" id="text-org58e9282">
+<div id="outline-container-orga034027" class="outline-4">
+<h4 id="orga034027">2.25</h4>
+<div class="outline-text-4" id="text-orga034027">
 <div class="highlight"><pre><span></span>     <span class="c1">;; (1 3 (5 7) 9)</span>
      <span class="c1">;;(car (cdr (car (cdr (cdr '(1 3 (5 7) 9))))))</span>
 
@@ -308,9 +308,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orge15c8f7" class="outline-4">
-<h4 id="orge15c8f7">2.26</h4>
-<div class="outline-text-4" id="text-orge15c8f7">
+<div id="outline-container-orgbac4a6d" class="outline-4">
+<h4 id="orgbac4a6d">2.26</h4>
+<div class="outline-text-4" id="text-orgbac4a6d">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="nv">x</span> <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">))</span>
 
      <span class="p">(</span><span class="k">define </span><span class="nv">y</span> <span class="p">(</span><span class="nb">list </span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">))</span>
@@ -322,9 +322,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgbc09963" class="outline-4">
-<h4 id="orgbc09963">2.27</h4>
-<div class="outline-text-4" id="text-orgbc09963">
+<div id="outline-container-org7bd3e80" class="outline-4">
+<h4 id="org7bd3e80">2.27</h4>
+<div class="outline-text-4" id="text-org7bd3e80">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">deep-reverse</span> <span class="nv">items</span><span class="p">)</span>
        <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">iter</span> <span class="nv">items</span> <span class="nv">result</span><span class="p">)</span>
 	 <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">items</span><span class="p">)</span> <span class="nv">result</span><span class="p">)</span>
@@ -337,9 +337,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgd18eaee" class="outline-4">
-<h4 id="orgd18eaee">2.28</h4>
-<div class="outline-text-4" id="text-orgd18eaee">
+<div id="outline-container-orga6f8b84" class="outline-4">
+<h4 id="orga6f8b84">2.28</h4>
+<div class="outline-text-4" id="text-orga6f8b84">
 <div class="highlight"><pre><span></span>     <span class="c1">;; (load "./2.18.scm")</span>
 
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">append </span><span class="nv">list1</span> <span class="nv">list2</span><span class="p">)</span>
@@ -357,9 +357,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org41250b9" class="outline-4">
-<h4 id="org41250b9">2.29</h4>
-<div class="outline-text-4" id="text-org41250b9">
+<div id="outline-container-org45b2718" class="outline-4">
+<h4 id="org45b2718">2.29</h4>
+<div class="outline-text-4" id="text-org45b2718">
 <div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
 
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-mobile</span> <span class="nv">left</span> <span class="nv">right</span><span class="p">)</span>
@@ -423,9 +423,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org2c484d5" class="outline-4">
-<h4 id="org2c484d5">2.30</h4>
-<div class="outline-text-4" id="text-org2c484d5">
+<div id="outline-container-org4b63211" class="outline-4">
+<h4 id="org4b63211">2.30</h4>
+<div class="outline-text-4" id="text-org4b63211">
 <div class="highlight"><pre><span></span>     <span class="c1">;; with map</span>
 
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square-tree</span> <span class="nv">tree</span><span class="p">)</span>
@@ -446,9 +446,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgbf686a5" class="outline-4">
-<h4 id="orgbf686a5">2.31</h4>
-<div class="outline-text-4" id="text-orgbf686a5">
+<div id="outline-container-org443fed3" class="outline-4">
+<h4 id="org443fed3">2.31</h4>
+<div class="outline-text-4" id="text-org443fed3">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">tree-map</span> <span class="nv">op</span> <span class="nv">tree</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">sub-tree</span><span class="p">)</span>
 	      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">sub-tree</span><span class="p">)</span>
@@ -462,9 +462,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-org3130731" class="outline-4">
-<h4 id="org3130731">2.32</h4>
-<div class="outline-text-4" id="text-org3130731">
+<div id="outline-container-org75b7ea5" class="outline-4">
+<h4 id="org75b7ea5">2.32</h4>
+<div class="outline-text-4" id="text-org75b7ea5">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">subsets</span> <span class="nv">s</span><span class="p">)</span>
        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">s</span><span class="p">)</span>
 	   <span class="p">(</span><span class="nb">list </span><span class="o">'</span><span class="p">())</span>
@@ -477,9 +477,9 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgc7d7343" class="outline-3">
-<h3 id="orgc7d7343">序列作为一种约定的界面</h3>
-<div class="outline-text-3" id="text-orgc7d7343">
+<div id="outline-container-org2cd63ab" class="outline-3">
+<h3 id="org2cd63ab">序列作为一种约定的界面</h3>
+<div class="outline-text-3" id="text-org2cd63ab">
 <ol class="org-ol">
 <li>将注意力集中在处理过程中从一个步骤流向下一个步骤的“信号”，如果用一些表来
 表示这些信号，那么就可以利用表操作实现每一步骤的处理；</li>
@@ -496,16 +496,498 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；<
 </div>
 </div>
 
-<div id="outline-container-orgfd644b4" class="outline-3">
-<h3 id="orgfd644b4">练习 2.33-2.43</h3>
+<div id="outline-container-org51ffadf" class="outline-3">
+<h3 id="org51ffadf">练习 2.33-2.43</h3>
+<div class="outline-text-3" id="text-org51ffadf">
+</div>
+<div id="outline-container-orgfb38a76" class="outline-4">
+<h4 id="orgfb38a76">2.33</h4>
+<div class="outline-text-4" id="text-orgfb38a76">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">accumulate</span> <span class="nv">op</span> <span class="nv">initial</span> <span class="nv">sequence</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">sequence</span><span class="p">)</span>
+	   <span class="nv">initial</span>
+	   <span class="p">(</span><span class="nf">op</span> <span class="p">(</span><span class="nb">car </span><span class="nv">sequence</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nf">accumulate</span> <span class="nv">op</span> <span class="nv">initial</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">sequence</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">map </span><span class="nv">p</span> <span class="nv">sequence</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">accumulate</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">p</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">y</span><span class="p">))</span> <span class="o">'</span><span class="p">()</span> <span class="nv">sequence</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">append </span><span class="nv">seq1</span> <span class="nv">seq2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">accumulate</span> <span class="nv">cons</span> <span class="nv">seq2</span> <span class="nv">seq1</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">length </span><span class="nv">sequence</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">accumulate</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">y</span><span class="p">))</span> <span class="mi">0</span> <span class="nv">sequence</span><span class="p">))</span>
+</pre></div>
+</div>
 </div>
 
-<div id="outline-container-org39ba7c2" class="outline-3">
-<h3 id="org39ba7c2">实例：一个图形语言</h3>
+<div id="outline-container-orgf6bc18e" class="outline-4">
+<h4 id="orgf6bc18e">2.34</h4>
+<div class="outline-text-4" id="text-orgf6bc18e">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">horner-eval</span> <span class="nv">x</span> <span class="nv">coefficient-sequence</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">accumulate</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">this-coeff</span> <span class="nv">higher-terms</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">this-coeff</span> <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">higher-terms</span><span class="p">)))</span>
+		   <span class="mi">0</span>
+		   <span class="nv">coefficient-sequence</span><span class="p">))</span>
+</pre></div>
+</div>
 </div>
 
-<div id="outline-container-org6180456" class="outline-3">
-<h3 id="org6180456">练习 2.44-2.52</h3>
+<div id="outline-container-orgf0a38a3" class="outline-4">
+<h4 id="orgf0a38a3">2.35</h4>
+<div class="outline-text-4" id="text-orgf0a38a3">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">count-leaves</span> <span class="nv">t</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">accumulate</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">length </span><span class="nv">x</span><span class="p">)</span> <span class="nv">y</span><span class="p">))</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">map </span><span class="nv">enumerate-tree</span> <span class="nv">t</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org74dcaa6" class="outline-4">
+<h4 id="org74dcaa6">2.36</h4>
+<div class="outline-text-4" id="text-org74dcaa6">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">accumulate-n</span> <span class="nv">op</span> <span class="nv">init</span> <span class="nv">seqs</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="p">(</span><span class="nb">car </span><span class="nv">seqs</span><span class="p">))</span>
+	   <span class="o">'</span><span class="p">()</span>
+	   <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">accumulate</span> <span class="nv">op</span> <span class="nv">init</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">x</span><span class="p">))</span> <span class="nv">seqs</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">accumulate-n</span> <span class="nv">op</span> <span class="nv">init</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">x</span><span class="p">))</span> <span class="nv">seqs</span><span class="p">)))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org7c936b6" class="outline-4">
+<h4 id="org7c936b6">2.37</h4>
+<div class="outline-text-4" id="text-org7c936b6">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">dot-product</span> <span class="nv">v</span> <span class="nv">w</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">accumulate</span> <span class="nv">+</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">map </span><span class="nv">*</span> <span class="nv">v</span> <span class="nv">w</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">martix-*-vector</span> <span class="nv">m</span> <span class="nv">v</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">dot-product</span> <span class="nv">x</span> <span class="nv">v</span><span class="p">))</span> <span class="nv">m</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">transpose</span> <span class="nv">mat</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">accumulate-n</span> <span class="nv">cons</span> <span class="o">'</span><span class="p">()</span> <span class="nv">mat</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">martix-*-matrix</span> <span class="nv">m</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">cols</span> <span class="p">(</span><span class="nf">transpose</span> <span class="nv">n</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">v</span><span class="p">)</span> <span class="p">(</span><span class="nf">martix-*-vector</span> <span class="nv">cols</span> <span class="nv">v</span><span class="p">))</span> <span class="nv">m</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org54c46a1" class="outline-4">
+<h4 id="org54c46a1">2.38</h4>
+<div class="outline-text-4" id="text-org54c46a1">
+<div class="highlight"><pre><span></span>     <span class="c1">;; (fold-left / 1 (list 1 2 3)) 1/6</span>
+     <span class="c1">;; (fold-right /1 (list 1 2 3)) 3/2</span>
+     <span class="c1">;; (fold-right list nil (list 1 2 3)) (1 (2 (3 ())))</span>
+     <span class="c1">;; (fold-left list nil (list 1 2 3)) (((() 1) 2) 3)</span>
+
+     <span class="c1">;; op should be commutative &amp; associative（自己去网上找详细的解释）</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org23036eb" class="outline-4">
+<h4 id="org23036eb">2.39</h4>
+<div class="outline-text-4" id="text-org23036eb">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reverse-right</span> <span class="nv">sequence</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">accumulate</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nb">append </span><span class="nv">y</span> <span class="p">(</span><span class="nb">list </span><span class="nv">x</span><span class="p">)))</span> <span class="o">'</span><span class="p">()</span> <span class="nv">sequence</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">reverse-left</span> <span class="nv">sequence</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">fold-left</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">y</span> <span class="nv">x</span><span class="p">))</span> <span class="o">'</span><span class="p">()</span> <span class="nv">sequence</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org1291691" class="outline-4">
+<h4 id="org1291691">2.40</h4>
+<div class="outline-text-4" id="text-org1291691">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">flatmap</span> <span class="nv">proc</span> <span class="nv">seq</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">accumulate</span> <span class="nv">append</span> <span class="o">'</span><span class="p">()</span> <span class="p">(</span><span class="nb">map </span><span class="nv">proc</span> <span class="nv">seq</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">prime-sum?</span> <span class="nv">pair</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">prime?</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">car </span><span class="nv">pair</span><span class="p">)</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">pair</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">enumerate-interval</span> <span class="nv">low</span> <span class="nv">high</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">low</span> <span class="nv">high</span><span class="p">)</span>
+	   <span class="o">'</span><span class="p">()</span>
+	   <span class="p">(</span><span class="nb">cons </span><span class="nv">low</span> <span class="p">(</span><span class="nf">enumerate-interval</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">low</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">high</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-pair-sum</span> <span class="nv">pair</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">car </span><span class="nv">pair</span><span class="p">)</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">pair</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">car </span><span class="nv">pair</span><span class="p">)</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">pair</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">unique-pairs</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">flatmap</span>
+	<span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">i</span><span class="p">)</span>
+	  <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">j</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="nv">i</span> <span class="nv">j</span><span class="p">))</span>
+	       <span class="p">(</span><span class="nf">enumerate-interval</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">- </span><span class="nv">i</span> <span class="mi">1</span><span class="p">))))</span>
+	<span class="p">(</span><span class="nf">enumerate-interval</span> <span class="mi">1</span> <span class="nv">n</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">prime-sum-pairs</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="nv">make-pair-sum</span>
+	    <span class="p">(</span><span class="nf">filter</span> <span class="nv">prime-sum?</span> <span class="p">(</span><span class="nf">unique-pairs</span> <span class="nv">n</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgdfc6166" class="outline-4">
+<h4 id="orgdfc6166">2.41</h4>
+<div class="outline-text-4" id="text-orgdfc6166">
+<div class="highlight"><pre><span></span>     <span class="c1">;; (load "2.33.scm")</span>
+     <span class="c1">;; (load "2.40.scm")</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">filter</span> <span class="nv">p</span> <span class="nv">s</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">s</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+	     <span class="p">((</span><span class="nf">p</span> <span class="p">(</span><span class="nb">car </span><span class="nv">s</span><span class="p">))</span>
+	      <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">s</span><span class="p">)</span> <span class="p">(</span><span class="nf">filter</span> <span class="nv">p</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">s</span><span class="p">))))</span>
+	     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">filter</span> <span class="nv">p</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">s</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">triple-pair-sum</span> <span class="nv">p</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">accumulate</span> <span class="nv">+</span> <span class="mi">0</span> <span class="nv">p</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">triple-pair</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">range</span> <span class="p">(</span><span class="nf">enumerate-interval</span> <span class="mi">1</span> <span class="nv">n</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">flatmap</span>
+	  <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">a</span><span class="p">)</span>
+	    <span class="p">(</span><span class="nf">flatmap</span>
+	     <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">b</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">c</span><span class="p">)</span> <span class="p">(</span><span class="nb">list </span><span class="nv">c</span> <span class="nv">b</span> <span class="nv">a</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nf">enumerate-interval</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">b</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">n</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="nf">enumerate-interval</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">n</span><span class="p">)))</span>
+	  <span class="nv">range</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">triple-pair-sum-n</span> <span class="nv">n</span> <span class="nv">s</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">filter</span>
+	<span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">p</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="nv">s</span> <span class="p">(</span><span class="nf">triple-pair-sum</span> <span class="nv">p</span><span class="p">)))</span>
+	<span class="p">(</span><span class="nf">triple-pair</span> <span class="nv">n</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orge0011a8" class="outline-4">
+<h4 id="orge0011a8">2.42</h4>
+<div class="outline-text-4" id="text-orge0011a8">
+<div class="highlight"><pre><span></span>     <span class="c1">;; (load "2.33.scm")</span>
+     <span class="c1">;; (load "2.40.scm")</span>
+     <span class="c1">;; (load "2.41.scm")</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">queens</span> <span class="nv">board-size</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">queen-cols</span> <span class="nv">k</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">k</span> <span class="mi">0</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nb">list </span><span class="nv">empty-board</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nf">filter</span>
+	      <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">positions</span><span class="p">)</span> <span class="p">(</span><span class="nf">safe?</span> <span class="nv">k</span> <span class="nv">positions</span><span class="p">))</span>
+	      <span class="p">(</span><span class="nf">flatmap</span>
+	       <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">rest-of-queens</span><span class="p">)</span>
+		 <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">new-row</span><span class="p">)</span>
+			<span class="p">(</span><span class="nf">adjoin-position</span> <span class="nv">new-row</span> <span class="nv">k</span> <span class="nv">rest-of-queens</span><span class="p">))</span>
+		      <span class="p">(</span><span class="nf">enumerate-interval</span> <span class="mi">1</span> <span class="nv">board-size</span><span class="p">)))</span>
+	       <span class="p">(</span><span class="nf">queen-cols</span> <span class="p">(</span><span class="nb">- </span><span class="nv">k</span> <span class="mi">1</span><span class="p">))))))</span>
+       <span class="p">(</span><span class="nf">queen-cols</span> <span class="nv">board-size</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">empty-board</span> <span class="o">'</span><span class="p">())</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-position</span> <span class="nv">row</span> <span class="nv">k</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">list </span><span class="nv">k</span> <span class="nv">row</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">row-position</span> <span class="nv">p</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cadr </span><span class="nv">p</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">k-position</span> <span class="nv">p</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">p</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">adjoin-position</span> <span class="nv">new-row</span> <span class="nv">k</span> <span class="nv">rest-of-queens</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">make-position</span> <span class="nv">new-row</span> <span class="nv">k</span><span class="p">)</span> <span class="nv">rest-of-queens</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">get-row</span> <span class="nv">positions</span> <span class="nv">k</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="p">(</span><span class="nb">car </span><span class="nv">positions</span><span class="p">))</span> <span class="p">(</span><span class="nf">error</span> <span class="s">"invalid operation"</span> <span class="nv">k</span><span class="p">))</span>
+	     <span class="p">((</span><span class="nb">= </span><span class="p">(</span><span class="nf">k-position</span> <span class="p">(</span><span class="nb">car </span><span class="nv">positions</span><span class="p">))</span> <span class="nv">k</span><span class="p">)</span> <span class="p">(</span><span class="nf">row-position</span> <span class="p">(</span><span class="nb">car </span><span class="nv">positions</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">get-row</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">positions</span><span class="p">)</span> <span class="nv">k</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">safe?</span> <span class="nv">k</span> <span class="nv">positions</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">k</span> <span class="mi">1</span><span class="p">)</span>
+	   <span class="ss">'true</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">r1</span> <span class="p">(</span><span class="nf">get-row</span> <span class="nv">positions</span> <span class="nv">k</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">r2</span> <span class="p">(</span><span class="nf">get-row</span> <span class="nv">positions</span> <span class="p">(</span><span class="nb">- </span><span class="nv">k</span> <span class="mi">1</span><span class="p">))))</span>
+	     <span class="p">(</span><span class="nf">and</span>
+	      <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">= </span><span class="nv">r1</span> <span class="nv">r2</span><span class="p">))</span>
+	      <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">r1</span><span class="p">)</span> <span class="nv">r2</span><span class="p">))</span>
+	      <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="nv">r2</span><span class="p">)</span> <span class="nv">r1</span><span class="p">))))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgb9d755e" class="outline-4">
+<h4 id="orgb9d755e">2.43</h4>
+<div class="outline-text-4" id="text-orgb9d755e">
+<div class="highlight"><pre><span></span>     <span class="c1">;; (queens-cols (- k 1)) 的大量重复计算</span>
+     <span class="c1">;; (* (expt n n) T)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org08a30b2" class="outline-3">
+<h3 id="org08a30b2">实例：一个图形语言</h3>
+<div class="outline-text-3" id="text-org08a30b2">
+<ol class="org-ol">
+<li>我们所用的数据在组合方式下的 <b>闭包</b> 性质非常重要，因为这使我们能用不多几
+个操作就可以构造出各种复杂的结构；</li>
+<li>中文版 p93：将画家表示为过程，就在这一图形语言中竖立起一道强有力的抽象屏
+障，这就使我们可以创建和混合基于图形能力的各种类型的基本画家，任何过程只
+要能取一个框架作为参数(<b>框架位置形状可能不同但框架的组织是不变的</b>)，画出
+某些可以伸缩后适合这个框架的东西：
+<ol class="org-ol">
+<li>比如 p93 <code>segments-&gt;painter</code> 就是以相对于单位正方形坐标的线段列表为参
+数，在返回的匿名过程内部使用 <code>draw-line</code> 画出线段列表参数映射到框架上
+的直线；</li>
+<li>如脚注94所述，可以推测 rogers painter 应该是以一个相对于单位正方形坐标
+的 <b>坐标－灰度序对</b> 列表（表示一个标准灰度图），然后在返回的匿名过程内
+部根据传入的画家参数－灰度图，在框架上依次映射坐标并根据灰度着色，就可
+以在指定的框架上画出一张肖像图；</li>
+<li>这一实例展现并发扬了 <b>抽象数据</b> 思想：2.1.3 提到一种有理数表示可以是任
+何的东西，只要它能满足适当的条件；这里，一个画家可以以任何方式实现，只
+要它能在指定的框架里画出一些东西来；</li>
+</ol>
+</li>
+<li>
+<b>分层设计</b>: 一个复杂的系统应该通过一些列的层次构造出来：
+<ol class="org-ol">
+<li>构造各个层次的方式，就是设法用各种基本元素组合起作为这一层次中的部件，
+而这样构造出的部件又可以作为另一个层次里的基本元素；</li>
+<li>每个层次上所用的语言都提供了一些基本元素，组合手段，还有对该层次中的适
+当细节做抽象的手段；</li>
+<li>分层设计有助于使程序更加强健，使我们更有可能在给定规范发生一些小改变时，
+只需要对程序做少量的修改，分层结构中的每个层次都为表述系统的特征提供了
+一套独特词汇，以及一套修改这一系统的方式。</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org89d86d5" class="outline-3">
+<h3 id="org89d86d5">练习 2.44-2.52</h3>
+<div class="outline-text-3" id="text-org89d86d5">
+</div>
+<div id="outline-container-org3849198" class="outline-4">
+<h4 id="org3849198">2.44</h4>
+<div class="outline-text-4" id="text-org3849198">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">up-split</span> <span class="nv">painter</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
+	   <span class="nv">painter</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">smaller</span> <span class="p">(</span><span class="nf">up-split</span> <span class="nv">painter</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))))</span>
+	     <span class="p">(</span><span class="nf">below</span> <span class="nv">painter</span> <span class="p">(</span><span class="nf">beside</span> <span class="nv">smaller</span> <span class="nv">smaller</span><span class="p">)))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org61799c6" class="outline-4">
+<h4 id="org61799c6">2.45</h4>
+<div class="outline-text-4" id="text-org61799c6">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">split</span> <span class="nv">arrangement1</span> <span class="nv">arrangement2</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">painter</span> <span class="nv">n</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
+	     <span class="nv">painter</span>
+	     <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">smaller</span> <span class="p">((</span><span class="nf">split</span> <span class="nv">arrangement1</span> <span class="nv">arrangement2</span><span class="p">)</span> <span class="nv">painter</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))))</span>
+	       <span class="p">(</span><span class="nf">arrangement1</span> <span class="nv">painter</span> <span class="p">(</span><span class="nf">arrangement2</span> <span class="nv">smaller</span> <span class="nv">smaller</span><span class="p">))))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org1691666" class="outline-4">
+<h4 id="org1691666">2.46</h4>
+<div class="outline-text-4" id="text-org1691666">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-vect</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">xcor-vect</span> <span class="nv">v</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">v</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">ycor-vect</span> <span class="nv">v</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">v</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">add-vect</span> <span class="nv">v1</span> <span class="nv">v2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">make-vect</span>
+	<span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">xcor-vect</span> <span class="nv">v1</span><span class="p">)</span> <span class="p">(</span><span class="nf">xcor-vect</span> <span class="nv">v2</span><span class="p">))</span>
+	<span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">ycor-vect</span> <span class="nv">v1</span><span class="p">)</span> <span class="p">(</span><span class="nf">ycor-vect</span> <span class="nv">v2</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">sub-vect</span> <span class="nv">v1</span> <span class="nv">v2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">make-vect</span>
+	<span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">xcor-vect</span> <span class="nv">v1</span><span class="p">)</span> <span class="p">(</span><span class="nf">xcor-vect</span> <span class="nv">v2</span><span class="p">))</span>
+	<span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nf">ycor-vect</span> <span class="nv">v1</span><span class="p">)</span> <span class="p">(</span><span class="nf">ycor-vect</span> <span class="nv">v2</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">divide-vect</span> <span class="nv">v1</span> <span class="nv">v2</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nf">xcor-vect</span> <span class="nv">v2</span><span class="p">))</span> <span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nf">ycor-vect</span> <span class="nv">v2</span><span class="p">)))</span>
+	   <span class="p">(</span><span class="nf">error</span> <span class="s">"invalid second vector"</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nf">make-vect</span>
+	    <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nf">xcor-vect</span> <span class="nv">v1</span><span class="p">)</span> <span class="p">(</span><span class="nf">xcor-vect</span> <span class="nv">v2</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nf">ycor-vect</span> <span class="nv">v1</span><span class="p">)</span> <span class="p">(</span><span class="nf">ycor-vect</span> <span class="nv">v2</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">scale-vect</span> <span class="nv">s</span> <span class="nv">v</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">make-vect</span>
+	<span class="p">(</span><span class="nb">* </span><span class="nv">s</span> <span class="p">(</span><span class="nf">xcor-vect</span> <span class="nv">v</span><span class="p">))</span>
+	<span class="p">(</span><span class="nb">* </span><span class="nv">s</span> <span class="p">(</span><span class="nf">ycor-vect</span> <span class="nv">v</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgee3386f" class="outline-4">
+<h4 id="orgee3386f">2.47</h4>
+<div class="outline-text-4" id="text-orgee3386f">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-frame</span> <span class="nv">origin</span> <span class="nv">edge1</span> <span class="nv">edge2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">list </span><span class="nv">origin</span> <span class="nv">edge1</span> <span class="nv">edge2</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">origin-frame</span> <span class="nv">frame</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">frame</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">edge1-frame</span> <span class="nv">frame</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cadr </span><span class="nv">frame</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">edge2-frame</span> <span class="nv">frame</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">caddr </span><span class="nv">frame</span><span class="p">))</span>
+
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-frame</span> <span class="nv">origin</span> <span class="nv">edge1</span> <span class="nv">edge2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cons </span><span class="nv">origin</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">edge1</span> <span class="nv">edge2</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">origin-frame</span> <span class="nv">frame</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">frame</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">edge1-frame</span> <span class="nv">frame</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cadr </span><span class="nv">frame</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">edge2-frame</span> <span class="nv">frame</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cddr </span><span class="nv">frame</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orge9bd19f" class="outline-4">
+<h4 id="orge9bd19f">2.48</h4>
+<div class="outline-text-4" id="text-orge9bd19f">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-segment</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">m</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">make-vect</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nf">make-vect</span> <span class="nv">m</span> <span class="nv">n</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">start-segment</span> <span class="nv">segment</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">segment</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">end-segment</span> <span class="nv">segment</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">segment</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org0d8d1f6" class="outline-4">
+<h4 id="org0d8d1f6">2.49</h4>
+<div class="outline-text-4" id="text-org0d8d1f6">
+<div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">segment-list1</span> <span class="p">(</span><span class="nf">list</span>
+			   <span class="p">(</span><span class="nf">make-segment</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">)</span>
+			   <span class="p">(</span><span class="nf">make-segment</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">)</span>
+			   <span class="p">(</span><span class="nf">make-segment</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">)</span>
+			   <span class="p">(</span><span class="nf">make-segment</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="nf">segments-&gt;painter</span> <span class="nv">segment-list1</span><span class="p">)</span>
+
+     <span class="c1">;; b</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">segment-list2</span> <span class="p">(</span><span class="nf">list</span>
+			    <span class="p">(</span><span class="nf">make-segment</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">)</span>
+			    <span class="p">(</span><span class="nf">make-segment</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="nf">segments-&gt;painter</span> <span class="nv">segment-list2</span><span class="p">)</span>
+
+     <span class="c1">;; c</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">segment-list3</span> <span class="p">(</span><span class="nf">list</span>
+			    <span class="p">(</span><span class="nf">make-segment</span> <span class="mf">0.5</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.5</span><span class="p">)</span>
+			    <span class="p">(</span><span class="nf">make-segment</span> <span class="mi">0</span> <span class="mf">0.5</span> <span class="mf">0.5</span> <span class="mi">1</span><span class="p">)</span>
+			    <span class="p">(</span><span class="nf">make-segment</span> <span class="mf">0.5</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mf">0.5</span><span class="p">)</span>
+			    <span class="p">(</span><span class="nf">make-segment</span> <span class="mi">1</span> <span class="mf">0.5</span> <span class="mf">0.5</span> <span class="mi">0</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="nf">segments-&gt;painter</span> <span class="nv">segment-list3</span><span class="p">)</span>
+
+     <span class="c1">;; d</span>
+     <span class="c1">;; 计算坐标重复劳动，没什么意思，就不做了。</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org99a4cda" class="outline-4">
+<h4 id="org99a4cda">2.50</h4>
+<div class="outline-text-4" id="text-org99a4cda">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">flip-horiz</span>  <span class="nv">painter</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">transform-painter</span> <span class="nv">painter</span>
+			  <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">1.0</span> <span class="mf">0.0</span><span class="p">)</span>
+			  <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">0.0</span> <span class="mf">0.0</span><span class="p">)</span>
+			  <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">1.0</span> <span class="mf">1.0</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rotate180</span> <span class="nv">painter</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">transform-painter</span> <span class="nv">painter</span>
+			  <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">1.0</span> <span class="mf">1.0</span><span class="p">)</span>
+			  <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">0.0</span> <span class="mf">1.0</span><span class="p">)</span>
+			  <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">1.0</span> <span class="mf">0.0</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rotate270</span> <span class="nv">painter</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">transform-painter</span> <span class="nv">painter</span>
+			  <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">0.0</span> <span class="mf">1.0</span><span class="p">)</span>
+			  <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">0.0</span> <span class="mf">0.0</span><span class="p">)</span>
+			  <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">1.0</span> <span class="mf">1.0</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org98aacce" class="outline-4">
+<h4 id="org98aacce">2.51</h4>
+<div class="outline-text-4" id="text-org98aacce">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">below</span> <span class="nv">painter1</span> <span class="nv">painter2</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">split-point</span> <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">0.0</span> <span class="mf">0.5</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">paint-top</span>
+		<span class="p">(</span><span class="nf">transform-painter</span> <span class="nv">painter2</span>
+				   <span class="nv">split-point</span>
+				   <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">1.0</span> <span class="mf">0.5</span><span class="p">)</span>
+				   <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">0.0</span> <span class="mf">1.0</span><span class="p">)))</span>
+	       <span class="p">(</span><span class="nf">paint-bottom</span>
+		<span class="p">(</span><span class="nf">transform-painter</span> <span class="nv">painter1</span>
+				   <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">0.0</span> <span class="mf">0.0</span><span class="p">)</span>
+				   <span class="p">(</span><span class="nf">make-vect</span> <span class="mf">1.0</span> <span class="mf">0.0</span><span class="p">)</span>
+				   <span class="nv">split-point</span><span class="p">)))</span>
+	   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">frame</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nf">paint-top</span> <span class="nv">frame</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nf">paint-bottom</span> <span class="nv">frame</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">below</span> <span class="nv">painter1</span> <span class="nv">painter2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">rotate90</span> <span class="p">(</span><span class="nf">beside</span> <span class="p">(</span><span class="nf">rotate270</span> <span class="nv">painter1</span><span class="p">)</span> <span class="p">(</span><span class="nf">rotate270</span> <span class="nv">painter2</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org9ebde2b" class="outline-4">
+<h4 id="org9ebde2b">2.52</h4>
+<div class="outline-text-4" id="text-org9ebde2b">
+<div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
+     <span class="c1">;; 没心情算坐标</span>
+
+     <span class="c1">;; b</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">corner-split</span> <span class="nv">painter</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
+	   <span class="nv">painter</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">up</span> <span class="p">(</span><span class="nf">up-split</span> <span class="nv">painter</span> <span class="nv">n</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">right</span> <span class="p">(</span><span class="nf">right-split</span> <span class="nv">painter</span> <span class="nv">n</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="nf">beside</span> <span class="p">(</span><span class="nf">below</span> <span class="nv">painter</span> <span class="nv">up</span><span class="p">)</span>
+		     <span class="p">(</span><span class="nf">below</span> <span class="nv">right</span> <span class="p">(</span><span class="nf">corner-split</span> <span class="nv">painter</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))))</span>
+
+     <span class="c1">;; c</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square-limit</span> <span class="nv">painter</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">combine4</span> <span class="p">((</span><span class="nf">square-of-four</span> <span class="nv">flip-vert</span> <span class="nv">rotate180</span>
+					<span class="nv">identity</span> <span class="nv">flip-horiz</span><span class="p">))))</span>
+	 <span class="p">(</span><span class="nf">combine4</span> <span class="p">(</span><span class="nf">corner-split</span> <span class="nv">painter</span> <span class="nv">n</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
             
