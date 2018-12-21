@@ -80,17 +80,17 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org46834df" class="outline-2">
-<h2 id="org46834df">符号数据</h2>
-<div class="outline-text-2" id="text-org46834df">
+        <div id="outline-container-orgf38c662" class="outline-2">
+<h2 id="orgf38c662">符号数据</h2>
+<div class="outline-text-2" id="text-orgf38c662">
 <ol class="org-ol">
 <li>引进将任意符号作为数据的功能；</li>
 </ol>
 </div>
 
-<div id="outline-container-orgcaacb7a" class="outline-3">
-<h3 id="orgcaacb7a">引号</h3>
-<div class="outline-text-3" id="text-orgcaacb7a">
+<div id="outline-container-orgd2cf593" class="outline-3">
+<h3 id="orgd2cf593">引号</h3>
+<div class="outline-text-3" id="text-orgd2cf593">
 <ol class="org-ol">
 <li>将表和符号标记为应该作为数据对象看待，而不是作为应该求值的表达式；</li>
 <li>所用的引号形式与自然语言中的不同，在 Scheme 里可以不写结束引号，这里已经
@@ -106,13 +106,13 @@
 </div>
 </div>
 
-<div id="outline-container-org94a649e" class="outline-3">
-<h3 id="org94a649e">练习 2.53-2.55</h3>
-<div class="outline-text-3" id="text-org94a649e">
+<div id="outline-container-org6b4dd24" class="outline-3">
+<h3 id="org6b4dd24">练习 2.53-2.55</h3>
+<div class="outline-text-3" id="text-org6b4dd24">
 </div>
-<div id="outline-container-orgfaedf17" class="outline-4">
-<h4 id="orgfaedf17">2.53</h4>
-<div class="outline-text-4" id="text-orgfaedf17">
+<div id="outline-container-orga745e47" class="outline-4">
+<h4 id="orga745e47">2.53</h4>
+<div class="outline-text-4" id="text-orga745e47">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="nb">list </span><span class="ss">'a</span> <span class="ss">'b</span> <span class="ss">'c</span><span class="p">)</span>				<span class="c1">;(a b c)</span>
 
      <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">list </span><span class="ss">'george</span><span class="p">))</span>			<span class="c1">;((george))</span>
@@ -135,9 +135,9 @@
 </div>
 </div>
 
-<div id="outline-container-org867e661" class="outline-4">
-<h4 id="org867e661">2.54</h4>
-<div class="outline-text-4" id="text-org867e661">
+<div id="outline-container-org6e367f1" class="outline-4">
+<h4 id="org6e367f1">2.54</h4>
+<div class="outline-text-4" id="text-org6e367f1">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">equal? </span><span class="nv">items1</span> <span class="nv">items2</span><span class="p">)</span>
        <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">items1</span><span class="p">)</span> <span class="p">(</span><span class="nb">pair? </span><span class="nv">items2</span><span class="p">))</span>
 	      <span class="p">(</span><span class="nf">and</span>
@@ -151,9 +151,9 @@
 </div>
 </div>
 
-<div id="outline-container-org09d1cd0" class="outline-4">
-<h4 id="org09d1cd0">2.55</h4>
-<div class="outline-text-4" id="text-org09d1cd0">
+<div id="outline-container-org4bc7753" class="outline-4">
+<h4 id="org4bc7753">2.55</h4>
+<div class="outline-text-4" id="text-org4bc7753">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="nb">car </span><span class="o">'</span><span class="ss">'abracadabra</span><span class="p">)</span>			<span class="c1">;quote</span>
 
      <span class="c1">;; (quote (quote abracadabra))</span>
@@ -166,9 +166,9 @@
 </div>
 </div>
 
-<div id="outline-container-org77d2e2e" class="outline-3">
-<h3 id="org77d2e2e">实例：符号求导</h3>
-<div class="outline-text-3" id="text-org77d2e2e">
+<div id="outline-container-org1da631c" class="outline-3">
+<h3 id="org1da631c">实例：符号求导</h3>
+<div class="outline-text-3" id="text-org1da631c">
 <ol class="org-ol">
 <li>为了阐述符号操作的情况，并进一步阐述数据抽象的思想，展示设计一个执行代数
 表达式的符号求导过程。</li>
@@ -176,13 +176,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgdc6c29b" class="outline-3">
-<h3 id="orgdc6c29b">练习 2.56-2.58</h3>
-<div class="outline-text-3" id="text-orgdc6c29b">
+<div id="outline-container-org5f4e0c9" class="outline-3">
+<h3 id="org5f4e0c9">练习 2.56-2.58</h3>
+<div class="outline-text-3" id="text-org5f4e0c9">
 </div>
-<div id="outline-container-org4bbd1b0" class="outline-4">
-<h4 id="org4bbd1b0">2.56-2.57</h4>
-<div class="outline-text-4" id="text-org4bbd1b0">
+<div id="outline-container-orgf140493" class="outline-4">
+<h4 id="orgf140493">2.56-2.57</h4>
+<div class="outline-text-4" id="text-orgf140493">
 <p>
 两题解答代码不冲突，功能互补。
 </p>
@@ -273,13 +273,13 @@
 </div>
 </div>
 
-<div id="outline-container-org8a0a440" class="outline-4">
-<h4 id="org8a0a440">2.58</h4>
-<div class="outline-text-4" id="text-org8a0a440">
+<div id="outline-container-org82dc8eb" class="outline-4">
+<h4 id="org82dc8eb">2.58</h4>
+<div class="outline-text-4" id="text-org82dc8eb">
 </div>
 <ul class="org-ul">
 <li>
-<a id="orgfdf2652"></a>a<br><div class="outline-text-5" id="text-orgfdf2652">
+<a id="orgfd24e15"></a>a<br><div class="outline-text-5" id="text-orgfd24e15">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 相对于 2.56-2.57 需要修改的接口</span>
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-sum</span> <span class="nv">a1</span> <span class="nv">a2</span><span class="p">)</span>
        <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">=number?</span> <span class="nv">a1</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">a2</span><span class="p">)</span>
@@ -327,20 +327,13 @@
 </li>
 
 <li>
-<a id="orgd7db070"></a>b<br><div class="outline-text-5" id="text-orgd7db070">
+<a id="org97f2640"></a>b<br><div class="outline-text-5" id="text-org97f2640">
 <div class="highlight"><pre><span></span>      <span class="c1">;; 相对于 a 需要修改的接口</span>
-      <span class="c1">;; extract the expression sequence chained with *</span>
-      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">=multi?</span> <span class="nv">exp</span><span class="p">)</span>
-	<span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">symbol? </span><span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nb">eq? </span><span class="nv">exp</span> <span class="ss">'*</span><span class="p">)))</span>
-
-      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">=sum?</span> <span class="nv">exp</span><span class="p">)</span>
-	<span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">symbol? </span><span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nb">eq? </span><span class="nv">exp</span> <span class="ss">'+</span><span class="p">)))</span>
-
-      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">multi-first</span> <span class="nv">exp</span><span class="p">)</span>
-	<span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">null? </span><span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nf">=sum?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">exp</span><span class="p">)))</span> <span class="o">'</span><span class="p">())</span>
-	      <span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nf">=multi?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">exp</span><span class="p">))</span> <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">=sum?</span> <span class="nv">exp</span><span class="p">)))</span>
-	       <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nf">multi-first</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">exp</span><span class="p">))))))</span>
-      <span class="c1">;; ends here</span>
+      <span class="c1">;; extract the expression sequence chained with specified operator</span>
+      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">first-part</span> <span class="nv">exp</span> <span class="nv">operator</span><span class="p">)</span>
+	<span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="nb">null? </span><span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="nv">exp</span><span class="p">)</span> <span class="nv">operator</span><span class="p">))</span>
+	    <span class="o">'</span><span class="p">()</span>
+	    <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nf">first-part</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">exp</span><span class="p">)</span> <span class="nv">operator</span><span class="p">))))</span>
 
       <span class="c1">;; handle special case of left expression(augend, etc)</span>
       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">get-left</span> <span class="nv">exp</span><span class="p">)</span>
@@ -352,17 +345,19 @@
 	<span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">memq </span><span class="ss">'+</span> <span class="nv">x</span><span class="p">)))</span>
 
       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">addend</span> <span class="nv">s</span><span class="p">)</span>
-	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">first</span> <span class="p">(</span><span class="nf">multi-first</span> <span class="nv">s</span><span class="p">)))</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">first</span> <span class="p">(</span><span class="nf">first-part</span> <span class="nv">s</span> <span class="ss">'+</span><span class="p">)))</span>
 	  <span class="p">(</span><span class="nf">get-left</span> <span class="nv">first</span><span class="p">)))</span>
 
       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">augend</span> <span class="nv">s</span><span class="p">)</span> <span class="p">(</span><span class="nf">get-left</span> <span class="p">(</span><span class="nb">cdr </span><span class="p">(</span><span class="nb">memq </span><span class="ss">'+</span> <span class="nv">s</span><span class="p">))))</span>
 
       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">product?</span> <span class="nv">x</span><span class="p">)</span>
-	<span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">cadr </span><span class="nv">x</span><span class="p">)</span> <span class="ss">'*</span><span class="p">)))</span>
+	<span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">memq </span><span class="ss">'*</span> <span class="nv">x</span><span class="p">)))</span>
 
-      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">multiplier</span> <span class="nv">p</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">p</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">multiplier</span> <span class="nv">p</span><span class="p">)</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">first</span> <span class="p">(</span><span class="nf">first-part</span> <span class="nv">p</span> <span class="ss">'*</span><span class="p">)))</span>
+	  <span class="p">(</span><span class="nf">get-left</span> <span class="nv">first</span><span class="p">)))</span>
 
-      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">multiplicand</span> <span class="nv">p</span><span class="p">)</span> <span class="p">(</span><span class="nf">get-left</span> <span class="p">(</span><span class="nb">cddr </span><span class="nv">p</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">multiplicand</span> <span class="nv">p</span><span class="p">)</span> <span class="p">(</span><span class="nf">get-left</span> <span class="p">(</span><span class="nb">cdr </span><span class="p">(</span><span class="nb">memq </span><span class="ss">'*</span> <span class="nv">p</span><span class="p">))))</span>
 
       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">exponentiation?</span> <span class="nv">x</span><span class="p">)</span>
 	<span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">cadr </span><span class="nv">x</span><span class="p">)</span> <span class="ss">'**</span><span class="p">)))</span>
@@ -379,20 +374,20 @@
 </div>
 </div>
 
-<div id="outline-container-orgfa0aed1" class="outline-3">
-<h3 id="orgfa0aed1">实例：集合的表示</h3>
+<div id="outline-container-org0481c80" class="outline-3">
+<h3 id="org0481c80">实例：集合的表示</h3>
 </div>
 
-<div id="outline-container-orgb528c50" class="outline-3">
-<h3 id="orgb528c50">练习 2.59-2.66</h3>
+<div id="outline-container-org208445f" class="outline-3">
+<h3 id="org208445f">练习 2.59-2.66</h3>
 </div>
 
-<div id="outline-container-orgfddbf82" class="outline-3">
-<h3 id="orgfddbf82">实例：Huffman 编码树</h3>
+<div id="outline-container-org010297d" class="outline-3">
+<h3 id="org010297d">实例：Huffman 编码树</h3>
 </div>
 
-<div id="outline-container-orgf259688" class="outline-3">
-<h3 id="orgf259688">练习 2.67-2.72</h3>
+<div id="outline-container-orgc60217e" class="outline-3">
+<h3 id="orgc60217e">练习 2.67-2.72</h3>
 </div>
 </div>
             
