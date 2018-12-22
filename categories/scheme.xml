@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Fri, 21 Dec 2018 15:44:18 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-2(3)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%283%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgf38c662" class="outline-2"&gt;
-&lt;h2 id="orgf38c662"&gt;符号数据&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgf38c662"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Sat, 22 Dec 2018 13:14:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-2(3)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%283%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgdb64f5a" class="outline-2"&gt;
+&lt;h2 id="orgdb64f5a"&gt;符号数据&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgdb64f5a"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;引进将任意符号作为数据的功能；&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd2cf593" class="outline-3"&gt;
-&lt;h3 id="orgd2cf593"&gt;引号&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgd2cf593"&gt;
+&lt;div id="outline-container-org9371c71" class="outline-3"&gt;
+&lt;h3 id="org9371c71"&gt;引号&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9371c71"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;将表和符号标记为应该作为数据对象看待，而不是作为应该求值的表达式；&lt;/li&gt;
 &lt;li&gt;所用的引号形式与自然语言中的不同，在 Scheme 里可以不写结束引号，这里已经
@@ -25,13 +25,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6b4dd24" class="outline-3"&gt;
-&lt;h3 id="org6b4dd24"&gt;练习 2.53-2.55&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org6b4dd24"&gt;
+&lt;div id="outline-container-orga551b39" class="outline-3"&gt;
+&lt;h3 id="orga551b39"&gt;练习 2.53-2.55&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga551b39"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orga745e47" class="outline-4"&gt;
-&lt;h4 id="orga745e47"&gt;2.53&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orga745e47"&gt;
+&lt;div id="outline-container-org46049f3" class="outline-4"&gt;
+&lt;h4 id="org46049f3"&gt;2.53&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org46049f3"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'a&lt;/span&gt; &lt;span class="ss"&gt;'b&lt;/span&gt; &lt;span class="ss"&gt;'c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;				&lt;span class="c1"&gt;;(a b c)&lt;/span&gt;
 
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'george&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;			&lt;span class="c1"&gt;;((george))&lt;/span&gt;
@@ -54,9 +54,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6e367f1" class="outline-4"&gt;
-&lt;h4 id="org6e367f1"&gt;2.54&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org6e367f1"&gt;
+&lt;div id="outline-container-orgaa51bd3" class="outline-4"&gt;
+&lt;h4 id="orgaa51bd3"&gt;2.54&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgaa51bd3"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;equal? &lt;/span&gt;&lt;span class="nv"&gt;items1&lt;/span&gt; &lt;span class="nv"&gt;items2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;and &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;pair? &lt;/span&gt;&lt;span class="nv"&gt;items1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;pair? &lt;/span&gt;&lt;span class="nv"&gt;items2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;and&lt;/span&gt;
@@ -70,9 +70,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4bc7753" class="outline-4"&gt;
-&lt;h4 id="org4bc7753"&gt;2.55&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org4bc7753"&gt;
+&lt;div id="outline-container-org4f2eb65" class="outline-4"&gt;
+&lt;h4 id="org4f2eb65"&gt;2.55&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org4f2eb65"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;'abracadabra&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;			&lt;span class="c1"&gt;;quote&lt;/span&gt;
 
      &lt;span class="c1"&gt;;; (quote (quote abracadabra))&lt;/span&gt;
@@ -85,9 +85,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1da631c" class="outline-3"&gt;
-&lt;h3 id="org1da631c"&gt;实例：符号求导&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org1da631c"&gt;
+&lt;div id="outline-container-orgc9e6c63" class="outline-3"&gt;
+&lt;h3 id="orgc9e6c63"&gt;实例：符号求导&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgc9e6c63"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;为了阐述符号操作的情况，并进一步阐述数据抽象的思想，展示设计一个执行代数
 表达式的符号求导过程。&lt;/li&gt;
@@ -95,13 +95,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5f4e0c9" class="outline-3"&gt;
-&lt;h3 id="org5f4e0c9"&gt;练习 2.56-2.58&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5f4e0c9"&gt;
+&lt;div id="outline-container-org75d50e9" class="outline-3"&gt;
+&lt;h3 id="org75d50e9"&gt;练习 2.56-2.58&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org75d50e9"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgf140493" class="outline-4"&gt;
-&lt;h4 id="orgf140493"&gt;2.56-2.57&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgf140493"&gt;
+&lt;div id="outline-container-org6648f3f" class="outline-4"&gt;
+&lt;h4 id="org6648f3f"&gt;2.56-2.57&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org6648f3f"&gt;
 &lt;p&gt;
 两题解答代码不冲突，功能互补。
 &lt;/p&gt;
@@ -192,13 +192,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org82dc8eb" class="outline-4"&gt;
-&lt;h4 id="org82dc8eb"&gt;2.58&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org82dc8eb"&gt;
+&lt;div id="outline-container-orge28072c" class="outline-4"&gt;
+&lt;h4 id="orge28072c"&gt;2.58&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orge28072c"&gt;
 &lt;/div&gt;
 &lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="orgfd24e15"&gt;&lt;/a&gt;a&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orgfd24e15"&gt;
+&lt;li&gt;&lt;a id="orgaf6fae0"&gt;&lt;/a&gt;a&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgaf6fae0"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 相对于 2.56-2.57 需要修改的接口&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-sum&lt;/span&gt; &lt;span class="nv"&gt;a1&lt;/span&gt; &lt;span class="nv"&gt;a2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;=number?&lt;/span&gt; &lt;span class="nv"&gt;a1&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;a2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -245,8 +245,8 @@
 &lt;/div&gt;
 &lt;/li&gt;
 
-&lt;li&gt;&lt;a id="org97f2640"&gt;&lt;/a&gt;b&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org97f2640"&gt;
+&lt;li&gt;&lt;a id="org6f3d77b"&gt;&lt;/a&gt;b&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org6f3d77b"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;      &lt;span class="c1"&gt;;; 相对于 a 需要修改的接口&lt;/span&gt;
       &lt;span class="c1"&gt;;; extract the expression sequence chained with specified operator&lt;/span&gt;
       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-part&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;operator&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -293,20 +293,268 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0481c80" class="outline-3"&gt;
-&lt;h3 id="org0481c80"&gt;实例：集合的表示&lt;/h3&gt;
+&lt;div id="outline-container-orgea23072" class="outline-3"&gt;
+&lt;h3 id="orgea23072"&gt;实例：集合的表示&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgea23072"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;集合的表示存在几种选择，而且它们相互之间在几个方面存在明显的不同；&lt;/li&gt;
+&lt;li&gt;集合作为排序的表中，为了简化，仅仅考虑集合元素是数值的情况，这样就可以用
+&amp;lt; 和 &amp;gt; 做元素的比较了；&lt;/li&gt;
+&lt;li&gt;在刚开始做程序设计时，可以创建某种简单而直接的初始实现，对于最终系统而言，
+这种做法显然并不合适，但这样对用于测试系统的其他部分则可能很有帮助，然后
+就可以将数据表示修改得更加精细。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org208445f" class="outline-3"&gt;
-&lt;h3 id="org208445f"&gt;练习 2.59-2.66&lt;/h3&gt;
+&lt;div id="outline-container-orgada9f48" class="outline-3"&gt;
+&lt;h3 id="orgada9f48"&gt;练习 2.59-2.66&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgada9f48"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org63ee39d" class="outline-4"&gt;
+&lt;h4 id="org63ee39d"&gt;2.59&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org63ee39d"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;union-set&lt;/span&gt; &lt;span class="nv"&gt;set1&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;element-of-set?&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;union-set&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;union-set&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org010297d" class="outline-3"&gt;
-&lt;h3 id="org010297d"&gt;实例：Huffman 编码树&lt;/h3&gt;
+&lt;div id="outline-container-org540e16d" class="outline-4"&gt;
+&lt;h4 id="org540e16d"&gt;2.60&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org540e16d"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;element-of-set?&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;set&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;set&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;equal? &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;true&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;element-of-set?&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;set&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;adjoin-set&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;set&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;set&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;remove-set-element&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;set&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;remove-set-element-iter&lt;/span&gt; &lt;span class="nv"&gt;acc&lt;/span&gt; &lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;acc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;equal? &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;append &lt;/span&gt;&lt;span class="nv"&gt;acc&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;remove-set-element-iter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;adjoin-set&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;acc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt; &lt;span class="c1"&gt;;literally intersection&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;remove-set-element-iter&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="nv"&gt;set&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intersection-set&lt;/span&gt; &lt;span class="nv"&gt;set1&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;or &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+	      &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;element-of-set?&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intersection-set&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;remove-set-element&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intersection-set&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;union-set&lt;/span&gt; &lt;span class="nv"&gt;set1&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;append &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc60217e" class="outline-3"&gt;
-&lt;h3 id="orgc60217e"&gt;练习 2.67-2.72&lt;/h3&gt;
+&lt;div id="outline-container-org9c5bb17" class="outline-4"&gt;
+&lt;h4 id="org9c5bb17"&gt;2.61&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org9c5bb17"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; adjoin-set 的代码不变，只是内部使用的 element-of-set? 是新的基于排序集合的版本；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; adjoin-set 的效率完全依赖于 element-of-set?，所以平均所需步数和它一样；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 但是正如 p105 译者注，排序的集合和未排序的集合使用查找操作的期望查找长度其实是一样的。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9fcab8b" class="outline-4"&gt;
+&lt;h4 id="org9fcab8b"&gt;2.62&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org9fcab8b"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;union-set&lt;/span&gt; &lt;span class="nv"&gt;set1&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;union-set&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;union-set&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;union-set&lt;/span&gt; &lt;span class="nv"&gt;set1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;set2&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7e38b40" class="outline-4"&gt;
+&lt;h4 id="org7e38b40"&gt;2.63&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7e38b40"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; a&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 结果是一样的；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; (1 3 5 7 9 11)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; b&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 第一个的增长速度 theta(nlog(n))&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 第二个是 theta(n)&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 至于是如何得出的请查看《算法导论》4.5节。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf72c1cf" class="outline-4"&gt;
+&lt;h4 id="orgf72c1cf"&gt;2.64&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf72c1cf"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; a&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; partial-tree 的分解过程网上有解释&lt;/span&gt;
+     &lt;span class="c1"&gt;;; （代码绕来绕去，并不是 sicp 的侧重点）&lt;/span&gt;
+     &lt;span class="c1"&gt;;; (5 (1 '() 3) (9 7 11))&lt;/span&gt;
+     &lt;span class="c1"&gt;;; ...&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; c&lt;/span&gt;
+     &lt;span class="c1"&gt;;; theta(n)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgfb44ccd" class="outline-4"&gt;
+&lt;h4 id="orgfb44ccd"&gt;2.65&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgfb44ccd"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; theta(n) + theta(n) + theta(n) = theta(n)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;union-set&lt;/span&gt; &lt;span class="nv"&gt;tree1&lt;/span&gt; &lt;span class="nv"&gt;tree2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-&amp;gt;tree&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;union-set-sorted-list&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tree-&amp;gt;list-2&lt;/span&gt; &lt;span class="nv"&gt;tree1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+					  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tree-&amp;gt;list-2&lt;/span&gt; &lt;span class="nv"&gt;tree2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intersection-set&lt;/span&gt; &lt;span class="nv"&gt;tree1&lt;/span&gt; &lt;span class="nv"&gt;tree2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-&amp;gt;tree&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;intersection-set-sorted-list&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tree-&amp;gt;list-2&lt;/span&gt; &lt;span class="nv"&gt;tree1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+						 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tree-&amp;gt;list-2&lt;/span&gt; &lt;span class="nv"&gt;tree2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga48ab74" class="outline-4"&gt;
+&lt;h4 id="orga48ab74"&gt;2.66&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orga48ab74"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup&lt;/span&gt; &lt;span class="nv"&gt;given-key&lt;/span&gt; &lt;span class="nv"&gt;set-of-records&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;set-of-records&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;given-key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;entry&lt;/span&gt; &lt;span class="nv"&gt;set-of-records&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;entry&lt;/span&gt; &lt;span class="nv"&gt;set-of-records&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;given-key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;entry&lt;/span&gt; &lt;span class="nv"&gt;set-of-records&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup&lt;/span&gt; &lt;span class="nv"&gt;given-key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;right-branch&lt;/span&gt; &lt;span class="nv"&gt;set-of-records&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="nv"&gt;given-key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;entry&lt;/span&gt; &lt;span class="nv"&gt;set-of-records&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup&lt;/span&gt; &lt;span class="nv"&gt;given-key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;left-branch&lt;/span&gt; &lt;span class="nv"&gt;set-of-records&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge3acc8f" class="outline-3"&gt;
+&lt;h3 id="orge3acc8f"&gt;实例：Huffman 编码树&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge3acc8f"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;关于 Huffman 编码得更详细内容可参考 《算法导论》16.3 章节；&lt;/li&gt;
+&lt;li&gt;变长前缀码；&lt;/li&gt;
+&lt;li&gt;二叉数，树叶节点（符号，权重），非叶节点（符号集合，权重）；&lt;/li&gt;
+&lt;li&gt;权重在编码和解码中并不使用，用于构造树；&lt;/li&gt;
+&lt;li&gt;从树根向下移动，直到到达了保存着这一符号的树叶为止，左行加位 0，右行加位 1；&lt;/li&gt;
+&lt;li&gt;生成 Huffman 树：设法安排这棵树，使得那些带有最低频度的符号出现在离树根最远的地方；&lt;/li&gt;
+&lt;li&gt;通用型过程：可以处理多于一种数据的过程；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge2c27f7" class="outline-3"&gt;
+&lt;h3 id="orge2c27f7"&gt;练习 2.67-2.72&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge2c27f7"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org29e583d" class="outline-4"&gt;
+&lt;h4 id="org29e583d"&gt;2.67&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org29e583d"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;(a d a b b c a)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org86fac16" class="outline-4"&gt;
+&lt;h4 id="org86fac16"&gt;2.68&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org86fac16"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;encode&lt;/span&gt; &lt;span class="nv"&gt;message&lt;/span&gt; &lt;span class="nv"&gt;tree&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;append &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;encode-symbol&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;tree&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;encode&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;message&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;tree&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;encode-symbol&lt;/span&gt; &lt;span class="nv"&gt;symbol&lt;/span&gt; &lt;span class="nv"&gt;tree&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;leaf?&lt;/span&gt; &lt;span class="nv"&gt;tree&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;memq &lt;/span&gt;&lt;span class="nv"&gt;symbol&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;symbols&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;left-branch&lt;/span&gt; &lt;span class="nv"&gt;tree&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;encode-symbol&lt;/span&gt; &lt;span class="nv"&gt;symbol&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;left-branch&lt;/span&gt; &lt;span class="nv"&gt;tree&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;memq &lt;/span&gt;&lt;span class="nv"&gt;symbol&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;symbols&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;right-branch&lt;/span&gt; &lt;span class="nv"&gt;tree&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;encode-symbol&lt;/span&gt; &lt;span class="nv"&gt;symbol&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;right-branch&lt;/span&gt; &lt;span class="nv"&gt;tree&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"bad symbol not in tree"&lt;/span&gt; &lt;span class="nv"&gt;symbol&lt;/span&gt; &lt;span class="nv"&gt;tree&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6ef3a22" class="outline-4"&gt;
+&lt;h4 id="org6ef3a22"&gt;2.69&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org6ef3a22"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;generate-huffman-tree&lt;/span&gt; &lt;span class="nv"&gt;pairs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;successive-merge&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-leaf-set&lt;/span&gt; &lt;span class="nv"&gt;pairs&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;successive-merge&lt;/span&gt; &lt;span class="nv"&gt;ordered-pairs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;ordered-pairs&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;ordered-pairs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;left&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cddr &lt;/span&gt;&lt;span class="nv"&gt;ordered-pairs&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;left-branch&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;ordered-pairs&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;right-branch&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;ordered-pairs&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;sub-tree&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-code-tree&lt;/span&gt;
+			      &lt;span class="nv"&gt;left-branch&lt;/span&gt;
+			      &lt;span class="nv"&gt;right-branch&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;successive-merge&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;adjoin-set&lt;/span&gt; &lt;span class="nv"&gt;sub-tree&lt;/span&gt; &lt;span class="nv"&gt;left&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8f4d8ce" class="outline-4"&gt;
+&lt;h4 id="org8f4d8ce"&gt;2.70&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org8f4d8ce"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;pairs&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;A&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;NA&lt;/span&gt; &lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;BOOM&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;SHA&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;GET&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;YIP&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;JOB&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;WAH&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;rock-tree&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;generate-huffman-tree&lt;/span&gt; &lt;span class="nv"&gt;pairs&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;song&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;Get&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;job&lt;/span&gt; &lt;span class="nv"&gt;Sha&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;Get&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;job&lt;/span&gt; &lt;span class="nv"&gt;Sha&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;na&lt;/span&gt; &lt;span class="nv"&gt;Wah&lt;/span&gt; &lt;span class="nv"&gt;yip&lt;/span&gt; &lt;span class="nv"&gt;yip&lt;/span&gt; &lt;span class="nv"&gt;yip&lt;/span&gt; &lt;span class="nv"&gt;yip&lt;/span&gt; &lt;span class="nv"&gt;yip&lt;/span&gt; &lt;span class="nv"&gt;yip&lt;/span&gt; &lt;span class="nv"&gt;yip&lt;/span&gt; &lt;span class="nv"&gt;yip&lt;/span&gt; &lt;span class="nv"&gt;yip&lt;/span&gt; &lt;span class="nv"&gt;Sha&lt;/span&gt; &lt;span class="nv"&gt;boom&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;tree-bits&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;encode&lt;/span&gt; &lt;span class="nv"&gt;song&lt;/span&gt; &lt;span class="nv"&gt;rock-tree&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;;84&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;normal-bits&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length &lt;/span&gt;&lt;span class="nv"&gt;song&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="c1"&gt;;108, it needs three bits to represent a symbol whose system contains 8 elements&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3ef4f3b" class="outline-4"&gt;
+&lt;h4 id="org3ef4f3b"&gt;2.71&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3ef4f3b"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 这样的题目关注的并不是 sicp 的侧重点，不需要纠结。&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; just like a triangle with serveral parallel lines inside it, key world: similar triangle&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; the minimum number of bits: 1&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; the maximum number of bits: (- n 1)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb645c81" class="outline-4"&gt;
+&lt;h4 id="orgb645c81"&gt;2.72&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgb645c81"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 此题和上一题一样并不需要纠结....&lt;/span&gt;
+     &lt;span class="c1"&gt;;; the increasing speed of steps theta(n)&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 根据算法导论章节4.5主方法推得；&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; the most frequency one: theta(1)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; the least frequency one: O((expt n 2)) due to the memq operation in every search deeper&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%283%29/</guid><pubDate>Fri, 21 Dec 2018 04:17:05 GMT</pubDate></item><item><title>SICP-Refresher-Chapter-2(2)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%282%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org79b79f5" class="outline-2"&gt;
 &lt;h2 id="org79b79f5"&gt;层次性数据和闭包性质&lt;/h2&gt;

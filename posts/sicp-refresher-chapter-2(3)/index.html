@@ -80,17 +80,17 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-orgf38c662" class="outline-2">
-<h2 id="orgf38c662">符号数据</h2>
-<div class="outline-text-2" id="text-orgf38c662">
+        <div id="outline-container-orgdb64f5a" class="outline-2">
+<h2 id="orgdb64f5a">符号数据</h2>
+<div class="outline-text-2" id="text-orgdb64f5a">
 <ol class="org-ol">
 <li>引进将任意符号作为数据的功能；</li>
 </ol>
 </div>
 
-<div id="outline-container-orgd2cf593" class="outline-3">
-<h3 id="orgd2cf593">引号</h3>
-<div class="outline-text-3" id="text-orgd2cf593">
+<div id="outline-container-org9371c71" class="outline-3">
+<h3 id="org9371c71">引号</h3>
+<div class="outline-text-3" id="text-org9371c71">
 <ol class="org-ol">
 <li>将表和符号标记为应该作为数据对象看待，而不是作为应该求值的表达式；</li>
 <li>所用的引号形式与自然语言中的不同，在 Scheme 里可以不写结束引号，这里已经
@@ -106,13 +106,13 @@
 </div>
 </div>
 
-<div id="outline-container-org6b4dd24" class="outline-3">
-<h3 id="org6b4dd24">练习 2.53-2.55</h3>
-<div class="outline-text-3" id="text-org6b4dd24">
+<div id="outline-container-orga551b39" class="outline-3">
+<h3 id="orga551b39">练习 2.53-2.55</h3>
+<div class="outline-text-3" id="text-orga551b39">
 </div>
-<div id="outline-container-orga745e47" class="outline-4">
-<h4 id="orga745e47">2.53</h4>
-<div class="outline-text-4" id="text-orga745e47">
+<div id="outline-container-org46049f3" class="outline-4">
+<h4 id="org46049f3">2.53</h4>
+<div class="outline-text-4" id="text-org46049f3">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="nb">list </span><span class="ss">'a</span> <span class="ss">'b</span> <span class="ss">'c</span><span class="p">)</span>				<span class="c1">;(a b c)</span>
 
      <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">list </span><span class="ss">'george</span><span class="p">))</span>			<span class="c1">;((george))</span>
@@ -135,9 +135,9 @@
 </div>
 </div>
 
-<div id="outline-container-org6e367f1" class="outline-4">
-<h4 id="org6e367f1">2.54</h4>
-<div class="outline-text-4" id="text-org6e367f1">
+<div id="outline-container-orgaa51bd3" class="outline-4">
+<h4 id="orgaa51bd3">2.54</h4>
+<div class="outline-text-4" id="text-orgaa51bd3">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">equal? </span><span class="nv">items1</span> <span class="nv">items2</span><span class="p">)</span>
        <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">items1</span><span class="p">)</span> <span class="p">(</span><span class="nb">pair? </span><span class="nv">items2</span><span class="p">))</span>
 	      <span class="p">(</span><span class="nf">and</span>
@@ -151,9 +151,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4bc7753" class="outline-4">
-<h4 id="org4bc7753">2.55</h4>
-<div class="outline-text-4" id="text-org4bc7753">
+<div id="outline-container-org4f2eb65" class="outline-4">
+<h4 id="org4f2eb65">2.55</h4>
+<div class="outline-text-4" id="text-org4f2eb65">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="nb">car </span><span class="o">'</span><span class="ss">'abracadabra</span><span class="p">)</span>			<span class="c1">;quote</span>
 
      <span class="c1">;; (quote (quote abracadabra))</span>
@@ -166,9 +166,9 @@
 </div>
 </div>
 
-<div id="outline-container-org1da631c" class="outline-3">
-<h3 id="org1da631c">实例：符号求导</h3>
-<div class="outline-text-3" id="text-org1da631c">
+<div id="outline-container-orgc9e6c63" class="outline-3">
+<h3 id="orgc9e6c63">实例：符号求导</h3>
+<div class="outline-text-3" id="text-orgc9e6c63">
 <ol class="org-ol">
 <li>为了阐述符号操作的情况，并进一步阐述数据抽象的思想，展示设计一个执行代数
 表达式的符号求导过程。</li>
@@ -176,13 +176,13 @@
 </div>
 </div>
 
-<div id="outline-container-org5f4e0c9" class="outline-3">
-<h3 id="org5f4e0c9">练习 2.56-2.58</h3>
-<div class="outline-text-3" id="text-org5f4e0c9">
+<div id="outline-container-org75d50e9" class="outline-3">
+<h3 id="org75d50e9">练习 2.56-2.58</h3>
+<div class="outline-text-3" id="text-org75d50e9">
 </div>
-<div id="outline-container-orgf140493" class="outline-4">
-<h4 id="orgf140493">2.56-2.57</h4>
-<div class="outline-text-4" id="text-orgf140493">
+<div id="outline-container-org6648f3f" class="outline-4">
+<h4 id="org6648f3f">2.56-2.57</h4>
+<div class="outline-text-4" id="text-org6648f3f">
 <p>
 两题解答代码不冲突，功能互补。
 </p>
@@ -273,13 +273,13 @@
 </div>
 </div>
 
-<div id="outline-container-org82dc8eb" class="outline-4">
-<h4 id="org82dc8eb">2.58</h4>
-<div class="outline-text-4" id="text-org82dc8eb">
+<div id="outline-container-orge28072c" class="outline-4">
+<h4 id="orge28072c">2.58</h4>
+<div class="outline-text-4" id="text-orge28072c">
 </div>
 <ul class="org-ul">
 <li>
-<a id="orgfd24e15"></a>a<br><div class="outline-text-5" id="text-orgfd24e15">
+<a id="orgaf6fae0"></a>a<br><div class="outline-text-5" id="text-orgaf6fae0">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 相对于 2.56-2.57 需要修改的接口</span>
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-sum</span> <span class="nv">a1</span> <span class="nv">a2</span><span class="p">)</span>
        <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">=number?</span> <span class="nv">a1</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">a2</span><span class="p">)</span>
@@ -327,7 +327,7 @@
 </li>
 
 <li>
-<a id="org97f2640"></a>b<br><div class="outline-text-5" id="text-org97f2640">
+<a id="org6f3d77b"></a>b<br><div class="outline-text-5" id="text-org6f3d77b">
 <div class="highlight"><pre><span></span>      <span class="c1">;; 相对于 a 需要修改的接口</span>
       <span class="c1">;; extract the expression sequence chained with specified operator</span>
       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">first-part</span> <span class="nv">exp</span> <span class="nv">operator</span><span class="p">)</span>
@@ -374,20 +374,268 @@
 </div>
 </div>
 
-<div id="outline-container-org0481c80" class="outline-3">
-<h3 id="org0481c80">实例：集合的表示</h3>
+<div id="outline-container-orgea23072" class="outline-3">
+<h3 id="orgea23072">实例：集合的表示</h3>
+<div class="outline-text-3" id="text-orgea23072">
+<ol class="org-ol">
+<li>集合的表示存在几种选择，而且它们相互之间在几个方面存在明显的不同；</li>
+<li>集合作为排序的表中，为了简化，仅仅考虑集合元素是数值的情况，这样就可以用
+&lt; 和 &gt; 做元素的比较了；</li>
+<li>在刚开始做程序设计时，可以创建某种简单而直接的初始实现，对于最终系统而言，
+这种做法显然并不合适，但这样对用于测试系统的其他部分则可能很有帮助，然后
+就可以将数据表示修改得更加精细。</li>
+</ol>
+</div>
 </div>
 
-<div id="outline-container-org208445f" class="outline-3">
-<h3 id="org208445f">练习 2.59-2.66</h3>
+<div id="outline-container-orgada9f48" class="outline-3">
+<h3 id="orgada9f48">练习 2.59-2.66</h3>
+<div class="outline-text-3" id="text-orgada9f48">
+</div>
+<div id="outline-container-org63ee39d" class="outline-4">
+<h4 id="org63ee39d">2.59</h4>
+<div class="outline-text-4" id="text-org63ee39d">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="nf">define</span><span class="p">(</span><span class="nf">union-set</span> <span class="nv">set1</span> <span class="nv">set2</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">set1</span><span class="p">)</span> <span class="nv">set2</span><span class="p">)</span>
+	     <span class="p">((</span><span class="nb">null? </span><span class="nv">set2</span><span class="p">)</span> <span class="nv">set1</span><span class="p">)</span>
+	     <span class="p">((</span><span class="nf">element-of-set?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">)</span> <span class="nv">set2</span><span class="p">)</span>
+	      <span class="p">(</span><span class="nf">union-set</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">set1</span><span class="p">)</span> <span class="nv">set2</span><span class="p">))</span>
+	     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">)</span> <span class="p">(</span><span class="nf">union-set</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">set1</span><span class="p">)</span> <span class="nv">set2</span><span class="p">)))))</span>
+</pre></div>
+</div>
 </div>
 
-<div id="outline-container-org010297d" class="outline-3">
-<h3 id="org010297d">实例：Huffman 编码树</h3>
+<div id="outline-container-org540e16d" class="outline-4">
+<h4 id="org540e16d">2.60</h4>
+<div class="outline-text-4" id="text-org540e16d">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">element-of-set?</span> <span class="nv">x</span> <span class="nv">set</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">set</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span>
+	     <span class="p">((</span><span class="nb">equal? </span><span class="nv">x</span> <span class="p">(</span><span class="nb">car </span><span class="nv">set</span><span class="p">))</span> <span class="nv">true</span><span class="p">)</span>
+	     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">element-of-set?</span> <span class="nv">x</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">set</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">adjoin-set</span> <span class="nv">x</span> <span class="nv">set</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">set</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">remove-set-element</span> <span class="nv">x</span> <span class="nv">set</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">remove-set-element-iter</span> <span class="nv">acc</span> <span class="nv">rest</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">rest</span><span class="p">)</span> <span class="nv">acc</span><span class="p">)</span>
+	       <span class="p">((</span><span class="nb">equal? </span><span class="nv">x</span> <span class="p">(</span><span class="nb">car </span><span class="nv">rest</span><span class="p">))</span> <span class="p">(</span><span class="nb">append </span><span class="nv">acc</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">rest</span><span class="p">)))</span>
+	       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">remove-set-element-iter</span> <span class="p">(</span><span class="nf">adjoin-set</span> <span class="p">(</span><span class="nb">car </span><span class="nv">rest</span><span class="p">)</span> <span class="nv">acc</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">rest</span><span class="p">)))))</span> <span class="c1">;literally intersection</span>
+	<span class="p">(</span><span class="nf">remove-set-element-iter</span> <span class="o">'</span><span class="p">()</span> <span class="nv">set</span><span class="p">))</span>
+
+      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">intersection-set</span> <span class="nv">set1</span> <span class="nv">set2</span><span class="p">)</span>
+	<span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">null? </span><span class="nv">set1</span><span class="p">)</span> <span class="p">(</span><span class="nb">null? </span><span class="nv">set2</span><span class="p">))</span> <span class="o">'</span><span class="p">())</span>
+	      <span class="p">((</span><span class="nf">element-of-set?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">)</span> <span class="nv">set2</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">)</span>
+		     <span class="p">(</span><span class="nf">intersection-set</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">set1</span><span class="p">)</span> <span class="p">(</span><span class="nf">remove-set-element</span> <span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">)</span> <span class="nv">set2</span><span class="p">))))</span>
+	      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">intersection-set</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">set1</span><span class="p">)</span> <span class="nv">set2</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">union-set</span> <span class="nv">set1</span> <span class="nv">set2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">append </span><span class="nv">set1</span> <span class="nv">set2</span><span class="p">))</span>
+</pre></div>
+</div>
 </div>
 
-<div id="outline-container-orgc60217e" class="outline-3">
-<h3 id="orgc60217e">练习 2.67-2.72</h3>
+<div id="outline-container-org9c5bb17" class="outline-4">
+<h4 id="org9c5bb17">2.61</h4>
+<div class="outline-text-4" id="text-org9c5bb17">
+<div class="highlight"><pre><span></span>     <span class="c1">;; adjoin-set 的代码不变，只是内部使用的 element-of-set? 是新的基于排序集合的版本；</span>
+     <span class="c1">;; adjoin-set 的效率完全依赖于 element-of-set?，所以平均所需步数和它一样；</span>
+     <span class="c1">;; 但是正如 p105 译者注，排序的集合和未排序的集合使用查找操作的期望查找长度其实是一样的。</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org9fcab8b" class="outline-4">
+<h4 id="org9fcab8b">2.62</h4>
+<div class="outline-text-4" id="text-org9fcab8b">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">union-set</span> <span class="nv">set1</span> <span class="nv">set2</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">set1</span><span class="p">)</span> <span class="nv">set2</span><span class="p">)</span>
+	     <span class="p">((</span><span class="nb">null? </span><span class="nv">set2</span><span class="p">)</span> <span class="nv">set1</span><span class="p">)</span>
+	     <span class="p">((</span><span class="nb">= </span><span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">set2</span><span class="p">))</span>
+	      <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">)</span> <span class="p">(</span><span class="nf">union-set</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">set1</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">set2</span><span class="p">))))</span>
+	     <span class="p">((</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">set2</span><span class="p">))</span>
+	      <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">)</span> <span class="p">(</span><span class="nf">union-set</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">set1</span><span class="p">)</span> <span class="nv">set2</span><span class="p">)))</span>
+	     <span class="p">((</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">car </span><span class="nv">set2</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">set1</span><span class="p">))</span>
+	      <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">set2</span><span class="p">)</span> <span class="p">(</span><span class="nf">union-set</span> <span class="nv">set1</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">set2</span><span class="p">))))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org7e38b40" class="outline-4">
+<h4 id="org7e38b40">2.63</h4>
+<div class="outline-text-4" id="text-org7e38b40">
+<div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
+
+     <span class="c1">;; 结果是一样的；</span>
+     <span class="c1">;; (1 3 5 7 9 11)</span>
+
+     <span class="c1">;; b</span>
+
+     <span class="c1">;; 第一个的增长速度 theta(nlog(n))</span>
+     <span class="c1">;; 第二个是 theta(n)</span>
+     <span class="c1">;; 至于是如何得出的请查看《算法导论》4.5节。</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgf72c1cf" class="outline-4">
+<h4 id="orgf72c1cf">2.64</h4>
+<div class="outline-text-4" id="text-orgf72c1cf">
+<div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
+
+     <span class="c1">;; partial-tree 的分解过程网上有解释</span>
+     <span class="c1">;; （代码绕来绕去，并不是 sicp 的侧重点）</span>
+     <span class="c1">;; (5 (1 '() 3) (9 7 11))</span>
+     <span class="c1">;; ...</span>
+
+     <span class="c1">;; c</span>
+     <span class="c1">;; theta(n)</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgfb44ccd" class="outline-4">
+<h4 id="orgfb44ccd">2.65</h4>
+<div class="outline-text-4" id="text-orgfb44ccd">
+<div class="highlight"><pre><span></span>     <span class="c1">;; theta(n) + theta(n) + theta(n) = theta(n)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">union-set</span> <span class="nv">tree1</span> <span class="nv">tree2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">list-&gt;tree</span> <span class="p">(</span><span class="nf">union-set-sorted-list</span> <span class="p">(</span><span class="nf">tree-&gt;list-2</span> <span class="nv">tree1</span><span class="p">)</span>
+					  <span class="p">(</span><span class="nf">tree-&gt;list-2</span> <span class="nv">tree2</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">intersection-set</span> <span class="nv">tree1</span> <span class="nv">tree2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">list-&gt;tree</span> <span class="p">(</span><span class="nf">intersection-set-sorted-list</span> <span class="p">(</span><span class="nf">tree-&gt;list-2</span> <span class="nv">tree1</span><span class="p">)</span>
+						 <span class="p">(</span><span class="nf">tree-&gt;list-2</span> <span class="nv">tree2</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orga48ab74" class="outline-4">
+<h4 id="orga48ab74">2.66</h4>
+<div class="outline-text-4" id="text-orga48ab74">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lookup</span> <span class="nv">given-key</span> <span class="nv">set-of-records</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">set-of-records</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span>
+	     <span class="p">((</span><span class="nb">= </span><span class="nv">given-key</span> <span class="p">(</span><span class="nf">key</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set-of-records</span><span class="p">)))</span>
+	      <span class="p">(</span><span class="nf">entry</span> <span class="nv">set-of-records</span><span class="p">))</span>
+	     <span class="p">((</span><span class="nb">&gt; </span><span class="nv">given-key</span> <span class="p">(</span><span class="nf">key</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set-of-records</span><span class="p">)))</span>
+	      <span class="p">(</span><span class="nf">lookup</span> <span class="nv">given-key</span> <span class="p">(</span><span class="nf">right-branch</span> <span class="nv">set-of-records</span><span class="p">)))</span>
+	     <span class="p">((</span><span class="nb">&lt; </span><span class="nv">given-key</span> <span class="p">(</span><span class="nf">key</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set-of-records</span><span class="p">)))</span>
+	      <span class="p">(</span><span class="nf">lookup</span> <span class="nv">given-key</span> <span class="p">(</span><span class="nf">left-branch</span> <span class="nv">set-of-records</span><span class="p">)))))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge3acc8f" class="outline-3">
+<h3 id="orge3acc8f">实例：Huffman 编码树</h3>
+<div class="outline-text-3" id="text-orge3acc8f">
+<ol class="org-ol">
+<li>关于 Huffman 编码得更详细内容可参考 《算法导论》16.3 章节；</li>
+<li>变长前缀码；</li>
+<li>二叉数，树叶节点（符号，权重），非叶节点（符号集合，权重）；</li>
+<li>权重在编码和解码中并不使用，用于构造树；</li>
+<li>从树根向下移动，直到到达了保存着这一符号的树叶为止，左行加位 0，右行加位 1；</li>
+<li>生成 Huffman 树：设法安排这棵树，使得那些带有最低频度的符号出现在离树根最远的地方；</li>
+<li>通用型过程：可以处理多于一种数据的过程；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orge2c27f7" class="outline-3">
+<h3 id="orge2c27f7">练习 2.67-2.72</h3>
+<div class="outline-text-3" id="text-orge2c27f7">
+</div>
+<div id="outline-container-org29e583d" class="outline-4">
+<h4 id="org29e583d">2.67</h4>
+<div class="outline-text-4" id="text-org29e583d">
+<div class="highlight"><pre><span></span>     <span class="c1">;(a d a b b c a)</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org86fac16" class="outline-4">
+<h4 id="org86fac16">2.68</h4>
+<div class="outline-text-4" id="text-org86fac16">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">encode</span> <span class="nv">message</span> <span class="nv">tree</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">message</span><span class="p">)</span>
+	   <span class="o">'</span><span class="p">()</span>
+	   <span class="p">(</span><span class="nb">append </span><span class="p">(</span><span class="nf">encode-symbol</span> <span class="p">(</span><span class="nb">car </span><span class="nv">message</span><span class="p">)</span> <span class="nv">tree</span><span class="p">)</span>
+		   <span class="p">(</span><span class="nf">encode</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">message</span><span class="p">)</span> <span class="nv">tree</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">encode-symbol</span> <span class="nv">symbol</span> <span class="nv">tree</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">leaf?</span> <span class="nv">tree</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+	     <span class="p">((</span><span class="nb">memq </span><span class="nv">symbol</span> <span class="p">(</span><span class="nf">symbols</span> <span class="p">(</span><span class="nf">left-branch</span> <span class="nv">tree</span><span class="p">)))</span>
+	      <span class="p">(</span><span class="nb">cons </span><span class="mi">0</span> <span class="p">(</span><span class="nf">encode-symbol</span> <span class="nv">symbol</span> <span class="p">(</span><span class="nf">left-branch</span> <span class="nv">tree</span><span class="p">))))</span>
+	     <span class="p">((</span><span class="nb">memq </span><span class="nv">symbol</span> <span class="p">(</span><span class="nf">symbols</span> <span class="p">(</span><span class="nf">right-branch</span> <span class="nv">tree</span><span class="p">)))</span> <span class="p">(</span><span class="nb">cons </span><span class="mi">1</span> <span class="p">(</span><span class="nf">encode-symbol</span> <span class="nv">symbol</span> <span class="p">(</span><span class="nf">right-branch</span> <span class="nv">tree</span><span class="p">))))</span>
+	     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="s">"bad symbol not in tree"</span> <span class="nv">symbol</span> <span class="nv">tree</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org6ef3a22" class="outline-4">
+<h4 id="org6ef3a22">2.69</h4>
+<div class="outline-text-4" id="text-org6ef3a22">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">generate-huffman-tree</span> <span class="nv">pairs</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">successive-merge</span> <span class="p">(</span><span class="nf">make-leaf-set</span> <span class="nv">pairs</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">successive-merge</span> <span class="nv">ordered-pairs</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">ordered-pairs</span><span class="p">))</span>
+	   <span class="p">(</span><span class="nb">car </span><span class="nv">ordered-pairs</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">left</span> <span class="p">(</span><span class="nb">cddr </span><span class="nv">ordered-pairs</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">left-branch</span> <span class="p">(</span><span class="nb">car </span><span class="nv">ordered-pairs</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">right-branch</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">ordered-pairs</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">sub-tree</span> <span class="p">(</span><span class="nf">make-code-tree</span>
+			      <span class="nv">left-branch</span>
+			      <span class="nv">right-branch</span><span class="p">)))</span>
+	       <span class="p">(</span><span class="nf">successive-merge</span> <span class="p">(</span><span class="nf">adjoin-set</span> <span class="nv">sub-tree</span> <span class="nv">left</span><span class="p">))))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org8f4d8ce" class="outline-4">
+<h4 id="org8f4d8ce">2.70</h4>
+<div class="outline-text-4" id="text-org8f4d8ce">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="nv">pairs</span> <span class="o">'</span><span class="p">((</span><span class="nf">A</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nf">NA</span> <span class="mi">16</span><span class="p">)</span> <span class="p">(</span><span class="nf">BOOM</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nf">SHA</span> <span class="mi">3</span><span class="p">)</span> <span class="p">(</span><span class="nf">GET</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nf">YIP</span> <span class="mi">9</span><span class="p">)</span> <span class="p">(</span><span class="nf">JOB</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nf">WAH</span> <span class="mi">1</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">rock-tree</span> <span class="p">(</span><span class="nf">generate-huffman-tree</span> <span class="nv">pairs</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">song</span> <span class="o">'</span><span class="p">(</span><span class="nv">Get</span> <span class="nv">a</span> <span class="nv">job</span> <span class="nv">Sha</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">Get</span> <span class="nv">a</span> <span class="nv">job</span> <span class="nv">Sha</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">na</span> <span class="nv">Wah</span> <span class="nv">yip</span> <span class="nv">yip</span> <span class="nv">yip</span> <span class="nv">yip</span> <span class="nv">yip</span> <span class="nv">yip</span> <span class="nv">yip</span> <span class="nv">yip</span> <span class="nv">yip</span> <span class="nv">Sha</span> <span class="nv">boom</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">tree-bits</span> <span class="p">(</span><span class="nf">encode</span> <span class="nv">song</span> <span class="nv">rock-tree</span><span class="p">))</span> <span class="c1">;84</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">normal-bits</span> <span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="p">(</span><span class="nb">length </span><span class="nv">song</span><span class="p">)))</span> <span class="c1">;108, it needs three bits to represent a symbol whose system contains 8 elements</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org3ef4f3b" class="outline-4">
+<h4 id="org3ef4f3b">2.71</h4>
+<div class="outline-text-4" id="text-org3ef4f3b">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 这样的题目关注的并不是 sicp 的侧重点，不需要纠结。</span>
+
+     <span class="c1">;; just like a triangle with serveral parallel lines inside it, key world: similar triangle</span>
+
+     <span class="c1">;; the minimum number of bits: 1</span>
+
+     <span class="c1">;; the maximum number of bits: (- n 1)</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgb645c81" class="outline-4">
+<h4 id="orgb645c81">2.72</h4>
+<div class="outline-text-4" id="text-orgb645c81">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 此题和上一题一样并不需要纠结....</span>
+     <span class="c1">;; the increasing speed of steps theta(n)</span>
+     <span class="c1">;; 根据算法导论章节4.5主方法推得；</span>
+
+     <span class="c1">;; the most frequency one: theta(1)</span>
+
+     <span class="c1">;; the least frequency one: O((expt n 2)) due to the memq operation in every search deeper</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
             
