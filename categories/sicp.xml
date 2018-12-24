@@ -1,5 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about SICP)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/sicp.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Sat, 22 Dec 2018 13:14:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-2(3)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%283%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgdb64f5a" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about SICP)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/sicp.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Mon, 24 Dec 2018 14:27:13 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-2(4)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%284%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org73689e1" class="outline-2"&gt;
+&lt;h2 id="org73689e1"&gt;抽象数据的多重表示&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org73689e1"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;对于一个数据对象可能存在多种有用的表示形式，而且也可能希望所设计的系统能处
+理多种表示形式；&lt;/li&gt;
+&lt;li&gt;除了需要将表示与使用相隔离的数据抽象屏障之外，还需要有抽象屏障去隔离互不相
+同的设计选择，以便允许不同的设计选择在同一个程序里共存；&lt;/li&gt;
+&lt;li&gt;进一步说，由于大型程序常常是通过组合起一些现存模块构造起来的，而这些模块又
+是独立设计的，我们也需要一些方法，使程序员可能逐步地将许多模块结合成一个大
+型系统，而不必去重新设计或者重新实现这些模块；&lt;/li&gt;
+&lt;li&gt;本节构造通用型过程（可以在不止一种数据表示上操作的过程）所采用的主要技术，
+是让它们在带有 &lt;b&gt;类型标志&lt;/b&gt; 的数据对象上操作（即让这些数据对象包含着它们应该
+如何被处理的明确信息）；&lt;/li&gt;
+&lt;li&gt;本节还讨论 &lt;b&gt;数据导向&lt;/b&gt; 的程序设计，这是一种用于构造采用了通用型操作的系统的
+有力而且方便的技术；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org940f758" class="outline-3"&gt;
+&lt;h3 id="org940f758"&gt;复数的表示&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org940f758"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;复数表示为有序对的两种可能表示方式：直角坐标形式（实部和虚部）以及极坐标
+形似（模和幅角）；&lt;/li&gt;
+&lt;li&gt;复数的两种不同表示方式，分别适合不同的运算（直角坐标适合加减，极坐标适合
+乘除）；&lt;/li&gt;
+&lt;li&gt;从编写使用复数的程序的开发人员角度看，数据抽象原理的建议是所有复数操作都
+应该可以使用，无论计算机所用的具体表示形式是什么；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org207414b" class="outline-3"&gt;
+&lt;h3 id="org207414b"&gt;带标帜数据&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org207414b"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;最小允诺原则：在实现程序时，由选择函数和构造函数形成抽象屏障，使我们可以
+把为自己所用的数据对象选择具体表示形式的事情尽量向后推，而且还能保持系统
+设计的最大灵活性；&lt;/li&gt;
+&lt;li&gt;本节例子的最终形态将数据对象从一个层次传到另一个层次的过程中，剥去和加上
+标志的规范方式可以成为一种重要的组织策略；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd087778" class="outline-3"&gt;
+&lt;h3 id="orgd087778"&gt;数据导向的程序设计和可加性&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd087778"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;检查一个数据项的类型，并据此去调用某个适当过程成为基于类型的分派，这在系
+统设计中是一种获得模块性的强有力策略；&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;数据导向&lt;/b&gt; 的程序设计技术就是一种使程序能直接利用类似 &lt;b&gt;类型－操作&lt;/b&gt; 二维表
+格工作的程序设计技术，表格中 &lt;b&gt;作为元素的过程&lt;/b&gt; 针对作为参数的每个类型实现
+每一个操作，能够将系统设计进一步模块化；&lt;/li&gt;
+&lt;li&gt;章节 2.4.2 让每个操作管理自己的分派，实际上就是把 2.4.3 中的二维表格分解
+为一行一行，让每个通用型过程表示表格中的一行；&lt;/li&gt;
+&lt;li&gt;另一种实现策略是将这一表格按列进行分解，采用“智能数据对象”（其实就是将数
+据对象用过程来表示，关键词 dispatch）让它们基于操作名完成所需的分派工作，
+这种策略就是 &lt;b&gt;消息传递&lt;/b&gt; （将数据对象设想为一个实体，以“消息”的方式接收到
+所需操作的名字）；&lt;/li&gt;
+&lt;li&gt;消息传递是一种有价值的技术，第三章将会详细讨论并用于构造模拟程序。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5c8d58c" class="outline-3"&gt;
+&lt;h3 id="org5c8d58c"&gt;练习 2.73-2.76&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5c8d58c"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgb6e3469" class="outline-4"&gt;
+&lt;h4 id="orgb6e3469"&gt;2.73&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgb6e3469"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; a&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 数字和符号是 scheme 的基本元素，有语言内置的过程可以识别和区分；而且区分之后&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 直接返回数值，并不需要过程计算（如果一定要全部都使用表格分发也行，但改动较多&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 且无必要）；&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; b &amp;amp; c&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;;其余过程和 3.3.2 实例及乘幂求导练习一致&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;addend&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;augend&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="mi"&gt;0&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="ss"&gt;'+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;multiplier&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;multiplicand&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="mi"&gt;1&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="ss"&gt;'*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;exponent&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;base&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;deriv-product&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-sum&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-product&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;multiplier&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;deriv&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;multiplicand&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-product&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;deriv&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;multiplier&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;multiplicand&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;deriv-sum&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-sum&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;deriv&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;addend&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;deriv&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;augend&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;deriv-exponentiation&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-product&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;exponent&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-product&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-exponentiation&lt;/span&gt;
+		       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;base&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-sum&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;exponent&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;deriv&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;base&lt;/span&gt; &lt;span class="nv"&gt;operands&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; install&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-deriv-package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'deriv&lt;/span&gt; &lt;span class="ss"&gt;'*&lt;/span&gt; &lt;span class="nv"&gt;deriv-product&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'deriv&lt;/span&gt; &lt;span class="ss"&gt;'+&lt;/span&gt; &lt;span class="nv"&gt;deriv-sum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'deriv&lt;/span&gt; &lt;span class="ss"&gt;'**&lt;/span&gt; &lt;span class="nv"&gt;deriv-exponentiation&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; d&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-deriv-package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'*&lt;/span&gt; &lt;span class="ss"&gt;'deriv&lt;/span&gt; &lt;span class="nv"&gt;deriv-product&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'+&lt;/span&gt; &lt;span class="ss"&gt;'deriv&lt;/span&gt; &lt;span class="nv"&gt;deriv-sum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'**&lt;/span&gt; &lt;span class="ss"&gt;'deriv&lt;/span&gt; &lt;span class="nv"&gt;deriv-exponentiation&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgadcfbb2" class="outline-4"&gt;
+&lt;h4 id="orgadcfbb2"&gt;2.74&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgadcfbb2"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 就不翻译了&lt;/span&gt;
+     &lt;span class="c1"&gt;;; a&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-record&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="ss"&gt;'get-record&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;contents&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; file (cons tag (cons name record) ... ) or some other structures&lt;/span&gt;
+     &lt;span class="c1"&gt;;; (put 'get-record the-exact-tag the-exact-get-record-procedure)&lt;/span&gt;
+
+
+     &lt;span class="c1"&gt;;; b&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-salary&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;record&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-record&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="ss"&gt;'get-salary&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="nv"&gt;record&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;contents&lt;/span&gt; &lt;span class="nv"&gt;record&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; record (cons tag salary-content ...) or some other structures&lt;/span&gt;
+     &lt;span class="c1"&gt;;; put behaves like a&lt;/span&gt;
+
+
+     &lt;span class="c1"&gt;;; c&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;find-employee-record&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="nv"&gt;file-list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="nv"&gt;file-list&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;file-list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-record&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;file-list&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;file-list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;file-list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-record&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;file-list&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;results&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="nv"&gt;file-list&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+
+
+     &lt;span class="c1"&gt;;; d&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; if possible, give new and unique tags to this file and its certain records&lt;/span&gt;
+     &lt;span class="c1"&gt;;; with the procedure 'put' and new tags, install the corresponding procedures&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9ed0d89" class="outline-4"&gt;
+&lt;h4 id="org9ed0d89"&gt;2.75&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org9ed0d89"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-from-mag-ang&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;dispatch&lt;/span&gt; &lt;span class="nv"&gt;op&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;op&lt;/span&gt; &lt;span class="ss"&gt;'magnitude&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;op&lt;/span&gt; &lt;span class="ss"&gt;'angle&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;op&lt;/span&gt; &lt;span class="ss"&gt;'real-part&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cos &lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;op&lt;/span&gt; &lt;span class="ss"&gt;'imag-part&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;sin &lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;else&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Unknown op -- MAKE-FROM-MAG-ANG"&lt;/span&gt; &lt;span class="nv"&gt;op&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+       &lt;span class="nv"&gt;dispatch&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga10f6f7" class="outline-4"&gt;
+&lt;h4 id="orga10f6f7"&gt;2.76&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orga10f6f7"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; message passing is better for system whose data structures are added frequently&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; data directed is better for system whose operations are added frequently&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%284%29/</guid><pubDate>Mon, 24 Dec 2018 06:41:29 GMT</pubDate></item><item><title>SICP-Refresher-Chapter-2(3)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%283%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgdb64f5a" class="outline-2"&gt;
 &lt;h2 id="orgdb64f5a"&gt;符号数据&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-orgdb64f5a"&gt;
 &lt;ol class="org-ol"&gt;
