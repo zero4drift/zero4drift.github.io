@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Refresher of SICP chapter 2.5 abstraction data 构造数据抽象">
+<meta name="viewport" content="width=device-width">
+<title>SICP-Refresher-Chapter-2(5) | 钉钉是世界上最傻逼的app</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://zero4drift.github.io/posts/sicp-refresher-chapter-2%285%29/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
+<meta property="og:site_name" content="钉钉是世界上最傻逼的app">
+<meta property="og:title" content="SICP-Refresher-Chapter-2(5)">
+<meta property="og:url" content="https://zero4drift.github.io/posts/sicp-refresher-chapter-2%285%29/">
+<meta property="og:description" content="Refresher of SICP chapter 2.5 abstraction data 构造数据抽象">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2018-12-25T14:45:00+08:00">
+<meta property="article:tag" content="Scheme">
+<meta property="article:tag" content="SICP">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://zero4drift.github.io/" title="钉钉是世界上最傻逼的app" rel="home">
+                钉钉是世界上最傻逼的app
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../archive.html">Archive</a></li>
+                <li><a href="https://github.com/zero4drift">Github</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                SICP-Refresher-Chapter-2(5)
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2018-12-25T14:45:00+08:00">2018/12/25</time>
+</div>
+	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../categories/scheme/" rel="tag">Scheme</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../categories/sicp/" rel="tag">SICP</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+    
+    
+    <div id="post-main" class="main">
+        <div class="container">
+        <div id="outline-container-org4cc58de" class="outline-2">
+<h2 id="org4cc58de">带有通用型操作的系统</h2>
+<div class="outline-text-2" id="text-org4cc58de">
+<ol class="org-ol">
+<li>通过通用型界面过程，不但能够定义出在不同表示上的通用操作，还能定义针对不
+同参数种类的通用型操作；</li>
+<li>这一系统具有可加性，这样，人们还可以设计出其他独立的算术包，并将其组合到
+这一通用型的算术系统中；</li>
+</ol>
+</div>
+
+<div id="outline-container-org68c7163" class="outline-3">
+<h3 id="org68c7163">通用型算术运算</h3>
+<div class="outline-text-3" id="text-org68c7163">
+<ol class="org-ol">
+<li>在一个大型的复杂系统里可能有许多层次，每层与下一层次之间的连接都借助于一
+些通用型操作，当一个数据对象被“向下”传输时，用于引导它进入适当程序包的最
+外层标志被剥除，下一层次的标志（如果有的话）变成可见的，并将被用于下一次
+分派；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org0bad631" class="outline-3">
+<h3 id="org0bad631">练习 2.77-2.80</h3>
+<div class="outline-text-3" id="text-org0bad631">
+</div>
+<div id="outline-container-orgdb0ce1c" class="outline-4">
+<h4 id="orgdb0ce1c">2.77</h4>
+<div class="outline-text-4" id="text-orgdb0ce1c">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="nv">z</span> <span class="p">(</span><span class="nf">make-from-real-imag</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+
+     <span class="c1">;; 如 通用型算术运算 第一条笔记所记录的； </span>
+
+     <span class="c1">;; (magnitude z)</span>
+     <span class="c1">;; (apply-generic 'magnitude z)</span>
+     <span class="c1">;; (apply (get 'magnitude '(complex)) (map contents z))</span>
+     <span class="c1">;; (apply magnitude (cons 'rectangular (cons 3 4)))</span>
+     <span class="c1">;; (apply-generic 'magnitude (cons 'rectangular (cons 3 4)))</span>
+     <span class="c1">;; (apply (get 'magnitude '(rectangular)) (cons 3 4))</span>
+     <span class="c1">;; (magnitude (cons 3 4))</span>
+     <span class="c1">;; (sqrt (+ (square (real-part (cons 3 4))) (square (imag-part (cons 3 4)))))</span>
+     <span class="c1">;; ...</span>
+
+     <span class="c1">;; apply-generic 被调用两次；</span>
+     <span class="c1">;; 第一次调用中分派的是复数计算包的 magnitude</span>
+     <span class="c1">;; 第二次调用中分派的是直角坐标表示计算包的 magnitude</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org9d26e49" class="outline-4">
+<h4 id="org9d26e49">2.78</h4>
+<div class="outline-text-4" id="text-org9d26e49">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">attach-tag</span> <span class="nv">type-tag</span> <span class="nv">contents</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">number? </span><span class="nv">contents</span><span class="p">)</span>
+	   <span class="nv">contents</span>
+	   <span class="p">(</span><span class="nb">cons </span><span class="nv">type-tag</span> <span class="nv">contents</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">type-tag</span> <span class="nv">datum</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">number? </span><span class="nv">datum</span><span class="p">)</span> <span class="ss">'scheme-number</span><span class="p">)</span>
+	     <span class="p">((</span><span class="nb">pair? </span><span class="nv">datum</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">datum</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">else</span>
+	      <span class="p">(</span><span class="nf">error</span> <span class="s">"Bad tagged datum -- CONTENTS"</span> <span class="nv">datum</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">contents</span> <span class="nv">datum</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">number? </span><span class="nv">datum</span><span class="p">)</span> <span class="nv">datum</span><span class="p">)</span>
+	     <span class="p">((</span><span class="nb">pair? </span><span class="nv">datum</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">datum</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">else</span>
+	      <span class="p">(</span><span class="nf">error</span> <span class="s">"Bad tagged datum -- CONTENTS"</span> <span class="nv">datum</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org609de3d" class="outline-4">
+<h4 id="org609de3d">2.79</h4>
+<div class="outline-text-4" id="text-org609de3d">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 下面对应各个计算包的三个代码块最好是放置在各自的安装包安装过程中</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">equ-number?</span> <span class="nv">n1</span> <span class="nv">n2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">= </span><span class="nv">n1</span> <span class="nv">n2</span><span class="p">))</span>
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'equ?</span> <span class="o">'</span><span class="p">(</span><span class="nv">scheme-number</span> <span class="nv">scheme-number</span><span class="p">)</span> <span class="nv">equ-number?</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">equ-rational?</span> <span class="nv">r1</span> <span class="nv">r2</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">product1</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">numer</span> <span class="nv">r1</span><span class="p">)</span> <span class="p">(</span><span class="nf">denom</span> <span class="nv">r2</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="nf">product2</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">denom</span> <span class="nv">r1</span><span class="p">)</span> <span class="p">(</span><span class="nf">numer</span> <span class="nv">r2</span><span class="p">))))</span>
+	 <span class="p">(</span><span class="nb">= </span><span class="nv">product1</span> <span class="nv">product2</span><span class="p">)))</span>
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'equ?</span> <span class="o">'</span><span class="p">(</span><span class="nv">rational</span> <span class="nv">rational</span><span class="p">)</span> <span class="nv">equ-rational?</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">equ-complex?</span> <span class="nv">c1</span> <span class="nv">c2</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">real1</span> <span class="p">(</span><span class="nb">real-part </span><span class="nv">c1</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">imag1</span> <span class="p">(</span><span class="nb">imag-part </span><span class="nv">c1</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">real2</span> <span class="p">(</span><span class="nb">real-part </span><span class="nv">c2</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">imag2</span> <span class="p">(</span><span class="nb">imag-part </span><span class="nv">c2</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">= </span><span class="nv">real1</span> <span class="nv">real2</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="nv">imag1</span> <span class="nv">imag2</span><span class="p">))))</span>
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'equ?</span> <span class="o">'</span><span class="p">(</span><span class="nv">complex</span> <span class="nv">complex</span><span class="p">)</span> <span class="nv">equ-complex?</span><span class="p">)</span>
+
+     <span class="c1">;; 通用型相等谓词 equ? 接口</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">equ?</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">apply-generic</span> <span class="ss">'equ?</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgfe6f53e" class="outline-4">
+<h4 id="orgfe6f53e">2.80</h4>
+<div class="outline-text-4" id="text-orgfe6f53e">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 下面对应各个计算包的三个代码块最好是放置在各自的安装包安装过程中</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">=zero-number?</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">))</span>
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'=zero?</span> <span class="o">'</span><span class="p">(</span><span class="nv">scheme-number</span><span class="p">)</span> <span class="nv">=zero-number?</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">=zero-rational?</span> <span class="nv">r</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">numer</span> <span class="nv">r</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span>
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'=zero?</span> <span class="o">'</span><span class="p">(</span><span class="nv">rational</span><span class="p">)</span> <span class="nv">=zero-rational?</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">=zero-complex?</span> <span class="nv">c</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">real</span> <span class="p">(</span><span class="nb">real-part </span><span class="nv">c</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">imag</span> <span class="p">(</span><span class="nb">imag-part </span><span class="nv">c</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">= </span><span class="nv">real</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="nv">imag</span> <span class="mi">0</span><span class="p">))))</span>
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'=zero?</span> <span class="o">'</span><span class="p">(</span><span class="nv">complex</span><span class="p">)</span> <span class="nv">=zero-complex?</span><span class="p">)</span>
+
+     <span class="c1">;; 通用谓词 =zero? 接口</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">=zero?</span> <span class="nv">x</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">apply-generic</span> <span class="ss">'=zero?</span> <span class="nv">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdb97245" class="outline-3">
+<h3 id="orgdb97245">不同类型数据的组合</h3>
+<div class="outline-text-3" id="text-orgdb97245">
+<ol class="org-ol">
+<li>我们一直煞费苦心地在程序的各个部分之间引进了屏障，以使它们能够分别开发和
+分别理解，现在却又要引进跨类型的操作，我们必须以一种经过精心考虑的可控方
+式去做这件事请，以使我们在支持这种操作的同时又没有严重地损害模块间的分界；</li>
+<li>在设计包含许多程序包和许多跨类型操作的系统时，要想规划好一套统一的策略，
+分清各种包之间的责任，很容易变成非常复杂的任务；</li>
+<li>不同的数据类型通常都不是完全相互无关的，常常存在一些方式，使我们可以把一
+种类型的对象看作另一种类型的对象，类型之间的适当转换只依赖于类型本身，而
+不依赖于所实际应用的操作（强制）；</li>
+<li>即使需要运算的两种类型的对象都不能转换到另一种类型，也完全可能在将这两种
+类型的对象都转换到第三种类型后执行这一运算（类型的层次结构）；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgd5f53c2" class="outline-3">
+<h3 id="orgd5f53c2">练习 2.81-2.86</h3>
+<div class="outline-text-3" id="text-orgd5f53c2">
+</div>
+<div id="outline-container-orga285a0d" class="outline-4">
+<h4 id="orga285a0d">2.81</h4>
+<div class="outline-text-4" id="text-orga285a0d">
+<div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
+
+     <span class="c1">;; 这种情况下，对两个复数调用 exp 将会使程序进入无尽递归进而报错；</span>
+
+     <span class="c1">;; b</span>
+
+     <span class="c1">;; 并没有纠正有关同样类型参数的强制问题；</span>
+
+     <span class="c1">;; 反而引入了新的问题使 apply-generic 无法正常工作，当两个参数是同样类型且并没有</span>
+     <span class="c1">;; 可用的通用型操作时，这样的修改将会使程序进入无尽递归进而报错；</span>
+
+
+     <span class="c1">;; c</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">apply-generic</span> <span class="nv">op</span> <span class="o">.</span> <span class="nv">args</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">type-tags</span> <span class="p">(</span><span class="nb">map </span><span class="nv">type-tag</span> <span class="nv">args</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">proc</span> <span class="p">(</span><span class="nf">get</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">)))</span>
+	   <span class="p">(</span><span class="k">if </span><span class="nv">proc</span>
+	       <span class="p">(</span><span class="nb">apply </span><span class="nv">proc</span> <span class="p">(</span><span class="nb">map </span><span class="nv">contents</span> <span class="nv">args</span><span class="p">))</span>
+	       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">length </span><span class="nv">args</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+		   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">type1</span> <span class="p">(</span><span class="nb">car </span><span class="nv">type-tags</span><span class="p">))</span>
+			 <span class="p">(</span><span class="nf">type2</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">type-tags</span><span class="p">))</span>
+			 <span class="p">(</span><span class="nf">a1</span> <span class="p">(</span><span class="nb">car </span><span class="nv">args</span><span class="p">))</span>
+			 <span class="p">(</span><span class="nf">a2</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">args</span><span class="p">)))</span>
+		     <span class="p">(</span><span class="nf">if</span><span class="p">(</span><span class="nb">equal? </span><span class="nv">type1</span> <span class="nv">type2</span><span class="p">)</span>
+			<span class="p">(</span><span class="nf">error</span> <span class="s">"No method for these types"</span>
+			       <span class="p">(</span><span class="nb">list </span><span class="nv">op</span> <span class="nv">type-tags</span><span class="p">))</span>
+			<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">t1-&gt;t2</span> <span class="p">(</span><span class="nf">get-coercion</span> <span class="nv">type1</span> <span class="nv">type2</span><span class="p">))</span>
+			      <span class="p">(</span><span class="nf">t2-&gt;t1</span> <span class="p">(</span><span class="nf">get-coercion</span> <span class="nv">type2</span> <span class="nv">type1</span><span class="p">)))</span>
+			  <span class="p">(</span><span class="k">cond </span><span class="p">(</span><span class="nf">t1-&gt;t2</span>
+				 <span class="p">(</span><span class="nf">apply-generic</span> <span class="nv">op</span> <span class="p">(</span><span class="nf">t1-&gt;t2</span> <span class="nv">a1</span><span class="p">)</span> <span class="nv">a2</span><span class="p">))</span>
+				<span class="p">(</span><span class="nf">t2-&gt;t1</span>
+				 <span class="p">(</span><span class="nf">apply-generic</span> <span class="nv">op</span> <span class="nv">a1</span> <span class="p">(</span><span class="nf">t2-&gt;t1</span> <span class="nv">a2</span><span class="p">)))</span>
+				<span class="p">(</span><span class="nf">else</span>
+				 <span class="p">(</span><span class="nf">error</span> <span class="s">"No method for these types"</span>
+					<span class="p">(</span><span class="nb">list </span><span class="nv">op</span> <span class="nv">type-tags</span><span class="p">))))))</span>
+		     <span class="p">(</span><span class="nf">error</span> <span class="s">"No method for these types"</span>
+			    <span class="p">(</span><span class="nb">list </span><span class="nv">op</span> <span class="nv">type-tags</span><span class="p">))))))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org44a8e18" class="outline-4">
+<h4 id="org44a8e18">2.82</h4>
+<div class="outline-text-4" id="text-org44a8e18">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">transfer-1</span> <span class="nv">base</span> <span class="nv">element</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">tag</span> <span class="p">(</span><span class="nf">type-tag</span> <span class="nv">element</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">equal? </span><span class="nv">base</span> <span class="nv">tag</span><span class="p">)</span>
+	     <span class="nv">element</span>
+	     <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">proc</span> <span class="p">(</span><span class="nf">get-coercion</span> <span class="nv">tag</span> <span class="nv">base</span><span class="p">)))</span>
+	       <span class="p">(</span><span class="k">if </span><span class="nv">proc</span>
+		   <span class="p">(</span><span class="nf">proc</span> <span class="nv">element</span><span class="p">)</span>
+		   <span class="nv">false</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">iter-transfer</span> <span class="nv">base</span> <span class="nv">args</span> <span class="nv">result</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">args</span><span class="p">)</span>
+	   <span class="nv">result</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">element</span> <span class="p">(</span><span class="nb">car </span><span class="nv">args</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">left</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">args</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">transfer-one</span> <span class="p">(</span><span class="nf">transfer-1</span> <span class="nv">base</span> <span class="nv">element</span><span class="p">)))</span>
+	       <span class="p">(</span><span class="k">if </span><span class="nv">transfer-one</span>
+		   <span class="p">(</span><span class="nf">iter-transfer</span> <span class="nv">base</span> <span class="nv">left</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">transfer-one</span> <span class="nv">result</span><span class="p">))</span>
+		   <span class="nv">false</span><span class="p">)))))</span>
+
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">transfer</span> <span class="nv">type-tags</span> <span class="nv">args</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">type-tags</span><span class="p">)</span>
+	   <span class="no">#f</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">base</span> <span class="p">(</span><span class="nb">car </span><span class="nv">type-tags</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">left-type-tags</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">type-tags</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">result</span> <span class="p">(</span><span class="nf">iter-transfer</span> <span class="nv">base</span> <span class="nv">args</span> <span class="o">'</span><span class="p">())))</span>
+	       <span class="p">(</span><span class="k">if </span><span class="nv">result</span>
+		   <span class="nv">result</span>
+		   <span class="p">(</span><span class="nf">transfer</span> <span class="nv">left-type-tags</span> <span class="nv">args</span><span class="p">))))))</span>
+
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">apply-generic</span> <span class="nv">op</span> <span class="o">.</span> <span class="nv">args</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">type-tags</span> <span class="p">(</span><span class="nb">map </span><span class="nv">type-tag</span> <span class="nv">args</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">proc</span> <span class="p">(</span><span class="nf">get</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">)))</span>
+	   <span class="p">(</span><span class="k">if </span><span class="nv">proc</span>
+	       <span class="p">(</span><span class="nb">apply </span><span class="nv">proc</span> <span class="p">(</span><span class="nb">map </span><span class="nv">contents</span> <span class="nv">args</span><span class="p">))</span>
+	       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">transfer-result</span> <span class="p">(</span><span class="nf">transfer</span> <span class="nv">type-tags</span> <span class="nv">args</span><span class="p">)))</span>
+		 <span class="p">(</span><span class="k">if </span><span class="nv">transfer-result</span>
+		     <span class="c1">;; (apply-generic op . args)的错误调用形式</span>
+		     <span class="c1">;; 这里转换后的所有参数构成了一个表；</span>
+		     <span class="c1">;; apply-generic 会将此表整体当作最后一个参数，这是错误的</span>
+		     <span class="c1">;; 当然本题重点不在这，但如果有解决办法会更好；</span>
+		     <span class="p">(</span><span class="nf">apply-generic</span> <span class="nv">op</span> <span class="p">(</span><span class="nb">reverse </span><span class="nv">transfer-result</span><span class="p">))</span>
+		     <span class="p">(</span><span class="nf">error</span> <span class="s">"No method for these types"</span>
+			    <span class="p">(</span><span class="nb">list </span><span class="nv">op</span> <span class="nv">type-tags</span><span class="p">))))))))</span>
+
+     <span class="c1">;; 像这样的情况；</span>
+     <span class="c1">;; type1-&gt;type2 存在</span>
+     <span class="c1">;; type3-&gt;type1 存在</span>
+     <span class="c1">;; 最差的情况: 其他两种转换方式（转换到 type1, type3）并不存在;</span>
+     <span class="c1">;; 然后全部转换到 type2 的路也行不通，因为 type3 只能直接转换到 type1;</span>
+     <span class="c1">;; 本程序实现上没法转换成功，但其实可以在 type3 转换到 type1 之后再转换到 type2,</span>
+     <span class="c1">;; 这样就全部转换成同一类型了。</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgbb5d093" class="outline-4">
+<h4 id="orgbb5d093">2.83</h4>
+</div>
+
+<div id="outline-container-org810d2a6" class="outline-4">
+<h4 id="org810d2a6">2.84</h4>
+</div>
+
+<div id="outline-container-org92ee845" class="outline-4">
+<h4 id="org92ee845">2.85</h4>
+</div>
+
+<div id="outline-container-org1b5b499" class="outline-4">
+<h4 id="org1b5b499">2.86</h4>
+</div>
+</div>
+
+<div id="outline-container-orge656cb3" class="outline-3">
+<h3 id="orge656cb3">实例：符号代数</h3>
+</div>
+
+<div id="outline-container-orgc55cdaf" class="outline-3">
+<h3 id="orgc55cdaf">练习 2.87-2.97</h3>
+<div class="outline-text-3" id="text-orgc55cdaf">
+</div>
+<div id="outline-container-orgfd4c055" class="outline-4">
+<h4 id="orgfd4c055">2.87</h4>
+</div>
+
+<div id="outline-container-orge80cdc2" class="outline-4">
+<h4 id="orge80cdc2">2.88</h4>
+</div>
+
+<div id="outline-container-orgeabef34" class="outline-4">
+<h4 id="orgeabef34">2.89</h4>
+</div>
+
+<div id="outline-container-orgdf4c897" class="outline-4">
+<h4 id="orgdf4c897">2.90</h4>
+</div>
+
+<div id="outline-container-org4d63b43" class="outline-4">
+<h4 id="org4d63b43">2.91</h4>
+</div>
+
+<div id="outline-container-org0351afc" class="outline-4">
+<h4 id="org0351afc">2.92</h4>
+</div>
+
+<div id="outline-container-org1da02fd" class="outline-4">
+<h4 id="org1da02fd">2.93</h4>
+</div>
+
+<div id="outline-container-org75b4f84" class="outline-4">
+<h4 id="org75b4f84">2.94</h4>
+</div>
+
+<div id="outline-container-org305b36e" class="outline-4">
+<h4 id="org305b36e">2.95</h4>
+</div>
+
+<div id="outline-container-org798e479" class="outline-4">
+<h4 id="org798e479">2.96</h4>
+</div>
+
+<div id="outline-container-orgfd9dcc8" class="outline-4">
+<h4 id="orgfd9dcc8">2.97</h4>
+</div>
+</div>
+</div>
+            
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="https-zero4drift-github-io",
+            disqus_url="https://zero4drift.github.io/posts/sicp-refresher-chapter-2%285%29/",
+        disqus_title="SICP-Refresher-Chapter-2(5)",
+        disqus_identifier="cache/posts/sicp-refresher-chapter-2(5).html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        
+    
+
+
+        </div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2018         <a href="mailto:fang0052@e.ntu.edu.sg">zero4drift</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?06e0ade16d98033ac1aad78106d873c8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script src="../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>
