@@ -80,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org73689e1" class="outline-2">
-<h2 id="org73689e1">抽象数据的多重表示</h2>
-<div class="outline-text-2" id="text-org73689e1">
+        <div id="outline-container-orgeda819d" class="outline-2">
+<h2 id="orgeda819d">抽象数据的多重表示</h2>
+<div class="outline-text-2" id="text-orgeda819d">
 <ol class="org-ol">
 <li>对于一个数据对象可能存在多种有用的表示形式，而且也可能希望所设计的系统能处
 理多种表示形式；</li>
@@ -99,9 +99,9 @@
 </ol>
 </div>
 
-<div id="outline-container-org940f758" class="outline-3">
-<h3 id="org940f758">复数的表示</h3>
-<div class="outline-text-3" id="text-org940f758">
+<div id="outline-container-org4e62522" class="outline-3">
+<h3 id="org4e62522">复数的表示</h3>
+<div class="outline-text-3" id="text-org4e62522">
 <ol class="org-ol">
 <li>复数表示为有序对的两种可能表示方式：直角坐标形式（实部和虚部）以及极坐标
 形似（模和幅角）；</li>
@@ -113,9 +113,9 @@
 </div>
 </div>
 
-<div id="outline-container-org207414b" class="outline-3">
-<h3 id="org207414b">带标帜数据</h3>
-<div class="outline-text-3" id="text-org207414b">
+<div id="outline-container-org39c86f5" class="outline-3">
+<h3 id="org39c86f5">带标帜数据</h3>
+<div class="outline-text-3" id="text-org39c86f5">
 <ol class="org-ol">
 <li>最小允诺原则：在实现程序时，由选择函数和构造函数形成抽象屏障，使我们可以
 把为自己所用的数据对象选择具体表示形式的事情尽量向后推，而且还能保持系统
@@ -126,9 +126,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd087778" class="outline-3">
-<h3 id="orgd087778">数据导向的程序设计和可加性</h3>
-<div class="outline-text-3" id="text-orgd087778">
+<div id="outline-container-org139644e" class="outline-3">
+<h3 id="org139644e">数据导向的程序设计和可加性</h3>
+<div class="outline-text-3" id="text-org139644e">
 <ol class="org-ol">
 <li>检查一个数据项的类型，并据此去调用某个适当过程成为基于类型的分派，这在系
 统设计中是一种获得模块性的强有力策略；</li>
@@ -147,13 +147,13 @@
 </div>
 </div>
 
-<div id="outline-container-org5c8d58c" class="outline-3">
-<h3 id="org5c8d58c">练习 2.73-2.76</h3>
-<div class="outline-text-3" id="text-org5c8d58c">
+<div id="outline-container-org268223f" class="outline-3">
+<h3 id="org268223f">练习 2.73-2.76</h3>
+<div class="outline-text-3" id="text-org268223f">
 </div>
-<div id="outline-container-orgb6e3469" class="outline-4">
-<h4 id="orgb6e3469">2.73</h4>
-<div class="outline-text-4" id="text-orgb6e3469">
+<div id="outline-container-orgdc2dcdf" class="outline-4">
+<h4 id="orgdc2dcdf">2.73</h4>
+<div class="outline-text-4" id="text-orgdc2dcdf">
 <div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
 
      <span class="c1">;; 数字和符号是 scheme 的基本元素，有语言内置的过程可以识别和区分；而且区分之后</span>
@@ -219,10 +219,10 @@
 </div>
 </div>
 
-<div id="outline-container-orgadcfbb2" class="outline-4">
-<h4 id="orgadcfbb2">2.74</h4>
-<div class="outline-text-4" id="text-orgadcfbb2">
-<div class="highlight"><pre><span></span>     <span class="c1">;; 就不翻译了</span>
+<div id="outline-container-org845f349" class="outline-4">
+<h4 id="org845f349">2.74</h4>
+<div class="outline-text-4" id="text-org845f349">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 以前自己的解答，就不翻译了</span>
      <span class="c1">;; a</span>
 
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">get-record</span> <span class="nv">name</span> <span class="nv">file</span><span class="p">)</span>
@@ -261,9 +261,9 @@
 </div>
 </div>
 
-<div id="outline-container-org9ed0d89" class="outline-4">
-<h4 id="org9ed0d89">2.75</h4>
-<div class="outline-text-4" id="text-org9ed0d89">
+<div id="outline-container-orge031389" class="outline-4">
+<h4 id="orge031389">2.75</h4>
+<div class="outline-text-4" id="text-orge031389">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-from-mag-ang</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
        <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">dispatch</span> <span class="nv">op</span><span class="p">)</span>
 	 <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">eq? </span><span class="nv">op</span> <span class="ss">'magnitude</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
@@ -279,12 +279,15 @@
 </div>
 </div>
 
-<div id="outline-container-orga10f6f7" class="outline-4">
-<h4 id="orga10f6f7">2.76</h4>
-<div class="outline-text-4" id="text-orga10f6f7">
-<div class="highlight"><pre><span></span>     <span class="c1">;; message passing is better for system whose data structures are added frequently</span>
+<div id="outline-container-org2409842" class="outline-4">
+<h4 id="org2409842">2.76</h4>
+<div class="outline-text-4" id="text-org2409842">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 带有显式分派的通用型操作在加入一个新类型或者新操作时对代码的改动较大，带来不</span>
+     <span class="c1">;; 便，容易引进错误</span>
 
-     <span class="c1">;; data directed is better for system whose operations are added frequently</span>
+     <span class="c1">;; 消息传递更适合用于需要经常加入新的数据对象类型的系统；</span>
+
+     <span class="c1">;; 数据导向更适合用于需要经常加入新的操作的系统（存疑，经常加入新的操作的话，使用消息传递风格并不会更麻烦）；</span>
 </pre></div>
 </div>
 </div>
