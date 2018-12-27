@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about SICP)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/sicp.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Wed, 26 Dec 2018 14:25:39 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-2(5)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%285%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgc6631d1" class="outline-2"&gt;
-&lt;h2 id="orgc6631d1"&gt;带有通用型操作的系统&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc6631d1"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about SICP)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/sicp.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Thu, 27 Dec 2018 14:58:21 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-2(5)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%285%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org1fb3e42" class="outline-2"&gt;
+&lt;h2 id="org1fb3e42"&gt;带有通用型操作的系统&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1fb3e42"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;通过通用型界面过程，不但能够定义出在不同表示上的通用操作，还能定义针对不
 同参数种类的通用型操作；&lt;/li&gt;
@@ -10,9 +10,9 @@
 &lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge52beb8" class="outline-3"&gt;
-&lt;h3 id="orge52beb8"&gt;通用型算术运算&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orge52beb8"&gt;
+&lt;div id="outline-container-orgbc3d91e" class="outline-3"&gt;
+&lt;h3 id="orgbc3d91e"&gt;通用型算术运算&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgbc3d91e"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;在一个大型的复杂系统里可能有许多层次，每层与下一层次之间的连接都借助于一
 些通用型操作，当一个数据对象被“向下”传输时，用于引导它进入适当程序包的最
@@ -22,13 +22,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org362aaed" class="outline-3"&gt;
-&lt;h3 id="org362aaed"&gt;练习 2.77-2.80&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org362aaed"&gt;
+&lt;div id="outline-container-orgb44ac90" class="outline-3"&gt;
+&lt;h3 id="orgb44ac90"&gt;练习 2.77-2.80&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb44ac90"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org532c253" class="outline-4"&gt;
-&lt;h4 id="org532c253"&gt;2.77&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org532c253"&gt;
+&lt;div id="outline-container-orgcf2fc83" class="outline-4"&gt;
+&lt;h4 id="orgcf2fc83"&gt;2.77&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgcf2fc83"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;z&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-from-real-imag&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
      &lt;span class="c1"&gt;;; 如 通用型算术运算 第一条笔记所记录的； &lt;/span&gt;
@@ -50,9 +50,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org82af9d4" class="outline-4"&gt;
-&lt;h4 id="org82af9d4"&gt;2.78&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org82af9d4"&gt;
+&lt;div id="outline-container-org64e1a88" class="outline-4"&gt;
+&lt;h4 id="org64e1a88"&gt;2.78&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org64e1a88"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;attach-tag&lt;/span&gt; &lt;span class="nv"&gt;type-tag&lt;/span&gt; &lt;span class="nv"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;number? &lt;/span&gt;&lt;span class="nv"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 	   &lt;span class="nv"&gt;contents&lt;/span&gt;
@@ -73,9 +73,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5d3ce37" class="outline-4"&gt;
-&lt;h4 id="org5d3ce37"&gt;2.79&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org5d3ce37"&gt;
+&lt;div id="outline-container-org25a3d1d" class="outline-4"&gt;
+&lt;h4 id="org25a3d1d"&gt;2.79&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org25a3d1d"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 下面对应各个计算包的三个代码块最好是放置在各自的安装包安装过程中&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;equ-number?&lt;/span&gt; &lt;span class="nv"&gt;n1&lt;/span&gt; &lt;span class="nv"&gt;n2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;n1&lt;/span&gt; &lt;span class="nv"&gt;n2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -102,9 +102,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6f9e98f" class="outline-4"&gt;
-&lt;h4 id="org6f9e98f"&gt;2.80&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org6f9e98f"&gt;
+&lt;div id="outline-container-org3b46ff7" class="outline-4"&gt;
+&lt;h4 id="org3b46ff7"&gt;2.80&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3b46ff7"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 下面对应各个计算包的三个代码块最好是放置在各自的安装包安装过程中&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;=zero-number?&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -128,9 +128,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org573d76c" class="outline-3"&gt;
-&lt;h3 id="org573d76c"&gt;不同类型数据的组合&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org573d76c"&gt;
+&lt;div id="outline-container-orgb24de8d" class="outline-3"&gt;
+&lt;h3 id="orgb24de8d"&gt;不同类型数据的组合&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb24de8d"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;我们一直煞费苦心地在程序的各个部分之间引进了屏障，以使它们能够分别开发和
 分别理解，现在却又要引进跨类型的操作，我们必须以一种经过精心考虑的可控方
@@ -146,13 +146,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgbfba91c" class="outline-3"&gt;
-&lt;h3 id="orgbfba91c"&gt;练习 2.81-2.86&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgbfba91c"&gt;
+&lt;div id="outline-container-org0d02739" class="outline-3"&gt;
+&lt;h3 id="org0d02739"&gt;练习 2.81-2.86&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0d02739"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org65f0fd1" class="outline-4"&gt;
-&lt;h4 id="org65f0fd1"&gt;2.81&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org65f0fd1"&gt;
+&lt;div id="outline-container-orgdde830d" class="outline-4"&gt;
+&lt;h4 id="orgdde830d"&gt;2.81&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgdde830d"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; a&lt;/span&gt;
 
      &lt;span class="c1"&gt;;; 这种情况下，对两个复数调用 exp 将会使程序进入无尽递归进而报错；&lt;/span&gt;
@@ -195,9 +195,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgce70c48" class="outline-4"&gt;
-&lt;h4 id="orgce70c48"&gt;2.82&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgce70c48"&gt;
+&lt;div id="outline-container-orgbf775a1" class="outline-4"&gt;
+&lt;h4 id="orgbf775a1"&gt;2.82&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgbf775a1"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;transfer-1&lt;/span&gt; &lt;span class="nv"&gt;base&lt;/span&gt; &lt;span class="nv"&gt;element&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;type-tag&lt;/span&gt; &lt;span class="nv"&gt;element&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;equal? &lt;/span&gt;&lt;span class="nv"&gt;base&lt;/span&gt; &lt;span class="nv"&gt;tag&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -255,9 +255,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org10a3942" class="outline-4"&gt;
-&lt;h4 id="org10a3942"&gt;2.83&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org10a3942"&gt;
+&lt;div id="outline-container-org02e4ffd" class="outline-4"&gt;
+&lt;h4 id="org02e4ffd"&gt;2.83&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org02e4ffd"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-raise&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'raise&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;scheme-number&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;scheme-number-&amp;gt;rational&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'raise&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;rational&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;rational-&amp;gt;real&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -280,9 +280,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge0957c4" class="outline-4"&gt;
-&lt;h4 id="orge0957c4"&gt;2.84&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orge0957c4"&gt;
+&lt;div id="outline-container-orgca8f8a5" class="outline-4"&gt;
+&lt;h4 id="orgca8f8a5"&gt;2.84&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgca8f8a5"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 在原来的表格中安装类型塔（其实就是一个按次序放置类型的表）&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-types-tower&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;types-tower&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'scheme-number&lt;/span&gt;
@@ -337,9 +337,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7009f9f" class="outline-4"&gt;
-&lt;h4 id="org7009f9f"&gt;2.85&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org7009f9f"&gt;
+&lt;div id="outline-container-org0edb168" class="outline-4"&gt;
+&lt;h4 id="org0edb168"&gt;2.85&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org0edb168"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; install project&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;project-rational&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-scheme-number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;round &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;numer&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;denom&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
@@ -417,9 +417,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org33fb565" class="outline-4"&gt;
-&lt;h4 id="org33fb565"&gt;2.86&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org33fb565"&gt;
+&lt;div id="outline-container-orga9db229" class="outline-4"&gt;
+&lt;h4 id="orga9db229"&gt;2.86&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orga9db229"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;;; 全局环境&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sine&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;apply-generic&lt;/span&gt; &lt;span class="ss"&gt;'sine&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cosine&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;apply-generic&lt;/span&gt; &lt;span class="ss"&gt;'cosine&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -473,9 +473,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4114bf2" class="outline-3"&gt;
-&lt;h3 id="org4114bf2"&gt;实例：符号代数&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org4114bf2"&gt;
+&lt;div id="outline-container-orgba30443" class="outline-3"&gt;
+&lt;h3 id="orgba30443"&gt;实例：符号代数&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgba30443"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;展示在设计这样一个系统时所面临的各种抉择，以及如何应用 &lt;b&gt;抽象数据&lt;/b&gt; 和 &lt;b&gt;通
 用型操作&lt;/b&gt; 的思想，以利于组织好这一工作项目；&lt;/li&gt;
@@ -486,13 +486,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc5c7fcf" class="outline-3"&gt;
-&lt;h3 id="orgc5c7fcf"&gt;练习 2.87-2.97&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgc5c7fcf"&gt;
+&lt;div id="outline-container-org05100e2" class="outline-3"&gt;
+&lt;h3 id="org05100e2"&gt;练习 2.87-2.97&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org05100e2"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgbca53ef" class="outline-4"&gt;
-&lt;h4 id="orgbca53ef"&gt;2.87&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgbca53ef"&gt;
+&lt;div id="outline-container-org060042f" class="outline-4"&gt;
+&lt;h4 id="org060042f"&gt;2.87&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org060042f"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-poly-zero?&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;=zero?-p&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -511,9 +511,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org92a1233" class="outline-4"&gt;
-&lt;h4 id="org92a1233"&gt;2.88&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org92a1233"&gt;
+&lt;div id="outline-container-org0a7371d" class="outline-4"&gt;
+&lt;h4 id="org0a7371d"&gt;2.88&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org0a7371d"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-negative&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;negative-scheme-number&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-scheme-number&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
@@ -553,9 +553,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9c71501" class="outline-4"&gt;
-&lt;h4 id="org9c71501"&gt;2.89&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org9c71501"&gt;
+&lt;div id="outline-container-orgc8c7fef" class="outline-4"&gt;
+&lt;h4 id="orgc8c7fef"&gt;2.89&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc8c7fef"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 其他过程不用修改&lt;/span&gt;
 
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;term-list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -571,23 +571,44 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org78f0286" class="outline-4"&gt;
-&lt;h4 id="org78f0286"&gt;2.90&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org78f0286"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 大体上这些过程对于两个类型的项表是一致的，除了处理标记的部分&lt;/span&gt;
+&lt;div id="outline-container-org93c61f4" class="outline-4"&gt;
+&lt;h4 id="org93c61f4"&gt;2.90&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org93c61f4"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 安装多项式项表的‘项’包&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-poly-term-package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="c1"&gt;;; procedures kept same&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="nv"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;coeff&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="nv"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;coeff&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;term&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;coeff&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;term&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+       &lt;span class="c1"&gt;;; tag&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;attach-tag&lt;/span&gt; &lt;span class="ss"&gt;'polynomial-term&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+       &lt;span class="c1"&gt;;; put&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'make&lt;/span&gt; &lt;span class="ss"&gt;'polynomial-term&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'order&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial-term&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;order&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'coeff&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial-term&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;coeff&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="ss"&gt;'make&lt;/span&gt; &lt;span class="ss"&gt;'polynomial-term&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;apply-generic&lt;/span&gt; &lt;span class="ss"&gt;'order&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;coeff&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;apply-generic&lt;/span&gt; &lt;span class="ss"&gt;'coeff&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
-     &lt;span class="c1"&gt;;; the-empty-termlist&lt;/span&gt;
-     &lt;span class="c1"&gt;;; rest-terms&lt;/span&gt;
-     &lt;span class="c1"&gt;;; empy-termlist?&lt;/span&gt;
-     &lt;span class="c1"&gt;;; make-term&lt;/span&gt;
-     &lt;span class="c1"&gt;;; coeff&lt;/span&gt;
-     &lt;span class="c1"&gt;;; order&lt;/span&gt;
-
+     &lt;span class="c1"&gt;;; 安装密集表示的项表包&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-dense-terms-package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="c1"&gt;;; procedures about dense terms...&lt;/span&gt;
-       &lt;span class="c1"&gt;;; procedure rest-terms? and so on, define and put&lt;/span&gt;
+
+       &lt;span class="c1"&gt;;; prcedures kept same:&lt;/span&gt;
+       &lt;span class="c1"&gt;;; rest-terms&lt;/span&gt;
+       &lt;span class="c1"&gt;;; empy-termlist?&lt;/span&gt;
+
+       &lt;span class="c1"&gt;;; and delete procedure the-empty-termlist;&lt;/span&gt;
+       &lt;span class="c1"&gt;;; replace call of the-empty-termlist with&lt;/span&gt;
+       &lt;span class="c1"&gt;;; 'L1' or 'L' in 'mul-term' &amp;amp; 'mul-term-by-all-terms'&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;attach-tag&lt;/span&gt; &lt;span class="ss"&gt;'dense&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;attach-tag&lt;/span&gt; &lt;span class="ss"&gt;'polynomial-dense&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;term-list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;len&lt;/span&gt; &lt;span class="nv"&gt;term-list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;term-list&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;adjoin-term&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;term-list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -602,24 +623,31 @@
 	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;first&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;const&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;negative&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 		      &lt;span class="nv"&gt;negative-t&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-terms&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'make&lt;/span&gt; &lt;span class="ss"&gt;'dense&lt;/span&gt;
-	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'negative&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;dense&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;negative&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'first-term&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;dense&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'negative&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial-dense&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;negative-t&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'first-term&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial-dense&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'adjoin-term&lt;/span&gt; &lt;span class="ss"&gt;'dense&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'empty-termlist?&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial-dense&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;empty-termlist?&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'rest-terms&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial-dense&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-terms&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'adjoin-term&lt;/span&gt; &lt;span class="ss"&gt;'polynomial-dense&lt;/span&gt;
 	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;adjoin-term&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
 
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-dense-terms&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="ss"&gt;'make&lt;/span&gt; &lt;span class="ss"&gt;'dense&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-
+     &lt;span class="c1"&gt;;; 安装稀疏表示的项表包&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-sparse-terms-package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="c1"&gt;;; procedures about sparse terms...&lt;/span&gt;
+
        &lt;span class="c1"&gt;;; procedure rest-terms? and so on, define and put&lt;/span&gt;
+       &lt;span class="c1"&gt;;; prcedures kept same:&lt;/span&gt;
+       &lt;span class="c1"&gt;;; rest-terms&lt;/span&gt;
+       &lt;span class="c1"&gt;;; empy-termlist?&lt;/span&gt;
+
+       &lt;span class="c1"&gt;;; and delete procedure the-empty-termlist;&lt;/span&gt;
+       &lt;span class="c1"&gt;;; replace call of the-empty-termlist with&lt;/span&gt;
+       &lt;span class="c1"&gt;;; 'L1' or 'L' in 'mul-term' &amp;amp; 'mul-term-by-all-terms'&lt;/span&gt;
+
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;attach-tag&lt;/span&gt; &lt;span class="ss"&gt;'sparse&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;attach-tag&lt;/span&gt; &lt;span class="ss"&gt;'polynomial-sparse&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;term-list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;term-list&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;adjoin-term&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;term-list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;=zero?&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;coeff&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -633,19 +661,18 @@
 			     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 			     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;negative&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;coeff&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 			    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;negative-t&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-terms&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'make&lt;/span&gt; &lt;span class="ss"&gt;'sparse&lt;/span&gt;
-	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'negative&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;sparse&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'negative&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial-sparse&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;negative-t&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'first-term&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;sparse&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'first-term&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial-sparse&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'adjoin-term&lt;/span&gt; &lt;span class="ss"&gt;'sparse&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'empty-termlist?&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial-sparse&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;empty-termlist?&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'rest-terms&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial-sparse&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-terms&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'adjoin-term&lt;/span&gt; &lt;span class="ss"&gt;'polynomial-sparse&lt;/span&gt;
 	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;adjoin-term&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
 
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-sparse-terms&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="ss"&gt;'make&lt;/span&gt; &lt;span class="ss"&gt;'sparse&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
-
+     &lt;span class="c1"&gt;;; 稀疏和密集项表表示的通用型操作&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;apply-generic&lt;/span&gt; &lt;span class="ss"&gt;'first-term&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
@@ -655,49 +682,245 @@
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;negative&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;apply-generic&lt;/span&gt; &lt;span class="ss"&gt;'negative&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
-     &lt;span class="c1"&gt;;; add-terms&lt;/span&gt;
-     &lt;span class="c1"&gt;;; mul-terms&lt;/span&gt;
-     &lt;span class="c1"&gt;;; sub-terms&lt;/span&gt;
-     &lt;span class="c1"&gt;;; add-poly&lt;/span&gt;
-     &lt;span class="c1"&gt;;; mul-poly&lt;/span&gt;
-     &lt;span class="c1"&gt;;; sub-poly&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;empty-termlist?&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;apply-generic&lt;/span&gt; &lt;span class="ss"&gt;'empty-termlist&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-terms&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;apply-generic&lt;/span&gt; &lt;span class="ss"&gt;'rest-terms&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+
+     &lt;span class="c1"&gt;;; 多项式计算包&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-polynomial-package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="c1"&gt;;; internal procedures...&lt;/span&gt;
+
+       &lt;span class="c1"&gt;;; replace call of procedure the-empty-termlist with&lt;/span&gt;
+       &lt;span class="c1"&gt;;; 'L1' or 'L' in 'mul-term' &amp;amp; 'mul-term-by-all-terms'&lt;/span&gt;
+       &lt;span class="c1"&gt;;; add-terms&lt;/span&gt;
+       &lt;span class="c1"&gt;;; mul-terms&lt;/span&gt;
+       &lt;span class="c1"&gt;;; sub-terms&lt;/span&gt;
+
+       &lt;span class="c1"&gt;;; others kept same&lt;/span&gt;
+
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'sub&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;poly&lt;/span&gt; &lt;span class="nv"&gt;poly&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="ss"&gt;'poly&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sub-poly&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt; &lt;span class="c1"&gt;;2.88&lt;/span&gt;
-       &lt;span class="c1"&gt;;; others kept unchanged&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="ss"&gt;'polynomial&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sub-poly&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt; &lt;span class="c1"&gt;;2.88&lt;/span&gt;
+       &lt;span class="c1"&gt;;; and so on.&lt;/span&gt;
        &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org454b6c4" class="outline-4"&gt;
-&lt;h4 id="org454b6c4"&gt;2.91&lt;/h4&gt;
+&lt;div id="outline-container-org737db93" class="outline-4"&gt;
+&lt;h4 id="org737db93"&gt;2.91&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org737db93"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-terms&lt;/span&gt; &lt;span class="nv"&gt;L1&lt;/span&gt; &lt;span class="nv"&gt;L2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;empty-termlist?&lt;/span&gt; &lt;span class="nv"&gt;L1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;the-empty-termlist&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;the-empty-termlist&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;t1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;L1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;t2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;L2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;the-empty-termlist&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;L1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;nwe-c&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;coeff&lt;/span&gt; &lt;span class="nv"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;coeff&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;new-o&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;t1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;rest-of-result&lt;/span&gt;
+			  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-terms&lt;/span&gt;
+			   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sub-terms&lt;/span&gt; &lt;span class="nv"&gt;L1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-term-by-all-terms&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="nv"&gt;new-o&lt;/span&gt; &lt;span class="nv"&gt;new-c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;L2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+			   &lt;span class="nv"&gt;L2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;addjoin-term&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="nv"&gt;new-o&lt;/span&gt; &lt;span class="nv"&gt;new-c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+					 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;rest-of-result&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+			   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;rest-of-result&lt;/span&gt;&lt;span class="p"&gt;))))))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; div-terms 结果的余数部分在 div-poly 过程中是不需要的&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-poly&lt;/span&gt; &lt;span class="nv"&gt;p1&lt;/span&gt; &lt;span class="nv"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;same-variable?&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;variable&lt;/span&gt; &lt;span class="nv"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;variable&lt;/span&gt; &lt;span class="nv"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;t1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;term-list&lt;/span&gt; &lt;span class="nv"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;t2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;term-list&lt;/span&gt; &lt;span class="nv"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-terms&lt;/span&gt; &lt;span class="nv"&gt;t1&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-poly&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;variable&lt;/span&gt; &lt;span class="nv"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Polys not in same var -- DIV-POLY"&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="nv"&gt;p1&lt;/span&gt; &lt;span class="nv"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0a9d135" class="outline-4"&gt;
-&lt;h4 id="org0a9d135"&gt;2.92&lt;/h4&gt;
+&lt;div id="outline-container-orgc12ac2a" class="outline-4"&gt;
+&lt;h4 id="orgc12ac2a"&gt;2.92&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc12ac2a"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 去年写的代码现在完全理解不了；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 暂时想不出更好更清晰的解答；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 暂时搁置；&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge6cd7a1" class="outline-4"&gt;
-&lt;h4 id="orge6cd7a1"&gt;2.93&lt;/h4&gt;
+&lt;div id="outline-container-org9fcefe0" class="outline-4"&gt;
+&lt;h4 id="org9fcefe0"&gt;2.93&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org9fcefe0"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-scheme-number-package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="c1"&gt;;; gcd-scheme-number 就是原来最初的 gcd 的别名&lt;/span&gt;
+       &lt;span class="c1"&gt;;; 其他过程不变&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'gcd&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;scheme-number&lt;/span&gt; &lt;span class="nv"&gt;scheme-number&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-scheme-number&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+       &lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-rational-package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="c1"&gt;;; 将 +, -, *, / 改为 add, sub, mul, div&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-rat&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;g&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;greatest-common-divisor&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+       &lt;span class="c1"&gt;;; 其他过程不变&lt;/span&gt;
+       &lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;install-polynomial-package&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="c1"&gt;;; 其他过程不变&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-poly&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;remainder-terms&lt;/span&gt; &lt;span class="nv"&gt;t1&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-terms&lt;/span&gt; &lt;span class="nv"&gt;t1&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-terms&lt;/span&gt; &lt;span class="nv"&gt;t1&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;empty-termlist?&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="nv"&gt;t1&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-terms&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;remainder-terms&lt;/span&gt; &lt;span class="nv"&gt;t1&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;same-variable?&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;variable&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;variable&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;t1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;term-list&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;t2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;term-list&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-poly&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;variable&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-terms&lt;/span&gt; &lt;span class="nv"&gt;t1&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Polys not in same var -- GCD-POLY"&lt;/span&gt;
+		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'gcd&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial&lt;/span&gt; &lt;span class="nv"&gt;polynomial&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;p1&lt;/span&gt; &lt;span class="nv"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-poly&lt;/span&gt; &lt;span class="nv"&gt;p1&lt;/span&gt; &lt;span class="nv"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+       &lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;greatest-common-divisor&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;apply-generic&lt;/span&gt; &lt;span class="ss"&gt;'gcd&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org369cddd" class="outline-4"&gt;
-&lt;h4 id="org369cddd"&gt;2.94&lt;/h4&gt;
+&lt;div id="outline-container-orge84fcee" class="outline-4"&gt;
+&lt;h4 id="orge84fcee"&gt;2.94&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orge84fcee"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 在 ex 2.93 中全部完成了（相关代码放在一起更好）。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge83fe36" class="outline-4"&gt;
-&lt;h4 id="orge83fe36"&gt;2.95&lt;/h4&gt;
+&lt;div id="outline-container-org4b9a143" class="outline-4"&gt;
+&lt;h4 id="org4b9a143"&gt;2.95&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org4b9a143"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 按题意定义多项式，求多项式最大公约数，比较。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7f33237" class="outline-4"&gt;
-&lt;h4 id="org7f33237"&gt;2.96&lt;/h4&gt;
+&lt;div id="outline-container-org6f147ae" class="outline-4"&gt;
+&lt;h4 id="org6f147ae"&gt;2.96&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org6f147ae"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 只适用于整数系数的多项式&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; a&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;pseudoremainder-terms&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;f1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;o1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;f1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;o2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;f2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;coeff&lt;/span&gt; &lt;span class="nv"&gt;f2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;constant&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;expt &lt;/span&gt;&lt;span class="nv"&gt;c&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;o1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;o2&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;term&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+				    &lt;span class="nv"&gt;constant&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-terms&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-term-by-all-terms&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		      &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)))))))&lt;/span&gt;
+
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-terms&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;empty-termlist?&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="nv"&gt;a&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-terms&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;pseudoremainder-terms&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; b&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-terms&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-terms-coeff&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;coeffs&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;map &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;coeff&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;terms&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="nv"&gt;coeffs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cddr &lt;/span&gt;&lt;span class="nv"&gt;coeffs&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;greatest-common-divisor&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;coeffs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;coeffs&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;greatest-common-divisor&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;coeffs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="nv"&gt;coeffs&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="nv"&gt;coeffs&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;empty-termlist?&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;coeffs-gcd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-terms-coeff&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-terms&lt;/span&gt;
+	      &lt;span class="nv"&gt;a&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;coeffs-gcd&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-terms&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;pseudoremainder-terms&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdf80ddb" class="outline-4"&gt;
-&lt;h4 id="orgdf80ddb"&gt;2.97&lt;/h4&gt;
+&lt;div id="outline-container-org55f949e" class="outline-4"&gt;
+&lt;h4 id="org55f949e"&gt;2.97&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org55f949e"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; (load "./2.96.scm")&lt;/span&gt;
+     &lt;span class="c1"&gt;;; a&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;reduce-terms&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;compute-constant&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;af&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;bf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-term&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;c&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;coeff&lt;/span&gt; &lt;span class="nv"&gt;af&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;o1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;max &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;bf&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;cf&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;o2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;order&lt;/span&gt; &lt;span class="nv"&gt;af&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;expt &lt;/span&gt;&lt;span class="nv"&gt;c&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;o1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;o2&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;simplify&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;g&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-terms-coeff&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;append &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;sa&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-terms&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sb&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-terms&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="nv"&gt;sa&lt;/span&gt; &lt;span class="nv"&gt;sb&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;g&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-terms&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;constant&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;compute-constant&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;mn&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-term-by-all-terms&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;constant&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;md&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-term-by-all-terms&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-term&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;constant&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;gn&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-terms&lt;/span&gt; &lt;span class="nv"&gt;mn&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gd&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-terms&lt;/span&gt; &lt;span class="nv"&gt;md&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;simplify&lt;/span&gt; &lt;span class="nv"&gt;gn&lt;/span&gt; &lt;span class="nv"&gt;gd&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;	
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;reduce-poly&lt;/span&gt; &lt;span class="nv"&gt;p1&lt;/span&gt; &lt;span class="nv"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;same-vaiable?&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;variable&lt;/span&gt; &lt;span class="nv"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;variable&lt;/span&gt; &lt;span class="nv"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;t1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;term-list&lt;/span&gt; &lt;span class="nv"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;t2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;term-list&lt;/span&gt; &lt;span class="nv"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;reduce-terms&lt;/span&gt; &lt;span class="nv"&gt;t1&lt;/span&gt; &lt;span class="nv"&gt;t2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-poly&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;variable&lt;/span&gt; &lt;span class="nv"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-poly&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;variable&lt;/span&gt; &lt;span class="nv"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Polys not in same variable -- REDUCE-POLY"&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="nv"&gt;p1&lt;/span&gt; &lt;span class="nv"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; b&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; inside procedure install-scheme-number-package&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;reduce-integers&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;g&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;gcd &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'reduce&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;scheme-number&lt;/span&gt; &lt;span class="nv"&gt;scheme-number&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;map &lt;/span&gt;&lt;span class="nv"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;reduce-integers&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; inside procedure install-polynomial-package&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'reduce&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;polynomial&lt;/span&gt; &lt;span class="nv"&gt;polynomial&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;map &lt;/span&gt;&lt;span class="nv"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;reduce-poly&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; inside procedure install-rational-package&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-rat&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;simple&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;reduce&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;simple&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;simple&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;reduce&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;apply-generic&lt;/span&gt; &lt;span class="ss"&gt;'reduce&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%285%29/</guid><pubDate>Tue, 25 Dec 2018 06:45:00 GMT</pubDate></item><item><title>SICP-Refresher-Chapter-2(4)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%284%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgeda819d" class="outline-2"&gt;
