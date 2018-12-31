@@ -1,5 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app</title><link>https://zero4drift.github.io/</link><description>下期预告：cpp 实现 SICP Scheme 解释器</description><atom:link href="https://zero4drift.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Sun, 30 Dec 2018 13:45:10 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-3(1)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%281%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org76bb13d" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app</title><link>https://zero4drift.github.io/</link><description>下期预告：cpp 实现 SICP Scheme 解释器</description><atom:link href="https://zero4drift.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Mon, 31 Dec 2018 14:10:51 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-3(2)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%282%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgb002c65" class="outline-2"&gt;
+&lt;h2 id="orgb002c65"&gt;求值的环境模形&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb002c65"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;如 3.1.3 节所言，由于赋值的存在，变量已经不能再看作仅仅是某个值的名字，此
+时的一个变量必须以某种方式指定了一个“位置”，相应的值可以存储再那里，在新求
+值模形中，这种位置将维持在称为 &lt;b&gt;环境&lt;/b&gt; 的结构种；&lt;/li&gt;
+&lt;li&gt;一个环境就是 &lt;b&gt;框架(frame)&lt;/b&gt; 的一个序列，每个框架是包含着一些 &lt;b&gt;约束&lt;/b&gt; 的一个
+表格（可能为空），这些约束将一些变量名关联于对应的值（在一个框架里，任何变
+量至多只能有一个约束）；&lt;/li&gt;
+&lt;li&gt;每个框架还包含着一个指针，指向这一框架的外围环境，如果将相应的框架看作是全
+局的，那么它将没有外围环境；&lt;/li&gt;
+&lt;li&gt;一个变量相对于某个特定环境的值，也就是在这一环境中，包含着该变量的第一个框
+架里这个变量的约束值，如果在框架序列中并不存在这一变量的约束，那么我们就说
+这个变量在该特定环境中是无约束的；&lt;/li&gt;
+&lt;li&gt;环境对于求值过程是至关重要的，因为它确定了表达式求值的上下文，在现在讨论的
+求值模形中，我们将总说某个表达式相对于相对于某个环境的求值；&lt;/li&gt;
+&lt;li&gt;为了描述与解释器的交互作用，我们将始终假定存在着一个全局环境，它只包含着一
+个框架（没有外围环境），这个环境里包含着所有关联于基本过程的符号的值；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org43709f6" class="outline-3"&gt;
+&lt;h3 id="org43709f6"&gt;求值规则&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org43709f6"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;在求值的环境模形里，一个过程总是一个序对，由一些代码和一个指向环境的指针组成；&lt;/li&gt;
+&lt;li&gt;过程只能通过一种方式创建，那就是通过求值一个 &lt;code&gt;lambda&lt;/code&gt; 表达式；&lt;/li&gt;
+&lt;li&gt;过程定义的语法形式，不过是作为其基础的隐含 &lt;code&gt;lambda&lt;/code&gt; 表达式的语法糖衣；&lt;/li&gt;
+&lt;li&gt;在将一个过程应用于一组实际参数时，将会建立起一个新环境，其中包含了将所有
+形式参数约束于对应的实际参数的框架，该框架的外围环境就是所用的那个过程的
+环境，随后就在这个新环境之下求值过程的体；&lt;/li&gt;
+&lt;li&gt;相对于一个给定环境求值一个 &lt;code&gt;lambda&lt;/code&gt; 表达式，将创建起一个过程对象，这个过
+程对象是一个序对，由该 &lt;code&gt;lambda&lt;/code&gt; 表达式的正文和指向环境的指针组成，这一指
+针指向的就是创建这个过程对象时的环境；&lt;/li&gt;
+&lt;li&gt;在某个环境里求值表达式 &lt;code&gt;(set! &amp;lt;variable&amp;gt; &amp;lt;value&amp;gt;)&lt;/code&gt;, 要求我们首先在环境中
+确定有关变量的约束位置，而后再修改这个约束，使之表示这个新值，这也就是说，
+首先需要找到第一个包含这个变量的约束的框架，而后修改这一框架，如果该变量
+在环境中没有约束， &lt;code&gt;set!&lt;/code&gt; 将报告一个错误；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6d0fd25" class="outline-3"&gt;
+&lt;h3 id="org6d0fd25"&gt;简单过程的应用&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6d0fd25"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;将一个过程应用于一组实际的参数，建立起新环境的机制，可以保证在各个新环境
+中形参对应于实参的变量约束互不影响；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0bd5651" class="outline-3"&gt;
+&lt;h3 id="org0bd5651"&gt;练习 3.9&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0bd5651"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="c1"&gt;;; 图就不画了；&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; 注意，如果只是基于目前的对于环境模形的认识，迭代版本的程序将会创建正比于 n 的&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 环境个数，而不是一个，如 P167 脚注142 所言，这是有背于书本前面的断言的。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf12d122" class="outline-3"&gt;
+&lt;h3 id="orgf12d122"&gt;将框架看作局部状态的展台&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgf12d122"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;环境起着保存过程对象的局部状态变量的“位置”的作用；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org10e9454" class="outline-3"&gt;
+&lt;h3 id="org10e9454"&gt;练习 3.10&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org10e9454"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="c1"&gt;;; 在全局环境过程定义 make-withdraw 后产生的过程对象具有 make-withdraw 的代码正&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 文以及一个指向全局环境的指针；&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; (define w1 (make-withdraw 100)) 如书本所言，将建立一个新环境（E1）建立 形参&lt;/span&gt;
+    &lt;span class="c1"&gt;;; initial-amount 到数值 100 的约束，此环境的外围环境是全局环境，并在这一环境中&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 对 make-withdraw 的过程体求值；&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; make-withdraw 的过程体的 let 形式实际上就是 ((lambda (&amp;lt;var&amp;gt;) &amp;lt;body&amp;gt;) &amp;lt;exp&amp;gt;)&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 的语法糖衣，求值这个复合表达式，通过求值运算符 lambda 表达式将会建立一个过程&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 对象，该对象由此 lambda 对象的正文和一个指向 E1 的指针，因为这个 lambda 表达&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 式是在 E1 中求值的；&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; 使用这个匿名过程应用于参数，将会建立起一个新环境 (E2) 建立形参 balance 到实参&lt;/span&gt;
+    &lt;span class="c1"&gt;;; initial-amount 值的约束，此环境的外围环境是 E1, 并在这一环境中对匿名过程的体&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 进行求值，此过程体是一个 lambda 表达式，对其求值得到一个过程对象，由 lambda&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 表达式的代码部分和一个指向 E2 的指针组成，该过程对象作为返回值在最初的定义中&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 与全局环境中的 w1 建立约束；&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; 所以调用 w1 将会建立起一个新环境，此环境的外围环境由 w1 所约束的过程对象指定&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 即为 E2, 在新环境中求值 w1 过程对象的过程体时，使用的 balance 变量即是外围环&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 境 E2 中的变量 balance.&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; 综上，两个版本创建出的过程对象具有相同的行为，因为过程体是一样的，作为过程体&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 的局部状态变量的值是一样的，只不过第二种形式中多了一层环境。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org010ba7c" class="outline-3"&gt;
+&lt;h3 id="org010ba7c"&gt;内部定义&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org010ba7c"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;局部过程的名字不会与包容它们的过程之外的名字互相干扰，这是因为这些局部过程
+名都是在该过程运行时创建的框架里面约束的，而不是在全局环境里约束的；&lt;/li&gt;
+&lt;li&gt;局部过程只需将包含着它们的过程的形参作为自由变量，就可以访问该过程的实际参
+数，这是因为对于局部过程体的求值所在的环境是外围过程体求值所在的环境的下属；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org18cb0bf" class="outline-3"&gt;
+&lt;h3 id="org18cb0bf"&gt;练习 3.11&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org18cb0bf"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="c1"&gt;;; 画图就省了；&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; acc 的局部状态保存在 make-account 所关联的过程对象的过程体求值时创建的环境中；&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; 以同样的方式建立另一个帐户，将会把此帐户的局部状态变量保存在以同样方式创建的&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 新环境中；&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; 两个环境中的 balance 变量约束虽然同名但互不干扰；&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; acc 和 acc2 共享的也就是各过程对象的代码正文部分了以及全局环境；&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%282%29/</guid><pubDate>Mon, 31 Dec 2018 07:29:37 GMT</pubDate></item><item><title>SICP-Refresher-Chapter-3(1)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%281%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org76bb13d" class="outline-2"&gt;
 &lt;h2 id="org76bb13d"&gt;第三章&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org76bb13d"&gt;
 &lt;ol class="org-ol"&gt;
@@ -5119,371 +5251,4 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；&
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-1%282%29/</guid><pubDate>Fri, 14 Dec 2018 09:53:02 GMT</pubDate></item><item><title>SICP-Refresher-Chapter-1(1)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-1%281%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgabaa87d" class="outline-2"&gt;
-&lt;h2 id="orgabaa87d"&gt;写在前面&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgabaa87d"&gt;
-&lt;p&gt;
-&lt;i&gt;SICP&lt;/i&gt; 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么
-还要再来一遍？
-&lt;/p&gt;
-
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;说到习题，由于当时看这本书做习题时是在 windows 平台上，而 windows 系统并没
-有现成的非常方便地运行 scheme 程序的工具 (例如 cmuscheme 用起来就很麻烦),
-习题程序大部分都没有严格测试过，很多就是代码逻辑通顺就算完成，现在想来 bug
-应该不少；&lt;/li&gt;
-&lt;li&gt;第五章从基于寄存器机器的设计引出解释器和编译器的原理，虽然说此章大多的习题
-是叙述题所以没有做，但是 scheme repl 解释器的 c/c++ 实现还是值得一做的；&lt;/li&gt;
-&lt;li&gt;&lt;i&gt;SICP&lt;/i&gt; 的编程思想贯穿于今年学习 &lt;i&gt;Cpp-Primer&lt;/i&gt; 以及 &lt;i&gt;CLRS&lt;/i&gt; 的过程当中，这个我
-很明确的感受到了：构造过程抽象 &amp;amp; 构造数据抽象，虽然我只能说是略有领会，但确
-实在解决编程问题时提供了极大的帮助。编程工具会被淘汰，但编程思想永不过时，
-特别是在实践之后再重温必有更多获益；&lt;/li&gt;
-&lt;li&gt;&lt;i&gt;Cpp-Primer&lt;/i&gt; &amp;amp; &lt;i&gt;CLRS&lt;/i&gt; 在博客的相关博文中并没有详细的总结当时的代码思路，其
-主要内容是代码及一小部分注释，注释部分或者是关于代码的难点，亦或者是提醒容
-易出错的地方，这样的形式可读性很差，但要仔细组织文档的话，整体工作量又何止
-增加一倍；而这一次既然是复习 &amp;amp; 查错，同时利用 orgmode 嵌入代码块及 scheme的
-解释性语言的特点，可以在组织文章的同时运行～修改代码，这是效仿使用orgmode
-文档嵌入 elisp 代码块构成 emacs 配置文件的做法，许多 emacs 大佬用这种手法提
-高配置文件可读性。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;
-有些书就是值得一遍又一遍的反复咀嚼，毫无疑问 &lt;i&gt;SICP&lt;/i&gt; 就是其中的一员。
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org0f474ec" class="outline-2"&gt;
-&lt;h2 id="org0f474ec"&gt;第一章&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0f474ec"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;计算过程与程序
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;计算过程：存在于计算机里的一类抽象事物，可以操作一些称为数据的抽象事物；&lt;/li&gt;
-&lt;li&gt;程序：人们创建出的规则模式，以指导计算过程的进行；&lt;/li&gt;
-&lt;li&gt;设计良好的程序应该具有某种模块化的设计，各个部分都可以独立地构造，替换和
-排除错误，某模块发生的错误影响限于模块内部，并不会影响其它模块和整体程序。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;Lisp 语言作为本书中讨论程序设计的基础
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;最重要的是因为：计算过程的 Lisp 描述（过程）本身又可以作为 Lisp 的数据结
-构来表示和操作；&lt;/li&gt;
-&lt;li&gt;现存的许多威力强大的程序设计技术，都依赖于填平在“被动的”数据和“主动的”过
-程之间的传统划分。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-
-
-&lt;div id="outline-container-orgb60b2b4" class="outline-3"&gt;
-&lt;h3 id="orgb60b2b4"&gt;程序设计的基本元素&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb60b2b4"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;程序设计中的两类要素：过程和数据
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;非形式化地说，数据是一种我们希望去操作地“东西”，而过程就是有关操作这些
-数据的规则的描述；&lt;/li&gt;
-&lt;li&gt;任何强有力的程序设计语言都必须能表述基本的数据和基本的过程，还需要提供
-对过程和数据进行组合和抽象的方法；&lt;/li&gt;
-&lt;li&gt;本章只处理简单的数值数据，把注意力集中到过程构造的规则方面，当然这些规
-则同样可以用于操作各种数据。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org91b7cb5" class="outline-4"&gt;
-&lt;h4 id="org91b7cb5"&gt;表达式&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org91b7cb5"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;组合式是什么
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;构成方式就是用 &lt;b&gt;一对括号&lt;/b&gt; 括起一些 &lt;b&gt;表达式&lt;/b&gt;, 形成一个表，用于表示一个
-&lt;b&gt;过程应用&lt;/b&gt;;&lt;/li&gt;
-&lt;li&gt;表里最左的元素称为 &lt;b&gt;运算符&lt;/b&gt;, 其它元素都称为 &lt;b&gt;运算对象&lt;/b&gt;;&lt;/li&gt;
-&lt;li&gt;要得到这种组合式的值，采用的方式就是由 &lt;b&gt;运算符&lt;/b&gt; 所刻画的过程应用于有关
-的 &lt;b&gt;实际参数&lt;/b&gt;, 而所谓 &lt;b&gt;实际参数&lt;/b&gt; 也就是那些 &lt;b&gt;运算对象&lt;/b&gt; 的值。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;组合式的 &lt;b&gt;运算符&lt;/b&gt; 前缀表示
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;完全适用于可能带有任意个实参的过程；&lt;/li&gt;
-&lt;li&gt;可以直接扩充，允许出现组合式嵌套的情况。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgdf579e3" class="outline-4"&gt;
-&lt;h4 id="orgdf579e3"&gt;命名和环境&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgdf579e3"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;通过名字去使用 &lt;b&gt;运算对象&lt;/b&gt; 的方式
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;将名字标识符称为 &lt;b&gt;变量&lt;/b&gt;, 它的 &lt;b&gt;值&lt;/b&gt; 也就是它所对应的那个对象；&lt;/li&gt;
-&lt;li&gt;Scheme 中通过 define 的方式给事物命名，是我们所用的语言里最简单的抽象
-方法；&lt;/li&gt;
-&lt;li&gt;构造一个复杂的程序，也就是为了去一步步地创建出越来越复杂的计算性对象。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;环境
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;将值与符号关联，而后又能提取出这些值，解释器必须维护某种存储能力，以便
-保持有关的 &lt;b&gt;名字－值&lt;/b&gt; 序对的轨迹。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org8c92aa9" class="outline-4"&gt;
-&lt;h4 id="org8c92aa9"&gt;组合式的求值&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org8c92aa9"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;组合式的求值过程是递归的，应该把递归看做一种处理层次性结构的极强有力战术；&lt;/li&gt;
-&lt;li&gt;数，内部运算符或者其它名字是基本表达式，内部运算符和其它名字可以看作符号，
-环境所扮演的角色就是用于确定表达式中各个符号的意义；&lt;/li&gt;
-&lt;li&gt;一般性求值规则的例外被称为特殊形式（比如define，它并不是一个组合式），对
-各种表达式的求值规则可以描述为一个简单的通用规则和一组针对不多的特殊形式
-的专门规则。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org1514d16" class="outline-4"&gt;
-&lt;h4 id="org1514d16"&gt;复合过程&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org1514d16"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;过程定义是一种威力更加强大的抽象技术，通过它可以为复合操作提供名字，而后
-就可以将这样的操作作为一个单元使用了；&lt;/li&gt;
-&lt;li&gt;复合过程的使用方式与基本过程完全一样。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org8547439" class="outline-4"&gt;
-&lt;h4 id="org8547439"&gt;过程应用的代换模形&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org8547439"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;应用序：将复合过程应用于实际参数，就是在将过程体中的每个形参用相应的实参
-取代之后，对这一过程体求值；
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;代换的作用只是为了帮助我们领会过程调用中的情况，而不是对解释器实际工作
-方式的具体描述。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;正则序：先不求出运算对象的值，直到实际需要它们的值时再去做，采用这种求值
-方式，首先用运算对象表达式去代换形式参数，直至得到一个只包含基本运算符的
-表达式，然后再去执行求值。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orga1c004c" class="outline-4"&gt;
-&lt;h4 id="orga1c004c"&gt;条件表达式何谓词&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orga1c004c"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;&lt;p&gt;
-cond: 条件表达式，如果无法找到值为真的 &amp;lt;p&amp;gt;, cond 的值无定义；
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;lt;p1&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;e1&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;lt;p2&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;e2&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="o"&gt;...&lt;/span&gt;
-	     &lt;span class="c1"&gt;;; 最后一个子句 &amp;lt;p&amp;gt; 可以替换为 else&lt;/span&gt;
-	     &lt;span class="c1"&gt;;; 即前面所有子句都被跳过，会返回最后子句中 &amp;lt;e&amp;gt; 的值&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;&amp;lt;p3&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;e3&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;
-if: 条件表达式的受限形式，适用于分情况分析中只有两个情况的需要；
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="nv"&gt;&amp;lt;predicate&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;consequent&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;alternative&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;
-and: 特殊形式而不是普通过程，因为子表达式不一定都求值；
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;and &lt;/span&gt;&lt;span class="nv"&gt;&amp;lt;e1&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;en&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;
-or: 特殊形式而不是普通过程，因为子表达式不一定都求值；
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;or &lt;/span&gt;&lt;span class="nv"&gt;&amp;lt;e1&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt; &lt;span class="nv"&gt;&amp;lt;en&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;
-not: 普通过程
-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;not &lt;/span&gt;&lt;span class="nv"&gt;&amp;lt;e&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgc5bde70" class="outline-4"&gt;
-&lt;h4 id="orgc5bde70"&gt;练习 1.1-1.5&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc5bde70"&gt;
-&lt;/div&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="org93b7285"&gt;&lt;/a&gt;1.1&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org93b7285"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="mi"&gt;10&lt;/span&gt;					&lt;span class="c1"&gt;;10&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;				&lt;span class="c1"&gt;;12&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="mi"&gt;9&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;					&lt;span class="c1"&gt;;8&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;					&lt;span class="c1"&gt;;3&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;			&lt;span class="c1"&gt;;6&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;				&lt;span class="c1"&gt;;a = 3&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;			&lt;span class="c1"&gt;;b = 4&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;				&lt;span class="c1"&gt;;19&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;					&lt;span class="c1"&gt;;false&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;and &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-	 &lt;span class="nv"&gt;b&lt;/span&gt;
-	 &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;					&lt;span class="c1"&gt;;3&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	   &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;			&lt;span class="c1"&gt;;25&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;			&lt;span class="c1"&gt;;6&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	      &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;				&lt;span class="c1"&gt;;16&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="orgb3c89da"&gt;&lt;/a&gt;1.2&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orgb3c89da"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; 
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; 
-	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; 
-		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; 
-		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
-	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; 
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;				&lt;span class="c1"&gt;;-37/150&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="orge37ceab"&gt;&lt;/a&gt;1.3&lt;br&gt;
-&lt;div class="outline-text-5" id="text-orge37ceab"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;max-sum&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;and &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt;= &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt;= &lt;/span&gt;&lt;span class="nv"&gt;c&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;and &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt;= &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt;= &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="org1c74cd3"&gt;&lt;/a&gt;1.4&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org1c74cd3"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 该过程将第一个传入数值与第二个传入数值的绝对值相加&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="org5bd4154"&gt;&lt;/a&gt;1.5&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org5bd4154"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; (define (p) (p)) 定义了一个无参数过程 p，过程体就是调用它自己，对 (p) 进行求&lt;/span&gt;
-     &lt;span class="c1"&gt;;; 值会进入无限递归进而报错；&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; 应用序：报错，因为在应用序下要对组合式的各个子表达&lt;/span&gt;
-     &lt;span class="c1"&gt;;; 式进行求值，对第二个参数表达式求值将会触发上面第一条所讲的情况；&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; 正则序：通过，因为正则序求值是直到实际需要运算对象的值时再去做，而定义的 test&lt;/span&gt;
-     &lt;span class="c1"&gt;;; 过程在传入的第一个参数为0的情况下过程体谓词部分的值为 true, 根据 if 条件表达&lt;/span&gt;
-     &lt;span class="c1"&gt;;; 式的特殊求值规则，它包含 (p) 的 &amp;lt;alternative&amp;gt; 部分并不求值，所以不会触发第一&lt;/span&gt;
-     &lt;span class="c1"&gt;;; 条所讲的情况。&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orge910c75" class="outline-4"&gt;
-&lt;h4 id="orge910c75"&gt;实例：采用牛顿法求平方根&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orge910c75"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;函数与过程之间的矛盾，不过是在描述一件事情的特征，与描述如何去做这件事情
-之间的普遍性差异的一个具体反映，也就是说明性的知识与行动性的知识之间的差
-异。在数学里，人们通常关心的是说明性的描述，而在计算机科学里，人们通常关
-心行动性的描述；&lt;/li&gt;
-&lt;li&gt;不用特殊的迭代结构，只需要使用常规的过程调用能力也可以实现迭代。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgd99ea92" class="outline-4"&gt;
-&lt;h4 id="orgd99ea92"&gt;练习 1.6-1.8&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgd99ea92"&gt;
-&lt;/div&gt;
-&lt;ul class="org-ul"&gt;
-&lt;li&gt;&lt;a id="org8019be2"&gt;&lt;/a&gt;1.6&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org8019be2"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 新定义的过程 prodecure 是一个普通过程，在调用它时将会对它的所有子表达式求值，&lt;/span&gt;
-     &lt;span class="c1"&gt;;; 无论 predicate 部分的结果如何，作为 else-clause 的 sqrt-iter 部分将会一直被调&lt;/span&gt;
-     &lt;span class="c1"&gt;;; 用从而导致一个无尽递归调用，解释器报错。&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="org870a584"&gt;&lt;/a&gt;1.7&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org870a584"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 对于特别小的被开方数，甚至比事先确定的误差值还要小的数，猜测值将主要依赖于误&lt;/span&gt;
-     &lt;span class="c1"&gt;;; 差值而不是被开方数；&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; 对于特别大的被开方数，猜测值的离散性也越明显，有可能导致猜测值的平方与被开方&lt;/span&gt;
-     &lt;span class="c1"&gt;;; 数的绝对值差永远大于事先确定的误差值。&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; a new good-enough? procedure&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;good-enough?&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;old-guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;abs &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;old-guess&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mf"&gt;0.001&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sqrt-iter&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;old-guess&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;good-enough?&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;old-guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	   &lt;span class="nv"&gt;guess&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sqrt-iter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;improve&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-		      &lt;span class="nv"&gt;guess&lt;/span&gt;
-		      &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;sqrt &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sqrt-iter&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-
-&lt;li&gt;&lt;a id="org9c13d84"&gt;&lt;/a&gt;1.8&lt;br&gt;
-&lt;div class="outline-text-5" id="text-org9c13d84"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;good-enough?&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;old-guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;abs &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;old-guess&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mf"&gt;0.000001&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;improve-guess&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	  &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cubic-iter&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;old-guess&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;good-enough?&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;old-guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	   &lt;span class="nv"&gt;guess&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cubic-iter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;improve-guess&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-		       &lt;span class="nv"&gt;guess&lt;/span&gt;
-		       &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cubic&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cubic-iter&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgbe7f655" class="outline-4"&gt;
-&lt;h4 id="orgbe7f655"&gt;过程作为黑箱抽象&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgbe7f655"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;将程序分解为一族过程，每一个子过程完成了一件可以清楚标明的工作，使它们可
-以被用作定义其他过程的模块；这直接反映了从原问题到子问题的分解；&lt;/li&gt;
-&lt;li&gt;在一个抽象层次上，任何能接受相同的参数计算出相同结果的过程都是不可区分的，
-这就是过程抽象；用户在使用一个过程时，应该不需要去弄清它是如何实现的；&lt;/li&gt;
-&lt;li&gt;一个过程的定义约束了它的所有形式参数，形式参数被称为 &lt;b&gt;约束&lt;/b&gt; 变量，以它被约束
-于的那一集表达式称为这个名字的作用域；如果一个变量不是被约束的，那它就是
-&lt;b&gt;自由&lt;/b&gt; 的；&lt;/li&gt;
-&lt;li&gt;将所用的辅助过程定义放到内部，使它们局部于这一过程，这样嵌套的定义称为块
-结构，是最简单的名字包装问题的一种正确方式；*词法作用域* 要求过程中的自由
-变量实际引用外围过程定义中所出现的约束，即在定义本过程环境中去寻找它们。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-1%281%29/</guid><pubDate>Thu, 13 Dec 2018 12:41:57 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-1%282%29/</guid><pubDate>Fri, 14 Dec 2018 09:53:02 GMT</pubDate></item></channel></rss>
