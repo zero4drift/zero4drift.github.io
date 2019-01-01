@@ -7,15 +7,19 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://zero4drift.github.io/</loc>
-  <lastmod>2018-12-29T13:47:00Z</lastmod>
+  <lastmod>2019-01-01T14:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/2018/</loc>
   <lastmod>2018-12-07T13:02:00Z</lastmod>
  </url>
  <url>
+  <loc>https://zero4drift.github.io/2019/</loc>
+  <lastmod>2019-01-01T14:56:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://zero4drift.github.io/archive.html</loc>
-  <lastmod>2018-12-31T14:10:00Z</lastmod>
+  <lastmod>2019-01-01T14:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/categories/</loc>
@@ -95,27 +99,27 @@
  </url>
  <url>
   <loc>https://zero4drift.github.io/index-1.html</loc>
-  <lastmod>2018-12-07T13:06:00Z</lastmod>
+  <lastmod>2019-01-01T14:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/index-2.html</loc>
-  <lastmod>2018-12-07T13:06:00Z</lastmod>
+  <lastmod>2019-01-01T14:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/index-3.html</loc>
-  <lastmod>2018-12-07T13:59:00Z</lastmod>
+  <lastmod>2019-01-01T14:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/index-4.html</loc>
-  <lastmod>2018-12-07T13:59:00Z</lastmod>
+  <lastmod>2019-01-01T14:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/index-5.html</loc>
-  <lastmod>2018-12-29T13:47:00Z</lastmod>
+  <lastmod>2019-01-01T14:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/index-6.html</loc>
-  <lastmod>2018-12-31T14:10:00Z</lastmod>
+  <lastmod>2019-01-01T14:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/posts/CLRS-Cpp-Implementations-Chapter-10/</loc>
@@ -364,6 +368,10 @@
  <url>
   <loc>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%282%29/</loc>
   <lastmod>2018-12-31T14:10:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%283%29/</loc>
+  <lastmod>2019-01-01T14:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://zero4drift.github.io/posts/sicp-systems-with-generic-operations/</loc>

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Refresher of SICP chapter 3.3 Modularity, Objects, and State 模块化，对象和状态">
+<meta name="viewport" content="width=device-width">
+<title>SICP-Refresher-Chapter-3(3) | 钉钉是世界上最傻逼的app</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://zero4drift.github.io/posts/sicp-refresher-chapter-3%283%29/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="zero4drift">
+<meta property="og:site_name" content="钉钉是世界上最傻逼的app">
+<meta property="og:title" content="SICP-Refresher-Chapter-3(3)">
+<meta property="og:url" content="https://zero4drift.github.io/posts/sicp-refresher-chapter-3%283%29/">
+<meta property="og:description" content="Refresher of SICP chapter 3.3 Modularity, Objects, and State 模块化，对象和状态">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2019-01-01T13:45:20+08:00">
+<meta property="article:tag" content="Scheme">
+<meta property="article:tag" content="SICP">
+</head>
+<body>
+    
+
+    <header id="header" class="navbar"><div class="container">
+            
+    <div class="brand">
+
+        <div class="brand-text">
+            <a href="https://zero4drift.github.io/" title="钉钉是世界上最傻逼的app" rel="home">
+                钉钉是世界上最傻逼的app
+            </a>
+        </div>
+
+        <a id="btn-toggle-nav" class="navbar-toggle">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+    </div>
+
+            
+    <nav class="navbar-collapse collapse"><ul class="nav">
+<li><a href="../../archive.html">Archive</a></li>
+                <li><a href="https://github.com/zero4drift">Github</a></li>
+                <li><a href="../../categories/">Tags</a></li>
+                <li><a href="../../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+    </header><div class="header-padding"> </div>
+
+    
+    <div class="post-header">
+        <div class="container">
+            <div class="title">
+                SICP-Refresher-Chapter-3(3)
+            </div>
+        </div>
+    </div>
+
+    <div class="post-meta">
+      <div class="container">
+	<div class="meta clearfix">
+	  <div class="authordate">
+	    <time class="timeago" datetime="2019-01-01T13:45:20+08:00">2019/01/01</time>
+</div>
+	  <div class="post-tags">
+	    <div class="tag">
+	      <a href="../../categories/scheme/" rel="tag">Scheme</a>
+	    </div>
+	    <div class="tag">
+	      <a href="../../categories/sicp/" rel="tag">SICP</a>
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+    
+    
+    <div id="post-main" class="main">
+        <div class="container">
+        <div id="outline-container-org1bda987" class="outline-2">
+<h2 id="org1bda987">用变动数据做模拟</h2>
+<div class="outline-text-2" id="text-org1bda987">
+<ol class="org-ol">
+<li>为了模拟那些由具有不断变化的状态组成的系统，我们除了需要做复合数据对象的构
+造和成员选择之外，还可能需要修改它们；</li>
+<li>为了模拟具有不断变化的状态的复合对象，我们将设计出与之对应的数据抽象，使其
+中不但包含了选择函数和构造函数，还有包含一些称为 <b>改变函数</b> 的操作，这种操
+作能够修改有关的数据对象；</li>
+<li>定义了改变函数的数据对象称为 <b>变动数据对象</b>;</li>
+</ol>
+</div>
+
+<div id="outline-container-org7a911da" class="outline-3">
+<h3 id="org7a911da">变动的表结构</h3>
+<div class="outline-text-3" id="text-org7a911da">
+<ol class="org-ol">
+<li>针对序对的基本改变函数使 <code>set-car!</code> 和 <code>set-cdr!</code>, <code>set-car!</code> 要求两个参
+数，其中的第一个参数必须是一个序对， <code>set-car!</code> 修改这个序对，将它的 car
+指针替换为指向 <code>set-car!</code> 的第二个参数的指针；</li>
+<li>
+<code>set-cdr!</code> 操作与 <code>set-car!</code> 类似，它们之间的差异就在于这里被取代的是序对
+的 cdr 指针，而不是 car 指针；</li>
+<li>
+<code>cons</code> 通过 <b>创建新序对</b> 的方式构造新的表，而 <code>set-car!</code> 和 <code>set-cdr!</code> 则
+是修改现存的序对；</li>
+<li>一般而言，用 cons 构造出的表结构总是序对的一个相互链接的结构，其中可能会
+有许多独立的序对被一些不同结构所共享；</li>
+<li>如果只要 <code>cons car cdr</code> 对各种表进行操作，其中的共享就 <b>完全不会被察觉</b>,
+然而，如果允许改变表结构的话，共享的情况就会显现出来了；</li>
+<li>谓词 <code>(eq? x y)</code> 实际上检查 x 和 y 是否为同一个对象（也就是数，x 和 y 作
+为指针是否相等）；</li>
+<li>利用共享结构可以极大地扩展能够用于序对表示地数据结构的范围，另一方面，共
+享也可能带来危险，因为对这种结构的修改将会影响那些恰好共享着被修改了的序
+对的结构；</li>
+<li>从理论上来说，为了表现变动数据的行为，所需要的全部东西也就是赋值；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org07c6caa" class="outline-3">
+<h3 id="org07c6caa">练习 3.12-3.20</h3>
+<div class="outline-text-3" id="text-org07c6caa">
+</div>
+<div id="outline-container-org37facb5" class="outline-4">
+<h4 id="org37facb5">3.12</h4>
+<div class="outline-text-4" id="text-org37facb5">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 画图就省了；</span>
+     <span class="c1">;; 使用 append:</span>
+     <span class="c1">;; (cdr x): (list 'b)</span>
+
+     <span class="c1">;; 使用 append!:</span>
+     <span class="c1">;; (cdr x): (list 'b 'c 'd)</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org9da4202" class="outline-4">
+<h4 id="org9da4202">3.13</h4>
+<div class="outline-text-4" id="text-org9da4202">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-cycle</span> <span class="nv">x</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">set-cdr! </span><span class="p">(</span><span class="nf">last-pair</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+       <span class="nv">x</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">z</span> <span class="p">(</span><span class="nf">make-cycle</span> <span class="p">(</span><span class="nb">list </span><span class="ss">'a</span> <span class="ss">'b</span> <span class="ss">'c</span> <span class="ss">'d</span><span class="p">)))</span>
+
+     <span class="c1">;; z: (list 'a 'b 'c 'd 'a 'b 'c 'd ....) deathloop!</span>
+
+     <span class="c1">;; (last-pair z): deathloop too</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org0e48a5f" class="outline-4">
+<h4 id="org0e48a5f">3.14</h4>
+<div class="outline-text-4" id="text-org0e48a5f">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 翻转</span>
+     <span class="c1">;; v: (list 'a 'b 'c 'd)</span>
+
+     <span class="c1">;; 最后打印</span>
+     <span class="c1">;; w: (list 'd 'c 'b 'a)</span>
+     <span class="c1">;; v: (list 'a)</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org1f47e5f" class="outline-4">
+<h4 id="org1f47e5f">3.15</h4>
+<div class="outline-text-4" id="text-org1f47e5f">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 很简单，画图就省了。</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org94b34af" class="outline-4">
+<h4 id="org94b34af">3.16</h4>
+<div class="outline-text-4" id="text-org94b34af">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 利用共享结构可以很容易地构造出复合需求地表结构；</span>
+
+     <span class="c1">;; 而使过程根本就不返回就是使序对的 car 部分或者 cdr 部分指向序对自己，过程执行</span>
+     <span class="c1">;; 将会进入无限递归，解释器报错 exceeds maximum recursion depth。</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org09dd6e0" class="outline-4">
+<h4 id="org09dd6e0">3.17</h4>
+<div class="outline-text-4" id="text-org09dd6e0">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 使用谓词 eq? 分辨前后遇到的序对是否是同一个序对</span>
+     <span class="c1">;; 过程 memq 主要基于谓词 eq?</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">count-pairs</span> <span class="nv">x</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">checked</span> <span class="o">'</span><span class="p">()))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">recursive</span> <span class="nv">x</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">memq </span><span class="nv">x</span> <span class="nv">checked</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+		 <span class="p">((</span><span class="nb">not </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">x</span><span class="p">))</span> <span class="mi">0</span><span class="p">)</span>
+		 <span class="p">(</span><span class="nf">else</span>
+		  <span class="p">(</span><span class="nf">begin</span>
+		    <span class="p">(</span><span class="k">set! </span><span class="nv">checked</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">checked</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">recursive</span> <span class="p">(</span><span class="nb">car </span><span class="nv">x</span><span class="p">))</span>
+		       <span class="p">(</span><span class="nf">recursive</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">x</span><span class="p">))</span>
+		       <span class="mi">1</span><span class="p">)))))</span>
+	 <span class="p">(</span><span class="nf">recursive</span> <span class="nv">x</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgfcd7c0b" class="outline-4">
+<h4 id="orgfcd7c0b">3.18</h4>
+<div class="outline-text-4" id="text-orgfcd7c0b">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">infinite?</span> <span class="nv">l</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">checked</span> <span class="o">'</span><span class="p">()))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">recursive</span> <span class="nv">x</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">x</span><span class="p">)</span> <span class="no">#f</span><span class="p">)</span>
+		 <span class="p">((</span><span class="nb">memq </span><span class="nv">x</span> <span class="nv">checked</span><span class="p">)</span> <span class="no">#t</span><span class="p">)</span>
+		 <span class="p">(</span><span class="nf">else</span>
+		  <span class="p">(</span><span class="k">begin </span><span class="p">(</span><span class="k">set! </span><span class="nv">checked</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">checked</span><span class="p">))</span>
+			 <span class="p">(</span><span class="nf">recursive</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">x</span><span class="p">))))))</span>
+	 <span class="p">(</span><span class="nf">recursive</span> <span class="nv">l</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org4df55bc" class="outline-4">
+<h4 id="org4df55bc">3.19</h4>
+<div class="outline-text-4" id="text-org4df55bc">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 不是很明白这个算法的原理</span>
+     <span class="c1">;; 详情请参考 http://en.wikipedia.org/wiki/Cycle_detection</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">contains-cycle?</span> <span class="nv">lst</span><span class="p">)</span> 
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">safe-cdr</span> <span class="nv">l</span><span class="p">)</span> 
+	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">l</span><span class="p">)</span> 
+	     <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">)</span> 
+	     <span class="o">'</span><span class="p">()))</span> 
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">iter</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> 
+	 <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">not </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">a</span><span class="p">))</span> <span class="no">#f</span><span class="p">)</span> 
+	       <span class="p">((</span><span class="nb">not </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">b</span><span class="p">))</span> <span class="no">#f</span><span class="p">)</span> 
+	       <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="no">#t</span><span class="p">)</span> 
+	       <span class="p">((</span><span class="nb">eq? </span><span class="nv">a</span> <span class="p">(</span><span class="nf">safe-cdr</span> <span class="nv">b</span><span class="p">))</span> <span class="no">#t</span><span class="p">)</span> 
+	       <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">iter</span> <span class="p">(</span><span class="nf">safe-cdr</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nf">safe-cdr</span> <span class="p">(</span><span class="nf">safe-cdr</span> <span class="nv">b</span><span class="p">))))))</span> 
+       <span class="p">(</span><span class="nf">iter</span> <span class="p">(</span><span class="nf">safe-cdr</span> <span class="nv">lst</span><span class="p">)</span> <span class="p">(</span><span class="nf">safe-cdr</span> <span class="p">(</span><span class="nf">safe-cdr</span> <span class="nv">lst</span><span class="p">))))</span> 
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org26cf50c" class="outline-4">
+<h4 id="org26cf50c">3.20</h4>
+<div class="outline-text-4" id="text-org26cf50c">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 虽然有点复杂，只是繁琐并不难，画图就省了。</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf442a13" class="outline-3">
+<h3 id="orgf442a13">队列的表示</h3>
+<div class="outline-text-3" id="text-orgf442a13">
+<ol class="org-ol">
+<li>将队列表示为一个序对，car 部分和 cdr 部分分别指向一个常规表中的第一个序对
+和最后一个序对，这样的设计使队列操作都只需要 theta(1) 步就能完成；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgb277075" class="outline-3">
+<h3 id="orgb277075">练习 3.21-3.23</h3>
+<div class="outline-text-3" id="text-orgb277075">
+</div>
+<div id="outline-container-orgafa8202" class="outline-4">
+<h4 id="orgafa8202">3.21</h4>
+<div class="outline-text-4" id="text-orgafa8202">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 因为过程 delete-queue! 只修改一个队列表示的 front-ptr 部分</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">print-queue</span> <span class="nv">q</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">display</span>
+	<span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">q</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgd02cebd" class="outline-4">
+<h4 id="orgd02cebd">3.22</h4>
+<div class="outline-text-4" id="text-orgd02cebd">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-queue</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">front-ptr</span> <span class="o">'</span><span class="p">())</span>
+	     <span class="p">(</span><span class="nf">rear-ptr</span> <span class="o">'</span><span class="p">()))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">empty-queue?</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nb">null? </span><span class="nv">front-ptr</span><span class="p">))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">front-queue</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty-queue?</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nf">error</span> <span class="s">"FRONT called with an empty queue"</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nb">car </span><span class="nv">front-ptr</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">insert-queue!</span> <span class="nv">item</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">new-pair</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">item</span> <span class="o">'</span><span class="p">())))</span>
+	     <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">empty-queue?</span><span class="p">)</span>
+		    <span class="p">(</span><span class="k">set! </span><span class="nv">front-ptr</span> <span class="nv">new-pair</span><span class="p">)</span>
+		    <span class="p">(</span><span class="k">set! </span><span class="nv">rear-ptr</span> <span class="nv">new-pair</span><span class="p">)</span>
+		    <span class="nv">front-ptr</span><span class="p">)</span>
+		   <span class="p">(</span><span class="nf">else</span>
+		    <span class="p">(</span><span class="nb">set-cdr! </span><span class="nv">rear-ptr</span> <span class="nv">new-pair</span><span class="p">)</span>
+		    <span class="p">(</span><span class="k">set! </span><span class="nv">rear-ptr</span> <span class="nv">new-pair</span><span class="p">)</span>
+		    <span class="nv">front-ptr</span><span class="p">))))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">delete-queue!</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">empty-queue?</span><span class="p">)</span>
+		  <span class="p">(</span><span class="nf">error</span> <span class="s">"DELETE! called with an empty queue"</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">else</span>
+		  <span class="p">(</span><span class="k">set! </span><span class="nv">front-ptr</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">front-ptr</span><span class="p">))</span>
+		  <span class="nv">front-ptr</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">dispatch</span> <span class="nv">m</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">eq? </span><span class="nv">m</span> <span class="ss">'empty-queue?</span><span class="p">)</span> <span class="nv">empty-queue?</span><span class="p">)</span>
+		 <span class="p">((</span><span class="nb">eq? </span><span class="nv">m</span> <span class="ss">'front-queue</span><span class="p">)</span> <span class="nv">front-queue</span><span class="p">)</span>
+		 <span class="p">((</span><span class="nb">eq? </span><span class="nv">m</span> <span class="ss">'insert-queue!</span><span class="p">)</span> <span class="nv">insert-queue!</span><span class="p">)</span>
+		 <span class="p">((</span><span class="nb">eq? </span><span class="nv">m</span> <span class="ss">'delete-queue!</span><span class="p">)</span> <span class="nv">delete-queue!</span><span class="p">)))</span>
+	 <span class="nv">dispatch</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">empty-queue?</span> <span class="nv">queue</span><span class="p">)</span>
+       <span class="p">((</span><span class="nf">queue</span> <span class="ss">'empty-queue?</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">front-queue</span> <span class="nv">queue</span><span class="p">)</span>
+       <span class="p">((</span><span class="nf">queue</span> <span class="ss">'front-queue</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">insert-queue!</span> <span class="nv">queue</span> <span class="nv">item</span><span class="p">)</span>
+       <span class="p">((</span><span class="nf">queue</span> <span class="ss">'insert-queue!</span><span class="p">)</span> <span class="nv">item</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">delete-queue!</span> <span class="nv">queue</span><span class="p">)</span>
+       <span class="p">((</span><span class="nf">queue</span> <span class="ss">'delete-queue!</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgc63c3c1" class="outline-4">
+<h4 id="orgc63c3c1">3.23</h4>
+<div class="outline-text-4" id="text-orgc63c3c1">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-deque</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cons </span><span class="o">'</span><span class="p">()</span> <span class="o">'</span><span class="p">()))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">deque</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">deque</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rear-ptr</span> <span class="nv">deque</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">deque</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-front-ptr!</span> <span class="nv">deque</span> <span class="nv">item</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">set-car! </span><span class="nv">deque</span> <span class="nv">item</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-rear-ptr!</span> <span class="nv">deque</span> <span class="nv">item</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">set-cdr! </span><span class="nv">deque</span> <span class="nv">item</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">empty-deque?</span> <span class="nv">deque</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">null? </span><span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">deque</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">front-deque</span> <span class="nv">deque</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty-deque?</span> <span class="nv">deque</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nf">error</span> <span class="s">"FRONT called with an empty deque"</span>
+		  <span class="p">(</span><span class="nf">display-deque</span> <span class="nv">deque</span><span class="p">))</span>
+	   <span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">deque</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rear-deque</span> <span class="nv">deque</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">empty-deque?</span> <span class="nv">deque</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nf">error</span> <span class="s">"FRONT called with an empty deque"</span>
+		  <span class="p">(</span><span class="nf">display-deque</span> <span class="nv">deque</span><span class="p">))</span>
+	   <span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nf">rear-ptr</span> <span class="nv">deque</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-pair</span> <span class="nv">item</span> <span class="nv">front</span> <span class="nv">rear</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cons </span><span class="nv">item</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">front</span> <span class="nv">rear</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">front-rear-pair</span> <span class="nv">pair</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">pair</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-pair-front</span> <span class="nv">pair</span> <span class="nv">front</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">set-car! </span><span class="p">(</span><span class="nf">front-rear-pair</span> <span class="nv">pair</span><span class="p">)</span> <span class="nv">front</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-pair-rear</span> <span class="nv">pair</span> <span class="nv">rear</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">set-cdr! </span><span class="p">(</span><span class="nf">front-rear-pair</span> <span class="nv">pair</span><span class="p">)</span> <span class="nv">rear</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">pair-item</span> <span class="nv">pair</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">pair</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">pair-rear</span> <span class="nv">pair</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="p">(</span><span class="nf">front-rear-pair</span> <span class="nv">pair</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">pair-front</span> <span class="nv">pair</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nf">front-rear-pair</span> <span class="nv">pair</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">front-insert-deque!</span> <span class="nv">deque</span> <span class="nv">item</span><span class="p">)</span> <span class="c1">;insert to the front</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">new-pair</span> <span class="p">(</span><span class="nf">make-pair</span> <span class="nv">item</span> <span class="o">'</span><span class="p">()</span> <span class="o">'</span><span class="p">())))</span>
+	 <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">empty-deque?</span> <span class="nv">deque</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">set-front-ptr!</span> <span class="nv">deque</span> <span class="nv">new-pair</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">set-rear-ptr!</span> <span class="nv">deque</span> <span class="nv">new-pair</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">display-deque</span> <span class="nv">deque</span><span class="p">))</span>
+	       <span class="p">(</span><span class="nf">else</span>
+		<span class="p">(</span><span class="nf">set-pair-front</span> <span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">deque</span><span class="p">)</span> <span class="nv">new-pair</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">set-pair-rear</span> <span class="nv">new-pair</span> <span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">deque</span><span class="p">))</span>
+		<span class="p">(</span><span class="nf">set-front-ptr!</span> <span class="nv">deque</span> <span class="nv">new-pair</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">display-deque</span> <span class="nv">deque</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rear-insert-deque!</span> <span class="nv">deque</span> <span class="nv">item</span><span class="p">)</span>	<span class="c1">;insert to the end</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">new-pair</span> <span class="p">(</span><span class="nf">make-pair</span> <span class="nv">item</span> <span class="o">'</span><span class="p">()</span> <span class="o">'</span><span class="p">())))</span>
+	 <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">empty-deque?</span>
+		 <span class="nv">deque</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">set-rear-ptr!</span> <span class="nv">deque</span> <span class="nv">new-pair</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">set-front-ptr!</span> <span class="nv">deque</span> <span class="nv">new-pair</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">display-deque</span> <span class="nv">deque</span><span class="p">))</span>
+	       <span class="p">(</span><span class="nf">else</span>
+		<span class="p">(</span><span class="nf">set-pair-rear</span> <span class="p">(</span><span class="nf">rear-ptr</span> <span class="nv">deque</span><span class="p">)</span> <span class="nv">new-pair</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">set-pair-front</span> <span class="nv">new-pair</span> <span class="p">(</span><span class="nf">rear-ptr</span> <span class="nv">deque</span><span class="p">))</span>
+		<span class="p">(</span><span class="nf">set-rear-ptr!</span> <span class="nv">deque</span> <span class="nv">new-pair</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">display-deque</span> <span class="nv">deque</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">front-delete-deque!</span> <span class="nv">deque</span><span class="p">)</span>	<span class="c1">;delete the front one</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">empty-deque?</span> <span class="nv">deque</span><span class="p">)</span>
+	      <span class="p">(</span><span class="nf">error</span> <span class="s">"DELETE! called with an empty deque"</span>
+		     <span class="p">(</span><span class="nf">display-deque</span> <span class="nv">deque</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="nf">else</span>
+	      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">deque</span><span class="p">)</span> <span class="p">(</span><span class="nf">rear-ptr</span> <span class="nv">deque</span><span class="p">))</span>
+		  <span class="p">(</span><span class="nf">begin</span>
+		    <span class="p">(</span><span class="nf">set-front-ptr!</span> <span class="nv">deque</span> <span class="o">'</span><span class="p">())</span>
+		    <span class="p">(</span><span class="nf">set-rear-ptr!</span> <span class="nv">deque</span> <span class="o">'</span><span class="p">()))</span>
+		  <span class="p">(</span><span class="nf">begin</span>
+		    <span class="p">(</span><span class="nf">set-front-ptr!</span> <span class="nv">deque</span> <span class="p">(</span><span class="nf">pair-rear</span> <span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">deque</span><span class="p">)))</span>
+		    <span class="p">(</span><span class="nf">set-pair-front</span> <span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">deque</span><span class="p">)</span> <span class="o">'</span><span class="p">())))</span>
+	      <span class="p">(</span><span class="nf">display-deque</span> <span class="nv">deque</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rear-delete-deque!</span> <span class="nv">deque</span><span class="p">)</span>	<span class="c1">;delete the rear one</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">empty-deque?</span> <span class="nv">deque</span><span class="p">)</span>
+	      <span class="p">(</span><span class="nf">error</span> <span class="s">"DELETE! called with an empty deque"</span>
+		     <span class="p">(</span><span class="nf">display-deque</span> <span class="nv">deque</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="nf">else</span>
+	      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">deque</span><span class="p">)</span> <span class="p">(</span><span class="nf">rear-ptr</span> <span class="nv">deque</span><span class="p">))</span>
+		  <span class="p">(</span><span class="nf">begin</span>
+		    <span class="p">(</span><span class="nf">set-front-ptr!</span> <span class="nv">deque</span> <span class="o">'</span><span class="p">())</span>
+		    <span class="p">(</span><span class="nf">set-rear-ptr!</span> <span class="nv">deque</span> <span class="o">'</span><span class="p">()))</span>
+		  <span class="p">(</span><span class="nf">begin</span>
+		    <span class="p">(</span><span class="nf">set-rear-ptr!</span> <span class="nv">deque</span> <span class="p">(</span><span class="nf">pair-front</span> <span class="p">(</span><span class="nf">rear-ptr</span> <span class="nv">deque</span><span class="p">)))</span>
+		    <span class="p">(</span><span class="nf">set-pair-rear</span> <span class="p">(</span><span class="nf">rear-ptr</span> <span class="nv">deque</span><span class="p">)</span> <span class="o">'</span><span class="p">())))</span>
+	      <span class="p">(</span><span class="nf">display-deque</span> <span class="nv">deque</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">display-deque</span> <span class="nv">deque</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fetch-item</span> <span class="nv">ptr</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">ptr</span><span class="p">)</span>
+	     <span class="o">'</span><span class="p">()</span>
+	     <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">pair-item</span> <span class="nv">ptr</span><span class="p">)</span>
+		   <span class="p">(</span><span class="nf">fetch-item</span> <span class="p">(</span><span class="nf">pair-rear</span> <span class="nv">ptr</span><span class="p">)))))</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nf">empty-deque?</span> <span class="nv">deque</span><span class="p">))</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">front</span> <span class="p">(</span><span class="nf">front-ptr</span> <span class="nv">deque</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="nf">fetch-item</span> <span class="nv">front</span><span class="p">))</span>
+	   <span class="o">'</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga0516b3" class="outline-3">
+<h3 id="orga0516b3">表格的表示</h3>
+<div class="outline-text-3" id="text-orga0516b3">
+<ol class="org-ol">
+<li>一维表格，二维表格及使用消息传递风格创建局部表格；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org59d40d8" class="outline-3">
+<h3 id="org59d40d8">练习 3.24-3.27</h3>
+<div class="outline-text-3" id="text-org59d40d8">
+</div>
+<div id="outline-container-org8229bb6" class="outline-4">
+<h4 id="org8229bb6">3.24</h4>
+<div class="outline-text-4" id="text-org8229bb6">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-table</span> <span class="nv">same-key?</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">local-table</span> <span class="p">(</span><span class="nb">list </span><span class="ss">'*table*</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lookup</span> <span class="nv">key-1</span> <span class="nv">key-2</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">subtable</span> <span class="p">(</span><span class="nb">assoc </span><span class="nv">key-1</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">local-table</span><span class="p">))))</span>
+	     <span class="p">(</span><span class="k">if </span><span class="nv">subtable</span>
+		 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">record</span> <span class="p">(</span><span class="nb">assoc </span><span class="nv">key-2</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">subtable</span><span class="p">))))</span>
+		   <span class="p">(</span><span class="k">if </span><span class="nv">record</span>
+		       <span class="p">(</span><span class="nb">cdr </span><span class="nv">record</span><span class="p">)</span>
+		       <span class="no">#f</span><span class="p">))</span>
+		 <span class="no">#f</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">insert!</span> <span class="nv">key-1</span> <span class="nv">key-2</span> <span class="nv">value</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">subtable</span> <span class="p">(</span><span class="nb">assoc </span><span class="nv">key-1</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">local-table</span><span class="p">))))</span>
+	     <span class="p">(</span><span class="k">if </span><span class="nv">subtable</span>
+		 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">record</span> <span class="p">(</span><span class="nb">assoc </span><span class="nv">key-2</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">subtable</span><span class="p">))))</span>
+		   <span class="p">(</span><span class="k">if </span><span class="nv">record</span>
+		       <span class="p">(</span><span class="nb">set-cdr! </span><span class="nv">record</span> <span class="nv">value</span><span class="p">)</span>
+		       <span class="p">(</span><span class="nb">set-cdr! </span><span class="nv">subtable</span>
+				 <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">cons </span><span class="nv">key-2</span> <span class="nv">value</span><span class="p">)</span>
+				       <span class="p">(</span><span class="nb">cdr </span><span class="nv">subtable</span><span class="p">)))))</span>
+		 <span class="p">(</span><span class="nb">set-cdr! </span><span class="nv">local-table</span>
+			   <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">list </span><span class="nv">key-1</span>
+				       <span class="p">(</span><span class="nb">cons </span><span class="nv">key-2</span> <span class="nv">value</span><span class="p">))</span>
+				 <span class="p">(</span><span class="nb">cdr </span><span class="nv">local-table</span><span class="p">)))))</span>
+	   <span class="ss">'ok</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">assoc </span><span class="nv">key</span> <span class="nv">records</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">records</span><span class="p">)</span> <span class="no">#f</span><span class="p">)</span>
+		 <span class="p">((</span><span class="nf">same-key?</span> <span class="nv">key</span> <span class="p">(</span><span class="nb">caar </span><span class="nv">records</span><span class="p">))</span> <span class="p">(</span><span class="nb">car </span><span class="nv">records</span><span class="p">))</span>
+		 <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">assoc </span><span class="nv">key</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">records</span><span class="p">)))))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">dispatch</span> <span class="nv">m</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">eq? </span><span class="nv">m</span> <span class="ss">'lookup-proc</span><span class="p">)</span> <span class="nv">lookup</span><span class="p">)</span>
+		 <span class="p">((</span><span class="nb">eq? </span><span class="nv">m</span> <span class="ss">'insert-proc!</span><span class="p">)</span> <span class="nv">insert!</span><span class="p">)</span>
+		 <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="s">"Unknown operation -- TABLE"</span> <span class="nv">m</span><span class="p">))))</span>
+	 <span class="nv">dispatch</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org5ecc97d" class="outline-4">
+<h4 id="org5ecc97d">3.25</h4>
+<div class="outline-text-4" id="text-org5ecc97d">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-table</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">local-table</span> <span class="p">(</span><span class="nb">list </span><span class="ss">'*table*</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lookup</span> <span class="nv">keys</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">recursive</span> <span class="nv">keys</span> <span class="nv">table</span><span class="p">)</span>
+	     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">keys</span><span class="p">)</span>
+		 <span class="nv">table</span>
+		 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">subtable</span>
+			<span class="p">(</span><span class="nf">assoc</span>
+			 <span class="p">(</span><span class="nb">car </span><span class="nv">keys</span><span class="p">)</span>
+			 <span class="nv">table</span><span class="p">)))</span>
+		   <span class="p">(</span><span class="k">if </span><span class="nv">subtable</span>
+		       <span class="p">(</span><span class="nf">recursive</span>
+			<span class="p">(</span><span class="nb">cdr </span><span class="nv">keys</span><span class="p">)</span>
+			<span class="p">(</span><span class="nb">cdr </span><span class="nv">subtable</span><span class="p">))</span>
+		       <span class="no">#f</span><span class="p">))))</span>
+	   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">keys</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nf">error</span> <span class="s">"Keys should not be null"</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nf">recursive</span> <span class="nv">keys</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">local-table</span><span class="p">))))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">insert!</span> <span class="nv">keys</span> <span class="nv">value</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">recursive</span> <span class="nv">keys</span> <span class="nv">table</span><span class="p">)</span>
+	     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">pair? </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">table</span><span class="p">)))</span>
+		      <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">null? </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">table</span><span class="p">))))</span>
+		 <span class="p">(</span><span class="nb">set-cdr! </span><span class="nv">table</span> <span class="o">'</span><span class="p">()))</span>	<span class="c1">;overwrittern the key-value with new table</span>
+	     <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">subtable</span> <span class="p">(</span><span class="nf">assoc</span>
+			      <span class="p">(</span><span class="nb">car </span><span class="nv">keys</span><span class="p">)</span>
+			      <span class="p">(</span><span class="nb">cdr </span><span class="nv">table</span><span class="p">)))</span>
+		   <span class="p">(</span><span class="nf">left</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">keys</span><span class="p">))</span>
+		   <span class="p">(</span><span class="nf">first</span> <span class="p">(</span><span class="nb">car </span><span class="nv">keys</span><span class="p">))</span>
+		   <span class="p">(</span><span class="nf">left-tables</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">table</span><span class="p">)))</span>
+	       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="k">and </span><span class="nv">subtable</span> <span class="p">(</span><span class="nb">null? </span><span class="nv">left</span><span class="p">))</span>
+		      <span class="p">(</span><span class="nb">set-cdr! </span><span class="nv">subtable</span> <span class="nv">value</span><span class="p">)</span>
+		      <span class="ss">'ok</span><span class="p">)</span>
+		     <span class="p">((</span><span class="k">and </span><span class="nv">subtable</span> <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">null? </span><span class="nv">left</span><span class="p">)))</span>
+		      <span class="p">(</span><span class="nf">recursive</span> <span class="nv">left</span> <span class="nv">subtable</span><span class="p">))</span>
+		     <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">not </span><span class="nv">subtable</span><span class="p">)</span> <span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">null? </span><span class="nv">left</span><span class="p">)))</span>
+		      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">sub</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">first</span> <span class="o">'</span><span class="p">())))</span>
+			<span class="p">(</span><span class="nb">set-cdr! </span><span class="nv">table</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">sub</span> <span class="nv">left-tables</span><span class="p">))</span>
+			<span class="p">(</span><span class="nf">recursive</span> <span class="nv">left</span> <span class="nv">sub</span><span class="p">)))</span>
+		     <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">not </span><span class="nv">subtable</span><span class="p">)</span> <span class="p">(</span><span class="nb">null? </span><span class="nv">left</span><span class="p">))</span>
+		      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">sub</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">first</span> <span class="nv">value</span><span class="p">)))</span>
+			<span class="p">(</span><span class="nb">set-cdr! </span><span class="nv">table</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">sub</span> <span class="nv">left-tables</span><span class="p">))</span>
+			<span class="ss">'ok</span><span class="p">)))))</span>
+	   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">keys</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nf">error</span> <span class="s">"Keys should not be null"</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nf">recursive</span> <span class="nv">keys</span> <span class="nv">local-table</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">assoc </span><span class="nv">key</span> <span class="nv">records</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">records</span><span class="p">)</span> <span class="no">#f</span><span class="p">)</span>
+		 <span class="p">((</span><span class="nb">equal? </span><span class="nv">key</span> <span class="p">(</span><span class="nb">caar </span><span class="nv">records</span><span class="p">))</span> <span class="p">(</span><span class="nb">car </span><span class="nv">records</span><span class="p">))</span>
+		 <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">assoc </span><span class="nv">key</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">records</span><span class="p">)))))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">dispatch</span> <span class="nv">m</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">eq? </span><span class="nv">m</span> <span class="ss">'lookup-proc</span><span class="p">)</span> <span class="nv">lookup</span><span class="p">)</span>
+		 <span class="p">((</span><span class="nb">eq? </span><span class="nv">m</span> <span class="ss">'insert-proc!</span><span class="p">)</span> <span class="nv">insert!</span><span class="p">)</span>
+		 <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="s">"Unknown operation -- TABLE"</span> <span class="nv">m</span><span class="p">))))</span>
+	 <span class="nv">dispatch</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org278a978" class="outline-4">
+<h4 id="org278a978">3.26</h4>
+<div class="outline-text-4" id="text-org278a978">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lookup-t</span> <span class="nv">given-key</span> <span class="nv">set-of-records</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">set-of-records</span><span class="p">)</span> <span class="no">#f</span><span class="p">)</span>
+	     <span class="p">((</span><span class="nb">= </span><span class="nv">given-key</span> <span class="p">(</span><span class="nf">key</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set-of-records</span><span class="p">)))</span>
+	      <span class="p">(</span><span class="nf">entry</span> <span class="nv">set-of-records</span><span class="p">))</span>
+	     <span class="p">((</span><span class="nb">&gt; </span><span class="nv">given-key</span> <span class="p">(</span><span class="nf">key</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set-of-records</span><span class="p">)))</span>
+	      <span class="p">(</span><span class="nf">lookup-t</span> <span class="nv">given-key</span> <span class="p">(</span><span class="nf">right-branch</span> <span class="nv">set-of-records</span><span class="p">)))</span>
+	     <span class="p">((</span><span class="nb">&lt; </span><span class="nv">given-key</span> <span class="p">(</span><span class="nf">key</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set-of-records</span><span class="p">)))</span>
+	      <span class="p">(</span><span class="nf">lookup-t</span> <span class="nv">given-key</span> <span class="p">(</span><span class="nf">left-branch</span> <span class="nv">set-of-records</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">entry</span> <span class="nv">tree</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">tree</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">left-branch</span> <span class="nv">tree</span><span class="p">)</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">tree</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">right-branch</span> <span class="nv">tree</span><span class="p">)</span> <span class="p">(</span><span class="nb">caddr </span><span class="nv">tree</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-tree</span> <span class="nv">entry</span> <span class="nv">left</span> <span class="nv">right</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">list </span><span class="nv">entry</span> <span class="nv">left</span> <span class="nv">right</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">adjoin-set</span> <span class="nv">data</span> <span class="nv">set</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">k</span> <span class="p">(</span><span class="nf">key</span> <span class="nv">data</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">i</span> <span class="p">(</span><span class="nf">item</span> <span class="nv">data</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">set</span><span class="p">)</span> <span class="p">(</span><span class="nf">make-tree</span> <span class="nv">data</span> <span class="o">'</span><span class="p">()</span> <span class="o">'</span><span class="p">()))</span>
+	       <span class="p">((</span><span class="nb">= </span><span class="nv">k</span> <span class="p">(</span><span class="nf">key</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set</span><span class="p">)))</span>
+		<span class="p">(</span><span class="k">begin </span><span class="p">(</span><span class="nf">set-item!</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set</span><span class="p">)</span> <span class="nv">i</span><span class="p">)</span> <span class="nv">set</span><span class="p">))</span>
+	       <span class="p">((</span><span class="nb">&lt; </span><span class="nv">k</span> <span class="p">(</span><span class="nf">key</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set</span><span class="p">)))</span>
+		<span class="p">(</span><span class="nf">make-tree</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set</span><span class="p">)</span>
+			   <span class="p">(</span><span class="nf">adjoin-set</span> <span class="nv">data</span> <span class="p">(</span><span class="nf">left-branch</span> <span class="nv">set</span><span class="p">))</span>
+			   <span class="p">(</span><span class="nf">right-branch</span> <span class="nv">set</span><span class="p">)))</span>
+	       <span class="p">((</span><span class="nb">&gt; </span><span class="nv">k</span> <span class="p">(</span><span class="nf">key</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set</span><span class="p">)))</span>
+		<span class="p">(</span><span class="nf">make-tree</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set</span><span class="p">)</span>
+			   <span class="p">(</span><span class="nf">left-branch</span> <span class="nv">set</span><span class="p">)</span>
+			   <span class="p">(</span><span class="nf">adjoin-set</span> <span class="nv">data</span> <span class="p">(</span><span class="nf">right-branch</span> <span class="nv">set</span><span class="p">)))))))</span>
+
+     <span class="c1">;; table</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-data</span> <span class="nv">key</span> <span class="nv">item</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">list </span><span class="nv">key</span> <span class="nv">item</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">key</span> <span class="nv">data</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">data</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">item</span> <span class="nv">data</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cadr </span><span class="nv">data</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-item!</span> <span class="nv">data</span> <span class="nv">item</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">set-car! </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">data</span><span class="p">)</span> <span class="nv">item</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-table</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">local-table</span> <span class="o">'</span><span class="p">()))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lookup</span> <span class="nv">key-1</span> <span class="nv">key-2</span><span class="p">)</span>	<span class="c1">;also applicable to key-list (recursive proc needed)</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">subtable</span> <span class="p">(</span><span class="nf">lookup-t</span> <span class="nv">key-1</span> <span class="nv">local-table</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">if </span><span class="nv">subtable</span>
+		 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">record</span> <span class="p">(</span><span class="nf">lookup-t</span> <span class="nv">key-2</span> <span class="p">(</span><span class="nf">item</span> <span class="nv">subtable</span><span class="p">))))</span>
+		   <span class="p">(</span><span class="k">if </span><span class="nv">record</span>
+		       <span class="p">(</span><span class="nf">item</span> <span class="nv">record</span><span class="p">)</span>
+		       <span class="no">#f</span><span class="p">))</span>
+		 <span class="no">#f</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">insert!</span> <span class="nv">key-1</span> <span class="nv">key-2</span> <span class="nv">value</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">subtable</span> <span class="p">(</span><span class="nf">lookup-t</span> <span class="nv">key-1</span> <span class="nv">local-table</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">if </span><span class="nv">subtable</span>
+		 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">record</span> <span class="p">(</span><span class="nf">lookup-t</span> <span class="nv">key-2</span> <span class="p">(</span><span class="nf">item</span> <span class="nv">subtable</span><span class="p">))))</span>
+		   <span class="p">(</span><span class="k">if </span><span class="nv">record</span>
+		       <span class="p">(</span><span class="nf">set-item!</span> <span class="nv">record</span> <span class="nv">item</span><span class="p">)</span> <span class="c1">;overwrittern</span>
+		       <span class="p">(</span><span class="nf">set-item!</span> <span class="nv">subtable</span>
+			     <span class="p">(</span><span class="nf">adjoin-set</span>
+			      <span class="p">(</span><span class="nf">make-data</span> <span class="nv">key-2</span> <span class="nv">value</span><span class="p">)</span>
+			      <span class="p">(</span><span class="nf">item</span> <span class="nv">subtable</span><span class="p">)))))</span>
+		 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">new-subtable</span>
+			<span class="p">(</span><span class="nf">make-data</span>
+			 <span class="nv">key-1</span>
+			 <span class="p">(</span><span class="nf">make-tree</span>
+			  <span class="p">(</span><span class="nf">make-data</span> <span class="nv">key-2</span> <span class="nv">value</span><span class="p">)</span>
+			  <span class="o">'</span><span class="p">()</span>
+			  <span class="o">'</span><span class="p">()))))</span>
+		   <span class="p">(</span><span class="k">set! </span><span class="nv">local-table</span> <span class="p">(</span><span class="nf">adjoin-set</span> <span class="nv">new-subtable</span> <span class="nv">local-table</span><span class="p">))))</span>
+	   <span class="nv">local-table</span><span class="p">))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">dispatch</span> <span class="nv">m</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">eq? </span><span class="nv">m</span> <span class="ss">'lookup-proc</span><span class="p">)</span> <span class="nv">lookup</span><span class="p">)</span>
+		 <span class="p">((</span><span class="nb">eq? </span><span class="nv">m</span> <span class="ss">'insert-proc!</span><span class="p">)</span> <span class="nv">insert!</span><span class="p">)</span>
+		 <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">error</span> <span class="s">"Unknown operation -- TABLE"</span> <span class="nv">m</span><span class="p">))))</span>
+	 <span class="nv">dispatch</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org0e6183f" class="outline-4">
+<h4 id="org0e6183f">3.27</h4>
+<div class="outline-text-4" id="text-org0e6183f">
+<div class="highlight"><pre><span></span>     <span class="c1">;; memo-fib 能以正比于 n 的步数计算出第 n 个斐波那契数；</span>
+
+     <span class="c1">;; 是因为在斐波那契的树形递归过程中，memo-fib 过程将对于更小的 n 计算完成的中间</span>
+     <span class="c1">;; 结果存储在表格中，然后在计算更大的 n 的斐波那契数时就可以直接去表格里去取 n-1</span>
+     <span class="c1">;; 和 n-2 的对应结果，然后相加即完成计算，这样一次计算只需要常量步骤；</span>
+
+     <span class="c1">;; 所以结论成立。</span>
+
+     <span class="c1">;; 将 memo-fib 定义为 (memoize fib), 这一模式就不能工作了，只会以原来的 fib 的工</span>
+     <span class="c1">;; 作模式运行，消耗大量时间计算，因为 fib 的过程体中并没有调用 memo-fib 而是 fib</span>
+     <span class="c1">;; 自己，也就是说，(let ((result (f x)))) 这行代码将使用 fib 直接计算出结果而不</span>
+     <span class="c1">;; 会利用表格存储中间结果。</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79f6872" class="outline-3">
+<h3 id="org79f6872">数字电路的模拟器</h3>
+</div>
+
+<div id="outline-container-orgd006d2b" class="outline-3">
+<h3 id="orgd006d2b">练习 3.28-3.32</h3>
+<div class="outline-text-3" id="text-orgd006d2b">
+</div>
+<div id="outline-container-org716f294" class="outline-4">
+<h4 id="org716f294">3.28</h4>
+</div>
+
+<div id="outline-container-org3e77805" class="outline-4">
+<h4 id="org3e77805">3.29</h4>
+</div>
+
+<div id="outline-container-orgb76bdd1" class="outline-4">
+<h4 id="orgb76bdd1">3.30</h4>
+</div>
+
+<div id="outline-container-orgce4a29e" class="outline-4">
+<h4 id="orgce4a29e">3.31</h4>
+</div>
+
+<div id="outline-container-org872fe0b" class="outline-4">
+<h4 id="org872fe0b">3.32</h4>
+</div>
+</div>
+
+<div id="outline-container-orgc13496e" class="outline-3">
+<h3 id="orgc13496e">约束的传播</h3>
+</div>
+
+<div id="outline-container-org3a62681" class="outline-3">
+<h3 id="org3a62681">练习 3.33-3.37</h3>
+<div class="outline-text-3" id="text-org3a62681">
+</div>
+<div id="outline-container-org517ac34" class="outline-4">
+<h4 id="org517ac34">3.33</h4>
+</div>
+
+<div id="outline-container-org8b79274" class="outline-4">
+<h4 id="org8b79274">3.34</h4>
+</div>
+
+<div id="outline-container-org97bc4d1" class="outline-4">
+<h4 id="org97bc4d1">3.35</h4>
+</div>
+
+<div id="outline-container-orgefb1784" class="outline-4">
+<h4 id="orgefb1784">3.36</h4>
+</div>
+
+<div id="outline-container-orgb522f5f" class="outline-4">
+<h4 id="orgb522f5f">3.37</h4>
+</div>
+</div>
+</div>
+            
+        
+        <div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="https-zero4drift-github-io",
+            disqus_url="https://zero4drift.github.io/posts/sicp-refresher-chapter-3%283%29/",
+        disqus_title="SICP-Refresher-Chapter-3(3)",
+        disqus_identifier="cache/posts/sicp-refresher-chapter-3(3).html",
+        disqus_config = function () {
+            this.language = "en";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+    <a href="https://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+        
+    
+
+
+        </div>
+    </div>
+
+    
+    <footer><div class="container">
+            <div class="social">
+
+
+
+                <div class="social-entry">
+                    <a href="../../rss.xml" target="_blank">
+                        <i class="fa fa-rss"></i> 
+                    </a>
+                </div>
+            </div>
+                <div class="copyright">
+                    Contents © 2019         <a href="mailto:fang0052@e.ntu.edu.sg">zero4drift</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+                    
+                </div>
+           
+        </div>
+    </footer><script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?06e0ade16d98033ac1aad78106d873c8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script src="../../assets/js/all-nocdn.js" type="text/javascript"></script>
+</body>
+</html>
