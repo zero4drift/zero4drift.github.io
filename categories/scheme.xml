@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Tue, 01 Jan 2019 14:56:45 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-3(3)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%283%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org1bda987" class="outline-2"&gt;
-&lt;h2 id="org1bda987"&gt;用变动数据做模拟&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1bda987"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Wed, 02 Jan 2019 14:07:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-3(3)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%283%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org2aef511" class="outline-2"&gt;
+&lt;h2 id="org2aef511"&gt;用变动数据做模拟&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2aef511"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;为了模拟那些由具有不断变化的状态组成的系统，我们除了需要做复合数据对象的构
 造和成员选择之外，还可能需要修改它们；&lt;/li&gt;
@@ -12,9 +12,9 @@
 &lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7a911da" class="outline-3"&gt;
-&lt;h3 id="org7a911da"&gt;变动的表结构&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org7a911da"&gt;
+&lt;div id="outline-container-org2da6f57" class="outline-3"&gt;
+&lt;h3 id="org2da6f57"&gt;变动的表结构&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2da6f57"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;针对序对的基本改变函数使 &lt;code&gt;set-car!&lt;/code&gt; 和 &lt;code&gt;set-cdr!&lt;/code&gt;, &lt;code&gt;set-car!&lt;/code&gt; 要求两个参
 数，其中的第一个参数必须是一个序对， &lt;code&gt;set-car!&lt;/code&gt; 修改这个序对，将它的 car
@@ -37,13 +37,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org07c6caa" class="outline-3"&gt;
-&lt;h3 id="org07c6caa"&gt;练习 3.12-3.20&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org07c6caa"&gt;
+&lt;div id="outline-container-org0291052" class="outline-3"&gt;
+&lt;h3 id="org0291052"&gt;练习 3.12-3.20&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0291052"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org37facb5" class="outline-4"&gt;
-&lt;h4 id="org37facb5"&gt;3.12&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org37facb5"&gt;
+&lt;div id="outline-container-orge0c1d0e" class="outline-4"&gt;
+&lt;h4 id="orge0c1d0e"&gt;3.12&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orge0c1d0e"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 画图就省了；&lt;/span&gt;
      &lt;span class="c1"&gt;;; 使用 append:&lt;/span&gt;
      &lt;span class="c1"&gt;;; (cdr x): (list 'b)&lt;/span&gt;
@@ -54,9 +54,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org9da4202" class="outline-4"&gt;
-&lt;h4 id="org9da4202"&gt;3.13&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org9da4202"&gt;
+&lt;div id="outline-container-orgcaa8254" class="outline-4"&gt;
+&lt;h4 id="orgcaa8254"&gt;3.13&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgcaa8254"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-cycle&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set-cdr! &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;last-pair&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -70,9 +70,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0e48a5f" class="outline-4"&gt;
-&lt;h4 id="org0e48a5f"&gt;3.14&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org0e48a5f"&gt;
+&lt;div id="outline-container-orge8ee6d6" class="outline-4"&gt;
+&lt;h4 id="orge8ee6d6"&gt;3.14&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orge8ee6d6"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 翻转&lt;/span&gt;
      &lt;span class="c1"&gt;;; v: (list 'a 'b 'c 'd)&lt;/span&gt;
 
@@ -83,17 +83,17 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1f47e5f" class="outline-4"&gt;
-&lt;h4 id="org1f47e5f"&gt;3.15&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org1f47e5f"&gt;
+&lt;div id="outline-container-org3555016" class="outline-4"&gt;
+&lt;h4 id="org3555016"&gt;3.15&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3555016"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 很简单，画图就省了。&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org94b34af" class="outline-4"&gt;
-&lt;h4 id="org94b34af"&gt;3.16&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org94b34af"&gt;
+&lt;div id="outline-container-org1c9b53e" class="outline-4"&gt;
+&lt;h4 id="org1c9b53e"&gt;3.16&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org1c9b53e"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 利用共享结构可以很容易地构造出复合需求地表结构；&lt;/span&gt;
 
      &lt;span class="c1"&gt;;; 而使过程根本就不返回就是使序对的 car 部分或者 cdr 部分指向序对自己，过程执行&lt;/span&gt;
@@ -102,9 +102,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org09dd6e0" class="outline-4"&gt;
-&lt;h4 id="org09dd6e0"&gt;3.17&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org09dd6e0"&gt;
+&lt;div id="outline-container-org649da35" class="outline-4"&gt;
+&lt;h4 id="org649da35"&gt;3.17&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org649da35"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 使用谓词 eq? 分辨前后遇到的序对是否是同一个序对&lt;/span&gt;
      &lt;span class="c1"&gt;;; 过程 memq 主要基于谓词 eq?&lt;/span&gt;
 
@@ -124,9 +124,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfcd7c0b" class="outline-4"&gt;
-&lt;h4 id="orgfcd7c0b"&gt;3.18&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgfcd7c0b"&gt;
+&lt;div id="outline-container-org229dd99" class="outline-4"&gt;
+&lt;h4 id="org229dd99"&gt;3.18&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org229dd99"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;infinite?&lt;/span&gt; &lt;span class="nv"&gt;l&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;checked&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
 	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -140,9 +140,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4df55bc" class="outline-4"&gt;
-&lt;h4 id="org4df55bc"&gt;3.19&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org4df55bc"&gt;
+&lt;div id="outline-container-org973b310" class="outline-4"&gt;
+&lt;h4 id="org973b310"&gt;3.19&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org973b310"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 不是很明白这个算法的原理&lt;/span&gt;
      &lt;span class="c1"&gt;;; 详情请参考 http://en.wikipedia.org/wiki/Cycle_detection&lt;/span&gt;
 
@@ -162,18 +162,18 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org26cf50c" class="outline-4"&gt;
-&lt;h4 id="org26cf50c"&gt;3.20&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org26cf50c"&gt;
+&lt;div id="outline-container-org57807a8" class="outline-4"&gt;
+&lt;h4 id="org57807a8"&gt;3.20&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org57807a8"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 虽然有点复杂，只是繁琐并不难，画图就省了。&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf442a13" class="outline-3"&gt;
-&lt;h3 id="orgf442a13"&gt;队列的表示&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgf442a13"&gt;
+&lt;div id="outline-container-org4a15d36" class="outline-3"&gt;
+&lt;h3 id="org4a15d36"&gt;队列的表示&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4a15d36"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;将队列表示为一个序对，car 部分和 cdr 部分分别指向一个常规表中的第一个序对
 和最后一个序对，这样的设计使队列操作都只需要 theta(1) 步就能完成；&lt;/li&gt;
@@ -181,13 +181,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb277075" class="outline-3"&gt;
-&lt;h3 id="orgb277075"&gt;练习 3.21-3.23&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb277075"&gt;
+&lt;div id="outline-container-org6820df5" class="outline-3"&gt;
+&lt;h3 id="org6820df5"&gt;练习 3.21-3.23&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6820df5"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgafa8202" class="outline-4"&gt;
-&lt;h4 id="orgafa8202"&gt;3.21&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgafa8202"&gt;
+&lt;div id="outline-container-orgf62b691" class="outline-4"&gt;
+&lt;h4 id="orgf62b691"&gt;3.21&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf62b691"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 因为过程 delete-queue! 只修改一个队列表示的 front-ptr 部分&lt;/span&gt;
 
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;print-queue&lt;/span&gt; &lt;span class="nv"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -197,9 +197,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd02cebd" class="outline-4"&gt;
-&lt;h4 id="orgd02cebd"&gt;3.22&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgd02cebd"&gt;
+&lt;div id="outline-container-orga25699e" class="outline-4"&gt;
+&lt;h4 id="orga25699e"&gt;3.22&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orga25699e"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-queue&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;front-ptr&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
 	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rear-ptr&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
@@ -247,9 +247,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc63c3c1" class="outline-4"&gt;
-&lt;h4 id="orgc63c3c1"&gt;3.23&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc63c3c1"&gt;
+&lt;div id="outline-container-orgef40762" class="outline-4"&gt;
+&lt;h4 id="orgef40762"&gt;3.23&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgef40762"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-deque&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
 
@@ -369,22 +369,22 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga0516b3" class="outline-3"&gt;
-&lt;h3 id="orga0516b3"&gt;表格的表示&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orga0516b3"&gt;
+&lt;div id="outline-container-org0f677aa" class="outline-3"&gt;
+&lt;h3 id="org0f677aa"&gt;表格的表示&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0f677aa"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;一维表格，二维表格及使用消息传递风格创建局部表格；&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org59d40d8" class="outline-3"&gt;
-&lt;h3 id="org59d40d8"&gt;练习 3.24-3.27&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org59d40d8"&gt;
+&lt;div id="outline-container-org7fbef8c" class="outline-3"&gt;
+&lt;h3 id="org7fbef8c"&gt;练习 3.24-3.27&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org7fbef8c"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org8229bb6" class="outline-4"&gt;
-&lt;h4 id="org8229bb6"&gt;3.24&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org8229bb6"&gt;
+&lt;div id="outline-container-org0e2cd10" class="outline-4"&gt;
+&lt;h4 id="org0e2cd10"&gt;3.24&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org0e2cd10"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-table&lt;/span&gt; &lt;span class="nv"&gt;same-key?&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;local-table&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'*table*&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup&lt;/span&gt; &lt;span class="nv"&gt;key-1&lt;/span&gt; &lt;span class="nv"&gt;key-2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -422,9 +422,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5ecc97d" class="outline-4"&gt;
-&lt;h4 id="org5ecc97d"&gt;3.25&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org5ecc97d"&gt;
+&lt;div id="outline-container-orgc5e5030" class="outline-4"&gt;
+&lt;h4 id="orgc5e5030"&gt;3.25&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc5e5030"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-table&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;local-table&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'*table*&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup&lt;/span&gt; &lt;span class="nv"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -483,9 +483,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org278a978" class="outline-4"&gt;
-&lt;h4 id="org278a978"&gt;3.26&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org278a978"&gt;
+&lt;div id="outline-container-org7ba641a" class="outline-4"&gt;
+&lt;h4 id="org7ba641a"&gt;3.26&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7ba641a"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup-t&lt;/span&gt; &lt;span class="nv"&gt;given-key&lt;/span&gt; &lt;span class="nv"&gt;set-of-records&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;set-of-records&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="no"&gt;#f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;given-key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;key&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;entry&lt;/span&gt; &lt;span class="nv"&gt;set-of-records&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
@@ -568,9 +568,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0e6183f" class="outline-4"&gt;
-&lt;h4 id="org0e6183f"&gt;3.27&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org0e6183f"&gt;
+&lt;div id="outline-container-orgef0f260" class="outline-4"&gt;
+&lt;h4 id="orgef0f260"&gt;3.27&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgef0f260"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; memo-fib 能以正比于 n 的步数计算出第 n 个斐波那契数；&lt;/span&gt;
 
      &lt;span class="c1"&gt;;; 是因为在斐波那契的树形递归过程中，memo-fib 过程将对于更小的 n 计算完成的中间&lt;/span&gt;
@@ -588,61 +588,288 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org79f6872" class="outline-3"&gt;
-&lt;h3 id="org79f6872"&gt;数字电路的模拟器&lt;/h3&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgd006d2b" class="outline-3"&gt;
-&lt;h3 id="orgd006d2b"&gt;练习 3.28-3.32&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgd006d2b"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org716f294" class="outline-4"&gt;
-&lt;h4 id="org716f294"&gt;3.28&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org3e77805" class="outline-4"&gt;
-&lt;h4 id="org3e77805"&gt;3.29&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgb76bdd1" class="outline-4"&gt;
-&lt;h4 id="orgb76bdd1"&gt;3.30&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgce4a29e" class="outline-4"&gt;
-&lt;h4 id="orgce4a29e"&gt;3.31&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org872fe0b" class="outline-4"&gt;
-&lt;h4 id="org872fe0b"&gt;3.32&lt;/h4&gt;
+&lt;div id="outline-container-org4e13a07" class="outline-3"&gt;
+&lt;h3 id="org4e13a07"&gt;数字电路的模拟器&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4e13a07"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;事件驱动的模拟程序系统：在这类系统里，一些活动（“事件”）引发另一些在随后
+时间发生的事件，它们又会引发随后的事件，并如此继续下去；&lt;/li&gt;
+&lt;li&gt;在一个可以将过程当作对象的语言里，在“过程”和“数据”之间并没有本质性的差异，
+因此我们可以自由选择自己所需的语法糖衣，以便按自己选定的风格去做程序设计；&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc13496e" class="outline-3"&gt;
-&lt;h3 id="orgc13496e"&gt;约束的传播&lt;/h3&gt;
+&lt;div id="outline-container-orgfb2ab23" class="outline-3"&gt;
+&lt;h3 id="orgfb2ab23"&gt;练习 3.28-3.32&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgfb2ab23"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org78226af" class="outline-4"&gt;
+&lt;h4 id="org78226af"&gt;3.28&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org78226af"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;and-gate&lt;/span&gt; &lt;span class="nv"&gt;a1&lt;/span&gt; &lt;span class="nv"&gt;a2&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;and-action-procedure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;new-value&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;logical-and&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-signal&lt;/span&gt; &lt;span class="nv"&gt;a1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-signal&lt;/span&gt; &lt;span class="nv"&gt;a2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;after-delay&lt;/span&gt; &lt;span class="nv"&gt;and-gate-delay&lt;/span&gt;
+			&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+			  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;set-signal!&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="nv"&gt;new-value&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add-action!&lt;/span&gt; &lt;span class="nv"&gt;a1&lt;/span&gt; &lt;span class="nv"&gt;and-action-procedure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add-action!&lt;/span&gt; &lt;span class="nv"&gt;a2&lt;/span&gt; &lt;span class="nv"&gt;and-action-procedure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;or-gate&lt;/span&gt; &lt;span class="nv"&gt;a1&lt;/span&gt; &lt;span class="nv"&gt;a2&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;or-action-procedure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;new-value&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;logical-or&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-signal&lt;/span&gt; &lt;span class="nv"&gt;a1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-signal&lt;/span&gt; &lt;span class="nv"&gt;a2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;after-delay&lt;/span&gt; &lt;span class="nv"&gt;or-gate-delay&lt;/span&gt;
+			&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+			  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;set-signal!&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="nv"&gt;new-value&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add-action!&lt;/span&gt; &lt;span class="nv"&gt;a1&lt;/span&gt; &lt;span class="nv"&gt;or-action-procedure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add-action!&lt;/span&gt; &lt;span class="nv"&gt;a2&lt;/span&gt; &lt;span class="nv"&gt;or-action-procedure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;logical-and&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;or &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;s2&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;and &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;s2&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;else&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Invalid signal"&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;logical-or&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;or &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;s2&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;and &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;s2&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;else&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Invalid signal"&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3a62681" class="outline-3"&gt;
-&lt;h3 id="org3a62681"&gt;练习 3.33-3.37&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org3a62681"&gt;
+&lt;div id="outline-container-org5fcb467" class="outline-4"&gt;
+&lt;h4 id="org5fcb467"&gt;3.29&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org5fcb467"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; (A or B) 等价于 (not ((not A) and (not B)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;or-gate&lt;/span&gt; &lt;span class="nv"&gt;a1&lt;/span&gt; &lt;span class="nv"&gt;a2&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;invert-1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-wire&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;invert-2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-wire&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;and-invert1-invert2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-wire&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;inverter&lt;/span&gt; &lt;span class="nv"&gt;a1&lt;/span&gt; &lt;span class="nv"&gt;invert-1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;inverter&lt;/span&gt; &lt;span class="nv"&gt;a2&lt;/span&gt; &lt;span class="nv"&gt;invert-2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;and-gate&lt;/span&gt; &lt;span class="nv"&gt;invert-1&lt;/span&gt; &lt;span class="nv"&gt;invert-2&lt;/span&gt; &lt;span class="nv"&gt;and-invert1-invert2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;inverter&lt;/span&gt; &lt;span class="nv"&gt;and-invert1-invert2&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+       &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 这样的或门最大延时 (+ (* 3 inverter-delay) and-gate-delay)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org517ac34" class="outline-4"&gt;
-&lt;h4 id="org517ac34"&gt;3.33&lt;/h4&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8b79274" class="outline-4"&gt;
-&lt;h4 id="org8b79274"&gt;3.34&lt;/h4&gt;
+&lt;div id="outline-container-org94b5569" class="outline-4"&gt;
+&lt;h4 id="org94b5569"&gt;3.30&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org94b5569"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;full-adder&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c-in&lt;/span&gt; &lt;span class="nv"&gt;sum&lt;/span&gt; &lt;span class="nv"&gt;c-out&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;s&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-wire&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-wire&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-wire&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;half-adder&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c-in&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;c1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;half-adder&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;sum&lt;/span&gt; &lt;span class="nv"&gt;c2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;or-gate&lt;/span&gt; &lt;span class="nv"&gt;c1&lt;/span&gt; &lt;span class="nv"&gt;c2&lt;/span&gt; &lt;span class="nv"&gt;c-out&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;half-adder&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;d&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-wire&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;e&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-wire&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;or-gate&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;and-gate&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;inverter&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt; &lt;span class="nv"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;and-gate&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;e&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;ripple-carry-adder&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;c0&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-wire&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-wire&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;set-signal!&lt;/span&gt; &lt;span class="nv"&gt;c0&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c-in&lt;/span&gt; &lt;span class="nv"&gt;sum&lt;/span&gt; &lt;span class="nv"&gt;c-out&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;full-adder&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;c-in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;begin &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;full-adder&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;c-in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;c-out&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;c-in&lt;/span&gt; &lt;span class="nv"&gt;c-out&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c-out&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-wire&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+			&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;c-in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;c-out&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c0&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;c1&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 大概统计：&lt;/span&gt;
+     &lt;span class="c1"&gt;;; let ((half-adder-delay (+ or-gate-delay (* 2 and-gate-delay) inverter-delay)))&lt;/span&gt;
+     &lt;span class="c1"&gt;;; let ((full-adder-delay (+ (* 2 half-adder-delay) or-gate-delay)))&lt;/span&gt;
+     &lt;span class="c1"&gt;;; let ((ripple-darry-adder-n-delay (* n full-adder-delay)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org97bc4d1" class="outline-4"&gt;
-&lt;h4 id="org97bc4d1"&gt;3.35&lt;/h4&gt;
+&lt;div id="outline-container-org50090d4" class="outline-4"&gt;
+&lt;h4 id="org50090d4"&gt;3.31&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org50090d4"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 当一个新的动作过程加入线路时，这一过程应立即运行，这样将会把一项新日程加入日&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 程表，当调用过程 propagate 时就会按时间顺序调用日程；&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 如果不这样做的话，以反门为例子，如果不在新的动作加入输入线路时立即执行，那么&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 日程表里将没有项目，propagate 过程没有任何调用活动立即结束，而反门的输出将保&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 持默认值不被修改，而这是与反门的逻辑相违背的。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgefb1784" class="outline-4"&gt;
-&lt;h4 id="orgefb1784"&gt;3.36&lt;/h4&gt;
+&lt;div id="outline-container-org443a3d3" class="outline-4"&gt;
+&lt;h4 id="org443a3d3"&gt;3.32&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org443a3d3"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 有些时候后续操作将依赖于前面的操作；&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 与门，输入在一个时间段里从 0 1 变为 1 0；&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 当 input1 从 0 变为 1 时，input2 仍然是 1；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; input1 的信号变化将一日程项目加入日程表，而此日程项目的局部状态变量&lt;/span&gt;
+     &lt;span class="c1"&gt;;; new-value 将是当前两个输入值的逻辑与，即为 1;&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 依次类推，input2 从 1 变为 0 时，input1 为 1;&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 则...&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 新加入的日程项目的局部状态变量将是 0;&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 按后进先出顺序处理日程项目，所以 input2 相关的项目先调用，input1 的后调用；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 此后与门的输出为 1，与与门逻辑不符合。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb522f5f" class="outline-4"&gt;
-&lt;h4 id="orgb522f5f"&gt;3.37&lt;/h4&gt;
+&lt;div id="outline-container-org82aa546" class="outline-3"&gt;
+&lt;h3 id="org82aa546"&gt;约束的传播&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org82aa546"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;描绘一种语言的设计，这种语言将使我们可以基于各种关系进行工作，这一语言里
+的基本元素就是 &lt;b&gt;基本约束&lt;/b&gt;, 它们描述了在不同量之间的某种特定关系；还提供了
+一些方法，使它们可以用于组合各种基本约束，以便去描绘更复杂的关系；&lt;/li&gt;
+&lt;li&gt;非定向的计算是基于约束的系统的标志性特征；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4675458" class="outline-3"&gt;
+&lt;h3 id="org4675458"&gt;练习 3.33-3.37&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org4675458"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgb7fc38c" class="outline-4"&gt;
+&lt;h4 id="orgb7fc38c"&gt;3.33&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgb7fc38c"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-connector&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-connector&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;c&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-connector&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;averager&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;u&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-connector&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;v&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-connector&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;multiplier&lt;/span&gt; &lt;span class="nv"&gt;u&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt; &lt;span class="nv"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;adder&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;v&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;constant&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf502bad" class="outline-4"&gt;
+&lt;h4 id="orgf502bad"&gt;3.34&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf502bad"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 如果只是设置了 a 的值，b 的值是可以计算出来的；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 反之则不然；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 因为当我们想计算 b 的平方根时，必须设置 b 的值同时使 a 忘记值；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; multiplier 过程的内部过程 process-new-value 中的所有 cond 条件全部无法通过；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 无法为 a 设置新值。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3e2a41b" class="outline-4"&gt;
+&lt;h4 id="org3e2a41b"&gt;3.35&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3e2a41b"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;squarer&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;process-new-value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;has-value?&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-value&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"square less than 0 -- SQUARER"&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-value&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;set-value!&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;
+			     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;sqrt &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-value&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+			     &lt;span class="nv"&gt;me&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;has-value?&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;set-value!&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;
+			     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-value&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+			     &lt;span class="nv"&gt;me&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;process-forget-value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;forget-value!&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;me&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;forget-value!&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;me&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;process-new-value&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;me&lt;/span&gt; &lt;span class="nv"&gt;request&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;request&lt;/span&gt; &lt;span class="ss"&gt;'I-have-a-value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;process-new-value&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;request&lt;/span&gt; &lt;span class="ss"&gt;'I-lost-my-value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;process-forget-value&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;else&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Unknown request -- SQUARER"&lt;/span&gt; &lt;span class="nv"&gt;request&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;connect&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;me&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;connect&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;me&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="nv"&gt;me&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6e1af25" class="outline-4"&gt;
+&lt;h4 id="org6e1af25"&gt;3.36&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org6e1af25"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 这个题目应该还是 ex 3.35 的后续；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 没必要画图，耐心一些总能画出来，总体环境结构再复杂也是由简单环境组成的。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0053a01" class="outline-4"&gt;
+&lt;h4 id="org0053a01"&gt;3.37&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org0053a01"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 暂时忘掉底层抽象，在更高的抽象层次上思考问题。&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;celsius-fahrenheit-converter&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c/&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cv&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cv&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cv&lt;/span&gt; &lt;span class="mi"&gt;32&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;C&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-connector&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;F&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;celsius-fahrenheit-converter&lt;/span&gt; &lt;span class="nv"&gt;C&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c+&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;z&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-connector&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;adder&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt; &lt;span class="nv"&gt;z&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="nv"&gt;z&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cv&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;y&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-connector&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;constant&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c*&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;z&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-connector&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;multiplier&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt; &lt;span class="nv"&gt;z&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="nv"&gt;z&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c/&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;z&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-connector&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;multiplier&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt; &lt;span class="nv"&gt;z&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="nv"&gt;z&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;c-&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;z&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-connector&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;adder&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt; &lt;span class="nv"&gt;z&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="nv"&gt;z&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%283%29/</guid><pubDate>Tue, 01 Jan 2019 05:45:20 GMT</pubDate></item><item><title>SICP-Refresher-Chapter-3(2)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%282%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgb002c65" class="outline-2"&gt;

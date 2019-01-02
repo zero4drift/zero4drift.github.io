@@ -80,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org1bda987" class="outline-2">
-<h2 id="org1bda987">用变动数据做模拟</h2>
-<div class="outline-text-2" id="text-org1bda987">
+        <div id="outline-container-org2aef511" class="outline-2">
+<h2 id="org2aef511">用变动数据做模拟</h2>
+<div class="outline-text-2" id="text-org2aef511">
 <ol class="org-ol">
 <li>为了模拟那些由具有不断变化的状态组成的系统，我们除了需要做复合数据对象的构
 造和成员选择之外，还可能需要修改它们；</li>
@@ -93,9 +93,9 @@
 </ol>
 </div>
 
-<div id="outline-container-org7a911da" class="outline-3">
-<h3 id="org7a911da">变动的表结构</h3>
-<div class="outline-text-3" id="text-org7a911da">
+<div id="outline-container-org2da6f57" class="outline-3">
+<h3 id="org2da6f57">变动的表结构</h3>
+<div class="outline-text-3" id="text-org2da6f57">
 <ol class="org-ol">
 <li>针对序对的基本改变函数使 <code>set-car!</code> 和 <code>set-cdr!</code>, <code>set-car!</code> 要求两个参
 数，其中的第一个参数必须是一个序对， <code>set-car!</code> 修改这个序对，将它的 car
@@ -120,13 +120,13 @@
 </div>
 </div>
 
-<div id="outline-container-org07c6caa" class="outline-3">
-<h3 id="org07c6caa">练习 3.12-3.20</h3>
-<div class="outline-text-3" id="text-org07c6caa">
+<div id="outline-container-org0291052" class="outline-3">
+<h3 id="org0291052">练习 3.12-3.20</h3>
+<div class="outline-text-3" id="text-org0291052">
 </div>
-<div id="outline-container-org37facb5" class="outline-4">
-<h4 id="org37facb5">3.12</h4>
-<div class="outline-text-4" id="text-org37facb5">
+<div id="outline-container-orge0c1d0e" class="outline-4">
+<h4 id="orge0c1d0e">3.12</h4>
+<div class="outline-text-4" id="text-orge0c1d0e">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 画图就省了；</span>
      <span class="c1">;; 使用 append:</span>
      <span class="c1">;; (cdr x): (list 'b)</span>
@@ -137,9 +137,9 @@
 </div>
 </div>
 
-<div id="outline-container-org9da4202" class="outline-4">
-<h4 id="org9da4202">3.13</h4>
-<div class="outline-text-4" id="text-org9da4202">
+<div id="outline-container-orgcaa8254" class="outline-4">
+<h4 id="orgcaa8254">3.13</h4>
+<div class="outline-text-4" id="text-orgcaa8254">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-cycle</span> <span class="nv">x</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">set-cdr! </span><span class="p">(</span><span class="nf">last-pair</span> <span class="nv">x</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
        <span class="nv">x</span><span class="p">)</span>
@@ -153,9 +153,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0e48a5f" class="outline-4">
-<h4 id="org0e48a5f">3.14</h4>
-<div class="outline-text-4" id="text-org0e48a5f">
+<div id="outline-container-orge8ee6d6" class="outline-4">
+<h4 id="orge8ee6d6">3.14</h4>
+<div class="outline-text-4" id="text-orge8ee6d6">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 翻转</span>
      <span class="c1">;; v: (list 'a 'b 'c 'd)</span>
 
@@ -166,17 +166,17 @@
 </div>
 </div>
 
-<div id="outline-container-org1f47e5f" class="outline-4">
-<h4 id="org1f47e5f">3.15</h4>
-<div class="outline-text-4" id="text-org1f47e5f">
+<div id="outline-container-org3555016" class="outline-4">
+<h4 id="org3555016">3.15</h4>
+<div class="outline-text-4" id="text-org3555016">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 很简单，画图就省了。</span>
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org94b34af" class="outline-4">
-<h4 id="org94b34af">3.16</h4>
-<div class="outline-text-4" id="text-org94b34af">
+<div id="outline-container-org1c9b53e" class="outline-4">
+<h4 id="org1c9b53e">3.16</h4>
+<div class="outline-text-4" id="text-org1c9b53e">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 利用共享结构可以很容易地构造出复合需求地表结构；</span>
 
      <span class="c1">;; 而使过程根本就不返回就是使序对的 car 部分或者 cdr 部分指向序对自己，过程执行</span>
@@ -185,9 +185,9 @@
 </div>
 </div>
 
-<div id="outline-container-org09dd6e0" class="outline-4">
-<h4 id="org09dd6e0">3.17</h4>
-<div class="outline-text-4" id="text-org09dd6e0">
+<div id="outline-container-org649da35" class="outline-4">
+<h4 id="org649da35">3.17</h4>
+<div class="outline-text-4" id="text-org649da35">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 使用谓词 eq? 分辨前后遇到的序对是否是同一个序对</span>
      <span class="c1">;; 过程 memq 主要基于谓词 eq?</span>
 
@@ -207,9 +207,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgfcd7c0b" class="outline-4">
-<h4 id="orgfcd7c0b">3.18</h4>
-<div class="outline-text-4" id="text-orgfcd7c0b">
+<div id="outline-container-org229dd99" class="outline-4">
+<h4 id="org229dd99">3.18</h4>
+<div class="outline-text-4" id="text-org229dd99">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">infinite?</span> <span class="nv">l</span><span class="p">)</span>
        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">checked</span> <span class="o">'</span><span class="p">()))</span>
 	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">recursive</span> <span class="nv">x</span><span class="p">)</span>
@@ -223,9 +223,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4df55bc" class="outline-4">
-<h4 id="org4df55bc">3.19</h4>
-<div class="outline-text-4" id="text-org4df55bc">
+<div id="outline-container-org973b310" class="outline-4">
+<h4 id="org973b310">3.19</h4>
+<div class="outline-text-4" id="text-org973b310">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 不是很明白这个算法的原理</span>
      <span class="c1">;; 详情请参考 http://en.wikipedia.org/wiki/Cycle_detection</span>
 
@@ -245,18 +245,18 @@
 </div>
 </div>
 
-<div id="outline-container-org26cf50c" class="outline-4">
-<h4 id="org26cf50c">3.20</h4>
-<div class="outline-text-4" id="text-org26cf50c">
+<div id="outline-container-org57807a8" class="outline-4">
+<h4 id="org57807a8">3.20</h4>
+<div class="outline-text-4" id="text-org57807a8">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 虽然有点复杂，只是繁琐并不难，画图就省了。</span>
 </pre></div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgf442a13" class="outline-3">
-<h3 id="orgf442a13">队列的表示</h3>
-<div class="outline-text-3" id="text-orgf442a13">
+<div id="outline-container-org4a15d36" class="outline-3">
+<h3 id="org4a15d36">队列的表示</h3>
+<div class="outline-text-3" id="text-org4a15d36">
 <ol class="org-ol">
 <li>将队列表示为一个序对，car 部分和 cdr 部分分别指向一个常规表中的第一个序对
 和最后一个序对，这样的设计使队列操作都只需要 theta(1) 步就能完成；</li>
@@ -264,13 +264,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgb277075" class="outline-3">
-<h3 id="orgb277075">练习 3.21-3.23</h3>
-<div class="outline-text-3" id="text-orgb277075">
+<div id="outline-container-org6820df5" class="outline-3">
+<h3 id="org6820df5">练习 3.21-3.23</h3>
+<div class="outline-text-3" id="text-org6820df5">
 </div>
-<div id="outline-container-orgafa8202" class="outline-4">
-<h4 id="orgafa8202">3.21</h4>
-<div class="outline-text-4" id="text-orgafa8202">
+<div id="outline-container-orgf62b691" class="outline-4">
+<h4 id="orgf62b691">3.21</h4>
+<div class="outline-text-4" id="text-orgf62b691">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 因为过程 delete-queue! 只修改一个队列表示的 front-ptr 部分</span>
 
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">print-queue</span> <span class="nv">q</span><span class="p">)</span>
@@ -280,9 +280,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd02cebd" class="outline-4">
-<h4 id="orgd02cebd">3.22</h4>
-<div class="outline-text-4" id="text-orgd02cebd">
+<div id="outline-container-orga25699e" class="outline-4">
+<h4 id="orga25699e">3.22</h4>
+<div class="outline-text-4" id="text-orga25699e">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-queue</span><span class="p">)</span>
        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">front-ptr</span> <span class="o">'</span><span class="p">())</span>
 	     <span class="p">(</span><span class="nf">rear-ptr</span> <span class="o">'</span><span class="p">()))</span>
@@ -330,9 +330,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc63c3c1" class="outline-4">
-<h4 id="orgc63c3c1">3.23</h4>
-<div class="outline-text-4" id="text-orgc63c3c1">
+<div id="outline-container-orgef40762" class="outline-4">
+<h4 id="orgef40762">3.23</h4>
+<div class="outline-text-4" id="text-orgef40762">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-deque</span><span class="p">)</span>
        <span class="p">(</span><span class="nb">cons </span><span class="o">'</span><span class="p">()</span> <span class="o">'</span><span class="p">()))</span>
 
@@ -452,22 +452,22 @@
 </div>
 </div>
 
-<div id="outline-container-orga0516b3" class="outline-3">
-<h3 id="orga0516b3">表格的表示</h3>
-<div class="outline-text-3" id="text-orga0516b3">
+<div id="outline-container-org0f677aa" class="outline-3">
+<h3 id="org0f677aa">表格的表示</h3>
+<div class="outline-text-3" id="text-org0f677aa">
 <ol class="org-ol">
 <li>一维表格，二维表格及使用消息传递风格创建局部表格；</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-org59d40d8" class="outline-3">
-<h3 id="org59d40d8">练习 3.24-3.27</h3>
-<div class="outline-text-3" id="text-org59d40d8">
+<div id="outline-container-org7fbef8c" class="outline-3">
+<h3 id="org7fbef8c">练习 3.24-3.27</h3>
+<div class="outline-text-3" id="text-org7fbef8c">
 </div>
-<div id="outline-container-org8229bb6" class="outline-4">
-<h4 id="org8229bb6">3.24</h4>
-<div class="outline-text-4" id="text-org8229bb6">
+<div id="outline-container-org0e2cd10" class="outline-4">
+<h4 id="org0e2cd10">3.24</h4>
+<div class="outline-text-4" id="text-org0e2cd10">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-table</span> <span class="nv">same-key?</span><span class="p">)</span>
        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">local-table</span> <span class="p">(</span><span class="nb">list </span><span class="ss">'*table*</span><span class="p">)))</span>
 	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lookup</span> <span class="nv">key-1</span> <span class="nv">key-2</span><span class="p">)</span>
@@ -505,9 +505,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5ecc97d" class="outline-4">
-<h4 id="org5ecc97d">3.25</h4>
-<div class="outline-text-4" id="text-org5ecc97d">
+<div id="outline-container-orgc5e5030" class="outline-4">
+<h4 id="orgc5e5030">3.25</h4>
+<div class="outline-text-4" id="text-orgc5e5030">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-table</span><span class="p">)</span>
        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">local-table</span> <span class="p">(</span><span class="nb">list </span><span class="ss">'*table*</span><span class="p">)))</span>
 	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lookup</span> <span class="nv">keys</span><span class="p">)</span>
@@ -566,9 +566,9 @@
 </div>
 </div>
 
-<div id="outline-container-org278a978" class="outline-4">
-<h4 id="org278a978">3.26</h4>
-<div class="outline-text-4" id="text-org278a978">
+<div id="outline-container-org7ba641a" class="outline-4">
+<h4 id="org7ba641a">3.26</h4>
+<div class="outline-text-4" id="text-org7ba641a">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lookup-t</span> <span class="nv">given-key</span> <span class="nv">set-of-records</span><span class="p">)</span>
        <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">set-of-records</span><span class="p">)</span> <span class="no">#f</span><span class="p">)</span>
 	     <span class="p">((</span><span class="nb">= </span><span class="nv">given-key</span> <span class="p">(</span><span class="nf">key</span> <span class="p">(</span><span class="nf">entry</span> <span class="nv">set-of-records</span><span class="p">)))</span>
@@ -651,9 +651,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0e6183f" class="outline-4">
-<h4 id="org0e6183f">3.27</h4>
-<div class="outline-text-4" id="text-org0e6183f">
+<div id="outline-container-orgef0f260" class="outline-4">
+<h4 id="orgef0f260">3.27</h4>
+<div class="outline-text-4" id="text-orgef0f260">
 <div class="highlight"><pre><span></span>     <span class="c1">;; memo-fib 能以正比于 n 的步数计算出第 n 个斐波那契数；</span>
 
      <span class="c1">;; 是因为在斐波那契的树形递归过程中，memo-fib 过程将对于更小的 n 计算完成的中间</span>
@@ -671,61 +671,288 @@
 </div>
 </div>
 
-<div id="outline-container-org79f6872" class="outline-3">
-<h3 id="org79f6872">数字电路的模拟器</h3>
-</div>
-
-<div id="outline-container-orgd006d2b" class="outline-3">
-<h3 id="orgd006d2b">练习 3.28-3.32</h3>
-<div class="outline-text-3" id="text-orgd006d2b">
-</div>
-<div id="outline-container-org716f294" class="outline-4">
-<h4 id="org716f294">3.28</h4>
-</div>
-
-<div id="outline-container-org3e77805" class="outline-4">
-<h4 id="org3e77805">3.29</h4>
-</div>
-
-<div id="outline-container-orgb76bdd1" class="outline-4">
-<h4 id="orgb76bdd1">3.30</h4>
-</div>
-
-<div id="outline-container-orgce4a29e" class="outline-4">
-<h4 id="orgce4a29e">3.31</h4>
-</div>
-
-<div id="outline-container-org872fe0b" class="outline-4">
-<h4 id="org872fe0b">3.32</h4>
+<div id="outline-container-org4e13a07" class="outline-3">
+<h3 id="org4e13a07">数字电路的模拟器</h3>
+<div class="outline-text-3" id="text-org4e13a07">
+<ol class="org-ol">
+<li>事件驱动的模拟程序系统：在这类系统里，一些活动（“事件”）引发另一些在随后
+时间发生的事件，它们又会引发随后的事件，并如此继续下去；</li>
+<li>在一个可以将过程当作对象的语言里，在“过程”和“数据”之间并没有本质性的差异，
+因此我们可以自由选择自己所需的语法糖衣，以便按自己选定的风格去做程序设计；</li>
+</ol>
 </div>
 </div>
 
-<div id="outline-container-orgc13496e" class="outline-3">
-<h3 id="orgc13496e">约束的传播</h3>
+<div id="outline-container-orgfb2ab23" class="outline-3">
+<h3 id="orgfb2ab23">练习 3.28-3.32</h3>
+<div class="outline-text-3" id="text-orgfb2ab23">
+</div>
+<div id="outline-container-org78226af" class="outline-4">
+<h4 id="org78226af">3.28</h4>
+<div class="outline-text-4" id="text-org78226af">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">and-gate</span> <span class="nv">a1</span> <span class="nv">a2</span> <span class="nv">output</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">and-action-procedure</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">new-value</span>
+		<span class="p">(</span><span class="nf">logical-and</span> <span class="p">(</span><span class="nf">get-signal</span> <span class="nv">a1</span><span class="p">)</span> <span class="p">(</span><span class="nf">get-signal</span> <span class="nv">a2</span><span class="p">))))</span>
+	   <span class="p">(</span><span class="nf">after-delay</span> <span class="nv">and-gate-delay</span>
+			<span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
+			  <span class="p">(</span><span class="nf">set-signal!</span> <span class="nv">output</span> <span class="nv">new-value</span><span class="p">)))))</span>
+       <span class="p">(</span><span class="nf">add-action!</span> <span class="nv">a1</span> <span class="nv">and-action-procedure</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">add-action!</span> <span class="nv">a2</span> <span class="nv">and-action-procedure</span><span class="p">)</span>
+       <span class="ss">'ok</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">or-gate</span> <span class="nv">a1</span> <span class="nv">a2</span> <span class="nv">output</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">or-action-procedure</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">new-value</span>
+		<span class="p">(</span><span class="nf">logical-or</span> <span class="p">(</span><span class="nf">get-signal</span> <span class="nv">a1</span><span class="p">)</span> <span class="p">(</span><span class="nf">get-signal</span> <span class="nv">a2</span><span class="p">))))</span>
+	   <span class="p">(</span><span class="nf">after-delay</span> <span class="nv">or-gate-delay</span>
+			<span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
+			  <span class="p">(</span><span class="nf">set-signal!</span> <span class="nv">output</span> <span class="nv">new-value</span><span class="p">)))))</span>
+       <span class="p">(</span><span class="nf">add-action!</span> <span class="nv">a1</span> <span class="nv">or-action-procedure</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">add-action!</span> <span class="nv">a2</span> <span class="nv">or-action-procedure</span><span class="p">)</span>
+       <span class="ss">'ok</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">logical-and</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">= </span><span class="nv">s1</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="nv">s2</span> <span class="mi">0</span><span class="p">))</span> <span class="mi">0</span><span class="p">)</span>
+	     <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">= </span><span class="nv">s1</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="nv">s2</span> <span class="mi">1</span><span class="p">))</span> <span class="mi">1</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nf">else</span>
+	      <span class="p">(</span><span class="nf">error</span> <span class="s">"Invalid signal"</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">logical-or</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="k">or </span><span class="p">(</span><span class="nb">= </span><span class="nv">s1</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="nv">s2</span> <span class="mi">1</span><span class="p">))</span> <span class="mi">1</span><span class="p">)</span>
+	     <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">= </span><span class="nv">s1</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nb">= </span><span class="nv">s2</span> <span class="mi">0</span><span class="p">))</span> <span class="mi">0</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nf">else</span>
+	      <span class="p">(</span><span class="nf">error</span> <span class="s">"Invalid signal"</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">))))</span>
+</pre></div>
+</div>
 </div>
 
-<div id="outline-container-org3a62681" class="outline-3">
-<h3 id="org3a62681">练习 3.33-3.37</h3>
-<div class="outline-text-3" id="text-org3a62681">
+<div id="outline-container-org5fcb467" class="outline-4">
+<h4 id="org5fcb467">3.29</h4>
+<div class="outline-text-4" id="text-org5fcb467">
+<div class="highlight"><pre><span></span>     <span class="c1">;; (A or B) 等价于 (not ((not A) and (not B)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">or-gate</span> <span class="nv">a1</span> <span class="nv">a2</span> <span class="nv">output</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">invert-1</span> <span class="p">(</span><span class="nf">make-wire</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">invert-2</span> <span class="p">(</span><span class="nf">make-wire</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">and-invert1-invert2</span> <span class="p">(</span><span class="nf">make-wire</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">inverter</span> <span class="nv">a1</span> <span class="nv">invert-1</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">inverter</span> <span class="nv">a2</span> <span class="nv">invert-2</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">and-gate</span> <span class="nv">invert-1</span> <span class="nv">invert-2</span> <span class="nv">and-invert1-invert2</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">inverter</span> <span class="nv">and-invert1-invert2</span> <span class="nv">output</span><span class="p">))</span>
+       <span class="ss">'ok</span><span class="p">)</span>
+
+     <span class="c1">;; 这样的或门最大延时 (+ (* 3 inverter-delay) and-gate-delay)</span>
+</pre></div>
 </div>
-<div id="outline-container-org517ac34" class="outline-4">
-<h4 id="org517ac34">3.33</h4>
 </div>
 
-<div id="outline-container-org8b79274" class="outline-4">
-<h4 id="org8b79274">3.34</h4>
+<div id="outline-container-org94b5569" class="outline-4">
+<h4 id="org94b5569">3.30</h4>
+<div class="outline-text-4" id="text-org94b5569">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">full-adder</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c-in</span> <span class="nv">sum</span> <span class="nv">c-out</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">s</span> <span class="p">(</span><span class="nf">make-wire</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">c1</span> <span class="p">(</span><span class="nf">make-wire</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">c2</span> <span class="p">(</span><span class="nf">make-wire</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">half-adder</span> <span class="nv">b</span> <span class="nv">c-in</span> <span class="nv">a</span> <span class="nv">c1</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">half-adder</span> <span class="nv">a</span> <span class="nv">s</span> <span class="nv">sum</span> <span class="nv">c2</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">or-gate</span> <span class="nv">c1</span> <span class="nv">c2</span> <span class="nv">c-out</span><span class="p">)</span>
+	 <span class="ss">'ok</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">half-adder</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">s</span> <span class="nv">c</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">d</span> <span class="p">(</span><span class="nf">make-wire</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">e</span> <span class="p">(</span><span class="nf">make-wire</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">or-gate</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">d</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">and-gate</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">inverter</span> <span class="nv">c</span> <span class="nv">e</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">and-gate</span> <span class="nv">d</span> <span class="nv">e</span> <span class="nv">s</span><span class="p">)</span>
+	 <span class="ss">'ok</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">ripple-carry-adder</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">s</span> <span class="nv">c</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">c0</span> <span class="p">(</span><span class="nf">make-wire</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">c1</span> <span class="p">(</span><span class="nf">make-wire</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">set-signal!</span> <span class="nv">c0</span> <span class="mi">0</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">recursive</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c-in</span> <span class="nv">sum</span> <span class="nv">c-out</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">a</span><span class="p">))</span>
+	       <span class="p">(</span><span class="nf">begin</span>
+		 <span class="p">(</span><span class="nf">full-adder</span> <span class="p">(</span><span class="nb">car </span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">b</span><span class="p">)</span> <span class="nv">c-in</span> <span class="p">(</span><span class="nb">car </span><span class="nv">s</span><span class="p">)</span> <span class="nv">c</span><span class="p">)</span>
+		 <span class="ss">'ok</span><span class="p">)</span>
+	       <span class="p">(</span><span class="k">begin </span><span class="p">(</span><span class="nf">full-adder</span> <span class="p">(</span><span class="nb">car </span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">b</span><span class="p">)</span> <span class="nv">c-in</span> <span class="p">(</span><span class="nb">car </span><span class="nv">s</span><span class="p">)</span> <span class="nv">c-out</span><span class="p">)</span>
+		      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">c-in</span> <span class="nv">c-out</span><span class="p">)</span>
+			    <span class="p">(</span><span class="nf">c-out</span> <span class="p">(</span><span class="nf">make-wire</span><span class="p">)))</span>
+			<span class="p">(</span><span class="nf">recursive</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">b</span><span class="p">)</span> <span class="nv">c-in</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">s</span><span class="p">)</span> <span class="nv">c-out</span><span class="p">)))))</span>
+	 <span class="p">(</span><span class="nf">recursive</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c0</span> <span class="nv">s</span> <span class="nv">c1</span><span class="p">)))</span>
+
+     <span class="c1">;; 大概统计：</span>
+     <span class="c1">;; let ((half-adder-delay (+ or-gate-delay (* 2 and-gate-delay) inverter-delay)))</span>
+     <span class="c1">;; let ((full-adder-delay (+ (* 2 half-adder-delay) or-gate-delay)))</span>
+     <span class="c1">;; let ((ripple-darry-adder-n-delay (* n full-adder-delay)))</span>
+</pre></div>
+</div>
 </div>
 
-<div id="outline-container-org97bc4d1" class="outline-4">
-<h4 id="org97bc4d1">3.35</h4>
+<div id="outline-container-org50090d4" class="outline-4">
+<h4 id="org50090d4">3.31</h4>
+<div class="outline-text-4" id="text-org50090d4">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 当一个新的动作过程加入线路时，这一过程应立即运行，这样将会把一项新日程加入日</span>
+     <span class="c1">;; 程表，当调用过程 propagate 时就会按时间顺序调用日程；</span>
+
+     <span class="c1">;; 如果不这样做的话，以反门为例子，如果不在新的动作加入输入线路时立即执行，那么</span>
+     <span class="c1">;; 日程表里将没有项目，propagate 过程没有任何调用活动立即结束，而反门的输出将保</span>
+     <span class="c1">;; 持默认值不被修改，而这是与反门的逻辑相违背的。</span>
+</pre></div>
+</div>
 </div>
 
-<div id="outline-container-orgefb1784" class="outline-4">
-<h4 id="orgefb1784">3.36</h4>
+<div id="outline-container-org443a3d3" class="outline-4">
+<h4 id="org443a3d3">3.32</h4>
+<div class="outline-text-4" id="text-org443a3d3">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 有些时候后续操作将依赖于前面的操作；</span>
+
+     <span class="c1">;; 与门，输入在一个时间段里从 0 1 变为 1 0；</span>
+
+     <span class="c1">;; 当 input1 从 0 变为 1 时，input2 仍然是 1；</span>
+     <span class="c1">;; input1 的信号变化将一日程项目加入日程表，而此日程项目的局部状态变量</span>
+     <span class="c1">;; new-value 将是当前两个输入值的逻辑与，即为 1;</span>
+
+     <span class="c1">;; 依次类推，input2 从 1 变为 0 时，input1 为 1;</span>
+     <span class="c1">;; 则...</span>
+     <span class="c1">;; 新加入的日程项目的局部状态变量将是 0;</span>
+
+     <span class="c1">;; 按后进先出顺序处理日程项目，所以 input2 相关的项目先调用，input1 的后调用；</span>
+     <span class="c1">;; 此后与门的输出为 1，与与门逻辑不符合。</span>
+</pre></div>
+</div>
+</div>
 </div>
 
-<div id="outline-container-orgb522f5f" class="outline-4">
-<h4 id="orgb522f5f">3.37</h4>
+<div id="outline-container-org82aa546" class="outline-3">
+<h3 id="org82aa546">约束的传播</h3>
+<div class="outline-text-3" id="text-org82aa546">
+<ol class="org-ol">
+<li>描绘一种语言的设计，这种语言将使我们可以基于各种关系进行工作，这一语言里
+的基本元素就是 <b>基本约束</b>, 它们描述了在不同量之间的某种特定关系；还提供了
+一些方法，使它们可以用于组合各种基本约束，以便去描绘更复杂的关系；</li>
+<li>非定向的计算是基于约束的系统的标志性特征；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org4675458" class="outline-3">
+<h3 id="org4675458">练习 3.33-3.37</h3>
+<div class="outline-text-3" id="text-org4675458">
+</div>
+<div id="outline-container-orgb7fc38c" class="outline-4">
+<h4 id="orgb7fc38c">3.33</h4>
+<div class="outline-text-4" id="text-orgb7fc38c">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="nv">a</span> <span class="p">(</span><span class="nf">make-connector</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="nv">b</span> <span class="p">(</span><span class="nf">make-connector</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="nv">c</span> <span class="p">(</span><span class="nf">make-connector</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">averager</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">u</span> <span class="p">(</span><span class="nf">make-connector</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">v</span> <span class="p">(</span><span class="nf">make-connector</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">multiplier</span> <span class="nv">u</span> <span class="nv">c</span> <span class="nv">v</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">adder</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">v</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">constant</span> <span class="mi">2</span> <span class="nv">u</span><span class="p">)</span>
+	 <span class="ss">'ok</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgf502bad" class="outline-4">
+<h4 id="orgf502bad">3.34</h4>
+<div class="outline-text-4" id="text-orgf502bad">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 如果只是设置了 a 的值，b 的值是可以计算出来的；</span>
+     <span class="c1">;; 反之则不然；</span>
+     <span class="c1">;; 因为当我们想计算 b 的平方根时，必须设置 b 的值同时使 a 忘记值；</span>
+     <span class="c1">;; multiplier 过程的内部过程 process-new-value 中的所有 cond 条件全部无法通过；</span>
+     <span class="c1">;; 无法为 a 设置新值。</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org3e2a41b" class="outline-4">
+<h4 id="org3e2a41b">3.35</h4>
+<div class="outline-text-4" id="text-org3e2a41b">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">squarer</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">process-new-value</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">has-value?</span> <span class="nv">b</span><span class="p">)</span>
+	     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nf">get-value</span> <span class="nv">b</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+		 <span class="p">(</span><span class="nf">error</span> <span class="s">"square less than 0 -- SQUARER"</span> <span class="p">(</span><span class="nf">get-value</span> <span class="nv">b</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">set-value!</span> <span class="nv">a</span>
+			     <span class="p">(</span><span class="nb">sqrt </span><span class="p">(</span><span class="nf">get-value</span> <span class="nv">b</span><span class="p">))</span>
+			     <span class="nv">me</span><span class="p">))</span>
+	     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">has-value?</span> <span class="nv">a</span><span class="p">)</span>
+		 <span class="p">(</span><span class="nf">set-value!</span> <span class="nv">b</span>
+			     <span class="p">(</span><span class="nf">square</span> <span class="p">(</span><span class="nf">get-value</span> <span class="nv">a</span><span class="p">))</span>
+			     <span class="nv">me</span><span class="p">))))</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">process-forget-value</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">forget-value!</span> <span class="nv">a</span> <span class="nv">me</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">forget-value!</span> <span class="nv">b</span> <span class="nv">me</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nf">process-new-value</span><span class="p">))</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">me</span> <span class="nv">request</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">eq? </span><span class="nv">request</span> <span class="ss">'I-have-a-value</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">process-new-value</span><span class="p">))</span>
+	       <span class="p">((</span><span class="nb">eq? </span><span class="nv">request</span> <span class="ss">'I-lost-my-value</span><span class="p">)</span>
+		<span class="p">(</span><span class="nf">process-forget-value</span><span class="p">))</span>
+	       <span class="p">(</span><span class="nf">else</span>
+		<span class="p">(</span><span class="nf">error</span> <span class="s">"Unknown request -- SQUARER"</span> <span class="nv">request</span><span class="p">))))</span>
+       <span class="p">(</span><span class="nf">connect</span> <span class="nv">a</span> <span class="nv">me</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">connect</span> <span class="nv">b</span> <span class="nv">me</span><span class="p">)</span>
+       <span class="nv">me</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org6e1af25" class="outline-4">
+<h4 id="org6e1af25">3.36</h4>
+<div class="outline-text-4" id="text-org6e1af25">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 这个题目应该还是 ex 3.35 的后续；</span>
+     <span class="c1">;; 没必要画图，耐心一些总能画出来，总体环境结构再复杂也是由简单环境组成的。</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org0053a01" class="outline-4">
+<h4 id="org0053a01">3.37</h4>
+<div class="outline-text-4" id="text-org0053a01">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 暂时忘掉底层抽象，在更高的抽象层次上思考问题。</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">celsius-fahrenheit-converter</span> <span class="nv">x</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">c+</span> <span class="p">(</span><span class="nf">c*</span> <span class="p">(</span><span class="nf">c/</span> <span class="p">(</span><span class="nf">cv</span> <span class="mi">9</span><span class="p">)</span> <span class="p">(</span><span class="nf">cv</span> <span class="mi">5</span><span class="p">))</span>
+	       <span class="nv">x</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nf">cv</span> <span class="mi">32</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">C</span> <span class="p">(</span><span class="nf">make-connector</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="nv">F</span> <span class="p">(</span><span class="nf">celsius-fahrenheit-converter</span> <span class="nv">C</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">c+</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">z</span> <span class="p">(</span><span class="nf">make-connector</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">adder</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">)</span>
+	 <span class="nv">z</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cv</span> <span class="nv">x</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">y</span> <span class="p">(</span><span class="nf">make-connector</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">constant</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+	 <span class="nv">y</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">c*</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">z</span> <span class="p">(</span><span class="nf">make-connector</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">multiplier</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">)</span>
+	 <span class="nv">z</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">c/</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">z</span> <span class="p">(</span><span class="nf">make-connector</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">multiplier</span> <span class="nv">y</span> <span class="nv">z</span> <span class="nv">x</span><span class="p">)</span>
+	 <span class="nv">z</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">c-</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">z</span> <span class="p">(</span><span class="nf">make-connector</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">adder</span> <span class="nv">y</span> <span class="nv">z</span> <span class="nv">x</span><span class="p">)</span>
+	 <span class="nv">z</span><span class="p">))</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
