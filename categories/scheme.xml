@@ -1,5 +1,307 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Wed, 02 Jan 2019 14:07:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-3(3)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%283%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org2aef511" class="outline-2"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Thu, 03 Jan 2019 13:42:42 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-3(4)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%284%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgc7980e8" class="outline-2"&gt;
+&lt;h2 id="orgc7980e8"&gt;并发：时间是一个本质问题&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc7980e8"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;潜藏在状态、同一、变化后面的中心问题是，引入赋值之后，我们就必须承认时间在
+所有的计算模形中的位置；&lt;/li&gt;
+&lt;li&gt;采用具有局部状态的计算对象建立模形，就会迫使我们去直面时间问题，并将它作为
+程序设计中一个一个必不可少的概念；&lt;/li&gt;
+&lt;li&gt;将计算模形划分为一些能各自独立地并发演化的部分，常常也是很合适的，即使有关
+的程序是在一台计算机上顺序执行，在实际写程序时就像它们将被并发地执行那样，
+也能帮助程序员们避免那些并不必要的时间约束，因此也可能使程序更加模块化；&lt;/li&gt;
+&lt;li&gt;除了使程序更加模块化之外，并发计算还可能提供某种超越顺序计算的速度优势；&lt;/li&gt;
+&lt;li&gt;在出现了并发的情况下，由赋值引入的复杂性问题将变得更加严重，会在我们对时间
+的理解中加入进一步的复杂性；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org172db63" class="outline-3"&gt;
+&lt;h3 id="org172db63"&gt;并发系统中时间的性质&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org172db63"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;对于并发的一种可能限制方式是规定，修改任意共享状态变量的两个操作都不允许
+同时发生；&lt;/li&gt;
+&lt;li&gt;对于并发的另一种不那么严厉的限制方式是，保证并发系统产生出的结果与各个进
+程按照 &lt;b&gt;某种&lt;/b&gt; 方式顺序运行产生出的结果完全一样；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd7b4021" class="outline-3"&gt;
+&lt;h3 id="orgd7b4021"&gt;练习 3.38&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd7b4021"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="c1"&gt;;; 完全是体力活，列出各种排列组合...&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 就在这里列举了。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2571f9d" class="outline-3"&gt;
+&lt;h3 id="org2571f9d"&gt;控制并发的机制&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org2571f9d"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;在设计并发系统时，设法做出一些一般性的机制，使我们可能限制并行进程之间的
+交错情况，以保证程序具有正确的行为方式；&lt;/li&gt;
+&lt;li&gt;串行化就是实现下面的想法：使进程可以并发地执行，但是其中也有一些过程不能
+并发地执行，说的更准确些，串行化就是创建一些不同的过程集合，并且保证在每
+个时刻，在任何一个串行化集合里至多只有一个过程的一个执行；&lt;/li&gt;
+&lt;li&gt;借助串行化去控制对共享变量的访问，举例说，如果我们希望基于某个共享变量已
+有的值去更新它，那么就应该将访问这一变量的现有值和给这一变量赋新值的操作
+都放入同一个过程里，而后设法保证，任何能给这个变量赋值的过程都不会与这个
+过程并发运行，方法就是将所有这样的过程都放在同一个串行化集合里；&lt;/li&gt;
+&lt;li&gt;如果只存在一个共享资源，串行化的使用问题是相对比较简单的；如果存在着多项
+共享资源并发程序设计就可能变得非常难以把握了；&lt;/li&gt;
+&lt;li&gt;使用一种更基本的称为 &lt;b&gt;互斥元&lt;/b&gt; 的同步机制来实现串行化，互斥元是一种对象，
+假定它提供了两个操作：获取(acquired) 和释放(release)；&lt;/li&gt;
+&lt;li&gt;在那些提供了对于多种共享资源的开发访问的系统里，总是存在着死锁的危险；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org706ac8a" class="outline-3"&gt;
+&lt;h3 id="org706ac8a"&gt;练习 3.39-3.49&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org706ac8a"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org7fb5843" class="outline-4"&gt;
+&lt;h4 id="org7fb5843"&gt;3.39&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7fb5843"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 121&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 101&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 100&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org97637fa" class="outline-4"&gt;
+&lt;h4 id="org97637fa"&gt;3.40&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org97637fa"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; without serialization&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 1000000&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 100&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 1000&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 10000&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 100000&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; with serialization&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 1000000&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3207a60" class="outline-4"&gt;
+&lt;h4 id="org3207a60"&gt;3.41&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3207a60"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 并没有必要；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 第一，非串行地访问帐户过程并不会影响其他两个过程的结果；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 第二，可能存在一种担心，即非串行地访问帐户取到的值是不正确的，&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 因为访问帐户可能处于其他并发过程的取值和修改值之间，&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 访问帐户取到的值马上就无效了；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 这是不用担心的，因为可以这样说，访问帐户取值取的就是那一时刻的值。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5054f17" class="outline-4"&gt;
+&lt;h4 id="org5054f17"&gt;3.42&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org5054f17"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 安全的；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 与原来的版本并无什么不同；&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf8855da" class="outline-4"&gt;
+&lt;h4 id="orgf8855da"&gt;3.43&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf8855da"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 顺序运行交换过程&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 10 20 30&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 10 30 20&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 20 10 30&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 20 30 10&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 30 10 20&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 30 20 10&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 使用本节第一个版本的帐户交换程序&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 10 20 30&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 40 10 10&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 20 20 20&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 30 30 0&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 10 40 10&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 0 30 30&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 30 0 30&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 10 10 40&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 20 10 30&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 30 20 10&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 10 30 20&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 30 10 20&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 20 30 10&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc755909" class="outline-4"&gt;
+&lt;h4 id="orgc755909"&gt;3.44&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc755909"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; Louis 的说法是错的；&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 帐户余额交换过程中必须先计算帐户差额，&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 而这个差额计算过程是可以与其他对这两个帐户的操作并行进行的，&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 导致计算出来的差额可能是错误的，所以需要串行化整个 exchange 过程；&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 而转移款项 transfer 过程中对帐户的所有操作都受到串行化组的保护；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 不必担心最初的 exchange 中出现的问题。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org61e33a2" class="outline-4"&gt;
+&lt;h4 id="org61e33a2"&gt;3.45&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org61e33a2"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 当调用本节定义的 serialized-exchange 时，会出现死锁，&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 串行化组里的并发过程运行 将卡在某个节点无法运行下去；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 比如，现在 exchange 过程在 serializer2 串行化组里；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 而 (serializer2 exchange) 过程在 serializer1 组里；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 当运行此 exchange 过程时，&lt;/span&gt;
+     &lt;span class="c1"&gt;;; (account 'withdraw) 与 (account 'deposit) 将返回两个被串行化的过程，&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 分别属于串行化组 serializer1 和 serializer2，&lt;/span&gt;
+     &lt;span class="c1"&gt;;; exchange 过程内部的两个串行化过程必须等待同组的进程结束；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 而此时这两个组里都有过程作为进程在运行，&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 即前面所说的 (serializer2 exchange) 和 exchange 本身;&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 如此 exchange 将永远无法结束，这个调用将会死锁。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgae90690" class="outline-4"&gt;
+&lt;h4 id="orgae90690"&gt;3.46&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgae90690"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 如果没有企图使 test-and-set! 的操作原子化，&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 两个并发进程就可以同时获取互斥元并进而运行下去，&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 这是与以互斥元实现串行化的初衷相背的。&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 画时序图是重复劳动，这里就不做了。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org78db7ca" class="outline-4"&gt;
+&lt;h4 id="org78db7ca"&gt;3.47&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org78db7ca"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; a&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-semaphore&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;mutex&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-mutex&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;original-n&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;acquire&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mutex&lt;/span&gt; &lt;span class="ss"&gt;'acquire&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;begin &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;set! &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mutex&lt;/span&gt; &lt;span class="ss"&gt;'release&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		      &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;begin &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mutex&lt;/span&gt; &lt;span class="ss"&gt;'release&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;acquire&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;release&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;original-n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;begin &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mutex&lt;/span&gt; &lt;span class="ss"&gt;'acquire&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;set! &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mutex&lt;/span&gt; &lt;span class="ss"&gt;'release&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		      &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;the-semaphore&lt;/span&gt; &lt;span class="nv"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="ss"&gt;'acquire&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;acquire&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="ss"&gt;'release&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;release&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	 &lt;span class="nv"&gt;the-semaphore&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; b&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-semaphore&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;original-n&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;acquire&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;test-and-set!&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;acquire&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;release&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;original-n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;begin&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;set! &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;the-semaphore&lt;/span&gt; &lt;span class="nv"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="ss"&gt;'acquire&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;acquire&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="ss"&gt;'release&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;release&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	 &lt;span class="nv"&gt;the-semaphore&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;test-and-set!&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="nv"&gt;true&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;begin &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;set! &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		  &lt;span class="nv"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org04a5da2" class="outline-4"&gt;
+&lt;h4 id="org04a5da2"&gt;3.48&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org04a5da2"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-account-and-serializer&lt;/span&gt; &lt;span class="nv"&gt;balance&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;withdraw&lt;/span&gt; &lt;span class="nv"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt;= &lt;/span&gt;&lt;span class="nv"&gt;balance&lt;/span&gt; &lt;span class="nv"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;begin &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;set! &lt;/span&gt;&lt;span class="nv"&gt;balance&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;balance&lt;/span&gt; &lt;span class="nv"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		    &lt;span class="nv"&gt;balance&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="s"&gt;"Insufficient funds"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;deposit&lt;/span&gt; &lt;span class="nv"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;set! &lt;/span&gt;&lt;span class="nv"&gt;balance&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;balance&lt;/span&gt; &lt;span class="nv"&gt;amount&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	 &lt;span class="nv"&gt;balance&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;balance-serializer&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-serializer&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;dispatch&lt;/span&gt; &lt;span class="nv"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="ss"&gt;'withdraw&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;withdraw&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="ss"&gt;'deposit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;deposit&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="ss"&gt;'balance&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;balance&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="ss"&gt;'serializer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;balance-serializer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="ss"&gt;'label&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Unknown request -- MAKE-ACCOUNT"&lt;/span&gt;
+			      &lt;span class="nv"&gt;m&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	 &lt;span class="nv"&gt;dispatch&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;label&lt;/span&gt; &lt;span class="nv"&gt;acc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;acc&lt;/span&gt; &lt;span class="ss"&gt;'label&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;serialized-exchange&lt;/span&gt; &lt;span class="nv"&gt;account1&lt;/span&gt; &lt;span class="nv"&gt;account2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;serializer1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;account1&lt;/span&gt; &lt;span class="ss"&gt;'serializer&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;serializer2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;account2&lt;/span&gt; &lt;span class="ss"&gt;'serializer&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;label&lt;/span&gt; &lt;span class="nv"&gt;account1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;label&lt;/span&gt; &lt;span class="nv"&gt;account2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;n1&lt;/span&gt; &lt;span class="nv"&gt;n2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;serializer2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;serializer1&lt;/span&gt; &lt;span class="nv"&gt;exchage&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	      &lt;span class="nv"&gt;account1&lt;/span&gt;
+	      &lt;span class="nv"&gt;account2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;serializer1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;serializer2&lt;/span&gt; &lt;span class="nv"&gt;exchage&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="nv"&gt;account1&lt;/span&gt;
+	     &lt;span class="nv"&gt;account2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd4a0ea6" class="outline-4"&gt;
+&lt;h4 id="orgd4a0ea6"&gt;3.49&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgd4a0ea6"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 竟然无法理解自己之前写的回答了...&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 摘录一条别人的情形描述：&lt;/span&gt;
+     &lt;span class="c1"&gt;;; https://sicp.readthedocs.io/en/latest/chp3/49.html&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 关联帐号的其中一种状况产生的死锁无法使用 练习 3.48 的机制来防止。&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 假设 peter 和 mary 是两夫妇，他们各自拥有自己的帐号 peter-acc 和 mary-acc ，并且这两个帐号都将对方的帐号设置成了关联帐号，也即是，当 peter-acc 的余额不足以支付的时候，它会去提取 mary-acc 的余额；而当 mary-acc 的余额不足以支付的时候，它也回去提取 peter-acc 的余额。&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 现在，考虑这样一种情况， peter 和 mary 分别在不同的地方消费，然后各自账户的余额都不足以支付订单，于是 peter-acc 尝试访问关联帐号 mary-acc ，而 mary-acc 也在同一时间访问 peter-acc ，因为两个帐号都已经被打开，而且两个帐号都试图访问关联帐号，这样就造成了一个死锁：除非 peter 或 mary 的其中一个主动退出账户，否则支付永远都无法完成。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%284%29/</guid><pubDate>Thu, 03 Jan 2019 03:55:34 GMT</pubDate></item><item><title>SICP-Refresher-Chapter-3(3)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%283%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org2aef511" class="outline-2"&gt;
 &lt;h2 id="org2aef511"&gt;用变动数据做模拟&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org2aef511"&gt;
 &lt;ol class="org-ol"&gt;
@@ -5154,544 +5456,4 @@ car 的指针），右边部分放着相应的 cdr（指向 cdr 的指针）；&
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%281%29/</guid><pubDate>Tue, 18 Dec 2018 06:08:33 GMT</pubDate></item><item><title>SICP-Refresher-Chapter-1(3)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-1%283%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgbd533bc" class="outline-2"&gt;
-&lt;h2 id="orgbd533bc"&gt;用高阶函数做抽象&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbd533bc"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;过程提供了这样的能力：
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;能为公共的模式命名，建立抽象；&lt;/li&gt;
-&lt;li&gt;直接在抽象的层次上工作。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;如果不同的过程具有同样的设计模式，可以将这种模式提取出来构成高阶过程：
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;它以过程为参数，以不同的过程参数调用可以实现前面所讲的具有相同设计模式
-的不同的过程的功能；&lt;/li&gt;
-&lt;li&gt;可以将过程作为返回值；&lt;/li&gt;
-&lt;li&gt;是强有力的抽象机制，极大地增强语言的表述能力。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orga39fd88" class="outline-3"&gt;
-&lt;h3 id="orga39fd88"&gt;过程作为参数&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orga39fd88"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;以序列求和中的抽象模式引出以过程作为参数的主题。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org07a7829" class="outline-3"&gt;
-&lt;h3 id="org07a7829"&gt;练习 1.29-1.33&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org07a7829"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgc1006f1" class="outline-4"&gt;
-&lt;h4 id="orgc1006f1"&gt;1.29&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc1006f1"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;integral-simpson&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;h&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;compute&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;or &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="nv"&gt;h&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-	       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;remainder &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="nv"&gt;h&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
-	       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;remainder &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="nv"&gt;h&lt;/span&gt;&lt;span class="p"&gt;)))))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;count-next&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="nv"&gt;h&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sum&lt;/span&gt; &lt;span class="nv"&gt;compute&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;count-next&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org35a8b06" class="outline-4"&gt;
-&lt;h4 id="org35a8b06"&gt;1.30&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org35a8b06"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sum&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="nv"&gt;result&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgb0c6dbc" class="outline-4"&gt;
-&lt;h4 id="orgb0c6dbc"&gt;1.31&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgb0c6dbc"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;product&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	   &lt;span class="mi"&gt;1&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;*&lt;/span&gt;
-	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;product&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; a&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;compute-next&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;factorial&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;keep-same&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;product&lt;/span&gt; &lt;span class="nv"&gt;keep-same&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;compute-next&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;compute-pi&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;pi-term&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;even? &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;product&lt;/span&gt; &lt;span class="nv"&gt;pi-term&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;compute-next&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	  &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; b&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;product-iter&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="nv"&gt;result&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orge088185" class="outline-4"&gt;
-&lt;h4 id="orge088185"&gt;1.32&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orge088185"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; a&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;accumulate&lt;/span&gt; &lt;span class="nv"&gt;combiner&lt;/span&gt; &lt;span class="nv"&gt;null-value&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	   &lt;span class="nv"&gt;null-value&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;combiner&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;accumulate&lt;/span&gt; &lt;span class="nv"&gt;combiner&lt;/span&gt; &lt;span class="nv"&gt;null-value&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sum&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;accumulate&lt;/span&gt; &lt;span class="nv"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;product&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;accumulate&lt;/span&gt; &lt;span class="nv"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; b&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;accumulate-iter&lt;/span&gt; &lt;span class="nv"&gt;combiner&lt;/span&gt; &lt;span class="nv"&gt;null-value&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="nv"&gt;result&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;combiner&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;null-value&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org236a319" class="outline-4"&gt;
-&lt;h4 id="org236a319"&gt;1.33&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org236a319"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; (load "./1.20.scm")&lt;/span&gt;
-     &lt;span class="c1"&gt;;; (load "./1.21.scm")&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;filtered-accumulate&lt;/span&gt; &lt;span class="nv"&gt;filter&lt;/span&gt; &lt;span class="nv"&gt;combiner&lt;/span&gt; &lt;span class="nv"&gt;null-value&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;null-value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;filter&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;combiner&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;term&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-			&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;filtered-accumulate&lt;/span&gt; &lt;span class="nv"&gt;filter&lt;/span&gt; &lt;span class="nv"&gt;combiner&lt;/span&gt; &lt;span class="nv"&gt;null-value&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;filtered-accumulate&lt;/span&gt; &lt;span class="nv"&gt;filter&lt;/span&gt; &lt;span class="nv"&gt;combiner&lt;/span&gt; &lt;span class="nv"&gt;null-value&lt;/span&gt; &lt;span class="nv"&gt;term&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;keep-same&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;compute-next&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; a&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;prime-sum&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;filtered-accumulate&lt;/span&gt; &lt;span class="nv"&gt;prime?&lt;/span&gt; &lt;span class="nv"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;keep-same&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;compute-next&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; b&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-product&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;gcd-equals-1?&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;gcd &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;filtered-accumulate&lt;/span&gt; &lt;span class="nv"&gt;gcd-equals-1?&lt;/span&gt; &lt;span class="nv"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;keep-same&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;compute-next&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org684e145" class="outline-3"&gt;
-&lt;h3 id="org684e145"&gt;用 lambda 构造过程&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org684e145"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;lambda:
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;用与 define 同样的方式创建过程，除了不为有关过程提供名字之外，两者创建
-的过程完全一样；&lt;/li&gt;
-&lt;li&gt;仅有的不同之处就是这种过程没有与环境中的任何名字相关联；&lt;/li&gt;
-&lt;li&gt;lambda 表达式可以用在任何通常使用过程名的上下文中。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;let:
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;let 表达式只是作为其基础的 lambda 表达式的语法外衣罢了；&lt;/li&gt;
-&lt;li&gt;let 使人能在尽可能接近其使用的地方建立局部变量约束；&lt;/li&gt;
-&lt;li&gt;let 表达式描述的变量的值是在 let 最终创建的作用域之外计算的。&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgae57f2e" class="outline-3"&gt;
-&lt;h3 id="orgae57f2e"&gt;练习 1.34&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgae57f2e"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgcced820" class="outline-4"&gt;
-&lt;h4 id="orgcced820"&gt;1.34&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgcced820"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="c1"&gt;;; (f f)&lt;/span&gt;
-    &lt;span class="c1"&gt;;; (f 2)&lt;/span&gt;
-    &lt;span class="c1"&gt;;; (2 2)&lt;/span&gt;
-    &lt;span class="c1"&gt;;; error, the object 2 is not applicable.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org6cfb99b" class="outline-3"&gt;
-&lt;h3 id="org6cfb99b"&gt;过程作为一般性的方法&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org6cfb99b"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;一般性(general)方法的两个更精细的实例：
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;找出函数零点；&lt;/li&gt;
-&lt;li&gt;找出函数不动点；&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;一般性过程与其中涉及的特定函数无关，只要函数都符合一般性过程要求的特征
-（如参数个数，返回值类型等），而不用考虑函数到底是怎样进行特定计算过程的。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org6fbe97e" class="outline-3"&gt;
-&lt;h3 id="org6fbe97e"&gt;练习 1.35-1.39&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org6fbe97e"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgd169ad6" class="outline-4"&gt;
-&lt;h4 id="orgd169ad6"&gt;1.35&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgd169ad6"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;tolerance&lt;/span&gt; &lt;span class="mf"&gt;0.00001&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fixed-point&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;first-guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;close-enough?&lt;/span&gt; &lt;span class="nv"&gt;v1&lt;/span&gt; &lt;span class="nv"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;abs &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;v1&lt;/span&gt; &lt;span class="nv"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;tolerance&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;try&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;next&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;close-enough?&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	       &lt;span class="nv"&gt;next&lt;/span&gt;
-	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;try&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;try&lt;/span&gt; &lt;span class="nv"&gt;first-guess&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fixed-point&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;;1.618.327...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgc38809e" class="outline-4"&gt;
-&lt;h4 id="orgc38809e"&gt;1.36&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc38809e"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;average&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;tolerance&lt;/span&gt; &lt;span class="mf"&gt;0.00001&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;report-evolution&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;newline&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;display &lt;/span&gt;&lt;span class="s"&gt;" *** "&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;display &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fixed-point&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;first-guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;close-enough?&lt;/span&gt; &lt;span class="nv"&gt;v1&lt;/span&gt; &lt;span class="nv"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;abs &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;v1&lt;/span&gt; &lt;span class="nv"&gt;v2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;tolerance&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;try&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;report-evolution&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;next&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;close-enough?&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	       &lt;span class="nv"&gt;next&lt;/span&gt;
-	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;try&lt;/span&gt; &lt;span class="nv"&gt;next&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;try&lt;/span&gt; &lt;span class="nv"&gt;first-guess&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fixed-point&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;log &lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;log &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;;&amp;gt;20 steps&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fixed-point&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;average&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;log &lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;log &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;;only 9 steps on my computer&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgfd0d63a" class="outline-4"&gt;
-&lt;h4 id="orgfd0d63a"&gt;1.37&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgfd0d63a"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 0.6180...&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; recursive&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cont-frac&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cont-frac&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-		&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;			&lt;span class="c1"&gt;; generates 0.6180555... after 11 steps&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; iterative&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cont-frac-iter&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iter&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cont-frac-iter&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-			  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-			  &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;		&lt;span class="c1"&gt;;also requires 11 steps&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org3b070f3" class="outline-4"&gt;
-&lt;h4 id="org3b070f3"&gt;1.38&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org3b070f3"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;compute-next&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;the-count&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;the-number&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;the-count&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;the-number&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;remainder &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="nv"&gt;the-count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="nv"&gt;the-count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;the-number&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cont-frac&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cont-frac&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;compute-next&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;;0.718281822... e: 2.718281828...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org11fe9e2" class="outline-4"&gt;
-&lt;h4 id="org11fe9e2"&gt;1.39&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org11fe9e2"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;higher-level-cont-frac&lt;/span&gt; &lt;span class="nv"&gt;combiner&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;combiner&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;d&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;recursive&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tan-cf&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;higher-level-cont-frac&lt;/span&gt; &lt;span class="nv"&gt;-&lt;/span&gt;
-			       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-			       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-			       &lt;span class="nv"&gt;k&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-     &lt;span class="c1"&gt;;; test&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;tan60&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;sqrt &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;tolerance&lt;/span&gt; &lt;span class="mf"&gt;0.0001&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;abs &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tan-cf&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="nv"&gt;pi&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;tan60&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;tolerance&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;;passed&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org5b79d55" class="outline-3"&gt;
-&lt;h3 id="org5b79d55"&gt;过程作为返回值&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5b79d55"&gt;
-&lt;ol class="org-ol"&gt;
-&lt;li&gt;创建一种其返回值本身也是过程的过程，能使程序设计语言得到进一步的表达能力；&lt;/li&gt;
-&lt;li&gt;将一个计算过程形式化为一个过程，一般来说存在很多不同的方式，有经验的程序
-员知道如何选择过程的形式，使其特别地清晰且易理解，使该计算过程中有用的元
-素能表现为一些相互分离的个体，并使它们还可能重新用于其他的应用；&lt;/li&gt;
-&lt;li&gt;复合过程作为一种至关重要的抽象机制，使我们能将一般性的计算方法明确描述为
-这一程序设计语言中的的元素，高阶函数可以操作这些一般性的方法以便建立起进
-一步的抽象；&lt;/li&gt;
-&lt;li&gt;编程者应该对第3条所述的可能性保持高度敏感，设法从中识别出程序里的基本抽象，
-基于它们去进一步构造，并推广它们以创建威力更加强大的抽象。；&lt;/li&gt;
-&lt;li&gt;在工作中选择合适的抽象层次，但重要的是能基于这种抽象去思考；&lt;/li&gt;
-&lt;li&gt;高阶过程的重要性，在于使我们能显式地将这些抽象描述为程序设计语言的要素，
-使我们能像操作其他计算要素一样去操作它们；&lt;/li&gt;
-&lt;li&gt;Lisp 给了过程完全的第一级状态（一等公民）。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org73fbeb8" class="outline-3"&gt;
-&lt;h3 id="org73fbeb8"&gt;练习 1.40-1.46&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org73fbeb8"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org06ae840" class="outline-4"&gt;
-&lt;h4 id="org06ae840"&gt;1.40&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org06ae840"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; (load "./1.35.scm")&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;dx&lt;/span&gt; &lt;span class="mf"&gt;0.00001&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;deriv&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;g&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;dx&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;g&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	    &lt;span class="nv"&gt;dx&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;newton-transform&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;g&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;deriv&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;newton-method&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fixed-point&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;newton-transform&lt;/span&gt; &lt;span class="nv"&gt;g&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cubic&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cube&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	    &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;newton-method&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cubic&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;		&lt;span class="c1"&gt;;-1.2756822...&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org68fa159" class="outline-4"&gt;
-&lt;h4 id="org68fa159"&gt;1.41&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org68fa159"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;double&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;inc&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(((&lt;/span&gt;&lt;span class="nf"&gt;double&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;double&lt;/span&gt; &lt;span class="nv"&gt;double&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;inc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;	&lt;span class="c1"&gt;;21&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org19b479c" class="outline-4"&gt;
-&lt;h4 id="org19b479c"&gt;1.42&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org19b479c"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;inc&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;compose&lt;/span&gt; &lt;span class="nv"&gt;f1&lt;/span&gt; &lt;span class="nv"&gt;f2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f2&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-
-     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;compose&lt;/span&gt; &lt;span class="nv"&gt;square&lt;/span&gt; &lt;span class="nv"&gt;inc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgb2e4c4c" class="outline-4"&gt;
-&lt;h4 id="orgb2e4c4c"&gt;1.43&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgb2e4c4c"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; (load "./1.42.scm")&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;repeated&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	   &lt;span class="nv"&gt;f&lt;/span&gt;
-	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;compose&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;repeated&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
-
-     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;repeated&lt;/span&gt; &lt;span class="nv"&gt;square&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;			&lt;span class="c1"&gt;;625&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org3d57ff9" class="outline-4"&gt;
-&lt;h4 id="org3d57ff9"&gt;1.44&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org3d57ff9"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; (load "./1.42.scm")&lt;/span&gt;
-     &lt;span class="c1"&gt;;; (load "./1.43.scm")&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;dx&lt;/span&gt; &lt;span class="mf"&gt;0.00001&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;smooth&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;dx&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;dx&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;smooth-n&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-      &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;repeated&lt;/span&gt; &lt;span class="nv"&gt;smooth&lt;/span&gt;
-		 &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="nv"&gt;f&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org122f218" class="outline-4"&gt;
-&lt;h4 id="org122f218"&gt;1.45&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org122f218"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; (load "./1.35.scm")&lt;/span&gt;
-     &lt;span class="c1"&gt;;; (load "./1.43.scm")&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;average&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;average-damp&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;average&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;root&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fixed-point&lt;/span&gt;
-	&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;repeated&lt;/span&gt;
-	  &lt;span class="nv"&gt;average-damp&lt;/span&gt;
-	  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;quotient &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;expt &lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
-	&lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgec591e1" class="outline-4"&gt;
-&lt;h4 id="orgec591e1"&gt;1.46&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgec591e1"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;iterative-improve&lt;/span&gt; &lt;span class="nv"&gt;good-enough?&lt;/span&gt; &lt;span class="nv"&gt;improve&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;good-enough?&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	     &lt;span class="nv"&gt;x&lt;/span&gt;
-	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;iterative-improve&lt;/span&gt; &lt;span class="nv"&gt;good-enough?&lt;/span&gt; &lt;span class="nv"&gt;improve&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;improve&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; sqrt&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;average&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;sqrt &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;improve&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;average&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;good-enough?&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;abs &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="mf"&gt;0.001&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;iterative-improve&lt;/span&gt; &lt;span class="nv"&gt;good-enough?&lt;/span&gt; &lt;span class="nv"&gt;improve&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mf"&gt;1.0&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-     &lt;span class="c1"&gt;;; fixed-point&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;tolerance&lt;/span&gt; &lt;span class="mf"&gt;0.00001&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fixed-point&lt;/span&gt; &lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;first-guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;close-enough?&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;abs &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;guess&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="nv"&gt;tolerance&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;improve&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;iterative-improve&lt;/span&gt; &lt;span class="nv"&gt;close-enough?&lt;/span&gt; &lt;span class="nv"&gt;improve&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;first-guess&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-1%283%29/</guid><pubDate>Sun, 16 Dec 2018 06:29:21 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-2%281%29/</guid><pubDate>Tue, 18 Dec 2018 06:08:33 GMT</pubDate></item></channel></rss>
