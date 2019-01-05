@@ -80,9 +80,9 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org6aec626" class="outline-2">
-<h2 id="org6aec626">流</h2>
-<div class="outline-text-2" id="text-org6aec626">
+        <div id="outline-container-orgb1275b3" class="outline-2">
+<h2 id="orgb1275b3">流</h2>
+<div class="outline-text-2" id="text-orgb1275b3">
 <ol class="org-ol">
 <li>基于一种称为 <b>流</b> 的数据结构，探索对状态进行模拟的另一条途径，流可能缓和状
 态模拟中的复杂性；</li>
@@ -96,9 +96,9 @@
 </ol>
 </div>
 
-<div id="outline-container-org1951f0b" class="outline-3">
-<h3 id="org1951f0b">流作为延时的表</h3>
-<div class="outline-text-3" id="text-org1951f0b">
+<div id="outline-container-org0db2e7b" class="outline-3">
+<h3 id="org0db2e7b">流作为延时的表</h3>
+<div class="outline-text-3" id="text-org0db2e7b">
 <ol class="org-ol">
 <li>流是一种非常巧妙的想法，使我们可能利用各种序列操作，但又不会带来将序列作
 为表去操作而引起的代价；</li>
@@ -115,13 +115,13 @@
 </div>
 </div>
 
-<div id="outline-container-org73c729b" class="outline-3">
-<h3 id="org73c729b">练习 3.50-3.52</h3>
-<div class="outline-text-3" id="text-org73c729b">
+<div id="outline-container-org87f8fb9" class="outline-3">
+<h3 id="org87f8fb9">练习 3.50-3.52</h3>
+<div class="outline-text-3" id="text-org87f8fb9">
 </div>
-<div id="outline-container-org5beb420" class="outline-4">
-<h4 id="org5beb420">3.50</h4>
-<div class="outline-text-4" id="text-org5beb420">
+<div id="outline-container-org428b511" class="outline-4">
+<h4 id="org428b511">3.50</h4>
+<div class="outline-text-4" id="text-org428b511">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">stream-map</span> <span class="nv">proc</span> <span class="o">.</span> <span class="nv">argstreams</span><span class="p">)</span>
        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">stream-null?</span> <span class="p">(</span><span class="nb">car </span><span class="nv">argstreams</span><span class="p">))</span>
 	   <span class="nv">the-empty-stream</span>
@@ -133,9 +133,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgb0a34ac" class="outline-4">
-<h4 id="orgb0a34ac">3.51</h4>
-<div class="outline-text-4" id="text-orgb0a34ac">
+<div id="outline-container-orga484a6e" class="outline-4">
+<h4 id="orga484a6e">3.51</h4>
+<div class="outline-text-4" id="text-orga484a6e">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 基于记忆性过程和延时求值</span>
      <span class="c1">;; 第一个表达式</span>
      <span class="c1">;; 0</span>
@@ -157,9 +157,9 @@
 </div>
 </div>
 
-<div id="outline-container-org95725df" class="outline-4">
-<h4 id="org95725df">3.52</h4>
-<div class="outline-text-4" id="text-org95725df">
+<div id="outline-container-org498258d" class="outline-4">
+<h4 id="org498258d">3.52</h4>
+<div class="outline-text-4" id="text-org498258d">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="nv">sum</span> <span class="mi">0</span><span class="p">)</span>
      <span class="c1">;; sum 0</span>
 
@@ -211,9 +211,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0effa9a" class="outline-3">
-<h3 id="org0effa9a">无穷流</h3>
-<div class="outline-text-3" id="text-org0effa9a">
+<div id="outline-container-orgb42073e" class="outline-3">
+<h3 id="orgb42073e">无穷流</h3>
+<div class="outline-text-3" id="text-orgb42073e">
 <ol class="org-ol">
 <li>我们可以像对待完整的实体一样去对流进行各种操作，即使在实际上只计算出了有
 关的流中必须访问的那一部分，利用这种技术我们可以用流去表示无穷长的序列；</li>
@@ -221,13 +221,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgc57b0ad" class="outline-3">
-<h3 id="orgc57b0ad">练习 3.53-3.62</h3>
-<div class="outline-text-3" id="text-orgc57b0ad">
+<div id="outline-container-org5e22027" class="outline-3">
+<h3 id="org5e22027">练习 3.53-3.62</h3>
+<div class="outline-text-3" id="text-org5e22027">
 </div>
-<div id="outline-container-orgd0afd1c" class="outline-4">
-<h4 id="orgd0afd1c">3.53</h4>
-<div class="outline-text-4" id="text-orgd0afd1c">
+<div id="outline-container-org5dbec57" class="outline-4">
+<h4 id="org5dbec57">3.53</h4>
+<div class="outline-text-4" id="text-org5dbec57">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 1</span>
      <span class="c1">;; 2</span>
      <span class="c1">;; 4</span>
@@ -238,9 +238,9 @@
 </div>
 </div>
 
-<div id="outline-container-org1f62d48" class="outline-4">
-<h4 id="org1f62d48">3.54</h4>
-<div class="outline-text-4" id="text-org1f62d48">
+<div id="outline-container-org4a8de47" class="outline-4">
+<h4 id="org4a8de47">3.54</h4>
+<div class="outline-text-4" id="text-org4a8de47">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">mul-streams</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">stream-map</span> <span class="nv">*</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">))</span>
      <span class="p">(</span><span class="k">define </span><span class="nv">factorials</span> <span class="p">(</span><span class="nf">cons-stream</span> <span class="mi">1</span> <span class="p">(</span><span class="nf">mul-streams</span> <span class="nv">factorials</span> <span class="p">(</span><span class="nf">stream-cdr</span> <span class="nv">integers</span><span class="p">))))</span>
@@ -248,9 +248,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4915075" class="outline-4">
-<h4 id="org4915075">3.55</h4>
-<div class="outline-text-4" id="text-org4915075">
+<div id="outline-container-org5b38d55" class="outline-4">
+<h4 id="org5b38d55">3.55</h4>
+<div class="outline-text-4" id="text-org5b38d55">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">partial-sums</span> <span class="nv">s</span><span class="p">)</span>
        <span class="p">(</span><span class="nf">cons-stream</span>
 	<span class="p">(</span><span class="nf">stream-car</span> <span class="nv">s</span><span class="p">)</span>
@@ -261,9 +261,9 @@
 </div>
 </div>
 
-<div id="outline-container-org571f24d" class="outline-4">
-<h4 id="org571f24d">3.56</h4>
-<div class="outline-text-4" id="text-org571f24d">
+<div id="outline-container-org42c0834" class="outline-4">
+<h4 id="org42c0834">3.56</h4>
+<div class="outline-text-4" id="text-org42c0834">
 <div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">merge</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">)</span>
        <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">stream-null?</span> <span class="nv">s1</span><span class="p">)</span> <span class="nv">s2</span><span class="p">)</span>
 	     <span class="p">((</span><span class="nf">stream-null?</span> <span class="nv">s2</span><span class="p">)</span> <span class="nv">s1</span><span class="p">)</span>
@@ -288,9 +288,9 @@
 </div>
 </div>
 
-<div id="outline-container-org717dd0e" class="outline-4">
-<h4 id="org717dd0e">3.57</h4>
-<div class="outline-text-4" id="text-org717dd0e">
+<div id="outline-container-org295a81b" class="outline-4">
+<h4 id="org295a81b">3.57</h4>
+<div class="outline-text-4" id="text-org295a81b">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 使用基于 add-streams 过程的 fibs 流，所需加法步骤是与 n 相关的线性函数；</span>
      <span class="c1">;; 如果在 delay 的实现中不使用记忆性过程，那每次去取 n-1 与 n-2 的 fib 值，</span>
      <span class="c1">;; 都会引起这两个值的重复计算；</span>
@@ -299,9 +299,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgaf341fa" class="outline-4">
-<h4 id="orgaf341fa">3.58</h4>
-<div class="outline-text-4" id="text-orgaf341fa">
+<div id="outline-container-orgc214f68" class="outline-4">
+<h4 id="orgc214f68">3.58</h4>
+<div class="outline-text-4" id="text-orgc214f68">
 <div class="highlight"><pre><span></span>     <span class="c1">;; 计算出的流是 expand 第一个参数与第二个参数的商的小数点后无限位数</span>
      <span class="c1">;; (num 需小于 den)</span>
 
@@ -315,127 +315,181 @@
 </div>
 </div>
 
-<div id="outline-container-org5f7c0dc" class="outline-4">
-<h4 id="org5f7c0dc">3.59</h4>
-</div>
+<div id="outline-container-org7e77c39" class="outline-4">
+<h4 id="org7e77c39">3.59</h4>
+<div class="outline-text-4" id="text-org7e77c39">
+<div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
 
-<div id="outline-container-org893df0d" class="outline-4">
-<h4 id="org893df0d">3.60</h4>
-</div>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">integers-starting-from</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cons-stream</span> <span class="nv">n</span> <span class="p">(</span><span class="nf">integers-starting-from</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))))</span>
 
-<div id="outline-container-org8f9a554" class="outline-4">
-<h4 id="org8f9a554">3.61</h4>
-</div>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">div-streams</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">stream-map</span> <span class="nv">/</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">))</span>			<span class="c1">;no 0 in s2</span>
 
-<div id="outline-container-org81174e8" class="outline-4">
-<h4 id="org81174e8">3.62</h4>
-</div>
-</div>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">integrate-series</span> <span class="nv">s</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">define </span><span class="nv">integers</span> <span class="p">(</span><span class="nf">integers-starting-from</span> <span class="mi">1</span><span class="p">))</span>
+       <span class="p">(</span><span class="nf">div-streams</span> <span class="nv">s</span> <span class="nv">integers</span><span class="p">))</span>
 
-<div id="outline-container-org0a8f94f" class="outline-3">
-<h3 id="org0a8f94f">流计算模式的使用</h3>
-</div>
+     <span class="c1">;; b</span>
 
-<div id="outline-container-org664b841" class="outline-3">
-<h3 id="org664b841">练习 3.63-3.76</h3>
-<div class="outline-text-3" id="text-org664b841">
-</div>
-<div id="outline-container-org2321c91" class="outline-4">
-<h4 id="org2321c91">3.63</h4>
-</div>
+     <span class="p">(</span><span class="k">define </span><span class="nv">exp-series</span>
+       <span class="p">(</span><span class="nf">cons-stream</span> <span class="mi">1</span> <span class="p">(</span><span class="nf">integrate-series</span> <span class="nv">exp-series</span><span class="p">)))</span>
 
-<div id="outline-container-orgdc306c0" class="outline-4">
-<h4 id="orgdc306c0">3.64</h4>
-</div>
+     <span class="p">(</span><span class="k">define </span><span class="nv">sine-series</span>
+       <span class="p">(</span><span class="nf">cons-stream</span> <span class="mi">0</span> <span class="p">(</span><span class="nf">integrate-series</span> <span class="nv">cosine-series</span><span class="p">)))</span>
 
-<div id="outline-container-org39c5a2e" class="outline-4">
-<h4 id="org39c5a2e">3.65</h4>
-</div>
-
-<div id="outline-container-org500f9c4" class="outline-4">
-<h4 id="org500f9c4">3.66</h4>
-</div>
-
-<div id="outline-container-org8508696" class="outline-4">
-<h4 id="org8508696">3.67</h4>
-</div>
-
-<div id="outline-container-orga1307bd" class="outline-4">
-<h4 id="orga1307bd">3.68</h4>
-</div>
-
-<div id="outline-container-org604914c" class="outline-4">
-<h4 id="org604914c">3.69</h4>
-</div>
-
-<div id="outline-container-orgc246334" class="outline-4">
-<h4 id="orgc246334">3.70</h4>
-</div>
-
-<div id="outline-container-org77a0923" class="outline-4">
-<h4 id="org77a0923">3.71</h4>
-</div>
-
-<div id="outline-container-orgd624bc6" class="outline-4">
-<h4 id="orgd624bc6">3.72</h4>
-</div>
-
-<div id="outline-container-orgbd4876f" class="outline-4">
-<h4 id="orgbd4876f">3.73</h4>
-</div>
-
-<div id="outline-container-org0ef8513" class="outline-4">
-<h4 id="org0ef8513">3.74</h4>
-</div>
-
-<div id="outline-container-org1a0f260" class="outline-4">
-<h4 id="org1a0f260">3.75</h4>
-</div>
-
-<div id="outline-container-orgb3ad8ce" class="outline-4">
-<h4 id="orgb3ad8ce">3.76</h4>
+     <span class="p">(</span><span class="k">define </span><span class="nv">cosine-series</span>
+       <span class="p">(</span><span class="nf">cons-stream</span> <span class="mi">1</span> <span class="p">(</span><span class="nf">integrate-series</span> <span class="p">(</span><span class="nf">scale-stream</span> <span class="nv">sine-series</span> <span class="mi">-1</span><span class="p">))))</span>
+</pre></div>
 </div>
 </div>
 
-<div id="outline-container-org5c50734" class="outline-3">
-<h3 id="org5c50734">流和延时求值</h3>
-</div>
-
-<div id="outline-container-org70b2f76" class="outline-3">
-<h3 id="org70b2f76">练习 3.77-3.80</h3>
-<div class="outline-text-3" id="text-org70b2f76">
-</div>
-<div id="outline-container-org3390f8f" class="outline-4">
-<h4 id="org3390f8f">3.77</h4>
-</div>
-
-<div id="outline-container-org3acfe6e" class="outline-4">
-<h4 id="org3acfe6e">3.78</h4>
-</div>
-
-<div id="outline-container-org8ac557b" class="outline-4">
-<h4 id="org8ac557b">3.79</h4>
-</div>
-
-<div id="outline-container-orgdedc448" class="outline-4">
-<h4 id="orgdedc448">3.80</h4>
+<div id="outline-container-orgc674947" class="outline-4">
+<h4 id="orgc674947">3.60</h4>
+<div class="outline-text-4" id="text-orgc674947">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">mul-series</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cons-stream</span> <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nf">stream-car</span> <span class="nv">s1</span><span class="p">)</span> <span class="p">(</span><span class="nf">stream-car</span> <span class="nv">s2</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nf">add-streams</span> <span class="p">(</span><span class="nf">scale-stream</span> <span class="p">(</span><span class="nf">stream-cdr</span> <span class="nv">s2</span><span class="p">)</span> <span class="p">(</span><span class="nf">stream-car</span> <span class="nv">s1</span><span class="p">))</span>
+				 <span class="p">(</span><span class="nf">mul-series</span> <span class="p">(</span><span class="nf">stream-cdr</span> <span class="nv">s1</span><span class="p">)</span> <span class="nv">s2</span><span class="p">))))</span>
+</pre></div>
 </div>
 </div>
 
-<div id="outline-container-orgdbc0220" class="outline-3">
-<h3 id="orgdbc0220">函数式程序的模块化和对象的模块化</h3>
+<div id="outline-container-org4dd2c1c" class="outline-4">
+<h4 id="org4dd2c1c">3.61</h4>
+<div class="outline-text-4" id="text-org4dd2c1c">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">calculate-x</span> <span class="nv">s</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">cons-stream</span>
+	<span class="mi">1</span>
+	<span class="p">(</span><span class="nf">scale-stream</span> <span class="p">(</span><span class="nf">mul-series</span> <span class="p">(</span><span class="nf">stream-cdr</span> <span class="nv">s</span><span class="p">)</span> <span class="p">(</span><span class="nf">calculate-x</span> <span class="nv">s</span><span class="p">))</span> <span class="mi">-1</span><span class="p">)))</span>
+</pre></div>
+</div>
 </div>
 
-<div id="outline-container-orgaf50737" class="outline-3">
-<h3 id="orgaf50737">练习 3.81-3.82</h3>
-<div class="outline-text-3" id="text-orgaf50737">
+<div id="outline-container-org8206354" class="outline-4">
+<h4 id="org8206354">3.62</h4>
+<div class="outline-text-4" id="text-org8206354">
+<div class="highlight"><pre><span></span>     <span class="c1">;; (load "./ 3.61.scm")</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">div-series</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nf">stream-car</span> <span class="nv">s2</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nf">error</span> <span class="s">"element 0 in the second stream"</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nf">scale-stream</span> <span class="p">(</span><span class="nf">mul-series</span>
+			  <span class="nv">s1</span>
+			  <span class="p">(</span><span class="nf">calculate-x</span> <span class="p">(</span><span class="nf">scale-stream</span> <span class="nv">s2</span> <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="p">(</span><span class="nf">stream-car</span> <span class="nv">s2</span><span class="p">)))))</span>
+			 <span class="p">(</span><span class="nb">/ </span><span class="mi">1</span> <span class="p">(</span><span class="nf">stream-car</span> <span class="nv">s2</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">tan-series</span>
+       <span class="p">(</span><span class="nf">div-series</span> <span class="nv">sine-series</span> <span class="nv">cosine-series</span><span class="p">))</span>
+</pre></div>
 </div>
-<div id="outline-container-org7af5f0f" class="outline-4">
-<h4 id="org7af5f0f">3.81</h4>
+</div>
 </div>
 
-<div id="outline-container-orgc1a8382" class="outline-4">
-<h4 id="orgc1a8382">3.82</h4>
+<div id="outline-container-orgd09c333" class="outline-3">
+<h3 id="orgd09c333">流计算模式的使用</h3>
+</div>
+
+<div id="outline-container-orgff12c60" class="outline-3">
+<h3 id="orgff12c60">练习 3.63-3.76</h3>
+<div class="outline-text-3" id="text-orgff12c60">
+</div>
+<div id="outline-container-orgf9658f1" class="outline-4">
+<h4 id="orgf9658f1">3.63</h4>
+</div>
+
+<div id="outline-container-org694d2be" class="outline-4">
+<h4 id="org694d2be">3.64</h4>
+</div>
+
+<div id="outline-container-orgd7e2914" class="outline-4">
+<h4 id="orgd7e2914">3.65</h4>
+</div>
+
+<div id="outline-container-org8492cca" class="outline-4">
+<h4 id="org8492cca">3.66</h4>
+</div>
+
+<div id="outline-container-org75298e4" class="outline-4">
+<h4 id="org75298e4">3.67</h4>
+</div>
+
+<div id="outline-container-org637c3ef" class="outline-4">
+<h4 id="org637c3ef">3.68</h4>
+</div>
+
+<div id="outline-container-orgf6baec7" class="outline-4">
+<h4 id="orgf6baec7">3.69</h4>
+</div>
+
+<div id="outline-container-org0b961e1" class="outline-4">
+<h4 id="org0b961e1">3.70</h4>
+</div>
+
+<div id="outline-container-orgef8352f" class="outline-4">
+<h4 id="orgef8352f">3.71</h4>
+</div>
+
+<div id="outline-container-orgcca24d1" class="outline-4">
+<h4 id="orgcca24d1">3.72</h4>
+</div>
+
+<div id="outline-container-org0973541" class="outline-4">
+<h4 id="org0973541">3.73</h4>
+</div>
+
+<div id="outline-container-org19f5298" class="outline-4">
+<h4 id="org19f5298">3.74</h4>
+</div>
+
+<div id="outline-container-org71b5d94" class="outline-4">
+<h4 id="org71b5d94">3.75</h4>
+</div>
+
+<div id="outline-container-org98e5df3" class="outline-4">
+<h4 id="org98e5df3">3.76</h4>
+</div>
+</div>
+
+<div id="outline-container-org09a4068" class="outline-3">
+<h3 id="org09a4068">流和延时求值</h3>
+</div>
+
+<div id="outline-container-orgffd3437" class="outline-3">
+<h3 id="orgffd3437">练习 3.77-3.80</h3>
+<div class="outline-text-3" id="text-orgffd3437">
+</div>
+<div id="outline-container-org178eb4f" class="outline-4">
+<h4 id="org178eb4f">3.77</h4>
+</div>
+
+<div id="outline-container-org7b07739" class="outline-4">
+<h4 id="org7b07739">3.78</h4>
+</div>
+
+<div id="outline-container-orgaa1e20e" class="outline-4">
+<h4 id="orgaa1e20e">3.79</h4>
+</div>
+
+<div id="outline-container-orgd527171" class="outline-4">
+<h4 id="orgd527171">3.80</h4>
+</div>
+</div>
+
+<div id="outline-container-orgf6faf83" class="outline-3">
+<h3 id="orgf6faf83">函数式程序的模块化和对象的模块化</h3>
+</div>
+
+<div id="outline-container-orgaeb339b" class="outline-3">
+<h3 id="orgaeb339b">练习 3.81-3.82</h3>
+<div class="outline-text-3" id="text-orgaeb339b">
+</div>
+<div id="outline-container-orgb13569d" class="outline-4">
+<h4 id="orgb13569d">3.81</h4>
+</div>
+
+<div id="outline-container-orge24d0a3" class="outline-4">
+<h4 id="orge24d0a3">3.82</h4>
 </div>
 </div>
 </div>

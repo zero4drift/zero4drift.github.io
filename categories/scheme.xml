@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Fri, 04 Jan 2019 14:03:31 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-3(5)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%285%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org6aec626" class="outline-2"&gt;
-&lt;h2 id="org6aec626"&gt;流&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6aec626"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Sat, 05 Jan 2019 04:32:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-3(5)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%285%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgb1275b3" class="outline-2"&gt;
+&lt;h2 id="orgb1275b3"&gt;流&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb1275b3"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;基于一种称为 &lt;b&gt;流&lt;/b&gt; 的数据结构，探索对状态进行模拟的另一条途径，流可能缓和状
 态模拟中的复杂性；&lt;/li&gt;
@@ -15,9 +15,9 @@
 &lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1951f0b" class="outline-3"&gt;
-&lt;h3 id="org1951f0b"&gt;流作为延时的表&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org1951f0b"&gt;
+&lt;div id="outline-container-org0db2e7b" class="outline-3"&gt;
+&lt;h3 id="org0db2e7b"&gt;流作为延时的表&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0db2e7b"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;流是一种非常巧妙的想法，使我们可能利用各种序列操作，但又不会带来将序列作
 为表去操作而引起的代价；&lt;/li&gt;
@@ -34,13 +34,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org73c729b" class="outline-3"&gt;
-&lt;h3 id="org73c729b"&gt;练习 3.50-3.52&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org73c729b"&gt;
+&lt;div id="outline-container-org87f8fb9" class="outline-3"&gt;
+&lt;h3 id="org87f8fb9"&gt;练习 3.50-3.52&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org87f8fb9"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org5beb420" class="outline-4"&gt;
-&lt;h4 id="org5beb420"&gt;3.50&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org5beb420"&gt;
+&lt;div id="outline-container-org428b511" class="outline-4"&gt;
+&lt;h4 id="org428b511"&gt;3.50&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org428b511"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="nv"&gt;proc&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nv"&gt;argstreams&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-null?&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;argstreams&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 	   &lt;span class="nv"&gt;the-empty-stream&lt;/span&gt;
@@ -52,9 +52,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb0a34ac" class="outline-4"&gt;
-&lt;h4 id="orgb0a34ac"&gt;3.51&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgb0a34ac"&gt;
+&lt;div id="outline-container-orga484a6e" class="outline-4"&gt;
+&lt;h4 id="orga484a6e"&gt;3.51&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orga484a6e"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 基于记忆性过程和延时求值&lt;/span&gt;
      &lt;span class="c1"&gt;;; 第一个表达式&lt;/span&gt;
      &lt;span class="c1"&gt;;; 0&lt;/span&gt;
@@ -76,9 +76,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org95725df" class="outline-4"&gt;
-&lt;h4 id="org95725df"&gt;3.52&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org95725df"&gt;
+&lt;div id="outline-container-org498258d" class="outline-4"&gt;
+&lt;h4 id="org498258d"&gt;3.52&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org498258d"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;sum&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
      &lt;span class="c1"&gt;;; sum 0&lt;/span&gt;
 
@@ -130,9 +130,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0effa9a" class="outline-3"&gt;
-&lt;h3 id="org0effa9a"&gt;无穷流&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org0effa9a"&gt;
+&lt;div id="outline-container-orgb42073e" class="outline-3"&gt;
+&lt;h3 id="orgb42073e"&gt;无穷流&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb42073e"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;我们可以像对待完整的实体一样去对流进行各种操作，即使在实际上只计算出了有
 关的流中必须访问的那一部分，利用这种技术我们可以用流去表示无穷长的序列；&lt;/li&gt;
@@ -140,13 +140,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc57b0ad" class="outline-3"&gt;
-&lt;h3 id="orgc57b0ad"&gt;练习 3.53-3.62&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgc57b0ad"&gt;
+&lt;div id="outline-container-org5e22027" class="outline-3"&gt;
+&lt;h3 id="org5e22027"&gt;练习 3.53-3.62&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5e22027"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgd0afd1c" class="outline-4"&gt;
-&lt;h4 id="orgd0afd1c"&gt;3.53&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgd0afd1c"&gt;
+&lt;div id="outline-container-org5dbec57" class="outline-4"&gt;
+&lt;h4 id="org5dbec57"&gt;3.53&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org5dbec57"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 1&lt;/span&gt;
      &lt;span class="c1"&gt;;; 2&lt;/span&gt;
      &lt;span class="c1"&gt;;; 4&lt;/span&gt;
@@ -157,9 +157,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1f62d48" class="outline-4"&gt;
-&lt;h4 id="org1f62d48"&gt;3.54&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org1f62d48"&gt;
+&lt;div id="outline-container-org4a8de47" class="outline-4"&gt;
+&lt;h4 id="org4a8de47"&gt;3.54&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org4a8de47"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-streams&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="nv"&gt;*&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;factorials&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-streams&lt;/span&gt; &lt;span class="nv"&gt;factorials&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;integers&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
@@ -167,9 +167,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4915075" class="outline-4"&gt;
-&lt;h4 id="org4915075"&gt;3.55&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org4915075"&gt;
+&lt;div id="outline-container-org5b38d55" class="outline-4"&gt;
+&lt;h4 id="org5b38d55"&gt;3.55&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org5b38d55"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;partial-sums&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt;
 	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -180,9 +180,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org571f24d" class="outline-4"&gt;
-&lt;h4 id="org571f24d"&gt;3.56&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org571f24d"&gt;
+&lt;div id="outline-container-org42c0834" class="outline-4"&gt;
+&lt;h4 id="org42c0834"&gt;3.56&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org42c0834"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;stream-null?&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;stream-null?&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -207,9 +207,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org717dd0e" class="outline-4"&gt;
-&lt;h4 id="org717dd0e"&gt;3.57&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org717dd0e"&gt;
+&lt;div id="outline-container-org295a81b" class="outline-4"&gt;
+&lt;h4 id="org295a81b"&gt;3.57&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org295a81b"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 使用基于 add-streams 过程的 fibs 流，所需加法步骤是与 n 相关的线性函数；&lt;/span&gt;
      &lt;span class="c1"&gt;;; 如果在 delay 的实现中不使用记忆性过程，那每次去取 n-1 与 n-2 的 fib 值，&lt;/span&gt;
      &lt;span class="c1"&gt;;; 都会引起这两个值的重复计算；&lt;/span&gt;
@@ -218,9 +218,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgaf341fa" class="outline-4"&gt;
-&lt;h4 id="orgaf341fa"&gt;3.58&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgaf341fa"&gt;
+&lt;div id="outline-container-orgc214f68" class="outline-4"&gt;
+&lt;h4 id="orgc214f68"&gt;3.58&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc214f68"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 计算出的流是 expand 第一个参数与第二个参数的商的小数点后无限位数&lt;/span&gt;
      &lt;span class="c1"&gt;;; (num 需小于 den)&lt;/span&gt;
 
@@ -234,127 +234,181 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5f7c0dc" class="outline-4"&gt;
-&lt;h4 id="org5f7c0dc"&gt;3.59&lt;/h4&gt;
-&lt;/div&gt;
+&lt;div id="outline-container-org7e77c39" class="outline-4"&gt;
+&lt;h4 id="org7e77c39"&gt;3.59&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7e77c39"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; a&lt;/span&gt;
 
-&lt;div id="outline-container-org893df0d" class="outline-4"&gt;
-&lt;h4 id="org893df0d"&gt;3.60&lt;/h4&gt;
-&lt;/div&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;integers-starting-from&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;integers-starting-from&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
 
-&lt;div id="outline-container-org8f9a554" class="outline-4"&gt;
-&lt;h4 id="org8f9a554"&gt;3.61&lt;/h4&gt;
-&lt;/div&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-streams&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="nv"&gt;/&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;			&lt;span class="c1"&gt;;no 0 in s2&lt;/span&gt;
 
-&lt;div id="outline-container-org81174e8" class="outline-4"&gt;
-&lt;h4 id="org81174e8"&gt;3.62&lt;/h4&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;integrate-series&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;integers&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;integers-starting-from&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-streams&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;integers&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
-&lt;div id="outline-container-org0a8f94f" class="outline-3"&gt;
-&lt;h3 id="org0a8f94f"&gt;流计算模式的使用&lt;/h3&gt;
-&lt;/div&gt;
+     &lt;span class="c1"&gt;;; b&lt;/span&gt;
 
-&lt;div id="outline-container-org664b841" class="outline-3"&gt;
-&lt;h3 id="org664b841"&gt;练习 3.63-3.76&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org664b841"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org2321c91" class="outline-4"&gt;
-&lt;h4 id="org2321c91"&gt;3.63&lt;/h4&gt;
-&lt;/div&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;exp-series&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;integrate-series&lt;/span&gt; &lt;span class="nv"&gt;exp-series&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 
-&lt;div id="outline-container-orgdc306c0" class="outline-4"&gt;
-&lt;h4 id="orgdc306c0"&gt;3.64&lt;/h4&gt;
-&lt;/div&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;sine-series&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;integrate-series&lt;/span&gt; &lt;span class="nv"&gt;cosine-series&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 
-&lt;div id="outline-container-org39c5a2e" class="outline-4"&gt;
-&lt;h4 id="org39c5a2e"&gt;3.65&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org500f9c4" class="outline-4"&gt;
-&lt;h4 id="org500f9c4"&gt;3.66&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org8508696" class="outline-4"&gt;
-&lt;h4 id="org8508696"&gt;3.67&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orga1307bd" class="outline-4"&gt;
-&lt;h4 id="orga1307bd"&gt;3.68&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org604914c" class="outline-4"&gt;
-&lt;h4 id="org604914c"&gt;3.69&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgc246334" class="outline-4"&gt;
-&lt;h4 id="orgc246334"&gt;3.70&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org77a0923" class="outline-4"&gt;
-&lt;h4 id="org77a0923"&gt;3.71&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgd624bc6" class="outline-4"&gt;
-&lt;h4 id="orgd624bc6"&gt;3.72&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgbd4876f" class="outline-4"&gt;
-&lt;h4 id="orgbd4876f"&gt;3.73&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org0ef8513" class="outline-4"&gt;
-&lt;h4 id="org0ef8513"&gt;3.74&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org1a0f260" class="outline-4"&gt;
-&lt;h4 id="org1a0f260"&gt;3.75&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgb3ad8ce" class="outline-4"&gt;
-&lt;h4 id="orgb3ad8ce"&gt;3.76&lt;/h4&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;cosine-series&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;integrate-series&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scale-stream&lt;/span&gt; &lt;span class="nv"&gt;sine-series&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5c50734" class="outline-3"&gt;
-&lt;h3 id="org5c50734"&gt;流和延时求值&lt;/h3&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org70b2f76" class="outline-3"&gt;
-&lt;h3 id="org70b2f76"&gt;练习 3.77-3.80&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org70b2f76"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org3390f8f" class="outline-4"&gt;
-&lt;h4 id="org3390f8f"&gt;3.77&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org3acfe6e" class="outline-4"&gt;
-&lt;h4 id="org3acfe6e"&gt;3.78&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org8ac557b" class="outline-4"&gt;
-&lt;h4 id="org8ac557b"&gt;3.79&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgdedc448" class="outline-4"&gt;
-&lt;h4 id="orgdedc448"&gt;3.80&lt;/h4&gt;
+&lt;div id="outline-container-orgc674947" class="outline-4"&gt;
+&lt;h4 id="orgc674947"&gt;3.60&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc674947"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-series&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add-streams&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scale-stream&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+				 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-series&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdbc0220" class="outline-3"&gt;
-&lt;h3 id="orgdbc0220"&gt;函数式程序的模块化和对象的模块化&lt;/h3&gt;
+&lt;div id="outline-container-org4dd2c1c" class="outline-4"&gt;
+&lt;h4 id="org4dd2c1c"&gt;3.61&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org4dd2c1c"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;calculate-x&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt;
+	&lt;span class="mi"&gt;1&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scale-stream&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-series&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;calculate-x&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="mi"&gt;-1&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgaf50737" class="outline-3"&gt;
-&lt;h3 id="orgaf50737"&gt;练习 3.81-3.82&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgaf50737"&gt;
+&lt;div id="outline-container-org8206354" class="outline-4"&gt;
+&lt;h4 id="org8206354"&gt;3.62&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org8206354"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; (load "./ 3.61.scm")&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-series&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"element 0 in the second stream"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scale-stream&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-series&lt;/span&gt;
+			  &lt;span class="nv"&gt;s1&lt;/span&gt;
+			  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;calculate-x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scale-stream&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+			 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;tan-series&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-series&lt;/span&gt; &lt;span class="nv"&gt;sine-series&lt;/span&gt; &lt;span class="nv"&gt;cosine-series&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org7af5f0f" class="outline-4"&gt;
-&lt;h4 id="org7af5f0f"&gt;3.81&lt;/h4&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc1a8382" class="outline-4"&gt;
-&lt;h4 id="orgc1a8382"&gt;3.82&lt;/h4&gt;
+&lt;div id="outline-container-orgd09c333" class="outline-3"&gt;
+&lt;h3 id="orgd09c333"&gt;流计算模式的使用&lt;/h3&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgff12c60" class="outline-3"&gt;
+&lt;h3 id="orgff12c60"&gt;练习 3.63-3.76&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgff12c60"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgf9658f1" class="outline-4"&gt;
+&lt;h4 id="orgf9658f1"&gt;3.63&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org694d2be" class="outline-4"&gt;
+&lt;h4 id="org694d2be"&gt;3.64&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd7e2914" class="outline-4"&gt;
+&lt;h4 id="orgd7e2914"&gt;3.65&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8492cca" class="outline-4"&gt;
+&lt;h4 id="org8492cca"&gt;3.66&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org75298e4" class="outline-4"&gt;
+&lt;h4 id="org75298e4"&gt;3.67&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org637c3ef" class="outline-4"&gt;
+&lt;h4 id="org637c3ef"&gt;3.68&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf6baec7" class="outline-4"&gt;
+&lt;h4 id="orgf6baec7"&gt;3.69&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0b961e1" class="outline-4"&gt;
+&lt;h4 id="org0b961e1"&gt;3.70&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgef8352f" class="outline-4"&gt;
+&lt;h4 id="orgef8352f"&gt;3.71&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgcca24d1" class="outline-4"&gt;
+&lt;h4 id="orgcca24d1"&gt;3.72&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0973541" class="outline-4"&gt;
+&lt;h4 id="org0973541"&gt;3.73&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org19f5298" class="outline-4"&gt;
+&lt;h4 id="org19f5298"&gt;3.74&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org71b5d94" class="outline-4"&gt;
+&lt;h4 id="org71b5d94"&gt;3.75&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org98e5df3" class="outline-4"&gt;
+&lt;h4 id="org98e5df3"&gt;3.76&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org09a4068" class="outline-3"&gt;
+&lt;h3 id="org09a4068"&gt;流和延时求值&lt;/h3&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgffd3437" class="outline-3"&gt;
+&lt;h3 id="orgffd3437"&gt;练习 3.77-3.80&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgffd3437"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org178eb4f" class="outline-4"&gt;
+&lt;h4 id="org178eb4f"&gt;3.77&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7b07739" class="outline-4"&gt;
+&lt;h4 id="org7b07739"&gt;3.78&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgaa1e20e" class="outline-4"&gt;
+&lt;h4 id="orgaa1e20e"&gt;3.79&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd527171" class="outline-4"&gt;
+&lt;h4 id="orgd527171"&gt;3.80&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf6faf83" class="outline-3"&gt;
+&lt;h3 id="orgf6faf83"&gt;函数式程序的模块化和对象的模块化&lt;/h3&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgaeb339b" class="outline-3"&gt;
+&lt;h3 id="orgaeb339b"&gt;练习 3.81-3.82&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgaeb339b"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgb13569d" class="outline-4"&gt;
+&lt;h4 id="orgb13569d"&gt;3.81&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge24d0a3" class="outline-4"&gt;
+&lt;h4 id="orge24d0a3"&gt;3.82&lt;/h4&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%285%29/</guid><pubDate>Fri, 04 Jan 2019 05:47:47 GMT</pubDate></item><item><title>SICP-Refresher-Chapter-3(4)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%284%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgc7980e8" class="outline-2"&gt;
