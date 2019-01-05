@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about SICP)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/cat_sicp.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Sat, 05 Jan 2019 04:32:08 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-3(5)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%285%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgb1275b3" class="outline-2"&gt;
-&lt;h2 id="orgb1275b3"&gt;流&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb1275b3"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about SICP)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/cat_sicp.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Sat, 05 Jan 2019 14:08:11 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-3(5)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%285%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org6d69c03" class="outline-2"&gt;
+&lt;h2 id="org6d69c03"&gt;流&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6d69c03"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;基于一种称为 &lt;b&gt;流&lt;/b&gt; 的数据结构，探索对状态进行模拟的另一条途径，流可能缓和状
 态模拟中的复杂性；&lt;/li&gt;
@@ -15,9 +15,9 @@
 &lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0db2e7b" class="outline-3"&gt;
-&lt;h3 id="org0db2e7b"&gt;流作为延时的表&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org0db2e7b"&gt;
+&lt;div id="outline-container-orgc54f678" class="outline-3"&gt;
+&lt;h3 id="orgc54f678"&gt;流作为延时的表&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgc54f678"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;流是一种非常巧妙的想法，使我们可能利用各种序列操作，但又不会带来将序列作
 为表去操作而引起的代价；&lt;/li&gt;
@@ -34,13 +34,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org87f8fb9" class="outline-3"&gt;
-&lt;h3 id="org87f8fb9"&gt;练习 3.50-3.52&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org87f8fb9"&gt;
+&lt;div id="outline-container-orga85834a" class="outline-3"&gt;
+&lt;h3 id="orga85834a"&gt;练习 3.50-3.52&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga85834a"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org428b511" class="outline-4"&gt;
-&lt;h4 id="org428b511"&gt;3.50&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org428b511"&gt;
+&lt;div id="outline-container-org70f4e41" class="outline-4"&gt;
+&lt;h4 id="org70f4e41"&gt;3.50&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org70f4e41"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="nv"&gt;proc&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nv"&gt;argstreams&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-null?&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;argstreams&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 	   &lt;span class="nv"&gt;the-empty-stream&lt;/span&gt;
@@ -52,9 +52,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga484a6e" class="outline-4"&gt;
-&lt;h4 id="orga484a6e"&gt;3.51&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orga484a6e"&gt;
+&lt;div id="outline-container-orgeece2d7" class="outline-4"&gt;
+&lt;h4 id="orgeece2d7"&gt;3.51&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgeece2d7"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 基于记忆性过程和延时求值&lt;/span&gt;
      &lt;span class="c1"&gt;;; 第一个表达式&lt;/span&gt;
      &lt;span class="c1"&gt;;; 0&lt;/span&gt;
@@ -76,9 +76,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org498258d" class="outline-4"&gt;
-&lt;h4 id="org498258d"&gt;3.52&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org498258d"&gt;
+&lt;div id="outline-container-orgcfc768c" class="outline-4"&gt;
+&lt;h4 id="orgcfc768c"&gt;3.52&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgcfc768c"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;sum&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
      &lt;span class="c1"&gt;;; sum 0&lt;/span&gt;
 
@@ -130,9 +130,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb42073e" class="outline-3"&gt;
-&lt;h3 id="orgb42073e"&gt;无穷流&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb42073e"&gt;
+&lt;div id="outline-container-org1efcb4f" class="outline-3"&gt;
+&lt;h3 id="org1efcb4f"&gt;无穷流&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org1efcb4f"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;我们可以像对待完整的实体一样去对流进行各种操作，即使在实际上只计算出了有
 关的流中必须访问的那一部分，利用这种技术我们可以用流去表示无穷长的序列；&lt;/li&gt;
@@ -140,13 +140,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5e22027" class="outline-3"&gt;
-&lt;h3 id="org5e22027"&gt;练习 3.53-3.62&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5e22027"&gt;
+&lt;div id="outline-container-org98fbf17" class="outline-3"&gt;
+&lt;h3 id="org98fbf17"&gt;练习 3.53-3.62&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org98fbf17"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org5dbec57" class="outline-4"&gt;
-&lt;h4 id="org5dbec57"&gt;3.53&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org5dbec57"&gt;
+&lt;div id="outline-container-orgc9a4f88" class="outline-4"&gt;
+&lt;h4 id="orgc9a4f88"&gt;3.53&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc9a4f88"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 1&lt;/span&gt;
      &lt;span class="c1"&gt;;; 2&lt;/span&gt;
      &lt;span class="c1"&gt;;; 4&lt;/span&gt;
@@ -157,9 +157,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4a8de47" class="outline-4"&gt;
-&lt;h4 id="org4a8de47"&gt;3.54&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org4a8de47"&gt;
+&lt;div id="outline-container-orgd782a8f" class="outline-4"&gt;
+&lt;h4 id="orgd782a8f"&gt;3.54&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgd782a8f"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-streams&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="nv"&gt;*&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;factorials&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-streams&lt;/span&gt; &lt;span class="nv"&gt;factorials&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;integers&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
@@ -167,9 +167,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org5b38d55" class="outline-4"&gt;
-&lt;h4 id="org5b38d55"&gt;3.55&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org5b38d55"&gt;
+&lt;div id="outline-container-org49f950c" class="outline-4"&gt;
+&lt;h4 id="org49f950c"&gt;3.55&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org49f950c"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;partial-sums&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt;
 	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -180,9 +180,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org42c0834" class="outline-4"&gt;
-&lt;h4 id="org42c0834"&gt;3.56&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org42c0834"&gt;
+&lt;div id="outline-container-org56e6a42" class="outline-4"&gt;
+&lt;h4 id="org56e6a42"&gt;3.56&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org56e6a42"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;stream-null?&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;stream-null?&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -207,9 +207,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org295a81b" class="outline-4"&gt;
-&lt;h4 id="org295a81b"&gt;3.57&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org295a81b"&gt;
+&lt;div id="outline-container-org514bee4" class="outline-4"&gt;
+&lt;h4 id="org514bee4"&gt;3.57&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org514bee4"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 使用基于 add-streams 过程的 fibs 流，所需加法步骤是与 n 相关的线性函数；&lt;/span&gt;
      &lt;span class="c1"&gt;;; 如果在 delay 的实现中不使用记忆性过程，那每次去取 n-1 与 n-2 的 fib 值，&lt;/span&gt;
      &lt;span class="c1"&gt;;; 都会引起这两个值的重复计算；&lt;/span&gt;
@@ -218,9 +218,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc214f68" class="outline-4"&gt;
-&lt;h4 id="orgc214f68"&gt;3.58&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc214f68"&gt;
+&lt;div id="outline-container-orgd555fee" class="outline-4"&gt;
+&lt;h4 id="orgd555fee"&gt;3.58&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgd555fee"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 计算出的流是 expand 第一个参数与第二个参数的商的小数点后无限位数&lt;/span&gt;
      &lt;span class="c1"&gt;;; (num 需小于 den)&lt;/span&gt;
 
@@ -234,9 +234,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7e77c39" class="outline-4"&gt;
-&lt;h4 id="org7e77c39"&gt;3.59&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org7e77c39"&gt;
+&lt;div id="outline-container-org442b5b5" class="outline-4"&gt;
+&lt;h4 id="org442b5b5"&gt;3.59&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org442b5b5"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; a&lt;/span&gt;
 
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;integers-starting-from&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -263,9 +263,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc674947" class="outline-4"&gt;
-&lt;h4 id="orgc674947"&gt;3.60&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc674947"&gt;
+&lt;div id="outline-container-org295def3" class="outline-4"&gt;
+&lt;h4 id="org295def3"&gt;3.60&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org295def3"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;mul-series&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add-streams&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scale-stream&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -274,9 +274,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4dd2c1c" class="outline-4"&gt;
-&lt;h4 id="org4dd2c1c"&gt;3.61&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org4dd2c1c"&gt;
+&lt;div id="outline-container-org1df5b97" class="outline-4"&gt;
+&lt;h4 id="org1df5b97"&gt;3.61&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org1df5b97"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;calculate-x&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt;
 	&lt;span class="mi"&gt;1&lt;/span&gt;
@@ -285,9 +285,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8206354" class="outline-4"&gt;
-&lt;h4 id="org8206354"&gt;3.62&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org8206354"&gt;
+&lt;div id="outline-container-org3cd3cf0" class="outline-4"&gt;
+&lt;h4 id="org3cd3cf0"&gt;3.62&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3cd3cf0"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; (load "./ 3.61.scm")&lt;/span&gt;
 
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;div-series&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -305,110 +305,382 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd09c333" class="outline-3"&gt;
-&lt;h3 id="orgd09c333"&gt;流计算模式的使用&lt;/h3&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgff12c60" class="outline-3"&gt;
-&lt;h3 id="orgff12c60"&gt;练习 3.63-3.76&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgff12c60"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-orgf9658f1" class="outline-4"&gt;
-&lt;h4 id="orgf9658f1"&gt;3.63&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org694d2be" class="outline-4"&gt;
-&lt;h4 id="org694d2be"&gt;3.64&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgd7e2914" class="outline-4"&gt;
-&lt;h4 id="orgd7e2914"&gt;3.65&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org8492cca" class="outline-4"&gt;
-&lt;h4 id="org8492cca"&gt;3.66&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org75298e4" class="outline-4"&gt;
-&lt;h4 id="org75298e4"&gt;3.67&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org637c3ef" class="outline-4"&gt;
-&lt;h4 id="org637c3ef"&gt;3.68&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgf6baec7" class="outline-4"&gt;
-&lt;h4 id="orgf6baec7"&gt;3.69&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org0b961e1" class="outline-4"&gt;
-&lt;h4 id="org0b961e1"&gt;3.70&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgef8352f" class="outline-4"&gt;
-&lt;h4 id="orgef8352f"&gt;3.71&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgcca24d1" class="outline-4"&gt;
-&lt;h4 id="orgcca24d1"&gt;3.72&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org0973541" class="outline-4"&gt;
-&lt;h4 id="org0973541"&gt;3.73&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org19f5298" class="outline-4"&gt;
-&lt;h4 id="org19f5298"&gt;3.74&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org71b5d94" class="outline-4"&gt;
-&lt;h4 id="org71b5d94"&gt;3.75&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org98e5df3" class="outline-4"&gt;
-&lt;h4 id="org98e5df3"&gt;3.76&lt;/h4&gt;
+&lt;div id="outline-container-orgdb92517" class="outline-3"&gt;
+&lt;h3 id="orgdb92517"&gt;流计算模式的使用&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgdb92517"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;流方法极富有启发性，因为借助于它去构造系统时，所用的模块划分方式可以与采
+用赋值、围绕着状态变量组织系统的方式不同，例如，我们可以将整个的时间序列
+（或者信号）作为关注的目标，而不是去关注有关状态变量在各个时刻的值；&lt;/li&gt;
+&lt;li&gt;流的描述形式特别优美而又方便，因为整个状态序列就像一个数据结构一样，可以
+通过一集统一的操作直接地随意使用；&lt;/li&gt;
+&lt;li&gt;将序列范型（即高阶过程 filter, map…）这一技术推广到无穷流，就可以写出一
+些很不容易用循环表示的程序，因为要那样做，就必须对无穷集合做“循环”（根本
+没法做的）；&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org09a4068" class="outline-3"&gt;
-&lt;h3 id="org09a4068"&gt;流和延时求值&lt;/h3&gt;
+&lt;div id="outline-container-org012583c" class="outline-3"&gt;
+&lt;h3 id="org012583c"&gt;练习 3.63-3.76&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org012583c"&gt;
 &lt;/div&gt;
+&lt;div id="outline-container-org7f5c209" class="outline-4"&gt;
+&lt;h4 id="org7f5c209"&gt;3.63&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7f5c209"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 因为重复计算；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 不用局部变量 guesses，那么每次递归调用 (sqrt-stream x) 都会构造一个新的流；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 而且其每个元素都必须重新计算，无法使用前面构建的流的记忆性过程的缓存结果；&lt;/span&gt;
 
-&lt;div id="outline-container-orgffd3437" class="outline-3"&gt;
-&lt;h3 id="orgffd3437"&gt;练习 3.77-3.80&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgffd3437"&gt;
-&lt;/div&gt;
-&lt;div id="outline-container-org178eb4f" class="outline-4"&gt;
-&lt;h4 id="org178eb4f"&gt;3.77&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-org7b07739" class="outline-4"&gt;
-&lt;h4 id="org7b07739"&gt;3.78&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgaa1e20e" class="outline-4"&gt;
-&lt;h4 id="orgaa1e20e"&gt;3.79&lt;/h4&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-orgd527171" class="outline-4"&gt;
-&lt;h4 id="orgd527171"&gt;3.80&lt;/h4&gt;
+     &lt;span class="c1"&gt;;; when replace the delay implementation&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 如果 delay 的实现不使用 memo-proc, 不使用记忆性过程带来的优化；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 两个版本在效率方面没有差异。&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf6faf83" class="outline-3"&gt;
-&lt;h3 id="orgf6faf83"&gt;函数式程序的模块化和对象的模块化&lt;/h3&gt;
+&lt;div id="outline-container-org19aeaea" class="outline-4"&gt;
+&lt;h4 id="org19aeaea"&gt;3.64&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org19aeaea"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-limit&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;sub-s&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="nv"&gt;-&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-the-desired&lt;/span&gt; &lt;span class="nv"&gt;sub-streams&lt;/span&gt; &lt;span class="nv"&gt;stream&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;abs &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;sub-streams&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;stream&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-the-desired&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;sub-streams&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;stream&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get-the-desired&lt;/span&gt; &lt;span class="nv"&gt;sub-s&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgaeb339b" class="outline-3"&gt;
-&lt;h3 id="orgaeb339b"&gt;练习 3.81-3.82&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgaeb339b"&gt;
+&lt;div id="outline-container-org0da6c4a" class="outline-4"&gt;
+&lt;h4 id="org0da6c4a"&gt;3.65&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org0da6c4a"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;ln2-summands&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="mf"&gt;1.0&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="nv"&gt;-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;ln2-summands&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;ln2-stream&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;partial-sums&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;ln2-summands&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;	&lt;span class="c1"&gt;;first way&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;ln2-stream-euler&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;euler-transfrom&lt;/span&gt; &lt;span class="nv"&gt;ln2-stream&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;		&lt;span class="c1"&gt;;second way&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;ln2-stream-accelerated&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;accelerated-sequence&lt;/span&gt; &lt;span class="nv"&gt;euler-transfrom&lt;/span&gt; &lt;span class="nv"&gt;ln2-stream&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;;third way&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgb13569d" class="outline-4"&gt;
-&lt;h4 id="orgb13569d"&gt;3.81&lt;/h4&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge24d0a3" class="outline-4"&gt;
-&lt;h4 id="orge24d0a3"&gt;3.82&lt;/h4&gt;
+&lt;div id="outline-container-org46dafe4" class="outline-4"&gt;
+&lt;h4 id="org46dafe4"&gt;3.66&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org46dafe4"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 放弃&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1886f9a" class="outline-4"&gt;
+&lt;h4 id="org1886f9a"&gt;3.67&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org1886f9a"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;pairs&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;interleave&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;interleave&lt;/span&gt;
+	  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;strem-car&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;pairs&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgefe0018" class="outline-4"&gt;
+&lt;h4 id="orgefe0018"&gt;3.68&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgefe0018"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 那么对 pairs 过程体 (interleave p1 p2) 的求值&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 将会立即对其第二个参数表达式即另一个 pairs 过程调用求值；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 因为传入的流是无穷流，这样的递归归调用永远不会停止；&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 最后解释器报错：exceeds maximum recursion depth&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org26023c1" class="outline-4"&gt;
+&lt;h4 id="org26023c1"&gt;3.69&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org26023c1"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;triples&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt; &lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;interleave&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;pairs&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt; &lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;triples&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;strem-cdr&lt;/span&gt; &lt;span class="nv"&gt;u&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;desired&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;base-stream&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;triples&lt;/span&gt; &lt;span class="nv"&gt;integers&lt;/span&gt; &lt;span class="nv"&gt;integers&lt;/span&gt; &lt;span class="nv"&gt;integers&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-filter&lt;/span&gt;
+	  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;caddr &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+	  &lt;span class="nv"&gt;base-stream&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2865d0e" class="outline-4"&gt;
+&lt;h4 id="org2865d0e"&gt;3.70&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org2865d0e"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;stream-null?&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;stream-null?&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;else&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;s1car&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;s2car&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="nv"&gt;s1car&lt;/span&gt; &lt;span class="nv"&gt;s2car&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="nv"&gt;s1car&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		      &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;s1car&lt;/span&gt; &lt;span class="nv"&gt;s2car&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="nv"&gt;s2car&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;else&lt;/span&gt;
+		       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="nv"&gt;s1car&lt;/span&gt;
+				    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge&lt;/span&gt;
+				     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+				     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)))))))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge-weighted&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt; &lt;span class="nv"&gt;weight&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;stream-null?&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;stream-null?&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;else&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;s1car&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;s2car&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;weight&lt;/span&gt; &lt;span class="nv"&gt;s1car&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;weight&lt;/span&gt; &lt;span class="nv"&gt;s2car&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="nv"&gt;s1car&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge-weighted&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt; &lt;span class="nv"&gt;weight&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		      &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;&amp;gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;weight&lt;/span&gt; &lt;span class="nv"&gt;s1car&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;weight&lt;/span&gt; &lt;span class="nv"&gt;s2car&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="nv"&gt;s2car&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge-weighted&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;weight&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;else&lt;/span&gt;
+		       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="nv"&gt;s1car&lt;/span&gt;
+				    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge-weighted&lt;/span&gt;
+				     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+				     &lt;span class="nv"&gt;s2&lt;/span&gt; &lt;span class="nv"&gt;weight&lt;/span&gt;&lt;span class="p"&gt;))))))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;weighted-pairs&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt; &lt;span class="nv"&gt;weight&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge-weighted&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;weighted-pairs&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;weight&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="nv"&gt;weight&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; a&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;desired1&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;weighted-pairs&lt;/span&gt;
+	&lt;span class="nv"&gt;integers&lt;/span&gt;
+	&lt;span class="nv"&gt;integers&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; b&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;weighted235&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; in Chinese version of SICP, i or j must be fully divided by 2, 3 or 5&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scale-stream&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+				     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;merge&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scale-stream&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+					    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scale-stream&lt;/span&gt; &lt;span class="nv"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;desired2&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;weighted-pairs&lt;/span&gt;
+	&lt;span class="nv"&gt;s&lt;/span&gt;
+	&lt;span class="nv"&gt;s&lt;/span&gt;
+	&lt;span class="nv"&gt;weighted235&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgfd8b0e8" class="outline-4"&gt;
+&lt;h4 id="orgfd8b0e8"&gt;3.71&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgfd8b0e8"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cube-pair&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;expt &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;expt &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;base-stream&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;weighted-pairs&lt;/span&gt;
+	&lt;span class="nv"&gt;integers&lt;/span&gt;
+	&lt;span class="nv"&gt;integers&lt;/span&gt;
+	&lt;span class="nv"&gt;cube-pair&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;Ramanujan-pairs&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cube-pair&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cube-pair&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cube-pair&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+			&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;Ramanujan-pairs&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+					 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;Ramanujan-pairs&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;Ramanujan-streams&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;Ramanujan-pairs&lt;/span&gt; &lt;span class="nv"&gt;base-stream&lt;/span&gt;
+			&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;base-stream&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 1729&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 4104&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 13832&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 20683&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 32832&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 39312&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3367bfc" class="outline-4"&gt;
+&lt;h4 id="org3367bfc"&gt;3.72&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org3367bfc"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square-pair&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;base-stream&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;weighted-pairs&lt;/span&gt;
+	&lt;span class="nv"&gt;integers&lt;/span&gt;
+	&lt;span class="nv"&gt;integers&lt;/span&gt;
+	&lt;span class="nv"&gt;square-pair&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;desired-pairs&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt; &lt;span class="nv"&gt;s3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square-pair&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square-pair&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square-pair&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s3&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square-pair&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+			      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;s3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+			&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;desired-pairs&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+				       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+				       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s3&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;desired-pairs&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;s3&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;desired-streams&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;desired-pairs&lt;/span&gt; &lt;span class="nv"&gt;base-stream&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;base-stream&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;base-stream&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; (325 (1 18) (6 17) (10 15))&lt;/span&gt;
+     &lt;span class="c1"&gt;;; (425 (5 20) (8 19) (13 16))&lt;/span&gt;
+     &lt;span class="c1"&gt;;; ...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4cb46e3" class="outline-4"&gt;
+&lt;h4 id="org4cb46e3"&gt;3.73&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org4cb46e3"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;RC&lt;/span&gt; &lt;span class="nv"&gt;r&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt; &lt;span class="nv"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;voltage&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="nv"&gt;v0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add-streams&lt;/span&gt;
+	  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scale-stream&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="nv"&gt;r&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;integral&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scale-stream&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="nv"&gt;c&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		    &lt;span class="nv"&gt;v0&lt;/span&gt;
+		    &lt;span class="nv"&gt;dt&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+       &lt;span class="nv"&gt;voltage&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6b7760f" class="outline-4"&gt;
+&lt;h4 id="org6b7760f"&gt;3.74&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org6b7760f"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;zero-crossings&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt;
+	&lt;span class="nv"&gt;sign-change-detector&lt;/span&gt;
+	&lt;span class="nv"&gt;sense-data&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;sense-data&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7c221f0" class="outline-4"&gt;
+&lt;h4 id="org7c221f0"&gt;3.75&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7c221f0"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-zero-crossings&lt;/span&gt; &lt;span class="nv"&gt;input-stream&lt;/span&gt; &lt;span class="nv"&gt;last-value&lt;/span&gt; &lt;span class="nv"&gt;last-avpt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;avpt&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;input-stream&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;last-value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sign-change-detector&lt;/span&gt; &lt;span class="nv"&gt;avpt&lt;/span&gt; &lt;span class="nv"&gt;last-avpt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-zero-crossings&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-cdr&lt;/span&gt; &lt;span class="nv"&gt;input-stream&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+					   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-car&lt;/span&gt; &lt;span class="nv"&gt;input-stream&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+					   &lt;span class="nv"&gt;avpt&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf1da7b1" class="outline-4"&gt;
+&lt;h4 id="orgf1da7b1"&gt;3.76&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf1da7b1"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;smooth&lt;/span&gt; &lt;span class="nv"&gt;input-stream&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;i&lt;/span&gt; &lt;span class="nv"&gt;j&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;/ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="nv"&gt;j&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="nv"&gt;input-stream&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		   &lt;span class="nv"&gt;input-stream&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-zero-crossings&lt;/span&gt; &lt;span class="nv"&gt;input-stream&lt;/span&gt; &lt;span class="nv"&gt;smooth&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;smooth-stream&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;smooth&lt;/span&gt; &lt;span class="nv"&gt;input-stream&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;stream-map&lt;/span&gt; &lt;span class="nv"&gt;sign-change-detector&lt;/span&gt;
+		     &lt;span class="nv"&gt;smooth-stream&lt;/span&gt;
+		     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cons-stream&lt;/span&gt;
+		      &lt;span class="mi"&gt;0&lt;/span&gt;
+		      &lt;span class="nv"&gt;smooth-stream&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1efa9fa" class="outline-3"&gt;
+&lt;h3 id="org1efa9fa"&gt;流和延时求值&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org1efa9fa"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;显式使用 delay 过程使参数变为 &lt;b&gt;延时参数&lt;/b&gt;, 我们可以在只有参数的一部分信息
+的情况下，开始生成输出流的有关部分;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org00857c5" class="outline-3"&gt;
+&lt;h3 id="org00857c5"&gt;练习 3.77-3.80&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org00857c5"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgf458340" class="outline-4"&gt;
+&lt;h4 id="orgf458340"&gt;3.77&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf996299" class="outline-4"&gt;
+&lt;h4 id="orgf996299"&gt;3.78&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3340f80" class="outline-4"&gt;
+&lt;h4 id="org3340f80"&gt;3.79&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc74f7b4" class="outline-4"&gt;
+&lt;h4 id="orgc74f7b4"&gt;3.80&lt;/h4&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2d7e5b9" class="outline-3"&gt;
+&lt;h3 id="org2d7e5b9"&gt;函数式程序的模块化和对象的模块化&lt;/h3&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgae5bceb" class="outline-3"&gt;
+&lt;h3 id="orgae5bceb"&gt;练习 3.81-3.82&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgae5bceb"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgc031266" class="outline-4"&gt;
+&lt;h4 id="orgc031266"&gt;3.81&lt;/h4&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgadd7ee6" class="outline-4"&gt;
+&lt;h4 id="orgadd7ee6"&gt;3.82&lt;/h4&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><category>Scheme</category><category>SICP</category><guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%285%29/</guid><pubDate>Fri, 04 Jan 2019 05:47:47 GMT</pubDate></item><item><title>SICP-Refresher-Chapter-3(4)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-3%284%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-orgc7980e8" class="outline-2"&gt;
