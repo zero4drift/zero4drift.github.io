@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app</title><link>https://zero4drift.github.io/</link><description>下期预告：cpp 实现 SICP Scheme 解释器</description><atom:link href="https://zero4drift.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Wed, 09 Jan 2019 13:10:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-4(1)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-4%281%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org9c38a9f" class="outline-2"&gt;
-&lt;h2 id="org9c38a9f"&gt;第四章&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org9c38a9f"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app</title><link>https://zero4drift.github.io/</link><description>下期预告：cpp 实现 SICP Scheme 解释器</description><atom:link href="https://zero4drift.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Thu, 10 Jan 2019 14:18:02 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-4(1)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-4%281%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org6b292f1" class="outline-2"&gt;
+&lt;h2 id="org6b292f1"&gt;第四章&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6b292f1"&gt;
+&lt;p&gt;
+写在前面：本章代码并没有实际运行检查过（前三章基本没问题），并不保证 bug-free。 
+&lt;/p&gt;
+
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;建立新语言是在工程设计中控制复杂性的一种威力强大的工作策略，我们常常能通过
 采用一种新语言而提升处理复杂问题的能力，因为新语言可能使我们以一种完全不同
@@ -15,9 +19,9 @@
 &lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb33b248" class="outline-3"&gt;
-&lt;h3 id="orgb33b248"&gt;元循环求值器&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb33b248"&gt;
+&lt;div id="outline-container-orgb83eaef" class="outline-3"&gt;
+&lt;h3 id="orgb83eaef"&gt;元循环求值器&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb83eaef"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;用与被求值的语言同样的语言写出的求值器被称为 &lt;b&gt;元循环&lt;/b&gt;;&lt;/li&gt;
 &lt;li&gt;从根本上说，元循环求值器也就是 3.2 节所描述求值的环境模形的一个 scheme 表
@@ -36,11 +40,739 @@
 &lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org86cebb0" class="outline-4"&gt;
-&lt;h4 id="org86cebb0"&gt;求值器的内核&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org86cebb0"&gt;
+&lt;div id="outline-container-org94c9d95" class="outline-4"&gt;
+&lt;h4 id="org94c9d95"&gt;求值器的内核&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org94c9d95"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;求值过程可以描述为两个过程 eval 和 apply 之间的相互作用；&lt;/li&gt;
+&lt;li&gt;eval 的参数是一个表达式和一个环境，eval 对表达式进行分类，依次引导自己的
+求值工作，eval 的构造就像是一个针对被求值表达式的语法类型的分情况分析；&lt;/li&gt;
+&lt;li&gt;apply 有两个参数，一个是过程，一个是该过程应该去应用的实际参数的表；&lt;/li&gt;
+&lt;li&gt;看懂代码就能理解。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7782501" class="outline-4"&gt;
+&lt;h4 id="org7782501"&gt;练习 4.1&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7782501"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="c1"&gt;;; the one always computes the value from left to right&lt;/span&gt;
+
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-of-values-lr&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;no-operands?&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	  &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+	  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;first&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-operand&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="nv"&gt;first&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-of-values-lr&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-operands&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; the one always computes the value from right to left&lt;/span&gt;
+
+    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-of-values-rl&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;no-operands?&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	  &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+	  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;rest-values&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-of-values-rl&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-operands&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-operand&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="nv"&gt;rest-values&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5b065f3" class="outline-4"&gt;
+&lt;h4 id="org5b065f3"&gt;表达式的表示&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org5b065f3"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;注意派生表达式的逻辑；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org83ca05c" class="outline-4"&gt;
+&lt;h4 id="org83ca05c"&gt;练习 4.2-4.10&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org83ca05c"&gt;
+&lt;/div&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="org7419940"&gt;&lt;/a&gt;4.2&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org7419940"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; a&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; 检查过程语法形式的谓词过程&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;application?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;pair? &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 而很多不是过程调用的表达式其实都是序对，但不能用过程调用的形式处理&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; b&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;application?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="ss"&gt;'call&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;operator&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;operands&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cddr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;no-operands?&lt;/span&gt; &lt;span class="nv"&gt;ops&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;ops&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-operand&lt;/span&gt; &lt;span class="nv"&gt;ops&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;ops&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-operands&lt;/span&gt; &lt;span class="nv"&gt;ops&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;ops&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org5555d3d"&gt;&lt;/a&gt;4.3&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org5555d3d"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;type-tag&lt;/span&gt; &lt;span class="nv"&gt;datum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;pair? &lt;/span&gt;&lt;span class="nv"&gt;datum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;datum&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Bad tagged datum -- TYPE-TAG"&lt;/span&gt; &lt;span class="nv"&gt;datum&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;tag&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;type-tag&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;proc&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;get&lt;/span&gt; &lt;span class="ss"&gt;'eval&lt;/span&gt; &lt;span class="nv"&gt;tag&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="nv"&gt;proc&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;proc&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Unknown expression type -- EVAL"&lt;/span&gt;
+		      &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; number: scheme-number&lt;/span&gt;
+     &lt;span class="c1"&gt;;; string: scheme-string&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-self-evaluation&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'eval&lt;/span&gt; &lt;span class="ss"&gt;'scheme-number&lt;/span&gt; &lt;span class="nv"&gt;eval-self-evaluation&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'eval&lt;/span&gt; &lt;span class="ss"&gt;'scheme-string&lt;/span&gt; &lt;span class="nv"&gt;eval-self-evaluation&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; variable: 'quote&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-variable&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;text-of-quotation&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'eval&lt;/span&gt; &lt;span class="ss"&gt;'quote&lt;/span&gt; &lt;span class="nv"&gt;eval-variable&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; assignment: set!&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; the original eval-assignment&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'eval&lt;/span&gt; &lt;span class="ss"&gt;'set!&lt;/span&gt; &lt;span class="nv"&gt;eval-assignment&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; definition: define&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; the original eval-definition&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'eval&lt;/span&gt; &lt;span class="ss"&gt;'define&lt;/span&gt; &lt;span class="nv"&gt;eval-definition&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; lambda: lambda&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; should modify the original make-procedure&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-procedure-lambda&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;parameters&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lambda-parameters&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;body&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lambda-body&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-procedure&lt;/span&gt; &lt;span class="nv"&gt;parameters&lt;/span&gt; &lt;span class="nv"&gt;body&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'eval&lt;/span&gt; &lt;span class="ss"&gt;'lambda&lt;/span&gt; &lt;span class="nv"&gt;make-procedure-lambda&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; if: if&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; the original eval-if&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'eval&lt;/span&gt; &lt;span class="ss"&gt;'if&lt;/span&gt; &lt;span class="nv"&gt;eval-if&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; begin: begin&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; should modify the original eval-sequence&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-sequence-begin&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;actions&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;begin-actons&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-sequence&lt;/span&gt; &lt;span class="nv"&gt;actions&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'eval&lt;/span&gt; &lt;span class="ss"&gt;'begin&lt;/span&gt; &lt;span class="nv"&gt;eval-sequence-begin&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; cond: cond&lt;/span&gt;
+     &lt;span class="c1"&gt;;; should modify the original handle method&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-cond&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;transfer&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-&amp;gt;if&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="nv"&gt;transfer&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'eval&lt;/span&gt; &lt;span class="ss"&gt;'cond&lt;/span&gt; &lt;span class="nv"&gt;eval-cond&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; application: call&lt;/span&gt;
+     &lt;span class="c1"&gt;;; based on the procedures defined in exercise 4.2 b&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-application&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;apply &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;operator&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-of-values&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;operands&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;put&lt;/span&gt; &lt;span class="ss"&gt;'eval&lt;/span&gt; &lt;span class="ss"&gt;'call&lt;/span&gt; &lt;span class="nv"&gt;eval-application&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org2cd23d6"&gt;&lt;/a&gt;4.4&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org2cd23d6"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;and?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="ss"&gt;'and&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;or?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="ss"&gt;'or&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;all-predicates&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-predicate&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-predicates&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-and&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;predicates&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;all-predicates&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;first&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-predicate&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-predicates&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="nv"&gt;first&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;not &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		   &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="k"&gt;and &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-and&lt;/span&gt; &lt;span class="nv"&gt;rest&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-or&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;predicates&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;all-predicates&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;first&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-predicate&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-predicates&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="nv"&gt;first&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="nv"&gt;true&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;and &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;not &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		   &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;not &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;eval-or&lt;/span&gt; &lt;span class="nv"&gt;rest&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; derived expression based on if&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-and&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'and&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-or&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'or&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;and-&amp;gt;if&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;predicates&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;all-predicates&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;first&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-predicate&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-predicates&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-if&lt;/span&gt;
+	    &lt;span class="nv"&gt;first&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-and&lt;/span&gt; &lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	    &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;or-&amp;gt;cond&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;predicates&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;all-predicates&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;first&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-predicate&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-predicates&lt;/span&gt; &lt;span class="nv"&gt;predicates&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-if&lt;/span&gt;
+	    &lt;span class="nv"&gt;first&lt;/span&gt;
+	    &lt;span class="nv"&gt;first&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-or&lt;/span&gt; &lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-and&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;and-&amp;gt;if&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-or&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;or-&amp;gt;if&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; so just implement the eval-and and eval-or in&lt;/span&gt;
+     &lt;span class="c1"&gt;;; the original eval procedure&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="orgfaa0753"&gt;&lt;/a&gt;4.5&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgfaa0753"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="ss"&gt;'cond&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-clauses&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-else-clause?&lt;/span&gt; &lt;span class="nv"&gt;clause&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-predicate&lt;/span&gt; &lt;span class="nv"&gt;clause&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ss"&gt;'else&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-special-clause?&lt;/span&gt; &lt;span class="nv"&gt;clause&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="ss"&gt;'=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;clause&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-special-clause-proc&lt;/span&gt; &lt;span class="nv"&gt;clause&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;caddr &lt;/span&gt;&lt;span class="nv"&gt;clause&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-predicate&lt;/span&gt; &lt;span class="nv"&gt;clause&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;clause&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-actions&lt;/span&gt; &lt;span class="nv"&gt;clause&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;clause&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-&amp;gt;if&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;expand-clauses&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-clauses&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;expand-clauses&lt;/span&gt; &lt;span class="nv"&gt;clauses&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;clauses&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="ss"&gt;'false&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;first&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;clauses&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;clauses&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-else-clause?&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sequence-&amp;gt;exp&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-actions&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"ELSE clause isn't last -- COND-&amp;gt;IF"&lt;/span&gt;
+			    &lt;span class="nv"&gt;clauses&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;p&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-predicate&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-if&lt;/span&gt;
+		    &lt;span class="nv"&gt;p&lt;/span&gt;
+		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-special-clause?&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-special-clause-proc&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;sequence-&amp;gt;exp&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;cond-actions&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;expand-clauses&lt;/span&gt; &lt;span class="nv"&gt;rest&lt;/span&gt;&lt;span class="p"&gt;)))))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org7a5d1ee"&gt;&lt;/a&gt;4.6&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org7a5d1ee"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="ss"&gt;'let&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-exps&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-bindings&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-body&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;expression&lt;/span&gt; &lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-&amp;gt;application&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;transfer&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-exps&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;transfer&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;bindings&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-bindings&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;body&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-body&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;var-list&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;map &lt;/span&gt;&lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;exp-list&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;map &lt;/span&gt;&lt;span class="nv"&gt;expression&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;proc&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-lambda&lt;/span&gt; &lt;span class="nv"&gt;var-list&lt;/span&gt; &lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="nv"&gt;proc&lt;/span&gt; &lt;span class="nv"&gt;exp-list&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-let&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-&amp;gt;application&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; implement let? and eval-let in eval&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org2f6f834"&gt;&lt;/a&gt;4.7&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org2f6f834"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; all bacause of the environment bindings' update &amp;amp; access&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let*?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="ss"&gt;'let*&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let*-exps&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let*-bindings&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let*-body&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cddr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-let&lt;/span&gt; &lt;span class="nv"&gt;binding&lt;/span&gt; &lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="ss"&gt;'let&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-neseted-lets&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt; &lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-let&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-let&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-neseted-lets&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		      &lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let*-&amp;gt;nested-lets&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-neseted-lets&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let*-bindings&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let*-exps&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let*-body&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let*-exps&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-let*&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let*-&amp;gt;nested-lets&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="c1"&gt;;; nested-let makes no difference when compared with let*&lt;/span&gt;
+     &lt;span class="c1"&gt;;; thanks to the environment structure&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; just implement let*? and eval-let* in eval&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org42e5763"&gt;&lt;/a&gt;4.8&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org42e5763"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="ss"&gt;'let&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-exps&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-procedure?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;symbol? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-procedure-var&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-procedure-bindings&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-procedure-body&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cddr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-begin&lt;/span&gt; &lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="ss"&gt;'begin&lt;/span&gt; &lt;span class="nv"&gt;seq&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-define-p&lt;/span&gt; &lt;span class="nv"&gt;v&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="ss"&gt;'define&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="nv"&gt;v&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-bindings&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-body&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;expression&lt;/span&gt; &lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-&amp;gt;application&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;transfer&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-exps&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;transfer&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;let-p?&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-procedure?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;bindings&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="nv"&gt;let-p?&lt;/span&gt;
+		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-procedure-bindings&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-bindings&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;body&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="nv"&gt;let-p?&lt;/span&gt;
+		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-procedure-body&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-body&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;var-list&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;map &lt;/span&gt;&lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;exp-list&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;map &lt;/span&gt;&lt;span class="nv"&gt;expression&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="nv"&gt;let-p?&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-begin&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-define-p&lt;/span&gt;
+		    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-procedure-var&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		    &lt;span class="nv"&gt;var-list&lt;/span&gt;
+		    &lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-procedure-var&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			 &lt;span class="nv"&gt;exp-list&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-lambda&lt;/span&gt; &lt;span class="nv"&gt;var-list&lt;/span&gt; &lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		       &lt;span class="nv"&gt;exp-list&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-let&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;let-&amp;gt;application&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; implement let? and eval-let in eval&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="orge425ad2"&gt;&lt;/a&gt;4.9&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orge425ad2"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; first eval self-defined special procedure through eval procedure&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; show the structure of while by making a definition&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;while&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;proc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;begin &lt;/span&gt;&lt;span class="nv"&gt;proc&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;while&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;proc&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="ss"&gt;'finished&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+     &lt;span class="c1"&gt;;; so while is composed of if and begin&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;while?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="ss"&gt;'while&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;while-predicate&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;while-actions&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-begin&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;caddr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;while-alternative&lt;/span&gt;
+       &lt;span class="ss"&gt;'finished&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;while-transfer&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-if&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;while-predicate&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;while-actions&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	&lt;span class="nv"&gt;while-alternative&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-while&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;while-transfer&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; just implement while? and eval-while in eval&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="org35859d2"&gt;&lt;/a&gt;4.10&lt;br&gt;
+&lt;div class="outline-text-5" id="text-org35859d2"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; 复合表达式中运算符表达式在最后一个，前面所有的都是运算对象表达式&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;last-one&lt;/span&gt; &lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;last-one&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;lst&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;operator&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;last-one&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;operands&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;operands&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgf76de90" class="outline-4"&gt;
+&lt;h4 id="orgf76de90"&gt;求值器数据结构&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf76de90"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;理解代码就没问题；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7b03178" class="outline-4"&gt;
+&lt;h4 id="org7b03178"&gt;练习 4.11-4.13&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org7b03178"&gt;
+&lt;/div&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a id="orga49e604"&gt;&lt;/a&gt;4.11&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orga49e604"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-frame&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-binding&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-bindings&lt;/span&gt; &lt;span class="nv"&gt;vars&lt;/span&gt; &lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;map &lt;/span&gt;&lt;span class="nv"&gt;make-binding&lt;/span&gt; &lt;span class="nv"&gt;vars&lt;/span&gt; &lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;bindings-frame&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;set-value!&lt;/span&gt; &lt;span class="nv"&gt;binding&lt;/span&gt; &lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set-cdr! &lt;/span&gt;&lt;span class="nv"&gt;binding&lt;/span&gt; &lt;span class="nv"&gt;value&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-binding&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-bindings&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;null-bindings?&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;binding-variable&lt;/span&gt; &lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;binding-value&lt;/span&gt; &lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;binding&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add-binding-to-frame!&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;new-binding&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-binding&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="nv"&gt;new-binding&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;extend-environment&lt;/span&gt; &lt;span class="nv"&gt;vars&lt;/span&gt; &lt;span class="nv"&gt;vals&lt;/span&gt; &lt;span class="nv"&gt;base-env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length &lt;/span&gt;&lt;span class="nv"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length &lt;/span&gt;&lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;bindings&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-bindings&lt;/span&gt; &lt;span class="nv"&gt;vars&lt;/span&gt; &lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-frame&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;base-env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&amp;lt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length &lt;/span&gt;&lt;span class="nv"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;length &lt;/span&gt;&lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Too many arguments supplied"&lt;/span&gt; &lt;span class="nv"&gt;vars&lt;/span&gt; &lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Too few arguments supplied"&lt;/span&gt; &lt;span class="nv"&gt;vars&lt;/span&gt; &lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup-variable-value&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;null-bindings?&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="nv"&gt;false&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;first&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-binding&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;binding-variable&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;binding-value&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-bindings&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;env&lt;/span&gt; &lt;span class="nv"&gt;the-empty-environment&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Unbound variable"&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;frame&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-frame&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;base-env&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;enclosing-environment&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;bindings-frame&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;
+		   &lt;span class="nv"&gt;result&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup-variable-value&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;base-env&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;set-variable-value!&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;;the former one has too many lets, try another style&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;env-loop&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;null-bindings?&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;env-loop&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;enclosing-environment&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		 &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;binding-variable&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-binding&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;set-value!&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-binding&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-bindings&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;env&lt;/span&gt; &lt;span class="nv"&gt;the-empty-environment&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Unbound variable -- SET!"&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;frame&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-frame&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;bindings-frame&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;env-loop&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;define-variable!&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;frame&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-frame&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;null-bindings?&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add-binding-to-frame!&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;binding-variable&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-binding&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;set-value!&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-binding&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-bindings&lt;/span&gt; &lt;span class="nv"&gt;bindings&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;bindings-frame&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="orgaeb6672"&gt;&lt;/a&gt;4.12&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgaeb6672"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="nv"&gt;vars&lt;/span&gt; &lt;span class="nv"&gt;vals&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;false&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;env-loop&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt; &lt;span class="nv"&gt;proc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;env&lt;/span&gt; &lt;span class="nv"&gt;the-empty-environment&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="nv"&gt;false&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;frame&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-frame&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;frame-variables&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+				 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;frame-values&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+				 &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;proc&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;env-loop&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;enclosing-environment&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lookup-variable-value&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;env-loop&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt; &lt;span class="nv"&gt;car&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;
+	     &lt;span class="nv"&gt;result&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Unbound variable"&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;set-variable-value!&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;set-value!&lt;/span&gt; &lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set-car! &lt;/span&gt;&lt;span class="nv"&gt;vals&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;env-loop&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt; &lt;span class="nv"&gt;set-value!&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;not &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;			&lt;span class="c1"&gt;;though set-car! returns unspecific return value, (not result) is false&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt; &lt;span class="s"&gt;"Unbound variable"&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;define-variable!&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;frame&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-frame&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;frame-variables&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;frame-values&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			     &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set-car! &lt;/span&gt;&lt;span class="nv"&gt;result&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;add-binding-to-frame!&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;val&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+
+&lt;li&gt;&lt;a id="orgd5f8eb3"&gt;&lt;/a&gt;4.13&lt;br&gt;
+&lt;div class="outline-text-5" id="text-orgd5f8eb3"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;unbound?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="ss"&gt;'unbound&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;unbound-var&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-unbound!&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'unbound&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-unbound&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;unbound-variable!&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;unbound-var&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;unbound-variable!&lt;/span&gt; &lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;frame&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-frame&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="nv"&gt;vars&lt;/span&gt; &lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="ss"&gt;'ok&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;begin &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;set! &lt;/span&gt;&lt;span class="nv"&gt;vars&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+			 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;set! &lt;/span&gt;&lt;span class="nv"&gt;vals&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;vals&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;scan&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;frame-variables&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;frame-values&lt;/span&gt; &lt;span class="nv"&gt;frame&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; only delete the matched binding in the current environment&lt;/span&gt;
+     &lt;span class="c1"&gt;;; cause that the same-name binding in outside environments&lt;/span&gt;
+     &lt;span class="c1"&gt;;; may be utilized by other procedures&lt;/span&gt;
+     &lt;span class="c1"&gt;;; it is a disaster for these procedures if all unbounded&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org32d2bd6" class="outline-4"&gt;
+&lt;h4 id="org32d2bd6"&gt;作为程序运行这个求值器&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org32d2bd6"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;只要看明白代码；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org99b7c34" class="outline-4"&gt;
+&lt;h4 id="org99b7c34"&gt;练习 4.14&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org99b7c34"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="c1"&gt;;; eva's way is passed because the map definition is implemented in eval&lt;/span&gt;
+    &lt;span class="c1"&gt;;; so when this map procedure is applied, eval looks for its definition binding&lt;/span&gt;
+    &lt;span class="c1"&gt;;; then applies arguments and env to the map definition body&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; louis takes the map procedure as the original primitive procedure in eval&lt;/span&gt;
+    &lt;span class="c1"&gt;;; so when the map application is processed&lt;/span&gt;
+    &lt;span class="c1"&gt;;; since it is a primitive procedure&lt;/span&gt;
+    &lt;span class="c1"&gt;;; the apply internal result is like&lt;/span&gt;
+    &lt;span class="c1"&gt;;; (apply-primitive-procedure procedure arguments)&lt;/span&gt;
+    &lt;span class="c1"&gt;;; for example&lt;/span&gt;
+    &lt;span class="c1"&gt;;; '(map '* (1 2 3) (4 5 6))&lt;/span&gt;
+    &lt;span class="c1"&gt;;; but in the internal result&lt;/span&gt;
+    &lt;span class="c1"&gt;;; (apply-in-underlying-scheme map (list 'primitive *) (1 2 3) (4 5 6))&lt;/span&gt;
+    &lt;span class="c1"&gt;;; apply (list 'primitive *) to args in eval would fall into application branch&lt;/span&gt;
+    &lt;span class="c1"&gt;;; but at last 'primitive is a symbol with no binding&lt;/span&gt;
+    &lt;span class="c1"&gt;;; so it's failed&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc29db0f" class="outline-4"&gt;
+&lt;h4 id="orgc29db0f"&gt;将数据作为程序&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc29db0f"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;关于程序意义的一种操作式观点，就是将程序看作一种抽象的（可能无穷大的）机
+器的一个描述，我们也可以把求值器看作是一部非常特殊的机器，它要求以一部机
+器的描述作为输入，给定了一个输入以后，求值器就能够规划自己的行为，模拟被
+描述机器的执行过程；&lt;/li&gt;
+&lt;li&gt;求值器的另一惊人方面，在于它就像是我们的程序设计语言所操作的数据对象和这
+个程序设计语言本身之间的一座桥梁；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org91c088f" class="outline-4"&gt;
+&lt;h4 id="org91c088f"&gt;练习 4.15&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org91c088f"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="c1"&gt;;; 引起悖论&lt;/span&gt;
+    &lt;span class="c1"&gt;;; (try try) 如果可以终止，在 try 的过程体那将执行 (run-forever);&lt;/span&gt;
+    &lt;span class="c1"&gt;;; 如果不可以终止，将返回 'halted。&lt;/span&gt;
+
+    &lt;span class="c1"&gt;;; 所以不可能写出一个过程 halts?&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org15d6b58" class="outline-4"&gt;
+&lt;h4 id="org15d6b58"&gt;内部定义&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org15d6b58"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;存在一些处理内部定义的方法，可以使内部名字的定义真正具有同样的作用域（不
+然就会对代码形式有一些限制）；&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;

@@ -80,9 +80,13 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org9c38a9f" class="outline-2">
-<h2 id="org9c38a9f">第四章</h2>
-<div class="outline-text-2" id="text-org9c38a9f">
+        <div id="outline-container-org6b292f1" class="outline-2">
+<h2 id="org6b292f1">第四章</h2>
+<div class="outline-text-2" id="text-org6b292f1">
+<p>
+写在前面：本章代码并没有实际运行检查过（前三章基本没问题），并不保证 bug-free。 
+</p>
+
 <ol class="org-ol">
 <li>建立新语言是在工程设计中控制复杂性的一种威力强大的工作策略，我们常常能通过
 采用一种新语言而提升处理复杂问题的能力，因为新语言可能使我们以一种完全不同
@@ -96,9 +100,9 @@
 </ol>
 </div>
 
-<div id="outline-container-orgb33b248" class="outline-3">
-<h3 id="orgb33b248">元循环求值器</h3>
-<div class="outline-text-3" id="text-orgb33b248">
+<div id="outline-container-orgb83eaef" class="outline-3">
+<h3 id="orgb83eaef">元循环求值器</h3>
+<div class="outline-text-3" id="text-orgb83eaef">
 <ol class="org-ol">
 <li>用与被求值的语言同样的语言写出的求值器被称为 <b>元循环</b>;</li>
 <li>从根本上说，元循环求值器也就是 3.2 节所描述求值的环境模形的一个 scheme 表
@@ -118,11 +122,739 @@
 </ol>
 </div>
 
-<div id="outline-container-org86cebb0" class="outline-4">
-<h4 id="org86cebb0">求值器的内核</h4>
-<div class="outline-text-4" id="text-org86cebb0">
+<div id="outline-container-org94c9d95" class="outline-4">
+<h4 id="org94c9d95">求值器的内核</h4>
+<div class="outline-text-4" id="text-org94c9d95">
 <ol class="org-ol">
 <li>求值过程可以描述为两个过程 eval 和 apply 之间的相互作用；</li>
+<li>eval 的参数是一个表达式和一个环境，eval 对表达式进行分类，依次引导自己的
+求值工作，eval 的构造就像是一个针对被求值表达式的语法类型的分情况分析；</li>
+<li>apply 有两个参数，一个是过程，一个是该过程应该去应用的实际参数的表；</li>
+<li>看懂代码就能理解。</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org7782501" class="outline-4">
+<h4 id="org7782501">练习 4.1</h4>
+<div class="outline-text-4" id="text-org7782501">
+<div class="highlight"><pre><span></span>    <span class="c1">;; the one always computes the value from left to right</span>
+
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">list-of-values-lr</span> <span class="nv">exps</span> <span class="nv">env</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">no-operands?</span> <span class="nv">exps</span><span class="p">)</span>
+	  <span class="o">'</span><span class="p">()</span>
+	  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">first</span> <span class="p">(</span><span class="nb">eval </span><span class="p">(</span><span class="nf">first-operand</span> <span class="nv">exps</span><span class="p">)</span> <span class="nv">env</span><span class="p">)))</span>
+	    <span class="p">(</span><span class="nb">cons </span><span class="nv">first</span>
+		  <span class="p">(</span><span class="nf">list-of-values-lr</span> <span class="p">(</span><span class="nf">rest-operands</span> <span class="nv">exps</span><span class="p">)</span> <span class="nv">env</span><span class="p">)))))</span>
+
+    <span class="c1">;; the one always computes the value from right to left</span>
+
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">list-of-values-rl</span> <span class="nv">exps</span> <span class="nv">env</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">no-operands?</span> <span class="nv">exps</span><span class="p">)</span>
+	  <span class="o">'</span><span class="p">()</span>
+	  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">rest-values</span> <span class="p">(</span><span class="nf">list-of-values-rl</span> <span class="p">(</span><span class="nf">rest-operands</span> <span class="nv">exps</span><span class="p">)</span> <span class="nv">env</span><span class="p">)))</span>
+	    <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">eval </span><span class="p">(</span><span class="nf">first-operand</span> <span class="nv">exps</span><span class="p">)</span> <span class="nv">env</span><span class="p">)</span>
+		  <span class="nv">rest-values</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org5b065f3" class="outline-4">
+<h4 id="org5b065f3">表达式的表示</h4>
+<div class="outline-text-4" id="text-org5b065f3">
+<ol class="org-ol">
+<li>注意派生表达式的逻辑；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org83ca05c" class="outline-4">
+<h4 id="org83ca05c">练习 4.2-4.10</h4>
+<div class="outline-text-4" id="text-org83ca05c">
+</div>
+<ul class="org-ul">
+<li>
+<a id="org7419940"></a>4.2<br><div class="outline-text-5" id="text-org7419940">
+<div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
+
+     <span class="c1">;; 检查过程语法形式的谓词过程</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">application?</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nb">pair? </span><span class="nv">exp</span><span class="p">))</span>
+     <span class="c1">;; 而很多不是过程调用的表达式其实都是序对，但不能用过程调用的形式处理</span>
+
+     <span class="c1">;; b</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">application?</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="ss">'call</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">operator</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">exp</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">operands</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nb">cddr </span><span class="nv">exp</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">no-operands?</span> <span class="nv">ops</span><span class="p">)</span> <span class="p">(</span><span class="nb">null? </span><span class="nv">ops</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">first-operand</span> <span class="nv">ops</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">ops</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rest-operands</span> <span class="nv">ops</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">ops</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+
+<li>
+<a id="org5555d3d"></a>4.3<br><div class="outline-text-5" id="text-org5555d3d">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">type-tag</span> <span class="nv">datum</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">datum</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nb">car </span><span class="nv">datum</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nf">error</span> <span class="s">"Bad tagged datum -- TYPE-TAG"</span> <span class="nv">datum</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">eval </span><span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">tag</span> <span class="p">(</span><span class="nf">type-tag</span> <span class="nv">exp</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">proc</span> <span class="p">(</span><span class="nf">get</span> <span class="ss">'eval</span> <span class="nv">tag</span><span class="p">)))</span>
+	   <span class="p">(</span><span class="k">if </span><span class="nv">proc</span>
+	       <span class="p">(</span><span class="nf">proc</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nf">error</span> <span class="s">"Unknown expression type -- EVAL"</span>
+		      <span class="nv">exp</span><span class="p">)))))</span>
+
+     <span class="c1">;; number: scheme-number</span>
+     <span class="c1">;; string: scheme-string</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-self-evaluation</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cadr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'eval</span> <span class="ss">'scheme-number</span> <span class="nv">eval-self-evaluation</span><span class="p">)</span>
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'eval</span> <span class="ss">'scheme-string</span> <span class="nv">eval-self-evaluation</span><span class="p">)</span>
+
+     <span class="c1">;; variable: 'quote</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-variable</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">text-of-quotation</span> <span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'eval</span> <span class="ss">'quote</span> <span class="nv">eval-variable</span><span class="p">)</span>
+
+     <span class="c1">;; assignment: set!</span>
+
+     <span class="c1">;; the original eval-assignment</span>
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'eval</span> <span class="ss">'set!</span> <span class="nv">eval-assignment</span><span class="p">)</span>
+
+     <span class="c1">;; definition: define</span>
+
+     <span class="c1">;; the original eval-definition</span>
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'eval</span> <span class="ss">'define</span> <span class="nv">eval-definition</span><span class="p">)</span>
+
+     <span class="c1">;; lambda: lambda</span>
+
+     <span class="c1">;; should modify the original make-procedure</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-procedure-lambda</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">parameters</span> <span class="p">(</span><span class="nf">lambda-parameters</span> <span class="nv">exp</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">body</span> <span class="p">(</span><span class="nf">lambda-body</span> <span class="nv">exp</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">make-procedure</span> <span class="nv">parameters</span> <span class="nv">body</span> <span class="nv">env</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'eval</span> <span class="ss">'lambda</span> <span class="nv">make-procedure-lambda</span><span class="p">)</span>
+
+     <span class="c1">;; if: if</span>
+
+     <span class="c1">;; the original eval-if</span>
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'eval</span> <span class="ss">'if</span> <span class="nv">eval-if</span><span class="p">)</span>
+
+     <span class="c1">;; begin: begin</span>
+
+     <span class="c1">;; should modify the original eval-sequence</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-sequence-begin</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">actions</span> <span class="p">(</span><span class="nf">begin-actons</span> <span class="nv">exp</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nf">eval-sequence</span> <span class="nv">actions</span> <span class="nv">env</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'eval</span> <span class="ss">'begin</span> <span class="nv">eval-sequence-begin</span><span class="p">)</span>
+
+     <span class="c1">;; cond: cond</span>
+     <span class="c1">;; should modify the original handle method</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-cond</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">transfer</span> <span class="p">(</span><span class="nf">cond-&gt;if</span> <span class="nv">exp</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nb">eval </span><span class="nv">transfer</span> <span class="nv">env</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'eval</span> <span class="ss">'cond</span> <span class="nv">eval-cond</span><span class="p">)</span>
+
+     <span class="c1">;; application: call</span>
+     <span class="c1">;; based on the procedures defined in exercise 4.2 b</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-application</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">apply </span><span class="p">(</span><span class="nb">eval </span><span class="p">(</span><span class="nf">operator</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">)</span>
+	      <span class="p">(</span><span class="nf">list-of-values</span> <span class="p">(</span><span class="nf">operands</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="nf">put</span> <span class="ss">'eval</span> <span class="ss">'call</span> <span class="nv">eval-application</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+
+<li>
+<a id="org2cd23d6"></a>4.4<br><div class="outline-text-5" id="text-org2cd23d6">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">and?</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="ss">'and</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">or?</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="ss">'or</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">all-predicates</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">first-predicate</span> <span class="nv">predicates</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">predicates</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rest-predicates</span> <span class="nv">predicates</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">predicates</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-and</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">predicates</span> <span class="p">(</span><span class="nf">all-predicates</span> <span class="nv">exp</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">first</span> <span class="p">(</span><span class="nf">first-predicate</span> <span class="nv">predicates</span><span class="p">))</span>
+	       <span class="p">(</span><span class="nf">rest</span> <span class="p">(</span><span class="nf">rest-predicates</span> <span class="nv">predicates</span><span class="p">)))</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">result</span> <span class="p">(</span><span class="nb">eval </span><span class="nv">first</span> <span class="nv">env</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">not </span><span class="nv">result</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span>
+		   <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nb">null? </span><span class="nv">rest</span><span class="p">)</span> <span class="nv">result</span><span class="p">)</span> <span class="nv">result</span><span class="p">)</span>
+		   <span class="p">(</span><span class="nf">result</span> <span class="p">(</span><span class="nf">eval-and</span> <span class="nv">rest</span> <span class="nv">env</span><span class="p">)))))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-or</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">predicates</span> <span class="p">(</span><span class="nf">all-predicates</span> <span class="nv">exp</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">first</span> <span class="p">(</span><span class="nf">first-predicate</span> <span class="nv">predicates</span><span class="p">))</span>
+	       <span class="p">(</span><span class="nf">rest</span> <span class="p">(</span><span class="nf">rest-predicates</span> <span class="nv">predicates</span><span class="p">)))</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">result</span> <span class="p">(</span><span class="nb">eval </span><span class="nv">first</span> <span class="nv">env</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">cond </span><span class="p">(</span><span class="nf">result</span> <span class="nv">true</span><span class="p">)</span>
+		   <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nb">null? </span><span class="nv">rest</span><span class="p">)</span> <span class="p">(</span><span class="nb">not </span><span class="nv">result</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span>
+		   <span class="p">((</span><span class="nb">not </span><span class="nv">result</span><span class="p">)</span> <span class="nv">eval-or</span> <span class="nv">rest</span> <span class="nv">env</span><span class="p">))))))</span>
+
+     <span class="c1">;; derived expression based on if</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-and</span> <span class="nv">predicates</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">list </span><span class="ss">'and</span> <span class="nv">predicates</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-or</span> <span class="nv">predicates</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">list </span><span class="ss">'or</span> <span class="nv">predicates</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">and-&gt;if</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">predicates</span> <span class="p">(</span><span class="nf">all-predicates</span> <span class="nv">exp</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">first</span> <span class="p">(</span><span class="nf">first-predicate</span> <span class="nv">predicates</span><span class="p">))</span>
+	       <span class="p">(</span><span class="nf">rest</span> <span class="p">(</span><span class="nf">rest-predicates</span> <span class="nv">predicates</span><span class="p">)))</span>
+	   <span class="p">(</span><span class="nf">make-if</span>
+	    <span class="nv">first</span>
+	    <span class="p">(</span><span class="nf">make-and</span> <span class="nv">rest</span><span class="p">)</span>
+	    <span class="nv">first</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">or-&gt;cond</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">predicates</span> <span class="p">(</span><span class="nf">all-predicates</span> <span class="nv">exp</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">first</span> <span class="p">(</span><span class="nf">first-predicate</span> <span class="nv">predicates</span><span class="p">))</span>
+	       <span class="p">(</span><span class="nf">rest</span> <span class="p">(</span><span class="nf">rest-predicates</span> <span class="nv">predicates</span><span class="p">)))</span>
+	   <span class="p">(</span><span class="nf">make-if</span>
+	    <span class="nv">first</span>
+	    <span class="nv">first</span>
+	    <span class="p">(</span><span class="nf">make-or</span> <span class="nv">rest</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-and</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">eval </span><span class="p">(</span><span class="nf">and-&gt;if</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-or</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">eval </span><span class="p">(</span><span class="nf">or-&gt;if</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+     <span class="c1">;; so just implement the eval-and and eval-or in</span>
+     <span class="c1">;; the original eval procedure</span>
+</pre></div>
+</div>
+</li>
+
+<li>
+<a id="orgfaa0753"></a>4.5<br><div class="outline-text-5" id="text-orgfaa0753">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cond?</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="ss">'cond</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cond-clauses</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cond-else-clause?</span> <span class="nv">clause</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">cond-predicate</span> <span class="nv">clause</span><span class="p">)</span> <span class="ss">'else</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cond-special-clause?</span> <span class="nv">clause</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">eq? </span><span class="ss">'=&gt;</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">clause</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cond-special-clause-proc</span> <span class="nv">clause</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">caddr </span><span class="nv">clause</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cond-predicate</span> <span class="nv">clause</span><span class="p">)</span> <span class="p">(</span><span class="nb">car </span><span class="nv">clause</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cond-actions</span> <span class="nv">clause</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">clause</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">cond-&gt;if</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">expand-clauses</span> <span class="p">(</span><span class="nf">cond-clauses</span> <span class="nv">exp</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">expand-clauses</span> <span class="nv">clauses</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">clauses</span><span class="p">)</span>
+	   <span class="ss">'false</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">first</span> <span class="p">(</span><span class="nb">car </span><span class="nv">clauses</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">rest</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">clauses</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">cond-else-clause?</span> <span class="nv">first</span><span class="p">)</span>
+		 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">rest</span><span class="p">)</span>
+		     <span class="p">(</span><span class="nf">sequence-&gt;exp</span> <span class="p">(</span><span class="nf">cond-actions</span> <span class="nv">first</span><span class="p">))</span>
+		     <span class="p">(</span><span class="nf">error</span> <span class="s">"ELSE clause isn't last -- COND-&gt;IF"</span>
+			    <span class="nv">clauses</span><span class="p">))</span>
+		 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">p</span> <span class="p">(</span><span class="nf">cond-predicate</span> <span class="nv">first</span><span class="p">)))</span>
+		   <span class="p">(</span><span class="nf">make-if</span>
+		    <span class="nv">p</span>
+		    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">cond-special-clause?</span> <span class="nv">first</span><span class="p">)</span>
+			<span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nf">cond-special-clause-proc</span> <span class="nv">first</span><span class="p">)</span> <span class="nv">p</span><span class="p">)</span>
+			<span class="p">(</span><span class="nf">sequence-&gt;exp</span> <span class="p">(</span><span class="nf">cond-actions</span> <span class="nv">first</span><span class="p">)))</span>
+		    <span class="p">(</span><span class="nf">expand-clauses</span> <span class="nv">rest</span><span class="p">)))))))</span>
+</pre></div>
+</div>
+</li>
+
+<li>
+<a id="org7a5d1ee"></a>4.6<br><div class="outline-text-5" id="text-org7a5d1ee">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let?</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="ss">'let</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-exps</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-body</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">var</span> <span class="nv">binding</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">binding</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">expression</span> <span class="nv">binding</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cadr </span><span class="nv">binding</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-&gt;application</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">transfer</span> <span class="p">(</span><span class="nf">let-exps</span> <span class="nv">exp</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">transfer</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">bindings</span> <span class="p">(</span><span class="nf">let-bindings</span> <span class="nv">exp</span><span class="p">))</span>
+	     <span class="p">(</span><span class="nf">body</span> <span class="p">(</span><span class="nf">let-body</span> <span class="nv">exp</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">var-list</span> <span class="p">(</span><span class="nb">map </span><span class="nv">var</span> <span class="nv">bindings</span><span class="p">))</span>
+	       <span class="p">(</span><span class="nf">exp-list</span> <span class="p">(</span><span class="nb">map </span><span class="nv">expression</span> <span class="nv">bindings</span><span class="p">)))</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">proc</span> <span class="p">(</span><span class="nf">make-lambda</span> <span class="nv">var-list</span> <span class="nv">body</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="nb">list </span><span class="nv">proc</span> <span class="nv">exp-list</span><span class="p">)))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-let</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">eval </span><span class="p">(</span><span class="nf">let-&gt;application</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+     <span class="c1">;; implement let? and eval-let in eval</span>
+</pre></div>
+</div>
+</li>
+
+<li>
+<a id="org2f6f834"></a>4.7<br><div class="outline-text-5" id="text-org2f6f834">
+<div class="highlight"><pre><span></span>     <span class="c1">;; all bacause of the environment bindings' update &amp; access</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let*?</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="ss">'let*</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let*-exps</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let*-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let*-body</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cddr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-let</span> <span class="nv">binding</span> <span class="nv">body</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cons </span><span class="ss">'let</span> <span class="p">(</span><span class="nb">list </span><span class="nv">binding</span><span class="p">)</span> <span class="nv">body</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-neseted-lets</span> <span class="nv">bindings</span> <span class="nv">body</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">bindings</span><span class="p">))</span>
+	   <span class="p">(</span><span class="nf">make-let</span> <span class="p">(</span><span class="nb">car </span><span class="nv">bindings</span><span class="p">)</span> <span class="nv">body</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nf">make-let</span> <span class="p">(</span><span class="nb">car </span><span class="nv">bindings</span><span class="p">)</span>
+		     <span class="p">(</span><span class="nf">make-neseted-lets</span>
+		      <span class="p">(</span><span class="nb">cdr </span><span class="nv">bindings</span><span class="p">)</span>
+		      <span class="nv">body</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let*-&gt;nested-lets</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">make-neseted-lets</span>
+	<span class="p">(</span><span class="nf">let*-bindings</span> <span class="p">(</span><span class="nf">let*-exps</span> <span class="nv">exp</span><span class="p">))</span>
+	<span class="p">(</span><span class="nf">let*-body</span> <span class="p">(</span><span class="nf">let*-exps</span> <span class="nv">exp</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-let*</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">eval </span><span class="p">(</span><span class="nf">let*-&gt;nested-lets</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+     <span class="c1">;; nested-let makes no difference when compared with let*</span>
+     <span class="c1">;; thanks to the environment structure</span>
+
+     <span class="c1">;; just implement let*? and eval-let* in eval</span>
+</pre></div>
+</div>
+</li>
+
+<li>
+<a id="org42e5763"></a>4.8<br><div class="outline-text-5" id="text-org42e5763">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let?</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="ss">'let</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-exps</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-procedure?</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">symbol? </span><span class="p">(</span><span class="nb">car </span><span class="nv">exp</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-procedure-var</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-procedure-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cadr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-procedure-body</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cddr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-begin</span> <span class="nv">seq</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cons </span><span class="ss">'begin</span> <span class="nv">seq</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-define-p</span> <span class="nv">v</span> <span class="nv">p</span> <span class="nv">b</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cons </span><span class="ss">'define</span> <span class="p">(</span><span class="nb">cons </span><span class="nv">v</span> <span class="nv">p</span><span class="p">)</span> <span class="nv">b</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-body</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">var</span> <span class="nv">binding</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">binding</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">expression</span> <span class="nv">binding</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cadr </span><span class="nv">binding</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">let-&gt;application</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">transfer</span> <span class="p">(</span><span class="nf">let-exps</span> <span class="nv">exp</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">transfer</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">let-p?</span> <span class="p">(</span><span class="nf">let-procedure?</span> <span class="nv">exp</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">bindings</span>
+		<span class="p">(</span><span class="k">if </span><span class="nv">let-p?</span>
+		    <span class="p">(</span><span class="nf">let-procedure-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+		    <span class="p">(</span><span class="nf">let-bindings</span> <span class="nv">exp</span><span class="p">)))</span>
+	       <span class="p">(</span><span class="nf">body</span>
+		<span class="p">(</span><span class="k">if </span><span class="nv">let-p?</span>
+		    <span class="p">(</span><span class="nf">let-procedure-body</span> <span class="nv">exp</span><span class="p">)</span>
+		    <span class="p">(</span><span class="nf">let-body</span> <span class="nv">exp</span><span class="p">))))</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">var-list</span>
+		  <span class="p">(</span><span class="nb">map </span><span class="nv">var</span> <span class="nv">bindings</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">exp-list</span>
+		  <span class="p">(</span><span class="nb">map </span><span class="nv">expression</span> <span class="nv">bindings</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">if </span><span class="nv">let-p?</span>
+		 <span class="p">(</span><span class="nf">make-begin</span>
+		  <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nf">make-define-p</span>
+		    <span class="p">(</span><span class="nf">let-procedure-var</span> <span class="nv">exp</span><span class="p">)</span>
+		    <span class="nv">var-list</span>
+		    <span class="nv">body</span><span class="p">)</span>
+		   <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">let-procedure-var</span> <span class="nv">exp</span><span class="p">)</span>
+			 <span class="nv">exp-list</span><span class="p">)))</span>
+		 <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">make-lambda</span> <span class="nv">var-list</span> <span class="nv">body</span><span class="p">)</span>
+		       <span class="nv">exp-list</span><span class="p">))))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-let</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">eval </span><span class="p">(</span><span class="nf">let-&gt;application</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+     <span class="c1">;; implement let? and eval-let in eval</span>
+</pre></div>
+</div>
+</li>
+
+<li>
+<a id="orge425ad2"></a>4.9<br><div class="outline-text-5" id="text-orge425ad2">
+<div class="highlight"><pre><span></span>     <span class="c1">;; first eval self-defined special procedure through eval procedure</span>
+
+     <span class="c1">;; show the structure of while by making a definition</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">while</span> <span class="nv">exp</span> <span class="nv">proc</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="nv">exp</span>
+	   <span class="p">(</span><span class="k">begin </span><span class="nv">proc</span>
+		  <span class="p">(</span><span class="nf">while</span> <span class="nv">exp</span> <span class="nv">proc</span><span class="p">))</span>
+	   <span class="ss">'finished</span><span class="p">))</span>
+     <span class="c1">;; so while is composed of if and begin</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">while?</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="ss">'while</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">while-predicate</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cadr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">while-actions</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">make-begin</span>
+	<span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">caddr </span><span class="nv">exp</span><span class="p">)</span>
+	      <span class="nv">exp</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">while-alternative</span>
+       <span class="ss">'finished</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">while-transfer</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">make-if</span>
+	<span class="p">(</span><span class="nf">while-predicate</span> <span class="nv">exp</span><span class="p">)</span>
+	<span class="p">(</span><span class="nf">while-actions</span> <span class="nv">exp</span><span class="p">)</span>
+	<span class="nv">while-alternative</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-while</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">eval </span><span class="p">(</span><span class="nf">while-transfer</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+     <span class="c1">;; just implement while? and eval-while in eval</span>
+</pre></div>
+</div>
+</li>
+
+<li>
+<a id="org35859d2"></a>4.10<br><div class="outline-text-5" id="text-org35859d2">
+<div class="highlight"><pre><span></span>     <span class="c1">;; 复合表达式中运算符表达式在最后一个，前面所有的都是运算对象表达式</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">last-one</span> <span class="nv">lst</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">lst</span><span class="p">))</span>
+	   <span class="p">(</span><span class="nb">car </span><span class="nv">lst</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nf">last-one</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lst</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">operator</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">last-one</span> <span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">operands</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">exp</span><span class="p">))</span>
+	   <span class="o">'</span><span class="p">()</span>
+	   <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">exp</span><span class="p">)</span>
+		 <span class="p">(</span><span class="nf">operands</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">exp</span><span class="p">)))))</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-orgf76de90" class="outline-4">
+<h4 id="orgf76de90">求值器数据结构</h4>
+<div class="outline-text-4" id="text-orgf76de90">
+<ol class="org-ol">
+<li>理解代码就没问题；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org7b03178" class="outline-4">
+<h4 id="org7b03178">练习 4.11-4.13</h4>
+<div class="outline-text-4" id="text-org7b03178">
+</div>
+<ul class="org-ul">
+<li>
+<a id="orga49e604"></a>4.11<br><div class="outline-text-5" id="text-orga49e604">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-frame</span> <span class="nv">bindings</span><span class="p">)</span>
+       <span class="nv">bindings</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-binding</span> <span class="nv">var</span> <span class="nv">val</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cons </span><span class="nv">var</span> <span class="nv">val</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-bindings</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">map </span><span class="nv">make-binding</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">bindings-frame</span> <span class="nv">frame</span><span class="p">)</span>
+       <span class="nv">frame</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-value!</span> <span class="nv">binding</span> <span class="nv">value</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">set-cdr! </span><span class="nv">binding</span> <span class="nv">value</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">first-binding</span> <span class="nv">bindings</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">bindings</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">rest-bindings</span> <span class="nv">bindings</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">bindings</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">null-bindings?</span> <span class="nv">bindings</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">null? </span><span class="nv">bindings</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">binding-variable</span> <span class="nv">binding</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">car </span><span class="nv">binding</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">binding-value</span> <span class="nv">binding</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cdr </span><span class="nv">binding</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">add-binding-to-frame!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">frame</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">new-binding</span> <span class="p">(</span><span class="nf">make-binding</span> <span class="nv">val</span> <span class="nv">frame</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="nb">cons </span><span class="nv">new-binding</span> <span class="nv">frame</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">extend-environment</span> <span class="nv">vars</span> <span class="nv">vals</span> <span class="nv">base-env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">length </span><span class="nv">vars</span><span class="p">)</span> <span class="p">(</span><span class="nb">length </span><span class="nv">vals</span><span class="p">))</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">bindings</span> <span class="p">(</span><span class="nf">make-bindings</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">make-frame</span> <span class="nv">bindings</span><span class="p">)</span> <span class="nv">base-env</span><span class="p">))</span>
+	   <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">length </span><span class="nv">vars</span><span class="p">)</span> <span class="p">(</span><span class="nb">length </span><span class="nv">vals</span><span class="p">))</span>
+	       <span class="p">(</span><span class="nf">error</span> <span class="s">"Too many arguments supplied"</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nf">error</span> <span class="s">"Too few arguments supplied"</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lookup-variable-value</span> <span class="nv">var</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lookup</span> <span class="nv">var</span> <span class="nv">bindings</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">null-bindings?</span> <span class="nv">bindings</span><span class="p">)</span>
+	     <span class="nv">false</span>
+	     <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">first</span> <span class="p">(</span><span class="nf">first-binding</span> <span class="nv">bindings</span><span class="p">)))</span>
+	       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">var</span> <span class="p">(</span><span class="nf">binding-variable</span> <span class="nv">first</span><span class="p">))</span>
+		   <span class="p">(</span><span class="nf">binding-value</span> <span class="nv">first</span><span class="p">)</span>
+		   <span class="p">(</span><span class="nf">lookup</span> <span class="nv">var</span> <span class="p">(</span><span class="nf">rest-bindings</span> <span class="nv">bindings</span><span class="p">))))))</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">env</span> <span class="nv">the-empty-environment</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nf">error</span> <span class="s">"Unbound variable"</span> <span class="nv">var</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">frame</span> <span class="p">(</span><span class="nf">first-frame</span> <span class="nv">env</span><span class="p">))</span>
+		 <span class="p">(</span><span class="nf">base-env</span> <span class="p">(</span><span class="nf">enclosing-environment</span> <span class="nv">env</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">result</span> <span class="p">(</span><span class="nf">lookup</span> <span class="nv">var</span> <span class="p">(</span><span class="nf">bindings-frame</span> <span class="nv">frame</span><span class="p">))))</span>
+	       <span class="p">(</span><span class="k">if </span><span class="nv">result</span>
+		   <span class="nv">result</span>
+		   <span class="p">(</span><span class="nf">lookup-variable-value</span> <span class="nv">var</span> <span class="nv">base-env</span><span class="p">))))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-variable-value!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">env</span><span class="p">)</span> <span class="c1">;the former one has too many lets, try another style</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">env-loop</span> <span class="nv">env</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">scan</span> <span class="nv">bindings</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">null-bindings?</span> <span class="nv">bindings</span><span class="p">)</span>
+		  <span class="p">(</span><span class="nf">env-loop</span> <span class="p">(</span><span class="nf">enclosing-environment</span> <span class="nv">env</span><span class="p">)))</span>
+		 <span class="p">((</span><span class="nb">eq? </span><span class="nv">var</span> <span class="p">(</span><span class="nf">binding-variable</span> <span class="p">(</span><span class="nf">first-binding</span> <span class="nv">bindings</span><span class="p">)))</span>
+		  <span class="p">(</span><span class="nf">set-value!</span> <span class="p">(</span><span class="nf">first-binding</span> <span class="nv">bindings</span><span class="p">)</span> <span class="nv">val</span><span class="p">))</span>
+		 <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">scan</span> <span class="p">(</span><span class="nf">rest-bindings</span> <span class="nv">bindings</span><span class="p">)))))</span>
+	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">env</span> <span class="nv">the-empty-environment</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nf">error</span> <span class="s">"Unbound variable -- SET!"</span> <span class="nv">var</span><span class="p">)</span>
+	     <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">frame</span> <span class="p">(</span><span class="nf">first-frame</span> <span class="nv">env</span><span class="p">)))</span>
+	       <span class="p">(</span><span class="nf">scan</span> <span class="p">(</span><span class="nf">bindings-frame</span> <span class="nv">frame</span><span class="p">)))))</span>
+       <span class="p">(</span><span class="nf">env-loop</span> <span class="nv">env</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">define-variable!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">frame</span> <span class="p">(</span><span class="nf">first-frame</span> <span class="nv">env</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">scan</span> <span class="nv">bindings</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">null-bindings?</span> <span class="nv">bindings</span><span class="p">)</span>
+		  <span class="p">(</span><span class="nf">add-binding-to-frame!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">frame</span><span class="p">))</span>
+		 <span class="p">((</span><span class="nb">eq? </span><span class="nv">var</span> <span class="p">(</span><span class="nf">binding-variable</span> <span class="p">(</span><span class="nf">first-binding</span> <span class="nv">bindings</span><span class="p">)))</span>
+		  <span class="p">(</span><span class="nf">set-value!</span> <span class="p">(</span><span class="nf">first-binding</span> <span class="nv">bindings</span><span class="p">)</span> <span class="nv">val</span><span class="p">))</span>
+		 <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">scan</span> <span class="p">(</span><span class="nf">rest-bindings</span> <span class="nv">bindings</span><span class="p">)))))</span>
+	 <span class="p">(</span><span class="nf">scan</span> <span class="p">(</span><span class="nf">bindings-frame</span> <span class="nv">frame</span><span class="p">))))</span>
+</pre></div>
+</div>
+</li>
+
+<li>
+<a id="orgaeb6672"></a>4.12<br><div class="outline-text-5" id="text-orgaeb6672">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">scan</span> <span class="nv">vars</span> <span class="nv">vals</span> <span class="nv">var</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">vars</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span>
+	     <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">car </span><span class="nv">vars</span><span class="p">)</span> <span class="nv">var</span><span class="p">)</span>
+	      <span class="nv">vals</span><span class="p">)</span>
+	     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">scan</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">vars</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">vals</span><span class="p">)</span> <span class="nv">var</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">env-loop</span> <span class="nv">env</span> <span class="nv">proc</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">eq? </span><span class="nv">env</span> <span class="nv">the-empty-environment</span><span class="p">)</span>
+	   <span class="nv">false</span>
+	   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">frame</span> <span class="p">(</span><span class="nf">first-frame</span> <span class="nv">env</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">result</span> <span class="p">(</span><span class="nf">scan</span> <span class="p">(</span><span class="nf">frame-variables</span> <span class="nv">frame</span><span class="p">)</span>
+				 <span class="p">(</span><span class="nf">frame-values</span> <span class="nv">frame</span><span class="p">)</span>
+				 <span class="nv">var</span><span class="p">)))</span>
+	       <span class="p">(</span><span class="k">if </span><span class="nv">result</span>
+		   <span class="p">(</span><span class="nf">proc</span> <span class="nv">result</span><span class="p">)</span>
+		   <span class="p">(</span><span class="nf">env-loop</span> <span class="p">(</span><span class="nf">enclosing-environment</span> <span class="nv">env</span><span class="p">)))))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lookup-variable-value</span> <span class="nv">var</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">result</span> <span class="p">(</span><span class="nf">env-loop</span> <span class="nv">env</span> <span class="nv">car</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">if </span><span class="nv">result</span>
+	     <span class="nv">result</span>
+	     <span class="p">(</span><span class="nf">error</span> <span class="s">"Unbound variable"</span> <span class="nv">var</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-variable-value!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">set-value!</span> <span class="nv">vals</span><span class="p">)</span>
+	 <span class="p">(</span><span class="nb">set-car! </span><span class="nv">vals</span> <span class="nv">val</span><span class="p">))</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">result</span> <span class="p">(</span><span class="nf">env-loop</span> <span class="nv">env</span> <span class="nv">set-value!</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">not </span><span class="nv">result</span><span class="p">)</span>			<span class="c1">;though set-car! returns unspecific return value, (not result) is false</span>
+	     <span class="p">(</span><span class="nf">error</span> <span class="s">"Unbound variable"</span> <span class="nv">var</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">define-variable!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">frame</span> <span class="p">(</span><span class="nf">first-frame</span> <span class="nv">env</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">result</span> <span class="p">(</span><span class="nf">scan</span> <span class="p">(</span><span class="nf">frame-variables</span> <span class="nv">frame</span><span class="p">)</span>
+			     <span class="p">(</span><span class="nf">frame-values</span> <span class="nv">frame</span><span class="p">)</span>
+			     <span class="nv">var</span><span class="p">)))</span>
+	   <span class="p">(</span><span class="k">if </span><span class="nv">result</span>
+	       <span class="p">(</span><span class="nb">set-car! </span><span class="nv">result</span> <span class="nv">val</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nf">add-binding-to-frame!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">frame</span><span class="p">)))))</span>
+</pre></div>
+</div>
+</li>
+
+<li>
+<a id="orgd5f8eb3"></a>4.13<br><div class="outline-text-5" id="text-orgd5f8eb3">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">unbound?</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="ss">'unbound</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">unbound-var</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">cadr </span><span class="nv">exp</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">make-unbound!</span> <span class="nv">var</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">list </span><span class="ss">'unbound</span> <span class="nv">var</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">eval-unbound</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">unbound-variable!</span> <span class="p">(</span><span class="nf">unbound-var</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">unbound-variable!</span> <span class="nv">var</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">frame</span> <span class="p">(</span><span class="nf">first-frame</span> <span class="nv">env</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">scan</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">)</span>
+	   <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">vars</span><span class="p">)</span>
+		  <span class="ss">'ok</span><span class="p">)</span>
+		 <span class="p">((</span><span class="nb">eq? </span><span class="nv">var</span> <span class="p">(</span><span class="nb">car </span><span class="nv">vars</span><span class="p">))</span>
+		  <span class="p">(</span><span class="k">begin </span><span class="p">(</span><span class="k">set! </span><span class="nv">vars</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">vars</span><span class="p">))</span>
+			 <span class="p">(</span><span class="k">set! </span><span class="nv">vals</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">vals</span><span class="p">))))</span>
+		 <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">scan</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">vars</span><span class="p">)</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">vals</span><span class="p">)))))</span>
+	 <span class="p">(</span><span class="nf">scan</span> <span class="p">(</span><span class="nf">frame-variables</span> <span class="nv">frame</span><span class="p">)</span>
+	       <span class="p">(</span><span class="nf">frame-values</span> <span class="nv">frame</span><span class="p">))))</span>
+
+     <span class="c1">;; only delete the matched binding in the current environment</span>
+     <span class="c1">;; cause that the same-name binding in outside environments</span>
+     <span class="c1">;; may be utilized by other procedures</span>
+     <span class="c1">;; it is a disaster for these procedures if all unbounded</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-org32d2bd6" class="outline-4">
+<h4 id="org32d2bd6">作为程序运行这个求值器</h4>
+<div class="outline-text-4" id="text-org32d2bd6">
+<ol class="org-ol">
+<li>只要看明白代码；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org99b7c34" class="outline-4">
+<h4 id="org99b7c34">练习 4.14</h4>
+<div class="outline-text-4" id="text-org99b7c34">
+<div class="highlight"><pre><span></span>    <span class="c1">;; eva's way is passed because the map definition is implemented in eval</span>
+    <span class="c1">;; so when this map procedure is applied, eval looks for its definition binding</span>
+    <span class="c1">;; then applies arguments and env to the map definition body</span>
+
+    <span class="c1">;; louis takes the map procedure as the original primitive procedure in eval</span>
+    <span class="c1">;; so when the map application is processed</span>
+    <span class="c1">;; since it is a primitive procedure</span>
+    <span class="c1">;; the apply internal result is like</span>
+    <span class="c1">;; (apply-primitive-procedure procedure arguments)</span>
+    <span class="c1">;; for example</span>
+    <span class="c1">;; '(map '* (1 2 3) (4 5 6))</span>
+    <span class="c1">;; but in the internal result</span>
+    <span class="c1">;; (apply-in-underlying-scheme map (list 'primitive *) (1 2 3) (4 5 6))</span>
+    <span class="c1">;; apply (list 'primitive *) to args in eval would fall into application branch</span>
+    <span class="c1">;; but at last 'primitive is a symbol with no binding</span>
+    <span class="c1">;; so it's failed</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgc29db0f" class="outline-4">
+<h4 id="orgc29db0f">将数据作为程序</h4>
+<div class="outline-text-4" id="text-orgc29db0f">
+<ol class="org-ol">
+<li>关于程序意义的一种操作式观点，就是将程序看作一种抽象的（可能无穷大的）机
+器的一个描述，我们也可以把求值器看作是一部非常特殊的机器，它要求以一部机
+器的描述作为输入，给定了一个输入以后，求值器就能够规划自己的行为，模拟被
+描述机器的执行过程；</li>
+<li>求值器的另一惊人方面，在于它就像是我们的程序设计语言所操作的数据对象和这
+个程序设计语言本身之间的一座桥梁；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org91c088f" class="outline-4">
+<h4 id="org91c088f">练习 4.15</h4>
+<div class="outline-text-4" id="text-org91c088f">
+<div class="highlight"><pre><span></span>    <span class="c1">;; 引起悖论</span>
+    <span class="c1">;; (try try) 如果可以终止，在 try 的过程体那将执行 (run-forever);</span>
+    <span class="c1">;; 如果不可以终止，将返回 'halted。</span>
+
+    <span class="c1">;; 所以不可能写出一个过程 halts?</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org15d6b58" class="outline-4">
+<h4 id="org15d6b58">内部定义</h4>
+<div class="outline-text-4" id="text-org15d6b58">
+<ol class="org-ol">
+<li>存在一些处理内部定义的方法，可以使内部名字的定义真正具有同样的作用域（不
+然就会对代码形式有一些限制）；</li>
 </ol>
 </div>
 </div>
