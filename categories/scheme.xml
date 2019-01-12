@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Fri, 11 Jan 2019 14:55:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-4(2)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-4%282%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org80061ce" class="outline-2"&gt;
-&lt;h2 id="org80061ce"&gt;Scheme 的变形－惰性求值&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org80061ce"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>钉钉是世界上最傻逼的app (Posts about Scheme)</title><link>https://zero4drift.github.io/</link><description></description><atom:link href="https://zero4drift.github.io/categories/scheme.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2019 &lt;a href="mailto:fang0052@e.ntu.edu.sg"&gt;zero4drift&lt;/a&gt; </copyright><lastBuildDate>Sat, 12 Jan 2019 13:47:55 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SICP-Refresher-Chapter-4(2)</title><link>https://zero4drift.github.io/posts/sicp-refresher-chapter-4%282%29/</link><dc:creator>zero4drift</dc:creator><description>&lt;div id="outline-container-org3d0634c" class="outline-2"&gt;
+&lt;h2 id="org3d0634c"&gt;Scheme 的变形－惰性求值&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3d0634c"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;发明新的语言，常常就是先用一种现有的高级程序设计语言写出一个嵌入了这个新语
 言的求值器；&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org154df06" class="outline-3"&gt;
-&lt;h3 id="org154df06"&gt;正则序和应用序&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org154df06"&gt;
+&lt;div id="outline-container-org8155e4b" class="outline-3"&gt;
+&lt;h3 id="org8155e4b"&gt;正则序和应用序&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org8155e4b"&gt;
 &lt;ol class="org-ol"&gt;
 &lt;li&gt;惰性求值的一个优点就是使某些过程能够完成有用的计算，即使对它们的某些参数
 的求值将产生错误甚至根本不能终止；&lt;/li&gt;
@@ -21,13 +21,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb586f5a" class="outline-3"&gt;
-&lt;h3 id="orgb586f5a"&gt;练习 4.25-4.26&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb586f5a"&gt;
+&lt;div id="outline-container-orgb882f43" class="outline-3"&gt;
+&lt;h3 id="orgb882f43"&gt;练习 4.25-4.26&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb882f43"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org5d3c622" class="outline-4"&gt;
-&lt;h4 id="org5d3c622"&gt;4.25&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org5d3c622"&gt;
+&lt;div id="outline-container-orgdac807c" class="outline-4"&gt;
+&lt;h4 id="orgdac807c"&gt;4.25&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgdac807c"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; in applicative order scheme&lt;/span&gt;
      &lt;span class="c1"&gt;;; this factorial would runs into death loop&lt;/span&gt;
      &lt;span class="c1"&gt;;; even with the n equals to 1&lt;/span&gt;
@@ -38,9 +38,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf73616a" class="outline-4"&gt;
-&lt;h4 id="orgf73616a"&gt;4.26&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgf73616a"&gt;
+&lt;div id="outline-container-org54dd08d" class="outline-4"&gt;
+&lt;h4 id="org54dd08d"&gt;4.26&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org54dd08d"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; a&lt;/span&gt;
 
      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;unless?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -68,6 +68,288 @@
 
      &lt;span class="c1"&gt;;; b&lt;/span&gt;
      &lt;span class="c1"&gt;;; a case which is about high order procedure...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgacd5003" class="outline-3"&gt;
+&lt;h3 id="orgacd5003"&gt;一个采用惰性求值的解释器&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgacd5003"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;需要完成的所有修改都围绕着过程应用；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org595e08c" class="outline-3"&gt;
+&lt;h3 id="org595e08c"&gt;练习 4.27-4.31&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org595e08c"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org87e07d0" class="outline-4"&gt;
+&lt;h4 id="org87e07d0"&gt;4.27&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org87e07d0"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;id&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;set! &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="nv"&gt;count&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+       &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;w&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;id&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;id&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; count&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 1&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; w&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 10&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; count&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0abb046" class="outline-4"&gt;
+&lt;h4 id="org0abb046"&gt;4.28&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org0abb046"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; the operator maybe a thunk lambda object&lt;/span&gt;
+     &lt;span class="c1"&gt;;; if not pass the actual-value result of operator to apply;&lt;/span&gt;
+     &lt;span class="c1"&gt;;; within apply it would always fall to the third clause&lt;/span&gt;
+     &lt;span class="c1"&gt;;; which reports error.&lt;/span&gt;
+     &lt;span class="c1"&gt;;; so it must be evaluated by actual-value before passed to apply.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1752d6f" class="outline-4"&gt;
+&lt;h4 id="org1752d6f"&gt;4.29&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org1752d6f"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fibonacci&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;= &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;+ &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fibonacci&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+		      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;fibonacci&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;- &lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;))))))&lt;/span&gt;
+     &lt;span class="c1"&gt;;; better with memo-proc&lt;/span&gt;
+
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;square&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;* &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; with memo&lt;/span&gt;
+     &lt;span class="c1"&gt;;; (square (id 10))&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 100&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; count&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 1&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; without memo&lt;/span&gt;
+     &lt;span class="c1"&gt;;; (square (id 10)&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 100&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; count&lt;/span&gt;
+     &lt;span class="c1"&gt;;; 2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge1d67dd" class="outline-4"&gt;
+&lt;h4 id="orge1d67dd"&gt;4.30&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orge1d67dd"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; a&lt;/span&gt;
+     &lt;span class="c1"&gt;;; because the procedure body of (lambda (x) (newline) (display x)) has two primitive procedures&lt;/span&gt;
+     &lt;span class="c1"&gt;;; when evaluated using eval, it will call actual-value to get x&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; b&lt;/span&gt;
+     &lt;span class="c1"&gt;;; the original one&lt;/span&gt;
+     &lt;span class="c1"&gt;;; (p1 1) =&amp;gt; (1 2)&lt;/span&gt;
+     &lt;span class="c1"&gt;;; (p2 1) =&amp;gt; 1 (set! x (cons x '(2))) would be delayed in (p (set! x (cons x '(2))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; cy's version&lt;/span&gt;
+     &lt;span class="c1"&gt;;; (p1 1) =&amp;gt; (1 2)&lt;/span&gt;
+     &lt;span class="c1"&gt;;; (p2 1) =&amp;gt; (1 2)&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; c&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;actual-value&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;force-it&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;force-it&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;thunk?&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;actual-value&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;thunk-exp&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;thunk-env&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	   &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;				&lt;span class="c1"&gt;;when the exp is not a thunk, just return it&lt;/span&gt;
+
+
+     &lt;span class="c1"&gt;;; define&lt;/span&gt;
+     &lt;span class="c1"&gt;;; I prefer cy's way.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org26e5a3d" class="outline-4"&gt;
+&lt;h4 id="org26e5a3d"&gt;4.31&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org26e5a3d"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; in eval&lt;/span&gt;
+     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;application?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;apply &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;actual-value&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;operator&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;operands&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;				&lt;span class="c1"&gt;;keep same&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;apply &lt;/span&gt;&lt;span class="nv"&gt;procedure&lt;/span&gt; &lt;span class="nv"&gt;arguments&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;primitive-procedure?&lt;/span&gt; &lt;span class="nv"&gt;procedure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;apply-primitive-procedure&lt;/span&gt;
+	       &lt;span class="nv"&gt;procedure&lt;/span&gt;
+	       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-of-arg-values&lt;/span&gt; &lt;span class="nv"&gt;arguments&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;compound-procedure?&lt;/span&gt; &lt;span class="nv"&gt;procedure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;parameters&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;procedure-parameters&lt;/span&gt; &lt;span class="nv"&gt;procedure&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;eval-sequence&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;procedure-body&lt;/span&gt; &lt;span class="nv"&gt;procedure&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;extend-environment&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;map &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;not &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;pair? &lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt; &lt;span class="nv"&gt;parameters&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-of-mixed-args&lt;/span&gt; &lt;span class="nv"&gt;parameters&lt;/span&gt; &lt;span class="nv"&gt;arguments&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;procedure-environment&lt;/span&gt; &lt;span class="nv"&gt;procedure&lt;/span&gt;&lt;span class="p"&gt;)))))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;else&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;error&lt;/span&gt;
+	       &lt;span class="s"&gt;"Unknown procedure type -- APPLY"&lt;/span&gt; &lt;span class="nv"&gt;procedure&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-of-arg-values&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;no-operands?&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;actual-value&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-operand&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-arg-values&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-operands&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+				  &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-of-mixed-args&lt;/span&gt; &lt;span class="nv"&gt;prms&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;on-prms&lt;/span&gt; &lt;span class="nv"&gt;prm&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;not &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;pair? &lt;/span&gt;&lt;span class="nv"&gt;prm&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;actual-value&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;prm&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ss"&gt;'lazy&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;delay-it&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;prm&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ss"&gt;'lazy-memo&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;delay-it-memo&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;no-operands?&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;on-prms&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;prms&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;first-operand&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;list-of-mixed-args&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;prms&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;rest-operands&lt;/span&gt; &lt;span class="nv"&gt;exps&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;delay-it&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'thunk&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;delay-it-memo&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'thunk-memo&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;actual-value&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;force-it&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;env&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;force-it&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;thunk?&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;actual-value&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;thunk-exp&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;thunk-env&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;thunk-memo?&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;result&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;actual-value&lt;/span&gt;
+			     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;thunk-exp&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;thunk-env&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set-car! &lt;/span&gt;&lt;span class="nv"&gt;obj&lt;/span&gt; &lt;span class="ss"&gt;'evaluated-thunk&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set-car! &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+		&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;set-cdr! &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+		&lt;span class="nv"&gt;result&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;evaluated-thunk?&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;thunk-value&lt;/span&gt; &lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="nv"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; other procedures kept unchanged&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org82f6bd0" class="outline-3"&gt;
+&lt;h3 id="org82f6bd0"&gt;将流作为惰性的表&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org82f6bd0"&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;将序对表示为过程，而不是去扩充惰性求值器使 cons 变成非严格的基本过程，这
+样可以充分利用求值器的惰性求值特性；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6a79643" class="outline-3"&gt;
+&lt;h3 id="org6a79643"&gt;练习 4.32-4.34&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6a79643"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org999baa9" class="outline-4"&gt;
+&lt;h4 id="org999baa9"&gt;4.32&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org999baa9"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="c1"&gt;;; car and cdr of lazy list in this chapter are both delayed&lt;/span&gt;
+     &lt;span class="c1"&gt;;; only cdr of lazy list in chapter 3 is delayed&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; how could one programmer makes advantage of this feature?&lt;/span&gt;
+     &lt;span class="c1"&gt;;; just like the procedure list-ref&lt;/span&gt;
+     &lt;span class="c1"&gt;;; only computes the desired car part&lt;/span&gt;
+     &lt;span class="c1"&gt;;; as for the version defined in chapter 3&lt;/span&gt;
+     &lt;span class="c1"&gt;;; every car part would be computed until n equals to index;&lt;/span&gt;
+     &lt;span class="c1"&gt;;; the one in chapter 4 text is more efficient&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb6dd3ff" class="outline-4"&gt;
+&lt;h4 id="orgb6dd3ff"&gt;4.33&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgb6dd3ff"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;quoted?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="ss"&gt;'quote&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;text-of-quotation&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;let &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;temp&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cadr &lt;/span&gt;&lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	 &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;not &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;pair? &lt;/span&gt;&lt;span class="nv"&gt;temp&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	     &lt;span class="nv"&gt;temp&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;new-list&lt;/span&gt; &lt;span class="nv"&gt;temp&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;new-list&lt;/span&gt; &lt;span class="nv"&gt;pair&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;null? &lt;/span&gt;&lt;span class="nv"&gt;pair&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	   &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+	   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;make-procedure&lt;/span&gt;
+	    &lt;span class="o"&gt;'&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'m&lt;/span&gt; &lt;span class="ss"&gt;'car-value&lt;/span&gt; &lt;span class="ss"&gt;'cdr-value&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+	    &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;extend-environment&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'car-value&lt;/span&gt; &lt;span class="ss"&gt;'cdr-value&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;pair&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;new-list&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;pair&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="nv"&gt;the-empty-environment&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6ef8948" class="outline-4"&gt;
+&lt;h4 id="org6ef8948"&gt;4.34&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org6ef8948"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;user-print&lt;/span&gt; &lt;span class="nv"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;cond &lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;compound-procedure?&lt;/span&gt; &lt;span class="nv"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;display &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'compound-procedure&lt;/span&gt;
+			     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;procedure-parameters&lt;/span&gt; &lt;span class="nv"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;procedure-body&lt;/span&gt; &lt;span class="nv"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			     &lt;span class="ss"&gt;'&amp;lt;procedure-env&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;lazy-list?&lt;/span&gt; &lt;span class="nv"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+	      &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;display &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list &lt;/span&gt;&lt;span class="ss"&gt;'lazy-list&lt;/span&gt;
+			     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;caddddr&lt;/span&gt; &lt;span class="nv"&gt;object&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+			     &lt;span class="o"&gt;'...&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+	     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;else &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;display &lt;/span&gt;&lt;span class="nv"&gt;object&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="c1"&gt;;; reserve the old cons car cdr in evaluator&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;old-cons&lt;/span&gt; &lt;span class="nv"&gt;cons&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;old-car&lt;/span&gt; &lt;span class="nv"&gt;car&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="nv"&gt;old-cdr&lt;/span&gt; &lt;span class="nv"&gt;cdr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="nv"&gt;symbol&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eq? &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;old-car&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;symbol&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;lazy-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;tagged-list?&lt;/span&gt; &lt;span class="nv"&gt;exp&lt;/span&gt; &lt;span class="ss"&gt;'lazy-list&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cons &lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;old-cons&lt;/span&gt; &lt;span class="ss"&gt;'lazy-list&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;m&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;m&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt; &lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;car &lt;/span&gt;&lt;span class="nv"&gt;z&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;old-cdr&lt;/span&gt; &lt;span class="nv"&gt;z&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;p&lt;/span&gt; &lt;span class="nv"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;define &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;cdr &lt;/span&gt;&lt;span class="nv"&gt;z&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+       &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;old-cdr&lt;/span&gt; &lt;span class="nv"&gt;z&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nf"&gt;p&lt;/span&gt; &lt;span class="nv"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;q&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;

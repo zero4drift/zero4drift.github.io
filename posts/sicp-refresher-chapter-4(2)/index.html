@@ -80,18 +80,18 @@
     
     <div id="post-main" class="main">
         <div class="container">
-        <div id="outline-container-org80061ce" class="outline-2">
-<h2 id="org80061ce">Scheme 的变形－惰性求值</h2>
-<div class="outline-text-2" id="text-org80061ce">
+        <div id="outline-container-org3d0634c" class="outline-2">
+<h2 id="org3d0634c">Scheme 的变形－惰性求值</h2>
+<div class="outline-text-2" id="text-org3d0634c">
 <ol class="org-ol">
 <li>发明新的语言，常常就是先用一种现有的高级程序设计语言写出一个嵌入了这个新语
 言的求值器；</li>
 </ol>
 </div>
 
-<div id="outline-container-org154df06" class="outline-3">
-<h3 id="org154df06">正则序和应用序</h3>
-<div class="outline-text-3" id="text-org154df06">
+<div id="outline-container-org8155e4b" class="outline-3">
+<h3 id="org8155e4b">正则序和应用序</h3>
+<div class="outline-text-3" id="text-org8155e4b">
 <ol class="org-ol">
 <li>惰性求值的一个优点就是使某些过程能够完成有用的计算，即使对它们的某些参数
 的求值将产生错误甚至根本不能终止；</li>
@@ -102,13 +102,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgb586f5a" class="outline-3">
-<h3 id="orgb586f5a">练习 4.25-4.26</h3>
-<div class="outline-text-3" id="text-orgb586f5a">
+<div id="outline-container-orgb882f43" class="outline-3">
+<h3 id="orgb882f43">练习 4.25-4.26</h3>
+<div class="outline-text-3" id="text-orgb882f43">
 </div>
-<div id="outline-container-org5d3c622" class="outline-4">
-<h4 id="org5d3c622">4.25</h4>
-<div class="outline-text-4" id="text-org5d3c622">
+<div id="outline-container-orgdac807c" class="outline-4">
+<h4 id="orgdac807c">4.25</h4>
+<div class="outline-text-4" id="text-orgdac807c">
 <div class="highlight"><pre><span></span>     <span class="c1">;; in applicative order scheme</span>
      <span class="c1">;; this factorial would runs into death loop</span>
      <span class="c1">;; even with the n equals to 1</span>
@@ -119,9 +119,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgf73616a" class="outline-4">
-<h4 id="orgf73616a">4.26</h4>
-<div class="outline-text-4" id="text-orgf73616a">
+<div id="outline-container-org54dd08d" class="outline-4">
+<h4 id="org54dd08d">4.26</h4>
+<div class="outline-text-4" id="text-org54dd08d">
 <div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
 
      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">unless?</span> <span class="nv">exp</span><span class="p">)</span>
@@ -149,6 +149,288 @@
 
      <span class="c1">;; b</span>
      <span class="c1">;; a case which is about high order procedure...</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgacd5003" class="outline-3">
+<h3 id="orgacd5003">一个采用惰性求值的解释器</h3>
+<div class="outline-text-3" id="text-orgacd5003">
+<ol class="org-ol">
+<li>需要完成的所有修改都围绕着过程应用；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org595e08c" class="outline-3">
+<h3 id="org595e08c">练习 4.27-4.31</h3>
+<div class="outline-text-3" id="text-org595e08c">
+</div>
+<div id="outline-container-org87e07d0" class="outline-4">
+<h4 id="org87e07d0">4.27</h4>
+<div class="outline-text-4" id="text-org87e07d0">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="nv">count</span> <span class="mi">0</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">id</span> <span class="nv">x</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">set! </span><span class="nv">count</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">count</span> <span class="mi">1</span><span class="p">))</span>
+       <span class="nv">x</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">w</span> <span class="p">(</span><span class="nf">id</span> <span class="p">(</span><span class="nf">id</span> <span class="mi">10</span><span class="p">)))</span>
+
+     <span class="c1">;; count</span>
+     <span class="c1">;; 1</span>
+
+     <span class="c1">;; w</span>
+     <span class="c1">;; 10</span>
+
+     <span class="c1">;; count</span>
+     <span class="c1">;; 2</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org0abb046" class="outline-4">
+<h4 id="org0abb046">4.28</h4>
+<div class="outline-text-4" id="text-org0abb046">
+<div class="highlight"><pre><span></span>     <span class="c1">;; the operator maybe a thunk lambda object</span>
+     <span class="c1">;; if not pass the actual-value result of operator to apply;</span>
+     <span class="c1">;; within apply it would always fall to the third clause</span>
+     <span class="c1">;; which reports error.</span>
+     <span class="c1">;; so it must be evaluated by actual-value before passed to apply.</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org1752d6f" class="outline-4">
+<h4 id="org1752d6f">4.29</h4>
+<div class="outline-text-4" id="text-org1752d6f">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fibonacci</span> <span class="nv">n</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+	     <span class="p">((</span><span class="nb">= </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+	     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">fibonacci</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))</span>
+		      <span class="p">(</span><span class="nf">fibonacci</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">2</span><span class="p">))))))</span>
+     <span class="c1">;; better with memo-proc</span>
+
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+
+     <span class="c1">;; with memo</span>
+     <span class="c1">;; (square (id 10))</span>
+     <span class="c1">;; 100</span>
+
+     <span class="c1">;; count</span>
+     <span class="c1">;; 1</span>
+
+     <span class="c1">;; without memo</span>
+     <span class="c1">;; (square (id 10)</span>
+     <span class="c1">;; 100</span>
+
+     <span class="c1">;; count</span>
+     <span class="c1">;; 2</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orge1d67dd" class="outline-4">
+<h4 id="orge1d67dd">4.30</h4>
+<div class="outline-text-4" id="text-orge1d67dd">
+<div class="highlight"><pre><span></span>     <span class="c1">;; a</span>
+     <span class="c1">;; because the procedure body of (lambda (x) (newline) (display x)) has two primitive procedures</span>
+     <span class="c1">;; when evaluated using eval, it will call actual-value to get x</span>
+
+     <span class="c1">;; b</span>
+     <span class="c1">;; the original one</span>
+     <span class="c1">;; (p1 1) =&gt; (1 2)</span>
+     <span class="c1">;; (p2 1) =&gt; 1 (set! x (cons x '(2))) would be delayed in (p (set! x (cons x '(2))))</span>
+
+     <span class="c1">;; cy's version</span>
+     <span class="c1">;; (p1 1) =&gt; (1 2)</span>
+     <span class="c1">;; (p2 1) =&gt; (1 2)</span>
+
+     <span class="c1">;; c</span>
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">actual-value</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">force-it</span> <span class="p">(</span><span class="nb">eval </span><span class="nv">exp</span> <span class="nv">env</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">force-it</span> <span class="nv">obj</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">thunk?</span> <span class="nv">obj</span><span class="p">)</span>
+	   <span class="p">(</span><span class="nf">actual-value</span> <span class="p">(</span><span class="nf">thunk-exp</span> <span class="nv">obj</span><span class="p">)</span> <span class="p">(</span><span class="nf">thunk-env</span> <span class="nv">obj</span><span class="p">))</span>
+	   <span class="nv">obj</span><span class="p">))</span>				<span class="c1">;when the exp is not a thunk, just return it</span>
+
+
+     <span class="c1">;; define</span>
+     <span class="c1">;; I prefer cy's way.</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org26e5a3d" class="outline-4">
+<h4 id="org26e5a3d">4.31</h4>
+<div class="outline-text-4" id="text-org26e5a3d">
+<div class="highlight"><pre><span></span>     <span class="c1">;; in eval</span>
+     <span class="p">((</span><span class="nf">application?</span> <span class="nv">exp</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">apply </span><span class="p">(</span><span class="nf">actual-value</span> <span class="p">(</span><span class="nf">operator</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nf">operands</span> <span class="nv">exp</span><span class="p">)</span>
+	     <span class="nv">env</span><span class="p">))</span>				<span class="c1">;keep same</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">apply </span><span class="nv">procedure</span> <span class="nv">arguments</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">primitive-procedure?</span> <span class="nv">procedure</span><span class="p">)</span>
+	      <span class="p">(</span><span class="nf">apply-primitive-procedure</span>
+	       <span class="nv">procedure</span>
+	       <span class="p">(</span><span class="nf">list-of-arg-values</span> <span class="nv">arguments</span> <span class="nv">env</span><span class="p">)))</span>
+	     <span class="p">((</span><span class="nf">compound-procedure?</span> <span class="nv">procedure</span><span class="p">)</span>
+	      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">parameters</span> <span class="p">(</span><span class="nf">procedure-parameters</span> <span class="nv">procedure</span><span class="p">)))</span>
+		<span class="p">(</span><span class="nf">eval-sequence</span>
+		 <span class="p">(</span><span class="nf">procedure-body</span> <span class="nv">procedure</span><span class="p">)</span>
+		 <span class="p">(</span><span class="nf">extend-environment</span>
+		  <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">i</span><span class="p">)</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">i</span><span class="p">))</span> <span class="nv">i</span> <span class="p">(</span><span class="nb">car </span><span class="nv">i</span><span class="p">)))</span> <span class="nv">parameters</span><span class="p">)</span>
+		  <span class="p">(</span><span class="nf">list-of-mixed-args</span> <span class="nv">parameters</span> <span class="nv">arguments</span> <span class="nv">env</span><span class="p">)</span>
+		  <span class="p">(</span><span class="nf">procedure-environment</span> <span class="nv">procedure</span><span class="p">)))))</span>
+	     <span class="p">(</span><span class="nf">else</span>
+	      <span class="p">(</span><span class="nf">error</span>
+	       <span class="s">"Unknown procedure type -- APPLY"</span> <span class="nv">procedure</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">list-of-arg-values</span> <span class="nv">exps</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">no-operands?</span> <span class="nv">exps</span><span class="p">)</span>
+	   <span class="o">'</span><span class="p">()</span>
+	   <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">actual-value</span> <span class="p">(</span><span class="nf">first-operand</span> <span class="nv">exps</span><span class="p">)</span> <span class="nv">env</span><span class="p">)</span>
+		 <span class="p">(</span><span class="nf">list-arg-values</span> <span class="p">(</span><span class="nf">rest-operands</span> <span class="nv">exps</span><span class="p">)</span>
+				  <span class="nv">env</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">list-of-mixed-args</span> <span class="nv">prms</span> <span class="nv">exps</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">on-prms</span> <span class="nv">prm</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">not </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">prm</span><span class="p">))</span> <span class="p">(</span><span class="nf">actual-value</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">))</span>
+	       <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">prm</span><span class="p">)</span> <span class="ss">'lazy</span><span class="p">)</span> <span class="p">(</span><span class="nf">delay-it</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">))</span>
+	       <span class="p">((</span><span class="nb">eq? </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">prm</span><span class="p">)</span> <span class="ss">'lazy-memo</span><span class="p">)</span> <span class="p">(</span><span class="nf">delay-it-memo</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">))))</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">no-operands?</span> <span class="nv">exps</span><span class="p">)</span>
+	   <span class="o">'</span><span class="p">()</span>
+	   <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nf">on-prms</span> <span class="p">(</span><span class="nb">car </span><span class="nv">prms</span><span class="p">)</span> <span class="p">(</span><span class="nf">first-operand</span> <span class="nv">exps</span><span class="p">)</span> <span class="nv">env</span><span class="p">)</span>
+		 <span class="p">(</span><span class="nf">list-of-mixed-args</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">prms</span><span class="p">)</span> <span class="p">(</span><span class="nf">rest-operands</span> <span class="nv">exps</span><span class="p">)</span> <span class="nv">env</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">delay-it</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">list </span><span class="ss">'thunk</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">delay-it-memo</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">list </span><span class="ss">'thunk-memo</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">actual-value</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">force-it</span> <span class="p">(</span><span class="nb">eval </span><span class="nv">exp</span> <span class="nv">env</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">force-it</span> <span class="nv">obj</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">thunk?</span> <span class="nv">obj</span><span class="p">)</span>
+	      <span class="p">(</span><span class="nf">actual-value</span> <span class="p">(</span><span class="nf">thunk-exp</span> <span class="nv">obj</span><span class="p">)</span> <span class="p">(</span><span class="nf">thunk-env</span> <span class="nv">obj</span><span class="p">)))</span>
+	     <span class="p">((</span><span class="nf">thunk-memo?</span> <span class="nv">obj</span><span class="p">)</span>
+	      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">result</span> <span class="p">(</span><span class="nf">actual-value</span>
+			     <span class="p">(</span><span class="nf">thunk-exp</span> <span class="nv">obj</span><span class="p">)</span>
+			     <span class="p">(</span><span class="nf">thunk-env</span> <span class="nv">obj</span><span class="p">))))</span>
+		<span class="p">(</span><span class="nb">set-car! </span><span class="nv">obj</span> <span class="ss">'evaluated-thunk</span><span class="p">)</span>
+		<span class="p">(</span><span class="nb">set-car! </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">obj</span><span class="p">)</span> <span class="nv">result</span><span class="p">)</span>
+		<span class="p">(</span><span class="nb">set-cdr! </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">obj</span><span class="p">)</span> <span class="o">'</span><span class="p">())</span>
+		<span class="nv">result</span><span class="p">))</span>
+	     <span class="p">((</span><span class="nf">evaluated-thunk?</span> <span class="nv">obj</span><span class="p">)</span>
+	      <span class="p">(</span><span class="nf">thunk-value</span> <span class="nv">obj</span><span class="p">))</span>
+	     <span class="p">(</span><span class="k">else </span><span class="nv">obj</span><span class="p">)))</span>
+
+     <span class="c1">;; other procedures kept unchanged</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org82f6bd0" class="outline-3">
+<h3 id="org82f6bd0">将流作为惰性的表</h3>
+<div class="outline-text-3" id="text-org82f6bd0">
+<ol class="org-ol">
+<li>将序对表示为过程，而不是去扩充惰性求值器使 cons 变成非严格的基本过程，这
+样可以充分利用求值器的惰性求值特性；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org6a79643" class="outline-3">
+<h3 id="org6a79643">练习 4.32-4.34</h3>
+<div class="outline-text-3" id="text-org6a79643">
+</div>
+<div id="outline-container-org999baa9" class="outline-4">
+<h4 id="org999baa9">4.32</h4>
+<div class="outline-text-4" id="text-org999baa9">
+<div class="highlight"><pre><span></span>     <span class="c1">;; car and cdr of lazy list in this chapter are both delayed</span>
+     <span class="c1">;; only cdr of lazy list in chapter 3 is delayed</span>
+
+     <span class="c1">;; how could one programmer makes advantage of this feature?</span>
+     <span class="c1">;; just like the procedure list-ref</span>
+     <span class="c1">;; only computes the desired car part</span>
+     <span class="c1">;; as for the version defined in chapter 3</span>
+     <span class="c1">;; every car part would be computed until n equals to index;</span>
+     <span class="c1">;; the one in chapter 4 text is more efficient</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-orgb6dd3ff" class="outline-4">
+<h4 id="orgb6dd3ff">4.33</h4>
+<div class="outline-text-4" id="text-orgb6dd3ff">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">quoted?</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="ss">'quote</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">text-of-quotation</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">temp</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">exp</span><span class="p">)))</span>
+	 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">not </span><span class="p">(</span><span class="nb">pair? </span><span class="nv">temp</span><span class="p">))</span>
+	     <span class="nv">temp</span>
+	     <span class="p">(</span><span class="nf">new-list</span> <span class="nv">temp</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">new-list</span> <span class="nv">pair</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">null? </span><span class="nv">pair</span><span class="p">)</span>
+	   <span class="o">'</span><span class="p">()</span>
+	   <span class="p">(</span><span class="nf">make-procedure</span>
+	    <span class="o">'</span><span class="p">(</span><span class="nv">m</span><span class="p">)</span>
+	    <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">list </span><span class="ss">'m</span> <span class="ss">'car-value</span> <span class="ss">'cdr-value</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nf">extend-environment</span>
+	     <span class="p">(</span><span class="nb">list </span><span class="ss">'car-value</span> <span class="ss">'cdr-value</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">car </span><span class="nv">pair</span><span class="p">)</span> <span class="p">(</span><span class="nf">new-list</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">pair</span><span class="p">)))</span>
+	     <span class="nv">the-empty-environment</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org6ef8948" class="outline-4">
+<h4 id="org6ef8948">4.34</h4>
+<div class="outline-text-4" id="text-org6ef8948">
+<div class="highlight"><pre><span></span>     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">user-print</span> <span class="nv">object</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nf">compound-procedure?</span> <span class="nv">object</span><span class="p">)</span>
+	      <span class="p">(</span><span class="nb">display </span><span class="p">(</span><span class="nb">list </span><span class="ss">'compound-procedure</span>
+			     <span class="p">(</span><span class="nf">procedure-parameters</span> <span class="nv">object</span><span class="p">)</span>
+			     <span class="p">(</span><span class="nf">procedure-body</span> <span class="nv">object</span><span class="p">)</span>
+			     <span class="ss">'&lt;procedure-env&gt;</span><span class="p">)))</span>
+	     <span class="p">((</span><span class="nf">lazy-list?</span> <span class="nv">object</span><span class="p">)</span>
+	      <span class="p">(</span><span class="nb">display </span><span class="p">(</span><span class="nb">list </span><span class="ss">'lazy-list</span>
+			     <span class="p">(</span><span class="nf">caddddr</span> <span class="nv">object</span><span class="p">)</span>
+			     <span class="o">'...</span><span class="p">)))</span>
+	     <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nb">display </span><span class="nv">object</span><span class="p">))))</span>
+
+     <span class="c1">;; reserve the old cons car cdr in evaluator</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">old-cons</span> <span class="nv">cons</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">old-car</span> <span class="nv">car</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="nv">old-cdr</span> <span class="nv">cdr</span><span class="p">)</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="nv">symbol</span><span class="p">)</span>
+       <span class="p">(</span><span class="nb">eq? </span><span class="p">(</span><span class="nf">old-car</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">symbol</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">lazy-list?</span> <span class="nv">exp</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">tagged-list?</span> <span class="nv">exp</span> <span class="ss">'lazy-list</span><span class="p">))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cons </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+       <span class="p">(</span><span class="nf">old-cons</span> <span class="ss">'lazy-list</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">m</span><span class="p">)</span> <span class="p">(</span><span class="nf">m</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">car </span><span class="nv">z</span><span class="p">)</span>
+       <span class="p">((</span><span class="nf">old-cdr</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">p</span> <span class="nv">q</span><span class="p">)</span> <span class="nv">p</span><span class="p">)))</span>
+
+     <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">cdr </span><span class="nv">z</span><span class="p">)</span>
+       <span class="p">((</span><span class="nf">old-cdr</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">p</span> <span class="nv">q</span><span class="p">)</span> <span class="nv">q</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
