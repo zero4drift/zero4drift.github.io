@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Org on 找一个吃麦旋风的理由</title>
+    <link>https://zero4drift.github.io/tags/org/</link>
+    <description>Recent content in Org on 找一个吃麦旋风的理由</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 23 Jan 2018 11:51:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://zero4drift.github.io/tags/org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>IOS App Beorg 与坚果云同步 org 文件</title>
+      <link>https://zero4drift.github.io/post/ios-app-beorg-synced-with-jianguoyun/</link>
+      <pubDate>Tue, 23 Jan 2018 11:51:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/ios-app-beorg-synced-with-jianguoyun/</guid>
+      <description>Beorg 与坚果云同步 org 文件的设置 Beorg 设置坚果云同步 org 文件其实是可以的，以前我总是配置不成功是因为配置项可变 量太多，我尝试了多种配置组合，最后成功了。</description>
+    </item>
+    
+  </channel>
+</rss>

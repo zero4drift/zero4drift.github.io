@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SICP-Refresher-Chapter-4(1) - 找一个吃麦旋风的理由</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="zero4drift" />
+  <meta name="description" content="第四章 写在前面：本章代码并没有实际运行检查过（前三章基本没问题），并不保证 bug-free。 建立新语言是在工程设计中控制复杂性的一种威力强大" />
+
+  <meta name="keywords" content="代码, 算法, 工具" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://zero4drift.github.io/post/sicp-refresher-chapter-41/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.28854364c052ec02eba4ee5867bc889d3a567cdf337ba3a355c33511d20bee1e.css" integrity="sha256-KIVDZMBS7ALrpO5YZ7yInTpWfN8ze6OjVcM1EdIL7h4=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="SICP-Refresher-Chapter-4(1)" />
+<meta property="og:description" content="第四章 写在前面：本章代码并没有实际运行检查过（前三章基本没问题），并不保证 bug-free。 建立新语言是在工程设计中控制复杂性的一种威力强大" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zero4drift.github.io/post/sicp-refresher-chapter-41/" /><meta property="article:published_time" content="2019-01-09T19:01:00&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-14T22:23:16&#43;08:00"/>
+<meta itemprop="name" content="SICP-Refresher-Chapter-4(1)">
+<meta itemprop="description" content="第四章 写在前面：本章代码并没有实际运行检查过（前三章基本没问题），并不保证 bug-free。 建立新语言是在工程设计中控制复杂性的一种威力强大">
+
+
+<meta itemprop="datePublished" content="2019-01-09T19:01:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-09T19:01:00&#43;08:00" />
+<meta itemprop="wordCount" content="4813">
+
+
+
+<meta itemprop="keywords" content="SICP,Scheme," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SICP-Refresher-Chapter-4(1)"/>
+<meta name="twitter:description" content="第四章 写在前面：本章代码并没有实际运行检查过（前三章基本没问题），并不保证 bug-free。 建立新语言是在工程设计中控制复杂性的一种威力强大"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">找一个吃麦旋风的理由</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      找一个吃麦旋风的理由
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">SICP-Refresher-Chapter-4(1)</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-01-09" class="post-time">
+          2019-01-09
+        </time>
+        <div class="post-category">
+            <a href="https://zero4drift.github.io/categories/sicp/"> SICP </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#第四章">第四章</a>
+<ul>
+<li><a href="#元循环求值器">元循环求值器</a>
+<ul>
+<li><a href="#求值器的内核">求值器的内核</a></li>
+<li><a href="#练习-4-dot-1">练习 4.1</a></li>
+<li><a href="#表达式的表示">表达式的表示</a></li>
+<li><a href="#练习-4-dot-2-4-dot-10">练习 4.2-4.10</a></li>
+<li><a href="#求值器数据结构">求值器数据结构</a></li>
+<li><a href="#练习-4-dot-11-4-dot-13">练习 4.11-4.13</a></li>
+<li><a href="#作为程序运行这个求值器">作为程序运行这个求值器</a></li>
+<li><a href="#练习-4-dot-14">练习 4.14</a></li>
+<li><a href="#将数据作为程序">将数据作为程序</a></li>
+<li><a href="#练习-4-dot-15">练习 4.15</a></li>
+<li><a href="#内部定义">内部定义</a></li>
+<li><a href="#练习-4-dot-16-4-dot-21">练习 4.16-4.21</a></li>
+<li><a href="#将语法分析与执行分离">将语法分析与执行分离</a></li>
+<li><a href="#练习-4-dot-22-4-dot-24">练习 4.22-4.24</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h2 id="第四章">第四章</h2>
+
+<p>写在前面：本章代码并没有实际运行检查过（前三章基本没问题），并不保证 bug-free。</p>
+
+<ol>
+<li>建立新语言是在工程设计中控制复杂性的一种威力强大的工作策略，我们常常能通过
+采用一种新语言而提升处理复杂问题的能力，因为新语言可能使我们以一种完全不同
+的方式，利用不同的原语，不同的组合方式和抽象方式去描述（因此也是思考）所面
+对的问题，而这些都是为了手头需要处理的问题而专门打造的；</li>
+<li>元语言抽象就是建立新的语言；</li>
+<li>把这一点看作是程序设计中最基本的思想一点也不过分: <strong>求值器决定了一个程序设计
+语言中各种表达式的意义而它本身也不过就是另一个程序</strong>;</li>
+<li>处理大规模计算系统的技术，与构造新的程序设计语言的技术有着紧密的联系，而计
+算机科学本身不过（也不更少）就是有关如何构造适当的描述语言的学科；</li>
+</ol>
+
+<h3 id="元循环求值器">元循环求值器</h3>
+
+<ol>
+<li>用与被求值的语言同样的语言写出的求值器被称为 <strong>元循环</strong>;</li>
+<li>从根本上说，元循环求值器也就是 3.2 节所描述求值的环境模形的一个 scheme 表
+达形式，该模形包括两个部分：
+
+<ol>
+<li>在求值一个组合式（一个不是特殊形式的复合表达式）时，首先求值其中的子表
+达式，而后将运算符子表达式的值作用于运算对象子表达式的值；</li>
+<li>在将一个复合过程应用于一集实际参数时，我们在一个新的环境里求值这个过程
+的体，构造这一环境的方式就是用一个框架扩充该过程对象的环境部分，框架中
+包含的是这个过程的各个形式参数与这一过程应用的各个实际参数的约束；</li>
+</ol></li>
+<li>上述两条规则描述了求值过程的核心部分，也就是它的基本循环，在这一循环中，表
+达式在环境中的求值被归约到过程对实际参数的应用，而这种应用又被规约到新的表
+达式在新的环境中的求值，如此下去，直至我们下降到符号（其值可以在环境中找到）
+或者基本过程（它们可以直接应用）；</li>
+</ol>
+
+<h4 id="求值器的内核">求值器的内核</h4>
+
+<ol>
+<li>求值过程可以描述为两个过程 eval 和 apply 之间的相互作用；</li>
+<li>eval 的参数是一个表达式和一个环境，eval 对表达式进行分类，依次引导自己的
+求值工作，eval 的构造就像是一个针对被求值表达式的语法类型的分情况分析；</li>
+<li>apply 有两个参数，一个是过程，一个是该过程应该去应用的实际参数的表；</li>
+<li>看懂代码就能理解。</li>
+</ol>
+
+<h4 id="练习-4-dot-1">练习 4.1</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; the one always computes the value from left to right</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">list-of-values-lr</span> <span class="nv">exps</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">no-operands?</span> <span class="nv">exps</span><span class="p">)</span>
+      <span class="o">&#39;</span><span class="p">()</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">first</span> <span class="p">(</span><span class="nv">eval</span> <span class="p">(</span><span class="nv">first-operand</span> <span class="nv">exps</span><span class="p">)</span> <span class="nv">env</span><span class="p">)))</span>
+	<span class="p">(</span><span class="nv">cons</span> <span class="nv">first</span>
+	      <span class="p">(</span><span class="nv">list-of-values-lr</span> <span class="p">(</span><span class="nv">rest-operands</span> <span class="nv">exps</span><span class="p">)</span> <span class="nv">env</span><span class="p">)))))</span>
+
+<span class="c1">;; the one always computes the value from right to left</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">list-of-values-rl</span> <span class="nv">exps</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">no-operands?</span> <span class="nv">exps</span><span class="p">)</span>
+      <span class="o">&#39;</span><span class="p">()</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">rest-values</span> <span class="p">(</span><span class="nv">list-of-values-rl</span> <span class="p">(</span><span class="nv">rest-operands</span> <span class="nv">exps</span><span class="p">)</span> <span class="nv">env</span><span class="p">)))</span>
+	<span class="p">(</span><span class="nv">cons</span> <span class="p">(</span><span class="nv">eval</span> <span class="p">(</span><span class="nv">first-operand</span> <span class="nv">exps</span><span class="p">)</span> <span class="nv">env</span><span class="p">)</span>
+	      <span class="nv">rest-values</span><span class="p">))))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="表达式的表示">表达式的表示</h4>
+
+<ol>
+<li>注意派生表达式的逻辑；</li>
+</ol>
+
+<h4 id="练习-4-dot-2-4-dot-10">练习 4.2-4.10</h4>
+
+<ul>
+<li><p>4.2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; a</span>
+
+<span class="c1">;; 检查过程语法形式的谓词过程</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">application?</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nv">pair?</span> <span class="nv">exp</span><span class="p">))</span>
+<span class="c1">;; 而很多不是过程调用的表达式其实都是序对，但不能用过程调用的形式处理</span>
+
+<span class="c1">;; b</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">application?</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nv">tagged-list?</span> <span class="nv">exp</span> <span class="ss">&#39;call</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">operator</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nv">cadr</span> <span class="nv">exp</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">operands</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nv">cddr</span> <span class="nv">exp</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">no-operands?</span> <span class="nv">ops</span><span class="p">)</span> <span class="p">(</span><span class="nv">null?</span> <span class="nv">ops</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">first-operand</span> <span class="nv">ops</span><span class="p">)</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">ops</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">rest-operands</span> <span class="nv">ops</span><span class="p">)</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">ops</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.3</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">type-tag</span> <span class="nv">datum</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">pair?</span> <span class="nv">datum</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">car</span> <span class="nv">datum</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Bad tagged datum -- TYPE-TAG&#34;</span> <span class="nv">datum</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">type-tag</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">proc</span> <span class="p">(</span><span class="nv">get</span> <span class="ss">&#39;eval</span> <span class="nv">tag</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">proc</span>
+      <span class="p">(</span><span class="nv">proc</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Unknown expression type -- EVAL&#34;</span>
+         <span class="nv">exp</span><span class="p">)))))</span>
+
+<span class="c1">;; number: scheme-number</span>
+<span class="c1">;; string: scheme-string</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-self-evaluation</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cadr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;eval</span> <span class="ss">&#39;scheme-number</span> <span class="nv">eval-self-evaluation</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;eval</span> <span class="ss">&#39;scheme-string</span> <span class="nv">eval-self-evaluation</span><span class="p">)</span>
+
+<span class="c1">;; variable: &#39;quote</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-variable</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">text-of-quotation</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;eval</span> <span class="ss">&#39;quote</span> <span class="nv">eval-variable</span><span class="p">)</span>
+
+<span class="c1">;; assignment: set!</span>
+
+<span class="c1">;; the original eval-assignment</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;eval</span> <span class="ss">&#39;set!</span> <span class="nv">eval-assignment</span><span class="p">)</span>
+
+<span class="c1">;; definition: define</span>
+
+<span class="c1">;; the original eval-definition</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;eval</span> <span class="ss">&#39;define</span> <span class="nv">eval-definition</span><span class="p">)</span>
+
+<span class="c1">;; lambda: lambda</span>
+
+<span class="c1">;; should modify the original make-procedure</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-procedure-lambda</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">parameters</span> <span class="p">(</span><span class="nv">lambda-parameters</span> <span class="nv">exp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">body</span> <span class="p">(</span><span class="nv">lambda-body</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">make-procedure</span> <span class="nv">parameters</span> <span class="nv">body</span> <span class="nv">env</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;eval</span> <span class="ss">&#39;lambda</span> <span class="nv">make-procedure-lambda</span><span class="p">)</span>
+
+<span class="c1">;; if: if</span>
+
+<span class="c1">;; the original eval-if</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;eval</span> <span class="ss">&#39;if</span> <span class="nv">eval-if</span><span class="p">)</span>
+
+<span class="c1">;; begin: begin</span>
+
+<span class="c1">;; should modify the original eval-sequence</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-sequence-begin</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">actions</span> <span class="p">(</span><span class="nv">begin-actons</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">eval-sequence</span> <span class="nv">actions</span> <span class="nv">env</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;eval</span> <span class="ss">&#39;begin</span> <span class="nv">eval-sequence-begin</span><span class="p">)</span>
+
+<span class="c1">;; cond: cond</span>
+<span class="c1">;; should modify the original handle method</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-cond</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">transfer</span> <span class="p">(</span><span class="nv">cond-&gt;if</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">eval</span> <span class="nv">transfer</span> <span class="nv">env</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;eval</span> <span class="ss">&#39;cond</span> <span class="nv">eval-cond</span><span class="p">)</span>
+
+<span class="c1">;; application: call</span>
+<span class="c1">;; based on the procedures defined in exercise 4.2 b</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-application</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply</span> <span class="p">(</span><span class="nv">eval</span> <span class="p">(</span><span class="nv">operator</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">list-of-values</span> <span class="p">(</span><span class="nv">operands</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;eval</span> <span class="ss">&#39;call</span> <span class="nv">eval-application</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.4</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">and?</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tagged-list?</span> <span class="nv">exp</span> <span class="ss">&#39;and</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">or?</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tagged-list?</span> <span class="nv">exp</span> <span class="ss">&#39;or</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">all-predicates</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">first-predicate</span> <span class="nv">predicates</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">predicates</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">rest-predicates</span> <span class="nv">predicates</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">predicates</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-and</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">predicates</span> <span class="p">(</span><span class="nv">all-predicates</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">first</span> <span class="p">(</span><span class="nv">first-predicate</span> <span class="nv">predicates</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">rest</span> <span class="p">(</span><span class="nv">rest-predicates</span> <span class="nv">predicates</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">result</span> <span class="p">(</span><span class="nv">eval</span> <span class="nv">first</span> <span class="nv">env</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">not</span> <span class="nv">result</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span>
+          <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nv">null?</span> <span class="nv">rest</span><span class="p">)</span> <span class="nv">result</span><span class="p">)</span> <span class="nv">result</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">result</span> <span class="p">(</span><span class="nv">eval-and</span> <span class="nv">rest</span> <span class="nv">env</span><span class="p">)))))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-or</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">predicates</span> <span class="p">(</span><span class="nv">all-predicates</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">first</span> <span class="p">(</span><span class="nv">first-predicate</span> <span class="nv">predicates</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">rest</span> <span class="p">(</span><span class="nv">rest-predicates</span> <span class="nv">predicates</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">result</span> <span class="p">(</span><span class="nv">eval</span> <span class="nv">first</span> <span class="nv">env</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">cond </span><span class="p">(</span><span class="nv">result</span> <span class="nv">true</span><span class="p">)</span>
+          <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nv">null?</span> <span class="nv">rest</span><span class="p">)</span> <span class="p">(</span><span class="nv">not</span> <span class="nv">result</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span>
+          <span class="p">((</span><span class="nv">not</span> <span class="nv">result</span><span class="p">)</span> <span class="nv">eval-or</span> <span class="nv">rest</span> <span class="nv">env</span><span class="p">))))))</span>
+
+<span class="c1">;; derived expression based on if</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-and</span> <span class="nv">predicates</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">list</span> <span class="ss">&#39;and</span> <span class="nv">predicates</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-or</span> <span class="nv">predicates</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">list</span> <span class="ss">&#39;or</span> <span class="nv">predicates</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">and-&gt;if</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">predicates</span> <span class="p">(</span><span class="nv">all-predicates</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">first</span> <span class="p">(</span><span class="nv">first-predicate</span> <span class="nv">predicates</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">rest</span> <span class="p">(</span><span class="nv">rest-predicates</span> <span class="nv">predicates</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nv">make-if</span>
+       <span class="nv">first</span>
+       <span class="p">(</span><span class="nv">make-and</span> <span class="nv">rest</span><span class="p">)</span>
+       <span class="nv">first</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">or-&gt;cond</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">predicates</span> <span class="p">(</span><span class="nv">all-predicates</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">first</span> <span class="p">(</span><span class="nv">first-predicate</span> <span class="nv">predicates</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">rest</span> <span class="p">(</span><span class="nv">rest-predicates</span> <span class="nv">predicates</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nv">make-if</span>
+       <span class="nv">first</span>
+       <span class="nv">first</span>
+       <span class="p">(</span><span class="nv">make-or</span> <span class="nv">rest</span><span class="p">)))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-and</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">eval</span> <span class="p">(</span><span class="nv">and-&gt;if</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-or</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">eval</span> <span class="p">(</span><span class="nv">or-&gt;if</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+<span class="c1">;; so just implement the eval-and and eval-or in</span>
+<span class="c1">;; the original eval procedure</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.5</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">cond?</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nv">tagged-list?</span> <span class="nv">exp</span> <span class="ss">&#39;cond</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">cond-clauses</span> <span class="nv">exp</span><span class="p">)</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">cond-else-clause?</span> <span class="nv">clause</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">eq?</span> <span class="p">(</span><span class="nv">cond-predicate</span> <span class="nv">clause</span><span class="p">)</span> <span class="ss">&#39;else</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">cond-special-clause?</span> <span class="nv">clause</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">eq?</span> <span class="ss">&#39;=&gt;</span> <span class="p">(</span><span class="nv">cadr</span> <span class="nv">clause</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">cond-special-clause-proc</span> <span class="nv">clause</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">caddr</span> <span class="nv">clause</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">cond-predicate</span> <span class="nv">clause</span><span class="p">)</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">clause</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">cond-actions</span> <span class="nv">clause</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">clause</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">cond-&gt;if</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">expand-clauses</span> <span class="p">(</span><span class="nv">cond-clauses</span> <span class="nv">exp</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">expand-clauses</span> <span class="nv">clauses</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">null?</span> <span class="nv">clauses</span><span class="p">)</span>
+      <span class="ss">&#39;false</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">first</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">clauses</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">rest</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">clauses</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">cond-else-clause?</span> <span class="nv">first</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">null?</span> <span class="nv">rest</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">sequence-&gt;exp</span> <span class="p">(</span><span class="nv">cond-actions</span> <span class="nv">first</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;ELSE clause isn&#39;t last -- COND-&gt;IF&#34;</span>
+               <span class="nv">clauses</span><span class="p">))</span>
+        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">p</span> <span class="p">(</span><span class="nv">cond-predicate</span> <span class="nv">first</span><span class="p">)))</span>
+          <span class="p">(</span><span class="nv">make-if</span>
+           <span class="nv">p</span>
+           <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">cond-special-clause?</span> <span class="nv">first</span><span class="p">)</span>
+           <span class="p">(</span><span class="nv">list</span> <span class="p">(</span><span class="nv">cond-special-clause-proc</span> <span class="nv">first</span><span class="p">)</span> <span class="nv">p</span><span class="p">)</span>
+           <span class="p">(</span><span class="nv">sequence-&gt;exp</span> <span class="p">(</span><span class="nv">cond-actions</span> <span class="nv">first</span><span class="p">)))</span>
+           <span class="p">(</span><span class="nv">expand-clauses</span> <span class="nv">rest</span><span class="p">)))))))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.6</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let?</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tagged-list?</span> <span class="nv">exp</span> <span class="ss">&#39;let</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-exps</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-body</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">var</span> <span class="nv">binding</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">binding</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">expression</span> <span class="nv">binding</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cadr</span> <span class="nv">binding</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-&gt;application</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">transfer</span> <span class="p">(</span><span class="nv">let-exps</span> <span class="nv">exp</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">transfer</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">bindings</span> <span class="p">(</span><span class="nv">let-bindings</span> <span class="nv">exp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">body</span> <span class="p">(</span><span class="nv">let-body</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">var-list</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">var</span> <span class="nv">bindings</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">exp-list</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">expression</span> <span class="nv">bindings</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">proc</span> <span class="p">(</span><span class="nv">make-lambda</span> <span class="nv">var-list</span> <span class="nv">body</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">list</span> <span class="nv">proc</span> <span class="nv">exp-list</span><span class="p">)))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-let</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">eval</span> <span class="p">(</span><span class="nv">let-&gt;application</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+<span class="c1">;; implement let? and eval-let in eval</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.7</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; all bacause of the environment bindings&#39; update &amp; access</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let*?</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tagged-list?</span> <span class="nv">exp</span> <span class="ss">&#39;let*</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let*-exps</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let*-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let*-body</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cddr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-let</span> <span class="nv">binding</span> <span class="nv">body</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cons</span> <span class="ss">&#39;let</span> <span class="p">(</span><span class="nv">list</span> <span class="nv">binding</span><span class="p">)</span> <span class="nv">body</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-neseted-lets</span> <span class="nv">bindings</span> <span class="nv">body</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">null?</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">bindings</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">make-let</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">bindings</span><span class="p">)</span> <span class="nv">body</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">make-let</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">bindings</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">make-neseted-lets</span>
+         <span class="p">(</span><span class="nv">cdr</span> <span class="nv">bindings</span><span class="p">)</span>
+         <span class="nv">body</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let*-&gt;nested-lets</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-neseted-lets</span>
+   <span class="p">(</span><span class="nv">let*-bindings</span> <span class="p">(</span><span class="nv">let*-exps</span> <span class="nv">exp</span><span class="p">))</span>
+   <span class="p">(</span><span class="nv">let*-body</span> <span class="p">(</span><span class="nv">let*-exps</span> <span class="nv">exp</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-let*</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">eval</span> <span class="p">(</span><span class="nv">let*-&gt;nested-lets</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+<span class="c1">;; nested-let makes no difference when compared with let*</span>
+<span class="c1">;; thanks to the environment structure</span>
+
+<span class="c1">;; just implement let*? and eval-let* in eval</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.8</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let?</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tagged-list?</span> <span class="nv">exp</span> <span class="ss">&#39;let</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-exps</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-procedure?</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">symbol?</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">exp</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-procedure-var</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-procedure-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cadr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-procedure-body</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cddr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-begin</span> <span class="nv">seq</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cons</span> <span class="ss">&#39;begin</span> <span class="nv">seq</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-define-p</span> <span class="nv">v</span> <span class="nv">p</span> <span class="nv">b</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cons</span> <span class="ss">&#39;define</span> <span class="p">(</span><span class="nv">cons</span> <span class="nv">v</span> <span class="nv">p</span><span class="p">)</span> <span class="nv">b</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-body</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">var</span> <span class="nv">binding</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">binding</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">expression</span> <span class="nv">binding</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cadr</span> <span class="nv">binding</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-&gt;application</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">transfer</span> <span class="p">(</span><span class="nv">let-exps</span> <span class="nv">exp</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">transfer</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">let-p?</span> <span class="p">(</span><span class="nv">let-procedure?</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">bindings</span>
+       <span class="p">(</span><span class="k">if </span><span class="nv">let-p?</span>
+           <span class="p">(</span><span class="nv">let-procedure-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+           <span class="p">(</span><span class="nv">let-bindings</span> <span class="nv">exp</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nv">body</span>
+       <span class="p">(</span><span class="k">if </span><span class="nv">let-p?</span>
+           <span class="p">(</span><span class="nv">let-procedure-body</span> <span class="nv">exp</span><span class="p">)</span>
+           <span class="p">(</span><span class="nv">let-body</span> <span class="nv">exp</span><span class="p">))))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">var-list</span>
+         <span class="p">(</span><span class="nv">map</span> <span class="nv">var</span> <span class="nv">bindings</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">exp-list</span>
+         <span class="p">(</span><span class="nv">map</span> <span class="nv">expression</span> <span class="nv">bindings</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">if </span><span class="nv">let-p?</span>
+        <span class="p">(</span><span class="nv">make-begin</span>
+         <span class="p">(</span><span class="nv">list</span> <span class="p">(</span><span class="nv">make-define-p</span>
+           <span class="p">(</span><span class="nv">let-procedure-var</span> <span class="nv">exp</span><span class="p">)</span>
+           <span class="nv">var-list</span>
+           <span class="nv">body</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">cons</span> <span class="p">(</span><span class="nv">let-procedure-var</span> <span class="nv">exp</span><span class="p">)</span>
+            <span class="nv">exp-list</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nv">cons</span> <span class="p">(</span><span class="nv">make-lambda</span> <span class="nv">var-list</span> <span class="nv">body</span><span class="p">)</span>
+          <span class="nv">exp-list</span><span class="p">))))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-let</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">eval</span> <span class="p">(</span><span class="nv">let-&gt;application</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+<span class="c1">;; implement let? and eval-let in eval</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.9</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; first eval self-defined special procedure through eval procedure</span>
+
+<span class="c1">;; show the structure of while by making a definition</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">while</span> <span class="nv">exp</span> <span class="nv">proc</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="nv">exp</span>
+      <span class="p">(</span><span class="k">begin </span><span class="nv">proc</span>
+         <span class="p">(</span><span class="nv">while</span> <span class="nv">exp</span> <span class="nv">proc</span><span class="p">))</span>
+      <span class="ss">&#39;finished</span><span class="p">))</span>
+<span class="c1">;; so while is composed of if and begin</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">while?</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tagged-list?</span> <span class="nv">exp</span> <span class="ss">&#39;while</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">while-predicate</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cadr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">while-actions</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-begin</span>
+   <span class="p">(</span><span class="nv">list</span> <span class="p">(</span><span class="nv">caddr</span> <span class="nv">exp</span><span class="p">)</span>
+     <span class="nv">exp</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">while-alternative</span>
+  <span class="ss">&#39;finished</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">while-transfer</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-if</span>
+   <span class="p">(</span><span class="nv">while-predicate</span> <span class="nv">exp</span><span class="p">)</span>
+   <span class="p">(</span><span class="nv">while-actions</span> <span class="nv">exp</span><span class="p">)</span>
+   <span class="nv">while-alternative</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-while</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">eval</span> <span class="p">(</span><span class="nv">while-transfer</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+<span class="c1">;; just implement while? and eval-while in eval</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.10</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 复合表达式中运算符表达式在最后一个，前面所有的都是运算对象表达式</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">last-one</span> <span class="nv">lst</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">null?</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">lst</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">car</span> <span class="nv">lst</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">last-one</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">lst</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">operator</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">last-one</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">operands</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">null?</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+      <span class="o">&#39;</span><span class="p">()</span>
+      <span class="p">(</span><span class="nv">cons</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">exp</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">operands</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">)))))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+<h4 id="求值器数据结构">求值器数据结构</h4>
+
+<ol>
+<li>理解代码就没问题；</li>
+</ol>
+
+<h4 id="练习-4-dot-11-4-dot-13">练习 4.11-4.13</h4>
+
+<ul>
+<li><p>4.11</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-frame</span> <span class="nv">bindings</span><span class="p">)</span>
+  <span class="nv">bindings</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-binding</span> <span class="nv">var</span> <span class="nv">val</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cons</span> <span class="nv">var</span> <span class="nv">val</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-bindings</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">map</span> <span class="nv">make-binding</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">bindings-frame</span> <span class="nv">frame</span><span class="p">)</span>
+  <span class="nv">frame</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">set-value!</span> <span class="nv">binding</span> <span class="nv">value</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">set-cdr!</span> <span class="nv">binding</span> <span class="nv">value</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">first-binding</span> <span class="nv">bindings</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">bindings</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">rest-bindings</span> <span class="nv">bindings</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">bindings</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">null-bindings?</span> <span class="nv">bindings</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">null?</span> <span class="nv">bindings</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">binding-variable</span> <span class="nv">binding</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">binding</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">binding-value</span> <span class="nv">binding</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">binding</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">add-binding-to-frame!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">frame</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">new-binding</span> <span class="p">(</span><span class="nv">make-binding</span> <span class="nv">val</span> <span class="nv">frame</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">cons</span> <span class="nv">new-binding</span> <span class="nv">frame</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">extend-environment</span> <span class="nv">vars</span> <span class="nv">vals</span> <span class="nv">base-env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">=</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">vars</span><span class="p">)</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">vals</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">bindings</span> <span class="p">(</span><span class="nv">make-bindings</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">cons</span> <span class="p">(</span><span class="nv">make-frame</span> <span class="nv">bindings</span><span class="p">)</span> <span class="nv">base-env</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">&lt;</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">vars</span><span class="p">)</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">vals</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Too many arguments supplied&#34;</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Too few arguments supplied&#34;</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">lookup-variable-value</span> <span class="nv">var</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">lookup</span> <span class="nv">var</span> <span class="nv">bindings</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">null-bindings?</span> <span class="nv">bindings</span><span class="p">)</span>
+    <span class="nv">false</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">first</span> <span class="p">(</span><span class="nv">first-binding</span> <span class="nv">bindings</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">eq?</span> <span class="nv">var</span> <span class="p">(</span><span class="nv">binding-variable</span> <span class="nv">first</span><span class="p">))</span>
+          <span class="p">(</span><span class="nv">binding-value</span> <span class="nv">first</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">lookup</span> <span class="nv">var</span> <span class="p">(</span><span class="nv">rest-bindings</span> <span class="nv">bindings</span><span class="p">))))))</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">eq?</span> <span class="nv">env</span> <span class="nv">the-empty-environment</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Unbound variable&#34;</span> <span class="nv">var</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">frame</span> <span class="p">(</span><span class="nv">first-frame</span> <span class="nv">env</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">base-env</span> <span class="p">(</span><span class="nv">enclosing-environment</span> <span class="nv">env</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">result</span> <span class="p">(</span><span class="nv">lookup</span> <span class="nv">var</span> <span class="p">(</span><span class="nv">bindings-frame</span> <span class="nv">frame</span><span class="p">))))</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">result</span>
+          <span class="nv">result</span>
+          <span class="p">(</span><span class="nv">lookup-variable-value</span> <span class="nv">var</span> <span class="nv">base-env</span><span class="p">))))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">set-variable-value!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">env</span><span class="p">)</span> <span class="c1">;the former one has too many lets, try another style</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">env-loop</span> <span class="nv">env</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">scan</span> <span class="nv">bindings</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">null-bindings?</span> <span class="nv">bindings</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">env-loop</span> <span class="p">(</span><span class="nv">enclosing-environment</span> <span class="nv">env</span><span class="p">)))</span>
+        <span class="p">((</span><span class="nv">eq?</span> <span class="nv">var</span> <span class="p">(</span><span class="nv">binding-variable</span> <span class="p">(</span><span class="nv">first-binding</span> <span class="nv">bindings</span><span class="p">)))</span>
+         <span class="p">(</span><span class="nv">set-value!</span> <span class="p">(</span><span class="nv">first-binding</span> <span class="nv">bindings</span><span class="p">)</span> <span class="nv">val</span><span class="p">))</span>
+        <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nv">scan</span> <span class="p">(</span><span class="nv">rest-bindings</span> <span class="nv">bindings</span><span class="p">)))))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">eq?</span> <span class="nv">env</span> <span class="nv">the-empty-environment</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Unbound variable -- SET!&#34;</span> <span class="nv">var</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">frame</span> <span class="p">(</span><span class="nv">first-frame</span> <span class="nv">env</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nv">scan</span> <span class="p">(</span><span class="nv">bindings-frame</span> <span class="nv">frame</span><span class="p">)))))</span>
+  <span class="p">(</span><span class="nv">env-loop</span> <span class="nv">env</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">define-variable!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">frame</span> <span class="p">(</span><span class="nv">first-frame</span> <span class="nv">env</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">scan</span> <span class="nv">bindings</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">null-bindings?</span> <span class="nv">bindings</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">add-binding-to-frame!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">frame</span><span class="p">))</span>
+        <span class="p">((</span><span class="nv">eq?</span> <span class="nv">var</span> <span class="p">(</span><span class="nv">binding-variable</span> <span class="p">(</span><span class="nv">first-binding</span> <span class="nv">bindings</span><span class="p">)))</span>
+         <span class="p">(</span><span class="nv">set-value!</span> <span class="p">(</span><span class="nv">first-binding</span> <span class="nv">bindings</span><span class="p">)</span> <span class="nv">val</span><span class="p">))</span>
+        <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nv">scan</span> <span class="p">(</span><span class="nv">rest-bindings</span> <span class="nv">bindings</span><span class="p">)))))</span>
+    <span class="p">(</span><span class="nv">scan</span> <span class="p">(</span><span class="nv">bindings-frame</span> <span class="nv">frame</span><span class="p">))))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.12</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">scan</span> <span class="nv">vars</span> <span class="nv">vals</span> <span class="nv">var</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">null?</span> <span class="nv">vars</span><span class="p">)</span> <span class="nv">false</span><span class="p">)</span>
+    <span class="p">((</span><span class="nv">eq?</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">vars</span><span class="p">)</span> <span class="nv">var</span><span class="p">)</span>
+     <span class="nv">vals</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nv">scan</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">vars</span><span class="p">)</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">vals</span><span class="p">)</span> <span class="nv">var</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">env-loop</span> <span class="nv">env</span> <span class="nv">proc</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">eq?</span> <span class="nv">env</span> <span class="nv">the-empty-environment</span><span class="p">)</span>
+      <span class="nv">false</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">frame</span> <span class="p">(</span><span class="nv">first-frame</span> <span class="nv">env</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">result</span> <span class="p">(</span><span class="nv">scan</span> <span class="p">(</span><span class="nv">frame-variables</span> <span class="nv">frame</span><span class="p">)</span>
+                <span class="p">(</span><span class="nv">frame-values</span> <span class="nv">frame</span><span class="p">)</span>
+                <span class="nv">var</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">result</span>
+          <span class="p">(</span><span class="nv">proc</span> <span class="nv">result</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">env-loop</span> <span class="p">(</span><span class="nv">enclosing-environment</span> <span class="nv">env</span><span class="p">)))))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">lookup-variable-value</span> <span class="nv">var</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">result</span> <span class="p">(</span><span class="nv">env-loop</span> <span class="nv">env</span> <span class="nv">car</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">if </span><span class="nv">result</span>
+    <span class="nv">result</span>
+    <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Unbound variable&#34;</span> <span class="nv">var</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">set-variable-value!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">set-value!</span> <span class="nv">vals</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">set-car!</span> <span class="nv">vals</span> <span class="nv">val</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">result</span> <span class="p">(</span><span class="nv">env-loop</span> <span class="nv">env</span> <span class="nv">set-value!</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">not</span> <span class="nv">result</span><span class="p">)</span>            <span class="c1">;though set-car! returns unspecific return value, (not result) is false</span>
+    <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Unbound variable&#34;</span> <span class="nv">var</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">define-variable!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">frame</span> <span class="p">(</span><span class="nv">first-frame</span> <span class="nv">env</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">result</span> <span class="p">(</span><span class="nv">scan</span> <span class="p">(</span><span class="nv">frame-variables</span> <span class="nv">frame</span><span class="p">)</span>
+            <span class="p">(</span><span class="nv">frame-values</span> <span class="nv">frame</span><span class="p">)</span>
+            <span class="nv">var</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">result</span>
+      <span class="p">(</span><span class="nv">set-car!</span> <span class="nv">result</span> <span class="nv">val</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">add-binding-to-frame!</span> <span class="nv">var</span> <span class="nv">val</span> <span class="nv">frame</span><span class="p">)))))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.13</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">unbound?</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tagged-list?</span> <span class="nv">exp</span> <span class="ss">&#39;unbound</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">unbound-var</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cadr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-unbound!</span> <span class="nv">var</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">list</span> <span class="ss">&#39;unbound</span> <span class="nv">var</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-unbound</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">unbound-variable!</span> <span class="p">(</span><span class="nv">unbound-var</span> <span class="nv">exp</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">unbound-variable!</span> <span class="nv">var</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">frame</span> <span class="p">(</span><span class="nv">first-frame</span> <span class="nv">env</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">scan</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">null?</span> <span class="nv">vars</span><span class="p">)</span>
+         <span class="ss">&#39;ok</span><span class="p">)</span>
+        <span class="p">((</span><span class="nv">eq?</span> <span class="nv">var</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">vars</span><span class="p">))</span>
+         <span class="p">(</span><span class="k">begin </span><span class="p">(</span><span class="k">set! </span><span class="nv">vars</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">vars</span><span class="p">))</span>
+            <span class="p">(</span><span class="k">set! </span><span class="nv">vals</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">vals</span><span class="p">))))</span>
+        <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nv">scan</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">vars</span><span class="p">)</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">vals</span><span class="p">)))))</span>
+    <span class="p">(</span><span class="nv">scan</span> <span class="p">(</span><span class="nv">frame-variables</span> <span class="nv">frame</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">frame-values</span> <span class="nv">frame</span><span class="p">))))</span>
+
+<span class="c1">;; only delete the matched binding in the current environment</span>
+<span class="c1">;; cause that the same-name binding in outside environments</span>
+<span class="c1">;; may be utilized by other procedures</span>
+<span class="c1">;; it is a disaster for these procedures if all unbounded</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+<h4 id="作为程序运行这个求值器">作为程序运行这个求值器</h4>
+
+<ol>
+<li>只要看明白代码；</li>
+</ol>
+
+<h4 id="练习-4-dot-14">练习 4.14</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; eva&#39;s way is passed because the map definition is implemented in eval</span>
+<span class="c1">;; so when this map procedure is applied, eval looks for its definition binding</span>
+<span class="c1">;; then applies arguments and env to the map definition body</span>
+
+<span class="c1">;; louis takes the map procedure as the original primitive procedure in eval</span>
+<span class="c1">;; so when the map application is processed</span>
+<span class="c1">;; since it is a primitive procedure</span>
+<span class="c1">;; the apply internal result is like</span>
+<span class="c1">;; (apply-primitive-procedure procedure arguments)</span>
+<span class="c1">;; for example</span>
+<span class="c1">;; &#39;(map &#39;* (1 2 3) (4 5 6))</span>
+<span class="c1">;; but in the internal result</span>
+<span class="c1">;; (apply-in-underlying-scheme map (list &#39;primitive *) (1 2 3) (4 5 6))</span>
+<span class="c1">;; apply (list &#39;primitive *) to args in eval would fall into application branch</span>
+<span class="c1">;; but at last &#39;primitive is a symbol with no binding</span>
+<span class="c1">;; so it&#39;s failed</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="将数据作为程序">将数据作为程序</h4>
+
+<ol>
+<li>关于程序意义的一种操作式观点，就是将程序看作一种抽象的（可能无穷大的）机
+器的一个描述，我们也可以把求值器看作是一部非常特殊的机器，它要求以一部机
+器的描述作为输入，给定了一个输入以后，求值器就能够规划自己的行为，模拟被
+描述机器的执行过程；</li>
+<li>求值器的另一惊人方面，在于它就像是我们的程序设计语言所操作的数据对象和这
+个程序设计语言本身之间的一座桥梁；</li>
+</ol>
+
+<h4 id="练习-4-dot-15">练习 4.15</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 引起悖论</span>
+<span class="c1">;; (try try) 如果可以终止，在 try 的过程体那将执行 (run-forever);</span>
+<span class="c1">;; 如果不可以终止，将返回 &#39;halted。</span>
+
+<span class="c1">;; 所以不可能写出一个过程 halts?</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="内部定义">内部定义</h4>
+
+<ol>
+<li>存在一些处理内部定义的方法，可以使内部名字的定义真正具有同样的作用域（不
+然就会对代码形式有一些限制）；</li>
+</ol>
+
+<h4 id="练习-4-dot-16-4-dot-21">练习 4.16-4.21</h4>
+
+<ul>
+<li><p>4.16</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; a</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">lookup-variable-value</span> <span class="nv">var</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">env-loop</span> <span class="nv">env</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">scan</span> <span class="nv">vars</span> <span class="nv">vals</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">null?</span> <span class="nv">vars</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">env-loop</span> <span class="p">(</span><span class="nv">enclosing-environment</span> <span class="nv">env</span><span class="p">)))</span>
+        <span class="p">((</span><span class="nv">eq?</span> <span class="nv">var</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">vars</span><span class="p">))</span>
+         <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">eq?</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">vals</span><span class="p">)</span> <span class="ss">&#39;*unassigned*</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Unassigned variable&#34;</span> <span class="nv">var</span><span class="p">)</span>
+         <span class="p">(</span><span class="nv">car</span> <span class="nv">vals</span><span class="p">)))</span>
+        <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nv">scan</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">vars</span><span class="p">)</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">vals</span><span class="p">)))))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">eq?</span> <span class="nv">env</span> <span class="nv">the-empty-environment</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Unbound variable&#34;</span> <span class="nv">var</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">frame</span> <span class="p">(</span><span class="nv">first-frame</span> <span class="nv">env</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nv">scan</span> <span class="p">(</span><span class="nv">frame-variables</span> <span class="nv">frame</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">frame-values</span> <span class="nv">frame</span><span class="p">)))))</span>
+  <span class="p">(</span><span class="nv">env-loop</span> <span class="nv">env</span><span class="p">))</span>
+
+<span class="c1">;; b</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">transfer-defines-let</span> <span class="nv">vars</span> <span class="nv">bodys</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">attached-unassigned</span> <span class="p">(</span><span class="nv">map</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">i</span><span class="p">)</span> <span class="p">(</span><span class="nv">list</span> <span class="nv">i</span> <span class="ss">&#39;*unassigned*</span><span class="p">))</span> <span class="nv">vars</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">transfer-set!-body</span> <span class="p">(</span><span class="nv">map</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">i</span> <span class="nv">j</span><span class="p">)</span> <span class="p">(</span><span class="nv">list</span> <span class="ss">&#39;set!</span> <span class="nv">i</span> <span class="nv">j</span><span class="p">))</span> <span class="nv">vars</span> <span class="nv">bodys</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">cons</span> <span class="ss">&#39;let</span> <span class="nv">attached-unassigned</span> <span class="nv">transfer-set!-body</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">internal-defines</span> <span class="nv">body</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">null?</span> <span class="nv">body</span><span class="p">)</span>
+      <span class="o">&#39;</span><span class="p">()</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">definition?</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">body</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">cons</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">body</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">internal-defines</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">body</span><span class="p">))))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">internal-body</span> <span class="nv">body</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nv">definition?</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">body</span><span class="p">)))</span>
+      <span class="nv">body</span>
+      <span class="p">(</span><span class="nv">internal-body</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">body</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">scan-out-defines</span> <span class="nv">body</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">define-vars</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">definition-variable</span> <span class="p">(</span><span class="nv">internal-defines</span> <span class="nv">body</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">define-bodys</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">definition-value</span> <span class="p">(</span><span class="nv">internal-defines</span> <span class="nv">body</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">inside-body</span> <span class="p">(</span><span class="nv">internal</span> <span class="nv">body</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">null?</span> <span class="nv">define-vars</span><span class="p">)</span>
+    <span class="nv">inside-body</span>
+    <span class="p">(</span><span class="nv">append</span> <span class="p">(</span><span class="nv">transfer-defines-let</span> <span class="nv">define-vars</span> <span class="nv">define-bodys</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">scan-out-defines</span> <span class="nv">inside-body</span><span class="p">)))))</span>
+
+<span class="c1">;; c</span>
+
+<span class="c1">;; prefer to implement it in the make-procedure</span>
+<span class="c1">;; since most procedures defined would be utilized more than one time</span>
+<span class="c1">;; so it&#39;s more efficient</span>
+<span class="c1">;; when implement it in procedure-body</span>
+<span class="c1">;; it would transfer the body every time when call it</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.17</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; when the first form is utilized</span>
+<span class="c1">;; the current env is like that</span>
+<span class="c1">;; (cons (cons (list &#39;u &#39;v) (list e1 e2)) base-env)</span>
+
+
+<span class="c1">;; whe the second form is utilized</span>
+<span class="c1">;; the current env is like that</span>
+<span class="c1">;; (cons (cons (list &#39;u &#39;v) (list e1 e2)) (cons &#39;() base-env))</span>
+<span class="c1">;; cause that let is another form of lambda</span>
+<span class="c1">;; the extend-environment is called twice</span>
+
+<span class="c1">;; there is no difference of behaviours between both forms</span>
+<span class="c1">;; for they&#39;re able to fetch the same desired key-value bindings</span>
+
+<span class="c1">;; for now I could not figure out how to solve this</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.18</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; the way defined in this exercise won&#39;t work</span>
+<span class="c1">;; the way defined in context will work</span>
+
+<span class="c1">;; just transfer the way defined in this exercise to lambda form</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">solve</span> <span class="nv">f</span> <span class="nv">y0</span> <span class="nv">dt</span><span class="p">)</span>
+  <span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nv">y</span> <span class="nv">dy</span><span class="p">)</span>
+     <span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">set! </span><span class="nv">y</span> <span class="nv">a</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">set! </span><span class="nv">dy</span> <span class="nv">b</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">integral</span> <span class="p">(</span><span class="k">delay </span><span class="nv">dy</span><span class="p">)</span> <span class="nv">y0</span> <span class="nv">dt</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">stream</span> <span class="nv">f</span> <span class="nv">y</span><span class="p">))</span>         <span class="c1">;this will fail due to the y is still &#39;*unassigned here</span>
+     <span class="nv">y</span><span class="p">)</span>
+   <span class="ss">&#39;*unassigned*</span>
+   <span class="ss">&#39;*unassigned*</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.19</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; ben</span>
+
+<span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nv">a</span><span class="p">)</span>
+   <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">f</span> <span class="nv">x</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">define </span><span class="nv">b</span> <span class="p">(</span><span class="nv">+</span> <span class="nv">a</span> <span class="nv">x</span><span class="p">))</span>
+     <span class="p">(</span><span class="k">define </span><span class="nv">a</span> <span class="mi">5</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">+</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
+   <span class="p">(</span><span class="nv">f</span> <span class="mi">10</span><span class="p">))</span>
+ <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">;; in this way the output is 16</span>
+
+<span class="c1">;; alysssa</span>
+
+<span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nv">a</span><span class="p">)</span>
+   <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">f</span> <span class="nv">x</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">b</span> <span class="ss">&#39;*unassigned*</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">a</span> <span class="ss">&#39;*unassigned*</span><span class="p">))</span>
+       <span class="p">(</span><span class="k">set! </span><span class="nv">b</span> <span class="p">(</span><span class="nv">+</span> <span class="nv">a</span> <span class="nv">x</span><span class="p">))</span>
+       <span class="p">(</span><span class="k">set! </span><span class="nv">a</span> <span class="mi">5</span><span class="p">)</span>
+       <span class="p">(</span><span class="nv">+</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)))</span>
+   <span class="p">(</span><span class="nv">f</span> <span class="mi">10</span><span class="p">))</span>
+ <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">;; in this way an error occurred</span>
+
+<span class="c1">;; in theory eva is right, but it is hard to implement</span>
+<span class="c1">;; then alysssa&#39;s idea is more reasonable than ben&#39;s</span>
+<span class="c1">;; if simultaneous internal definitions are necessary and desired</span>
+
+<span class="c1">;; the output of ben&#39;s way is false</span>
+<span class="c1">;; reporting an error like alysssa&#39;s way is more acceptable.</span>
+<span class="c1">;; fot that an error is always better than a false result</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.20</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; a</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">letrec?</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tagged-list?</span> <span class="nv">exp</span> <span class="ss">&#39;letrec</span><span class="p">))</span>
+
+<span class="c1">;; based on exercise 4.16</span>
+<span class="c1">;; transfer it to the let with &#39;unassigned &amp; set!</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">letrec-exps</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">letrec-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">letrec-body</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">var</span> <span class="nv">binding</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">binding</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">expression</span> <span class="nv">binding</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cadr</span> <span class="nv">binding</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">letrec-&gt;let</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">transfer</span> <span class="p">(</span><span class="nv">letrec-exps</span> <span class="nv">exp</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">transfer</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">bindings</span> <span class="p">(</span><span class="nv">letrec-bindings</span> <span class="nv">exp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">body</span> <span class="p">(</span><span class="nv">letrec-body</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">var-list</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">var</span> <span class="nv">bindings</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">exp-list</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">expression</span> <span class="nv">bindings</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nv">append</span> <span class="p">(</span><span class="nv">list</span> <span class="ss">&#39;let</span> <span class="p">(</span><span class="nv">map</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">var</span><span class="p">)</span> <span class="p">(</span><span class="nv">list</span> <span class="nv">var</span> <span class="ss">&#39;unassigned</span><span class="p">))</span> <span class="nv">var-list</span><span class="p">))</span>
+          <span class="p">(</span><span class="nv">append</span>  <span class="p">(</span><span class="nv">map</span>
+            <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">var</span> <span class="nv">expression</span><span class="p">)</span> <span class="p">(</span><span class="nv">list</span> <span class="ss">&#39;set!</span> <span class="nv">var</span> <span class="nv">expression</span><span class="p">))</span>
+            <span class="nv">var-list</span> <span class="nv">exp-list</span><span class="p">)</span>
+               <span class="nv">body</span><span class="p">)))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">eval-letrec</span> <span class="nv">exp</span> <span class="nv">env</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">eval</span> <span class="p">(</span><span class="nv">letrec-&gt;let</span><span class="p">)</span> <span class="nv">env</span><span class="p">))</span>
+
+<span class="c1">;; implement letrec? and eval-letrec in eval</span>
+
+
+<span class="c1">;; b</span>
+
+<span class="c1">;; The lambda in `let&#39; is evaluated in the context of the enclosing environment,</span>
+<span class="c1">;; in which the bindings of the lambda itself are not in place.</span>
+<span class="c1">;; save the illustrations.</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.21</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">n</span><span class="p">)</span>
+  <span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nv">fact</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">fact</span> <span class="nv">fact</span> <span class="nv">n</span><span class="p">))</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">ft</span> <span class="nv">k</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">=</span> <span class="nv">k</span> <span class="mi">1</span><span class="p">)</span>
+     <span class="mi">1</span>
+     <span class="p">(</span><span class="nv">*</span> <span class="nv">k</span> <span class="p">(</span><span class="nv">ft</span> <span class="nv">ft</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">k</span> <span class="mi">1</span><span class="p">))))))</span>
+  <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1">;; a</span>
+
+<span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nv">n</span><span class="p">)</span>
+   <span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nv">fib</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">fib</span> <span class="nv">fib</span> <span class="nv">n</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">fb</span> <span class="nv">k</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">=</span> <span class="nv">k</span> <span class="mi">0</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">((</span><span class="nv">=</span> <span class="nv">k</span> <span class="mi">1</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">else</span>
+         <span class="p">(</span><span class="nv">+</span> <span class="p">(</span><span class="nv">fb</span> <span class="nv">fb</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">k</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">fb</span> <span class="nv">fb</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">k</span> <span class="mi">2</span><span class="p">))))))))</span>
+ <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">;; b</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">f</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">even?</span> <span class="nv">n</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">=n</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="nv">true</span>
+    <span class="p">(</span><span class="nv">odd?</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">))))</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">odd?</span> <span class="nv">n</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">=</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="nv">false</span>
+    <span class="p">(</span><span class="nv">even?</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nv">even?</span> <span class="nv">x</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">f</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nv">even?</span> <span class="nv">odd?</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">even?</span> <span class="nv">even?</span> <span class="nv">odd?</span> <span class="nv">x</span><span class="p">))</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">ev?</span> <span class="nv">od?</span> <span class="nv">n</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">=</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">true</span> <span class="p">(</span><span class="nv">od?</span> <span class="nv">ev?</span> <span class="nv">od?</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">))))</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">ev?</span> <span class="nv">od?</span> <span class="nv">n</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">=</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="nv">false</span> <span class="p">(</span><span class="nv">ev?</span> <span class="nv">ev?</span> <span class="nv">od?</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">n</span> <span class="mi">1</span><span class="p">))))))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+<h4 id="将语法分析与执行分离">将语法分析与执行分离</h4>
+
+<ol>
+<li>前面实现的求值器确实很简单，但却也非常低效，因为有关表达式的语法分析与它
+们的执行交织在一起，如果一个程序要执行许多次，对于它的语法分析也就需要做
+许多次，可以对这个求值器做一些变换，使它的效率大大提高，采用的方法就是重
+新安排其中的工作，使有关的语法分析只进行一次；</li>
+</ol>
+
+<h4 id="练习-4-dot-22-4-dot-24">练习 4.22-4.24</h4>
+
+<ul>
+<li><p>4.22</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let?</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">tagged-list?</span> <span class="nv">exp</span> <span class="ss">&#39;let</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-exps</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-bindings</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-body</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cdr</span> <span class="nv">exp</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">var</span> <span class="nv">binding</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">car</span> <span class="nv">binding</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">expression</span> <span class="nv">binding</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cadr</span> <span class="nv">binding</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">let-&gt;application</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">transfer</span> <span class="p">(</span><span class="nv">let-exps</span> <span class="nv">exp</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">analyze-let</span> <span class="nv">exp</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">bindings</span> <span class="p">(</span><span class="nv">let-bindings</span> <span class="nv">exp</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">body</span> <span class="p">(</span><span class="nv">let-body</span> <span class="nv">exp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">var-list</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">var</span> <span class="nv">bindings</span><span class="p">))</span>
+      <span class="p">(</span><span class="nv">exp-list</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">expression</span> <span class="nv">bindings</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">proc</span> <span class="p">(</span><span class="nv">make-lambda</span> <span class="nv">var-list</span> <span class="nv">body</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">analyze-application</span>
+     <span class="p">(</span><span class="nv">cons</span> <span class="nv">proc</span> <span class="nv">exp-list</span><span class="p">))))))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.23</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; the version in text unrolls all the procs of the sequence exps by utilizing procedure sequentially</span>
+
+<span class="c1">;; while the version defined by Alyssa unrolls the procs in runtime, not in the analyze time</span>
+<span class="c1">;; due to the recursive pattern of procedure execute-sequence and the return lambda result of analyze-sequence</span>
+<span class="c1">;; it would unroll the procs everytime when we apply the analyzed result</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>4.24</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 显然本节所给出的版本效率更高；</span>
+<span class="c1">;; 评估就不做了。</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">zero4drift</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-01-14</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://zero4drift.github.io/tags/sicp/">SICP</a>
+          <a href="https://zero4drift.github.io/tags/scheme/">Scheme</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/sicp-refresher-chapter-42/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">SICP-Refresher-Chapter-4(2)</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/sicp-refresher-chapter-35/">
+            <span class="next-text nav-default">SICP-Refresher-Chapter-3(5)</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "zero4drift/comments-for-my-blog"
+            issue-term="pathname"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+  
+    <a href="fang0052@e.ntu.edu.sg" rel="me noopener" class="iconfont"
+      title="email"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/zero4drift" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://zero4drift.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2018 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        zero4drift
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

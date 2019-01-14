@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on 找一个吃麦旋风的理由</title>
+    <link>https://zero4drift.github.io/categories/</link>
+    <description>Recent content in Categories on 找一个吃麦旋风的理由</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 09 Aug 2018 17:01:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://zero4drift.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://zero4drift.github.io/categories/c&#43;&#43;/</link>
+      <pubDate>Thu, 09 Aug 2018 17:01:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/categories/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Clrs</title>
+      <link>https://zero4drift.github.io/categories/clrs/</link>
+      <pubDate>Tue, 04 Dec 2018 16:35:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/categories/clrs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Csapp</title>
+      <link>https://zero4drift.github.io/categories/csapp/</link>
+      <pubDate>Sun, 25 Mar 2018 19:48:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/categories/csapp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sicp</title>
+      <link>https://zero4drift.github.io/categories/sicp/</link>
+      <pubDate>Sat, 12 Jan 2019 21:48:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/categories/sicp/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

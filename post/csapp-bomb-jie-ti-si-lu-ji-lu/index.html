@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CSAPP-bomb 解题思路记录 - 找一个吃麦旋风的理由</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="zero4drift" />
+  <meta name="description" content="写在前面 阅读汇编代码容易出现找不到重点的问题，建议首先看 函数调用处上下文 跳转处上下文 经常使用 gdb 可以事半功倍，实在找不着北的话，在当前理解有困" />
+
+  <meta name="keywords" content="代码, 算法, 工具" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://zero4drift.github.io/post/csapp-bomb-jie-ti-si-lu-ji-lu/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.28854364c052ec02eba4ee5867bc889d3a567cdf337ba3a355c33511d20bee1e.css" integrity="sha256-KIVDZMBS7ALrpO5YZ7yInTpWfN8ze6OjVcM1EdIL7h4=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="CSAPP-bomb 解题思路记录" />
+<meta property="og:description" content="写在前面 阅读汇编代码容易出现找不到重点的问题，建议首先看 函数调用处上下文 跳转处上下文 经常使用 gdb 可以事半功倍，实在找不着北的话，在当前理解有困" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zero4drift.github.io/post/csapp-bomb-jie-ti-si-lu-ji-lu/" /><meta property="article:published_time" content="2018-01-29T22:26:00&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-14T22:23:37&#43;08:00"/>
+<meta itemprop="name" content="CSAPP-bomb 解题思路记录">
+<meta itemprop="description" content="写在前面 阅读汇编代码容易出现找不到重点的问题，建议首先看 函数调用处上下文 跳转处上下文 经常使用 gdb 可以事半功倍，实在找不着北的话，在当前理解有困">
+
+
+<meta itemprop="datePublished" content="2018-01-29T22:26:00&#43;08:00" />
+<meta itemprop="dateModified" content="2018-01-29T22:26:00&#43;08:00" />
+<meta itemprop="wordCount" content="7119">
+
+
+
+<meta itemprop="keywords" content="csapp-lab,c," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CSAPP-bomb 解题思路记录"/>
+<meta name="twitter:description" content="写在前面 阅读汇编代码容易出现找不到重点的问题，建议首先看 函数调用处上下文 跳转处上下文 经常使用 gdb 可以事半功倍，实在找不着北的话，在当前理解有困"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">找一个吃麦旋风的理由</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      找一个吃麦旋风的理由
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">CSAPP-bomb 解题思路记录</h1>
+      
+      <div class="post-meta">
+        <time datetime="2018-01-29" class="post-time">
+          2018-01-29
+        </time>
+        <div class="post-category">
+            <a href="https://zero4drift.github.io/categories/csapp/"> CSAPP </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#写在前面">写在前面</a></li>
+<li><a href="#准备">准备</a></li>
+<li><a href="#拆弹">拆弹</a>
+<ul>
+<li><a href="#一号弹">一号弹</a></li>
+<li><a href="#二号弹">二号弹</a></li>
+<li><a href="#三号弹">三号弹</a></li>
+<li><a href="#四号弹">四号弹</a></li>
+<li><a href="#五号弹">五号弹</a></li>
+<li><a href="#六号弹">六号弹</a></li>
+<li><a href="#隐藏弹">隐藏弹</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h2 id="写在前面">写在前面</h2>
+
+<p>阅读汇编代码容易出现找不到重点的问题，建议首先看</p>
+
+<ul>
+<li>函数调用处上下文</li>
+<li>跳转处上下文</li>
+</ul>
+
+<p>经常使用 gdb 可以事半功倍，实在找不着北的话，在当前理解有困难处设置断点并运行或
+单步运行，查看运行过程当中变化的值。</p>
+
+<ol>
+<li><a href="#一号弹">一号弹</a></li>
+<li><a href="#二号弹">二号弹</a></li>
+<li><a href="#三号弹">三号弹</a></li>
+<li><a href="#四号弹">四号弹</a></li>
+<li><a href="#五号弹">五号弹</a></li>
+<li><a href="#六号弹">六号弹</a></li>
+<li><a href="#隐藏弹">隐藏弹</a></li>
+</ol>
+
+<h2 id="准备">准备</h2>
+
+<ol>
+<li>自带的 bomb.c 文件，阅读其源码可以找到炸弹埋藏的线索；</li>
+<li><code>objdumb -d domb &gt;&gt; domb.s</code> 从二进制可执行文件反编译出汇编代码文件（符号已经
+进行过重定位），这是接下来拆弹的主要突破口；</li>
+<li><code>objdumb -t domb &gt;&gt; symbols.txt</code> 获得二进制可执行文件中的符号表，包括所有函数名
+和全局变量名，以及他们的对应虚拟地址；</li>
+<li><code>strings domb &gt;&gt; strings.txt</code> 获得二进制可执行文件中的所有可打印字符串；</li>
+<li><a href="http://csapp.cs.cmu.edu/2e/docs/gdbnotes-ia32.txt">gdb 常用命令参考表</a> 一页 A4 纸的内容，包含了本次拆弹所要用的 gdb 命令；</li>
+<li>Emacs gdb-mode，有了它，debug 过程更友好了。</li>
+</ol>
+
+<h2 id="拆弹">拆弹</h2>
+
+<blockquote>
+<p>Let&rsquo;s dance!</p>
+</blockquote>
+
+<p>阅读 bomb.c 源代码，理解它的主要运行逻辑，主要是三个步骤：</p>
+
+<ol>
+<li>试图读取参数，如果有参数的话必须只有一个参数，且为文件路径，这样才合法，不然
+报错；如果没有参数，后续从标准输入中读取数据；</li>
+<li>埋炸弹，对应源码中的 <code>initialize_bomb</code> 函数；</li>
+<li>6个炸弹需要拆除，如果输入是文件的话，一一匹配文件中的数据；如果输入是标准输入
+的话，命令行重复六次输入过程。一旦数据错误，炸弹就引爆，程序退出。</li>
+</ol>
+
+<h3 id="一号弹">一号弹</h3>
+
+<ol>
+<li><p>bomb.c 源码逻辑中:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">input</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">();</span>             <span class="cm">/* Get input                   */</span>
+<span class="n">phase_1</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>                  <span class="cm">/* Run the phase               */</span>
+<span class="n">phase_defused</span><span class="p">();</span>                 <span class="cm">/* Drat!  They figured it out! */</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>可知 input 是我们的输入，phase_1 函数将此输入作为参数，如果输入正确则炸弹拆除，
+函数 phase_1 就是一号炸弹。</p></li>
+
+<li><p>查看 bomb.s 的汇编代码，main 与上述源码逻辑对应的汇编代码是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">400e32: e8 67 06 00 00          callq  40149e &lt;read_line&gt;
+400e37: 48 89 c7                mov    %rax,%rdi
+400e3a: e8 a1 00 00 00          callq  400ee0 &lt;phase_1&gt;
+400e3f: e8 80 07 00 00          callq  4015c4 &lt;phase_defused&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>read_line 函数顾名思义，就是将返回结果放置在 %rax 寄存器中（%rax 一般都会用来
+保存返回结果）；将 %eas 内容送到 %rdi 寄存器中（%rdi 寄存器一般都用来保存被调
+用函数的参数）；调用 phase_1 函数，再调用 phase_defused 函数。</p></li>
+
+<li><p>在汇编代码中查找 phase_1 函数的定义</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">400ee0: 48 83 ec 08             sub    $0x8,%rsp
+400ee4: be 00 24 40 00          mov    $0x402400,%esi
+400ee9: e8 4a 04 00 00          callq  401338 &lt;strings_not_equal&gt;
+400eee: 85 c0                   test   %eax,%eax
+400ef0: 74 05                   je     400ef7 &lt;phase_1+0x17&gt;
+400ef2: e8 43 05 00 00          callq  40143a &lt;explode_bomb&gt;
+400ef7: 48 83 c4 08             add    $0x8,%rsp
+400efb: c3                      retq</code></pre></td></tr></table>
+</div>
+</div>
+<p>可以看到里面调用了 explode_bomb 函数，可见 phase_1 函数就是炸弹；在爆炸前调用
+了 strings_not_equal 函数，并用 test 指令对两个操作数作相与操作，如果结果是0
+则将 ZF 标识位置1，否则置0；je 指令检查 ZF 标志位，如果是1则跳转到指定位置，
+即跳过爆炸；看来 strings_not_equal 函数比较了两个字符串，如果相同则返回0，不
+同返回1，而这两个参数地址一个已经在 %rdi 中，就是我们的输入，另外一个存放在
+%esi 中，其值是虚拟内存地址 0x402400。</p></li>
+
+<li><p>在 emacs 的 gdb-mode 中打开可执行文件 bomb，输入 <code>x/s 0x402400</code> 可输出此字符串</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">&#34;Border relations with Canada have never been better.&#34;</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+<h3 id="二号弹">二号弹</h3>
+
+<ol>
+<li>bomb.c 源码逻辑结构不变，phase_2 就是二号炸弹。</li>
+<li>汇编代码中调用 phase_2 函数部分除了函数名外与一号弹结构相同。</li>
+
+<li><p>再来看 phase_2 函数的定义部分</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">400f02: 48 89 e6                mov    %rsp,%rsi
+400f05: e8 52 05 00 00          callq  40145c &lt;read_six_numbers&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>此时 read_line 函数的输入保存在 %rdi 寄存器中，而 %rsi 寄存器的内容保存的是
+%rsp 寄存器即栈指针寄存器的内容;
+phase_2 定义中有两处调用 explode_bomb 函数，其条件转移的指令分别是</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">400f05: e8 52 05 00 00          callq  40145c &lt;read_six_numbers&gt;
+400f0a: 83 3c 24 01             cmpl   $0x1,(%rsp)
+400f0e: 74 20                   je     400f30 &lt;phase_2+0x34&gt;
+400f10: e8 25 05 00 00          callq  40143a &lt;explode_bomb&gt;
+...
+400f17: 8b 43 fc                mov    -0x4(%rbx),%eax
+400f1a: 01 c0                   add    %eax,%eax
+400f1c: 39 03                   cmp    %eax,(%rbx)
+400f1e: 74 05                   je     400f25 &lt;phase_2+0x29&gt;
+400f20: e8 15 05 00 00          callq  40143a &lt;explode_bomb&gt;
+400f25: 48 83 c3 04             add    $0x4,%rbx
+400f29: 48 39 eb                cmp    %rbp,%rbx
+400f2c: 75 e9                   jne    400f17 &lt;phase_2+0x1b&gt;
+400f2e: eb 0c                   jmp    400f3c &lt;phase_2+0x40&gt;
+400f30: 48 8d 5c 24 04          lea    0x4(%rsp),%rbx
+400f35: 48 8d 6c 24 18          lea    0x18(%rsp),%rbp
+400f3a: eb db                   jmp    400f17 &lt;phase_2+0x1b&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>显然 read_six_numbers 的调用改变了调用者栈中的数据。
+再来看 read_six_numbers 的部分定义，它竟然也调用了 explode_bomb 函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">401480: be c3 25 40 00          mov    $0x4025c3,%esi
+401485: b8 00 00 00 00          mov    $0x0,%eax
+40148a: e8 61 f7 ff ff          callq  400bf0 &lt;__isoc99_sscanf@plt&gt;
+40148f: 83 f8 05                cmp    $0x5,%eax
+401492: 7f 05                   jg     401499 &lt;read_six_numbers+0x3d&gt;
+401494: e8 a1 ff ff ff          callq  40143a &lt;explode_bomb&gt;</code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>read_six_numbers 功能分析</p>
+
+<ol>
+<li>前半部分将定位其调用者函数传入的参数的地址，从左到右参数的地址分别是调用者
+的 %rsp %rsp+4 %rsp+8 %rsp+12 %rsp+16 %rsp+20</li>
+<li>然后的部分就是上面第3个代码示例的部分，0x4025c3保存的是字符串指针，其内容是
+&ldquo;%d %d %d %d %d %d&rdquo;，可以推断将会以此格式化字符串对输入数据进行解析；</li>
+<li>寄存器 %eax 放置了立即数0，在调用了 __isoc99_sscanf@plt 之后将会检查这个寄
+存器的值，如果解析次数不到6次的话就会出发炸弹，所以我们输入的数据字符串应该
+是以空格分隔的6个数字（其实超过6个也没关系，只会取前6个）；</li>
+<li>根据但见汇编代码文件的内容无法得出 __isoc99_sscanf@plt 函数的主要工作逻辑，
+因为它又调用了 glibc 库函数，不过可以推断它的主要工作是扫描输入字符串，并
+以前面的那个格式化字符串解析它，将里面的字符串数字一一转变为数字。</li>
+</ol></li>
+
+<li><p>phase_2 功能分析</p>
+
+<ol>
+<li>在上面第2个代码示例中，再调用了 read_six_numbers 后，将会使用 cmpl 指令检
+查栈中栈底变量存放的值的大小，这个值是由 read_six_numbers 生成并存放的；如
+果这个值等于1的话将进行后续的逻辑运作，如果不等于，就爆炸；所以可知输入的
+字符串中必须有数字1；</li>
+<li>跳转到的 400f30 地址处，可以看到，接下来是一个循环，循环条件是 %rbx 寄存器
+的值不等于 %rbp 寄存器的值；首先在 %rbx 中存放 %rsp+4 的值，后续按4递增；
+将 %rsp 和 %rsp+4 虚拟地址处存放的值两两进行比较，后者必须是前者的2倍，检
+查直到 %rsp+18 地址为止；如果不符合条件，则引爆炸弹。</li>
+</ol></li>
+
+<li><p>结论：综上可以推断得知，拆除该炸弹需要输入：1 2 4 8 16 32</p></li>
+</ol>
+
+<h3 id="三号弹">三号弹</h3>
+
+<ol>
+<li><p>在 phase_3 的汇编代码前面调用了 <a href="#一号弹">一号弹</a> 中调用过的 __isoc99_sscanf@plt 函数，
+它将扫描输入字符串中的数字表示并将数字赋值参数；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">400f47: 48 8d 4c 24 0c          lea    0xc(%rsp),%rcx
+400f4c: 48 8d 54 24 08          lea    0x8(%rsp),%rdx
+400f51: be cf 25 40 00          mov    $0x4025cf,%esi
+400f56: b8 00 00 00 00          mov    $0x0,%eax
+400f5b: e8 90 fc ff ff          callq  400bf0 &lt;__isoc99_sscanf@plt&gt;
+400f60: 83 f8 01                cmp    $0x1,%eax
+400f63: 7f 05                   jg     400f6a &lt;phase_3+0x27&gt;
+400f65: e8 d0 04 00 00          callq  40143a &lt;explode_bomb&gt;
+400f6a: 83 7c 24 08 07          cmpl   $0x7,0x8(%rsp)</code></pre></td></tr></table>
+</div>
+</div>
+<p>由代码中的 cmp 和 jg 部分可知，此次需要输入的字符串中的数字应在两个以上；</p>
+
+<p>在第二行的 mov 指令中传送了一个内存地址，x/s 命令可知其值是 &ldquo;%d %d&rdquo;，所以本次
+拆弹需要输入的字符串中应包含两个数字；</p>
+
+<p>扫描获得的两个数字先后存放在 0x8(%rsp) 0xc(%rsp) 中；</p>
+
+<p>由最后一个 cmpl 指令及其后的 ja 指令（跳转到炸弹爆炸），可以推算输入的第一个
+数字不能大于7。</p></li>
+
+<li><p>如果输入字符串被接受的话，接下来将会进行一次 <strong>基址变址比例因子偏移量的间接跳转</strong> ：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">400f75: ff 24 c5 70 24 40 00    jmpq   *0x402470(,%rax,8)</code></pre></td></tr></table>
+</div>
+</div>
+<p>跳转到的地址是 (%rax * 8) + 0x402470 这个地址中存放的地址，%rax 中存放的是输入的第一个数字；</p>
+
+<p>如果 %rax 存放的是0；则将跳转到 0x402470 这个地址中存放的地址；通过 x/w 可以
+得出这个跳转地址是 0x400f7c；</p>
+
+<p>简单起见，我们输入的第一个数确实是0，那么将跳转到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">400f7c: b8 cf 00 00 00          mov    $0xcf,%eax
+400f81: eb 3b                   jmp    400fbe &lt;phase_3+0x7b&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>mov 指令将立即数 0xcf 送入 %eax 寄存器中，这个值换成10进制就是207，然后跳转到虚拟地址 0x400fbe 处；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">400fbe: 3b 44 24 0c             cmp    0xc(%rsp),%eax
+400fc2: 74 05                   je     400fc9 &lt;phase_3+0x86&gt;
+400fc4: e8 71 04 00 00          callq  40143a &lt;explode_bomb&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>在跳转地址处，进行 cmp 指令，比较 %eax 和 0xc(%rsp) 各自存放的值，后面的值就
+是我们输入的第二个数字，这个数字应该等于 207，否则引爆炸弹；</p></li>
+
+<li><p>所以结果应该是 &ldquo;0 207&rdquo;，当然理论上还有7种组合，就不一一演算了。</p></li>
+</ol>
+
+<h3 id="四号弹">四号弹</h3>
+
+<ol>
+<li>同样这次又调用了那个扫描函数，本次需要输入的字符串仍然需要两个数字（这一次必
+须是两个，不多也不少），以空格分开；</li>
+
+<li><p>后续一段比较和跳转代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">40102e: 83 7c 24 08 0e          cmpl   $0xe,0x8(%rsp)
+401033: 76 05                   jbe    40103a &lt;phase_4+0x2e&gt;
+401035: e8 00 04 00 00          callq  40143a &lt;explode_bomb&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>表示扫描得到的第一个数值应当不大于十进制数14，不然炸弹引爆；</p></li>
+
+<li><p>后续准备参数（%edx: 14, %esi: 0, %edi: 第一个输入数字）并调用 fun4 函数，调用
+之后检查 func4 的返回值，如果最低位是1就引爆炸弹，func4 中两个关键跳转结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">400fe2: 39 f9                   cmp    %edi,%ecx
+400fe4: 7e 0c                   jle    400ff2 &lt;func4+0x24&gt;
+...
+400ff7: 39 f9                   cmp    %edi,%ecx
+400ff9: 7d 0c                   jge    401007 &lt;func4+0x39&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>第一个关键跳转之前已经将 %edx 中的值经过转换存储在了 %ecx 中，值为7，如果7小
+于等于第一个输入数字，就跳转，跳转到的地方首先将0存放在 %eax 中，然后进行上面
+的第二个跳转逻辑；</p>
+
+<p>再次进行相同的比较，如果这次的结果是大于等于，就跳转，跳转的位置是函数的结束
+阶段；</p>
+
+<p>既大于等于又小于等于，可知就是要求等于，所以在输入的第一个数是7的条件下两次跳
+转都会实现，该函数的返回值就是0；</p>
+
+<p>func4 内部逻辑是个递归结构，假设存在这种情况：7 小于等于第一个传入数，但不大
+于等于它，那么就会进入递归，而要让此递归终止，那么必然两次后续跳转条件都符合，
+当下一级递归返回时，它的调用者对 %eax 的操作一定会将其中的值最后一位置为1，整
+个 func4 结束之后 %eax 就为1，后续基于此的跳转就会引爆炸弹，所以 func4 函数的
+调用过程中每次遇到第二个跳转条件都要实现跳转，也就是说，传入的第一个数字一定
+是小于等于7的；</p>
+
+<p>而根据上一个跳转条件如果失败其前后对 %ecx 中值的处理，可以推得输入的第一个数
+字必须是 0 1 3 7 中的一个，这是一个数列）。</p></li>
+
+<li><p>在 phase_4 中调用 func4 之后获得的返回值是0的话，就不跳转到引爆炸弹的位置；然
+后比较第二个输入参数和0是否相等，如果相等就跳转到该函数的结束阶段，表示要求第
+二个输入数字必须是0；</p></li>
+
+<li><p>最后结果就是 &ldquo;7 0&rdquo; （第一个数可以是 0 1 3 7 中的任一个）</p></li>
+</ol>
+
+<h3 id="五号弹">五号弹</h3>
+
+<ol>
+<li><p>注意，phase_5 显式地将 %rdi 中存放的输入字符串的地址送给 %rbx 寄存器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">400ea7: 48 89 c7                mov    %rax,%rdi
+...
+401067: 48 89 fb                mov    %rdi,%rbx</code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p><code>mov %fs:0x28,%rax</code> %fs 这个段寄存器指向当前活动线程的TEB结构（线程结构），表
+示将 fs 段上的偏移地址 0x28 上的数据传送给了 %rax 寄存器（其实和谜题解法无关）</p></li>
+
+<li><p>第一次跳转：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">401078: 31 c0                   xor    %eax,%eax
+40107a: e8 9c 02 00 00          callq  40131b &lt;string_length&gt;
+40107f: 83 f8 06                cmp    $0x6,%eax
+401082: 74 4e                   je     4010d2 &lt;phase_5+0x70&gt;
+401084: e8 b1 03 00 00          callq  40143a &lt;explode_bomb&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>将 %eax 中的内容清零；</p>
+
+<p>调用 string_length 函数计算输入字符串的长度；</p>
+
+<p>比较 string_length 的返回值和立即数6，如果相等则跳转，否则引爆炸弹；</p>
+
+<p>所以输入的字符串应该有6个字符。</p></li>
+
+<li><p>如果字符串长度符合条件，跳转到 0x4010d2，将 %eax 的值置0，再跳转到 0x40108b；</p>
+
+<p>在此处执行 mobzbl 指令（将一个源操作数低1字节长度的值0扩展到32位并存放在目标
+寄存器处），在这里就是取得字符串内第一个字符；而后将此字符（就是 %cl 内存放的
+值，%cl 是 %ecx 的低8位寄存器）送到栈顶。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">40108b: 0f b6 0c 03             movzbl (%rbx,%rax,1),%ecx
+40108f: 88 0c 24                mov    %cl,(%rsp)</code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>对第4步获得的字符进行处理，最后字符（其实是字符的ASCII码的低四位二进制表示）存放在
+%edx 的低8位寄存器 %dl 中，%edx 寄存器中除了低8位其余全为0，接下来：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">401099: 0f b6 92 b0 24 40 00    movzbl 0x4024b0(%rdx),%edx
+4010a0: 88 54 04 10             mov    %dl,0x10(%rsp,%rax,1)
+4010a4: 48 83 c0 01             add    $0x1,%rax
+4010a8: 48 83 f8 06             cmp    $0x6,%rax
+4010ac: 75 dd                   jne    40108b &lt;phase_5+0x29&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>将 %rdx + 0x4024b0 地址处存放的值传送到 %edx 寄存器处；</p>
+
+<p>将 %edx 寄存器处的底8位数据传送到栈顶+10地址处，</p>
+
+<p>将 %rax 存放的值加1；</p>
+
+<p>比较 %rax 存放的值，如果不等于0则跳转到 0x40108b处，其实就是重新第4、5步的循环；</p></li>
+
+<li><p>在循环完成后，将 %rsp + 10 地址处存放的地址和 0x40245e 作为参数传入
+strings_not_equal，如果返回值是1的话，表示不相等，引爆炸弹，返回值是0的就跳转
+到 phase_5 函数收尾阶段，炸弹排除。</p></li>
+
+<li><p>x/s 0x40245e 得到该地址处开始存放的字符串 &ldquo;flyers&rdquo;</p>
+
+<p>x/s 0x4024b0 得到该地址处开始存放的字符串 &ldquo;maduiersnfotvbylSo you think you
+can stop the bomb with ctrl-c, do you?&rdquo;</p>
+
+<p>输入的字符串应该包含6个数字，每个数字对应于第二条字符串的1个索引，索引从0开始，
+6个索引相对的字符可以拼凑成&rdquo;flyers&rdquo;</p></li>
+
+<li><p>可以推算，index的组合是9fe567，查找ASCII表，最后的结果是 &ldquo;IONEFG&rdquo;（不唯一）。</p></li>
+</ol>
+
+<h3 id="六号弹">六号弹</h3>
+
+<ol>
+<li>phase_6 首先调用了 read_six_numbers 函数，这个函数的功能是将输入字符串解析出6
+个数字，详细逻辑在 <a href="#二号弹">二号弹</a> 分析过；</li>
+<li>然后对 %rsp 处的值进行判断，也就是输入字符串的第一个数字，这个数字是必须无符号数，
+且必须小于等于6；</li>
+
+<li><p>然后进入一个循环，依次比较第一个数字和后续数字是否相等、第二个数字和后续数字……，
+如果遇到相等的情况则引爆炸弹，且所有数字都必须小于等于6且不能为0；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">40110b: 49 89 e6                mov    %rsp,%r14
+40110e: 41 bc 00 00 00 00       mov    $0x0,%r12d
+401114: 4c 89 ed                mov    %r13,%rbp
+401117: 41 8b 45 00             mov    0x0(%r13),%eax  # 准备工作
+40111b: 83 e8 01                sub    $0x1,%eax
+40111e: 83 f8 05                cmp    $0x5,%eax
+401121: 76 05                   jbe    401128 &lt;phase_6+0x34&gt;
+401123: e8 12 03 00 00          callq  40143a &lt;explode_bomb&gt;  # 数字不能大于6
+401128: 41 83 c4 01             add    $0x1,%r12d
+40112c: 41 83 fc 06             cmp    $0x6,%r12d
+401130: 74 21                   je     401153 &lt;phase_6+0x5f&gt;  # 全部循环结束判断
+401132: 44 89 e3                mov    %r12d,%ebx
+401135: 48 63 c3                movslq %ebx,%rax
+401138: 8b 04 84                mov    (%rsp,%rax,4),%eax
+40113b: 39 45 00                cmp    %eax,0x0(%rbp)  # 比较一个数和后续的数
+40113e: 75 05                   jne    401145 &lt;phase_6+0x51&gt;
+401140: e8 f5 02 00 00          callq  40143a &lt;explode_bomb&gt;  # 相等的话就引爆炸弹
+401145: 83 c3 01                add    $0x1,%ebx
+401148: 83 fb 05                cmp    $0x5,%ebx
+40114b: 7e e8                   jle    401135 &lt;phase_6+0x41&gt;  # 取出这一轮接下来的数并进行循环
+40114d: 49 83 c5 04             add    $0x4,%r13
+401151: eb c1                   jmp    401114 &lt;phase_6+0x20&gt;  # 一轮比较结束，继续下一轮</code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>接下来又是一个循环，依次将7减去输入的数字，并将结果存储在原地址处：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">401153: 48 8d 74 24 18          lea    0x18(%rsp),%rsi
+401158: 4c 89 f0                mov    %r14,%rax
+40115b: b9 07 00 00 00          mov    $0x7,%ecx
+401160: 89 ca                   mov    %ecx,%edx
+401162: 2b 10                   sub    (%rax),%edx
+401164: 89 10                   mov    %edx,(%rax)
+401166: 48 83 c0 04             add    $0x4,%rax
+40116a: 48 39 f0                cmp    %rsi,%rax
+40116d: 75 f1                   jne    401160 &lt;phase_6+0x6c&gt;x</code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>继续进入一个循化，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">40116f: be 00 00 00 00          mov    $0x0,%esi  # 初始化循环条件
+401174: eb 21                   jmp    401197 &lt;phase_6+0xa3&gt;
+401176: 48 8b 52 08             mov    0x8(%rdx),%rdx  # 将 0x6032d0 加 8 获得的地址处存放的值
+40117a: 83 c0 01                add    $0x1,%eax  # 递增
+40117d: 39 c8                   cmp    %ecx,%eax  # 继续比较
+40117f: 75 f5                   jne    401176 &lt;phase_6+0x82&gt;  # 还是不等则继续这次小循环
+401181: eb 05                   jmp    401188 &lt;phase_6+0x94&gt;  # 相等后跳转
+401183: ba d0 32 60 00          mov    $0x6032d0,%edx
+401188: 48 89 54 74 20          mov    %rdx,0x20(%rsp,%rsi,2)  # 将 0x6032d0 处理（或者原值）后的值存放在由 %rsi 决定的地址处
+40118d: 48 83 c6 04             add    $0x4,%rsi  # 循环条件值加4
+401191: 48 83 fe 18             cmp    $0x18,%rsi # 判断是否终止循环
+401195: 74 14                   je     4011ab &lt;phase_6+0xb7&gt;
+401197: 8b 0c 34                mov    (%rsp,%rsi,1),%ecx  # 取前面计算得到的值
+40119a: 83 f9 01                cmp    $0x1,%ecx
+40119d: 7e e4                   jle    401183 &lt;phase_6+0x8f&gt;  # 如果该值小于等于1，跳转
+40119f: b8 01 00 00 00          mov    $0x1,%eax
+4011a4: ba d0 32 60 00          mov    $0x6032d0,%edx
+4011a9: eb cb                   jmp    401176 &lt;phase_6+0x82&gt;  # 跳转到大于1的处理循环</code></pre></td></tr></table>
+</div>
+</div>
+<ol>
+<li>此循环依次将由前面步骤获得的 %rsp %rsp+4 等地址处存放的值与1比较，如果相等，
+则将 0x6032d0 这个地址存放在 %rsp + %rsi*2 + 0x20 地址处，%rsi 中存放的数
+字用来判断是否终止循环，从0开始依次加4，等于24时终止此次循环；</li>
+<li>如果不相等，则再与2比较，并将 0x6032d0 加 8，这又是一个循环：不相等就递增，
+直到相等为止，此时将获得的 0x6032d0 递增后的值放入相应地址处；</li>
+</ol></li>
+
+<li><p>又进入一次循环</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">4011ab: 48 8b 5c 24 20          mov    0x20(%rsp),%rbx  # 将第5步中获得的第一个值送入 %rbx 寄存器
+4011b0: 48 8d 44 24 28          lea    0x28(%rsp),%rax  # 将...第二个值的地址送入 %rax 寄存器
+4011b5: 48 8d 74 24 50          lea    0x50(%rsp),%rsi  # 将终止条件值送入 %rsi 寄存器
+4011ba: 48 89 d9                mov    %rbx,%rcx  # 将 %rbx 中的值送入 %rcx 寄存器
+4011bd: 48 8b 10                mov    (%rax),%rdx  # 将 %rax 中地址存储的值送入 %rdx 寄存器
+4011c0: 48 89 51 08             mov    %rdx,0x8(%rcx)  # 将 %rdx 中的值送到由 %rcx+8 得出的地址处
+4011c4: 48 83 c0 08             add    $0x8,%rax  # 第5步中获得值中的下一个
+4011c8: 48 39 f0                cmp    %rsi,%rax
+4011cb: 74 05                   je     4011d2 &lt;phase_6+0xde&gt; # 是否终止
+4011cd: 48 89 d1                mov    %rdx,%rcx  # 如果不终止，将 %rdx 的值送入 %rcx 中
+4011d0: eb eb                   jmp    4011bd &lt;phase_6+0xc9&gt; # 继续下一次循环</code></pre></td></tr></table>
+</div>
+</div>
+<p>逻辑看起来很复杂，其实抓住一个关键点就可以理解：第5步中获得的值中，按顺序总是
+把下一个值放置于上一个值+8得到的地址中；其实就是在建立链表。</p></li>
+
+<li><p>最后一个循环：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">4011da: bd 05 00 00 00          mov    $0x5,%ebp  # 比较次数
+4011df: 48 8b 43 08             mov    0x8(%rbx),%rax  # 获得链表中下一个元素的地址
+4011e3: 8b 00                   mov    (%rax),%eax  # 取得下一个元素
+4011e5: 39 03                   cmp    %eax,(%rbx)  # 将前一个元素和后一个进行比较
+4011e7: 7d 05                   jge    4011ee &lt;phase_6+0xfa&gt;  # 前面的值必须大于等于后面的
+4011e9: e8 4c 02 00 00          callq  40143a &lt;explode_bomb&gt;
+4011ee: 48 8b 5b 08             mov    0x8(%rbx),%rbx  # 进入下一轮比较
+4011f2: 83 ed 01                sub    $0x1,%ebp
+4011f5: 75 e8                   jne    4011df &lt;phase_6+0xeb&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>循环交替比较链表元素中的大小，前面的值必须大于等于后面的。</p></li>
+
+<li><p>根据前面的推演，可知输入的字符串中6个数字只能是 123456 的排列组合；第5步中提
+及的 0x6032d0 中存放的是332，0x6032d8 处存放的是地址，0x6032e0 存放的是 168，
+接下内依次是 924、691、477、443；根据第6步得出的结论即链表前一个元素必须比接
+下来的大，其实就是以我们输入的数据为索引，根据原有的链表建立新的降序链表。那
+么可以得出结果应该是 &ldquo;4 3 2 1 6 5&rdquo;</p></li>
+</ol>
+
+<h3 id="隐藏弹">隐藏弹</h3>
+
+<ol>
+<li><p>还没完！虽然说将前面得到的结果依次输入，bomb 程序就会提示拆弹完成正常退出，但
+bomb.s 汇编代码文件中还有一个隐藏炸弹 secret_phase，这个炸弹在第六个炸弹被拆
+除后且后续继续又输入时才会接受拆除，secret_phase 函数在每次拆弹成功后调用的
+phase_defused 函数中被调用（可能）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">4015d8: 83 3d 81 21 20 00 06    cmpl   $0x6,0x202181(%rip)        # 603760 &lt;num_input_strings&gt;
+4015df: 75 5e                   jne    40163f &lt;phase_defused+0x7b&gt;  # 不然就跳过隐藏炸弹
+...
+4015f0: be 19 26 40 00          mov    $0x402619,%esi  # 格式化字符串 &#34;%d %d %s&#34;
+4015f5: bf 70 38 60 00          mov    $0x603870,%edi  # 输入的符合格式的字符串的地址
+4015fa: e8 f1 f5 ff ff          callq  400bf0 &lt;__isoc99_sscanf@plt&gt;
+4015ff: 83 f8 03                cmp    $0x3,%eax  # 输入的字符串应该包含3个元素
+401602: 75 31                   jne    401635 &lt;phase_defused+0x71&gt;  # 否则跳过隐藏炸弹
+401604: be 22 26 40 00          mov    $0x402622,%esi  # 字符串地址，值是 &#34;DrEvil&#34;
+401609: 48 8d 7c 24 10          lea    0x10(%rsp),%rdi # 输入的字符串栈中地址
+40160e: e8 25 fd ff ff          callq  401338 &lt;strings_not_equal&gt;
+401613: 85 c0                   test   %eax,%eax
+401615: 75 1e                   jne    401635 &lt;phase_defused+0x71&gt;  # 字符串比较一定要相等
+...
+401630: e8 0d fc ff ff          callq  401242 &lt;secret_phase&gt;  # 调用 secret_phase 函数</code></pre></td></tr></table>
+</div>
+</div>
+<ol>
+<li>可以看到，__isoc99_sscanf@plt 接受了一个格式化字符串和一个输入字符串，而这
+个输入字符串是由两个数字和一个字符串组成的，这个字符串在哪里？注意，它并不
+是在第六个字符串输入后重新输入一行，而是在原有的六行字符串中的一行;</li>
+<li>使用 gdb 对可执行文件进行断点设置，断点设置在 phase_defused 函数的入口处，
+按正确答案执行-输入-输出，到第六个字符串输入后，在 phase_defused 函数内部
+单步进行到 0x4015f5 地址处，x/s 0x603870 得到 &ldquo;7 0&rdquo;；可知，这里是解析了第4
+个输入字符串；</li>
+<li>要想拆除隐藏炸弹，第4个字符串应该是 &ldquo;7 0 DrEvil&rdquo;</li>
+</ol></li>
+
+<li><p>secret_phase 函数逻辑：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">401243: e8 56 02 00 00          callq  40149e &lt;read_line&gt;  # 读取第7个输入
+401248: ba 0a 00 00 00          mov    $0xa,%edx  # 10进制 允许 strol 的字符串参数包括&#34;1...9&#34;
+40124d: be 00 00 00 00          mov    $0x0,%esi
+401252: 48 89 c7                mov    %rax,%rdi  # 准备参数
+401255: e8 76 f9 ff ff          callq  400bd0 &lt;strtol@plt&gt;  # 根据参数转换输入字符串为相应的数字
+40125a: 48 89 c3                mov    %rax,%rbx
+40125d: 8d 40 ff                lea    -0x1(%rax),%eax
+401260: 3d e8 03 00 00          cmp    $0x3e8,%eax  # 数字不能大于1001
+401265: 76 05                   jbe    40126c &lt;secret_phase+0x2a&gt;
+401267: e8 ce 01 00 00          callq  40143a &lt;explode_bomb&gt;  # 不然炸弹爆炸
+40126e: bf f0 30 60 00          mov    $0x6030f0,%edi
+401273: e8 8c ff ff ff          callq  401204 &lt;fun7&gt;  # 调用 fun7
+401278: 83 f8 02                cmp    $0x2,%ea
+40127b: 74 05                   je     401282 &lt;secret_phase+0x40&gt;  # fun7 的返回值必须等于2
+40127d: e8 b8 01 00 00          callq  40143a &lt;explode_bomb&gt;</code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>fun7 函数逻辑</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-text" data-lang="text">...
+40120d: 8b 17                   mov    (%rdi),%edx  # 获得 %rdi 存放的地址处存储的值
+40120f: 39 f2                   cmp    %esi,%edx  # 与输入数字比较
+401211: 7e 0d                   jle    401220 &lt;fun7+0x1c&gt;  # 如果小于等于输入数字则跳转
+401213: 48 8b 7f 08             mov    0x8(%rdi),%rdi  # 否则将 %rdi+8 地址处存放的值送给 %rdi
+401217: e8 e8 ff ff ff          callq  401204 &lt;fun7&gt;  # 递归
+40121c: 01 c0                   add    %eax,%eax  # 递归返回后将其返回值加倍
+40121e: eb 1d                   jmp    40123d &lt;fun7+0x39&gt;  # 跳转到返回处
+401220: b8 00 00 00 00          mov    $0x0,%eax  # 如果小于等于输入数字后的跳转处将0送 %eax
+401225: 39 f2                   cmp    %esi,%edx  # 重复比较
+401227: 74 14                   je     40123d &lt;fun7+0x39&gt;  # 如果等于则跳转到返回处
+401229: 48 8b 7f 10             mov    0x10(%rdi),%rdi  # 否则将 %rdi+8 地址处存放的值送给 %rdi
+40122d: e8 d2 ff ff ff          callq  401204 &lt;fun7&gt;  # 递归
+401232: 8d 44 00 01             lea    0x1(%rax,%rax,1),%eax  # 递归结束后将返回值加倍在加1
+401236: eb 05                   jmp    40123d &lt;fun7+0x39&gt;
+401238: b8 ff ff ff ff          mov    $0xffffffff,%eax
+...</code></pre></td></tr></table>
+</div>
+</div>
+<p>按照第2步分析的 fun7 的返回值必须是2，那么 fun7 的递归调用轨迹只有一种可能</p>
+
+<ol>
+<li>进入 fun7 函数，初始返回值为0
+
+<ol>
+<li>进入 401217 处递归，此递归结束后会将返回值加倍；
+
+<ol>
+<li>进入 40122d 处递归，递归结束后会将返回值加倍再加1，也就是将 %eax 中
+的值置1；
+
+<ol>
+<li>此次调用中保持 %eax 为0，两个跳转条件都满足，不进入递归。</li>
+</ol></li>
+</ol></li>
+</ol></li>
+</ol></li>
+
+<li><p>gdb x/2w 查询 0x6030f0 地址处的值，以及接下来预判的函数调用轨迹将会使用的各个
+增量地址处的值，可以确定要想使第3步中的轨迹实现，输入数字必须是22。</p></li>
+</ol>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">zero4drift</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-01-14</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://zero4drift.github.io/tags/csapp-lab/">csapp-lab</a>
+          <a href="https://zero4drift.github.io/tags/c/">c</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/csapp-attacklab-jie-ti-si-lu-ji-lu/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">CSAPP-attacklab 解题思路记录</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/csapp-datalab-jie-ti-si-lu-ji-lu/">
+            <span class="next-text nav-default">CSAPP-datalab 解题思路记录</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "zero4drift/comments-for-my-blog"
+            issue-term="pathname"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+  
+    <a href="fang0052@e.ntu.edu.sg" rel="me noopener" class="iconfont"
+      title="email"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/zero4drift" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://zero4drift.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2018 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        zero4drift
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

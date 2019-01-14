@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cpp Primer on 找一个吃麦旋风的理由</title>
+    <link>https://zero4drift.github.io/tags/cpp-primer/</link>
+    <description>Recent content in Cpp Primer on 找一个吃麦旋风的理由</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 09 Aug 2018 17:01:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://zero4drift.github.io/tags/cpp-primer/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-19</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-19/</link>
+      <pubDate>Thu, 09 Aug 2018 17:01:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-19/</guid>
+      <description>Exercise 19.1 1 2 3 4 5 6 7 8 9  void *operator new(size_t size) { if(void *mem = malloc(size)) return mem; else throw bad_alloc(); } void operator delete(void *mem) noexcept {free(mem);}    Exercise 19.2 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  // See StrVec.h and StrVec.cpp. void *operator new(size_t size) { cout &amp;lt;&amp;lt; &amp;#34;operator new&amp;#34; &amp;lt;&amp;lt; endl; if(void *mem = malloc(size)) return mem; else throw bad_alloc(); } void operator delete(void *mem) noexcept { cout &amp;lt;&amp;lt; &amp;#34;operator delete&amp;#34; &amp;lt;&amp;lt; endl; free(mem); } int main() { StrVec({&amp;#34;hello&amp;#34;, &amp;#34;world&amp;#34;}); }    StrVec.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-18</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-18/</link>
+      <pubDate>Fri, 03 Aug 2018 19:56:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-18/</guid>
+      <description>Exercise 18.1 1 2 3 4 5 6 7 8 9 10 11  // range_error r(&amp;#34;error&amp;#34;); // throw r; // type of exception object: range_error // exception *p = &amp;amp;r; // throw *p; // type of exception object: exception // the static, compile-time type of that expression determines the type of the exception object. // &amp;#39;throw *p&amp;#39; replaced by throw p; // pointer points to a local object; // the matched catch expression may use this pointer to access a destructed object, which would casue an error, program terminates.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-17</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-17/</link>
+      <pubDate>Fri, 27 Jul 2018 23:49:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-17/</guid>
+      <description>Exercise 17.1 1 2 3 4 5  int main() { tuple&amp;lt;int, int, int&amp;gt; ti(10, 20, 30); }    Exercise 17.2 1 2 3 4 5  int main() { tuple&amp;lt;string, vector&amp;lt;string&amp;gt;, pair&amp;lt;string, int&amp;gt;&amp;gt; ti(&amp;#34;hello&amp;#34;, {&amp;#34;hello&amp;#34;, &amp;#34;world&amp;#34;}, {&amp;#34;answer&amp;#34;, 42}); }    Exercise 17.3 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22  // See TextQuery.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-16</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-16/</link>
+      <pubDate>Fri, 20 Jul 2018 16:47:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-16/</guid>
+      <description>Exercise 16.1 1 2 3  // instantiate // generate a spedified version of function or class based on template and passed in template arguments.    Exercise 16.2 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  template &amp;lt;typename T&amp;gt; int compare(const T &amp;amp;v1, const T &amp;amp;v2) { if(v1 &amp;lt; v2) return -1; if(v2 &amp;lt; v1) return 1; return 0; } int main() { compare(1, 2); // compare(Sales_data(), Sales_data());  // compiler error:  // .</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-15</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-15/</link>
+      <pubDate>Wed, 11 Jul 2018 19:54:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-15/</guid>
+      <description>Exercise 15.1 1 2 3  // What is a virtual member? // For some member functions, base class demands its derived class defines its own version, then base class defines them as virtual functions.    Exercise 15.2 1 2 3  // members marked as protected could be visted by derived class, while still could not be visited by other user code; // members marked as private could not be visited by derived class and other user code.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-14</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-14/</link>
+      <pubDate>Thu, 05 Jul 2018 17:53:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-14/</guid>
+      <description>Exercise 14.1 1 2 3 4 5 6 7  /* diff */ // 1. an overload operator function could be called directly. // 2. an overload operator function must either be a member of class of have at least one parameter of class type. // 3. A few built-in operators guarantee the order in which operands are evaluated. These overload versions of these operators do not preserve order of evaluation and/or shourt-circuit evaluation, it is usually a bad idea to overload them.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-13</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-13/</link>
+      <pubDate>Fri, 29 Jun 2018 19:39:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-13/</guid>
+      <description>Exercise 13.1 1 2 3 4 5 6 7 8  // Within a class type, if the first parameter of one constructor is the reference of the class type itself, and left parameters all have default values, then this constrcutor is copy constructor. // copy constructor is utilized in copy initialization: // 1. Define variable using an =; // 2. Pass an object as an argument to a parameter of noreference type; // 3.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-12</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-12/</link>
+      <pubDate>Thu, 14 Jun 2018 10:24:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-12/</guid>
+      <description>Exercise 12.1 1 2 3  // b1 has 4 elements; // b2&amp;#39;s code block has ended, os b2 is destroyed, there is no point in saying how many elements in b2.    Exercise 12.2 1 2  // See StrBlob.h    StrBlob.h 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127  classStrBlobPtr; classStrBlob { friend classStrBlobPtr; friend classConstStrBlobPtr; public: typedef vector&amp;lt;string&amp;gt;::size_type size_type; StrBlob(); StrBlob(initializer_list&amp;lt;string&amp;gt; il); size_type size() const {return data-&amp;gt;size();} bool empty() const {return data-&amp;gt;empty();} void push_back(const string &amp;amp;t) {data-&amp;gt;push_back(t);} void pop_back(); string &amp;amp;front(); const string &amp;amp;front() const; string &amp;amp;back(); const string &amp;amp;back() const; StrBlobPtr begin(); StrBlobPtr end(); private: shared_ptr&amp;lt;vector&amp;lt;std::string&amp;gt;&amp;gt; data; void check(size_type i, const string &amp;amp;msg) const; }; StrBlob::StrBlob(): data(make_shared&amp;lt;vector&amp;lt;string&amp;gt;&amp;gt;()) {} StrBlob::StrBlob(initializer_list&amp;lt;string&amp;gt; il): data(make_shared&amp;lt;vector&amp;lt;string&amp;gt;&amp;gt;(il)) {} void StrBlob::check(size_type i, const string &amp;amp;msg) const { if(i &amp;gt;= data-&amp;gt;size()) throw out_of_range(msg); } string &amp;amp;StrBlob::front() { check(0, &amp;#34;front on empty StrBlob&amp;#34;); return data-&amp;gt;front(); } const string &amp;amp;StrBlob::front() const { check(0, &amp;#34;front on empty StrBlob&amp;#34;); return data-&amp;gt;front(); } string &amp;amp;StrBlob::back() { check(0, &amp;#34;badk on empty StrBlob&amp;#34;); return data-&amp;gt;back(); } const string &amp;amp;StrBlob::back() const { check(0, &amp;#34;back on empty StrBlob&amp;#34;); return data-&amp;gt;back(); } classStrBlobPtr { public: StrBlobPtr(): curr(0) {} StrBlobPtr(StrBlob &amp;amp;a, size_t sz = 0): wptr(a.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-11</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-11/</link>
+      <pubDate>Sat, 09 Jun 2018 14:39:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-11/</guid>
+      <description>Exercise 11.1 1 2 3  // element of map type is key-value pair, in another word, value is associated with keyword and could be accessed through keyword, like map[keyword]. // element of vector contains one individual object, compared with map, could also access the element through style like vector[index], while index is an integer.    Exercise 11.2 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29  int main() { // list: insert an element into a position which is not head or back.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-10</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-10/</link>
+      <pubDate>Thu, 07 Jun 2018 15:46:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-10/</guid>
+      <description>Exercise 10.1 1 2 3 4 5 6 7 8 9 10 11 12 13  int main() { int i; vector&amp;lt;int&amp;gt; vi; while(cin &amp;gt;&amp;gt; i) vi.push_back(i); cout &amp;lt;&amp;lt; &amp;#34;Specify a number: &amp;#34; &amp;lt;&amp;lt; endl; cin.clear(); cin &amp;gt;&amp;gt; i; cout &amp;lt;&amp;lt; &amp;#34;There are &amp;#34; &amp;lt;&amp;lt; count(vi.begin(), vi.end(), i) &amp;lt;&amp;lt; &amp;#34; count of &amp;#34; &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;#34; in input numbers&amp;#34; &amp;lt;&amp;lt; endl; }    Exercise 10.2 1 2 3 4 5 6 7 8 9 10 11 12 13  int main() { string i; list&amp;lt;string&amp;gt; ls; while(cin &amp;gt;&amp;gt; i) ls.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-9</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-9/</link>
+      <pubDate>Tue, 05 Jun 2018 10:24:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-9/</guid>
+      <description>Exercise 9.1 1 2 3 4  // (a): list // (b): deque // (c): vector (vector.sort())    Exercise 9.2 1 2 3 4 5  int main() { std::list&amp;lt;std::deque&amp;lt;int&amp;gt;&amp;gt; sample; }    Exercise 9.3 1 2 3 4  // iterators which make a iterator range must be: // 1. both point to one container&amp;#39;s elements, or point to the off the end element of one container // 2.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-8</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-8/</link>
+      <pubDate>Wed, 30 May 2018 22:53:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-8/</guid>
+      <description>Exercise 8.1 1 2 3 4 5 6 7 8 9 10 11 12  istream &amp;amp;unlimit_inputs(istream &amp;amp;is) { char c; while(!is.eof()) { is &amp;gt;&amp;gt; c; cout &amp;lt;&amp;lt; c &amp;lt;&amp;lt; endl; } is.clear(); return is; }    Exercise 8.2 1 2 3 4 5 6 7 8  extern istream &amp;amp;unlimit_inputs(istream &amp;amp;); int main() { int i = 0; (unlimit_inputs(cin)) &amp;gt;&amp;gt; i; cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; endl; }    Exercise 8.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-7</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-7/</link>
+      <pubDate>Sat, 19 May 2018 18:22:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-7/</guid>
+      <description>Exercise 7.1 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38  struct Sales_data { string bookNo; unsigned units_sold = 0; double revenue = 0.0; }; int main() { Sales_data item1, item2; if(cin &amp;gt;&amp;gt; item1.bookNo &amp;gt;&amp;gt; item1.units_sold &amp;gt;&amp;gt; item1.revenue) { while(cin &amp;gt;&amp;gt; item2.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-6</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-6/</link>
+      <pubDate>Wed, 25 Apr 2018 13:30:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-6/</guid>
+      <description>Exercise 6.1 1 2 3  // parameters of function: local variables are to be implicitly defined and initialized when the function is called. // arguments of function: initialize values that assigned to objects(paramenters of a function) when a function is called    Exercise 6.2 1 2 3 4 5 6 7 8 9 10 11 12 13 14  // a: type of function unmatchs its return value // string f() // { // string s; // // .</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-5</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-5/</link>
+      <pubDate>Sat, 21 Apr 2018 18:24:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-5/</guid>
+      <description>Exercise 5.1 1 2 3  // null statement is a statement just contains a &amp;#39;;&amp;#39; // applied on certain place which needs a statement required by the rule of syntax, while by logical there is nothing needed to be handled.    Exercise 5.2 1 2  // block is a sequence of statements and declarations surrounded by curly braces, also called as compound statement, may be blank inside curly braces.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-4</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-4/</link>
+      <pubDate>Wed, 18 Apr 2018 11:37:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-4/</guid>
+      <description>Exercise 4.1 1 2  // it&amp;#39;s 105.    Exercise 4.2 1 2 3  // *vec.begin() equals to *(vec.begin()) // *vec.begin() + 1 equals to (*(vec.begin())) + 1    Exercise 4.3 1 2  // That is acceptable, it is too strict under an orded evaluation order, complier left it blank to allow users to diy, it&amp;#39;s more flexible.    Exercise 4.4 1 2 3 4 5 6  int main() { int i = 12 / 3 * 4 + 5 * 15 + 24 % 4 / 2; // 91  std::cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; std::endl; }    Exercise 4.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-3</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-3/</link>
+      <pubDate>Thu, 12 Apr 2018 16:30:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-3/</guid>
+      <description>Exercise 3.2 1 2 3 4 5 6 7 8 9  int main() { string s1, s2; getline(cin, s1); cout &amp;lt;&amp;lt; s1 &amp;lt;&amp;lt; endl; cin &amp;gt;&amp;gt; s2; cout &amp;lt;&amp;lt; s2 &amp;lt;&amp;lt; endl; }    Exercise 3.3 1 2 3  // std::cin &amp;gt;&amp;gt; string object, space is ignored, words are read in one by one which are separted by space or spaces // getline(std::cin, string object), reads a whole sentence until encounters a &amp;#39;\n&amp;#39;, while that &amp;#39;\n&amp;#39; is not sotred in that string object.</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-2</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-2/</link>
+      <pubDate>Mon, 09 Apr 2018 14:45:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-2/</guid>
+      <description>Exercise 2.3 1 2 3 4 5 6 7 8 9 10 11 12 13 int main() { unsigned u = 10, u2 = 42; std::cout &amp;lt;&amp;lt; u2 - u &amp;lt;&amp;lt; std::endl; // 32 std::cout &amp;lt;&amp;lt; u - u2 &amp;lt;&amp;lt; std::endl; // -32 的二进制补码表示，此次输出该二进制表示被当作无符号数 int</description>
+    </item>
+    
+    <item>
+      <title>Cpp-Primer-5th-Exercises-Chapter-1</title>
+      <link>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-1/</link>
+      <pubDate>Sat, 07 Apr 2018 21:23:00 +0800</pubDate>
+      
+      <guid>https://zero4drift.github.io/post/cpp-primer-5th-exercises-chapter-1/</guid>
+      <description>Exercise 1.1 1 2  // Illustration won&amp;#39;t be necessary.    Exercise 1.2 1 2 3 4 5  int main() { return -1; }    Exercise 1.3 1 2 3 4 5 6  int main() { std::cout &amp;lt;&amp;lt; &amp;#34;Hello, World.&amp;#34; &amp;lt;&amp;lt; std::endl; return 0; }    Exercise 1.4 1 2 3 4 5 6 7 8 9 10  int main() { std::cout &amp;lt;&amp;lt; &amp;#34;Enter two numbers:&amp;#34; &amp;lt;&amp;lt; std::endl; int v1 = 0, v2 = 0; std::cin &amp;gt;&amp;gt; v1 &amp;gt;&amp;gt; v2; std::cout &amp;lt;&amp;lt; &amp;#34;The product of &amp;#34; &amp;lt;&amp;lt; v1 &amp;lt;&amp;lt; &amp;#34; and &amp;#34; &amp;lt;&amp;lt; v2 &amp;lt;&amp;lt; &amp;#34; is &amp;#34; &amp;lt;&amp;lt; v1 * v2 &amp;lt;&amp;lt; std::endl; return 0; }    Exercise 1.</description>
+    </item>
+    
+  </channel>
+</rss>

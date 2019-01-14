@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SICP-Refresher-Chapter-1(1) - 找一个吃麦旋风的理由</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="zero4drift" />
+  <meta name="description" content="写在前面 SICP 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么 还要再来一遍？ 说到习题，由于当时看这本书做习题时是在 windows 平台上" />
+
+  <meta name="keywords" content="代码, 算法, 工具" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://zero4drift.github.io/post/sicp-refresher-chapter-11/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.28854364c052ec02eba4ee5867bc889d3a567cdf337ba3a355c33511d20bee1e.css" integrity="sha256-KIVDZMBS7ALrpO5YZ7yInTpWfN8ze6OjVcM1EdIL7h4=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="SICP-Refresher-Chapter-1(1)" />
+<meta property="og:description" content="写在前面 SICP 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么 还要再来一遍？ 说到习题，由于当时看这本书做习题时是在 windows 平台上" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zero4drift.github.io/post/sicp-refresher-chapter-11/" /><meta property="article:published_time" content="2018-12-13T20:41:00&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-14T22:23:29&#43;08:00"/>
+<meta itemprop="name" content="SICP-Refresher-Chapter-1(1)">
+<meta itemprop="description" content="写在前面 SICP 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么 还要再来一遍？ 说到习题，由于当时看这本书做习题时是在 windows 平台上">
+
+
+<meta itemprop="datePublished" content="2018-12-13T20:41:00&#43;08:00" />
+<meta itemprop="dateModified" content="2018-12-13T20:41:00&#43;08:00" />
+<meta itemprop="wordCount" content="3249">
+
+
+
+<meta itemprop="keywords" content="SICP,Scheme," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SICP-Refresher-Chapter-1(1)"/>
+<meta name="twitter:description" content="写在前面 SICP 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么 还要再来一遍？ 说到习题，由于当时看这本书做习题时是在 windows 平台上"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">找一个吃麦旋风的理由</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      找一个吃麦旋风的理由
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">SICP-Refresher-Chapter-1(1)</h1>
+      
+      <div class="post-meta">
+        <time datetime="2018-12-13" class="post-time">
+          2018-12-13
+        </time>
+        <div class="post-category">
+            <a href="https://zero4drift.github.io/categories/sicp/"> SICP </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#写在前面">写在前面</a></li>
+<li><a href="#第一章">第一章</a>
+<ul>
+<li><a href="#程序设计的基本元素">程序设计的基本元素</a>
+<ul>
+<li><a href="#表达式">表达式</a></li>
+<li><a href="#命名和环境">命名和环境</a></li>
+<li><a href="#组合式的求值">组合式的求值</a></li>
+<li><a href="#复合过程">复合过程</a></li>
+<li><a href="#过程应用的代换模形">过程应用的代换模形</a></li>
+<li><a href="#条件表达式何谓词">条件表达式何谓词</a></li>
+<li><a href="#练习-1-dot-1-1-dot-5">练习 1.1-1.5</a></li>
+<li><a href="#实例-采用牛顿法求平方根">实例：采用牛顿法求平方根</a></li>
+<li><a href="#练习-1-dot-6-1-dot-8">练习 1.6-1.8</a></li>
+<li><a href="#过程作为黑箱抽象">过程作为黑箱抽象</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h2 id="写在前面">写在前面</h2>
+
+<p><em>SICP</em> 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么
+还要再来一遍？</p>
+
+<ol>
+<li>说到习题，由于当时看这本书做习题时是在 windows 平台上，而 windows 系统并没
+有现成的非常方便地运行 scheme 程序的工具 (例如 cmuscheme 用起来就很麻烦),
+习题程序大部分都没有严格测试过，很多就是代码逻辑通顺就算完成，现在想来 bug
+应该不少；</li>
+<li>第五章从基于寄存器机器的设计引出解释器和编译器的原理，虽然说此章大多的习题
+是叙述题所以没有做，但是 scheme repl 解释器的 c/c++ 实现还是值得一做的；</li>
+<li><em>SICP</em> 的编程思想贯穿于今年学习 <em>Cpp-Primer</em> 以及 <em>CLRS</em> 的过程当中，这个我
+很明确的感受到了：构造过程抽象 &amp; 构造数据抽象，虽然我只能说是略有领会，但确
+实在解决编程问题时提供了极大的帮助。编程工具会被淘汰，但编程思想永不过时，
+特别是在实践之后再重温必有更多获益；</li>
+<li><em>Cpp-Primer</em> &amp; <em>CLRS</em> 在博客的相关博文中并没有详细的总结当时的代码思路，其
+主要内容是代码及一小部分注释，注释部分或者是关于代码的难点，亦或者是提醒容
+易出错的地方，这样的形式可读性很差，但要仔细组织文档的话，整体工作量又何止
+增加一倍；而这一次既然是复习 &amp; 查错，同时利用 orgmode 嵌入代码块及 scheme的
+解释性语言的特点，可以在组织文章的同时运行～修改代码，这是效仿使用orgmode
+文档嵌入 elisp 代码块构成 emacs 配置文件的做法，许多 emacs 大佬用这种手法提
+高配置文件可读性。</li>
+</ol>
+
+<p>有些书就是值得一遍又一遍的反复咀嚼，毫无疑问 <em>SICP</em> 就是其中的一员。</p>
+
+<h2 id="第一章">第一章</h2>
+
+<ol>
+<li>计算过程与程序
+
+<ol>
+<li>计算过程：存在于计算机里的一类抽象事物，可以操作一些称为数据的抽象事物；</li>
+<li>程序：人们创建出的规则模式，以指导计算过程的进行；</li>
+<li>设计良好的程序应该具有某种模块化的设计，各个部分都可以独立地构造，替换和
+排除错误，某模块发生的错误影响限于模块内部，并不会影响其它模块和整体程序。</li>
+</ol></li>
+<li>Lisp 语言作为本书中讨论程序设计的基础
+
+<ol>
+<li>最重要的是因为：计算过程的 Lisp 描述（过程）本身又可以作为 Lisp 的数据结
+构来表示和操作；</li>
+<li>现存的许多威力强大的程序设计技术，都依赖于填平在“被动的”数据和“主动的”过
+程之间的传统划分。</li>
+</ol></li>
+</ol>
+
+<h3 id="程序设计的基本元素">程序设计的基本元素</h3>
+
+<ol>
+<li>程序设计中的两类要素：过程和数据
+
+<ol>
+<li>非形式化地说，数据是一种我们希望去操作地“东西”，而过程就是有关操作这些
+数据的规则的描述；</li>
+<li>任何强有力的程序设计语言都必须能表述基本的数据和基本的过程，还需要提供
+对过程和数据进行组合和抽象的方法；</li>
+<li>本章只处理简单的数值数据，把注意力集中到过程构造的规则方面，当然这些规
+则同样可以用于操作各种数据。</li>
+</ol></li>
+</ol>
+
+<h4 id="表达式">表达式</h4>
+
+<ol>
+<li>组合式是什么
+
+<ol>
+<li>构成方式就是用 <strong>一对括号</strong> 括起一些 <strong>表达式</strong>, 形成一个表，用于表示一个
+<strong>过程应用</strong>;</li>
+<li>表里最左的元素称为 <strong>运算符</strong>, 其它元素都称为 <strong>运算对象</strong>;</li>
+<li>要得到这种组合式的值，采用的方式就是由 <strong>运算符</strong> 所刻画的过程应用于有关
+的 <strong>实际参数</strong>, 而所谓 <strong>实际参数</strong> 也就是那些 <strong>运算对象</strong> 的值。</li>
+</ol></li>
+<li>组合式的 <strong>运算符</strong> 前缀表示
+
+<ol>
+<li>完全适用于可能带有任意个实参的过程；</li>
+<li>可以直接扩充，允许出现组合式嵌套的情况。</li>
+</ol></li>
+</ol>
+
+<h4 id="命名和环境">命名和环境</h4>
+
+<ol>
+<li>通过名字去使用 <strong>运算对象</strong> 的方式
+
+<ol>
+<li>将名字标识符称为 <strong>变量</strong>, 它的 <strong>值</strong> 也就是它所对应的那个对象；</li>
+<li>Scheme 中通过 define 的方式给事物命名，是我们所用的语言里最简单的抽象
+方法；</li>
+<li>构造一个复杂的程序，也就是为了去一步步地创建出越来越复杂的计算性对象。</li>
+</ol></li>
+<li>环境
+
+<ol>
+<li>将值与符号关联，而后又能提取出这些值，解释器必须维护某种存储能力，以便
+保持有关的 <strong>名字－值</strong> 序对的轨迹。</li>
+</ol></li>
+</ol>
+
+<h4 id="组合式的求值">组合式的求值</h4>
+
+<ol>
+<li>组合式的求值过程是递归的，应该把递归看做一种处理层次性结构的极强有力战术；</li>
+<li>数，内部运算符或者其它名字是基本表达式，内部运算符和其它名字可以看作符号，
+环境所扮演的角色就是用于确定表达式中各个符号的意义；</li>
+<li>一般性求值规则的例外被称为特殊形式（比如define，它并不是一个组合式），对
+各种表达式的求值规则可以描述为一个简单的通用规则和一组针对不多的特殊形式
+的专门规则。</li>
+</ol>
+
+<h4 id="复合过程">复合过程</h4>
+
+<ol>
+<li>过程定义是一种威力更加强大的抽象技术，通过它可以为复合操作提供名字，而后
+就可以将这样的操作作为一个单元使用了；</li>
+<li>复合过程的使用方式与基本过程完全一样。</li>
+</ol>
+
+<h4 id="过程应用的代换模形">过程应用的代换模形</h4>
+
+<ol>
+<li>应用序：将复合过程应用于实际参数，就是在将过程体中的每个形参用相应的实参
+取代之后，对这一过程体求值；
+
+<ol>
+<li>代换的作用只是为了帮助我们领会过程调用中的情况，而不是对解释器实际工作
+方式的具体描述。</li>
+</ol></li>
+<li>正则序：先不求出运算对象的值，直到实际需要它们的值时再去做，采用这种求值
+方式，首先用运算对象表达式去代换形式参数，直至得到一个只包含基本运算符的
+表达式，然后再去执行求值。</li>
+</ol>
+
+<h4 id="条件表达式何谓词">条件表达式何谓词</h4>
+
+<ol>
+<li><p>cond: 条件表达式，如果无法找到值为真的 <p>, cond 的值无定义；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">cond </span><span class="p">(</span><span class="nv">&lt;p1&gt;</span> <span class="nv">&lt;e1&gt;</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">&lt;p2&gt;</span> <span class="nv">&lt;e2&gt;</span><span class="p">)</span>
+      <span class="o">...</span>
+      <span class="c1">;; 最后一个子句 &lt;p&gt; 可以替换为 else</span>
+      <span class="c1">;; 即前面所有子句都被跳过，会返回最后子句中 &lt;e&gt; 的值</span>
+      <span class="p">(</span><span class="nv">&lt;p3&gt;</span> <span class="nv">&lt;e3&gt;</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>if: 条件表达式的受限形式，适用于分情况分析中只有两个情况的需要；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">if </span><span class="nv">&lt;predicate&gt;</span> <span class="nv">&lt;consequent&gt;</span> <span class="nv">&lt;alternative&gt;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>and: 特殊形式而不是普通过程，因为子表达式不一定都求值；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">and </span><span class="nv">&lt;e1&gt;</span> <span class="o">...</span> <span class="nv">&lt;en&gt;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>or: 特殊形式而不是普通过程，因为子表达式不一定都求值；</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">or </span><span class="nv">&lt;e1&gt;</span> <span class="o">...</span> <span class="nv">&lt;en&gt;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>not: 普通过程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="nv">not</span> <span class="nv">&lt;e&gt;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+<h4 id="练习-1-dot-1-1-dot-5">练习 1.1-1.5</h4>
+
+<ul>
+<li><p>1.1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="mi">10</span>                  <span class="c1">;10</span>
+<span class="p">(</span><span class="nv">+</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>               <span class="c1">;12</span>
+<span class="p">(</span><span class="nv">-</span> <span class="mi">9</span> <span class="mi">1</span><span class="p">)</span>                 <span class="c1">;8</span>
+<span class="p">(</span><span class="nv">/</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span>                 <span class="c1">;3</span>
+<span class="p">(</span><span class="nv">+</span> <span class="p">(</span><span class="nv">*</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nv">-</span> <span class="mi">4</span> <span class="mi">6</span><span class="p">))</span>         <span class="c1">;6</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">a</span> <span class="mi">3</span><span class="p">)</span>                <span class="c1">;a = 3</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">b</span> <span class="p">(</span><span class="nv">+</span> <span class="nv">a</span> <span class="mi">1</span><span class="p">))</span>          <span class="c1">;b = 4</span>
+<span class="p">(</span><span class="nv">+</span> <span class="nv">a</span> <span class="nv">b</span> <span class="p">(</span><span class="nv">*</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>             <span class="c1">;19</span>
+<span class="p">(</span><span class="nv">=</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>                 <span class="c1">;false</span>
+<span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nv">&gt;</span> <span class="nv">b</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nv">&lt;</span> <span class="nv">b</span> <span class="p">(</span><span class="nv">*</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)))</span>
+    <span class="nv">b</span>
+    <span class="nv">a</span><span class="p">)</span>                  <span class="c1">;3</span>
+<span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">=</span> <span class="nv">a</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">6</span><span class="p">)</span>
+      <span class="p">((</span><span class="nv">=</span> <span class="nv">b</span> <span class="mi">4</span><span class="p">)</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">6</span> <span class="mi">7</span> <span class="nv">a</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">else </span><span class="mi">25</span><span class="p">))</span>            <span class="c1">;25</span>
+<span class="p">(</span><span class="nv">+</span> <span class="mi">2</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">&gt;</span> <span class="nv">b</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">b</span> <span class="nv">a</span><span class="p">))</span>          <span class="c1">;6</span>
+<span class="p">(</span><span class="nv">*</span> <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">&gt;</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">a</span><span class="p">)</span>
+     <span class="p">((</span><span class="nv">&lt;</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="nv">b</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">else </span><span class="mi">-1</span><span class="p">))</span>
+   <span class="p">(</span><span class="nv">+</span> <span class="nv">a</span> <span class="mi">1</span><span class="p">))</span>             <span class="c1">;16</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>1.2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="nv">/</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">5</span> <span class="mi">4</span>
+      <span class="p">(</span><span class="nv">-</span> <span class="mi">2</span>
+     <span class="p">(</span><span class="nv">-</span> <span class="mi">3</span>
+        <span class="p">(</span><span class="nv">+</span> <span class="mi">6</span>
+           <span class="p">(</span><span class="nv">/</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)))))</span>
+   <span class="p">(</span><span class="nv">*</span> <span class="mi">3</span>
+      <span class="p">(</span><span class="nv">-</span> <span class="mi">6</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">-</span> <span class="mi">2</span> <span class="mi">7</span><span class="p">)))</span>             <span class="c1">;-37/150</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>1.3</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">max-sum</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nv">&gt;=</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span> <span class="p">(</span><span class="nv">&gt;=</span> <span class="nv">c</span> <span class="nv">b</span><span class="p">))</span> <span class="p">(</span><span class="nv">+</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">))</span>
+    <span class="p">((</span><span class="k">and </span><span class="p">(</span><span class="nv">&gt;=</span> <span class="nv">a</span> <span class="nv">c</span><span class="p">)</span> <span class="p">(</span><span class="nv">&gt;=</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">))</span> <span class="p">(</span><span class="nv">+</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nv">+</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">))))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>1.4</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 该过程将第一个传入数值与第二个传入数值的绝对值相加</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>1.5</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; (define (p) (p)) 定义了一个无参数过程 p，过程体就是调用它自己，对 (p) 进行求</span>
+<span class="c1">;; 值会进入无限递归进而报错；</span>
+
+<span class="c1">;; 应用序：报错，因为在应用序下要对组合式的各个子表达</span>
+<span class="c1">;; 式进行求值，对第二个参数表达式求值将会触发上面第一条所讲的情况；</span>
+
+<span class="c1">;; 正则序：通过，因为正则序求值是直到实际需要运算对象的值时再去做，而定义的 test</span>
+<span class="c1">;; 过程在传入的第一个参数为0的情况下过程体谓词部分的值为 true, 根据 if 条件表达</span>
+<span class="c1">;; 式的特殊求值规则，它包含 (p) 的 &lt;alternative&gt; 部分并不求值，所以不会触发第一</span>
+<span class="c1">;; 条所讲的情况。</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+<h4 id="实例-采用牛顿法求平方根">实例：采用牛顿法求平方根</h4>
+
+<ol>
+<li>函数与过程之间的矛盾，不过是在描述一件事情的特征，与描述如何去做这件事情
+之间的普遍性差异的一个具体反映，也就是说明性的知识与行动性的知识之间的差
+异。在数学里，人们通常关心的是说明性的描述，而在计算机科学里，人们通常关
+心行动性的描述；</li>
+<li>不用特殊的迭代结构，只需要使用常规的过程调用能力也可以实现迭代。</li>
+</ol>
+
+<h4 id="练习-1-dot-6-1-dot-8">练习 1.6-1.8</h4>
+
+<ul>
+<li><p>1.6</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 新定义的过程 prodecure 是一个普通过程，在调用它时将会对它的所有子表达式求值，</span>
+<span class="c1">;; 无论 predicate 部分的结果如何，作为 else-clause 的 sqrt-iter 部分将会一直被调</span>
+<span class="c1">;; 用从而导致一个无尽递归调用，解释器报错。</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>1.7</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 对于特别小的被开方数，甚至比事先确定的误差值还要小的数，猜测值将主要依赖于误</span>
+<span class="c1">;; 差值而不是被开方数；</span>
+
+<span class="c1">;; 对于特别大的被开方数，猜测值的离散性也越明显，有可能导致猜测值的平方与被开方</span>
+<span class="c1">;; 数的绝对值差永远大于事先确定的误差值。</span>
+
+<span class="c1">;; a new good-enough? procedure</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">good-enough?</span> <span class="nv">guess</span> <span class="nv">old-guess</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">&lt;</span> <span class="p">(</span><span class="nv">/</span> <span class="p">(</span><span class="nv">abs</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">guess</span> <span class="nv">old-guess</span><span class="p">))</span> <span class="nv">guess</span><span class="p">)</span> <span class="mf">0.001</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">sqrt-iter</span> <span class="nv">guess</span> <span class="nv">old-guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">good-enough?</span> <span class="nv">guess</span> <span class="nv">old-guess</span><span class="p">)</span>
+      <span class="nv">guess</span>
+      <span class="p">(</span><span class="nv">sqrt-iter</span> <span class="p">(</span><span class="nv">improve</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+         <span class="nv">guess</span>
+         <span class="nv">x</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">sqrt</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">sqrt-iter</span> <span class="mf">1.0</span> <span class="mi">0</span> <span class="nv">x</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>1.8</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">good-enough?</span> <span class="nv">guess</span> <span class="nv">old-guess</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">&lt;</span> <span class="p">(</span><span class="nv">/</span> <span class="p">(</span><span class="nv">abs</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">guess</span> <span class="nv">old-guess</span><span class="p">))</span> <span class="nv">guess</span><span class="p">)</span> <span class="mf">0.000001</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">improve-guess</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">/</span> <span class="p">(</span><span class="nv">+</span> <span class="p">(</span><span class="nv">/</span> <span class="nv">x</span> <span class="p">(</span><span class="nv">square</span> <span class="nv">guess</span><span class="p">))</span> <span class="p">(</span><span class="nv">*</span> <span class="mi">2</span> <span class="nv">guess</span><span class="p">))</span>
+     <span class="mi">3</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">cubic-iter</span> <span class="nv">guess</span> <span class="nv">old-guess</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">good-enough?</span> <span class="nv">guess</span> <span class="nv">old-guess</span><span class="p">)</span>
+      <span class="nv">guess</span>
+      <span class="p">(</span><span class="nv">cubic-iter</span> <span class="p">(</span><span class="nv">improve-guess</span> <span class="nv">guess</span> <span class="nv">x</span><span class="p">)</span>
+          <span class="nv">guess</span>
+          <span class="nv">x</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">cubic</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">cubic-iter</span> <span class="mf">1.0</span> <span class="mi">0</span> <span class="nv">x</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+<h4 id="过程作为黑箱抽象">过程作为黑箱抽象</h4>
+
+<ol>
+<li>将程序分解为一族过程，每一个子过程完成了一件可以清楚标明的工作，使它们可
+以被用作定义其他过程的模块；这直接反映了从原问题到子问题的分解；</li>
+<li>在一个抽象层次上，任何能接受相同的参数计算出相同结果的过程都是不可区分的，
+这就是过程抽象；用户在使用一个过程时，应该不需要去弄清它是如何实现的；</li>
+<li>一个过程的定义约束了它的所有形式参数，形式参数被称为 <strong>约束</strong> 变量，以它被约束
+于的那一集表达式称为这个名字的作用域；如果一个变量不是被约束的，那它就是
+<strong>自由</strong> 的；</li>
+<li>将所用的辅助过程定义放到内部，使它们局部于这一过程，这样嵌套的定义称为块
+结构，是最简单的名字包装问题的一种正确方式；*词法作用域* 要求过程中的自由
+变量实际引用外围过程定义中所出现的约束，即在定义本过程环境中去寻找它们。</li>
+</ol>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">zero4drift</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-01-14</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://zero4drift.github.io/tags/sicp/">SICP</a>
+          <a href="https://zero4drift.github.io/tags/scheme/">Scheme</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/sicp-refresher-chapter-12/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">SICP-Refresher-Chapter-1(2)</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/clrs-cpp-implementations-chapter-26/">
+            <span class="next-text nav-default">CLRS-Cpp-Implementations-Chapter-26</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "zero4drift/comments-for-my-blog"
+            issue-term="pathname"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+  
+    <a href="fang0052@e.ntu.edu.sg" rel="me noopener" class="iconfont"
+      title="email"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/zero4drift" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://zero4drift.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2018 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        zero4drift
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

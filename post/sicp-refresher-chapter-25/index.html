@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SICP-Refresher-Chapter-2(5) - 找一个吃麦旋风的理由</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="zero4drift" />
+  <meta name="description" content="第二章第五节介绍的通用型操作系统完整代码实现所有习题要求的功能 带有通用型操作的系统 通过通用型界面过程，不但能够定义出在不同表示上的通用操作，" />
+
+  <meta name="keywords" content="代码, 算法, 工具" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://zero4drift.github.io/post/sicp-refresher-chapter-25/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.28854364c052ec02eba4ee5867bc889d3a567cdf337ba3a355c33511d20bee1e.css" integrity="sha256-KIVDZMBS7ALrpO5YZ7yInTpWfN8ze6OjVcM1EdIL7h4=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="SICP-Refresher-Chapter-2(5)" />
+<meta property="og:description" content="第二章第五节介绍的通用型操作系统完整代码实现所有习题要求的功能 带有通用型操作的系统 通过通用型界面过程，不但能够定义出在不同表示上的通用操作，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zero4drift.github.io/post/sicp-refresher-chapter-25/" /><meta property="article:published_time" content="2018-12-25T14:45:00&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-14T22:23:23&#43;08:00"/>
+<meta itemprop="name" content="SICP-Refresher-Chapter-2(5)">
+<meta itemprop="description" content="第二章第五节介绍的通用型操作系统完整代码实现所有习题要求的功能 带有通用型操作的系统 通过通用型界面过程，不但能够定义出在不同表示上的通用操作，">
+
+
+<meta itemprop="datePublished" content="2018-12-25T14:45:00&#43;08:00" />
+<meta itemprop="dateModified" content="2018-12-25T14:45:00&#43;08:00" />
+<meta itemprop="wordCount" content="4732">
+
+
+
+<meta itemprop="keywords" content="SICP,Scheme," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SICP-Refresher-Chapter-2(5)"/>
+<meta name="twitter:description" content="第二章第五节介绍的通用型操作系统完整代码实现所有习题要求的功能 带有通用型操作的系统 通过通用型界面过程，不但能够定义出在不同表示上的通用操作，"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">找一个吃麦旋风的理由</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      找一个吃麦旋风的理由
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">SICP-Refresher-Chapter-2(5)</h1>
+      
+      <div class="post-meta">
+        <time datetime="2018-12-25" class="post-time">
+          2018-12-25
+        </time>
+        <div class="post-category">
+            <a href="https://zero4drift.github.io/categories/sicp/"> SICP </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#带有通用型操作的系统">带有通用型操作的系统</a>
+<ul>
+<li><a href="#通用型算术运算">通用型算术运算</a></li>
+<li><a href="#练习-2-dot-77-2-dot-80">练习 2.77-2.80</a>
+<ul>
+<li><a href="#2-dot-77">2.77</a></li>
+<li><a href="#2-dot-78">2.78</a></li>
+<li><a href="#2-dot-79">2.79</a></li>
+<li><a href="#2-dot-80">2.80</a></li>
+</ul></li>
+<li><a href="#不同类型数据的组合">不同类型数据的组合</a></li>
+<li><a href="#练习-2-dot-81-2-dot-86">练习 2.81-2.86</a>
+<ul>
+<li><a href="#2-dot-81">2.81</a></li>
+<li><a href="#2-dot-82">2.82</a></li>
+<li><a href="#2-dot-83">2.83</a></li>
+<li><a href="#2-dot-84">2.84</a></li>
+<li><a href="#2-dot-85">2.85</a></li>
+<li><a href="#2-dot-86">2.86</a></li>
+</ul></li>
+<li><a href="#实例-符号代数">实例：符号代数</a></li>
+<li><a href="#练习-2-dot-87-2-dot-97">练习 2.87-2.97</a>
+<ul>
+<li><a href="#2-dot-87">2.87</a></li>
+<li><a href="#2-dot-88">2.88</a></li>
+<li><a href="#2-dot-89">2.89</a></li>
+<li><a href="#2-dot-90">2.90</a></li>
+<li><a href="#2-dot-91">2.91</a></li>
+<li><a href="#2-dot-92">2.92</a></li>
+<li><a href="#2-dot-93">2.93</a></li>
+<li><a href="#2-dot-94">2.94</a></li>
+<li><a href="#2-dot-95">2.95</a></li>
+<li><a href="#2-dot-96">2.96</a></li>
+<li><a href="#2-dot-97">2.97</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p><a href="https://zero4drift.github.io/posts/sicp-system-with-generic-operations/">第二章第五节介绍的通用型操作系统完整代码实现所有习题要求的功能</a></p>
+
+<h2 id="带有通用型操作的系统">带有通用型操作的系统</h2>
+
+<ol>
+<li>通过通用型界面过程，不但能够定义出在不同表示上的通用操作，还能定义针对不
+同参数种类的通用型操作；</li>
+<li>这一系统具有可加性，这样，人们还可以设计出其他独立的算术包，并将其组合到
+这一通用型的算术系统中；</li>
+</ol>
+
+<h3 id="通用型算术运算">通用型算术运算</h3>
+
+<ol>
+<li>在一个大型的复杂系统里可能有许多层次，每层与下一层次之间的连接都借助于一
+些通用型操作，当一个数据对象被“向下”传输时，用于引导它进入适当程序包的最
+外层标志被剥除，下一层次的标志（如果有的话）变成可见的，并将被用于下一次
+分派；</li>
+</ol>
+
+<h3 id="练习-2-dot-77-2-dot-80">练习 2.77-2.80</h3>
+
+<h4 id="2-dot-77">2.77</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="nv">z</span> <span class="p">(</span><span class="nv">make-from-real-imag</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1">;; 如 通用型算术运算 第一条笔记所记录的；</span>
+
+<span class="c1">;; (magnitude z)</span>
+<span class="c1">;; (apply-generic &#39;magnitude z)</span>
+<span class="c1">;; (apply (get &#39;magnitude &#39;(complex)) (map contents z))</span>
+<span class="c1">;; (apply magnitude (cons &#39;rectangular (cons 3 4)))</span>
+<span class="c1">;; (apply-generic &#39;magnitude (cons &#39;rectangular (cons 3 4)))</span>
+<span class="c1">;; (apply (get &#39;magnitude &#39;(rectangular)) (cons 3 4))</span>
+<span class="c1">;; (magnitude (cons 3 4))</span>
+<span class="c1">;; (sqrt (+ (square (real-part (cons 3 4))) (square (imag-part (cons 3 4)))))</span>
+<span class="c1">;; ...</span>
+
+<span class="c1">;; apply-generic 被调用两次；</span>
+<span class="c1">;; 第一次调用中分派的是复数计算包的 magnitude</span>
+<span class="c1">;; 第二次调用中分派的是直角坐标表示计算包的 magnitude</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-78">2.78</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">attach-tag</span> <span class="nv">type-tag</span> <span class="nv">contents</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">number?</span> <span class="nv">contents</span><span class="p">)</span>
+      <span class="nv">contents</span>
+      <span class="p">(</span><span class="nv">cons</span> <span class="nv">type-tag</span> <span class="nv">contents</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">type-tag</span> <span class="nv">datum</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">number?</span> <span class="nv">datum</span><span class="p">)</span> <span class="ss">&#39;scheme-number</span><span class="p">)</span>
+	<span class="p">((</span><span class="nv">pair?</span> <span class="nv">datum</span><span class="p">)</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">datum</span><span class="p">))</span>
+	<span class="p">(</span><span class="nv">else</span>
+	 <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Bad tagged datum -- CONTENTS&#34;</span> <span class="nv">datum</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">contents</span> <span class="nv">datum</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">number?</span> <span class="nv">datum</span><span class="p">)</span> <span class="nv">datum</span><span class="p">)</span>
+	<span class="p">((</span><span class="nv">pair?</span> <span class="nv">datum</span><span class="p">)</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">datum</span><span class="p">))</span>
+	<span class="p">(</span><span class="nv">else</span>
+	 <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Bad tagged datum -- CONTENTS&#34;</span> <span class="nv">datum</span><span class="p">))))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-79">2.79</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 下面对应各个计算包的三个代码块最好是放置在各自的安装包安装过程中</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">equ-number?</span> <span class="nv">n1</span> <span class="nv">n2</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">=</span> <span class="nv">n1</span> <span class="nv">n2</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;equ?</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheme-number</span> <span class="nv">scheme-number</span><span class="p">)</span> <span class="nv">equ-number?</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">equ-rational?</span> <span class="nv">r1</span> <span class="nv">r2</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">product1</span> <span class="p">(</span><span class="nv">*</span> <span class="p">(</span><span class="nv">numer</span> <span class="nv">r1</span><span class="p">)</span> <span class="p">(</span><span class="nv">denom</span> <span class="nv">r2</span><span class="p">)))</span>
+	<span class="p">(</span><span class="nv">product2</span> <span class="p">(</span><span class="nv">*</span> <span class="p">(</span><span class="nv">denom</span> <span class="nv">r1</span><span class="p">)</span> <span class="p">(</span><span class="nv">numer</span> <span class="nv">r2</span><span class="p">))))</span>
+    <span class="p">(</span><span class="nv">=</span> <span class="nv">product1</span> <span class="nv">product2</span><span class="p">)))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;equ?</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rational</span> <span class="nv">rational</span><span class="p">)</span> <span class="nv">equ-rational?</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">equ-complex?</span> <span class="nv">c1</span> <span class="nv">c2</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">real1</span> <span class="p">(</span><span class="nv">real-part</span> <span class="nv">c1</span><span class="p">))</span>
+	<span class="p">(</span><span class="nv">imag1</span> <span class="p">(</span><span class="nv">imag-part</span> <span class="nv">c1</span><span class="p">))</span>
+	<span class="p">(</span><span class="nv">real2</span> <span class="p">(</span><span class="nv">real-part</span> <span class="nv">c2</span><span class="p">))</span>
+	<span class="p">(</span><span class="nv">imag2</span> <span class="p">(</span><span class="nv">imag-part</span> <span class="nv">c2</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nv">=</span> <span class="nv">real1</span> <span class="nv">real2</span><span class="p">)</span> <span class="p">(</span><span class="nv">=</span> <span class="nv">imag1</span> <span class="nv">imag2</span><span class="p">))))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;equ?</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">complex</span> <span class="nv">complex</span><span class="p">)</span> <span class="nv">equ-complex?</span><span class="p">)</span>
+
+<span class="c1">;; 通用型相等谓词 equ? 接口</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">equ?</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;equ?</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-80">2.80</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 下面对应各个计算包的三个代码块最好是放置在各自的安装包安装过程中</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">=zero-number?</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">=</span> <span class="nv">n</span> <span class="mi">0</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;=zero?</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheme-number</span><span class="p">)</span> <span class="nv">=zero-number?</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">=zero-rational?</span> <span class="nv">r</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">=</span> <span class="p">(</span><span class="nv">numer</span> <span class="nv">r</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;=zero?</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rational</span><span class="p">)</span> <span class="nv">=zero-rational?</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">=zero-complex?</span> <span class="nv">c</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">real</span> <span class="p">(</span><span class="nv">real-part</span> <span class="nv">c</span><span class="p">))</span>
+	<span class="p">(</span><span class="nv">imag</span> <span class="p">(</span><span class="nv">imag-part</span> <span class="nv">c</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">and </span><span class="p">(</span><span class="nv">=</span> <span class="nv">real</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">=</span> <span class="nv">imag</span> <span class="mi">0</span><span class="p">))))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;=zero?</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">complex</span><span class="p">)</span> <span class="nv">=zero-complex?</span><span class="p">)</span>
+
+<span class="c1">;; 通用谓词 =zero? 接口</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">=zero?</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;=zero?</span> <span class="nv">x</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="不同类型数据的组合">不同类型数据的组合</h3>
+
+<ol>
+<li>我们一直煞费苦心地在程序的各个部分之间引进了屏障，以使它们能够分别开发和
+分别理解，现在却又要引进跨类型的操作，我们必须以一种经过精心考虑的可控方
+式去做这件事请，以使我们在支持这种操作的同时又没有严重地损害模块间的分界；</li>
+<li>在设计包含许多程序包和许多跨类型操作的系统时，要想规划好一套统一的策略，
+分清各种包之间的责任，很容易变成非常复杂的任务；</li>
+<li>不同的数据类型通常都不是完全相互无关的，常常存在一些方式，使我们可以把一
+种类型的对象看作另一种类型的对象，类型之间的适当转换只依赖于类型本身，而
+不依赖于所实际应用的操作（强制）；</li>
+<li>即使需要运算的两种类型的对象都不能转换到另一种类型，也完全可能在将这两种
+类型的对象都转换到第三种类型后执行这一运算（类型的层次结构）；</li>
+</ol>
+
+<h3 id="练习-2-dot-81-2-dot-86">练习 2.81-2.86</h3>
+
+<h4 id="2-dot-81">2.81</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; a</span>
+
+<span class="c1">;; 这种情况下，对两个复数调用 exp 将会使程序进入无尽递归进而报错；</span>
+
+<span class="c1">;; b</span>
+
+<span class="c1">;; 并没有纠正有关同样类型参数的强制问题；</span>
+
+<span class="c1">;; 反而引入了新的问题使 apply-generic 无法正常工作，当两个参数是同样类型且并没有</span>
+<span class="c1">;; 可用的通用型操作时，这样的修改将会使程序进入无尽递归进而报错；</span>
+
+
+<span class="c1">;; c</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">apply-generic</span> <span class="nv">op</span> <span class="o">.</span> <span class="nv">args</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">type-tags</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">type-tag</span> <span class="nv">args</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">proc</span> <span class="p">(</span><span class="nv">get</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">proc</span>
+	  <span class="p">(</span><span class="nv">apply</span> <span class="nv">proc</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">contents</span> <span class="nv">args</span><span class="p">))</span>
+	  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">=</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">args</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+	      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">type1</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">type-tags</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nv">type2</span> <span class="p">(</span><span class="nv">cadr</span> <span class="nv">type-tags</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nv">a1</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">args</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nv">a2</span> <span class="p">(</span><span class="nv">cadr</span> <span class="nv">args</span><span class="p">)))</span>
+		<span class="p">(</span><span class="nv">if</span><span class="p">(</span><span class="nv">equal?</span> <span class="nv">type1</span> <span class="nv">type2</span><span class="p">)</span>
+		   <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;No method for these types&#34;</span>
+			  <span class="p">(</span><span class="nv">list</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">))</span>
+		   <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">t1-&gt;t2</span> <span class="p">(</span><span class="nv">get-coercion</span> <span class="nv">type1</span> <span class="nv">type2</span><span class="p">))</span>
+			 <span class="p">(</span><span class="nv">t2-&gt;t1</span> <span class="p">(</span><span class="nv">get-coercion</span> <span class="nv">type2</span> <span class="nv">type1</span><span class="p">)))</span>
+		     <span class="p">(</span><span class="k">cond </span><span class="p">(</span><span class="nv">t1-&gt;t2</span>
+			    <span class="p">(</span><span class="nv">apply-generic</span> <span class="nv">op</span> <span class="p">(</span><span class="nv">t1-&gt;t2</span> <span class="nv">a1</span><span class="p">)</span> <span class="nv">a2</span><span class="p">))</span>
+			   <span class="p">(</span><span class="nv">t2-&gt;t1</span>
+			    <span class="p">(</span><span class="nv">apply-generic</span> <span class="nv">op</span> <span class="nv">a1</span> <span class="p">(</span><span class="nv">t2-&gt;t1</span> <span class="nv">a2</span><span class="p">)))</span>
+			   <span class="p">(</span><span class="nv">else</span>
+			    <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;No method for these types&#34;</span>
+				   <span class="p">(</span><span class="nv">list</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">))))))</span>
+		<span class="p">(</span><span class="nv">error</span> <span class="s">&#34;No method for these types&#34;</span>
+		       <span class="p">(</span><span class="nv">list</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">))))))))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-82">2.82</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">transfer-1</span> <span class="nv">base</span> <span class="nv">element</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">type-tag</span> <span class="nv">element</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">equal?</span> <span class="nv">base</span> <span class="nv">tag</span><span class="p">)</span>
+	<span class="nv">element</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">proc</span> <span class="p">(</span><span class="nv">get-coercion</span> <span class="nv">tag</span> <span class="nv">base</span><span class="p">)))</span>
+	  <span class="p">(</span><span class="k">if </span><span class="nv">proc</span>
+	      <span class="p">(</span><span class="nv">proc</span> <span class="nv">element</span><span class="p">)</span>
+	      <span class="nv">false</span><span class="p">)))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">iter-transfer</span> <span class="nv">base</span> <span class="nv">args</span> <span class="nv">result</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">null?</span> <span class="nv">args</span><span class="p">)</span>
+      <span class="nv">result</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">element</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">args</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nv">left</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">args</span><span class="p">)))</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">transfer-one</span> <span class="p">(</span><span class="nv">transfer-1</span> <span class="nv">base</span> <span class="nv">element</span><span class="p">)))</span>
+	  <span class="p">(</span><span class="k">if </span><span class="nv">transfer-one</span>
+	      <span class="p">(</span><span class="nv">iter-transfer</span> <span class="nv">base</span> <span class="nv">left</span> <span class="p">(</span><span class="nv">cons</span> <span class="nv">transfer-one</span> <span class="nv">result</span><span class="p">))</span>
+	      <span class="nv">false</span><span class="p">)))))</span>
+
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">transfer</span> <span class="nv">type-tags</span> <span class="nv">args</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">null?</span> <span class="nv">type-tags</span><span class="p">)</span>
+      <span class="no">#f</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">base</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">type-tags</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nv">left-type-tags</span> <span class="p">(</span><span class="nv">cdr</span> <span class="nv">type-tags</span><span class="p">)))</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">result</span> <span class="p">(</span><span class="nv">iter-transfer</span> <span class="nv">base</span> <span class="nv">args</span> <span class="o">&#39;</span><span class="p">())))</span>
+	  <span class="p">(</span><span class="k">if </span><span class="nv">result</span>
+	      <span class="nv">result</span>
+	      <span class="p">(</span><span class="nv">transfer</span> <span class="nv">left-type-tags</span> <span class="nv">args</span><span class="p">))))))</span>
+
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">apply-generic</span> <span class="nv">op</span> <span class="o">.</span> <span class="nv">args</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">type-tags</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">type-tag</span> <span class="nv">args</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">proc</span> <span class="p">(</span><span class="nv">get</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">proc</span>
+	  <span class="p">(</span><span class="nv">apply</span> <span class="nv">proc</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">contents</span> <span class="nv">args</span><span class="p">))</span>
+	  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">transfer-result</span> <span class="p">(</span><span class="nv">transfer</span> <span class="nv">type-tags</span> <span class="nv">args</span><span class="p">)))</span>
+	    <span class="p">(</span><span class="k">if </span><span class="nv">transfer-result</span>
+		<span class="c1">;; (apply-generic op . args)的错误调用形式</span>
+		<span class="c1">;; 这里转换后的所有参数构成了一个表；</span>
+		<span class="c1">;; apply-generic 会将此表整体当作最后一个参数，这是错误的</span>
+		<span class="c1">;; 当然本题重点不在这，但如果有解决办法会更好；</span>
+		<span class="p">(</span><span class="nv">apply-generic</span> <span class="nv">op</span> <span class="p">(</span><span class="nv">reverse</span> <span class="nv">transfer-result</span><span class="p">))</span>
+		<span class="p">(</span><span class="nv">error</span> <span class="s">&#34;No method for these types&#34;</span>
+		       <span class="p">(</span><span class="nv">list</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">))))))))</span>
+
+<span class="c1">;; 像这样的情况；</span>
+<span class="c1">;; type1-&gt;type2 存在</span>
+<span class="c1">;; type3-&gt;type1 存在</span>
+<span class="c1">;; 最差的情况: 其他两种转换方式（转换到 type1, type3）并不存在;</span>
+<span class="c1">;; 然后全部转换到 type2 的路也行不通，因为 type3 只能直接转换到 type1;</span>
+<span class="c1">;; 本程序实现上没法转换成功，但其实可以在 type3 转换到 type1 之后再转换到 type2,</span>
+<span class="c1">;; 这样就全部转换成同一类型了。</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-83">2.83</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-raise</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;raise</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheme-number</span><span class="p">)</span> <span class="nv">scheme-number-&gt;rational</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;raise</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rational</span><span class="p">)</span> <span class="nv">rational-&gt;real</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;raise</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">real</span><span class="p">)</span> <span class="nv">real-&gt;complex</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">raise</span> <span class="nv">number</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;raise</span> <span class="nv">number</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">scheme-number-&gt;rational</span> <span class="nv">number</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-rational</span> <span class="nv">number</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="c1">;; 我们并没有实现实数计算包</span>
+<span class="c1">;; 在这里假设它已经被实现了并加入了此通用计算系统中</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">rational-&gt;real</span> <span class="nv">number</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-real</span> <span class="p">(</span><span class="nv">/</span> <span class="p">(</span><span class="nv">numer</span> <span class="nv">number</span><span class="p">)</span> <span class="p">(</span><span class="nv">denom</span> <span class="nv">number</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">real-&gt;complex</span> <span class="nv">number</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-from-real-imag</span> <span class="nv">number</span> <span class="mi">0</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-84">2.84</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 在原来的表格中安装类型塔（其实就是一个按次序放置类型的表）</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-types-tower</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">types-tower</span> <span class="p">(</span><span class="nv">list</span> <span class="ss">&#39;scheme-number</span>
+			   <span class="ss">&#39;rational</span>
+			   <span class="ss">&#39;real</span>
+			   <span class="ss">&#39;complex</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;types-tower</span> <span class="ss">&#39;number</span> <span class="nv">types-tower</span><span class="p">)))</span>
+
+<span class="c1">;; 判断类型1和类型2的类型塔中次序</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">lower-one</span> <span class="nv">type1</span> <span class="nv">type2</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">types-tower</span> <span class="p">(</span><span class="nv">get</span> <span class="ss">&#39;types-tower</span> <span class="ss">&#39;number</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">left-type1-tower</span> <span class="p">(</span><span class="nv">memq</span> <span class="nv">type1</span> <span class="nv">types-tower</span><span class="p">))</span>
+	  <span class="p">(</span><span class="nv">left-type2-tower</span> <span class="p">(</span><span class="nv">memq</span> <span class="nv">type2</span> <span class="nv">type-tower</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">and </span><span class="nv">left-type1-tower</span> <span class="nv">left-type2-tower</span><span class="p">)</span>
+	  <span class="p">(</span><span class="nv">&gt;</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">left-type1-tower</span><span class="p">)</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">left-type2-tower</span><span class="p">))</span>
+	  <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Invalid type&#34;</span> <span class="nv">type1</span> <span class="nv">type2</span><span class="p">)))))</span>
+
+<span class="c1">;; 在 apply-generic 中加入类型提升机制</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">apply-generic</span> <span class="nv">op</span> <span class="o">.</span> <span class="nv">args</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">type-tags</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">type-tag</span> <span class="nv">args</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">proc</span> <span class="p">(</span><span class="nv">get</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">proc</span>
+	  <span class="p">(</span><span class="nv">apply</span> <span class="nv">proc</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">contents</span> <span class="nv">args</span><span class="p">))</span>
+	  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">=</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">args</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+	      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">type1</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">type-tags</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nv">type2</span> <span class="p">(</span><span class="nv">cadr</span> <span class="nv">type-tags</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nv">a1</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">args</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nv">a2</span> <span class="p">(</span><span class="nv">cadr</span> <span class="nv">args</span><span class="p">)))</span>
+		<span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">equal?</span> <span class="nv">type1</span> <span class="nv">type2</span><span class="p">)</span>
+		       <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;No method for these types&#34;</span>
+			      <span class="p">(</span><span class="nv">list</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">)))</span>
+		      <span class="p">((</span><span class="nv">lower-one</span> <span class="nv">t1</span> <span class="nv">t2</span><span class="p">)</span>
+		       <span class="p">(</span><span class="nv">apply-generic</span> <span class="nv">op</span> <span class="p">(</span><span class="nv">raise</span> <span class="nv">a1</span><span class="p">)</span> <span class="nv">a2</span><span class="p">))</span>
+		      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nv">apply-generic</span> <span class="nv">op</span> <span class="nv">a1</span> <span class="p">(</span><span class="nv">raise</span> <span class="nv">a2</span><span class="p">)))))</span>
+	      <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;No method for these types&#34;</span>
+		     <span class="p">(</span><span class="nv">list</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">)))))))</span>
+
+<span class="c1">;; 类型塔的另一种安装方式（来自网络，比我的解决方案高效）</span>
+<span class="c1">;; 重构 lower-one 过程，apply-generic 不用修改；</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-level-package</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;level</span> <span class="ss">&#39;scheme-number</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;level</span> <span class="ss">&#39;rational</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;level</span> <span class="ss">&#39;real</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;level</span> <span class="ss">&#39;complex</span> <span class="mi">4</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;level</span> <span class="ss">&#39;rectangular</span> <span class="mi">4</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;level</span> <span class="ss">&#39;polar</span> <span class="mi">4</span><span class="p">)</span>
+  <span class="ss">&#39;done</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">level</span> <span class="nv">type</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">get</span> <span class="ss">&#39;level</span> <span class="nv">type</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-85">2.85</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; install project</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">project-rational</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-scheme-number</span> <span class="p">(</span><span class="nv">round</span> <span class="p">(</span><span class="nv">/</span> <span class="p">(</span><span class="nv">numer</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">denom</span> <span class="nv">x</span><span class="p">)))))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">project-real</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-scheme-number</span> <span class="p">(</span><span class="nv">round</span> <span class="nv">x</span><span class="p">)))</span>
+<span class="c1">;; 我们并没有实现实数计算包</span>
+<span class="c1">;; 在这里假设它已经被实现了并加入了此通用计算系统中</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">project-complex</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-real</span> <span class="p">(</span><span class="nv">real-part</span> <span class="nv">x</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-project</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;project</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rational</span><span class="p">)</span> <span class="nv">project-rational</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;project</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">real</span><span class="p">)</span> <span class="nv">project-real</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;project</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">complex</span><span class="p">)</span> <span class="nv">project-complex</span><span class="p">)</span>
+  <span class="ss">&#39;done</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">projectt</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;project</span> <span class="nv">x</span><span class="p">))</span>
+
+<span class="c1">;; install drop</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">drop-scheme-number</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="nv">x</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">drop-rational</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">a</span> <span class="p">(</span><span class="nv">project</span> <span class="nv">x</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">equ?</span> <span class="p">(</span><span class="nv">raise</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+	<span class="nv">a</span>
+	<span class="nv">x</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">drop-real</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">a</span> <span class="p">(</span><span class="nv">project</span> <span class="nv">x</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">equ?</span> <span class="p">(</span><span class="nv">raise</span> <span class="p">(</span><span class="nv">raise</span> <span class="nv">a</span><span class="p">))</span> <span class="nv">x</span><span class="p">)</span>
+	<span class="nv">a</span>
+	<span class="nv">x</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">drop-complex</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">a</span> <span class="p">(</span><span class="nv">project</span> <span class="nv">x</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">equ?</span> <span class="p">(</span><span class="nv">raise</span> <span class="nv">a</span><span class="p">)</span> <span class="nv">x</span><span class="p">)</span>
+	<span class="p">(</span><span class="nv">drop</span> <span class="nv">a</span><span class="p">)</span>
+	<span class="nv">x</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-drop</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;drop</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheme-number</span><span class="p">)</span> <span class="nv">drop-scheme-number</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;drop</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rational</span><span class="p">)</span> <span class="nv">drop-rational</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;drop</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">real</span><span class="p">)</span> <span class="nv">drop-real</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;drop</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">complex</span><span class="p">)</span> <span class="nv">drop-complex</span><span class="p">)</span>
+  <span class="ss">&#39;done</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">drop</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;drop</span> <span class="nv">n</span><span class="p">))</span>
+
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">apply-generic</span> <span class="nv">op</span> <span class="o">.</span> <span class="nv">args</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">type-tags</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">type-tag</span> <span class="nv">args</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">proc</span> <span class="p">(</span><span class="nv">get</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">proc</span>
+	  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">res</span> <span class="p">(</span><span class="nv">apply</span> <span class="nv">proc</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">contents</span> <span class="nv">args</span><span class="p">))))</span>
+	    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="nv">eq?</span> <span class="nv">op</span> <span class="ss">&#39;raise</span><span class="p">)</span> <span class="p">(</span><span class="nv">eq?</span> <span class="nv">op</span> <span class="ss">&#39;equ?</span><span class="p">)</span> <span class="p">(</span><span class="nv">eq?</span> <span class="nv">op</span> <span class="ss">&#39;drop</span><span class="p">))</span>
+		<span class="nv">res</span>
+		<span class="p">(</span><span class="nv">drop</span> <span class="nv">res</span><span class="p">)))</span>
+	  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">=</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">args</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
+	      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">type1</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">type-tags</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nv">type2</span> <span class="p">(</span><span class="nv">cadr</span> <span class="nv">type-tags</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nv">a1</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">args</span><span class="p">))</span>
+		    <span class="p">(</span><span class="nv">a2</span> <span class="p">(</span><span class="nv">cadr</span> <span class="nv">args</span><span class="p">)))</span>
+		<span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">equal?</span> <span class="nv">type1</span> <span class="nv">type2</span><span class="p">)</span>
+		       <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;No method for these types&#34;</span>
+			      <span class="p">(</span><span class="nv">list</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">)))</span>
+		      <span class="p">((</span><span class="nv">lower-one</span> <span class="nv">t1</span> <span class="nv">t2</span><span class="p">)</span>
+		       <span class="p">(</span><span class="nv">apply-generic</span> <span class="nv">op</span> <span class="p">(</span><span class="nv">raise</span> <span class="nv">a1</span><span class="p">)</span> <span class="nv">a2</span><span class="p">))</span>
+		      <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nv">apply-generic</span> <span class="nv">op</span> <span class="nv">a1</span> <span class="p">(</span><span class="nv">raise</span> <span class="nv">a2</span><span class="p">)))))</span>
+	      <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;No method for these types&#34;</span>
+		     <span class="p">(</span><span class="nv">list</span> <span class="nv">op</span> <span class="nv">type-tags</span><span class="p">)))))))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-86">2.86</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;;; 全局环境</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">sine</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;sine</span> <span class="nv">x</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">cosine</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;cosine</span> <span class="nv">x</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">arctan</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;arctan</span> <span class="nv">x</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">exp</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;exp</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+
+<span class="c1">;; 下面的过程应该置于常规数计算包的安装过程中</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;sine</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheme-number</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">sin</span> <span class="nv">x</span><span class="p">))))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;cosine</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheme-number</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">cos</span> <span class="nv">x</span><span class="p">))))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;arctan</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheme-number</span> <span class="nv">scheme-number</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">y</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">atan</span> <span class="nv">y</span> <span class="nv">x</span><span class="p">))))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;exp</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheme-number</span> <span class="nv">scheme-number</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">expt</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))))</span>
+
+<span class="c1">;; 下面的过程应该置于有理数计算包的安装过程中</span>
+<span class="c1">;; assume that there is a way of computing numer and denom from real number(*.*)</span>
+<span class="c1">;; 假设有一个过程可以从实数中算出精确程度达到某一量级的 分子分母 表示序对</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;sine</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rational</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">get_numer_denom</span> <span class="p">(</span><span class="nv">sin</span> <span class="p">(</span><span class="nv">/</span> <span class="p">(</span><span class="nv">numer</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">denom</span> <span class="nv">x</span><span class="p">)))))))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;cosine</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rational</span><span class="p">)</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">get_numer_denom</span> <span class="p">(</span><span class="nv">cos</span> <span class="p">(</span><span class="nv">/</span>  <span class="p">(</span><span class="nv">numer</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">denom</span> <span class="nv">x</span><span class="p">)))))))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;arctan</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rational</span> <span class="nv">rational</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">y</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">get_numer_denom</span>
+		    <span class="p">(</span><span class="nv">atan</span> <span class="p">(</span><span class="nv">/</span> <span class="p">(</span><span class="nv">numer</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nv">denom</span> <span class="nv">x</span><span class="p">))</span> <span class="p">(</span><span class="nv">/</span> <span class="p">(</span><span class="nv">numer</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">denom</span> <span class="nv">x</span><span class="p">)))))))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;exp</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rational</span> <span class="nv">rational</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">get_numer_denom</span>
+		    <span class="p">(</span><span class="nv">expt</span> <span class="p">(</span><span class="nv">/</span> <span class="p">(</span><span class="nv">numer</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">denom</span> <span class="nv">x</span><span class="p">))</span> <span class="p">(</span><span class="nv">/</span> <span class="p">(</span><span class="nv">numer</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nv">denom</span> <span class="nv">y</span><span class="p">)))))))</span>
+
+ <span class="c1">;;; 直角坐标系复数包</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">square</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">mul</span> <span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">sqrt</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">exp</span> <span class="nv">x</span> <span class="mf">0.5</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-from-mag-ang</span> <span class="nv">r</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nv">cons</span> <span class="p">(</span><span class="nv">mul</span> <span class="nv">r</span> <span class="p">(</span><span class="nv">cosine</span> <span class="nv">a</span><span class="p">))</span> <span class="p">(</span><span class="nv">mul</span> <span class="nv">r</span> <span class="p">(</span><span class="nv">sine</span> <span class="nv">a</span><span class="p">))))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">magnitude</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nv">sqrt</span> <span class="p">(</span><span class="nv">add</span> <span class="p">(</span><span class="nv">square</span> <span class="p">(</span><span class="nv">real-part</span> <span class="nv">z</span><span class="p">))</span> <span class="p">(</span><span class="nv">square</span> <span class="p">(</span><span class="nv">imag-part</span> <span class="nv">z</span><span class="p">)))))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">angle</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nv">arctan</span> <span class="p">(</span><span class="nv">imag-part</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nv">real-part</span> <span class="nv">z</span><span class="p">)))</span>
+
+ <span class="c1">;;; 极坐标表示复数包</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">real-part</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nv">mul</span> <span class="p">(</span><span class="nv">magnitude</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nv">cosine</span> <span class="p">(</span><span class="nv">angle</span> <span class="nv">z</span><span class="p">))))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">imag-part</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nv">mul</span> <span class="p">(</span><span class="nv">magnitude</span> <span class="nv">z</span><span class="p">)</span> <span class="p">(</span><span class="nv">sine</span> <span class="p">(</span><span class="nv">angle</span> <span class="nv">z</span><span class="p">))))</span>
+
+ <span class="c1">;;; 复数包</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">add-complex</span> <span class="nv">z1</span> <span class="nv">z2</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-from-real-imag</span> <span class="p">(</span><span class="nv">add</span> <span class="p">(</span><span class="nv">real-part</span> <span class="nv">z1</span><span class="p">)</span> <span class="p">(</span><span class="nv">real-part</span> <span class="nv">z2</span><span class="p">))</span>
+		       <span class="p">(</span><span class="nv">add</span> <span class="p">(</span><span class="nv">imag-part</span> <span class="nv">z1</span><span class="p">)</span> <span class="p">(</span><span class="nv">imag-part</span> <span class="nv">z2</span><span class="p">))))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">sub-complex</span> <span class="nv">z1</span> <span class="nv">z2</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-from-real-imag</span> <span class="p">(</span><span class="nv">sub</span> <span class="p">(</span><span class="nv">real-part</span> <span class="nv">z1</span><span class="p">)</span> <span class="p">(</span><span class="nv">real-part</span> <span class="nv">z2</span><span class="p">))</span>
+		       <span class="p">(</span><span class="nv">sub</span> <span class="p">(</span><span class="nv">imag-part</span> <span class="nv">z1</span><span class="p">)</span> <span class="p">(</span><span class="nv">imag-part</span> <span class="nv">z2</span><span class="p">))))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">mul-complex</span> <span class="nv">z1</span> <span class="nv">z2</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-from-mag-ang</span> <span class="p">(</span><span class="nv">mul</span> <span class="p">(</span><span class="nv">magnitude</span> <span class="nv">z1</span><span class="p">)</span> <span class="p">(</span><span class="nv">magnitude</span> <span class="nv">z2</span><span class="p">))</span>
+		     <span class="p">(</span><span class="nv">add</span> <span class="p">(</span><span class="nv">angle</span> <span class="nv">z1</span><span class="p">)</span> <span class="p">(</span><span class="nv">angle</span> <span class="nv">z2</span><span class="p">))))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">div-complex</span> <span class="nv">z1</span> <span class="nv">z2</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-from-mag-ang</span> <span class="p">(</span><span class="nv">div</span> <span class="p">(</span><span class="nv">magnitude</span> <span class="nv">z1</span><span class="p">)</span> <span class="p">(</span><span class="nv">magnitude</span> <span class="nv">z2</span><span class="p">))</span>
+		     <span class="p">(</span><span class="nv">sub</span> <span class="p">(</span><span class="nv">angle</span> <span class="nv">z1</span><span class="p">)</span> <span class="p">(</span><span class="nv">angle</span> <span class="nv">z2</span><span class="p">))))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="实例-符号代数">实例：符号代数</h3>
+
+<ol>
+<li>展示在设计这样一个系统时所面临的各种抉择，以及如何应用 <strong>抽象数据</strong> 和 <strong>通
+用型操作</strong> 的思想，以利于组织好这一工作项目；</li>
+<li>单变元多项式；</li>
+<li>在这一代数演算系统里，一个“多项式”就是一种特殊的语法形式，而不是在其之下的数学意义；</li>
+<li>默认被操作的大部份多项式运算都是稀疏多项式。</li>
+</ol>
+
+<h3 id="练习-2-dot-87-2-dot-97">练习 2.87-2.97</h3>
+
+<h4 id="2-dot-87">2.87</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-poly-zero?</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">=zero?-p</span> <span class="nv">p</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">recursive</span> <span class="nv">terms</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">empty-termlist?</span> <span class="nv">terms</span><span class="p">)</span>
+	  <span class="nv">true</span>
+	  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">first</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">terms</span><span class="p">))</span>
+		<span class="p">(</span><span class="nv">rest</span> <span class="p">(</span><span class="nv">rest-terms</span> <span class="nv">terms</span><span class="p">)))</span>
+	    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">=zero?</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">first</span><span class="p">))</span>
+		<span class="p">(</span><span class="nv">recursive</span> <span class="nv">rest</span><span class="p">)</span>
+		<span class="nv">false</span><span class="p">))))</span>
+    <span class="p">(</span><span class="nv">recursive</span> <span class="p">(</span><span class="nv">term-list</span> <span class="nv">p</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;=zero?</span> <span class="ss">&#39;polynomial</span> <span class="nv">=zero?-p</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nv">install-poly-zero?</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-88">2.88</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-negative</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">negative-scheme-number</span> <span class="nv">n</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">make-scheme-number</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">n</span><span class="p">)))</span>
+
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">negative-rational</span> <span class="nv">n</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">make-rational</span> <span class="p">(</span><span class="nv">negative</span> <span class="p">(</span><span class="nv">numer</span> <span class="nv">n</span><span class="p">))</span> <span class="p">(</span><span class="nv">denom</span> <span class="nv">n</span><span class="p">)))</span>
+
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">negative-complex</span> <span class="nv">n</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">make-complex-from-real-imag</span> <span class="p">(</span><span class="nv">negative</span> <span class="p">(</span><span class="nv">real-part</span> <span class="nv">n</span><span class="p">))</span> <span class="p">(</span><span class="nv">negative</span> <span class="p">(</span><span class="nv">imag-part</span> <span class="nv">n</span><span class="p">))))</span>
+
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">negative-poly</span> <span class="nv">n</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">recursive-t</span> <span class="nv">terms</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">empty-termlist?</span> <span class="nv">terms</span><span class="p">)</span>
+	  <span class="nv">the-empty-termlist</span>
+	  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">first</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">terms</span><span class="p">)))</span>
+	    <span class="p">(</span><span class="nv">adjoin-term</span> <span class="p">(</span><span class="nv">make-term</span>
+			  <span class="p">(</span><span class="nv">order</span> <span class="nv">first</span><span class="p">)</span>
+			  <span class="p">(</span><span class="nv">negative</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">first</span><span class="p">)))</span>
+			 <span class="p">(</span><span class="nv">recursive-t</span> <span class="p">(</span><span class="nv">rest-terms</span> <span class="nv">terms</span><span class="p">))))))</span>
+    <span class="p">(</span><span class="nv">make-poly</span> <span class="p">(</span><span class="nv">variable</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nv">recursive-t</span> <span class="p">(</span><span class="nv">term-list</span> <span class="nv">n</span><span class="p">))))</span>
+
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;negative</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheme-number</span><span class="p">)</span> <span class="nv">negative-scheme-number</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;negative</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">rational</span><span class="p">)</span> <span class="nv">negative-rational</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;negative</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">complex</span><span class="p">)</span> <span class="nv">negative-complex</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;negative</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial</span><span class="p">)</span> <span class="nv">negative-poly</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">negative</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;negative</span> <span class="nv">n</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">sub-poly</span> <span class="nv">p1</span> <span class="nv">p2</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">add-poly</span> <span class="nv">p1</span> <span class="p">(</span><span class="nv">negative</span> <span class="nv">p2</span><span class="p">)))</span>
+
+<span class="c1">;; add this into install-polynomial-package</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;sub</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial</span> <span class="nv">polynomial</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">sub-poly</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-89">2.89</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 其他过程不用修改</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">first-term</span> <span class="nv">term-list</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">make-term</span> <span class="p">(</span><span class="nv">-</span> <span class="p">(</span><span class="nv">len</span> <span class="nv">term-list</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">term-list</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">adjoin-term</span> <span class="nv">term</span> <span class="nv">term-list</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">=zero?</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">term</span><span class="p">))</span> <span class="nv">term-list</span><span class="p">)</span>
+	<span class="p">((</span><span class="nv">=equ?</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">term</span><span class="p">)</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">term-list</span><span class="p">))</span>
+	 <span class="p">(</span><span class="nv">cons</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">term</span><span class="p">)</span> <span class="nv">term-list</span><span class="p">))</span>
+	<span class="p">((</span><span class="nv">&gt;</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">term</span><span class="p">)</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">term-list</span><span class="p">))</span>
+	 <span class="p">(</span><span class="nv">adjoin-term</span> <span class="nv">term</span> <span class="p">(</span><span class="nv">cons</span> <span class="mi">0</span> <span class="nv">term-list</span><span class="p">)))))</span> <span class="c1">;the order of term would never be smaller than the length</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-90">2.90</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 安装多项式项表的‘项’包</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-poly-term-package</span><span class="p">)</span>
+  <span class="c1">;; procedures kept same</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-term</span> <span class="nv">order</span> <span class="nv">coeff</span><span class="p">)</span> <span class="p">(</span><span class="nv">list</span> <span class="nv">order</span> <span class="nv">coeff</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">order</span> <span class="nv">term</span><span class="p">)</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">term</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">coeff</span> <span class="nv">term</span><span class="p">)</span> <span class="p">(</span><span class="nv">cadr</span> <span class="nv">term</span><span class="p">))</span>
+  <span class="c1">;; tag</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">tag</span> <span class="nv">term</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">attach-tag</span> <span class="ss">&#39;polynomial-term</span> <span class="nv">term</span><span class="p">))</span>
+  <span class="c1">;; put</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;make</span> <span class="ss">&#39;polynomial-term</span>
+       <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">make-term</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;order</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial-term</span><span class="p">)</span> <span class="nv">order</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;coeff</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial-term</span><span class="p">)</span> <span class="nv">coeff</span><span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-term</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">((</span><span class="nv">get</span> <span class="ss">&#39;make</span> <span class="ss">&#39;polynomial-term</span><span class="p">)</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">order</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;order</span> <span class="nv">x</span><span class="p">))</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">coeff</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;coeff</span> <span class="nv">x</span><span class="p">))</span>
+
+<span class="c1">;; 安装密集表示的项表包</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-dense-terms-package</span><span class="p">)</span>
+  <span class="c1">;; procedures about dense terms...</span>
+
+  <span class="c1">;; prcedures kept same:</span>
+  <span class="c1">;; rest-terms</span>
+  <span class="c1">;; empy-termlist?</span>
+
+  <span class="c1">;; and delete procedure the-empty-termlist;</span>
+  <span class="c1">;; replace call of the-empty-termlist with</span>
+  <span class="c1">;; &#39;L1&#39; or &#39;L&#39; in &#39;mul-term&#39; &amp; &#39;mul-term-by-all-terms&#39;</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">tag</span> <span class="nv">terms</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">attach-tag</span> <span class="ss">&#39;polynomial-dense</span> <span class="nv">terms</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">first-term</span> <span class="nv">term-list</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">make-term</span> <span class="p">(</span><span class="nv">-</span> <span class="p">(</span><span class="nv">len</span> <span class="nv">term-list</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">term-list</span><span class="p">)))</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">adjoin-term</span> <span class="nv">term</span> <span class="nv">term-list</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nv">=zero?</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">term</span><span class="p">))</span> <span class="nv">term-list</span><span class="p">)</span>
+	  <span class="p">((</span><span class="nv">=equ?</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">term</span><span class="p">)</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">term-list</span><span class="p">))</span>
+	   <span class="p">(</span><span class="nv">cons</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">term</span><span class="p">)</span> <span class="nv">term-list</span><span class="p">))</span>
+	  <span class="p">((</span><span class="nv">&gt;</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">term</span><span class="p">)</span> <span class="p">(</span><span class="nv">length</span> <span class="nv">term-list</span><span class="p">))</span>
+	   <span class="p">(</span><span class="nv">adjoin-term</span> <span class="nv">term</span> <span class="p">(</span><span class="nv">cons</span> <span class="mi">0</span> <span class="nv">term-list</span><span class="p">)))))</span> <span class="c1">;</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">negative-t</span> <span class="nv">terms</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">empty-termlist?</span> <span class="nv">terms</span><span class="p">)</span>
+	<span class="nv">the-empty-termlist</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">first</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">terms</span><span class="p">)))</span>
+	  <span class="p">(</span><span class="nv">const</span> <span class="p">(</span><span class="nv">negative</span> <span class="nv">first</span><span class="p">)</span>
+		 <span class="nv">negative-t</span> <span class="p">(</span><span class="nv">rest-terms</span> <span class="nv">terms</span><span class="p">))))</span>
+    <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;negative</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial-dense</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">negative-t</span> <span class="nv">x</span><span class="p">))))</span>
+    <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;first-term</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial-dense</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">x</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;empty-termlist?</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial-dense</span><span class="p">)</span> <span class="nv">empty-termlist?</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;rest-terms</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial-dense</span><span class="p">)</span>
+	 <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">rest-terms</span> <span class="nv">x</span><span class="p">))))</span>
+    <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;adjoin-term</span> <span class="ss">&#39;polynomial-dense</span>
+	 <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">adjoin-term</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))))))</span>
+
+<span class="c1">;; 安装稀疏表示的项表包</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-sparse-terms-package</span><span class="p">)</span>
+  <span class="c1">;; procedures about sparse terms...</span>
+
+  <span class="c1">;; procedure rest-terms? and so on, define and put</span>
+  <span class="c1">;; prcedures kept same:</span>
+  <span class="c1">;; rest-terms</span>
+  <span class="c1">;; empy-termlist?</span>
+
+  <span class="c1">;; and delete procedure the-empty-termlist;</span>
+  <span class="c1">;; replace call of the-empty-termlist with</span>
+  <span class="c1">;; &#39;L1&#39; or &#39;L&#39; in &#39;mul-term&#39; &amp; &#39;mul-term-by-all-terms&#39;</span>
+
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">tag</span> <span class="nv">terms</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">attach-tag</span> <span class="ss">&#39;polynomial-sparse</span> <span class="nv">terms</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">first-term</span> <span class="nv">term-list</span><span class="p">)</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">term-list</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">adjoin-term</span> <span class="nv">term</span> <span class="nv">term-list</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">=zero?</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">term</span><span class="p">))</span>
+	<span class="nv">term-list</span>
+	<span class="p">(</span><span class="nv">cons</span> <span class="nv">term</span> <span class="nv">term-list</span><span class="p">)))</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">negative-t</span> <span class="nv">terms</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">empty-termlist?</span> <span class="nv">terms</span><span class="p">)</span>
+	<span class="nv">the-empty-termlist</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">first</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">terms</span><span class="p">)))</span>
+	  <span class="p">(</span><span class="nv">adjoin-term</span> <span class="p">(</span><span class="nv">make-term</span>
+			<span class="p">(</span><span class="nv">order</span> <span class="nv">first</span><span class="p">)</span>
+			<span class="p">(</span><span class="nv">negative</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">first</span><span class="p">)))</span>
+		       <span class="p">(</span><span class="nv">negative-t</span> <span class="p">(</span><span class="nv">rest-terms</span> <span class="nv">terms</span><span class="p">))))))</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;negative</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial-sparse</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">negative-t</span> <span class="nv">x</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;first-term</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial-sparse</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">x</span><span class="p">)))</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;empty-termlist?</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial-sparse</span><span class="p">)</span> <span class="nv">empty-termlist?</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;rest-terms</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial-sparse</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">rest-terms</span> <span class="nv">x</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;adjoin-term</span> <span class="ss">&#39;polynomial-sparse</span>
+       <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">adjoin-term</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)))))</span>
+
+
+<span class="c1">;; 稀疏和密集项表表示的通用型操作</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">first-term</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;first-term</span> <span class="nv">x</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">adjoin-term</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+  <span class="p">((</span><span class="nv">get</span> <span class="ss">&#39;adjoin-term</span> <span class="p">(</span><span class="nv">type-tag</span> <span class="nv">y</span><span class="p">))</span> <span class="nv">x</span> <span class="p">(</span><span class="nv">contents</span> <span class="nv">y</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">negative</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;negative</span> <span class="nv">x</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">empty-termlist?</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;empty-termlist</span> <span class="nv">x</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">rest-terms</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;rest-terms</span> <span class="nv">x</span><span class="p">))</span>
+
+
+<span class="c1">;; 多项式计算包</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-polynomial-package</span><span class="p">)</span>
+  <span class="c1">;; internal procedures...</span>
+
+  <span class="c1">;; replace call of procedure the-empty-termlist with</span>
+  <span class="c1">;; &#39;L1&#39; or &#39;L&#39; in &#39;mul-term&#39; &amp; &#39;mul-term-by-all-terms&#39;</span>
+  <span class="c1">;; add-terms</span>
+  <span class="c1">;; mul-terms</span>
+  <span class="c1">;; sub-terms</span>
+
+  <span class="c1">;; others kept same</span>
+
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;sub</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">poly</span> <span class="nv">poly</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="ss">&#39;polynomial</span> <span class="p">(</span><span class="nv">sub-poly</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))))</span> <span class="c1">;2.88</span>
+  <span class="c1">;; and so on.</span>
+  <span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-91">2.91</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">div-terms</span> <span class="nv">L1</span> <span class="nv">L2</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">empty-termlist?</span> <span class="nv">L1</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">list</span> <span class="p">(</span><span class="nv">the-empty-termlist</span><span class="p">)</span> <span class="p">(</span><span class="nv">the-empty-termlist</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">t1</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">L1</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nv">t2</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">L2</span><span class="p">)))</span>
+	<span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">&gt;</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">t2</span><span class="p">)</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">t1</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nv">list</span> <span class="p">(</span><span class="nv">the-empty-termlist</span><span class="p">)</span> <span class="nv">L1</span><span class="p">)</span>
+	    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">nwe-c</span> <span class="p">(</span><span class="nv">div</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">t1</span><span class="p">)</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">t2</span><span class="p">)))</span>
+		  <span class="p">(</span><span class="nv">new-o</span> <span class="p">(</span><span class="nv">-</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">t1</span><span class="p">)</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">t2</span><span class="p">))))</span>
+	      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">rest-of-result</span>
+		     <span class="p">(</span><span class="nv">div-terms</span>
+		      <span class="p">(</span><span class="nv">sub-terms</span> <span class="nv">L1</span> <span class="p">(</span><span class="nv">mul-term-by-all-terms</span> <span class="p">(</span><span class="nv">make-term</span> <span class="nv">new-o</span> <span class="nv">new-c</span><span class="p">)</span> <span class="nv">L2</span><span class="p">))</span>
+		      <span class="nv">L2</span><span class="p">)))</span>
+		<span class="p">(</span><span class="nv">list</span> <span class="p">(</span><span class="nv">addjoin-term</span> <span class="p">(</span><span class="nv">make-term</span> <span class="nv">new-o</span> <span class="nv">new-c</span><span class="p">)</span>
+				    <span class="p">(</span><span class="nv">car</span> <span class="nv">rest-of-result</span><span class="p">))</span>
+		      <span class="p">(</span><span class="nv">cadr</span> <span class="nv">rest-of-result</span><span class="p">))))))))</span>
+
+<span class="c1">;; div-terms 结果的余数部分在 div-poly 过程中是不需要的</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">div-poly</span> <span class="nv">p1</span> <span class="nv">p2</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">same-variable?</span> <span class="p">(</span><span class="nv">variable</span> <span class="nv">p1</span><span class="p">)</span> <span class="p">(</span><span class="nv">variable</span> <span class="nv">p2</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">t1</span> <span class="p">(</span><span class="nv">term-list</span> <span class="nv">p1</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nv">t2</span> <span class="p">(</span><span class="nv">term-list</span> <span class="nv">p2</span><span class="p">)))</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">result</span> <span class="p">(</span><span class="nv">div-terms</span> <span class="nv">t1</span> <span class="nv">t2</span><span class="p">)))</span>
+	  <span class="p">(</span><span class="nv">make-poly</span> <span class="p">(</span><span class="nv">variable</span> <span class="nv">p1</span><span class="p">)</span>
+		     <span class="p">(</span><span class="nv">car</span> <span class="nv">result</span><span class="p">))))</span>
+      <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Polys not in same var -- DIV-POLY&#34;</span>
+	     <span class="p">(</span><span class="nv">list</span> <span class="nv">p1</span> <span class="nv">p2</span><span class="p">))))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-92">2.92</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 去年写的代码现在完全理解不了；</span>
+<span class="c1">;; 暂时想不出更好更清晰的解答；</span>
+<span class="c1">;; 暂时搁置；</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-93">2.93</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-scheme-number-package</span><span class="p">)</span>
+  <span class="c1">;; gcd-scheme-number 就是原来最初的 gcd 的别名</span>
+  <span class="c1">;; 其他过程不变</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;gcd</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheme-number</span> <span class="nv">scheme-number</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">s1</span> <span class="nv">s2</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">gcd-scheme-number</span> <span class="nv">s1</span> <span class="nv">s2</span><span class="p">))))</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-rational-package</span><span class="p">)</span>
+  <span class="c1">;; 将 +, -, *, / 改为 add, sub, mul, div</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-rat</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">g</span> <span class="p">(</span><span class="nv">greatest-common-divisor</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nv">cons</span> <span class="p">(</span><span class="nv">div</span> <span class="nv">n</span> <span class="nv">g</span><span class="p">)</span> <span class="p">(</span><span class="nv">div</span> <span class="nv">d</span> <span class="nv">g</span><span class="p">))))</span>
+  <span class="c1">;; 其他过程不变</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">install-polynomial-package</span><span class="p">)</span>
+  <span class="c1">;; 其他过程不变</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">gcd-poly</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">remainder-terms</span> <span class="nv">t1</span> <span class="nv">t2</span><span class="p">)</span>
+      <span class="p">(</span><span class="nv">cadr</span> <span class="p">(</span><span class="nv">div-terms</span> <span class="nv">t1</span> <span class="nv">t2</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">gcd-terms</span> <span class="nv">t1</span> <span class="nv">t2</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">empty-termlist?</span> <span class="nv">t2</span><span class="p">)</span>
+	  <span class="nv">t1</span>
+	  <span class="p">(</span><span class="nv">gcd-terms</span> <span class="nv">t2</span> <span class="p">(</span><span class="nv">remainder-terms</span> <span class="nv">t1</span> <span class="nv">t2</span><span class="p">))))</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">same-variable?</span> <span class="p">(</span><span class="nv">variable</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nv">variable</span> <span class="nv">b</span><span class="p">))</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">t1</span> <span class="p">(</span><span class="nv">term-list</span> <span class="nv">a</span><span class="p">))</span>
+	      <span class="p">(</span><span class="nv">t2</span> <span class="p">(</span><span class="nv">term-list</span> <span class="nv">b</span><span class="p">)))</span>
+	  <span class="p">(</span><span class="nv">make-poly</span> <span class="p">(</span><span class="nv">variable</span> <span class="nv">a</span><span class="p">)</span> <span class="p">(</span><span class="nv">gcd-terms</span> <span class="nv">t1</span> <span class="nv">t2</span><span class="p">)))</span>
+	<span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Polys not in same var -- GCD-POLY&#34;</span>
+	       <span class="p">(</span><span class="nv">list</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))))</span>
+  <span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;gcd</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial</span> <span class="nv">polynomial</span><span class="p">)</span>
+       <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">p1</span> <span class="nv">p2</span><span class="p">)</span> <span class="p">(</span><span class="nv">tag</span> <span class="p">(</span><span class="nv">gcd-poly</span> <span class="nv">p1</span> <span class="nv">p2</span><span class="p">))))</span>
+  <span class="p">)</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">greatest-common-divisor</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;gcd</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-94">2.94</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 在 ex 2.93 中全部完成了（相关代码放在一起更好）。</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-95">2.95</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 按题意定义多项式，求多项式最大公约数，比较。</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-96">2.96</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; 只适用于整数系数的多项式</span>
+
+<span class="c1">;; a</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">pseudoremainder-terms</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">f1</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">a</span><span class="p">))</span>
+	<span class="p">(</span><span class="nv">f2</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">b</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">o1</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">f1</span><span class="p">))</span>
+	  <span class="p">(</span><span class="nv">o2</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">f2</span><span class="p">))</span>
+	  <span class="p">(</span><span class="nv">c</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">f2</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">constant</span> <span class="p">(</span><span class="nv">expt</span> <span class="nv">c</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">1</span> <span class="nv">o1</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">o2</span><span class="p">)))))</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">term</span> <span class="p">(</span><span class="nv">make-term</span> <span class="mi">0</span>
+			       <span class="nv">constant</span><span class="p">)))</span>
+	  <span class="p">(</span><span class="nv">cadr</span> <span class="p">(</span><span class="nv">div-terms</span>
+		 <span class="p">(</span><span class="nv">mul-term-by-all-terms</span> <span class="nv">term</span> <span class="nv">a</span><span class="p">)</span>
+		 <span class="nv">b</span><span class="p">)))))))</span>
+
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">gcd-terms</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">empty-termlist?</span> <span class="nv">b</span><span class="p">)</span>
+      <span class="nv">a</span>
+      <span class="p">(</span><span class="nv">gcd-terms</span> <span class="nv">b</span> <span class="p">(</span><span class="nv">pseudoremainder-terms</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))))</span>
+
+<span class="c1">;; b</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">gcd-terms</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">gcd-terms-coeff</span> <span class="nv">terms</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">coeffs</span> <span class="p">(</span><span class="nv">map</span> <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">t</span><span class="p">)</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">t</span><span class="p">))</span> <span class="nv">terms</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">recursive</span> <span class="nv">coeffs</span><span class="p">)</span>
+	<span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">null?</span> <span class="p">(</span><span class="nv">cddr</span> <span class="nv">coeffs</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nv">greatest-common-divisor</span>
+	     <span class="p">(</span><span class="nv">car</span> <span class="nv">coeffs</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nv">cadr</span> <span class="nv">coeffs</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nv">greatest-common-divisor</span>
+	     <span class="p">(</span><span class="nv">car</span> <span class="nv">coeffs</span><span class="p">)</span>
+	     <span class="p">(</span><span class="nv">recursive</span> <span class="nv">coeffs</span><span class="p">))))</span>
+      <span class="p">(</span><span class="nv">recursive</span> <span class="nv">coeffs</span><span class="p">)))</span>
+
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">empty-termlist?</span> <span class="nv">b</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">coeffs-gcd</span> <span class="p">(</span><span class="nv">gcd-terms-coeff</span> <span class="nv">a</span><span class="p">)))</span>
+	<span class="p">(</span><span class="nv">div-terms</span>
+	 <span class="nv">a</span>
+	 <span class="p">(</span><span class="nv">list</span> <span class="p">(</span><span class="nv">make-term</span> <span class="mi">0</span> <span class="nv">coeffs-gcd</span><span class="p">))))</span>
+      <span class="p">(</span><span class="nv">gcd-terms</span> <span class="nv">b</span> <span class="p">(</span><span class="nv">pseudoremainder-terms</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))))</span></code></pre></td></tr></table>
+</div>
+</div>
+<h4 id="2-dot-97">2.97</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scheme" data-lang="scheme"><span class="c1">;; (load &#34;./2.96.scm&#34;)</span>
+<span class="c1">;; a</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">reduce-terms</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">compute-constant</span> <span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">af</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">a</span><span class="p">))</span>
+	  <span class="p">(</span><span class="nv">bf</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">b</span><span class="p">))</span>
+	  <span class="p">(</span><span class="nv">cf</span> <span class="p">(</span><span class="nv">first-term</span> <span class="nv">c</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">c</span> <span class="p">(</span><span class="nv">coeff</span> <span class="nv">af</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nv">o1</span> <span class="p">(</span><span class="nv">max</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">bf</span><span class="p">)</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">cf</span><span class="p">)))</span>
+	    <span class="p">(</span><span class="nv">o2</span> <span class="p">(</span><span class="nv">order</span> <span class="nv">af</span><span class="p">)))</span>
+	<span class="p">(</span><span class="nv">expt</span> <span class="nv">c</span> <span class="p">(</span><span class="nv">+</span> <span class="mi">1</span> <span class="nv">o1</span> <span class="p">(</span><span class="nv">-</span> <span class="nv">o2</span><span class="p">))))))</span>
+  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">simplify</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">g</span> <span class="p">(</span><span class="nv">gcd-terms-coeff</span> <span class="p">(</span><span class="nv">append</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">))))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">sa</span> <span class="p">(</span><span class="nv">car</span> <span class="p">(</span><span class="nv">div-terms</span> <span class="nv">a</span> <span class="p">(</span><span class="nv">list</span> <span class="p">(</span><span class="nv">make-term</span> <span class="mi">0</span> <span class="nv">g</span><span class="p">)))))</span>
+	    <span class="p">(</span><span class="nv">sb</span> <span class="p">(</span><span class="nv">car</span> <span class="p">(</span><span class="nv">div-terms</span> <span class="nv">b</span> <span class="p">(</span><span class="nv">list</span> <span class="p">(</span><span class="nv">make-term</span> <span class="mi">0</span> <span class="nv">g</span><span class="p">))))))</span>
+	<span class="p">(</span><span class="nv">list</span> <span class="nv">sa</span> <span class="nv">sb</span><span class="p">))))</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">g</span> <span class="p">(</span><span class="nv">gcd-terms</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)))</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">constant</span> <span class="p">(</span><span class="nv">compute-constant</span> <span class="nv">g</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">mn</span> <span class="p">(</span><span class="nv">mul-term-by-all-terms</span> <span class="p">(</span><span class="nv">make-term</span> <span class="mi">0</span> <span class="nv">constant</span><span class="p">)</span> <span class="nv">n</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nv">md</span> <span class="p">(</span><span class="nv">mul-term-by-all-terms</span> <span class="p">(</span><span class="nv">make-term</span> <span class="mi">0</span> <span class="nv">constant</span><span class="p">)</span> <span class="nv">d</span><span class="p">)))</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">gn</span> <span class="p">(</span><span class="nv">car</span> <span class="p">(</span><span class="nv">div-terms</span> <span class="nv">mn</span> <span class="nv">g</span><span class="p">)))</span>
+	      <span class="p">(</span><span class="nv">gd</span> <span class="p">(</span><span class="nv">car</span> <span class="p">(</span><span class="nv">div-terms</span> <span class="nv">md</span> <span class="nv">g</span><span class="p">))))</span>
+	  <span class="p">(</span><span class="nv">simplify</span> <span class="nv">gn</span> <span class="nv">gd</span><span class="p">))))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">reduce-poly</span> <span class="nv">p1</span> <span class="nv">p2</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nv">same-vaiable?</span> <span class="p">(</span><span class="nv">variable</span> <span class="nv">p1</span><span class="p">)</span> <span class="p">(</span><span class="nv">variable</span> <span class="nv">p2</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">t1</span> <span class="p">(</span><span class="nv">term-list</span> <span class="nv">p1</span><span class="p">))</span>
+	    <span class="p">(</span><span class="nv">t2</span> <span class="p">(</span><span class="nv">term-list</span> <span class="nv">p2</span><span class="p">)))</span>
+	<span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">result</span> <span class="p">(</span><span class="nv">reduce-terms</span> <span class="nv">t1</span> <span class="nv">t2</span><span class="p">)))</span>
+	  <span class="p">(</span><span class="nv">list</span> <span class="p">(</span><span class="nv">make-poly</span> <span class="p">(</span><span class="nv">variable</span> <span class="nv">p1</span><span class="p">)</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">result</span><span class="p">))</span>
+		<span class="p">(</span><span class="nv">make-poly</span> <span class="p">(</span><span class="nv">variable</span> <span class="nv">p1</span><span class="p">)</span> <span class="p">(</span><span class="nv">cadr</span> <span class="nv">result</span><span class="p">)))))</span>
+      <span class="p">(</span><span class="nv">error</span> <span class="s">&#34;Polys not in same variable -- REDUCE-POLY&#34;</span>
+	     <span class="p">(</span><span class="nv">list</span> <span class="nv">p1</span> <span class="nv">p2</span><span class="p">))))</span>
+
+<span class="c1">;; b</span>
+
+<span class="c1">;; inside procedure install-scheme-number-package</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">reduce-integers</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">g</span> <span class="p">(</span><span class="nv">gcd</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">list</span> <span class="p">(</span><span class="nv">/</span> <span class="nv">n</span> <span class="nv">g</span><span class="p">)</span> <span class="p">(</span><span class="nv">/</span> <span class="nv">d</span> <span class="nv">g</span><span class="p">))))</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;reduce</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheme-number</span> <span class="nv">scheme-number</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">n</span> <span class="nv">d</span><span class="p">)</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">tag</span> <span class="p">(</span><span class="nv">reduce-integers</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">))))</span>
+
+<span class="c1">;; inside procedure install-polynomial-package</span>
+<span class="p">(</span><span class="nv">put</span> <span class="ss">&#39;reduce</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">polynomial</span> <span class="nv">polynomial</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nv">n</span> <span class="nv">d</span><span class="p">)</span> <span class="p">(</span><span class="nv">map</span> <span class="nv">tag</span> <span class="p">(</span><span class="nv">reduce-poly</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">))))</span>
+
+<span class="c1">;; inside procedure install-rational-package</span>
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">make-rat</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nv">simple</span> <span class="p">(</span><span class="nv">reduce</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">cons</span> <span class="p">(</span><span class="nv">car</span> <span class="nv">simple</span><span class="p">)</span> <span class="p">(</span><span class="nv">cadr</span> <span class="nv">simple</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nv">reduce</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">apply-generic</span> <span class="ss">&#39;reduce</span> <span class="nv">n</span> <span class="nv">d</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">zero4drift</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-01-14</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://zero4drift.github.io/tags/sicp/">SICP</a>
+          <a href="https://zero4drift.github.io/tags/scheme/">Scheme</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/sicp-systems-with-generic-operations/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">SICP-Systems-with-Generic-Operations</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/sicp-refresher-chapter-24/">
+            <span class="next-text nav-default">SICP-Refresher-Chapter-2(4)</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "zero4drift/comments-for-my-blog"
+            issue-term="pathname"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+  
+    <a href="fang0052@e.ntu.edu.sg" rel="me noopener" class="iconfont"
+      title="email"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/zero4drift" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://zero4drift.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2018 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        zero4drift
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
