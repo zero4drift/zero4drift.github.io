@@ -267,7 +267,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/posts/sicp-refresher-chapter-12/">SICP-Refresher-Chapter-1(2)</a>
+      <a class="post-link" href="/post/sicp-refresher-chapter-12/">SICP-Refresher-Chapter-1(2)</a>
     </h1>
     
     <div class="post-meta">
@@ -290,7 +290,7 @@
       过程与它们所产生的计算 理解如何编程： 编程领域中各种有用的常见模式； 哪些过程值得定义； 对执行一个过程的效果做出预期： 学会去看清各种不同种类的过
     </div>
     <div class="read-more">
-      <a href="/posts/sicp-refresher-chapter-12/" class="read-more-link">阅读全文</a>
+      <a href="/post/sicp-refresher-chapter-12/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -301,7 +301,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/posts/sicp-refresher-chapter-11/">SICP-Refresher-Chapter-1(1)</a>
+      <a class="post-link" href="/post/sicp-refresher-chapter-11/">SICP-Refresher-Chapter-1(1)</a>
     </h1>
     
     <div class="post-meta">
@@ -324,7 +324,7 @@
       写在前面 SICP 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么 还要再来一遍？ 说到习题，由于当时看这本书做习题时是在 windows 平台上
     </div>
     <div class="read-more">
-      <a href="/posts/sicp-refresher-chapter-11/" class="read-more-link">阅读全文</a>
+      <a href="/post/sicp-refresher-chapter-11/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -335,7 +335,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-26/">CLRS-Cpp-Implementations-Chapter-26</a>
+      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-26/">CLRS-Cpp-Implementations-Chapter-26</a>
     </h1>
     
     <div class="post-meta">
@@ -358,7 +358,7 @@
       maximum_flow 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37  #include &#34;chapter-22/bfs_graph/bfs_graph.h&#34;#include &#34;chapter-26/maximum_flow_utilities.h&#34;namespace CLRS { void ford_fulkserson(MaximumFlowLinkedListGraph &amp;g, std::size_t s, std::size_t t) { auto p = maximum_bfs_graph(g, s, t); while(p.size()) { unsigned min_cf = -1; for(const auto &amp;ev : p) { if(get_cf(g.
     </div>
     <div class="read-more">
-      <a href="/posts/clrs-cpp-implementations-chapter-26/" class="read-more-link">阅读全文</a>
+      <a href="/post/clrs-cpp-implementations-chapter-26/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -369,7 +369,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-25/">CLRS-Cpp-Implementations-Chapter-25</a>
+      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-25/">CLRS-Cpp-Implementations-Chapter-25</a>
     </h1>
     
     <div class="post-meta">
@@ -392,7 +392,7 @@
       all_pairs_shortest_paths floyd_warshall 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54  #include &#34;chapter-22/vertex_graph/vertex_graph.h&#34;#include &#34;chapter-25/all_pairs_shortest_paths/all_pairs_shortest_paths_utilities.h&#34;namespace CLRS { std::vector&lt;std::vector&lt;APSPMatrixElement&gt;&gt; floyd_warshall (const std::vector&lt;std::vector&lt;APSPMatrixElement&gt;&gt; &amp;w) { std::size_t n = w.
     </div>
     <div class="read-more">
-      <a href="/posts/clrs-cpp-implementations-chapter-25/" class="read-more-link">阅读全文</a>
+      <a href="/post/clrs-cpp-implementations-chapter-25/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -403,7 +403,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-24/">CLRS-Cpp-Implementations-Chapter-24</a>
+      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-24/">CLRS-Cpp-Implementations-Chapter-24</a>
     </h1>
     
     <div class="post-meta">
@@ -426,7 +426,7 @@
       single_source_shortest_paths dag_shortest_paths 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  #include &#34;chapter-22/dfs_graph/dfs_graph.h&#34;#include &#34;chapter-22/linked_list_graph/linked_list_graph.h&#34;#include &#34;chapter-24/single_source_shortest_paths/sssp_utilities.h&#34;namespace CLRS { void dag_shortest_paths (LinkedListGraph&lt;SSSPDFSVertexGraph, SSSPWeightEdgeGraph&lt;SSSPDFSVertexGraph&gt;&gt; &amp;g, std::size_t s) { auto l = topological_sort_graph(g); initialize_single_source(g, s); for(std::size_t u : l) { for(const auto &amp;ev : g.get_adj_vertexes(u)) sssp_relax(g, g.edgesr()[ev]); } } }    dijkstra 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44  #include &#34;chapter-19/fibonacci_heap/fibonacci_heap.
     </div>
     <div class="read-more">
-      <a href="/posts/clrs-cpp-implementations-chapter-24/" class="read-more-link">阅读全文</a>
+      <a href="/post/clrs-cpp-implementations-chapter-24/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

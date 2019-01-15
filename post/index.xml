@@ -13,181 +13,181 @@
     
     <item>
       <title>SICP-Refresher-Chapter-4(3)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-43/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-43/</link>
       <pubDate>Sat, 12 Jan 2019 21:48:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-43/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-43/</guid>
       <description>Scheme 的变形―非确定性计算 非确定性程序求值器支持一种假相：时间是有分支的，而我们的程序里保存着所有可 能的不同执行历史，在遇到一个死胡同时，我们总</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-4(2)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-42/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-42/</link>
       <pubDate>Fri, 11 Jan 2019 21:36:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-42/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-42/</guid>
       <description>Scheme 的变形－惰性求值 发明新的语言，常常就是先用一种现有的高级程序设计语言写出一个嵌入了这个新语 言的求值器； 正则序和应用序 惰性求值的一个优点就是</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-4(1)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-41/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-41/</link>
       <pubDate>Wed, 09 Jan 2019 19:01:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-41/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-41/</guid>
       <description>第四章 写在前面：本章代码并没有实际运行检查过（前三章基本没问题），并不保证 bug-free。 建立新语言是在工程设计中控制复杂性的一种威力强大</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-3(5)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-35/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-35/</link>
       <pubDate>Fri, 04 Jan 2019 13:47:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-35/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-35/</guid>
       <description>流 基于一种称为 流 的数据结构，探索对状态进行模拟的另一条途径，流可能缓和状 态模拟中的复杂性； 如果用离散的步长去度量时间，那么我们就可以用一个（</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-3(4)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-34/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-34/</link>
       <pubDate>Thu, 03 Jan 2019 11:55:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-34/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-34/</guid>
       <description>并发：时间是一个本质问题 潜藏在状态、同一、变化后面的中心问题是，引入赋值之后，我们就必须承认时间在 所有的计算模形中的位置； 采用具有局部状态的</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-3(3)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-33/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-33/</link>
       <pubDate>Tue, 01 Jan 2019 13:45:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-33/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-33/</guid>
       <description>用变动数据做模拟 为了模拟那些由具有不断变化的状态组成的系统，我们除了需要做复合数据对象的构 造和成员选择之外，还可能需要修改它们； 为了模拟具有</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-3(2)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-32/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-32/</link>
       <pubDate>Mon, 31 Dec 2018 15:29:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-32/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-32/</guid>
       <description>求值的环境模形 如 3.1.3 节所言，由于赋值的存在，变量已经不能再看作仅仅是某个值的名字，此 时的一个变量必须以某种方式指定了一个“位置”，相应的值可以</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-3(1)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-31/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-31/</link>
       <pubDate>Sun, 30 Dec 2018 14:51:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-31/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-31/</guid>
       <description>第三章 有效的程序综合需要一些组织原则，它们应能指导我们系统化地完成系统的整体设计， 特别是需要一些能帮助我们构造起模块化的大型系统的策略，也就</description>
     </item>
     
     <item>
       <title>SICP-Systems-with-Generic-Operations</title>
-      <link>https://zero4drift.github.io/posts/sicp-systems-with-generic-operations/</link>
+      <link>https://zero4drift.github.io/post/sicp-systems-with-generic-operations/</link>
       <pubDate>Fri, 28 Dec 2018 11:30:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-systems-with-generic-operations/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-systems-with-generic-operations/</guid>
       <description>带有通用型操作的系统 SICP 中文版P136：在设计大型系统时， 处理好一大批相互有关的类型而同时又能保持模块性，是一个非常困难的问题。 本文中的代码是</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-2(5)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-25/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-25/</link>
       <pubDate>Tue, 25 Dec 2018 14:45:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-25/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-25/</guid>
       <description>第二章第五节介绍的通用型操作系统完整代码实现所有习题要求的功能 带有通用型操作的系统 通过通用型界面过程，不但能够定义出在不同表示上的通用操作，</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-2(4)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-24/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-24/</link>
       <pubDate>Mon, 24 Dec 2018 14:41:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-24/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-24/</guid>
       <description>抽象数据的多重表示 对于一个数据对象可能存在多种有用的表示形式，而且也可能希望所设计的系统能处 理多种表示形式； 除了需要将表示与使用相隔离的数据</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-2(3)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-23/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-23/</link>
       <pubDate>Fri, 21 Dec 2018 12:17:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-23/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-23/</guid>
       <description>符号数据 引进将任意符号作为数据的功能； 引号 将表和符号标记为应该作为数据对象看待，而不是作为应该求值的表达式； 所用的引号形式与自然语言中的不同</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-2(2)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-22/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-22/</link>
       <pubDate>Wed, 19 Dec 2018 13:45:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-22/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-22/</guid>
       <description>层次性数据和闭包性质 序对使用的是一种被称为 盒子和指针 的表示方式： 序对的每个对象表示为指向 盒子 的 指针; 与序对的元素相对应的 盒子 里包含着该元素的</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-2(1)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-21/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-21/</link>
       <pubDate>Tue, 18 Dec 2018 14:08:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-21/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-21/</guid>
       <description>第二章 本章将重点转到各种程序设计语言都包含的另一个关键方面：讨论它们所提供的，将 数据对象组合起来，形成 复合数据 的方式； 复合数据和复合过程一样</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-1(3)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-13/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-13/</link>
       <pubDate>Sun, 16 Dec 2018 14:29:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-13/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-13/</guid>
       <description>用高阶函数做抽象 过程提供了这样的能力： 能为公共的模式命名，建立抽象； 直接在抽象的层次上工作。 如果不同的过程具有同样的设计模式，可以将这种模式</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-1(2)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-12/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-12/</link>
       <pubDate>Fri, 14 Dec 2018 17:53:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-12/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-12/</guid>
       <description>过程与它们所产生的计算 理解如何编程： 编程领域中各种有用的常见模式； 哪些过程值得定义； 对执行一个过程的效果做出预期： 学会去看清各种不同种类的过</description>
     </item>
     
     <item>
       <title>SICP-Refresher-Chapter-1(1)</title>
-      <link>https://zero4drift.github.io/posts/sicp-refresher-chapter-11/</link>
+      <link>https://zero4drift.github.io/post/sicp-refresher-chapter-11/</link>
       <pubDate>Thu, 13 Dec 2018 20:41:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/sicp-refresher-chapter-11/</guid>
+      <guid>https://zero4drift.github.io/post/sicp-refresher-chapter-11/</guid>
       <description>写在前面 SICP 整本书去年中旬就看完了，第一章到第四章的习题也已经全部解决，现在为什么 还要再来一遍？ 说到习题，由于当时看这本书做习题时是在 windows 平台上</description>
     </item>
     
     <item>
       <title>CLRS-Cpp-Implementations-Chapter-26</title>
-      <link>https://zero4drift.github.io/posts/clrs-cpp-implementations-chapter-26/</link>
+      <link>https://zero4drift.github.io/post/clrs-cpp-implementations-chapter-26/</link>
       <pubDate>Tue, 04 Dec 2018 16:35:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/clrs-cpp-implementations-chapter-26/</guid>
+      <guid>https://zero4drift.github.io/post/clrs-cpp-implementations-chapter-26/</guid>
       <description>maximum_flow 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37  #include &amp;#34;chapter-22/bfs_graph/bfs_graph.h&amp;#34;#include &amp;#34;chapter-26/maximum_flow_utilities.h&amp;#34;namespace CLRS { void ford_fulkserson(MaximumFlowLinkedListGraph &amp;amp;g, std::size_t s, std::size_t t) { auto p = maximum_bfs_graph(g, s, t); while(p.size()) { unsigned min_cf = -1; for(const auto &amp;amp;ev : p) { if(get_cf(g.</description>
     </item>
     
     <item>
       <title>CLRS-Cpp-Implementations-Chapter-25</title>
-      <link>https://zero4drift.github.io/posts/clrs-cpp-implementations-chapter-25/</link>
+      <link>https://zero4drift.github.io/post/clrs-cpp-implementations-chapter-25/</link>
       <pubDate>Thu, 29 Nov 2018 23:13:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/clrs-cpp-implementations-chapter-25/</guid>
+      <guid>https://zero4drift.github.io/post/clrs-cpp-implementations-chapter-25/</guid>
       <description>all_pairs_shortest_paths floyd_warshall 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54  #include &amp;#34;chapter-22/vertex_graph/vertex_graph.h&amp;#34;#include &amp;#34;chapter-25/all_pairs_shortest_paths/all_pairs_shortest_paths_utilities.h&amp;#34;namespace CLRS { std::vector&amp;lt;std::vector&amp;lt;APSPMatrixElement&amp;gt;&amp;gt; floyd_warshall (const std::vector&amp;lt;std::vector&amp;lt;APSPMatrixElement&amp;gt;&amp;gt; &amp;amp;w) { std::size_t n = w.</description>
     </item>
     
     <item>
       <title>CLRS-Cpp-Implementations-Chapter-24</title>
-      <link>https://zero4drift.github.io/posts/clrs-cpp-implementations-chapter-24/</link>
+      <link>https://zero4drift.github.io/post/clrs-cpp-implementations-chapter-24/</link>
       <pubDate>Wed, 28 Nov 2018 17:12:00 +0800</pubDate>
       
-      <guid>https://zero4drift.github.io/posts/clrs-cpp-implementations-chapter-24/</guid>
+      <guid>https://zero4drift.github.io/post/clrs-cpp-implementations-chapter-24/</guid>
       <description>single_source_shortest_paths dag_shortest_paths 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  #include &amp;#34;chapter-22/dfs_graph/dfs_graph.h&amp;#34;#include &amp;#34;chapter-22/linked_list_graph/linked_list_graph.h&amp;#34;#include &amp;#34;chapter-24/single_source_shortest_paths/sssp_utilities.h&amp;#34;namespace CLRS { void dag_shortest_paths (LinkedListGraph&amp;lt;SSSPDFSVertexGraph, SSSPWeightEdgeGraph&amp;lt;SSSPDFSVertexGraph&amp;gt;&amp;gt; &amp;amp;g, std::size_t s) { auto l = topological_sort_graph(g); initialize_single_source(g, s); for(std::size_t u : l) { for(const auto &amp;amp;ev : g.get_adj_vertexes(u)) sssp_relax(g, g.edgesr()[ev]); } } }    dijkstra 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44  #include &amp;#34;chapter-19/fibonacci_heap/fibonacci_heap.</description>
     </item>
     

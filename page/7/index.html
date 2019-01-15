@@ -267,7 +267,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-11/">CLRS-Cpp-Implementations-Chapter-11</a>
+      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-11/">CLRS-Cpp-Implementations-Chapter-11</a>
     </h1>
     
     <div class="post-meta">
@@ -290,7 +290,7 @@
       hash_table_chaining 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65  #include &#34;chapter-10/list/list.h&#34;namespace CLRS { template &lt;typename T, std::size_t m, std::size_t m_d, std::size_t p_m&gt; classHashTableChaining; template &lt;typename T, std::size_t m, std::size_t m_d, std::size_t p_m&gt; void chained_hash_insert(HashTableChaining&lt;T, m, m_d, p_m&gt; &amp;, ListNode&lt;T&gt; &amp;); template &lt;typename T, std::size_t m, std::size_t m_d, std::size_t p_m&gt; ListNode&lt;T&gt; *chained_hash_search(HashTableChaining&lt;T, m, m_d, p_m&gt; &amp;, T); template &lt;typename T, std::size_t m, std::size_t m_d, std::size_t p_m&gt; void chained_hash_delete(HashTableChaining&lt;T, m, m_d, p_m&gt; &amp;, ListNode&lt;T&gt; &amp;); template &lt;typename T, std::size_t m, std::size_t m_d, std::size_t p_m&gt; classHashTableChaining { List&lt;T&gt; array[m]; public: List&lt;T&gt; &amp;operator[](std::size_t i) {return array[i];} /* template needs explicitly instanced * with template non-type parameter m, * m is a prime number which is not close * to any power of 2.
     </div>
     <div class="read-more">
-      <a href="/posts/clrs-cpp-implementations-chapter-11/" class="read-more-link">阅读全文</a>
+      <a href="/post/clrs-cpp-implementations-chapter-11/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -301,7 +301,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-10/">CLRS-Cpp-Implementations-Chapter-10</a>
+      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-10/">CLRS-Cpp-Implementations-Chapter-10</a>
     </h1>
     
     <div class="post-meta">
@@ -324,7 +324,7 @@
       stack 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45  namespace CLRS { template &lt;typename T, std::size_t n&gt; classStack; template &lt;typename T, std::size_t n&gt; bool stack_empty(const Stack&lt;T, n&gt; &amp;s) { if(!s.top) return true; else return false; } template &lt;typename T, std::size_t n&gt; void push(Stack&lt;T, n&gt; &amp;s, T x) { std::size_t l = s.
     </div>
     <div class="read-more">
-      <a href="/posts/clrs-cpp-implementations-chapter-10/" class="read-more-link">阅读全文</a>
+      <a href="/post/clrs-cpp-implementations-chapter-10/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -335,7 +335,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-8/">CLRS-Cpp-Implementations-Chapter-8</a>
+      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-8/">CLRS-Cpp-Implementations-Chapter-8</a>
     </h1>
     
     <div class="post-meta">
@@ -358,7 +358,7 @@
       bucket_sort 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36  namespace CLRS { /* * Suppose elements of array uniformly and individually * scattered in half open interval [0, 1) * TODO: this time uses standard library list and iterator, * this program would be refactored after list implementation.
     </div>
     <div class="read-more">
-      <a href="/posts/clrs-cpp-implementations-chapter-8/" class="read-more-link">阅读全文</a>
+      <a href="/post/clrs-cpp-implementations-chapter-8/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -369,7 +369,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-9/">CLRS-Cpp-Implementations-Chapter-9</a>
+      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-9/">CLRS-Cpp-Implementations-Chapter-9</a>
     </h1>
     
     <div class="post-meta">
@@ -392,7 +392,7 @@
       select 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79  #include &#34;chapter-2/insertion_sort/insertion_sort.
     </div>
     <div class="read-more">
-      <a href="/posts/clrs-cpp-implementations-chapter-9/" class="read-more-link">阅读全文</a>
+      <a href="/post/clrs-cpp-implementations-chapter-9/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -403,7 +403,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-7/">CLRS-Cpp-Implementations-Chapter-7</a>
+      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-7/">CLRS-Cpp-Implementations-Chapter-7</a>
     </h1>
     
     <div class="post-meta">
@@ -426,7 +426,7 @@
       randomized_quicksort 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27  #include &#34;chapter-7/quicksort/quicksort.h&#34;namespace CLRS { template &lt;typename T, std::size_t n&gt; std::size_t randomized_partition(T (&amp;a)[n], long long p, long long r) { std::default_random_engine e(std::time(0)); std::uniform_int_distribution&lt;long long&gt; u(p, r); long long i = u(e); T temp = a[r]; a[r] = a[i]; a[i] = temp; return CLRS::partition(a, p, r); } template &lt;typename T, std::size_t n&gt; void randomized_quicksort(T (&amp;a)[n], long long p, long long r) { if(p &lt; r) { std::size_t q = randomized_partition(a, p, r); randomized_quicksort(a, p, q - 1); randomized_quicksort(a, q + 1, r); } } }    quicksort 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35  namespace CLRS { template &lt;typename T, std::size_t n&gt; std::size_t partition(T (&amp;a)[n], long long p, long long r) { T x = a[r]; std::size_t i = p; for(std::size_t j = p; j !
     </div>
     <div class="read-more">
-      <a href="/posts/clrs-cpp-implementations-chapter-7/" class="read-more-link">阅读全文</a>
+      <a href="/post/clrs-cpp-implementations-chapter-7/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
