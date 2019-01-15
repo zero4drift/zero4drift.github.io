@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ledger &amp; ledger-mode 学习知识点总结 - 找一个吃麦旋风的理由</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="zero4drift" />
+  <meta name="description" content="为什么要写这篇博客？ 个人财务管理的痛点 人力有穷 只靠记忆来保持收支状态的清醒，对我而言最后必定是习惯性超支。 对记忆中的数字没有直观感受（没有威" />
+
+  <meta name="keywords" content="代码, 算法, 工具" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.48" />
+
+
+<link rel="canonical" href="https://zero4drift.github.io/posts/ledger--ledger-mode-xue-xi-zhi-shi-dian-zong-jie/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.28854364c052ec02eba4ee5867bc889d3a567cdf337ba3a355c33511d20bee1e.css" integrity="sha256-KIVDZMBS7ALrpO5YZ7yInTpWfN8ze6OjVcM1EdIL7h4=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="Ledger &amp; ledger-mode 学习知识点总结" />
+<meta property="og:description" content="为什么要写这篇博客？ 个人财务管理的痛点 人力有穷 只靠记忆来保持收支状态的清醒，对我而言最后必定是习惯性超支。 对记忆中的数字没有直观感受（没有威" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zero4drift.github.io/posts/ledger--ledger-mode-xue-xi-zhi-shi-dian-zong-jie/" /><meta property="article:published_time" content="2018-01-19T15:08:00&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-14T22:23:30&#43;08:00"/>
+<meta itemprop="name" content="Ledger &amp; ledger-mode 学习知识点总结">
+<meta itemprop="description" content="为什么要写这篇博客？ 个人财务管理的痛点 人力有穷 只靠记忆来保持收支状态的清醒，对我而言最后必定是习惯性超支。 对记忆中的数字没有直观感受（没有威">
+
+
+<meta itemprop="datePublished" content="2018-01-19T15:08:00&#43;08:00" />
+<meta itemprop="dateModified" content="2018-01-19T15:08:00&#43;08:00" />
+<meta itemprop="wordCount" content="3206">
+
+
+
+<meta itemprop="keywords" content="emacs,ledger,accounting," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ledger &amp; ledger-mode 学习知识点总结"/>
+<meta name="twitter:description" content="为什么要写这篇博客？ 个人财务管理的痛点 人力有穷 只靠记忆来保持收支状态的清醒，对我而言最后必定是习惯性超支。 对记忆中的数字没有直观感受（没有威"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">找一个吃麦旋风的理由</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      找一个吃麦旋风的理由
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/post/">存档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://zero4drift.github.io/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Ledger &amp; ledger-mode 学习知识点总结</h1>
+      
+      <div class="post-meta">
+        <time datetime="2018-01-19" class="post-time">
+          2018-01-19
+        </time>
+        
+        
+
+        
+        
+          <span id="busuanzi_container_page_pv">
+            | 阅读 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#为什么要写这篇博客">为什么要写这篇博客？</a>
+<ul>
+<li><a href="#个人财务管理的痛点">个人财务管理的痛点</a></li>
+<li><a href="#就是你了-ledger">就是你了，Ledger ！</a></li>
+<li><a href="#博客记录-ledger-学习过程">博客记录 Ledger 学习过程</a></li>
+<li><a href="#youtube-ledger-讲座学习总结">Youtube Ledger 讲座学习总结</a></li>
+</ul></li>
+<li><a href="#ledger-基础知识点归纳">Ledger 基础知识点归纳</a>
+<ul>
+<li><a href="#ledger-术语解释">Ledger 术语解释</a></li>
+<li><a href="#ledger-交易记录">Ledger 交易记录</a></li>
+<li><a href="#ledger-常用查询命令">Ledger 常用查询命令</a></li>
+<li><a href="#ledger-查询命令进阶">Ledger 查询命令进阶</a></li>
+<li><a href="#ledger-交易通货">Ledger 交易通货</a></li>
+<li><a href="#ledger-做预算">Ledger 做预算</a></li>
+<li><a href="#ledger-使用过程的一些建议">Ledger 使用过程的一些建议</a></li>
+</ul></li>
+<li><a href="#emacs-ledger-mode-简单使用">Emacs ledger-mode 简单使用</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<h2 id="为什么要写这篇博客">为什么要写这篇博客？</h2>
+
+<h3 id="个人财务管理的痛点">个人财务管理的痛点</h3>
+
+<ol>
+<li>人力有穷
+
+<ul>
+<li>只靠记忆来保持收支状态的清醒，对我而言最后必定是习惯性超支。</li>
+<li>对记忆中的数字没有直观感受（没有威慑力），况且记忆还不是那么可靠和持久的。</li>
+<li>无法对收入支出进行有效统计，只能估计。</li>
+</ul></li>
+<li>低效的工具
+
+<ul>
+<li>笔纸记录是最低效的，难以做各种有效统计</li>
+<li>使用过手机 app 进行财务管理，但是最终都没有坚持下来，我认为这个锅不在我身上
+（拖延症加懒惰只是一小部分原因），这些 app 太难用了！如果记录一条账目需要在
+手机上进行5次以上的触屏操作，无论是谁都难以坚持下来。</li>
+<li>很多工具的功能实在太多，可以说是过度设计，花里胡哨，但是它却没有做好最基础
+的记账功能，甚至有些莫名其妙设计的功能使得记账并不那么顺畅。</li>
+</ul></li>
+</ol>
+
+<h3 id="就是你了-ledger">就是你了，Ledger ！</h3>
+
+<ol>
+<li>被安利了。搜索各大论题，发现很多了不起的人都推荐 Ledger 这个命令行财务管理工
+具。</li>
+<li>日常使用 Emacs 进行各类工作，ledger-mode + emacs + ledger 这个工具组合可以无
+缝衔接进我的工作流中<sup class="footnote-ref" id="fnref:fn-1"><a href="#fn:fn-1">1</a></sup>。</li>
+<li>确实体验到了 Emacs，orgmode 等开源工具带来的工作、生活上的便利，对开源软件
+Ledger 和 Emacs 第三方包 ledger-mode 有信心</li>
+</ol>
+
+<h3 id="博客记录-ledger-学习过程">博客记录 Ledger 学习过程</h3>
+
+<ol>
+<li>现在 Ledger 的中文资料还是很少，添砖加瓦，造福他人。</li>
+<li>学习过程中进行笔记记录，加强学习效果。</li>
+<li>大脑相当于内存，笔记相当于硬盘，内存容量有限、昂贵、数据易失。</li>
+<li>以前完成一项任务或者学习一门工具，目的性总是很强；现在想起来，解决事情的过程
+往往比结果更重要。</li>
+</ol>
+
+<h3 id="youtube-ledger-讲座学习总结">Youtube Ledger 讲座学习总结</h3>
+
+<p>本文说是 <em>A Brief Introduction to Ledger</em> 其实是对两部 Youtube 上视频的知识点总
+结，分别是：</p>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v%3D8r5Cp66k4PA&amp;index%3D1&amp;list%3DPLzJY2-PIFEKEBEkWSjqwkv9fa5lqgCW4L&amp;t%3D45s">Plain Text Accounting</a></li>
+<li><a href="https://www.youtube.com/watch?v%3DcjoCNRpLanY&amp;index%3D2&amp;list%3DPLzJY2-PIFEKEBEkWSjqwkv9fa5lqgCW4L">Conquering Your Finances with Emacs and Ledger</a></li>
+</ul>
+
+<p>两者内容有重叠，重叠的部分是 Ledger 的介绍内容，其中第一部讲得比较详细。
+第二部在后面还简单介绍了 Emacs + ledger-mode 的使用。</p>
+
+<h2 id="ledger-基础知识点归纳">Ledger 基础知识点归纳</h2>
+
+<h3 id="ledger-术语解释">Ledger 术语解释</h3>
+
+<ol>
+<li>Ledger 的理论基础是 Double-entry accounting 复式簿记，每笔交易都至少记录在两个不同的账户当中。每
+笔交易的结果至少被记录在一个借方和一个贷方的账户，且该笔交易的借贷双方总额相
+等<sup class="footnote-ref" id="fnref:fn-2"><a href="#fn:fn-2">2</a></sup>。</li>
+<li>Account 账户，一个描述了某种东西数量的标签，即使这个数量是0，可以是钱包、银行
+账户、信用卡、投资、信用卡流水、花销；对于个人财务管理，共有5类主要账户，且这
+五类账户余额之和应为0：
+
+<ul>
+<li>Assets 资产：银行账户，钱包，投资，别人欠你的钱</li>
+<li>Income 收入：工资，收到的礼物，分红，利息</li>
+<li>Expenses 花销：杂物，税，送出的礼物，捐款</li>
+<li>Liabilities<sup class="footnote-ref" id="fnref:fn-3"><a href="#fn:fn-3">3</a></sup> 亏空：房贷，信用卡，学生贷款，欠款<sup class="footnote-ref" id="fnref:fn-4"><a href="#fn:fn-4">4</a></sup></li>
+<li>Equity：For everything else, there&rsquo;s <strong>Equity</strong>, 可以是初期余额，返现，并不是
+收入（Income），可以是并不需要交税的东西<sup class="footnote-ref" id="fnref:fn-5"><a href="#fn:fn-5">5</a></sup></li>
+</ul></li>
+<li>Debit, the deduction of value from account. 账户的扣除数量</li>
+<li>Credit, the addition of value to an account. 账户的增加数量</li>
+<li>Transaction
+
+<ul>
+<li>A collection of credits and debits with a timestamp to describe
+when the transaction is effective.</li>
+<li>使用账户扣除量、账户增加量和时间戳来描述交易，如果我从某人那买东西，那我的
+账户就要扣款，卖方的账户就收款；如果我用我的银行存款账户还信用卡，那我的银
+行账户就要扣款，信用卡账户就会收款。</li>
+<li>一次交易可以有一次或多次扣款，收款也一样。</li>
+<li>一次交易中收款和扣款必须平衡，即相加的值为0。</li>
+</ul></li>
+</ol>
+
+<h3 id="ledger-交易记录">Ledger 交易记录</h3>
+
+<ol>
+<li>时间戳，最前面</li>
+<li>交易对象</li>
+<li>收款方账户及一个正数值，因为是收款，账目数字增加</li>
+<li>付款方账户及一个负数值，因为是付款，账目数字减少</li>
+<li>可选：注释</li>
+<li>例子如下，可以看到一条交易是这样的，其中收款方和付款方的账户都是树状结构，树
+叶以冒号分隔，冒号前面的账户是后面的父账户</li>
+
+<li><p>例子<sup class="footnote-ref" id="fnref:fn-6"><a href="#fn:fn-6">6</a></sup>中收款项或付款项有一项是可以留白的，Ledger 会自动算出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ledger" data-lang="ledger"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ledger" data-lang="ledger">2018/01/19 CommonPlace Coffee
+    Expenses:Restaurants:Coffee  3.00
+    Assets:Cash:Wallet  -3.00</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+
+<h3 id="ledger-常用查询命令">Ledger 常用查询命令</h3>
+
+<ol>
+<li><code>ledger -f somefile.ledger balance</code>
+
+<ul>
+<li>-f 后需指定文件</li>
+<li>balance 表示本条命令查询 <strong>交易余额</strong></li>
+<li>最终得出的结果并不是五个主要账户的余额，而是包括所有嵌套账户，嵌套关系用缩
+进表示</li>
+</ul></li>
+<li><code>ledger -f somefile.ledger accounts</code>
+
+<ul>
+<li>accounts 表示本条命令查询 <strong>当前所有账户</strong></li>
+<li>最终得出的结果是当前指定文件内有记录的所有账户，包括嵌套账户。每个账户都是
+完整的，即包括所有节点，所以不需要缩进来表示嵌套关系</li>
+<li>常用在 Ledger 的非 strict mode 下，用来检查账户名是否有笔误<sup class="footnote-ref" id="fnref:fn-7"><a href="#fn:fn-7">7</a></sup></li>
+</ul></li>
+<li><code>ledger -f somefile.ledger payees</code>
+
+<ul>
+<li>payees 表示本条命令查询 <strong>所有交易对象</strong></li>
+<li>最终得出的结果式当前指定文件内有记录的所有交易对象</li>
+<li>当然也可以用来查找笔误</li>
+</ul></li>
+<li><code>ledger -f somefile.ledger register</code>
+
+<ul>
+<li>register 表示本条命令查询 <strong>当前所有交易记录</strong></li>
+<li>最终得出的结果式当前指定文件内有记录的所有交易，包括交易时间、交易对象、收
+款账户、付款账户以及账户余额流水</li>
+</ul></li>
+</ol>
+
+<h3 id="ledger-查询命令进阶">Ledger 查询命令进阶</h3>
+
+<p>上述简单命令单独使用的结果只是展示了当前状态，并不是那么有用</p>
+
+<ol>
+<li>Cashflow 现金流
+
+<ul>
+<li>支出减去收入</li>
+<li>正数表示花销支出大于收入</li>
+<li>负数表示收入大于花销支出</li>
+<li><code>ledger -f somefile.ledger balance ^Income ^Expenses</code></li>
+</ul></li>
+<li>Net worth 净值
+
+<ul>
+<li>资产减去负债</li>
+<li>没什么好解释的，当然，净资产为负也没什么问题，大部分人有贷款要还，比如房贷</li>
+<li><code>ledger -f somefile.ledger balance *Assets ^Liabilities</code></li>
+</ul></li>
+<li>投资增值查询
+
+<ul>
+<li>比如使用人民币购买美元</li>
+<li><code>ledger -f somefile.ledger --price-db somfile.pricedb bal -V --end 10/1</code></li>
+<li>&ndash;price-db 后需指定包含周期内美元汇率数据的文件</li>
+<li>bal 是 balance 的缩写，Ledger 可以识别</li>
+<li>-V 命令表示需要给出所有账户的当前价值</li>
+<li>&ndash;end 后指定日期，表示此报告引用此日期前的数据</li>
+</ul></li>
+</ol>
+
+<h3 id="ledger-交易通货">Ledger 交易通货</h3>
+
+<ol>
+<li>什么货币都可以！
+
+<ul>
+<li>真实货币：美元，欧元，人民币……</li>
+<li>虚拟货币：比特币，莱特币……</li>
+<li>甚至可以用来做时间管理：时间（年 月 日 时 分）<sup class="footnote-ref" id="fnref:fn-8"><a href="#fn:fn-8">8</a></sup></li>
+</ul></li>
+
+<li><p>虚拟货币举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ledger" data-lang="ledger"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ledger" data-lang="ledger">2018/01/20 Vanguard
+  Assets:Cash:Bank:Checking  -1000 USD
+  Assets:Investments:Vanguard:RothIRA  8.03534 VTI @ 124.45 USD</code></pre></td></tr></table>
+</div>
+</div>
+<p>&rsquo;@&rsquo; 后是当前汇率</p></li>
+</ol>
+
+<h3 id="ledger-做预算">Ledger 做预算</h3>
+
+<ol>
+<li><p>将周期性的预算块放置于文件的开头</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ledger" data-lang="ledger"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ledger" data-lang="ledger">~ Monthly
+    Expenses:Restaurants:Coffee  30.00 USD
+    Expenses:Restaurants:Lunch  100.00 USD
+    Assets</code></pre></td></tr></table>
+</div>
+</div>
+<p>这样就可以表示我们打算在这个周期内，在特定的分类下的预算支出，所有支出从
+Assets 扣除</p></li>
+
+<li><p><code>ledger -f somefile.ledger --monthly register --add-budget -p june 2017</code></p>
+
+<ul>
+<li>june 2017 两边应加上双引号</li>
+<li>&ndash;monthly 表示以月为周期统计数据</li>
+<li>&ndash;add-budger 表示将表较真实交易记录和预算</li>
+<li>-p 指定一个时间段</li>
+<li>输出报告中显示随着交易的进行，各项预算的剩余情况</li>
+<li>高亮的数字表示由于相关交易，该项预算额还剩下多少</li>
+</ul></li>
+</ol>
+
+<h3 id="ledger-使用过程的一些建议">Ledger 使用过程的一些建议</h3>
+
+<ol>
+<li>建议将 Assets 这个账户分类，Cash 账户包括银行账户、钱包等一切方便提取的流动资
+金；Investments 账户包含退休金账户、股票账户；Reimbursement 账户包括返现、飞
+行点数（这个有点难以理解）</li>
+<li>就算只有一张信用卡，也必须将此信用卡单独建立为 LIabilities:CreditCards 下的一
+个账户。如果不为此建立账户只使用 Liabilities:CreditCard 这样的账户的话，将来
+新增信用卡账户再来对 Ledger 文档进行修改的话非常麻烦</li>
+<li>当前只使用一种货币的话，可以不用在文件中显式指出币种，如果某次交易涉及多种货
+币，就必须明确币种<sup class="footnote-ref" id="fnref:fn-9"><a href="#fn:fn-9">9</a></sup>，币种最好使用三字母缩写，比如 CNY，容易识别</li>
+</ol>
+
+<h2 id="emacs-ledger-mode-简单使用">Emacs ledger-mode 简单使用</h2>
+
+<ol>
+<li>“C-c C-a&rdquo; 快捷键加入一条交易记录
+
+<ul>
+<li>在输入交易数额时不用担心对齐问题</li>
+<li>ledger-mode 提供了 ledger-mode-clean-buffer 函数来做文件全局对齐工作</li>
+</ul></li>
+<li>&ldquo;C-c C-o C-r&rdquo; 快捷键打开当前 ledger 文档的报告选项，可以输出对应的报告：
+
+<ul>
+<li>prices</li>
+<li>bal</li>
+<li>reg</li>
+<li>payee</li>
+<li>account</li>
+<li>在 Emacs 的 ninibuffer 处会显示该报告选项对应的命令行命令，可以改变这条命令
+并按 Enter 来获得更特定的输出报告！</li>
+<li>输入这些快捷键后可以自定义报告名与特定命令行命令绑定，以后就可以使用该定义
+名输出不同的报告</li>
+</ul></li>
+<li>&ldquo;C-c C-b&rdquo; 快捷键将使用 Emacs calc-mode 来编辑数字</li>
+</ol>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:fn-1">官方 github 上的 windows 编译版本3.1.1不能正常识别 windows 路径，可以正常 识别路径的2.6.1版本太旧了；网上有高手编译好的基于 windows 的3.0.3版本，可以正常 识别 windows 路径：<a href="https://github.com/marek-g/ledger%5Fbinaries%5Fwindows">Ledger Binaries Windows</a>
+ <a class="footnote-return" href="#fnref:fn-1"><sup>[return]</sup></a></li>
+<li id="fn:fn-2"><a href="https://zh.wikipedia.org/wiki/%25E5%25A4%258D%25E5%25BC%258F%25E7%25B0%25BF%25E8%25AE%25B0">复式簿记</a>
+ <a class="footnote-return" href="#fnref:fn-2"><sup>[return]</sup></a></li>
+<li id="fn:fn-3">Liabilities 账户中数值应该都为负数
+ <a class="footnote-return" href="#fnref:fn-3"><sup>[return]</sup></a></li>
+<li id="fn:fn-4">在 Ledger 中无论何时，无论做什么，都和以上四类账户相关。
+ <a class="footnote-return" href="#fnref:fn-4"><sup>[return]</sup></a></li>
+<li id="fn:fn-5">有这样一种情况，其余四个账户的某条记录由于疏忽导致总数出现问题，该错误影 响不大且查找错误成本太高的话，可以使用 Equity 账户来配平总数。不过这个账户的概念 确实难以理解，官方文档的解释是： &gt; But what is equity? You may have heard of equity when people talked about house &gt; mortgages, as “the part of the house that you own”. Basically, equity is like &gt; the value of something. If you own a car worth $5000, then you have $5000 in &gt; equity in that car. In order to turn that car (a commodity) into a cash flow, or &gt; a credit to your bank account, you will have to debit the equity by selling it. &gt; &gt; When you start a ledger, you are probably already worth something. Your net &gt; worth is your current equity. By transferring the money in the ledger from your &gt; equity to your bank accounts, you are crediting the ledger account based on your &gt; prior equity. That is why, when you look at the balance report, you will see a &gt; large negative number for Equity that never changes: Because that is what you &gt; were worth (what you debited from yourself in order to start the ledger) before &gt; the money started moving around. If the total positive value of your assets is &gt; greater than the absolute value of your starting equity, it means you are making &gt; money.
+ <a class="footnote-return" href="#fnref:fn-5"><sup>[return]</sup></a></li>
+<li id="fn:fn-6">注意，账户和数值之间必须空两格，不然数值无法识别，会报错
+ <a class="footnote-return" href="#fnref:fn-6"><sup>[return]</sup></a></li>
+<li id="fn:fn-7">Ledger 的 Strict Mode 下要求显式创建账户，也就是说不可以在交易记录中随便 写一个账户，如果在非 Strict Mode 下工作，账户名容易出现笔误
+ <a class="footnote-return" href="#fnref:fn-7"><sup>[return]</sup></a></li>
+<li id="fn:fn-8">关于时间管理，有兴趣的同学可以去观看第一部视频，该部分内容在视频46分43秒 处开始，本文主要关注财务管理，就不详细讨论了
+ <a class="footnote-return" href="#fnref:fn-8"><sup>[return]</sup></a></li>
+<li id="fn:fn-9">那 Ledger 如何判断文件中没有明确指定币中的数字呢？这个是根据某种逻辑自动 识别？应该是这样
+ <a class="footnote-return" href="#fnref:fn-9"><sup>[return]</sup></a></li>
+</ol>
+</div>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">zero4drift</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-01-14</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://zero4drift.github.io/tags/emacs/">emacs</a>
+          <a href="https://zero4drift.github.io/tags/ledger/">ledger</a>
+          <a href="https://zero4drift.github.io/tags/accounting/">accounting</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/posts/ios-app-beorg-synced-with-jianguoyun/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">IOS App Beorg 与坚果云同步 org 文件</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/posts/hello-world/">
+            <span class="next-text nav-default">Hello World!</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "zero4drift/comments-for-my-blog"
+            issue-term="pathname"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+  
+    <a href="fang0052@e.ntu.edu.sg" rel="me noopener" class="iconfont"
+      title="email"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/zero4drift" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://zero4drift.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2018 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        zero4drift
+        
+      </span></span>
+
+  
+  
+    <span id="busuanzi_container">
+      访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+    </span>
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -267,7 +267,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-6/">CLRS-Cpp-Implementations-Chapter-6</a>
+      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-6/">CLRS-Cpp-Implementations-Chapter-6</a>
     </h1>
     
     <div class="post-meta">
@@ -290,7 +290,7 @@
       heapsort 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37  #include &#34;../build_max_min_heap/build_max_min_heap.h&#34;#include &#34;../max_min_heapify/max_min_heapify.h&#34;namespace CLRS { template &lt;typename T, std::size_t n&gt; void heapsort(T (&amp;a)[n]) { CLRS::build_max_heap(a); for(std::size_t i = n - 1; i &gt;= 1; --i) { T temp = a[i]; a[i] = a[0]; a[0] = temp; if(i &gt;= 2) CLRS::max_heapify(a, 0, i); } } /* * use minimal heap priority queue * result sorted from large to small.
     </div>
     <div class="read-more">
-      <a href="/post/clrs-cpp-implementations-chapter-6/" class="read-more-link">阅读全文</a>
+      <a href="/posts/clrs-cpp-implementations-chapter-6/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -301,7 +301,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-5/">CLRS-Cpp-Implementations-Chapter-5</a>
+      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-5/">CLRS-Cpp-Implementations-Chapter-5</a>
     </h1>
     
     <div class="post-meta">
@@ -324,7 +324,7 @@
       hire_assistant_permute_by_sorting 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  #include &#34;chapter-2/merge_sort/merge_sort.h&#34;namespace CLRS { template &lt;typename T&gt; bool operator&lt;=(std::pair&lt;T, unsigned&gt; p1, std::pair&lt;T, unsigned&gt; p2) { return p1.second &lt;= p2.second; } template &lt;typename T, std::size_t n&gt; void permute_by_sorting(T (&amp;array)[n]) { std::default_random_engine e(std::time(0)); std::uniform_int_distribution&lt;unsigned&gt; u(0, (n-1)*(n-1)*(n-1)); std::pair&lt;T, unsigned&gt; parray[n]; for(std::size_t i = 0; i != n; ++i) parray[i] = std::pair&lt;T, unsigned&gt;(array[i], u(e)); CLRS::merge_sort(parray, 0, n - 1); for(std::size_t i = 0; i !
     </div>
     <div class="read-more">
-      <a href="/post/clrs-cpp-implementations-chapter-5/" class="read-more-link">阅读全文</a>
+      <a href="/posts/clrs-cpp-implementations-chapter-5/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -335,7 +335,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-4/">CLRS-Cpp-Implementations-Chapter-4</a>
+      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-4/">CLRS-Cpp-Implementations-Chapter-4</a>
     </h1>
     
     <div class="post-meta">
@@ -360,7 +360,7 @@ Or are these helper functions necessary, can we handle this algorithm without th
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83  #include &#34;square_matrix_multiply_recursive.
     </div>
     <div class="read-more">
-      <a href="/post/clrs-cpp-implementations-chapter-4/" class="read-more-link">阅读全文</a>
+      <a href="/posts/clrs-cpp-implementations-chapter-4/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -371,7 +371,7 @@ Or are these helper functions necessary, can we handle this algorithm without th
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/clrs-cpp-implementations-chapter-2/">CLRS-Cpp-Implementations-Chapter-2</a>
+      <a class="post-link" href="/posts/clrs-cpp-implementations-chapter-2/">CLRS-Cpp-Implementations-Chapter-2</a>
     </h1>
     
     <div class="post-meta">
@@ -394,7 +394,7 @@ Or are these helper functions necessary, can we handle this algorithm without th
       merge_sort 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53  namespace CLRS { template &lt;typename T&gt; void merge(T *array, std::size_t p, std::size_t q, std::size_t r) { std::size_t n1 = q - p + 1; std::size_t n2 = r - q; T larray[n1], rarray[n2]; for(std::size_t i = 0; i &lt; n1; ++i) larray[i] = array[p + i]; for(std::size_t j = 0; j &lt; n2; ++j) rarray[j] = array[q + j + 1]; std::size_t i = 0, j = 0, k = p; while(k &lt;= r) { if(i &lt; n1 &amp;&amp; j == n2) { array[k] = larray[i]; ++i; } else if(i == n1 &amp;&amp; j &lt; n2) { array[k] = rarray[j]; ++j; } else if(larray[i] &lt;= rarray[j]) { array[k] = larray[i]; ++i; } else { array[k] = rarray[j]; ++j; } ++k; } } template &lt;typename T&gt; void merge_sort(T *array, std::size_t p, std::size_t r) { if(p &lt; r) { std::size_t q = (p + r) / 2; merge_sort(array, p, q); merge_sort(array, q + 1, r); merge(array, p, q, r); } } }    insertion_sort 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  namespace CLRS { template &lt;typename T, std::size_t n&gt; void insertion_sort(T (&amp;array)[n]) { /* * for std::size_t is a alias of unsigned long, * and the index in while loop must not be an unsigned, * then index should be long long which could * accommodate the maximum unsigned long integer * to avoid bug.
     </div>
     <div class="read-more">
-      <a href="/post/clrs-cpp-implementations-chapter-2/" class="read-more-link">阅读全文</a>
+      <a href="/posts/clrs-cpp-implementations-chapter-2/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -405,7 +405,7 @@ Or are these helper functions necessary, can we handle this algorithm without th
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/cpp-primer-5th-exercises-chapter-19/">Cpp-Primer-5th-Exercises-Chapter-19</a>
+      <a class="post-link" href="/posts/cpp-primer-5th-exercises-chapter-19/">Cpp-Primer-5th-Exercises-Chapter-19</a>
     </h1>
     
     <div class="post-meta">
@@ -428,7 +428,7 @@ Or are these helper functions necessary, can we handle this algorithm without th
       Exercise 19.1 1 2 3 4 5 6 7 8 9  void *operator new(size_t size) { if(void *mem = malloc(size)) return mem; else throw bad_alloc(); } void operator delete(void *mem) noexcept {free(mem);}    Exercise 19.2 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  // See StrVec.h and StrVec.cpp. void *operator new(size_t size) { cout &lt;&lt; &#34;operator new&#34; &lt;&lt; endl; if(void *mem = malloc(size)) return mem; else throw bad_alloc(); } void operator delete(void *mem) noexcept { cout &lt;&lt; &#34;operator delete&#34; &lt;&lt; endl; free(mem); } int main() { StrVec({&#34;hello&#34;, &#34;world&#34;}); }    StrVec.
     </div>
     <div class="read-more">
-      <a href="/post/cpp-primer-5th-exercises-chapter-19/" class="read-more-link">阅读全文</a>
+      <a href="/posts/cpp-primer-5th-exercises-chapter-19/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -993,6 +993,10 @@ Or are these helper functions necessary, can we handle this algorithm without th
 
   
   
+    <span id="busuanzi_container">
+      访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
+    </span>
+  
 
   
 </div>
@@ -1020,6 +1024,13 @@ Or are these helper functions necessary, can we handle this algorithm without th
 
 <script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 
 
@@ -1033,6 +1044,8 @@ Or are these helper functions necessary, can we handle this algorithm without th
 
 
 
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
