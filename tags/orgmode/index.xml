@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Emacs on 找一个吃麦旋风的理由</title>
-    <link>https://zero4drift.github.io/tags/emacs/</link>
-    <description>Recent content in Emacs on 找一个吃麦旋风的理由</description>
+    <title>Orgmode on 找一个吃麦旋风的理由</title>
+    <link>https://zero4drift.github.io/tags/orgmode/</link>
+    <description>Recent content in Orgmode on 找一个吃麦旋风的理由</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 15 Jan 2019 15:04:00 +0800</lastBuildDate>
     
-	<atom:link href="https://zero4drift.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zero4drift.github.io/tags/orgmode/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -37,24 +37,6 @@ github 帐户登录评论即可；&lt;/li&gt;
 &lt;h2 id=&#34;sicp-复习暂停&#34;&gt;SICP 复习暂停&lt;/h2&gt;
 
 &lt;p&gt;很遗憾，目前 &lt;em&gt;SICP&lt;/em&gt; 复习进度到章节 4.4 就暂停了；&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>IOS App Beorg 与坚果云同步 org 文件</title>
-      <link>https://zero4drift.github.io/post/ios-app-beorg-synced-with-jianguoyun/</link>
-      <pubDate>Tue, 23 Jan 2018 11:51:00 +0800</pubDate>
-      
-      <guid>https://zero4drift.github.io/post/ios-app-beorg-synced-with-jianguoyun/</guid>
-      <description>Beorg 与坚果云同步 org 文件的设置 Beorg 设置坚果云同步 org 文件其实是可以的，以前我总是配置不成功是因为配置项可变 量太多，我尝试了多种配置组合，最后成功了。</description>
-    </item>
-    
-    <item>
-      <title>Ledger &amp; ledger-mode 学习知识点总结</title>
-      <link>https://zero4drift.github.io/post/ledger--ledger-mode-xue-xi-zhi-shi-dian-zong-jie/</link>
-      <pubDate>Fri, 19 Jan 2018 15:08:00 +0800</pubDate>
-      
-      <guid>https://zero4drift.github.io/post/ledger--ledger-mode-xue-xi-zhi-shi-dian-zong-jie/</guid>
-      <description>为什么要写这篇博客？ 个人财务管理的痛点 人力有穷 只靠记忆来保持收支状态的清醒，对我而言最后必定是习惯性超支。 对记忆中的数字没有直观感受（没有威</description>
     </item>
     
   </channel>

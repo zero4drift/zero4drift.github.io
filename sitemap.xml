@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zero4drift.github.io/post/newyear2019/</loc>
+    <lastmod>2019-01-15T16:19:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://zero4drift.github.io/post/sicp-refresher-chapter-43/</loc>
     <lastmod>2019-01-14T22:21:29+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -550,7 +557,7 @@
   
   <url>
     <loc>https://zero4drift.github.io/tags/emacs/</loc>
-    <lastmod>2019-01-14T22:23:31+08:00</lastmod>
+    <lastmod>2019-01-15T16:19:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -570,8 +577,15 @@
   </url>
   
   <url>
+    <loc>https://zero4drift.github.io/tags/orgmode/</loc>
+    <lastmod>2019-01-15T16:19:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zero4drift.github.io/post/</loc>
-    <lastmod>2019-01-14T22:21:29+08:00</lastmod>
+    <lastmod>2019-01-15T16:19:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -606,7 +620,14 @@
   
   <url>
     <loc>https://zero4drift.github.io/</loc>
-    <lastmod>2019-01-14T22:21:29+08:00</lastmod>
+    <lastmod>2019-01-15T16:19:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zero4drift.github.io/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2019-01-15T16:19:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
